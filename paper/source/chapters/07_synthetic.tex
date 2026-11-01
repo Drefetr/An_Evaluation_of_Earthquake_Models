@@ -1,4 +1,4 @@
-\chapter{Matched-law detection studies}
+\chapter{Controlled Nuisance Sensitivity and Reference Calibration}\label{chap:synthetic}
 \label{ch:synthetic}
 
 This chapter reports what the matched synthetic studies establish about detecting marked stress sensitivity when parts of the background and triggering process are estimated. The historical comparisons below concern their stated law class and finite numerical implementation; the subsequent F continuation is reported separately at the end of the chapter. The common alternative bank contains \(150\) stronger histories, and each procedure has \(1{,}000\) null queries with \(999\) separately identified null references. Success is a calibrated rejection on an alternative history; the null rejection rate counts rejections among uninhibited query histories. Figure~\ref{fig:detection} summarizes the detection rates and their conditional binomial intervals.
@@ -91,62 +91,310 @@ Taken together, the matched studies locate a substantial change in calibrated de
 
 The \href{https://github.com/Drefetr/InhibitoryEarthquakeModels/blob/3e76a174cf4f58ce601c6c9640c4d0c11168813f/paper/data/detection.json}{public detection summary} and the \hyperref[sec:source-supplements]{availability guide} provide public entry points. Saved summaries do not replace the omitted full authorities or historical history banks.
 
-\section{A bounded four-procedure continuation}
-\label{sec:f-continuation}
 
-The accompanying \emph{F continuation: background nuisance estimation}
-addendum (22 October 2026 revision; scientific execution on 19 October UTC)
-reports a subsequent exploratory study. It uses the same pinned catalogue
-and clock identities as the historical level-only and level-and-trend
-studies, but fits a separately frozen finite numerical procedure with its
-own mandatory solver and control rules. Every alternative estimates
-\(\eta\); the background log level \(a\) and trend \(d\) are supplied or
-estimated in a four-cell design. The supplied/supplied cell is therefore
-distinct from the fixed-\(\eta\) known-law benchmark above.
+% Let the completed historical discussion flow into the continuation.
+\section{Background nuisance estimation: the four-procedure continuation}
+\label{sec:f-continuation}\label{sec:f-continuation-full}
+Scientific execution occurred on 19 October 2026 UTC (20 October in New Zealand at completion); the source editorial revision was dated 22 October 2026. No new scientific computation accompanies this consolidation.
 
-\begin{table}[H]
-\centering
-\caption{Separate F continuation: decisions on all 150 planned alternative
-queries at \(\alpha=0.05\). These counts belong to the new finite procedure,
-not the historical table or its conditional binomial intervals.}
-\label{tab:f-continuation}
-\small
-\begin{tabular}{@{}lrrr@{}}\toprule
-Background nuisance fitted & Reject & Non-reject & Unknown\\\midrule
-Neither (\(I_{00}\)) & 150 & 0 & 0\\
-Level only (\(I_{10}\)) & 122 & 28 & 0\\
-Trend only (\(I_{01}\)) & 150 & 0 & 0\\
-Level and trend (\(I_{11}\)) & 65 & 82 & 3\\\bottomrule
+
+This continuation reuses pinned historical input and clock identities but
+applies its separately frozen finite solver and control recipe. Its trend-only
+cell does not retrospectively explain the historical level-only discordance.
+The historical counts, conditional intervals and figures above retain their
+own recipes and are not pooled with or overwritten by this continuation.
+The full matrix below replaces the former brief continuation summary.
+
+The question is whether background nuisance treatment changes a fixed finite
+inhibition procedure, and whether conditional likelihood compensation or
+numerical stopping sensitivity helps explain the observed differences.
+No physical or causal explanation follows merely from a favourable contrast.
+All alternatives estimate inhibition $\eta$; the null fixes $\eta=0$.
+\begin{center}
+\begin{tabular}{lll}\toprule
+Cell & Free null coordinates & Free alternative coordinates\\\midrule
+$I_{00}$ & none & $\eta$\\
+$I_{10}$ & $a$ & $(a,\eta)$\\
+$I_{01}$ & $d$ & $(d,\eta)$\\
+$I_{11}$ & $(a,d)$ & $(a,d,\eta)$\\\bottomrule
 \end{tabular}
-\end{table}
+\end{center}
+Here $a,d$ are background log level and trend; other parameters are supplied
+according to the pinned law. Supplied/supplied is not a fixed-$\eta$ oracle.
+The original procedure is distinct from the separately labelled solver
+and geometry diagnostics.
 
-All 2,149 identities remain registered, but only 7,068 of 8,596 planned
-method outcomes have controlled statistics; 1,528 remain unknown. The
-null-query rejection accounting bounds are \([0.030,0.407]\),
-\([0.035,0.412]\), \([0.031,0.414]\) and \([0.031,0.411]\) in cell order,
-using all 1,000 planned null queries. These are missing-decision bounds,
-not confidence intervals. History cost, traversal and stopping rules make
-missingness nonrandom. The continuation has not established its empirical
-null size, and its alternative rejection fractions do not establish a
-size-matched power ranking. Its full-pair interaction point mean and MCSE
-remain unavailable. All 2,000 descriptive shared-reference/paired-query
-resamples completed; their endpoint quantiles do not supply certified coverage.
+\section{Strict marked-history accounting}
+For a fixed observed history, write
+\[
+ \lambda(t)=\exp\{a+d x_{\mathrm{trend}}(t)-\eta G(t)\}+nH(t),\qquad
+ \ell=\sum_i\log\lambda(t_i^-)+\sum_i\log f_\beta(q_i)
+       -\int_0^T\lambda(t)\,dt .
+\]
+Here $x_{\mathrm{trend}}(t)=2t/(24394\,\mathrm{days})-1$ is the actual affine
+observation coordinate, with $t$ measured in days; it is not $1/t$ or a
+Taylor approximation.
+Only earlier events enter $G(t_i^-),H(t_i^-)$. The current mark affects later
+history, not its own event intensity. Initial quiet and terminal exposure,
+all earlier parents and the exact supplied projected/paired clock convention
+are retained. No clock or mark repair is introduced.
 
-A posthoc lineage check within the continuation fixed its original
-25-query pilot cohort. The same level-only query fits and statistics gave
-6 definite rejections, 11 non-rejections and 8 unknowns under the pilot
-reference calibration, then 19, 6 and 0 under the expanded calibration.
-This is calibration-dependent decision accounting. That 25-query cohort
-is distinct from the earlier 25-pair \(\eta\)-planning sample reported
-above. Neither comparison is an independent replication.
+The direct contrast retains event and complete compensator accounting.
+With the same supplied $n$, trigger kernel/productivity and mark law, trigger
+exposure and common mark terms cancel between null and alternative. This is
+an explicit cancellation, not a reason to omit those terms in comparisons
+that change them. Event-log terms cannot be additively allocated to latent
+causes. The primary numerical procedure is order 16 with mandatory order-32
+and other prescribed controls. A finite candidate does not override an
+unresolved optimizer or control status. Bounded recipes establish neither
+global optima nor equal effective complexity.
 
-The trend-only cell now provides a bounded comparison under the new
-procedure; it does not retrospectively explain the historical level-only
-discordance. The addendum retains partial geometry diagnostics, failures,
-methods and availability limits. The results support sensitivity to the
-specified nuisance and calibration treatment, without identifying an
-unavoidable loss, a physical mechanism or a universal benefit from a
-particular nuisance restriction. The historical counts, intervals and
-figures above remain results of their original recipes and are not pooled
-with or overwritten by this continuation.
+\section{Conditional amplitude computation}
+The conditional objective and its convexity in $A=e^a$, rather than in $a$, are derived once in Proposition~\ref{prop:amplitude} and equation~\eqref{eq:amplitude-objective}. The continuation uses that result with background integral $\mathcal B=\int_0^T e^{d x_{\mathrm{trend}}(t)-\eta G(t)}dt$ and fixed triggering contributions $v_i=nH_i$.
+The constrained profile has $A\in[e^{-12},1]$. A nonnegative derivative at the lower endpoint selects that endpoint; a nonpositive derivative at the upper endpoint selects the upper endpoint; otherwise a bracketed scalar root is used. When all $v_i=0$, the unconstrained solution $N/\mathcal B$ is restricted to the allowed interval; an empty history selects the lower endpoint.
 
+The implementation reports actual derivative/KKT tolerance, amplitude
+bracket width, stopping reason and exact/approximate status. Its parameter
+named \texttt{a\_tolerance} gates width in $A$, not absolute error in $a$.
+Interior acceptance can be curvature/bracket-width limited; it must not be
+described as meeting a fixed derivative threshold alone. The conditional
+mesh fixes the remaining parameters and is not a confidence region.
+The $\eta=0$ analytic background branch and positive-$\eta$ quadrature branch
+have a separately recorded numerical seam. All four prescribed difference
+steps are retained, with truncation/cancellation and boundary-domain cautions;
+no best step repairs a scientific acceptance rule.
+
+\section{Realized-event geometry}
+At a fixed point the event log-intensity columns are
+\[
+ c_i=(p_i,\;p_i x_{\mathrm{trend}}(T_i),\;-p_iG_i),\qquad
+ Z=W^{1/2}C_{\rm event} .
+\]
+Main06 uses $W=I_N$, so every actual event weight is one. The factors
+$p_i$ already enter the event columns; quadrature weights are separate.
+The raw Gram matrix is $Z^\top Z$. Nonzero weighted columns are normalized
+by their Euclidean norms before numerical SVD/projection. If $\widetilde z_\eta$
+is the scaled inhibition column and $P_{a,d}$ the numerical least-squares
+projection on the scaled nuisance columns, the reported residual is
+\[
+ r_\eta=\frac{\|(I-P_{a,d})\widetilde z_\eta\|_2^2}
+                  {\|\widetilde z_\eta\|_2^2} .
+\]
+This is a \emph{squared} residual fraction, not a norm ratio. A zero
+inhibition column is explicitly undefined for interpretation, despite its
+reported zero convention. The event Gram excludes compensator derivatives
+and random-history variation: it is not a full observed Hessian, ensemble
+Fisher information, sampling covariance, global identification theorem or
+causal quantity. Low residuals describe conditional path overlap only.
+
+\section{Historical incomplete checkpoint and its recovery}
+The following accounting describes the earlier interrupted checkpoint. The completed recovery is reported at the end of this chapter.
+The independently reviewed historical geometry stage was partial: six of 11 cases
+completed, two timed out, one was started-unknown at the tree-RSS stop and
+two were unattempted. All 11 remain in the accounting. The original figure displayed six completed meshes; the updated figure below includes the subsequently recovered profiles. At that checkpoint, the absent meshes are new\_r076 and null0945 (partial), null1292 (started-unknown), and null1322 and null1434 (unattempted). The saved
+portion has 253 of 396 solver rows and 840 of 1,540 profile points, with
+840 corresponding order-32 controls. Two old failure witnesses were
+intentionally selected separately from nine metadata extrema; neither
+selection estimates population prevalence or detection probability.
+
+The old witnesses reproduced maxls=40 ABNORMAL returns; diagnostic
+maxls=100 returned success at unchanged objective and essentially unchanged
+parameters. This is stopping-flag sensitivity, not proof of the precise old
+cause, gradient convergence or a corrected production outcome. No old
+unresolved status is promoted, and maxls=100 is not substituted into calibration.
+
+The separate ended nine-case full-procedure tail run produced seven complete
+cases and 31 of 36 controlled method outcomes. One finite candidate lacked
+final controls and four methods were absent; all five remain unknown.
+The large alternative case timed out during its Powell control, while the
+largest null case failed the unchanged internal 128 MiB feature-cache limit.
+An external 2 GiB tree lease did not relax that internal limit or repair the
+saved failure. These stress cases do not demonstrate complete bank coverage.
+
+\begin{figure}[p]
+\centering\includegraphics[width=\linewidth,height=.80\textheight,keepaspectratio]{s01_all11_profile_meshes.pdf}
+\caption{Completed profile mesh cohort, with recovered panels marked. Each panel subtracts its own grid minimum; colour saturation is labelled. Completing profiles does not complete the historical Hessian diagnostics or establish a global optimum.}
+\end{figure}
+\begin{figure}[p]
+\centering\includegraphics[width=\linewidth,height=.80\textheight,keepaspectratio]{a1_geometry_and_derivative_steps.pdf}
+\caption{Realized-event overlap and all saved $\eta=0$ derivative steps.
+Positive absolute errors use a log display; exact zeros, if any, are listed
+separately without floors, clipping or imputation. Selected old witnesses
+remain distinct. Neither panel establishes a causal mechanism.}
+\end{figure}
+
+\section{Calibration and uncertainty contract}
+Let $R$ be the planned reference count, $K$ the controlled reference indices,
+$U=R-|K|$, and $B_q=\sum_{r\in K}\mathbf 1\{T_r\geq T_q\}$ for a controlled
+query statistic. The add-one rank interval is
+\[
+ p_q\in\left[\frac{1+B_q}{R+1},\frac{1+B_q+U}{R+1}\right].
+\]
+Ties use $\geq$. An uncontrolled query remains unknown. An upper endpoint
+at most $\alpha$ gives a definite rejection; a lower endpoint above $\alpha$
+gives a definite non-rejection; otherwise the decision remains unknown.
+For $N$ planned queries, $k$ definite rejections and $u$ unknowns give
+accounting bounds $[k/N,(k+u)/N]$, not sampling confidence intervals.
+
+For the paired nuisance interaction,
+\[
+ D_i=I_i^{00}-I_i^{10}-I_i^{01}+I_i^{11},\qquad
+ \overline D=N^{-1}\sum_iD_i,\qquad
+ \operatorname{MCSE}=\sqrt{\frac{\sum_i(D_i-\overline D)^2}{N(N-1)}} .
+\]
+The declared point summary requires all planned paired rows resolved and
+$N\geq2$; it is conditional on the fixed reference bank, not a survivor-only
+estimate or reference-bank uncertainty measure.
+
+The executed method used 2,000 shared-reference and paired-query resamples
+as a separately gated descriptive sensitivity analysis, not automatic
+confirmatory, simultaneous or unconditional coverage. Historical independence
+is source-reported, and adaptive pilot/cost-query reuse remains relevant.
+Both production jobs ended before final calibration. Independent review
+reconstructed base decisions, replayed all 2,000 shared-reference plans and
+checked all 80 chunk hashes. It independently recalculated eight declared
+query-replicate witnesses.
+A separate audit checked all 120 saved endpoint quantiles. This does not mean
+every resampled query statistic was independently recalculated.
+
+% Values retained from the independently audited saved-output checkpoint.
+\section{Historical bounded checkpoint}
+The historical checkpoint inventory retained 2,149 histories: 999 references, 1,000 null
+queries and 150 alternative queries. Of 8,596 planned method outcomes,
+7,068 have controlled statistics and 1,528 remain unknown. There are 1,752
+histories with all four controlled, 18 partial, three with exceptions and
+376 never attempted. One of the partial claimed histories was interrupted with
+an uncontrolled final method. Registration is not complete computation.
+The two production phases produced 1,639 new terminal records and reused
+133 immutable carried records; the claim count was 1,640.
+
+At $\alpha=0.05$, the historical checkpoint accounting was:
+\begin{center}
+\captionof*{table}{Historical incomplete F-continuation decisions and planned-denominator rejection bounds.}
+\begin{tabular}{llrrrr}\toprule
+Queries & Cell & Reject & Non-reject & Unknown & Rejection bounds\\\midrule
+Null ($N=1000$)&$I_{00}$&30&593&377&$[0.030,0.407]$\\
+&$I_{10}$&35&588&377&$[0.035,0.412]$\\
+&$I_{01}$&31&586&383&$[0.031,0.414]$\\
+&$I_{11}$&31&589&380&$[0.031,0.411]$\\\midrule
+Alternative ($N=150$)&$I_{00}$&150&0&0&$[1,1]$\\
+&$I_{10}$&122&28&0&$[0.8133,0.8133]$\\
+&$I_{01}$&150&0&0&$[1,1]$\\
+&$I_{11}$&65&82&3&$[0.4333,0.4533]$\\\bottomrule
+\end{tabular}
+\end{center}
+The finite fitting recipe reported here gives 122 rejections out of 150
+for $I_{10}$ and 65 rejections, 82 non-rejections and three unknown decisions
+for $I_{11}$. These are distinct from the paper's historical counts of
+123/150 and 68/150, respectively. A separate source-reported metadata check
+matched historical and continuation input identities and case roles; this
+compact packet does not reproduce it. No paired historical/continuation
+outcome comparison is reported; the counts should not be combined or
+interpreted as a paired change in detection.
+
+These are bounds over all planned queries, not confidence intervals or
+estimates conditional on successful fitting. Controlled reference counts
+are 998, 998, 992 and 997 in cell order; controlled null-query counts are
+623, 623, 619 and 620; alternative counts are 150, 150, 150 and 148.
+Thus a controlled query can still have an unresolved decision because
+reference uncertainty straddles the threshold. Null missingness depends
+on history cost, traversal and deadlines; the broad bounds do not establish
+empirical 5\% size.
+
+At that checkpoint, the unresolved fraction was too large to establish a useful empirical Type I error rate near the nominal five percent level. Missingness cannot be treated as random: expensive histories, the traversal order and computational limits affect which results resolve. Neither a successful subset nor that checkpoint's resampling repaired the missing null coverage; the completed recovery later in this chapter does so explicitly.
+
+The nuisance-interaction accounting bounds are $[-0.765,0.752]$ under
+the null and $[-0.38,-0.36]$ under the alternative. The required full-pair
+point mean and MCSE are unavailable for both roles. No survivor-only point
+estimate is substituted. On these 150 saved alternative histories, supplying
+level and estimating trend gives 150 definite rejections;
+estimating both nuisance coordinates is associated with materially fewer
+detections. The signed interaction is a procedure contrast, not a causal
+effect or proof of physical inhibition.
+
+\subsection{Completed descriptive resampling}
+All 2,000 declared replicates completed, using one shared reference plan
+across the four cells and both roles, and separate paired query plans by
+role. Lower and upper accounting endpoints are summarized separately with
+linear/type-7 quantiles. For the alternative $I_{11}$ cell, the 2.5\%, median
+and 97.5\% quantiles of the lower endpoint are $(0.3800,0.4333,0.4667)$
+for bank-only resampling and $(0.3400,0.4333,0.5200)$ when paired queries
+are also resampled. The corresponding upper-endpoint quantiles are
+$(0.4067,0.4533,0.4800)$ and $(0.3600,0.4533,0.5400)$.
+These summarize sensitivity of incomplete accounting, not certified coverage.
+All 120 endpoint quantiles and counts of every replicate status are retained
+in the JSON/CSV tables; individual statuses remain in the saved chunk JSON.
+No unresolved replicate is discarded. In the alternative
+paired-query mode, 126 replicates have a resolved point interaction and
+1,874 remain unresolved. This does not resolve the original full-pair point.
+
+\subsection{Posthoc accounting of the continuation pilot}
+This subsection concerns the earlier 25-query pilot of this continuation,
+not the paper's separate $\eta$-planning experiment (6/25 versus 11/25).
+After inspecting the aggregate calibration, a separate saved-evidence check
+fixed the original 25 alternative IDs and compared their unchanged carried
+scores under the old and expanded reference banks. This was descriptive
+posthoc accounting: no fit, rank plan or history was regenerated.
+For $I_{10}$, the original cohort changed from $(6,11,8)$ to $(19,6,0)$
+in reject/non-reject/unknown counts. The remaining 125 alternatives gave
+$(103,22,0)$ under the same final bank. For $I_{11}$, the original cohort
+changed from $(6,17,2)$ to $(8,17,0)$ and the remaining cohort gave
+$(57,65,3)$. Both cohorts have all rejections in $I_{00}$ and $I_{01}$.
+The same 25 fitted scores yield different decisions under the new reference
+calibration. This comparison does not isolate bank size from reference
+composition, rank resolution or missingness. Neither
+this comparison nor the additional query cohort establishes population
+causality, independent validation or nominal test size.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{a1_planned_denominator_bounds.pdf}
+\caption*{Historical incomplete calibration on the full planned denominators.
+Segments span definite rejection through rejection plus unresolved outcomes;
+they are accounting bounds, not confidence intervals. Counts distinguish
+definite rejection (R), nonrejection (NR) and unresolved outcomes (U);
+reference-bank counts remain in the accompanying text.}
+\end{figure}
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=\textwidth]{s01_saved_bootstrap_interactions.pdf}
+\caption{The saved 2,000 resampled interaction means for each role and mode.
+No additional fit or resampling was performed to draw this figure.}
+\end{figure}
+
+\subsection{Decision at the historical checkpoint}
+The earlier continuation stopped incomplete and called for a cheaper, numerically validated recovery. The completed missing-only recovery below now supplies resolved counts; it preserves old failures as history and recalculates the rank decisions against the repaired reference bank.
+
+\section{Availability and bounded interpretation}
+The 2,149 reused bank byte/clock identities were reverified; the historical
+RNG and generating process were not replayed. The private NPZ bank is not
+included in source-only material. Exact excluded inputs, settings and receipts
+are required for historical reproduction; constructed fixtures are separate.
+The accompanying saved summary, accounting tables and figures document the
+reported numerical checkpoint; they do not replace the omitted raw inputs.
+The saved \texttt{F\_RESULT\_TABLES.json} records an input
+\texttt{summary.json} SHA-256 beginning \texttt{456a3c1f}, whereas
+the bundled summary has SHA-256 beginning \texttt{32115580}.
+The matrix counts and all displayed endpoint quantiles agree under
+saved-value reconciliation; that agreement does not establish byte-identical
+input provenance.
+
+Conditional overlap, solver flags and controlled calibration outcomes must be
+interpreted together with failures and missing tails. They do not identify
+physical inhibition or justify an automatic cache change, retry, new bank,
+broader search or next cycle. The separately authorized recovery below addresses that proposal; it retains the predictive and causal interpretation limits.
+
+\subsection{Historical endpoint sensitivity and unresolved interactions}
+All endpoint quantiles remain in Appendix~\ref{app:f-endpoints}, Table~\ref{tab:f-all-endpoints}. The repeated point-interaction statuses reduce to the four rows below. The 2,000 resamples per role and mode produced accounting-bound endpoints; an unresolved point interaction does not mean that its endpoint calculation failed. Repeating a status across ten endpoint rows does not create ten new resampling cohorts.
+\begin{center}
+\begin{tabular}{llrr}\toprule
+Role & Resampling & Resolved & Unknown\\\midrule
+Null & Bank only & 0 & 2000\\
+Null & Bank and paired query & 0 & 2000\\
+Alternative & Bank only & 0 & 2000\\
+Alternative & Bank and paired query & 126 & 1874\\\bottomrule
+\end{tabular}
+\end{center}
+These are descriptive sensitivity calculations, not confidence limits. Even a resolved resampled point does not resolve the original full-pair statistic or establish null calibration.
+
+\input{chapters/07_s01_completed.tex}

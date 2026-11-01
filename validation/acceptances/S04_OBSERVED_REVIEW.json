@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "status": "recommend_S04_observed_reporting_acceptance",
+  "scope": "Independent saved scalar/metadata normalization and public denominator review; no model execution or private optimizer journal replay",
+  "public_sha256": "3f111ab190c978be53da1e4d73934aeb792e2f4a31659d3044f132ed882fa6b8",
+  "rows": 15,
+  "distinct_folds": 3,
+  "distinct_targets": 315,
+  "checks": [
+    {
+      "fold": 0,
+      "n_test": 79,
+      "all_seven_gates": true,
+      "raw_inclusive_gain": -0.22447114721489925,
+      "inactive_floor_index": 0,
+      "report_sha256": "cf32a1bd125e5d406bd2cd3ad9b91b7acba6dc24872d53a04b98a1b96be9cd2d",
+      "receipt_sha256": "4b036ee7924a16cb8304fc4fe399d7b75ef505c926f80fdaf969f14b2218af84"
+    },
+    {
+      "fold": 1,
+      "n_test": 167,
+      "all_seven_gates": true,
+      "raw_inclusive_gain": -1.9528677570883701,
+      "inactive_floor_index": 0,
+      "report_sha256": "77136618a2ac5c05cd126835335d76c92eaa9b8250f341fa77a32f668fced5f3",
+      "receipt_sha256": "fad684c7c05fcca03d0488217f85d6cb3ad1a99a0902bc1c7cf3a71d5b148549"
+    },
+    {
+      "fold": 2,
+      "n_test": 69,
+      "all_seven_gates": true,
+      "raw_inclusive_gain": -0.2093431817571627,
+      "inactive_floor_index": 8,
+      "report_sha256": "9dc3980bedcfa828ae7697e8d0a7a51ee86727a1fcffcde855853f199ddf0cec",
+      "receipt_sha256": "789372d3e097b0161f094c1c565ff03c05838ef14dbdb5644b3da60c7fc5030d"
+    }
+  ],
+  "interpretation": "OriginalLI andimmigrantLI+ select exact uninhibitedfloor all3folds; rawtotalLI+ loses all3; BICreturnsalltofloor. No observedpredictivegain, no physicalabsenceinference. CommonfloorNLL is fixed shared uninhibitedOCbackbone, not a reestimatedindependent comparator.",
+  "limits": [
+    "Private start/state journals arehash-referenced by producerreports but not locally materialized/replayed",
+    "Seven numerical gates areaccepted savedcontrols plusprior sampledbackend validation; no exhaustiveindependentfitreplay or globaloptimizationcertificate",
+    "Root reportingacceptance must be explicit; pendingmanifest must not be presented as alreadyaccepted"
+  ],
+  "proposed_manifest_status": "pending_root_acceptance",
+  "mandatory_fixes": []
+}

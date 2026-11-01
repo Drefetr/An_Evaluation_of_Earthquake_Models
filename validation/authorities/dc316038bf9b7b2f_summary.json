@@ -1,0 +1,217 @@
+{
+  "created_utc": "2026-10-17T20:25:32.130304+00:00",
+  "source_path": "iteration_26/results/analysis/2026-10-17T125009077299_0000/summary.json",
+  "source_sha256": "0c46b5756ef92965263112738baea86914da2e95d4aa00609c5931a750540aca",
+  "analysis_signature": "7f1ca18d066eff9064ecad4c9e9a919f8ebeb2a873a923293604c7cb9d82148c",
+  "plan_id": "18aab96c7a42878ecb5f5ee97518731cb994dad8ccd7b9d85b9c9f7ef54dd303",
+  "methods": {
+    "level_only": {
+      "reference_requested": 999,
+      "reference_resolved": 999,
+      "reference_complete": true,
+      "heldout_null_size": {
+        "requested": 1000,
+        "rejections": 46,
+        "resolved": 1000,
+        "unknown": 0,
+        "conditional_frequency": 0.046,
+        "monte_carlo_se": 0.006624499981130651,
+        "exact_binomial_95_interval": [
+          0.0338714985476779,
+          0.06088355271374263
+        ],
+        "accounting_bounds": [
+          0.046,
+          0.046
+        ]
+      },
+      "alternative_frequency": {
+        "requested": 150,
+        "rejections": 123,
+        "resolved": 150,
+        "unknown": 0,
+        "conditional_frequency": 0.82,
+        "monte_carlo_se": 0.03136877428271625,
+        "exact_binomial_95_interval": [
+          0.7490221049939838,
+          0.8779003724223797
+        ],
+        "accounting_bounds": [
+          0.82,
+          0.82
+        ]
+      }
+    },
+    "known_known": {
+      "reference_requested": 999,
+      "reference_resolved": 999,
+      "reference_complete": true,
+      "heldout_null_size": {
+        "requested": 1000,
+        "rejections": 49,
+        "resolved": 1000,
+        "unknown": 0,
+        "conditional_frequency": 0.049,
+        "monte_carlo_se": 0.006826346021115542,
+        "exact_binomial_95_interval": [
+          0.036467059172047823,
+          0.06426605314016964
+        ],
+        "accounting_bounds": [
+          0.049,
+          0.049
+        ]
+      },
+      "alternative_frequency": {
+        "requested": 150,
+        "rejections": 150,
+        "resolved": 150,
+        "unknown": 0,
+        "conditional_frequency": 1.0,
+        "monte_carlo_se": 0.0,
+        "exact_binomial_95_interval": [
+          0.9757074028338915,
+          1.0
+        ],
+        "accounting_bounds": [
+          1.0,
+          1.0
+        ]
+      }
+    },
+    "background_estimated": {
+      "reference_requested": 999,
+      "reference_resolved": 999,
+      "reference_complete": true,
+      "heldout_null_size": {
+        "requested": 1000,
+        "rejections": 44,
+        "resolved": 1000,
+        "unknown": 0,
+        "conditional_frequency": 0.044,
+        "monte_carlo_se": 0.006485676526007136,
+        "exact_binomial_95_interval": [
+          0.032149497010871414,
+          0.058620419206330925
+        ],
+        "accounting_bounds": [
+          0.044,
+          0.044
+        ]
+      },
+      "alternative_frequency": {
+        "requested": 150,
+        "rejections": 68,
+        "resolved": 150,
+        "unknown": 0,
+        "conditional_frequency": 0.4533333333333333,
+        "monte_carlo_se": 0.04064662529839529,
+        "exact_binomial_95_interval": [
+          0.3719742109510012,
+          0.5365724144187041
+        ],
+        "accounting_bounds": [
+          0.4533333333333333,
+          0.4533333333333333
+        ]
+      }
+    }
+  },
+  "paired": {
+    "level_only_minus_known_known": {
+      "heldout_null_size": {
+        "requested": 1000,
+        "complete": true,
+        "first_method": "level_only",
+        "second_method": "known_known",
+        "table": {
+          "neither": 909,
+          "first_only": 42,
+          "second_only": 45,
+          "both": 4,
+          "unknown": 0
+        },
+        "first_minus_second": -0.003,
+        "descriptive_MCSE": 0.009331563538768734,
+        "accounting_bounds": [
+          -0.003,
+          -0.003
+        ]
+      },
+      "alternative_frequency": {
+        "requested": 150,
+        "complete": true,
+        "first_method": "level_only",
+        "second_method": "known_known",
+        "table": {
+          "neither": 0,
+          "first_only": 0,
+          "second_only": 27,
+          "both": 123,
+          "unknown": 0
+        },
+        "first_minus_second": -0.18,
+        "descriptive_MCSE": 0.03147386259812478,
+        "accounting_bounds": [
+          -0.18,
+          -0.18
+        ]
+      }
+    },
+    "level_only_minus_background_estimated": {
+      "heldout_null_size": {
+        "requested": 1000,
+        "complete": true,
+        "first_method": "level_only",
+        "second_method": "background_estimated",
+        "table": {
+          "neither": 920,
+          "first_only": 36,
+          "second_only": 34,
+          "both": 10,
+          "unknown": 0
+        },
+        "first_minus_second": 0.002,
+        "descriptive_MCSE": 0.008370547536814188,
+        "accounting_bounds": [
+          0.002,
+          0.002
+        ]
+      },
+      "alternative_frequency": {
+        "requested": 150,
+        "complete": true,
+        "first_method": "level_only",
+        "second_method": "background_estimated",
+        "table": {
+          "neither": 21,
+          "first_only": 61,
+          "second_only": 6,
+          "both": 62,
+          "unknown": 0
+        },
+        "first_minus_second": 0.36666666666666664,
+        "descriptive_MCSE": 0.0457760980846319,
+        "accounting_bounds": [
+          0.36666666666666664,
+          0.36666666666666664
+        ]
+      }
+    }
+  },
+  "full_run_charged_seconds": 15610.504870599834,
+  "limitations": [
+    "Recipe choice followed inspection of the reused histories; the full selection-plus-scoring process is not proved exchangeable.",
+    "Nominal conditional CP intervals omit reference-bank, generating-law, numerical-geometry and adaptive-selection uncertainty.",
+    "Shared-bank decisions are dependent unconditionally; a realized bank conditional rate need not equal or be below .05.",
+    "Case-specific clock/repair provenance and finite searches limit ideal exchangeability and optimization claims.",
+    "No equal-size, causal power attribution, physical-mechanism or universal information-limit claim."
+  ],
+  "source_status": "Accepted saved calibration; actual A/C/D completion cross-reviews passed",
+  "completion_review_sha256": {
+    "iteration_26/completion/reviews/A_completion_review.json": "32dcdfc23870ad34a2ce893682ac5bc8f5e30a4fa61e9d3f305ce3f66438cd0f",
+    "iteration_26/completion/reviews/C_completion_review.json": "069fd37ce8d5ded727e67d061bece2e8e9c24f40615bd2c74b027299d7c68cd0",
+    "iteration_26/completion/reviews/D_completion_review.json": "e25825b3a0bd60acf913e5a038670559af1b0fd7246e3d86d7990c3b1cc9f956"
+  },
+  "record_sha256": "e285361c1557c91a521872370dcf3f5a4d0f6477b1eb9cf046db35668d9bddbf"
+}

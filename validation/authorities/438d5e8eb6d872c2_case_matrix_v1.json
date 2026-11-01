@@ -1,0 +1,546 @@
+{
+  "schema_version": 1,
+  "protocol_id": "continuous_local_inhibition_experiment_v1",
+  "status": "implementation_pending_independent_review",
+  "author_scope": "methods_and_case_matrix_only_no_source_edits_or_numerical_execution",
+  "privacy": "Private raw catalogues, fits, event/score arrays, caches and row-bearing logs may be consumed only by deterministic local programs, never any model context.",
+  "observation_law": {
+    "minimum_magnitude": 4.0,
+    "latitude_closed": [
+      32,
+      37
+    ],
+    "longitude_closed": [
+      -121,
+      -114
+    ],
+    "depth_km_closed": [
+      -5,
+      40
+    ],
+    "history_start_utc": "1981-01-01T00:00:00Z",
+    "training_start_utc": "1986-01-01T00:00:00Z",
+    "ties": "strict_integer_timestamp_parent_less_than_target_no_within_batch_history",
+    "parameter_updates_within_test": false,
+    "T0_days": 16436
+  },
+  "observed_cases": [
+    {
+      "case_id": "LI_CA_M4_F0",
+      "fold": 0,
+      "train_end": "2011-01-01T00:00:00Z",
+      "test_start": "2011-01-01T00:00:00Z",
+      "test_end": "2016-01-01T00:00:00Z",
+      "training_targets": 851,
+      "test_targets": 79,
+      "exposure_days": 1826,
+      "fit_arm": "LI",
+      "reference_arms": [
+        "OC_sealed",
+        "EP_sealed"
+      ],
+      "starts": 8,
+      "floors": [
+        "constant_Poisson",
+        "accepted_OC_eta0"
+      ]
+    },
+    {
+      "case_id": "LI_CA_M4_F1",
+      "fold": 1,
+      "train_end": "2016-01-01T00:00:00Z",
+      "test_start": "2016-01-01T00:00:00Z",
+      "test_end": "2021-01-01T00:00:00Z",
+      "training_targets": 930,
+      "test_targets": 167,
+      "exposure_days": 1827,
+      "fit_arm": "LI",
+      "reference_arms": [
+        "OC_sealed",
+        "EP_sealed"
+      ],
+      "starts": 8,
+      "floors": [
+        "constant_Poisson",
+        "accepted_OC_eta0"
+      ]
+    },
+    {
+      "case_id": "LI_CA_M4_F2",
+      "fold": 2,
+      "train_end": "2021-01-01T00:00:00Z",
+      "test_start": "2021-01-01T00:00:00Z",
+      "test_end": "2026-01-01T00:00:00Z",
+      "training_targets": 1097,
+      "test_targets": 69,
+      "exposure_days": 1826,
+      "fit_arm": "LI",
+      "reference_arms": [
+        "OC_sealed",
+        "EP_sealed"
+      ],
+      "starts": 8,
+      "floors": [
+        "constant_Poisson",
+        "accepted_OC_eta0"
+      ]
+    }
+  ],
+  "law": {
+    "stress_mark_g": "1",
+    "memory": "exp(-lag_days/psi_days)",
+    "spatial_stress": "(1+projected_squared_distance_km2/ell_km^2)^(-2)",
+    "stress_spatial_normalization": false,
+    "suppressed_term": "immigrant_only",
+    "immigrant_renormalization": false,
+    "excitation": "exact_inherited_OC",
+    "new_nuisance_selection": false,
+    "eta0_canonical": {
+      "ell_km": 30,
+      "psi_days": 7
+    },
+    "measurement_scope": "Recorded-coordinate statistical prediction only; no empirical location-error distribution admitted; engineering ell_min does not establish physical resolution."
+  },
+  "optimizer": {
+    "coordinate_order": [
+      "a",
+      "d",
+      "n",
+      "logc",
+      "p",
+      "eta",
+      "logell",
+      "logpsi"
+    ],
+    "bounds_physical": {
+      "a": [
+        -12,
+        0
+      ],
+      "d": [
+        -2,
+        2
+      ],
+      "n": [
+        0,
+        0.98
+      ],
+      "c_days": [
+        0.0001,
+        20
+      ],
+      "p": [
+        1.01,
+        2.5
+      ],
+      "eta": [
+        0,
+        4
+      ],
+      "ell_km": [
+        5,
+        150
+      ],
+      "psi_days": [
+        0.041666666666666664,
+        365
+      ]
+    },
+    "shared_start_rule": "a,d,n from accepted matched OC; row0 retains OC c,p, others replace c,p as listed",
+    "start_rows": [
+      {
+        "ordinal": 0,
+        "c_days": "accepted_OC",
+        "p": "accepted_OC",
+        "eta": 0,
+        "ell_km": 30,
+        "psi_days": 7
+      },
+      {
+        "ordinal": 1,
+        "c_days": 0.0001,
+        "p": 1.1,
+        "eta": 0.1,
+        "ell_km": 5,
+        "psi_days": 0.041666666666666664
+      },
+      {
+        "ordinal": 2,
+        "c_days": 0.001,
+        "p": 1.3,
+        "eta": 0.3,
+        "ell_km": 15,
+        "psi_days": 0.25
+      },
+      {
+        "ordinal": 3,
+        "c_days": 0.01,
+        "p": 1.1,
+        "eta": 0.7,
+        "ell_km": 50,
+        "psi_days": 7
+      },
+      {
+        "ordinal": 4,
+        "c_days": 0.1,
+        "p": 1.3,
+        "eta": 1.5,
+        "ell_km": 150,
+        "psi_days": 30
+      },
+      {
+        "ordinal": 5,
+        "c_days": 1,
+        "p": 1.7,
+        "eta": 3,
+        "ell_km": 5,
+        "psi_days": 365
+      },
+      {
+        "ordinal": 6,
+        "c_days": 20,
+        "p": 2.5,
+        "eta": 4,
+        "ell_km": 150,
+        "psi_days": 0.041666666666666664
+      },
+      {
+        "ordinal": 7,
+        "c_days": 0.1,
+        "p": 1.01,
+        "eta": 0.5,
+        "ell_km": 30,
+        "psi_days": 365
+      }
+    ],
+    "L_BFGS_B": {
+      "maxiter": 200,
+      "maxfun": 20000,
+      "maxls": 200,
+      "ftol": 1e-10,
+      "gtol": 2e-06
+    },
+    "Powell_failure_only_same_original_start": {
+      "maxiter": 400,
+      "maxfev": 5000,
+      "xtol": 1e-06,
+      "ftol": 1e-10
+    },
+    "selection": "minimum accepted training joint NLL; exact ties OC floor, Poisson floor, start ordinal, method ordinal",
+    "near_optimal_training_nats": 0.0004,
+    "heldout_spread_gate_nats_per_target": 0.01
+  },
+  "synthetic_common": {
+    "domain_km": [
+      0,
+      100,
+      0,
+      100
+    ],
+    "time_days": {
+      "history_start": 0,
+      "warmup_end": 30,
+      "train_end": 395,
+      "test_end": 760
+    },
+    "X": "2*t/760-1",
+    "a": "log(.2)",
+    "d": 0.2,
+    "n": 0.35,
+    "c_days": 0.05,
+    "p": 1.3,
+    "sigma_km": 10,
+    "beta": 2,
+    "r": 0.7,
+    "reference": "uniform nine equal rectangular cells",
+    "smooth_background": ".05/10000+.95/2*sum of finite-domain normalized radial D_h at (25,25),(75,75), h=10km",
+    "nuisance": "known fixed equally in OC and LI",
+    "replicates_per_case": 2,
+    "fit_arms": [
+      "OC_synthetic",
+      "LI_synthetic"
+    ],
+    "starts_per_arm": 8,
+    "floors_per_replicate": {
+      "OC": 1,
+      "LI": 2
+    },
+    "generator": "chronological immigrant-envelope thinning with full accepted history and recursively scheduled offspring of accepted events only",
+    "RNG": "NumPy PCG64DXSM SeedSequence([replicate_seed,stream_code])",
+    "stream_codes": {
+      "immigrant_times": 0,
+      "immigrant_locations": 1,
+      "immigrant_marks": 2,
+      "immigrant_acceptance": 3,
+      "offspring_count_delay": 4,
+      "offspring_locations": 5,
+      "offspring_marks": 6
+    },
+    "caps": {
+      "total_candidates": 1000000,
+      "accepted_events": 100000,
+      "generation_numerical_seconds_per_replicate": 600
+    },
+    "failed_seed_replacement": false,
+    "spatial_sampling": "For each conditional exponent-two radial component draw radius=h*sqrt(U/(1-U)), angle=2*pi*V; reject outside D; max1000000 proposals/location. Smooth immigrant mixture weights .05 uniform,.475 center1,.475 center2. Uniform reference makes offspring the same conditional radial law at sigma.",
+    "time_sampling": "Exact cumulative B inversion using exp(a-d)*expm1(k*t)/k with k=2d/760, linear limit k0; offspring count Poisson(n*kappa*(1-S(H-parent))) and conditional delay c*expm1(log1p(-U*(1-S(H-parent)))/(1-p))).",
+    "mark_sampling": "q=-log1p(-U)/beta",
+    "zero_training_count": "retain case; OC a0 uses max(Ntrain,1); exact Poisson aP=-12 for Ntrain0",
+    "OC_start_fill": {
+      "status": "prospective previously unspecified computational choice; independently accepted by li_audit",
+      "a0": "clip(log(.6*max(Ntrain,1)/365),-11.5,-.1)",
+      "d0": 0.2,
+      "n0": 0.35,
+      "cp_rows": [
+        [
+          0.0001,
+          1.1
+        ],
+        [
+          0.001,
+          1.3
+        ],
+        [
+          0.01,
+          1.1
+        ],
+        [
+          0.1,
+          1.3
+        ],
+        [
+          1,
+          1.7
+        ],
+        [
+          20,
+          2.5
+        ],
+        [
+          0.01,
+          2.5
+        ],
+        [
+          0.1,
+          1.01
+        ]
+      ],
+      "auxiliary_fits": 0
+    }
+  },
+  "synthetic_cases": [
+    {
+      "case_id": "S0_uniform_null",
+      "background": "uniform",
+      "eta": 0,
+      "ell_km": 30,
+      "psi_days": 7,
+      "seeds": [
+        410001,
+        410002
+      ]
+    },
+    {
+      "case_id": "S1_smooth_null",
+      "background": "smooth",
+      "eta": 0,
+      "ell_km": 30,
+      "psi_days": 7,
+      "seeds": [
+        410101,
+        410102
+      ]
+    },
+    {
+      "case_id": "S2_narrow_short",
+      "background": "smooth",
+      "eta": 0.5,
+      "ell_km": 5,
+      "psi_days": 0.041666666666666664,
+      "seeds": [
+        410201,
+        410202
+      ]
+    },
+    {
+      "case_id": "S3_broad_long",
+      "background": "smooth",
+      "eta": 2,
+      "ell_km": 50,
+      "psi_days": 30,
+      "seeds": [
+        410301,
+        410302
+      ]
+    }
+  ],
+  "deterministic_fixture_ids": [
+    "F01_generic_eta0_OC_point_ground_cell_compensator_shared_gradient_nesting",
+    "F02_empty_history_and_zero_stress_nonzero_eta",
+    "F03_n0_and_inactive_trigger_coordinates",
+    "F04_exact_tied_batch_no_self_effect",
+    "F05_event_and_interval_endpoints_warmup_prehistory",
+    "F06_center_edge_corner_normalization",
+    "F07_translated_between_node_5km_shadow",
+    "F08_dense_history_saturation_and_log_intensity",
+    "F09_subhour_and_minimum_memory_event_cuts",
+    "F10_maximum_memory_prehistory_transition",
+    "F11_all_bound_corners_one_sided_gradient_checks",
+    "F12_cells_sum_to_ground_and_full_domain",
+    "F13_positive_immigrant_and_positive_deficit_integrals",
+    "F14_mark_density_scored_once",
+    "F15_rejected_immigrant_has_no_descendants",
+    "F16_accepted_offspring_can_trigger_and_suppress",
+    "F17_simulator_binary64_child_time_failure_and_horizon_exclusion",
+    "F18_failure_caps_no_seed_replacement_no_denominator_loss"
+  ],
+  "denominators": {
+    "observed": {
+      "procedures": 3,
+      "starts": 24,
+      "floors": 6,
+      "candidate_slots": 30,
+      "maximum_failure_only_recovery_calls": 24,
+      "targets": 315,
+      "exposure_days": 5479
+    },
+    "synthetic": {
+      "generated_replicate_slots": 8,
+      "procedures": 16,
+      "starts": 128,
+      "floors": 24,
+      "candidate_slots": 152,
+      "maximum_failure_only_recovery_calls": 128
+    },
+    "combined_new": {
+      "procedures": 19,
+      "starts": 152,
+      "floors": 30,
+      "candidate_slots": 182,
+      "maximum_failure_only_recovery_calls": 152
+    },
+    "empirical_reference_selected_state_replays": 6,
+    "new_background_LOO_candidates": 0,
+    "new_excitation_sigma_selectors": 0,
+    "archived_h_grid_values_to_verify": 18,
+    "archived_sigma_selector_procedure_identities_to_verify": 18,
+    "deterministic_fixture_families": 18,
+    "rule": "Failed/missing/blocked states remain in their original slots; recovery returns are additional records, never replacement identities."
+  },
+  "contrasts": {
+    "primary_extension": "LI minus matched OC joint",
+    "competitive": "LI minus EP joint",
+    "required_components": [
+      "event_point_logsum",
+      "event_ground_logsum",
+      "immigrant_positive_exposure",
+      "excitation_positive_exposure",
+      "full_positive_exposure",
+      "signed_exposure_contribution",
+      "timing",
+      "conditional_location",
+      "mark_once",
+      "joint"
+    ],
+    "reporting": "all three folds and pooled sum divided by315; no pool if any required fold unknown"
+  },
+  "numerical_gates": {
+    "full_score_production_oracle_absolute_nats": 0.0001,
+    "oracle_self_refinement_absolute_nats": 1e-05,
+    "solver_evaluator_absolute_nats": 1e-07,
+    "final_minus_initial_max_nats": 1e-08,
+    "eta0_score_absolute_nats": 1e-08,
+    "eta0_intensity_cell_relative": 1e-10,
+    "eta0_intensity_cell_absolute_fallback": 1e-12,
+    "eta0_shared_scaled_gradient": "1e-7*(1+abs(reference))",
+    "scaled_gradient_interior_absolute_plus_relative": [
+      0.0002,
+      0.0002
+    ],
+    "scaled_gradient_boundary_absolute_plus_relative": [
+      0.001,
+      0.001
+    ],
+    "optimizer_coordinate_scales": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "physical_gradient_scaling": "s_c=c days; s_ell=ell km; s_psi=psi days; convert by Jacobian to dimensionless log-coordinate gradients",
+    "finite_difference": "two decreasing feasible steps, inconclusive if unstabilized",
+    "independent_positive_integrands": [
+      "b_bg*exp(-eta*G)",
+      "b_bg*(-expm1(-eta*G))"
+    ],
+    "compulsory_spatial_cuts": "all parent ell footprints and KDE h centers; translated narrow-shadow cases and exact cell/domain edges",
+    "compulsory_temporal_cuts": "all event times plus feasible event+psi*2^k for k=-8..8, half/quarter memory steps, prehistory transitions",
+    "pending_before_control_freeze": "score-propagated point/cell/mass tolerances and independent implementation acceptance of explicit RNG/time/spatial sampling transforms"
+  },
+  "resources": {
+    "numerical_budget_seconds": 43200,
+    "audit_reserve_seconds_minimum": 10800,
+    "audit_reserve_rule": "max(10800,1.5*pilot_predicted_full_independent_audit)",
+    "total_cost_margin_fraction": 0.25,
+    "max_numerical_jobs": 1,
+    "OMP_NUM_THREADS": 1,
+    "deadline_utc": null,
+    "machine_lease": "research_runs/active_machine_numerical_lease.sqlite3",
+    "pilot_reuse": false,
+    "admitted": false
+  },
+  "gates": [
+    "G0 independent methods, measurement scope and identity review",
+    "G1 independent engine/oracle/simulator review and deterministic controls",
+    "G2 synthetic controls and outcome-blind full-cost resource admission",
+    "G3 immutable observed freeze with all pins and scheduler receipt",
+    "G4 eligible observed execution",
+    "G5 all-candidate independent saved-output audit and aggregate projection",
+    "G6 reviewed reports claims and transition"
+  ],
+  "unresolved_decisions": [
+    "Independent acceptance of recorded-coordinate-only measurement gate; physical-range claims remain blocked.",
+    "Prospective acceptance/revision of law bounds starts and complete synthetic denominator.",
+    "Exact input/comparator/runtime pins; point/cell/mass numerical allocations; simulator spatial sampler and NHPP inversion.",
+    "Measured full-cost and machine scheduler admission with independent audit reserve.",
+    "Reconcile parallel audit alternative synthetic contract (3+3+1+1 replicates,30-day fixture,mt19937) with methods (2+2+2+2,760-day span,PCG64DXSM); no generation before one accepted frozen contract. Reconcile dimensionless log-coordinate derivative scales1 with any alternative physical-coordinate scales via explicit Jacobians."
+  ],
+  "claims_disallowed": [
+    "fit_or_science_approval_from_this_proposal",
+    "untouched_holdout",
+    "EP_or_LI_calibration_from_relative_score",
+    "physical_stress_range_or_causality",
+    "global_optimum",
+    "event_iid_confidence_intervals",
+    "Wilks_boundary_inference",
+    "sequence_replication",
+    "automatic_Thread06_or_operations_activation"
+  ],
+  "control_freeze": "Independent accepted hash freeze before G1/G2 calculations; observed G3 binds unchanged scientific controls law and all failures.",
+  "external_static_review": {
+    "task": "deepseek_law_counterexamples_v1",
+    "attempt": "90aa0fc6-d481-45f2-928a-623bd76672b6",
+    "observed_route": "deepseek/deepseek-flash",
+    "route_match": "conductor-reported observed_match",
+    "scope": "data-free static only, not numerical validation",
+    "accepted": [
+      "verified first derivatives",
+      "eta0 range/memory degeneracy",
+      "compensator sign",
+      "qualitative narrow-shadow, strict-past tie and rejected-ancestry risks"
+    ],
+    "excluded": [
+      "simple half-chi-square LR null with unidentified ell/psi",
+      "unverified information/SE/asymptotic formulas",
+      "incorrect derivative maximum 2/3 rather than16/27",
+      "infinite-line integral labeled exact finite interval",
+      "exact tied-event log penalty without zero-excitation condition",
+      "general exact constant-rate confounding under growing history"
+    ]
+  },
+  "supersedes_engineering_gate": "Scientific roster retained; execution admission requires current root lease and reviewed implementation, not old expired pilot admissions."
+}

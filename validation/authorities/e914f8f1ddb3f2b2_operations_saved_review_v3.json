@@ -1,0 +1,188 @@
+{
+  "schema": "independent_ops_saved_review_v1",
+  "checks": {
+    "internal_handcrafted_gate_controls": true,
+    "exact_roster": true,
+    "schema": true,
+    "disabled": true,
+    "platform": true,
+    "source_hashes": true
+  },
+  "case_count": 28,
+  "nonempty_child_observations": 24,
+  "cases": [
+    {
+      "id": "precreate",
+      "independent_pass": true,
+      "expected_children": 0,
+      "parent_exit": 1
+    },
+    {
+      "id": "suspended",
+      "independent_pass": true,
+      "expected_children": 1,
+      "parent_exit": 1
+    },
+    {
+      "id": "running",
+      "independent_pass": true,
+      "expected_children": 1,
+      "parent_exit": 1
+    },
+    {
+      "id": "descendant",
+      "independent_pass": true,
+      "expected_children": 2,
+      "parent_exit": 1
+    },
+    {
+      "id": "normal",
+      "independent_pass": true,
+      "expected_children": 1,
+      "parent_exit": 0
+    },
+    {
+      "id": "invalid_job",
+      "independent_pass": true,
+      "expected_children": 0,
+      "parent_exit": 0
+    },
+    {
+      "id": "update_failure",
+      "independent_pass": true,
+      "expected_children": 0,
+      "parent_exit": 0
+    },
+    {
+      "id": "unrelated_create",
+      "independent_pass": true,
+      "expected_children": 0,
+      "parent_exit": 0
+    },
+    {
+      "id": "normal_fast_01",
+      "independent_pass": true,
+      "expected_children": 1,
+      "parent_exit": 0
+    },
+    {
+      "id": "normal_fast_02",
+      "independent_pass": true,
+      "expected_children": 1,
+      "parent_exit": 0
+    },
+    {
+      "id": "normal_fast_03",
+      "independent_pass": true,
+      "expected_children": 1,
+      "parent_exit": 0
+    },
+    {
+      "id": "normal_fast_04",
+      "independent_pass": true,
+      "expected_children": 1,
+      "parent_exit": 0
+    },
+    {
+      "id": "normal_fast_05",
+      "independent_pass": true,
+      "expected_children": 1,
+      "parent_exit": 0
+    },
+    {
+      "id": "normal_fast_06",
+      "independent_pass": true,
+      "expected_children": 1,
+      "parent_exit": 0
+    },
+    {
+      "id": "normal_fast_07",
+      "independent_pass": true,
+      "expected_children": 1,
+      "parent_exit": 0
+    },
+    {
+      "id": "normal_fast_08",
+      "independent_pass": true,
+      "expected_children": 1,
+      "parent_exit": 0
+    },
+    {
+      "id": "normal_fast_09",
+      "independent_pass": true,
+      "expected_children": 1,
+      "parent_exit": 0
+    },
+    {
+      "id": "normal_fast_10",
+      "independent_pass": true,
+      "expected_children": 1,
+      "parent_exit": 0
+    },
+    {
+      "id": "normal_fast_11",
+      "independent_pass": true,
+      "expected_children": 1,
+      "parent_exit": 0
+    },
+    {
+      "id": "normal_fast_12",
+      "independent_pass": true,
+      "expected_children": 1,
+      "parent_exit": 0
+    },
+    {
+      "id": "normal_fast_13",
+      "independent_pass": true,
+      "expected_children": 1,
+      "parent_exit": 0
+    },
+    {
+      "id": "normal_fast_14",
+      "independent_pass": true,
+      "expected_children": 1,
+      "parent_exit": 0
+    },
+    {
+      "id": "normal_fast_15",
+      "independent_pass": true,
+      "expected_children": 1,
+      "parent_exit": 0
+    },
+    {
+      "id": "normal_fast_16",
+      "independent_pass": true,
+      "expected_children": 1,
+      "parent_exit": 0
+    },
+    {
+      "id": "normal_fast_17",
+      "independent_pass": true,
+      "expected_children": 1,
+      "parent_exit": 0
+    },
+    {
+      "id": "normal_fast_18",
+      "independent_pass": true,
+      "expected_children": 1,
+      "parent_exit": 0
+    },
+    {
+      "id": "normal_fast_19",
+      "independent_pass": true,
+      "expected_children": 1,
+      "parent_exit": 0
+    },
+    {
+      "id": "normal_fast_20",
+      "independent_pass": true,
+      "expected_children": 1,
+      "parent_exit": 0
+    }
+  ],
+  "accepted_fixed_mock": true,
+  "limitations": [
+    "Saved-output review plus source control-flow analysis; no independent process rerun",
+    "No arbitrary kernel timing races, full job census, production receipts/custody or live admission"
+  ]
+}

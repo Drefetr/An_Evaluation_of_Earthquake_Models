@@ -1,0 +1,198 @@
+\section{Saved predictive results}
+\label{a2:results}
+
+Both follow-ups used the same pinned 913-event GeoNet selection and three
+chronological prediction windows containing 203, 155 and 254 events.
+The three settings reuse those 612 distinct targets; they do not create
+1,836 independent observations or nine independent trials. Parameters are
+fitted using each training prefix and then held fixed. Genuinely observed
+past events update the forecast history, with future events excluded.
+The reported quantities are event-weighted log-score differences over the
+complete forecast exposure, including quiet periods.
+
+\subsection{The class-history extension}
+
+Saved source records report nine observed cases, 30 fitting procedures
+and all 240 required starts for the completed history study. They record
+a passed independent saved-output audit, with no unknown procedure or
+forecast-ambiguity flag. The supplied audit/start evidence excerpt retains
+these completion records. The present editorial reconciliation checks
+saved records and aggregates rather than repeating that audit. These are
+completed local searches, not global-optimum certificates
+\citep{MagnitudePredictionPilot2026}.
+
+All nine constant-background fits prescribe \(d=0\), and the three
+primary \(E1_{h=0}\) ablations prescribe \(h=0\). The middle-window
+\(I0\) fit also reaches the estimated-coordinate boundary \(\eta=0\).
+In post-1980 fold 0, \(I0\) reaches \(d=2\) and \(E1\) reaches
+\(\delta=-1\). These boundary-dependent local fits do not establish
+interior identification of the corresponding coordinates.
+
+% Exact cells: history/primary/E1-E0/{timing,mark,joint}, etc.
+\begin{table}[tbp]
+\centering\small
+\caption{History-study forecast gains in nats per event. Positive values
+favor the first model. Post-1980 changes the training start while
+retaining earlier parents. The \(h=0\) ablation was required in primary
+only. All settings reuse the same 612 targets.}
+\label{a2:history-results}
+\begin{tabular}{llrrrr}
+\toprule
+Setting & Contrast & Timing & Mark & Joint & Winning windows\\
+\midrule
+Primary & \(E1-E0\) & -0.003092 & -0.005590 & -0.008682 & 1/3\\
+Primary & \(E1-I0\) & +0.026624 & -0.005590 & +0.021034 & 2/3\\
+Primary & \(E1-E1_{h=0}\) & +0.000242 & -0.005590 & -0.005348 & 1/3\\
+Constant background & \(E1-E0\) & -0.005894 & -0.005602 & -0.011496 & 1/3\\
+Constant background & \(E1-I0\) & +0.015408 & -0.005602 & +0.009806 & 3/3\\
+Post-1980 & \(E1-E0\) & -0.006146 & -0.002550 & -0.008696 & 1/3\\
+Post-1980 & \(E1-I0\) & +0.025900 & -0.002550 & +0.023350 & 2/3\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The full \(E1\) candidate beat \(I0\) but lost to \(E0\) in every aggregate
+setting. Its primary association-specific gain relative to
+\(E1_{h=0}\) was also negative: a small timing difference of
+\(0.000242\) nats/event was outweighed by a mark-score loss of
+\(0.005590\). Joint estimation can alter fitted effective scale and
+fertility, so the nonzero timing difference does not contradict the
+conditional ground-intensity identity.
+
+The direct baseline contrast \(E0-I0\), obtained as
+\((E1-I0)-(E1-E0)\), was positive in all three settings:
+\(0.029716\), \(0.021302\) and \(0.032046\) nats/event, respectively.
+Beating the inhibitory candidate therefore does not establish an added
+benefit from class history. The frozen criteria required at least
+\(0.01\) nats/event over both baselines and at least two shared winning
+windows in primary, with the declared sensitivity requirements. Those
+conditions failed, yielding \texttt{stop\_no\_robust\_joint\_gain}.
+
+\subsection{Continuous-productivity sensitivity}
+
+The productivity study's saved source records report nine cases, 36 main
+procedures, 42 primary profile procedures and all 456 mandatory starts.
+They record an independent auditor that reconstructed geometry from the
+raw local catalogue and checked 1,116 train/fine candidate evaluations,
+288 near-candidate forecasts and 42 descriptive profile forecasts. The
+supplied audit/start evidence excerpt preserves the relevant saved counts
+and completion records. The editorial reconciliation checks these saved
+records and aggregates; it does not repeat the raw-data audit
+\citep{ProductivitySlopePilot2026}.
+
+% Exact cells: productivity/<setting>/<contrast>/{timing,mark,joint}.
+\begin{table}[tbp]
+\centering\small
+\caption{Free-productivity forecast gains, in nats per event. The mark-score
+differences are exactly zero, so the joint differences concern timing
+(up to floating-point summation). Positive values favor the first model.}
+\label{a2:productivity-results}
+\begin{tabular}{lrrrr}
+\toprule
+Setting & \shortstack{E0\\free - fixed} &
+\shortstack{I0\\free - fixed} &
+\shortstack{E0 free\\- I0 free} &
+\shortstack{E0 positive\\windows}\\
+\midrule
+Primary & -0.008782 & -0.009105 & +0.030039 & 1/3\\
+Constant background & -0.010447 & -0.008689 & +0.019544 & 1/3\\
+Post-1980 & -0.060929 & -0.054066 & +0.025183 & 0/3\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The primary \(E0\) estimates were
+\(r=0.471908,\ 0.605853,\ 0.610446\). Across both families and all settings,
+16 of 18 estimates were below \(0.7\); the two middle-window post-1980
+estimates were above it. All 18 estimated \(r\) values were interior.
+Other estimated coordinates reached constraints: \(I0_{\rm fixed}\)
+and \(I0_{\rm free}\) both reached \(\eta=0\) in the middle
+constant-background window and \(d=2\) in post-1980 fold 0. Thus the
+productivity study has four such estimated-boundary fits, distinct from
+the history-study cases above. The 12 prescribed constant-background \(d=0\) coordinates and 18 fixed
+\(r=0.7\) coordinates are restrictions rather than estimated-boundary
+findings.
+These results do not establish interior identification of every coordinate.
+Both nested free-\(r\) families improved training fit but lost forecast
+score in every aggregate setting. Training improvement is partly guaranteed by
+admitting the exact fixed-\(r\) floor, and is not evidence of a correct
+physical slope.
+
+The primary fixed-\(r\) profiles used the frozen grid
+\(0,\ 0.2,\ 0.35,\ 0.5,\ 0.7,\ 0.85,\ 0.95\). For both families in the
+first window, sampled nodes \(0.35\) and \(0.5\) lay within two nats of
+the selected optimum. In the other four family/window profiles, no
+sampled node lay within that band of the off-grid optimum. These are
+sparse descriptive support sets, not confidence intervals or evidence
+of precise identification. The maximum saved forecast spread among
+near-training-equivalent candidates was approximately
+\(9.04\times10^{-5}\) nats/event, below the frozen \(0.01\) diagnostic
+threshold. It describes the saved candidate pool, not global uncertainty.
+
+The stage-one continuation gate required primary \(E0\) gain of at least
+\(0.01\) nats/event with at least two positive windows, plus positive
+aggregate gains and at least two positive windows in both sensitivities,
+complete audit and no forecast ambiguity. It failed while the resource
+reserve remained available. The checkpoint was
+\texttt{stop\_no\_robust\_productivity\_gain}; the free-\(r\) class-history
+models \(E1_r\) and \(E1_{h=0,r}\) were not run. These planned labels
+would allow \(r\) to vary in the full class-history candidate and its
+association-zero restriction, respectively. Held-out scores intentionally governed this
+prespecified continuation decision. They did not select parameters,
+admit profile candidates, refine the grid or choose among fits.
+
+\subsection{A descriptive cross-run comparison}
+
+The history-free step-fertility restriction \(E1_{h=0}\) and continuous
+\(E0_{\rm free}\) are two different extensions of their matched
+fixed-\(r\) \(E0\) baselines. In the same primary windows, both favored
+lower relative productivity for large magnitudes during training, and
+their forecast differences had the same signs
+(Table~\ref{a2:cross-run}). The fixed-\(r\) baseline forecasts agree across
+the two implementations to approximately \(5.57\times10^{-5}\) nats
+or better over all nine cases, consistent with small local-optimizer
+coordinate differences.
+
+% Values reconciled from saved selected training records and forecast CSVs.
+\begin{table}[tbp]
+\centering\small
+\caption{Primary cross-run gains over each study's matched \(E0\)
+baseline, in total nats. Training gains are partly ensured by nested
+candidate admission. The shared pattern is descriptive and uses the same
+historical folds, rather than independent validation.}
+\label{a2:cross-run}
+\begin{tabular}{rrrrrrr}
+\toprule
+ & & & \multicolumn{2}{c}{Step fertility} & \multicolumn{2}{c}{Free \(r\)}\\
+\cmidrule(lr){4-5}\cmidrule(lr){6-7}
+Fold & \(N_{\rm train}\) & \(N_{\rm test}\) & Training & Test & Training & Test\\
+\midrule
+0 & 301 & 203 & +7.260 & -5.209 & +8.622 & -7.121\\
+1 & 504 & 155 & +2.254 & +5.006 & +2.296 & +8.167\\
+2 & 659 & 254 & +4.491 & -1.838 & +5.228 & -6.420\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This correspondence is consistent with both adjustments responding to
+weaker apparent training magnitude-productivity scaling. It does not
+establish exact equivalence of the fitted features, changing physical
+productivity through time, or a specific underprediction of large-event
+aftershocks as the cause of the losses. Background, branching and
+compensator terms also change. Because the free-\(r\) association/fertility
+stage was not executed, the experiments do not determine whether
+\(\delta\) would shrink when jointly fitted with \(r\).
+
+
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=\linewidth]{figures/forecast_comparisons.png}
+\caption{Saved aggregate forecast differences. Panel A decomposes the
+class-history contrast into timing and magnitude terms; diamonds show their
+joint difference. Panel B compares free with fixed productivity in each
+ground family. Positive values favor the extension. Each setting reuses
+the same 612 targets, the panel scales differ, and no uncertainty intervals
+are claimed. Source values are the accompanying reconciled gain tables.}
+\label{a2:forecast-figure}
+\end{figure}

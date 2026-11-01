@@ -1,0 +1,380 @@
+{
+  "run_id": "magnitude_history_20261023T205716Z",
+  "native_capacity_including_conductor": 4,
+  "distinct_supervisor_instances": 3,
+  "native_assignments": 6,
+  "deepseek_started_workers": 8,
+  "raw_deepseek_launch_reservations": 8,
+  "startup_failures": 0,
+  "startup_retries": 0,
+  "native_fallbacks": 0,
+  "startup_policy_seconds": [
+    30,
+    60,
+    300
+  ],
+  "started_worker_allowance": 24,
+  "physical_reservation_safety_ceiling": 96,
+  "actual_route_evidence": "All 8 DeepSeek receipts report provider deepseek and model deepseek-flash. The native specific model route was not separately exposed. Startup text is not model-weight authentication.",
+  "provider_cost": null,
+  "complete_provider_token_usage": null,
+  "all_attempts_terminal": true,
+  "tasks": [
+    {
+      "task_id": "source-supervisor",
+      "kind": "native",
+      "owner": "source-supervisor",
+      "execution_status": "succeeded",
+      "review_status": "accepted"
+    },
+    {
+      "task_id": "implementation-supervisor",
+      "kind": "native",
+      "owner": "implementation-supervisor",
+      "execution_status": "succeeded",
+      "review_status": "accepted"
+    },
+    {
+      "task_id": "methods-supervisor",
+      "kind": "native",
+      "owner": "methods-supervisor",
+      "execution_status": "succeeded",
+      "review_status": "accepted"
+    },
+    {
+      "task_id": "ds05-ml-core",
+      "kind": "deepseek",
+      "owner": "implementation-supervisor",
+      "execution_status": "succeeded",
+      "review_status": "changes_requested"
+    },
+    {
+      "task_id": "ds-source-control",
+      "kind": "deepseek",
+      "owner": "source-supervisor",
+      "execution_status": "succeeded",
+      "review_status": "changes_requested"
+    },
+    {
+      "task_id": "ds16-control-review",
+      "kind": "deepseek",
+      "owner": "methods-supervisor",
+      "execution_status": "succeeded",
+      "review_status": "accepted"
+    },
+    {
+      "task_id": "ds-source-assets",
+      "kind": "deepseek",
+      "owner": "source-supervisor",
+      "execution_status": "succeeded",
+      "review_status": "accepted"
+    },
+    {
+      "task_id": "ds-source-likelihood",
+      "kind": "deepseek",
+      "owner": "source-supervisor",
+      "execution_status": "succeeded",
+      "review_status": "changes_requested"
+    },
+    {
+      "task_id": "ds-source-octave",
+      "kind": "deepseek",
+      "owner": "source-supervisor",
+      "execution_status": "succeeded",
+      "review_status": "changes_requested"
+    },
+    {
+      "task_id": "comparison-smoke",
+      "kind": "numerical",
+      "owner": "conductor",
+      "execution_status": "succeeded",
+      "review_status": "accepted"
+    },
+    {
+      "task_id": "ds17-fit-adapter-review",
+      "kind": "deepseek",
+      "owner": "methods-supervisor",
+      "execution_status": "succeeded",
+      "review_status": "accepted"
+    },
+    {
+      "task_id": "numeric-core-controls",
+      "kind": "numerical",
+      "owner": "implementation-supervisor",
+      "execution_status": "succeeded",
+      "review_status": "pending"
+    },
+    {
+      "task_id": "methods-independent-controls",
+      "kind": "numerical",
+      "owner": "methods-supervisor",
+      "execution_status": "succeeded",
+      "review_status": "accepted"
+    },
+    {
+      "task_id": "source-reference",
+      "kind": "native",
+      "owner": "source-supervisor",
+      "execution_status": "succeeded",
+      "review_status": "accepted"
+    },
+    {
+      "task_id": "source-octave-grid",
+      "kind": "numerical",
+      "owner": "source-supervisor",
+      "execution_status": "succeeded",
+      "review_status": "accepted"
+    },
+    {
+      "task_id": "ds18-runner-analysis-review",
+      "kind": "deepseek",
+      "owner": "methods-supervisor",
+      "execution_status": "succeeded",
+      "review_status": "accepted"
+    },
+    {
+      "task_id": "numeric-interface-controls",
+      "kind": "numerical",
+      "owner": "implementation-supervisor",
+      "execution_status": "succeeded",
+      "review_status": "accepted"
+    },
+    {
+      "task_id": "excluded-timing-bank",
+      "kind": "numerical",
+      "owner": "conductor",
+      "execution_status": "succeeded",
+      "review_status": "accepted"
+    },
+    {
+      "task_id": "result-integrity-auditor",
+      "kind": "native",
+      "owner": "result-auditor",
+      "execution_status": "succeeded",
+      "review_status": "accepted"
+    },
+    {
+      "task_id": "bounded-synthetic-pilot",
+      "kind": "numerical",
+      "owner": "conductor",
+      "execution_status": "succeeded",
+      "review_status": "accepted"
+    },
+    {
+      "task_id": "synthesis-preparation",
+      "kind": "native",
+      "owner": "source-supervisor",
+      "execution_status": "succeeded",
+      "review_status": "accepted"
+    },
+    {
+      "task_id": "saved-pilot-analysis",
+      "kind": "numerical",
+      "owner": "conductor",
+      "execution_status": "succeeded",
+      "review_status": "accepted"
+    },
+    {
+      "task_id": "independent-statistical-arithmetic",
+      "kind": "numerical",
+      "owner": "result-auditor",
+      "execution_status": "succeeded",
+      "review_status": "accepted"
+    }
+  ],
+  "attempts": [
+    {
+      "attempt_id": "2a7837a2-76a7-4fe4-adca-204e95f90147",
+      "task_id": "source-supervisor",
+      "kind": "native",
+      "status": "succeeded",
+      "started_utc": "2026-10-23T20:57:20.982828Z",
+      "finished_utc": "2026-10-23T21:12:25.279720Z"
+    },
+    {
+      "attempt_id": "7bd7570e-ecec-462e-8f38-3f10f6cc7643",
+      "task_id": "implementation-supervisor",
+      "kind": "native",
+      "status": "succeeded",
+      "started_utc": "2026-10-23T20:57:21.695603Z",
+      "finished_utc": "2026-10-23T21:21:35.957057Z"
+    },
+    {
+      "attempt_id": "da5af8cc-c8cf-496e-b58e-251d31fdf935",
+      "task_id": "methods-supervisor",
+      "kind": "native",
+      "status": "succeeded",
+      "started_utc": "2026-10-23T20:57:22.352837Z",
+      "finished_utc": "2026-10-23T21:56:47.697119Z"
+    },
+    {
+      "attempt_id": "01161cb2-9532-4303-9560-19b4ae139075",
+      "task_id": "ds05-ml-core",
+      "kind": "deepseek",
+      "status": "succeeded",
+      "started_utc": "2026-10-23T21:00:53.687599Z",
+      "finished_utc": "2026-10-23T21:15:00.807046Z"
+    },
+    {
+      "attempt_id": "772d3ddf-961e-4fab-99f5-b68c06d723c8",
+      "task_id": "ds-source-assets",
+      "kind": "deepseek",
+      "status": "succeeded",
+      "started_utc": "2026-10-23T21:01:08.333945Z",
+      "finished_utc": "2026-10-23T21:04:07.841806Z"
+    },
+    {
+      "attempt_id": "c736ea98-50d5-44a0-8794-d56eaa1a90aa",
+      "task_id": "ds-source-control",
+      "kind": "deepseek",
+      "status": "succeeded",
+      "started_utc": "2026-10-23T21:01:08.405465Z",
+      "finished_utc": "2026-10-23T21:04:22.271650Z"
+    },
+    {
+      "attempt_id": "a3e059c5-a599-48e6-9940-092e0608f102",
+      "task_id": "ds16-control-review",
+      "kind": "deepseek",
+      "status": "succeeded",
+      "started_utc": "2026-10-23T21:01:09.456429Z",
+      "finished_utc": "2026-10-23T21:07:42.174830Z"
+    },
+    {
+      "attempt_id": "02c27ef7-2292-47bb-80ec-bf2ee9ca2f1a",
+      "task_id": "ds-source-likelihood",
+      "kind": "deepseek",
+      "status": "succeeded",
+      "started_utc": "2026-10-23T21:04:46.853513Z",
+      "finished_utc": "2026-10-23T21:07:10.294004Z"
+    },
+    {
+      "attempt_id": "4919ff9e-8610-4eac-8689-9014090e4975",
+      "task_id": "ds-source-octave",
+      "kind": "deepseek",
+      "status": "succeeded",
+      "started_utc": "2026-10-23T21:04:46.893022Z",
+      "finished_utc": "2026-10-23T21:07:44.110432Z"
+    },
+    {
+      "attempt_id": "1c05778c-9eaa-4afb-a341-fb6b39e2b080",
+      "task_id": "comparison-smoke",
+      "kind": "numerical",
+      "status": "succeeded",
+      "started_utc": "2026-10-23T21:05:43.809258Z",
+      "finished_utc": "2026-10-23T21:06:49.038798Z"
+    },
+    {
+      "attempt_id": "f8292ffd-1ef2-48ae-9957-a0e4f0e54159",
+      "task_id": "ds17-fit-adapter-review",
+      "kind": "deepseek",
+      "status": "succeeded",
+      "started_utc": "2026-10-23T21:09:29.257473Z",
+      "finished_utc": "2026-10-23T21:12:38.777974Z"
+    },
+    {
+      "attempt_id": "d3c0dbf6-77e7-40d6-93ca-584eb65990ed",
+      "task_id": "numeric-core-controls",
+      "kind": "numerical",
+      "status": "succeeded",
+      "started_utc": "2026-10-23T21:09:50.789362Z",
+      "finished_utc": "2026-10-23T21:09:51.349996Z"
+    },
+    {
+      "attempt_id": "092b61a7-778d-4c3f-ba46-1f50da7b9375",
+      "task_id": "methods-independent-controls",
+      "kind": "numerical",
+      "status": "succeeded",
+      "started_utc": "2026-10-23T21:12:06.242044Z",
+      "finished_utc": "2026-10-23T21:13:48.570356Z"
+    },
+    {
+      "attempt_id": "1cd0904f-e63a-475f-aee9-c450cb84014b",
+      "task_id": "source-reference",
+      "kind": "native",
+      "status": "succeeded",
+      "started_utc": "2026-10-23T21:12:26.051129Z",
+      "finished_utc": "2026-10-23T21:21:36.463431Z"
+    },
+    {
+      "attempt_id": "0a9624db-9723-4061-a4de-07927d024f12",
+      "task_id": "source-octave-grid",
+      "kind": "numerical",
+      "status": "succeeded",
+      "started_utc": "2026-10-23T21:14:24.114437Z",
+      "finished_utc": "2026-10-23T21:17:15.406017Z"
+    },
+    {
+      "attempt_id": "e9bbce6e-1d93-4671-8613-f00df21d2ea1",
+      "task_id": "ds18-runner-analysis-review",
+      "kind": "deepseek",
+      "status": "succeeded",
+      "started_utc": "2026-10-23T21:15:14.003246Z",
+      "finished_utc": "2026-10-23T21:19:40.023664Z"
+    },
+    {
+      "attempt_id": "0a9092c9-7920-4a59-9ef5-c5df56e96fc2",
+      "task_id": "numeric-interface-controls",
+      "kind": "numerical",
+      "status": "failed",
+      "started_utc": "2026-10-23T21:18:00.761566Z",
+      "finished_utc": "2026-10-23T21:18:03.489158Z"
+    },
+    {
+      "attempt_id": "8f08272c-2c0c-43d0-9e8c-c11f5e313878",
+      "task_id": "numeric-interface-controls",
+      "kind": "numerical",
+      "status": "succeeded",
+      "started_utc": "2026-10-23T21:18:22.852058Z",
+      "finished_utc": "2026-10-23T21:18:23.737294Z"
+    },
+    {
+      "attempt_id": "d7e805c1-5c46-413b-8659-b5e7332042c2",
+      "task_id": "excluded-timing-bank",
+      "kind": "numerical",
+      "status": "succeeded",
+      "started_utc": "2026-10-23T21:20:31.128133Z",
+      "finished_utc": "2026-10-23T21:23:09.879250Z"
+    },
+    {
+      "attempt_id": "1a368cda-fa75-428a-8a07-8dd55d188b9d",
+      "task_id": "result-integrity-auditor",
+      "kind": "native",
+      "status": "succeeded",
+      "started_utc": "2026-10-23T21:21:37.238266Z",
+      "finished_utc": "2026-10-23T21:56:47.152114Z"
+    },
+    {
+      "attempt_id": "8de87510-1b29-4702-b1fd-695d05daea30",
+      "task_id": "bounded-synthetic-pilot",
+      "kind": "numerical",
+      "status": "succeeded",
+      "started_utc": "2026-10-23T21:29:38.211191Z",
+      "finished_utc": "2026-10-23T21:46:55.166595Z"
+    },
+    {
+      "attempt_id": "911e00d8-b1c1-442d-af49-12790ce4f400",
+      "task_id": "synthesis-preparation",
+      "kind": "native",
+      "status": "succeeded",
+      "started_utc": "2026-10-23T21:30:37.766113Z",
+      "finished_utc": "2026-10-23T21:36:56.146131Z"
+    },
+    {
+      "attempt_id": "79f98c94-b134-41be-9a8b-43317d781dff",
+      "task_id": "saved-pilot-analysis",
+      "kind": "numerical",
+      "status": "succeeded",
+      "started_utc": "2026-10-23T21:46:55.502398Z",
+      "finished_utc": "2026-10-23T21:47:19.605519Z"
+    },
+    {
+      "attempt_id": "1110e952-b177-4394-bbb8-91b94ef8467a",
+      "task_id": "independent-statistical-arithmetic",
+      "kind": "numerical",
+      "status": "succeeded",
+      "started_utc": "2026-10-23T21:48:25.778635Z",
+      "finished_utc": "2026-10-23T21:48:26.985958Z"
+    }
+  ],
+  "scope": "This scientific run only; the earlier planning review is recorded separately."
+}

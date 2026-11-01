@@ -1,4 +1,4 @@
-\chapter{Likelihood, profiling and calibrated inference}\label{ch:inference}
+\chapter{Finite-History Likelihood Identities and Response Tools}\label{chap:inference}\label{ch:inference}
 
 The marked likelihood provides the common bridge from structural and visibility questions to fitted inference. It records event times, pre-event intensities, the complete observation window, and the mark factors under the same mark model. Likelihood geometry can then be separated into three questions: whether a score direction has finite second moment, whether amplitude profiling gives a well-defined finite-history optimization, and how the rejection probability of a calibrated rule responds when the generating inhibition changes.
 
@@ -40,7 +40,7 @@ At \(\eta=0\), this is the score for the declared boundary direction, with the o
 
 \begin{proposition}[Restricted finite score variance]
 \label{prop:score_bound}
-On \([0,T]\), with empty initial history and \(\eta\geq0\), let \(0<B(t)\le B_{\max}<\infty\), \(n>0\), let \(\kappa>0\) almost surely with \(\E \kappa=1\), and let \(h_e(u)>0\) for \(0\le u\le T\). Assume the same parents contribute to \(G_s\) and \(H_e\), with nonnegative \(g\) and \(\Phi_s\), finite mean event count, \(C_T=\int_0^T\Phi_s(u)^2/h_e(u)\,\dif u<\infty\), and \(m=\E [g(Q)^2/\kappa(Q)]<\infty\). Then the score \eqref{eq:eta-score} is square integrable and its predictable variance is
+On \([0,T]\), with empty initial history and \(\eta\geq0\), let \(0<B(t)\le B_{\max}<\infty\), \(0<n<1\), let \(\kappa>0\) almost surely with \(\E \kappa=1\), and let \(h_e\) be normalized with \(h_e(u)>0\) for \(0<u\le T\). Assume the same parents contribute to \(G_s\) and \(H_e\), with almost surely finite nonnegative mark transforms and nonnegative \(\Phi_s\), \(C_T=\int_0^T\Phi_s(u)^2/h_e(u)\,\dif u<\infty\), and \(m=\E [g(Q)^2/\kappa(Q)]<\infty\). Then the score \eqref{eq:eta-score} is square integrable and its predictable variance is
 \[
 \E _\eta U_\eta^2
 =
@@ -52,29 +52,13 @@ On \([0,T]\), with empty initial history and \(\eta\geq0\), let \(0<B(t)\le B_{\
 \end{proposition}
 
 \begin{proof}
-When \(H_e(t)>0\), weighted Cauchy--Schwarz with weights \(\kappa(Q_i)h_e(t-T_i)\) gives
+The normalized subcritical Hawkes envelope gives \(\E_\eta N(T)\leq\mathcal B/(1-n)<\infty\), where \(\mathcal B=\int_0^T B(t)\,\dif t\). Since \(\lambda_\eta\geq nH_e\) and \(Be^{-\eta G_s}\leq B_{\max}\), Lemma~\ref{lem:weighted_history} bounds the expected bracket by
 \[
-G_s(t)^2
-\le
-H_e(t)\sum_{T_i<t}
-\frac{g(Q_i)^2}{\kappa(Q_i)}
-\frac{\Phi_s(t-T_i)^2}{h_e(t-T_i)}.
+\E_\eta\int_0^T\frac{(Be^{-\eta G_s}G_s)^2}{\lambda_\eta}\,\dif t
+\leq\frac{B_{\max}^2}{n}\E_\eta\int_0^T\frac{G_s^2}{H_e}\,\dif t
+\leq\frac{B_{\max}^2}{n}C_Tm\E_\eta N(T).
 \]
-When \(H_e=0\) there are no preceding parents and both displayed quantities are zero. Since \(\lambda_\eta\ge nH_e\) and \(B e^{-\eta G_s}\le B_{\max}\),
-\[
-\frac{(B e^{-\eta G_s}G_s)^2}{\lambda_\eta}
-\le
-\frac{B_{\max}^2}{n}
-\sum_{T_i<t}
-\frac{g(Q_i)^2}{\kappa(Q_i)}
-\frac{\Phi_s(t-T_i)^2}{h_e(t-T_i)}.
-\]
-Integrating and applying Tonelli's theorem bounds the expected bracket by
-\[
-\frac{B_{\max}^2}{n}C_T
-\E _\eta\sum_{T_i<T}\frac{g(Q_i)^2}{\kappa(Q_i)}.
-\]
-Fresh marks are drawn independently after acceptance, so the last expectation equals \(\E _\eta N(T)m\), although marks may influence future event counts. The stochastic-integral score is therefore an \(L^2\) martingale with the stated variance.
+The score is therefore an \(L^2\) compensated-counting martingale with the stated variance. More generally the same argument works for \(n>0\) if a finite mean count is supplied separately; subcriticality is the sufficient count control used here.
 \end{proof}
 
 Raw \(\E  g^2\) or \(\E \kappa^2\) may be infinite while the intensity-weighted ratio has finite moment. Positive \(n\) and matched triggering parents supply the required comparison history; the bound is not uniform as \(n\downarrow0\) or as the kernel-ratio integral grows.
@@ -94,7 +78,7 @@ branching coefficient \(n\) is not included in \(\kappa\). Then
 \]
 At the declared synthetic values \(\beta=2.849401764894274\) and \(r=0.7\),
 the denominator is approximately \(1.390105\), giving
-\(m\approx0.216065\). Although both first moments are finite,
+\(m\approx 0.216065\). Although both first moments are finite,
 \(2\gamma>\beta\) and \(2r\beta>\beta\), so
 \(\E[g(Q)^2]=\E[\kappa(Q)^2]=\infty\).
 The finite weighted moment verifies this mark condition in Proposition~\ref{prop:score_bound},
@@ -115,7 +99,27 @@ The fresh mark is independent of that event configuration, and the integral is s
 \]
 so integrable \(B\) controls the score bracket without a raw second mark moment. This regularization is not uniform as \(\eta\downarrow0\) and does not establish null-boundary asymptotic theory.
 
-Finite score variance alone is not a central limit theorem. It also does not establish differentiability in quadratic mean for the full searched model or a regular information matrix at the boundary. The pathwise second derivative contains terms whose expectations may fail even when the martingale-score bracket is finite.
+Finite score variance alone is not a central limit theorem. It also does not establish differentiability in quadratic mean for the full searched model or a regular information matrix at the boundary. This distinction is visible in the pathwise negative Hessian at the null:
+\[
+-\ell_{\eta\eta}(\vartheta,0)=A_T^{(2)}-C_T^{(2)},\qquad
+A_T^{(2)}=\int_0^T B G_s^2\,\dif t,\qquad
+C_T^{(2)}=\sum_i\frac{B(T_i)G_i^2 nH_i}{\lambda_0(T_i)^2}.
+\]
+For example, suppose \(B\) is continuous and positive, \(\Phi_s\) is continuous with \(\Phi_s(0)=1\), and \(\E g(Q)^2=\infty\). Let \(S\) be the first event time. Its null density on \((0,T)\) is \(B(s)\exp\{-\int_0^sB(v)\,\dif v\}\), and its fresh mark is independent of \(S\). The contribution of that first parent gives
+\[
+A_T^{(2)}\geq g(Q_1)^2\int_S^T B(t)\Phi_s(t-S)^2\,\dif t
+\quad\text{on }\{S<T\}.
+\]
+The integral is strictly positive, so Tonelli yields \(\E_0 A_T^{(2)}=\infty\). This applies to the displayed exponential-mark example whenever \(2\gamma\geq\beta\). Under Proposition~\ref{prop:score_bound}'s additional hypotheses, define the finite null score bracket mean
+\[
+I_{\eta\eta}^{(0)}=\E_0\int_0^T\frac{B^2G_s^2}{\lambda_0}\,\dif t<\infty.
+\]
+Fresh-event compensation and the nonnegative integrand identity
+\[
+BG_s^2=\frac{BG_s^2nH_e}{\lambda_0}
+       +\frac{B^2G_s^2}{\lambda_0}
+\]
+then imply \(\E_0 C_T^{(2)}=\infty\) as well. Thus taking the expectations of the two Hessian components separately produces an undefined \(\infty-\infty\), not a justified information identity. This fact alone does not determine integrability of their pathwise difference; cancellation would need its own argument. Finite score variance cannot be used as permission for that termwise interchange.
 
 \section{Nuisance projection and local information}
 
@@ -139,16 +143,16 @@ This projection gives a quantitative meaning to masking by fitted background and
 \(\partial_\theta\lambda=-\eta B e^{-\eta G_s}\partial_\theta G_s\).
 An \(O(\eta^2)\) information statement away from zero requires a justified uniform moment bound for that derivative; the zero first derivative alone is not enough.
 
-A related calculation can be made on one fixed reference path without the ensemble expectation. For \(B=\exp(a+dx)\), the four null log-intensity directions are
+A related calculation can be made on one fixed reference path without the ensemble expectation. For \(B=\exp(a+d x_{\mathrm{trend}})\), the four null log-intensity directions are
 \[
 s_a=\frac B{\lambda_0},\quad
-s_d=\frac{xB}{\lambda_0},\quad
+s_d=\frac{x_{\mathrm{trend}}B}{\lambda_0},\quad
 s_n=\frac{H_e}{\lambda_0},\quad
 s_\eta=-\frac{BG_s}{\lambda_0}.
 \]
 The realized Gram matrix \(J_{ij}=\int_0^T\lambda_0s_is_j\,\dif t\) is positive semidefinite. Its residual inhibition norm after projecting on \((s_a,s_d,s_n)\) is the minimum of
 \(\int\lambda_0(s_\eta-b_as_a-b_ds_d-b_ns_n)^2\dif t\).
-If \(G_s=c_0+c_1x+c_2H_e/B\), that residual is exactly zero. This algebra explains how depletion can resemble a fitted level, trend and triggering component.
+If \(G_s=c_0+c_1x_{\mathrm{trend}}+c_2H_e/B\), that residual is exactly zero. This algebra explains how depletion can resemble a fitted level, trend and triggering component.
 
 On two frozen reference paths, the archived residual/raw squared-norm ratios were approximately \(10.82\%\) and \(3.26\%\). These are two realized-path projections, rather than estimates of ensemble Fisher information. The paths and their calibrations differ; their ordering does not establish that greater exposure reduces expected information. Additional score directions can only reduce the residual for the same path and inner product, but no power decomposition follows from that projection fact.
 
@@ -156,13 +160,13 @@ On two frozen reference paths, the archived residual/raw squared-norm ratios wer
 
 Fix one observed marked history and fix the trend coefficient \(d\) and inhibition \(\eta\). Put
 \[
-q_i=\exp\{d x(T_i)-\eta G_i\},
+q_i=\exp\{d x_{\mathrm{trend}}(T_i)-\eta G_i\},
 \qquad
 c_i=nH_i,
 \qquad
-J=\int_0^T\exp\{d x(t)-\eta G(t)\}\,\dif t,
+J=\int_0^T\exp\{d x_{\mathrm{trend}}(t)-\eta G(t)\}\,\dif t,
 \]
-and let \(A=\exp(a)\) with \(A\in[L,U]\), where \(L=e^{-12}\) and \(U=1\). The negative event-time contribution to the joint marked log-likelihood, omitting the common mark constant and writing \(K\) for the full-window triggering compensator, is
+and let \(A=\exp(a)\) with \(A\in[L,U]\), where \(L=e^{-12}\) and \(U=1\). The negative event-time contribution to the joint marked log-likelihood, omitting the common mark constant and writing \(K=\int_0^T H_e(t)\,\dif t\), so that \(nK\) is the full-window triggering compensator, is
 \begin{equation}
 F(A;d,\eta)=AJ+nK-\sum_{i=1}^{N}\log(Aq_i+c_i).
 \label{eq:amplitude-objective}
@@ -171,7 +175,7 @@ The full horizon and all pre-event intensities are retained. The mark factors in
 
 \begin{proposition}[Conditional amplitude profile]
 \label{prop:amplitude}
-Assume a finite history and finite event features and parameters. Let every \(c_i\ge0\), let \(K\) be finite, and require \(0<J<\infty\). The specified finite-mode observation window satisfies these conditions when \(x\) is bounded and all recorded marks are finite. Then \eqref{eq:amplitude-objective} has a unique minimizer on \([L,U]\):
+Assume a finite history and finite event features and parameters. Let every \(c_i\ge0\), let \(K\) be finite, and require \(0<J<\infty\). The specified finite-mode observation window satisfies these conditions when \(x_{\mathrm{trend}}\) is bounded and all recorded marks are finite. Then \eqref{eq:amplitude-objective} has a unique minimizer on \([L,U]\):
 \begin{enumerate}
 \item if \(F_A(L)\ge0\), the minimizer is \(L\);
 \item otherwise, if \(F_A(U)\le0\), the minimizer is \(U\);
@@ -211,13 +215,13 @@ R=AJ-\sum_i p_i.
 \]
 Thus at the balanced root, the negative log-likelihood satisfies
 \(F_{aa}=\sum_i p_i^2\), while the log-likelihood \(\ell=-F\) satisfies
-\(\ell_{aa}=-\sum_i p_i^2\). At an approximate root, the balance residual \(R\) must be added to \(\sum_i p_i^2\); it is not exact curvature at that numerical point. In an interior fixed-\(d\) region, profile differentiation also gives
+\(\ell_{aa}=-\sum_i p_i^2\). At an approximate root, the balance residual \(R\) must be added to \(\sum_i p_i^2\); it is not exact curvature at that numerical point. In a region where the optimizing amplitude is interior, profile differentiation also gives
 \[
-V_d=AJ_x-\sum_i x(T_i)p_i,
+V_d=AJ_x-\sum_i x_{\mathrm{trend}}(T_i)p_i,
 \qquad
 V_\eta=-AJ_G+\sum_i G_ip_i,
 \]
-where \(J_x\) and \(J_G\) integrate \(x(t)\) and \(G(t)\) against the background weight. Here \(J_x=\int_0^Tx(t)e^{dx(t)-\eta G(t)}\dif t\) and \(J_G=\int_0^TG(t)e^{dx(t)-\eta G(t)}\dif t\). At fixed \(d\), implicit differentiation in an interior-amplitude region gives
+where \(J_x\) and \(J_G\) integrate \(x_{\mathrm{trend}}(t)\) and \(G(t)\) against the background weight. Here \(J_x=\int_0^Tx_{\mathrm{trend}}(t)e^{dx_{\mathrm{trend}}(t)-\eta G(t)}\dif t\) and \(J_G=\int_0^TG(t)e^{dx_{\mathrm{trend}}(t)-\eta G(t)}\dif t\). At fixed \(d\), implicit differentiation in an interior-amplitude region gives
 
 \[
 \frac{\partial a_*}{\partial\eta}
@@ -260,6 +264,16 @@ Moreover,
 \le
 \frac{\sqrt{\mathcal B}}{e\eta}.
 \]
+If in addition the fixed generating ingredients satisfy Proposition~\ref{prop:score_bound}, put
+\[
+K_T=\frac{B_{\max}^2C_Tm\mathcal B}{n(1-n)}.
+\]
+Then the stronger bound
+\[
+|p'(\eta)|\leq\sqrt{K_Tp(\eta)(1-p(\eta))}
+\leq\frac{\sqrt{K_T}}2,\qquad \eta>0,
+\]
+is uniform in positive \(\eta\) with those ingredients fixed. It does not assert existence of \(p'(0)\).
 \end{proposition}
 
 \begin{proof}
@@ -280,29 +294,29 @@ For clarity, write
 \begin{aligned}
  \mathcal B&=\int_0^T B(t)\,\dif t,
  &J_\eta&=\int_0^T B(t)(1-e^{-\eta G_s(t)})\,\dif t,\\
- q_i(\eta)&=\frac{B_i e^{-\eta G_i}+c_i}{B_i+c_i},
+ \varrho_i(\eta)&=\frac{B_i e^{-\eta G_i}+c_i}{B_i+c_i},
  &c_i&=nH_i\geq0,
 \end{aligned}
 \]
 where $B_i=B(T_i)$ and $G_i,H_i$ are the pre-event features. Then
-$L_\eta=e^{J_\eta}\prod_iq_i(\eta)$, with $0\leq q_i\leq1$ and
+$L_\eta=e^{J_\eta}\prod_i\varrho_i(\eta)$, with $0\leq \varrho_i\leq1$ and
 $0\leq J_\eta\leq\mathcal B$. At actual reference-law events
 $B_i+c_i>0$ almost surely. On a compact positive interval
 $\eta\in[\eta_-,\eta_+]$, direct differentiation gives
 \[
- |q_i'(\eta)|
+ |\varrho_i'(\eta)|
  =\frac{B_i}{B_i+c_i}G_i e^{-\eta G_i}
  \leq\frac{1}{e\eta_-},
  \qquad
  |J_\eta'|\leq\frac{\mathcal B}{e\eta_-}.
 \]
-The product rule, without division by any $q_i$, therefore yields
+The product rule, without division by any $\varrho_i$, therefore yields
 \[
 \begin{aligned}
  |\partial_\eta L_\eta|
  &\leq e^{J_\eta}\left(
- |J_\eta'|\prod_iq_i+
- \sum_i |q_i'|\prod_{j\ne i}q_j\right)\\
+ |J_\eta'|\prod_i\varrho_i+
+ \sum_i |\varrho_i'|\prod_{j\ne i}\varrho_j\right)\\
  &\leq\frac{e^{\mathcal B}(\mathcal B+N(T))}{e\eta_-}.
 \end{aligned}
 \]
@@ -311,10 +325,10 @@ indicator. It is integrable under the reference law because
 $\E _0N(T)\leq\mathcal B/(1-n)$. The bound is for the derivative of
 $L_\eta$, not its logarithm. The finite-path derivative is continuous in $\eta$. Dominated convergence gives
 \(p'(\eta)=\E _0[I\partial_\eta L_\eta]=\E _\eta[IS_\eta]\).
-No derivative of the data-dependent fitted outputs is taken: \(I\) is the same mapping on every history. The mean-zero score gives the covariance identity. Cauchy--Schwarz with \(\mathrm{Var}(I)=p(1-p)\) gives the stated bounds.
+No derivative of the data-dependent fitted outputs is taken: \(I\) is the same mapping on every history. The mean-zero score gives the covariance identity. Cauchy--Schwarz with \(\mathrm{Var}(I)=p(1-p)\) gives the general bounds. Under the additional weighted-moment hypotheses, Proposition~\ref{prop:score_bound} and \(\E_\eta N(T)\leq\mathcal B/(1-n)\) instead give \(\E_\eta S_\eta^2\leq K_T\); the same covariance inequality proves the uniform bound.
 \end{proof}
 
-The covariance has no proved sign. Stronger generating inhibition need not increase detection probability for a particular calibrated rule. Positive \(\eta\) gives local differentiability and moment control, not monotonic power and not control as \(\eta\downarrow0\). Unknown, failed, capped, or otherwise unresolved computational outcomes remain unknown; they must not be recorded as nonrejections. Conditioning on completed cases estimates a different functional from the unconditional \(p(\eta)\) defined by the fixed rule.
+The covariance has no proved sign. Stronger generating inhibition need not increase detection probability for a particular calibrated rule. The general positive-\(\eta\) estimate gives local differentiability and moment control but is not uniform as \(\eta\downarrow0\). The stronger bound needs positive triggering and the finite weighted-history moment; it bounds the positive-parameter slopes but supplies neither monotonic power nor null-boundary asymptotic calibration. Unknown, failed, capped, or otherwise unresolved computational outcomes remain unknown; they must not be recorded as nonrejections. Conditioning on completed cases estimates a different functional from the unconditional \(p(\eta)\) defined by the fixed rule.
 
 The proposition also does not compare a simple hypothesis with a known generating law to a composite hypothesis whose nuisances are fitted. Those are different operating characteristics, with different permitted null explanations and decision rules. An oracle that knows the nuisance values and a composite rule that estimates them are not the same test function, so their performance gap is not by itself pure fitting waste.
 

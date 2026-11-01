@@ -1,0 +1,59 @@
+{
+  "schema": "S04B_frozen_method_projection_v1",
+  "regimes": {
+    "4": {
+      "name": "S4_narrow_short_imm",
+      "background": "smooth",
+      "eta": 0.5,
+      "ell_km": 5.0,
+      "psi_days": 0.041666666666666664,
+      "seed_first": 410401,
+      "seed_last": 410420,
+      "psi_numerator": 1,
+      "psi_denominator": 24
+    },
+    "5": {
+      "name": "S5_broad_long_imm",
+      "background": "smooth",
+      "eta": 2.0,
+      "ell_km": 50.0,
+      "psi_days": 30.0,
+      "seed_first": 410501,
+      "seed_last": 410520
+    },
+    "6": {
+      "name": "S6_narrow_short_total",
+      "background": "smooth",
+      "eta": 0.5,
+      "ell_km": 5.0,
+      "psi_days": 0.041666666666666664,
+      "seed_first": 410601,
+      "seed_last": 410620,
+      "psi_numerator": 1,
+      "psi_denominator": 24
+    },
+    "7": {
+      "name": "S7_broad_long_total",
+      "background": "smooth",
+      "eta": 2.0,
+      "ell_km": 50.0,
+      "psi_days": 30.0,
+      "seed_first": 410701,
+      "seed_last": 410720
+    }
+  },
+  "warmup_start": 0,
+  "training_start": 30,
+  "test_start": 395,
+  "horizon_days": 760,
+  "training_order": 16,
+  "verification_order": 32,
+  "starts": 8,
+  "provenance": {
+    "source\\generator.py": "b8bae982735b4fba26d450d93578c4d0b78ac33f7e33c691557b2bd8d4afcf43",
+    "source\\refit_worker.py": "8dec37543e2eec31aaaa537728001d067b25d704db80d36f96263efc82339db5",
+    "control\\REFIT_PROTOCOL.md": "a44d5e91c59dd619462d592373005f11a1c26e92943650fdcbf7bcff95f4ea29",
+    "control\\refit_config.json": "0171c34894f37419bba3c48665528846e32ce593d9e29d8f43273c1e432a7b5f"
+  },
+  "derivation": "AST numeric literals/division in generator roster; contiguous declared seeds from frozen config; literal protocol window extraction; exact worker call/start assertions. No numerical code imported or executed."
+}

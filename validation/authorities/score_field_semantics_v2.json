@@ -1,0 +1,66 @@
+{
+  "schema": "score_field_semantics_v2",
+  "applies_to_unchanged_scalar_export": {
+    "path": "releasable_results.json",
+    "sha256": "32d2268df994269d1b2c01b7789e790528754fc6ec1693b2e072dad63caedbba"
+  },
+  "canonical_narrative": {
+    "P": "Sum of event log point intensities; log-score unit nats.",
+    "Q": "Sum of event log regional ground intensities; nats.",
+    "E": "Positive full-domain integrated intensity (exposure); expected-count dimension, enters log score with negative sign.",
+    "C": "Signed exposure contribution: C = -E.",
+    "M": "Marginal magnitude-mark log score, included once; common contrast cancels.",
+    "ell_score": "Joint log score ell = P + C + M = P - E + M. The symbol ell_score here must not be confused with the LI spatial range ell_km.",
+    "differences": "Delta always candidate minus named reference. Delta C = -Delta E; delta joint = delta P + delta C + delta M."
+  },
+  "source_specific_raw_fields": [
+    {
+      "curated_pointer": "/local_inhibition/observed/pooled/*/totals/E",
+      "original_pointer": "/observed/pooled/*/totals/E",
+      "canonical": "Delta P",
+      "definition": "Despite its raw key E, this inherited LI field is the event point-logsum difference, NOT positive integrated exposure.",
+      "unit": "nats",
+      "example": {
+        "comparison": "LI_minus_EP",
+        "raw_E": -54.59167683602925,
+        "canonical_quantity": "Delta P"
+      }
+    },
+    {
+      "curated_pointer": "/local_inhibition/observed/pooled/*/totals/C",
+      "original_pointer": "/observed/pooled/*/totals/C",
+      "canonical": "Delta C = -Delta E",
+      "definition": "Signed contribution from negative integrated intensity.",
+      "unit": "nats",
+      "example": {
+        "comparison": "LI_minus_EP",
+        "raw_C": 3.5404720731578863
+      }
+    },
+    {
+      "curated_pointer": "/california_sequence/contrasts/*/timing_compensator",
+      "original_pointer": "/contrasts/*/timing_compensator",
+      "canonical": "Delta E",
+      "definition": "Positive integrated-intensity difference. Its contribution to timing and joint differences is NEGATIVE this stored value.",
+      "unit": "exposure (same numerical term enters nat score with minus sign)",
+      "score_identity": "delta timing = timing_event - timing_compensator"
+    },
+    {
+      "curated_pointer": "/california_benchmark/contrasts/*/pooled_sum/integrated_intensity",
+      "canonical": "Delta E",
+      "definition": "Positive integrated-intensity difference; compensator_contribution is its negative."
+    },
+    {
+      "curated_pointer": "/jma_forecast/*/decomposition/integrated_intensity",
+      "canonical": "Delta E",
+      "definition": "Positive integrated-intensity difference; signed_negative_C is its negative. In this JMA raw source, positive_C denotes positive integrated intensity."
+    },
+    {
+      "curated_pointer": "/california_m45/*/components/integrated_intensity",
+      "canonical": "Delta E in contrast rows; E in arm rows",
+      "definition": "Positive integrated intensity or its candidate-minus-reference difference; enters timing/joint with minus sign."
+    }
+  ],
+  "preservation": "All raw scalar keys and values remain byte-exact in releasable_results.json. This dictionary disambiguates notation only. No score, comparison, denominator or figure is changed.",
+  "empirical_interpretation": "The LI range ell and memory psi are unidentifiable at exact eta=0; canonical 30 km/7 days are conventions, not fitted physical scales. EP calibration was not tested by the completed OC calibration exercise."
+}

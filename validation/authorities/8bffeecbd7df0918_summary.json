@@ -1,0 +1,1213 @@
+{
+  "schema_version": 2,
+  "status": "complete",
+  "scope": "Revised-catalogue hindsight external retrospective replication; conditional regional history; not historical as-issued forecasting or causal evidence.",
+  "denominators": {
+    "planned_windows": 3,
+    "procedures": 30,
+    "starts": 240,
+    "floors": 33,
+    "all_test_targets": 315
+  },
+  "cases": [
+    {
+      "case_id": "california_fold_0",
+      "status": "complete",
+      "n_train": 851,
+      "n_test": 79,
+      "training_cell_counts": [
+        3,
+        50,
+        235,
+        31,
+        332,
+        80,
+        35,
+        78,
+        7
+      ],
+      "test_cell_counts": [
+        1,
+        5,
+        39,
+        2,
+        15,
+        2,
+        7,
+        8,
+        0
+      ],
+      "accounting": {
+        "procedures": 10,
+        "mandatory_starts": 80,
+        "exact_floor_slots": 11,
+        "completed_starts": 80,
+        "completed_floors": 11
+      },
+      "beta": 2.2839209182061535,
+      "selected_bandwidth_km": 5.0,
+      "selected_sigma_km": 5.0,
+      "models": {
+        "fixedML_smooth_lift": {
+          "status": "complete",
+          "complete": true,
+          "procedure_id": "california_fold_0__main_fixedML_smooth_lift",
+          "parameters": [
+            -2.963643785610734,
+            0.5098658369162566,
+            0.49757568400720853
+          ],
+          "training_joint_nll": 10154.902141218692,
+          "scores": {
+            "joint_logscore": -1205.7367320619323,
+            "timing_logscore": -305.0854880152546,
+            "conditional_location_logscore": -907.1087193004166,
+            "conditional_zone_logscore": -77.31757345949467,
+            "conditional_cell_logscore": -42.948549391661885,
+            "within_cell_density_logscore": -786.8425964492601,
+            "mark_logscore": 6.45747525373892,
+            "timing_event_logscore": -161.1611929944797,
+            "timing_exposure_logscore": -143.9242950207749,
+            "integrated_intensity": 143.9242950207749
+          },
+          "forecast_spread_nats_per_event": 7.1167008811727686e-06,
+          "forecast_stable": true
+        },
+        "fixedML_smooth_cont": {
+          "status": "complete",
+          "complete": true,
+          "procedure_id": "california_fold_0__selector_fixedML_smooth_cont_sigma5",
+          "parameters": [
+            -3.3437158689031805,
+            0.42049240921796066,
+            0.650325814658863
+          ],
+          "training_joint_nll": 8187.296985232069,
+          "scores": {
+            "joint_logscore": -1104.7854224868304,
+            "timing_logscore": -291.10717810506543,
+            "conditional_location_logscore": -820.1357196355041,
+            "conditional_zone_logscore": -77.00983952843865,
+            "conditional_cell_logscore": -42.58386002039458,
+            "within_cell_density_logscore": -700.5420200866708,
+            "mark_logscore": 6.45747525373892,
+            "timing_event_logscore": -179.89472028794904,
+            "timing_exposure_logscore": -111.21245781711639,
+            "integrated_intensity": 111.21245781711639
+          },
+          "forecast_spread_nats_per_event": 3.997469807300264e-06,
+          "forecast_stable": true
+        },
+        "commonML_smooth_cont": {
+          "status": "complete",
+          "complete": true,
+          "procedure_id": "california_fold_0__main_commonML_smooth_cont",
+          "parameters": [
+            -3.3120160203542586,
+            0.4333257351467643,
+            0.6376293547619251,
+            -0.7303731740817015
+          ],
+          "training_joint_nll": 8176.948900130896,
+          "scores": {
+            "joint_logscore": -1106.3847383507684,
+            "timing_logscore": -291.23968371417334,
+            "conditional_location_logscore": -821.6025298903342,
+            "conditional_zone_logscore": -77.32999542252759,
+            "conditional_cell_logscore": -42.71441502527651,
+            "within_cell_density_logscore": -701.55811944253,
+            "mark_logscore": 6.45747525373892,
+            "timing_event_logscore": -178.45830138087186,
+            "timing_exposure_logscore": -112.78138233330147,
+            "integrated_intensity": 112.78138233330147
+          },
+          "forecast_spread_nats_per_event": 4.865466007110707e-06,
+          "forecast_stable": true
+        },
+        "Omori_smooth_cont": {
+          "status": "complete",
+          "complete": true,
+          "procedure_id": "california_fold_0__main_Omori_smooth_cont",
+          "parameters": [
+            -3.3728307104404847,
+            0.42690857769577734,
+            0.7260638329663971,
+            -5.131045816531973,
+            1.1734512784504076
+          ],
+          "training_joint_nll": 8178.477268303986,
+          "scores": {
+            "joint_logscore": -1100.992525176094,
+            "timing_logscore": -291.0080940996206,
+            "conditional_location_logscore": -816.4419063302122,
+            "conditional_zone_logscore": -74.7927173534944,
+            "conditional_cell_logscore": -42.53939693772509,
+            "within_cell_density_logscore": -699.1097920389927,
+            "mark_logscore": 6.45747525373892,
+            "timing_event_logscore": -176.45877385777717,
+            "timing_exposure_logscore": -114.54932024184345,
+            "integrated_intensity": 114.54932024184345
+          },
+          "forecast_spread_nats_per_event": 3.343537226308261e-05,
+          "forecast_stable": true
+        },
+        "Omori_smooth_lift": {
+          "status": "complete",
+          "complete": true,
+          "procedure_id": "california_fold_0__main_Omori_smooth_lift",
+          "parameters": [
+            -2.8726148307354578,
+            0.47908581455597027,
+            0.44351461037733414,
+            -4.400734067804043,
+            1.452340888702034
+          ],
+          "training_joint_nll": 10091.439168213608,
+          "scores": {
+            "joint_logscore": -1208.383677668699,
+            "timing_logscore": -306.59599207357405,
+            "conditional_location_logscore": -908.2451608488639,
+            "conditional_zone_logscore": -77.54178414891837,
+            "conditional_cell_logscore": -43.27880694682341,
+            "within_cell_density_logscore": -787.4245697531221,
+            "mark_logscore": 6.45747525373892,
+            "timing_event_logscore": -157.1283624756002,
+            "timing_exposure_logscore": -149.46762959797383,
+            "integrated_intensity": 149.46762959797383
+          },
+          "forecast_spread_nats_per_event": 1.1817499487825685e-05,
+          "forecast_stable": true
+        }
+      },
+      "comparisons": [
+        {
+          "id": "primary_timing",
+          "candidate": "Omori_smooth_cont",
+          "reference": "fixedML_smooth_cont",
+          "primary_component": "timing_logscore",
+          "status": "complete",
+          "n_test": 79,
+          "delta": {
+            "joint_logscore": 3.7928973107364072,
+            "timing_logscore": 0.09908400544480855,
+            "conditional_location_logscore": 3.693813305291883,
+            "conditional_zone_logscore": 2.217122174944251,
+            "conditional_cell_logscore": 0.044463082669494725,
+            "within_cell_density_logscore": 1.4322280476781089,
+            "mark_logscore": 0.0,
+            "timing_event_logscore": 3.4359464301718674,
+            "timing_exposure_logscore": -3.336862424727059,
+            "integrated_intensity": 3.336862424727059
+          },
+          "primary_delta_nats": 0.09908400544480855,
+          "primary_delta_nats_per_event": 0.001254227917022893,
+          "timing_decomposition": {
+            "event": 3.4359464301718674,
+            "compensator": -3.336862424727059,
+            "total": 0.09908400544480855
+          }
+        },
+        {
+          "id": "primary_location",
+          "candidate": "Omori_smooth_cont",
+          "reference": "Omori_smooth_lift",
+          "primary_component": "conditional_location_logscore",
+          "status": "complete",
+          "n_test": 79,
+          "delta": {
+            "joint_logscore": 107.39115249260499,
+            "timing_logscore": 15.587897973953432,
+            "conditional_location_logscore": 91.80325451865167,
+            "conditional_zone_logscore": 2.749066795423971,
+            "conditional_cell_logscore": 0.7394100090983216,
+            "within_cell_density_logscore": 88.31477771412938,
+            "mark_logscore": 0.0,
+            "timing_event_logscore": -19.330411382176976,
+            "timing_exposure_logscore": 34.91830935613038,
+            "integrated_intensity": -34.91830935613038
+          },
+          "primary_delta_nats": 91.80325451865167,
+          "primary_delta_nats_per_event": 1.1620665128943248,
+          "timing_decomposition": {
+            "event": -19.330411382176976,
+            "compensator": 34.91830935613038,
+            "total": 15.587897973953432
+          }
+        },
+        {
+          "id": "context_freeML",
+          "candidate": "Omori_smooth_cont",
+          "reference": "commonML_smooth_cont",
+          "primary_component": "joint_logscore",
+          "status": "complete",
+          "n_test": 79,
+          "delta": {
+            "joint_logscore": 5.392213174674453,
+            "timing_logscore": 0.23158961455271765,
+            "conditional_location_logscore": 5.160623560121962,
+            "conditional_zone_logscore": 2.537278069033192,
+            "conditional_cell_logscore": 0.17501808755142179,
+            "within_cell_density_logscore": 2.4483274035372915,
+            "mark_logscore": 0.0,
+            "timing_event_logscore": 1.9995275230946845,
+            "timing_exposure_logscore": -1.767937908541981,
+            "integrated_intensity": 1.767937908541981
+          },
+          "primary_delta_nats": 5.392213174674453,
+          "primary_delta_nats_per_event": 0.06825586297056269,
+          "timing_decomposition": {
+            "event": 1.9995275230946845,
+            "compensator": -1.767937908541981,
+            "total": 0.23158961455271765
+          }
+        },
+        {
+          "id": "context_fixedML_spatial",
+          "candidate": "fixedML_smooth_cont",
+          "reference": "fixedML_smooth_lift",
+          "primary_component": "conditional_location_logscore",
+          "status": "complete",
+          "n_test": 79,
+          "delta": {
+            "joint_logscore": 100.95130957510196,
+            "timing_logscore": 13.978309910189182,
+            "conditional_location_logscore": 86.97299966491255,
+            "conditional_zone_logscore": 0.30773393105602054,
+            "conditional_cell_logscore": 0.3646893712673034,
+            "within_cell_density_logscore": 86.30057636258925,
+            "mark_logscore": 0.0,
+            "timing_event_logscore": -18.733527293469336,
+            "timing_exposure_logscore": 32.71183720365852,
+            "integrated_intensity": -32.71183720365852
+          },
+          "primary_delta_nats": 86.97299966491255,
+          "primary_delta_nats_per_event": 1.1009240463912982,
+          "timing_decomposition": {
+            "event": -18.733527293469336,
+            "compensator": 32.71183720365852,
+            "total": 13.978309910189182
+          }
+        },
+        {
+          "id": "complete_procedure",
+          "candidate": "Omori_smooth_cont",
+          "reference": "fixedML_smooth_lift",
+          "primary_component": "joint_logscore",
+          "status": "complete",
+          "n_test": 79,
+          "delta": {
+            "joint_logscore": 104.74420688583837,
+            "timing_logscore": 14.07739391563399,
+            "conditional_location_logscore": 90.66681297020443,
+            "conditional_zone_logscore": 2.5248561060002714,
+            "conditional_cell_logscore": 0.4091524539367981,
+            "within_cell_density_logscore": 87.73280441026736,
+            "mark_logscore": 0.0,
+            "timing_event_logscore": -15.297580863297469,
+            "timing_exposure_logscore": 29.37497477893146,
+            "integrated_intensity": -29.37497477893146
+          },
+          "primary_delta_nats": 104.74420688583837,
+          "primary_delta_nats_per_event": 1.3258760365295996,
+          "timing_decomposition": {
+            "event": -15.297580863297469,
+            "compensator": 29.37497477893146,
+            "total": 14.07739391563399
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "california_fold_1",
+      "status": "complete",
+      "n_train": 930,
+      "n_test": 167,
+      "training_cell_counts": [
+        4,
+        55,
+        274,
+        33,
+        347,
+        82,
+        42,
+        86,
+        7
+      ],
+      "test_cell_counts": [
+        0,
+        5,
+        17,
+        5,
+        7,
+        3,
+        4,
+        124,
+        2
+      ],
+      "accounting": {
+        "procedures": 10,
+        "mandatory_starts": 80,
+        "exact_floor_slots": 11,
+        "completed_starts": 80,
+        "completed_floors": 11
+      },
+      "beta": 2.3150580973520416,
+      "selected_bandwidth_km": 5.0,
+      "selected_sigma_km": 5.0,
+      "models": {
+        "fixedML_smooth_lift": {
+          "status": "complete",
+          "complete": true,
+          "procedure_id": "california_fold_1__main_fixedML_smooth_lift",
+          "parameters": [
+            -3.0992455131877534,
+            0.12532079110441935,
+            0.4750722579023266
+          ],
+          "training_joint_nll": 11274.12269521721,
+          "scores": {
+            "joint_logscore": -1753.4331921188846,
+            "timing_logscore": 102.58105856749305,
+            "conditional_location_logscore": -1840.9752140652963,
+            "conditional_zone_logscore": -62.20737483541589,
+            "conditional_cell_logscore": -45.09205593710314,
+            "within_cell_density_logscore": -1733.6757832927772,
+            "mark_logscore": -15.039036621081294,
+            "timing_event_logscore": 272.3357553823993,
+            "timing_exposure_logscore": -169.75469681490628,
+            "integrated_intensity": 169.75469681490628
+          },
+          "forecast_spread_nats_per_event": 1.5284821118170104e-06,
+          "forecast_stable": true
+        },
+        "fixedML_smooth_cont": {
+          "status": "complete",
+          "complete": true,
+          "procedure_id": "california_fold_1__selector_fixedML_smooth_cont_sigma5",
+          "parameters": [
+            -3.4213662068252093,
+            0.20238718811505918,
+            0.6218711324234175
+          ],
+          "training_joint_nll": 9214.917842031553,
+          "scores": {
+            "joint_logscore": -1265.7754675029503,
+            "timing_logscore": 122.40816494795314,
+            "conditional_location_logscore": -1373.144595829822,
+            "conditional_zone_logscore": -54.99870442144061,
+            "conditional_cell_logscore": -45.19211110986524,
+            "within_cell_density_logscore": -1272.9537802985162,
+            "mark_logscore": -15.039036621081294,
+            "timing_event_logscore": 295.71139050092467,
+            "timing_exposure_logscore": -173.30322555297153,
+            "integrated_intensity": 173.30322555297153
+          },
+          "forecast_spread_nats_per_event": 4.5423660970458197e-07,
+          "forecast_stable": true
+        },
+        "commonML_smooth_cont": {
+          "status": "complete",
+          "complete": true,
+          "procedure_id": "california_fold_1__main_commonML_smooth_cont",
+          "parameters": [
+            -3.3918751983712605,
+            0.20855850285441108,
+            0.6094914794166032,
+            -0.7122196151768474
+          ],
+          "training_joint_nll": 9204.802497788485,
+          "scores": {
+            "joint_logscore": -1247.7292172458174,
+            "timing_logscore": 139.06296556138318,
+            "conditional_location_logscore": -1371.753146186119,
+            "conditional_zone_logscore": -55.835332092424665,
+            "conditional_cell_logscore": -44.80168598887229,
+            "within_cell_density_logscore": -1271.116128104822,
+            "mark_logscore": -15.039036621081294,
+            "timing_event_logscore": 313.10765148587865,
+            "timing_exposure_logscore": -174.04468592449547,
+            "integrated_intensity": 174.04468592449547
+          },
+          "forecast_spread_nats_per_event": 9.321621475551918e-06,
+          "forecast_stable": true
+        },
+        "Omori_smooth_cont": {
+          "status": "complete",
+          "complete": true,
+          "procedure_id": "california_fold_1__main_Omori_smooth_cont",
+          "parameters": [
+            -3.459296272470421,
+            0.1877320995189577,
+            0.6917034991040505,
+            -5.096883843891726,
+            1.1750234904320094
+          ],
+          "training_joint_nll": 9204.727909170451,
+          "scores": {
+            "joint_logscore": -1237.1202092728317,
+            "timing_logscore": 155.131043314278,
+            "conditional_location_logscore": -1377.2122159660285,
+            "conditional_zone_logscore": -54.35124032173769,
+            "conditional_cell_logscore": -45.40932366542455,
+            "within_cell_density_logscore": -1277.4516519788663,
+            "mark_logscore": -15.039036621081294,
+            "timing_event_logscore": 326.50433396627767,
+            "timing_exposure_logscore": -171.37329065199967,
+            "integrated_intensity": 171.37329065199967
+          },
+          "forecast_spread_nats_per_event": 1.69518986577948e-05,
+          "forecast_stable": true
+        },
+        "Omori_smooth_lift": {
+          "status": "complete",
+          "complete": true,
+          "procedure_id": "california_fold_1__main_Omori_smooth_lift",
+          "parameters": [
+            -3.015594595230374,
+            0.0782351853423006,
+            0.4248580384832529,
+            -4.355092261416295,
+            1.4550891707199183
+          ],
+          "training_joint_nll": 11209.406384393722,
+          "scores": {
+            "joint_logscore": -1717.4950837175427,
+            "timing_logscore": 140.5861618453885,
+            "conditional_location_logscore": -1843.0422089418498,
+            "conditional_zone_logscore": -66.76700912041758,
+            "conditional_cell_logscore": -44.92898527404594,
+            "within_cell_density_logscore": -1731.3462145473864,
+            "mark_logscore": -15.039036621081294,
+            "timing_event_logscore": 307.4353391338243,
+            "timing_exposure_logscore": -166.8491772884358,
+            "integrated_intensity": 166.8491772884358
+          },
+          "forecast_spread_nats_per_event": 1.5350733459974197e-05,
+          "forecast_stable": true
+        }
+      },
+      "comparisons": [
+        {
+          "id": "primary_timing",
+          "candidate": "Omori_smooth_cont",
+          "reference": "fixedML_smooth_cont",
+          "primary_component": "timing_logscore",
+          "status": "complete",
+          "n_test": 167,
+          "delta": {
+            "joint_logscore": 28.655258230118534,
+            "timing_logscore": 32.72287836632486,
+            "conditional_location_logscore": -4.067620136206415,
+            "conditional_zone_logscore": 0.6474640997029155,
+            "conditional_cell_logscore": -0.21721255555931407,
+            "within_cell_density_logscore": -4.497871680350045,
+            "mark_logscore": 0.0,
+            "timing_event_logscore": 30.792943465353005,
+            "timing_exposure_logscore": 1.9299349009718583,
+            "integrated_intensity": -1.9299349009718583
+          },
+          "primary_delta_nats": 32.72287836632486,
+          "primary_delta_nats_per_event": 0.19594537943907103,
+          "timing_decomposition": {
+            "event": 30.792943465353005,
+            "compensator": 1.9299349009718583,
+            "total": 32.72287836632486
+          }
+        },
+        {
+          "id": "primary_location",
+          "candidate": "Omori_smooth_cont",
+          "reference": "Omori_smooth_lift",
+          "primary_component": "conditional_location_logscore",
+          "status": "complete",
+          "n_test": 167,
+          "delta": {
+            "joint_logscore": 480.37487444471094,
+            "timing_logscore": 14.544881468889514,
+            "conditional_location_logscore": 465.82999297582137,
+            "conditional_zone_logscore": 12.415768798679892,
+            "conditional_cell_logscore": -0.48033839137860923,
+            "within_cell_density_logscore": 453.8945625685201,
+            "mark_logscore": 0.0,
+            "timing_event_logscore": 19.06899483245337,
+            "timing_exposure_logscore": -4.524113363563856,
+            "integrated_intensity": 4.524113363563856
+          },
+          "primary_delta_nats": 465.82999297582137,
+          "primary_delta_nats_per_event": 2.7894011555438407,
+          "timing_decomposition": {
+            "event": 19.06899483245337,
+            "compensator": -4.524113363563856,
+            "total": 14.544881468889514
+          }
+        },
+        {
+          "id": "context_freeML",
+          "candidate": "Omori_smooth_cont",
+          "reference": "commonML_smooth_cont",
+          "primary_component": "joint_logscore",
+          "status": "complete",
+          "n_test": 167,
+          "delta": {
+            "joint_logscore": 10.609007972985637,
+            "timing_logscore": 16.068077752894823,
+            "conditional_location_logscore": -5.459069779909441,
+            "conditional_zone_logscore": 1.4840917706869732,
+            "conditional_cell_logscore": -0.6076376765522582,
+            "within_cell_density_logscore": -6.335523874044156,
+            "mark_logscore": 0.0,
+            "timing_event_logscore": 13.396682480399022,
+            "timing_exposure_logscore": 2.6713952724958006,
+            "integrated_intensity": -2.6713952724958006
+          },
+          "primary_delta_nats": 10.609007972985637,
+          "primary_delta_nats_per_event": 0.06352699385021339,
+          "timing_decomposition": {
+            "event": 13.396682480399022,
+            "compensator": 2.6713952724958006,
+            "total": 16.068077752894823
+          }
+        },
+        {
+          "id": "context_fixedML_spatial",
+          "candidate": "fixedML_smooth_cont",
+          "reference": "fixedML_smooth_lift",
+          "primary_component": "conditional_location_logscore",
+          "status": "complete",
+          "n_test": 167,
+          "delta": {
+            "joint_logscore": 487.6577246159343,
+            "timing_logscore": 19.827106380460094,
+            "conditional_location_logscore": 467.8306182354743,
+            "conditional_zone_logscore": 7.208670413975284,
+            "conditional_cell_logscore": -0.1000551727620973,
+            "within_cell_density_logscore": 460.72200299426095,
+            "mark_logscore": 0.0,
+            "timing_event_logscore": 23.375635118525338,
+            "timing_exposure_logscore": -3.5485287380652437,
+            "integrated_intensity": 3.5485287380652437
+          },
+          "primary_delta_nats": 467.8306182354743,
+          "primary_delta_nats_per_event": 2.80138094751781,
+          "timing_decomposition": {
+            "event": 23.375635118525338,
+            "compensator": -3.5485287380652437,
+            "total": 19.827106380460094
+          }
+        },
+        {
+          "id": "complete_procedure",
+          "candidate": "Omori_smooth_cont",
+          "reference": "fixedML_smooth_lift",
+          "primary_component": "joint_logscore",
+          "status": "complete",
+          "n_test": 167,
+          "delta": {
+            "joint_logscore": 516.3129828460528,
+            "timing_logscore": 52.54998474678496,
+            "conditional_location_logscore": 463.76299809926786,
+            "conditional_zone_logscore": 7.8561345136781995,
+            "conditional_cell_logscore": -0.31726772832141137,
+            "within_cell_density_logscore": 456.2241313139109,
+            "mark_logscore": 0.0,
+            "timing_event_logscore": 54.16857858387834,
+            "timing_exposure_logscore": -1.6185938370933854,
+            "integrated_intensity": 1.6185938370933854
+          },
+          "primary_delta_nats": 516.3129828460528,
+          "primary_delta_nats_per_event": 3.0916945080601965,
+          "timing_decomposition": {
+            "event": 54.16857858387834,
+            "compensator": -1.6185938370933854,
+            "total": 52.54998474678496
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "california_fold_2",
+      "status": "complete",
+      "n_train": 1097,
+      "n_test": 69,
+      "training_cell_counts": [
+        4,
+        60,
+        291,
+        38,
+        354,
+        85,
+        46,
+        210,
+        9
+      ],
+      "test_cell_counts": [
+        0,
+        6,
+        30,
+        11,
+        8,
+        0,
+        4,
+        9,
+        1
+      ],
+      "accounting": {
+        "procedures": 10,
+        "mandatory_starts": 80,
+        "exact_floor_slots": 11,
+        "completed_starts": 80,
+        "completed_floors": 11
+      },
+      "beta": 2.386699916086027,
+      "selected_bandwidth_km": 5.0,
+      "selected_sigma_km": 5.0,
+      "models": {
+        "fixedML_smooth_lift": {
+          "status": "complete",
+          "complete": true,
+          "procedure_id": "california_fold_2__main_fixedML_smooth_lift",
+          "parameters": [
+            -3.2027979802245583,
+            -0.10903760774458024,
+            0.48909830552301536
+          ],
+          "training_joint_nll": 12984.615736852067,
+          "scores": {
+            "joint_logscore": -1024.3983191396467,
+            "timing_logscore": -238.322270093174,
+            "conditional_location_logscore": -790.8717150116993,
+            "conditional_zone_logscore": -55.79586081400879,
+            "conditional_cell_logscore": -50.60258876770382,
+            "within_cell_density_logscore": -684.4732654299867,
+            "mark_logscore": 4.795665965226561,
+            "timing_event_logscore": -148.57056736652459,
+            "timing_exposure_logscore": -89.75170272664943,
+            "integrated_intensity": 89.75170272664943
+          },
+          "forecast_spread_nats_per_event": 4.995394736239256e-06,
+          "forecast_stable": true
+        },
+        "fixedML_smooth_cont": {
+          "status": "complete",
+          "complete": true,
+          "procedure_id": "california_fold_2__selector_fixedML_smooth_cont_sigma5",
+          "parameters": [
+            -3.5054263587426466,
+            -0.02563722625728029,
+            0.6046809614350864
+          ],
+          "training_joint_nll": 10454.308305691591,
+          "scores": {
+            "joint_logscore": -904.1767300890565,
+            "timing_logscore": -234.54140327703874,
+            "conditional_location_logscore": -674.4309927772443,
+            "conditional_zone_logscore": -55.16458594813014,
+            "conditional_cell_logscore": -47.62235887281693,
+            "within_cell_density_logscore": -571.6440479562973,
+            "mark_logscore": 4.795665965226561,
+            "timing_event_logscore": -153.26290098678103,
+            "timing_exposure_logscore": -81.27850229025769,
+            "integrated_intensity": 81.27850229025769
+          },
+          "forecast_spread_nats_per_event": 3.1259404094258123e-06,
+          "forecast_stable": true
+        },
+        "commonML_smooth_cont": {
+          "status": "complete",
+          "complete": true,
+          "procedure_id": "california_fold_2__main_commonML_smooth_cont",
+          "parameters": [
+            -3.459499789736639,
+            -0.02826899904540742,
+            0.5871665069604552,
+            -1.1715700549579293
+          ],
+          "training_joint_nll": 10421.018470502313,
+          "scores": {
+            "joint_logscore": -902.8321515298504,
+            "timing_logscore": -232.0224192952685,
+            "conditional_location_logscore": -675.6053981998085,
+            "conditional_zone_logscore": -55.216840419500954,
+            "conditional_cell_logscore": -47.896249710040564,
+            "within_cell_density_logscore": -572.492308070267,
+            "mark_logscore": 4.795665965226561,
+            "timing_event_logscore": -149.8284018956846,
+            "timing_exposure_logscore": -82.19401739958388,
+            "integrated_intensity": 82.19401739958388
+          },
+          "forecast_spread_nats_per_event": 2.7803417434251574e-06,
+          "forecast_stable": true
+        },
+        "Omori_smooth_cont": {
+          "status": "complete",
+          "complete": true,
+          "procedure_id": "california_fold_2__main_Omori_smooth_cont",
+          "parameters": [
+            -3.541432733131661,
+            -0.036988879397576106,
+            0.6747754955425549,
+            -5.722121164178812,
+            1.164261725070841
+          ],
+          "training_joint_nll": 10408.801549186332,
+          "scores": {
+            "joint_logscore": -897.655488281087,
+            "timing_logscore": -229.57302638951433,
+            "conditional_location_logscore": -672.8781278567992,
+            "conditional_zone_logscore": -55.07810653518314,
+            "conditional_cell_logscore": -47.448706189243126,
+            "within_cell_density_logscore": -570.351315132373,
+            "mark_logscore": 4.795665965226561,
+            "timing_event_logscore": -146.59291236182796,
+            "timing_exposure_logscore": -82.98011402768637,
+            "integrated_intensity": 82.98011402768637
+          },
+          "forecast_spread_nats_per_event": 4.166972754662139e-06,
+          "forecast_stable": true
+        },
+        "Omori_smooth_lift": {
+          "status": "complete",
+          "complete": true,
+          "procedure_id": "california_fold_2__main_Omori_smooth_lift",
+          "parameters": [
+            -3.1052981662076133,
+            -0.1377805295499305,
+            0.44207439181336056,
+            -4.886499576042743,
+            1.3950841429247376
+          ],
+          "training_joint_nll": 12879.3313565001,
+          "scores": {
+            "joint_logscore": -1018.1131646337287,
+            "timing_logscore": -233.34042829033552,
+            "conditional_location_logscore": -789.5684023086199,
+            "conditional_zone_logscore": -57.12001173978214,
+            "conditional_cell_logscore": -50.704187588172175,
+            "within_cell_density_logscore": -681.7442029806655,
+            "mark_logscore": 4.795665965226561,
+            "timing_event_logscore": -141.38720840520187,
+            "timing_exposure_logscore": -91.95321988513365,
+            "integrated_intensity": 91.95321988513365
+          },
+          "forecast_spread_nats_per_event": 9.814084150541706e-06,
+          "forecast_stable": true
+        }
+      },
+      "comparisons": [
+        {
+          "id": "primary_timing",
+          "candidate": "Omori_smooth_cont",
+          "reference": "fixedML_smooth_cont",
+          "primary_component": "timing_logscore",
+          "status": "complete",
+          "n_test": 69,
+          "delta": {
+            "joint_logscore": 6.521241807969545,
+            "timing_logscore": 4.968376887524414,
+            "conditional_location_logscore": 1.5528649204451312,
+            "conditional_zone_logscore": 0.0864794129469999,
+            "conditional_cell_logscore": 0.17365268357380614,
+            "within_cell_density_logscore": 1.2927328239243252,
+            "mark_logscore": 0.0,
+            "timing_event_logscore": 6.669988624953078,
+            "timing_exposure_logscore": -1.7016117374286779,
+            "integrated_intensity": 1.7016117374286779
+          },
+          "primary_delta_nats": 4.968376887524414,
+          "primary_delta_nats_per_event": 0.07200546213803499,
+          "timing_decomposition": {
+            "event": 6.669988624953078,
+            "compensator": -1.7016117374286779,
+            "total": 4.968376887524414
+          }
+        },
+        {
+          "id": "primary_location",
+          "candidate": "Omori_smooth_cont",
+          "reference": "Omori_smooth_lift",
+          "primary_component": "conditional_location_logscore",
+          "status": "complete",
+          "n_test": 69,
+          "delta": {
+            "joint_logscore": 120.45767635264178,
+            "timing_logscore": 3.7674019008211985,
+            "conditional_location_logscore": 116.69027445182064,
+            "conditional_zone_logscore": 2.0419052045990043,
+            "conditional_cell_logscore": 3.2554813989290494,
+            "within_cell_density_logscore": 111.3928878482925,
+            "mark_logscore": 0.0,
+            "timing_event_logscore": -5.205703956626081,
+            "timing_exposure_logscore": 8.97310585744728,
+            "integrated_intensity": -8.97310585744728
+          },
+          "primary_delta_nats": 116.69027445182064,
+          "primary_delta_nats_per_event": 1.6911633978524732,
+          "timing_decomposition": {
+            "event": -5.205703956626081,
+            "compensator": 8.97310585744728,
+            "total": 3.7674019008211985
+          }
+        },
+        {
+          "id": "context_freeML",
+          "candidate": "Omori_smooth_cont",
+          "reference": "commonML_smooth_cont",
+          "primary_component": "joint_logscore",
+          "status": "complete",
+          "n_test": 69,
+          "delta": {
+            "joint_logscore": 5.176663248763475,
+            "timing_logscore": 2.4493929057541663,
+            "conditional_location_logscore": 2.727270343009309,
+            "conditional_zone_logscore": 0.13873388431781564,
+            "conditional_cell_logscore": 0.44754352079743853,
+            "within_cell_density_logscore": 2.140992937893998,
+            "mark_logscore": 0.0,
+            "timing_event_logscore": 3.2354895338566507,
+            "timing_exposure_logscore": -0.7860966281024844,
+            "integrated_intensity": 0.7860966281024844
+          },
+          "primary_delta_nats": 5.176663248763475,
+          "primary_delta_nats_per_event": 0.07502410505454311,
+          "timing_decomposition": {
+            "event": 3.2354895338566507,
+            "compensator": -0.7860966281024844,
+            "total": 2.4493929057541663
+          }
+        },
+        {
+          "id": "context_fixedML_spatial",
+          "candidate": "fixedML_smooth_cont",
+          "reference": "fixedML_smooth_lift",
+          "primary_component": "conditional_location_logscore",
+          "status": "complete",
+          "n_test": 69,
+          "delta": {
+            "joint_logscore": 120.22158905059018,
+            "timing_logscore": 3.7808668161352728,
+            "conditional_location_logscore": 116.44072223445494,
+            "conditional_zone_logscore": 0.6312748658786518,
+            "conditional_cell_logscore": 2.9802298948868895,
+            "within_cell_density_logscore": 112.82921747368937,
+            "mark_logscore": 0.0,
+            "timing_event_logscore": -4.6923336202564485,
+            "timing_exposure_logscore": 8.473200436391735,
+            "integrated_intensity": -8.473200436391735
+          },
+          "primary_delta_nats": 116.44072223445494,
+          "primary_delta_nats_per_event": 1.6875466990500716,
+          "timing_decomposition": {
+            "event": -4.6923336202564485,
+            "compensator": 8.473200436391735,
+            "total": 3.7808668161352728
+          }
+        },
+        {
+          "id": "complete_procedure",
+          "candidate": "Omori_smooth_cont",
+          "reference": "fixedML_smooth_lift",
+          "primary_component": "joint_logscore",
+          "status": "complete",
+          "n_test": 69,
+          "delta": {
+            "joint_logscore": 126.74283085855973,
+            "timing_logscore": 8.749243703659687,
+            "conditional_location_logscore": 117.99358715490007,
+            "conditional_zone_logscore": 0.7177542788256517,
+            "conditional_cell_logscore": 3.1538825784606956,
+            "within_cell_density_logscore": 114.1219502976137,
+            "mark_logscore": 0.0,
+            "timing_event_logscore": 1.9776550046966292,
+            "timing_exposure_logscore": 6.771588698963058,
+            "integrated_intensity": -6.771588698963058
+          },
+          "primary_delta_nats": 126.74283085855973,
+          "primary_delta_nats_per_event": 1.8368526211385467,
+          "timing_decomposition": {
+            "event": 1.9776550046966292,
+            "compensator": 6.771588698963058,
+            "total": 8.749243703659687
+          }
+        }
+      ]
+    }
+  ],
+  "comparisons": [
+    {
+      "id": "primary_timing",
+      "candidate": "Omori_smooth_cont",
+      "reference": "fixedML_smooth_cont",
+      "primary_component": "timing_logscore",
+      "status": "complete",
+      "planned_windows": 3,
+      "complete_windows": 3,
+      "n_test": 315,
+      "delta": {
+        "joint_logscore": 38.96939734882449,
+        "timing_logscore": 37.790339259294086,
+        "conditional_location_logscore": 1.1790580895305993,
+        "conditional_zone_logscore": 2.9510656875941663,
+        "conditional_cell_logscore": 0.0009032106839867993,
+        "within_cell_density_logscore": -1.7729108087476106,
+        "mark_logscore": 0.0,
+        "timing_event_logscore": 40.89887852047795,
+        "timing_exposure_logscore": -3.1085392611838785,
+        "integrated_intensity": 3.1085392611838785
+      },
+      "primary_delta_nats": 37.790339259294086,
+      "primary_delta_nats_per_event": 0.11996933098188599,
+      "positive_windows": 3,
+      "window_deltas_nats": [
+        0.09908400544480855,
+        32.72287836632486,
+        4.968376887524414
+      ]
+    },
+    {
+      "id": "primary_location",
+      "candidate": "Omori_smooth_cont",
+      "reference": "Omori_smooth_lift",
+      "primary_component": "conditional_location_logscore",
+      "status": "complete",
+      "planned_windows": 3,
+      "complete_windows": 3,
+      "n_test": 315,
+      "delta": {
+        "joint_logscore": 708.2237032899577,
+        "timing_logscore": 33.900181343664144,
+        "conditional_location_logscore": 674.3235219462937,
+        "conditional_zone_logscore": 17.206740798702867,
+        "conditional_cell_logscore": 3.5145530166487617,
+        "within_cell_density_logscore": 653.602228130942,
+        "mark_logscore": 0.0,
+        "timing_event_logscore": -5.467120506349687,
+        "timing_exposure_logscore": 39.3673018500138,
+        "integrated_intensity": -39.3673018500138
+      },
+      "primary_delta_nats": 674.3235219462937,
+      "primary_delta_nats_per_event": 2.1407095934802975,
+      "positive_windows": 3,
+      "window_deltas_nats": [
+        91.80325451865167,
+        465.82999297582137,
+        116.69027445182064
+      ]
+    },
+    {
+      "id": "context_freeML",
+      "candidate": "Omori_smooth_cont",
+      "reference": "commonML_smooth_cont",
+      "primary_component": "joint_logscore",
+      "status": "complete",
+      "planned_windows": 3,
+      "complete_windows": 3,
+      "n_test": 315,
+      "delta": {
+        "joint_logscore": 21.177884396423565,
+        "timing_logscore": 18.749060273201707,
+        "conditional_location_logscore": 2.4288241232218297,
+        "conditional_zone_logscore": 4.160103724037981,
+        "conditional_cell_logscore": 0.014923931796602119,
+        "within_cell_density_logscore": -1.746203532612867,
+        "mark_logscore": 0.0,
+        "timing_event_logscore": 18.631699537350357,
+        "timing_exposure_logscore": 0.11736073585133511,
+        "integrated_intensity": -0.11736073585133511
+      },
+      "primary_delta_nats": 21.177884396423565,
+      "primary_delta_nats_per_event": 0.06723137903626529,
+      "positive_windows": 3,
+      "window_deltas_nats": [
+        5.392213174674453,
+        10.609007972985637,
+        5.176663248763475
+      ]
+    },
+    {
+      "id": "context_fixedML_spatial",
+      "candidate": "fixedML_smooth_cont",
+      "reference": "fixedML_smooth_lift",
+      "primary_component": "conditional_location_logscore",
+      "status": "complete",
+      "planned_windows": 3,
+      "complete_windows": 3,
+      "n_test": 315,
+      "delta": {
+        "joint_logscore": 708.8306232416264,
+        "timing_logscore": 37.58628310678455,
+        "conditional_location_logscore": 671.2443401348418,
+        "conditional_zone_logscore": 8.147679210909956,
+        "conditional_cell_logscore": 3.2448640933920956,
+        "within_cell_density_logscore": 659.8517968305396,
+        "mark_logscore": 0.0,
+        "timing_event_logscore": -0.05022579520044701,
+        "timing_exposure_logscore": 37.63650890198501,
+        "integrated_intensity": -37.63650890198501
+      },
+      "primary_delta_nats": 671.2443401348418,
+      "primary_delta_nats_per_event": 2.130934413126482,
+      "positive_windows": 3,
+      "window_deltas_nats": [
+        86.97299966491255,
+        467.8306182354743,
+        116.44072223445494
+      ]
+    },
+    {
+      "id": "complete_procedure",
+      "candidate": "Omori_smooth_cont",
+      "reference": "fixedML_smooth_lift",
+      "primary_component": "joint_logscore",
+      "status": "complete",
+      "planned_windows": 3,
+      "complete_windows": 3,
+      "n_test": 315,
+      "delta": {
+        "joint_logscore": 747.8000205904509,
+        "timing_logscore": 75.37662236607864,
+        "conditional_location_logscore": 672.4233982243724,
+        "conditional_zone_logscore": 11.098744898504123,
+        "conditional_cell_logscore": 3.2457673040760824,
+        "within_cell_density_logscore": 658.078886021792,
+        "mark_logscore": 0.0,
+        "timing_event_logscore": 40.8486527252775,
+        "timing_exposure_logscore": 34.52796964080113,
+        "integrated_intensity": -34.52796964080113
+      },
+      "primary_delta_nats": 747.8000205904509,
+      "primary_delta_nats_per_event": 2.373968319334765,
+      "positive_windows": 3,
+      "window_deltas_nats": [
+        104.74420688583837,
+        516.3129828460528,
+        126.74283085855973
+      ]
+    }
+  ],
+  "input_bindings": {
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\summary_private.json": "b9b65bd30b58ab962f69c641a6c9d2bff43164ddf2391a12affd456cabfe35fe",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\training_case.json": "ed1b00dcb57665bec838ab590a17ace13d79e5162b952fd0ae5e52a2c4407833",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\case.json": "168238590d897cf0c1767c3dc0f10a9cf83d1fe02d2da888584ea3467f99412f",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\procedure_plan.json": "92c8d3810492cf9fd54abebdc7ca78970ed0e189dd1c3c5b8e0ef185cde53208",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\alias_fixedML_smooth_cont.json": "0a29c812b5c3533f9bf731073becc73ee28c395420ac777fc3e2536c85d3f309",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\fit_california_fold_0__selector_fixedML_smooth_cont_sigma5.json": "f0bce96a25fbdad350ebd1f722c1829294b61833a91dec26ae67bbf8a456208d",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\registry_california_fold_0__selector_fixedML_smooth_cont_sigma5.json": "4b41c75c2249efe5b18d560b672dfa46d195937995aa21e6349aa456a5aeac2d",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\score_california_fold_0__selector_fixedML_smooth_cont_sigma5.json": "b517850796226ede346d54c9e092df9d346840c9992ff036c94f6c8aed8e564b",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\fit_california_fold_0__selector_fixedML_smooth_cont_sigma15.json": "8477f599b4b7fe6c8eec001d8df70f38111e1c1cc71aba50b61291e5b3f03087",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\registry_california_fold_0__selector_fixedML_smooth_cont_sigma15.json": "25aab34f90eaf6ad2ee44b00d714cbad07c1d4e30ea25d5179424a24bd69ce2f",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\score_california_fold_0__selector_fixedML_smooth_cont_sigma15.json": "e1c0d188e322b5112f89d224ba0ea52d9c2329d169ca181774b824d8450b2a57",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\fit_california_fold_0__selector_fixedML_smooth_cont_sigma50.json": "0d80b91a6af834b7ac9322914e40fa1a788b082830867dd6493980f99be7fe8d",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\registry_california_fold_0__selector_fixedML_smooth_cont_sigma50.json": "acf7ac8d7f8fa15e6512b52522a1195ce18948b6263efc4038089e980a6ac16b",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\score_california_fold_0__selector_fixedML_smooth_cont_sigma50.json": "fa2e2d8e3b7401cfa4ae9b05128f7bb4d63e316d865d6c45790f32fd14ff598b",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\fit_california_fold_0__selector_fixedML_smooth_cont_sigma150.json": "f330f7b838c9873f934e602a853c292fe70ca47140aa48b5e5b63b2005c11d69",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\registry_california_fold_0__selector_fixedML_smooth_cont_sigma150.json": "76fa2b1d032d6d9e325c8a4a465b9599bc06e1bb306b2439c1e8bdb5a8361021",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\score_california_fold_0__selector_fixedML_smooth_cont_sigma150.json": "a4767805c272f8a70ad9fb22786c47c419ea1dfdac55808fa02a27e1b3a8811e",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\fit_california_fold_0__selector_fixedML_smooth_cont_sigma500.json": "ca7e83f927e875e107a521adc451f51a4ab244a032fc8f84ddda510ce326bbd5",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\registry_california_fold_0__selector_fixedML_smooth_cont_sigma500.json": "904341bba03a5e109ac98ded6915b6ec13e1107c999eda5043f213b18379e215",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\score_california_fold_0__selector_fixedML_smooth_cont_sigma500.json": "c0d1c2efb1573c428c9dcec48e7cdc4e6c4f3720e93e3ddb0a587a66ff123218",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\fit_california_fold_0__selector_fixedML_smooth_cont_sigma1500.json": "ae4e84717a029aa2a599987a89d6da9d9a54a6c65d23500f4fb49939dd22fd4e",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\registry_california_fold_0__selector_fixedML_smooth_cont_sigma1500.json": "9c1c10def1aa60b9d5eb7d26ac942d6221535facbbf366000226711dac03ecbf",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\score_california_fold_0__selector_fixedML_smooth_cont_sigma1500.json": "6b7ad9611245b617897e295679cc0654b05b22ec900586a9c345c82e9480c4ed",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\fit_california_fold_0__main_fixedML_smooth_lift.json": "d1bfaf2863d6aeae780503b269c1195ec428133b30e1c0fd48ce35ef6fa5d033",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\registry_california_fold_0__main_fixedML_smooth_lift.json": "92fabb4b85b61f58a4ea9bbc3cbf2baf3a0478715ecfa7864f94df141d06b4b0",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\score_california_fold_0__main_fixedML_smooth_lift.json": "76ba5c7bce499fa5f2aa52627890577cc857675d712c4a2a5713935aac2041b6",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\fit_california_fold_0__main_commonML_smooth_cont.json": "619c74ad76ffb07fa79ed4f3a9638db13c0a6e2528c86f23ab8bd52649be4145",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\registry_california_fold_0__main_commonML_smooth_cont.json": "b198679fb5829650eb5eb075d02bb40ac9f8d8645c36bee788f808a2bdec3606",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\score_california_fold_0__main_commonML_smooth_cont.json": "45bb15d466eb649a9bc6cdf912b30222d07a9028c11d7ef38404ceda7759b38c",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\fit_california_fold_0__main_Omori_smooth_cont.json": "40b7abbe49d4eedaeb0b6ab1f5ea42a426d29ae35ba76e3ff50f51cd1d89bab4",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\registry_california_fold_0__main_Omori_smooth_cont.json": "3faede2659bbec6eeb0d9412fac3092ece3105d8655188c610a213ac2d3b1c7f",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\score_california_fold_0__main_Omori_smooth_cont.json": "c540ba3c0d3d93d7dc82e53988851dad9e01ab7a48c5ddbe23b455f1a88ea72a",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\fit_california_fold_0__main_Omori_smooth_lift.json": "317731644e2c456b02ae4840ea457a7dda0fc56596a2ecc78b23ec900cd908d3",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\registry_california_fold_0__main_Omori_smooth_lift.json": "447d2cc0ff2e4e49c369b6caa0bc41926302f724d92959773333e584f8b4207e",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_0\\score_california_fold_0__main_Omori_smooth_lift.json": "4611360af725e1d19af6caa0db707dfd7c98605ad5c8f2ec1d209ad48712063f",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\training_case.json": "134f4101ed83c8fe3a990dbd71aa66d7fce08a31a7651ec0f715d6e88954958a",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\case.json": "15653e239074f3626466e2bf4761134ecfec6c0d2859c753f2d225516750710a",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\procedure_plan.json": "3c00fa4f22ddd57adc84e91b4ab29869f98fff2256330d0ca2ab78b813c27f22",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\alias_fixedML_smooth_cont.json": "7df93770178bd87ebc1d472862bbf705c9280c87fb2dce11e6d45a891e68182e",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\fit_california_fold_1__selector_fixedML_smooth_cont_sigma5.json": "4fd262ac086889bc374d1d90daf662f62a7738c6b8ce5bb31ef43e03319147f4",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\registry_california_fold_1__selector_fixedML_smooth_cont_sigma5.json": "24276582c3caa53cb7f301b3720d85b4fef93386bac4bc97ea413c250b89eae0",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\score_california_fold_1__selector_fixedML_smooth_cont_sigma5.json": "5c398dffc1279fb28e35c3a21a8884a5b22d7646ee4cee35b2f14f350afbd20e",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\fit_california_fold_1__selector_fixedML_smooth_cont_sigma15.json": "f2cfcf459d4b279aee2c4178def063a738d3f9f83a205e0322a5967a7e60a1ef",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\registry_california_fold_1__selector_fixedML_smooth_cont_sigma15.json": "55354aedf9220f48f5add3c4d8eaab5354877b98581e6d8f475c920fec051b2b",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\score_california_fold_1__selector_fixedML_smooth_cont_sigma15.json": "11c15f6c23217acc2b6453387e202dd480554746aa945e5537699bea76e590e3",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\fit_california_fold_1__selector_fixedML_smooth_cont_sigma50.json": "d3135c4ee8e935bc481a618b2c947ac06e4637ede3219a65c0acb9f83396e828",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\registry_california_fold_1__selector_fixedML_smooth_cont_sigma50.json": "d8af96629622cebde6d6d4f6312dcb42c4a387d5713bc202436b69245fcd920b",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\score_california_fold_1__selector_fixedML_smooth_cont_sigma50.json": "8989336bee274ef50541fe5b06d7b72bc0feb6bd800b69446c35129f7f5aacf9",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\fit_california_fold_1__selector_fixedML_smooth_cont_sigma150.json": "13063df0636fbdc4dbfbb5baea334d9005e704b9acc2cc02f5a48a99ddae3928",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\registry_california_fold_1__selector_fixedML_smooth_cont_sigma150.json": "5ea4ea61fb41e462454f48c9576fb9b84a5610272bef7715ec404e9e978a6fee",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\score_california_fold_1__selector_fixedML_smooth_cont_sigma150.json": "7576d10aa401491e55caa74d151cc40aa7a0e85acef3698f131bc10eebb5bcb7",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\fit_california_fold_1__selector_fixedML_smooth_cont_sigma500.json": "cce9a58cda7f1209839b987495c3348a513da81e20cc1652185180beb5704117",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\registry_california_fold_1__selector_fixedML_smooth_cont_sigma500.json": "c95ef374244922ce86a273388fff0464f30402536ea47b895169009f98c9b62b",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\score_california_fold_1__selector_fixedML_smooth_cont_sigma500.json": "bf5bd7e27881e755609c5843fdf90be1cafc461ebf3052fe697d39c4d006c884",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\fit_california_fold_1__selector_fixedML_smooth_cont_sigma1500.json": "d35003e139894adf4cbb2a8ec075a49a6e24046d862204c1c5d73ac213294c20",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\registry_california_fold_1__selector_fixedML_smooth_cont_sigma1500.json": "2142290da68713bc9f9123f2c1abca2ecabef77bd4a5873f57307d8e4cfe27bf",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\score_california_fold_1__selector_fixedML_smooth_cont_sigma1500.json": "2ed7d9449b25bcde33d0ac21caf93c5fe141080f351c4581728ef0bd73464607",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\fit_california_fold_1__main_fixedML_smooth_lift.json": "37c4e71c6752b3a6af52b08ff395ea4b742feb071add7047c4d0b3fece5f0448",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\registry_california_fold_1__main_fixedML_smooth_lift.json": "35ea0cede13453802f8aeddc49101640371c87c6d6b6981827262f99bd9e9b49",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\score_california_fold_1__main_fixedML_smooth_lift.json": "80d339c1c3fca6a20568f9d128d662e034fa5f94563bc8ec66c40d6c24c88f9e",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\fit_california_fold_1__main_commonML_smooth_cont.json": "7500b9ce3a05314da50869edea86321d434dd9685d0a689f96da0960ef0f882e",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\registry_california_fold_1__main_commonML_smooth_cont.json": "7553a21024695467384f7fb45374574036d2ff8dbb3103f62c09ec0d33124607",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\score_california_fold_1__main_commonML_smooth_cont.json": "d36779372cadb5b61d7cebd4e3a96924e5e18eed89d2f2063d40a37c3375d134",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\fit_california_fold_1__main_Omori_smooth_cont.json": "6746196fcd6c41a578cf4dc415f0c4f79f3fcb9ddd9925715efa9f0b36b98651",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\registry_california_fold_1__main_Omori_smooth_cont.json": "a266bc0d84d084c3b6543b59592c622e5aad57b8260a569d5ba07dfeadaa24a5",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\score_california_fold_1__main_Omori_smooth_cont.json": "887423c8d94f3ae49fe170ef80a0945fb27f858ee72d3411d6554323c04b5360",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\fit_california_fold_1__main_Omori_smooth_lift.json": "dbbd99a59b4501d020d71b1c5c1be7ffc75bb7bce63e84011f42af8e8f069804",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\registry_california_fold_1__main_Omori_smooth_lift.json": "08819603ef0e899b4b6c507131c8e6e4fb01634b6ec37b4b12061bc22064ca82",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_1\\score_california_fold_1__main_Omori_smooth_lift.json": "df0275b491d69c604824d9079b2c32592400149847c213f86aae25eef2bd7acb",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\training_case.json": "1d1cfc2ae2a6c9027017268caba6296b70e9e4b28137fd4f0ca2bd9f46b746d8",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\case.json": "d99f33003227cba5d8a7643319d29f2c3fbd179c5d9bb9a55d64957dd8bcb8c1",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\procedure_plan.json": "dd99100ec44e3d8cb190950ff9d0416b270a0d4cecc56f121b7d0ed1e67de4fc",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\alias_fixedML_smooth_cont.json": "f46545c002b10f6e56dc531274b9ae924a108f303a3dcc897f36210086f60a72",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\fit_california_fold_2__selector_fixedML_smooth_cont_sigma5.json": "879c53443ef169e16e640a6e19f983dc4e65993ca5605ff1bdafb84486e3348f",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\registry_california_fold_2__selector_fixedML_smooth_cont_sigma5.json": "bdbdf44d275c2c10d052b9d113b7a37e622daaf0360155f0e5a829ee3988f7e3",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\score_california_fold_2__selector_fixedML_smooth_cont_sigma5.json": "3c8a3585c726229d19d2294dcc0b4c235a6a4f5e7f720304550c3db5388d09e7",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\fit_california_fold_2__selector_fixedML_smooth_cont_sigma15.json": "9495bf80a05ac61050cc230bb51979b83a6595c0fc18c5cfcdef212a40013e7f",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\registry_california_fold_2__selector_fixedML_smooth_cont_sigma15.json": "43aadbdffa0dc0d8c2ecf2c9aa5e23b0d8d51cb1f521fe345b0ea0cbc9bda484",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\score_california_fold_2__selector_fixedML_smooth_cont_sigma15.json": "8a15d80c4a17ab0cfb520bc538309f07ba4d1dfc543ccc1aa4833de34c041003",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\fit_california_fold_2__selector_fixedML_smooth_cont_sigma50.json": "e074d59f332e92b0894c561205609b46c769f5852ea6bc1cfc542bd08c65eee3",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\registry_california_fold_2__selector_fixedML_smooth_cont_sigma50.json": "d52f663c73e067e7a2e311afd4c8698bc1656ceb439a62885456910e9f1bed18",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\score_california_fold_2__selector_fixedML_smooth_cont_sigma50.json": "e8fd4e506b9eeef308d96b55295b33713d1b45a8335752ac34741494178619d3",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\fit_california_fold_2__selector_fixedML_smooth_cont_sigma150.json": "20805f8baec39667d08e1d3de5548ab0f22de365783706a0b8a6a422873d3e5d",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\registry_california_fold_2__selector_fixedML_smooth_cont_sigma150.json": "44253ac1193880fc2489d90d3200dae826df197c1bd595d5407a0b84e5521040",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\score_california_fold_2__selector_fixedML_smooth_cont_sigma150.json": "9c94afd86f4df1e3db274e2b7708167a65d73c4d4b93d1891ffc90787dbb0769",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\fit_california_fold_2__selector_fixedML_smooth_cont_sigma500.json": "64ec5f86333228ddb44e2c605db195f46325564d73963ff565b258fe1eeb69eb",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\registry_california_fold_2__selector_fixedML_smooth_cont_sigma500.json": "85cb2d91a96c4ac28decb25c3a98dd0a9f7f2ba3e81a418936bf54625eac789c",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\score_california_fold_2__selector_fixedML_smooth_cont_sigma500.json": "0816fc637ebe76ac519741b71020c7c7016ac391cb3b08e00471f531cce74d42",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\fit_california_fold_2__selector_fixedML_smooth_cont_sigma1500.json": "511c147b6b0297632d8718828412b763cc4c08d0af1cfaba9f2657fb913a2f89",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\registry_california_fold_2__selector_fixedML_smooth_cont_sigma1500.json": "969253831d4ad09332f611086c36aaa706f3a61927bd6718abd87b94c816a1eb",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\score_california_fold_2__selector_fixedML_smooth_cont_sigma1500.json": "cbaad3107427069d80e7297b7f9cf4fb64dcbe59688792b39ec249e9bc04c63a",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\fit_california_fold_2__main_fixedML_smooth_lift.json": "0a1eb76b590f122ac76aab576852bafaf2b5d4bb4f6650c37c026e9b347e03ef",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\registry_california_fold_2__main_fixedML_smooth_lift.json": "631853880ebaa823a2db3bded88a9c803808e1f01b228c17cd09915c361f0f6d",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\score_california_fold_2__main_fixedML_smooth_lift.json": "5a1fe9f97d1d273ff21f49f209482824367272d04f46c120499fa41cd7752f8f",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\fit_california_fold_2__main_commonML_smooth_cont.json": "0a920d276ab879d1cfda39bbfb0de6a44235cfa233d85096051596637536d148",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\registry_california_fold_2__main_commonML_smooth_cont.json": "c6f4e73c45ac9f9d76a2cc8253c9a8803dcd1117c018fd12f391582a938df78b",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\score_california_fold_2__main_commonML_smooth_cont.json": "1cc1a37be6ffe0d3c91cc72576758d4b71d5aa92562212b401de5f2a99613b12",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\fit_california_fold_2__main_Omori_smooth_cont.json": "f765fc53a6fb68c89ec48a59627b5e6a1f40eebfa5a886e1293023c10b387355",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\registry_california_fold_2__main_Omori_smooth_cont.json": "40d6e4d80a070cf5c369a036a18a8a0353ebe08bc6177a387acf30c577f5cd40",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\score_california_fold_2__main_Omori_smooth_cont.json": "8a23a4ecec1c05f47576de33ac5927730339b4d3ad3791e2a69015dc045de8ec",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\fit_california_fold_2__main_Omori_smooth_lift.json": "7855bf0afff61bb9682bcd5b5ee00040e42aaef930b29fcb57352f5b05cf0727",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\registry_california_fold_2__main_Omori_smooth_lift.json": "66674083dd60e5e63d8de20b96668e594b56d6feeeff48ff374e5ae79cb3b589",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\results\\california_observed_v1\\california_fold_2\\score_california_fold_2__main_Omori_smooth_lift.json": "e333bb55f570c8869d408909af71fc1007ec05c33be2633cc7812497c7498188"
+  },
+  "independent_audit": {
+    "path": "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\california_schema_repair_20261025T044000Z\\reviews\\full_saved_empirical_audit_v1.json",
+    "sha256": "0e6379f874a39d832550dc1fea4175352da4ccdeb17b86c59c0d1d58083fa085",
+    "status": "passed",
+    "passed": true,
+    "independent": true,
+    "mode": "full",
+    "denominators": {
+      "procedures": 30,
+      "starts": 240,
+      "floors": 33,
+      "candidates": 273,
+      "finite_solver_returns": 240
+    }
+  },
+  "source_sha256": "df3b55d26d15b8fa676e51635ef4c85dadc80d74ed57458f0184c4a564a2e4bc",
+  "claim_limits": [
+    "Event-weighted differences over fixed windows; no event-iid confidence intervals or p-values.",
+    "Unknown/incomplete windows remain in the fixed three-window denominator and cannot be silently omitted.",
+    "No test-score retuning or additional optimization is performed by this postprocessor."
+  ]
+}

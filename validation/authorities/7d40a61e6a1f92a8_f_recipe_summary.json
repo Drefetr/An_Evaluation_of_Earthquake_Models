@@ -1,0 +1,247 @@
+{
+  "scope": "portable scientific recipe summary, not an executable frozen receipt",
+  "source_receipt_sha256": "73adb4370169e6278c1b048b997de27e4ea6e80ba3895a645fc578684e498673",
+  "model_specification": {
+    "law": "paper/supplements/methods_settings.json synthetic_generating_law, verified finite mixture unchanged",
+    "cells": {
+      "I00": [
+        "none_all_supplied",
+        [
+          3
+        ]
+      ],
+      "I10": [
+        [
+          0
+        ],
+        [
+          0,
+          3
+        ]
+      ],
+      "I01": [
+        [
+          1
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "I11": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1,
+          3
+        ]
+      ]
+    },
+    "parameter_order": [
+      "a",
+      "d",
+      "n",
+      "eta"
+    ],
+    "bounds": {
+      "a": [
+        -12,
+        0
+      ],
+      "d": [
+        -2,
+        2
+      ],
+      "eta": [
+        0,
+        3
+      ]
+    },
+    "fixed": "n,r,beta,both kernels supplied; eta estimated in every alternative",
+    "law_values": {
+      "a": -4.162108473051707,
+      "d": 0.23211265877958467,
+      "n": 0.5017751599706763,
+      "beta": 2.849401764894274,
+      "r": 0.7,
+      "eta_alternative": 0.4885010300470942,
+      "horizon": 24394,
+      "coordinate_horizon": 24394,
+      "alpha": 0.5,
+      "tau": 1,
+      "spectral_step": 0.4,
+      "spectral_tail_bound": 1e-08
+    }
+  },
+  "methods": {
+    "objective": "CPU RestrictedHistory.objective(pars,kernel,ratio,gradient=True,free=indices); contrast stable direct and subtraction controls",
+    "solver": "L-BFGS-B maxiter 200 ftol 1e-12 gtol 1e-7 maxls 40; null starts supplied nuisance and zero d/rate a; alt from selected null eta=0,.2,1; exact evaluated null always eligible. Independent Powell control on constructed/pilot selected fits; failed mandated attempts unresolved.",
+    "rank": "Own reference vector per method; add-one >= ties, unknown references produce p interval; denominator planned R and N; paired sample variance ddof1",
+    "tolerances": {
+      "score_abs": 0.0001,
+      "score_rel": 1e-10,
+      "gradient_abs": 2e-05,
+      "gradient_rel": 2e-05,
+      "FD_step": 1e-05,
+      "material_negative_LR": -0.0001,
+      "nesting_nll": 1e-08
+    },
+    "retry": "No automaticretries; everymandatedL-BFGSBstartmustsucceed. IndependentPowellcontrol everyselectednull/alternativephaseofEVERYcase, exceptfixedI00null requiresnooptimizer. maxiter100/maxfev1000/xtol1e-7/ftol1e-10. V2includesexactevaluatedstartfloor; materialimprovement>1e-4 unresolved.",
+    "case_deadline_seconds": 180,
+    "memory": "two histories each128MiB host feature cap; root process256MiB target may require serial32 reconstruction or lower cap; systemRAM70% external watchdog",
+    "stage_deadline_seconds": 3600,
+    "policy_version": "F-v2 Powell independentcontrol includes evaluatedstartingwitness floor; returnedcandidate retained, >1e-4improvement stillunresolved; old6case statusesnotconverted",
+    "calibration": "percell own49referencevector, >=ties, addone/planneddenominator50; intervalunknownreference accounting; planned50null/25altquerydenominators, pairedDDOF1ifallresolve"
+  },
+  "sample_plan": {
+    "roles": {
+      "reference": [
+        "null_0000",
+        "null_0001",
+        "null_0002",
+        "null_0003",
+        "null_0004",
+        "null_0005",
+        "null_0006",
+        "null_0007",
+        "null_0008",
+        "null_0009",
+        "null_0010",
+        "null_0011",
+        "null_0012",
+        "null_0013",
+        "null_0014",
+        "null_0015",
+        "null_0016",
+        "null_0017",
+        "null_0018",
+        "null_0019",
+        "null_0020",
+        "null_0021",
+        "null_0022",
+        "null_0023",
+        "null_0024",
+        "null_0025",
+        "null_0026",
+        "null_0027",
+        "null_0028",
+        "null_0029",
+        "null_0030",
+        "null_0031",
+        "null_0032",
+        "null_0033",
+        "null_0034",
+        "null_0035",
+        "null_0036",
+        "null_0037",
+        "null_0038",
+        "null_0039",
+        "null_0040",
+        "null_0041",
+        "null_0042",
+        "null_0043",
+        "null_0044",
+        "null_0045",
+        "null_0046",
+        "null_0047",
+        "null_0048"
+      ],
+      "null_query": [
+        "null_0999",
+        "null_1000",
+        "null_1001",
+        "null_1002",
+        "null_1003",
+        "null_1004",
+        "null_1005",
+        "null_1006",
+        "null_1007",
+        "null_1008",
+        "null_1009",
+        "null_1010",
+        "null_1011",
+        "null_1012",
+        "null_1013",
+        "null_1014",
+        "null_1015",
+        "null_1016",
+        "null_1017",
+        "null_1018",
+        "null_1019",
+        "null_1020",
+        "null_1021",
+        "null_1022",
+        "null_1023",
+        "null_1024",
+        "null_1025",
+        "null_1026",
+        "null_1027",
+        "null_1028",
+        "null_1029",
+        "null_1030",
+        "null_1031",
+        "null_1032",
+        "null_1033",
+        "null_1034",
+        "null_1035",
+        "null_1036",
+        "null_1037",
+        "null_1038",
+        "null_1039",
+        "null_1040",
+        "null_1041",
+        "null_1042",
+        "null_1043",
+        "null_1044",
+        "null_1045",
+        "null_1046",
+        "null_1047",
+        "null_1048"
+      ],
+      "alternative_query": [
+        "new_r000",
+        "new_r001",
+        "new_r002",
+        "new_r003",
+        "new_r004",
+        "new_r005",
+        "new_r006",
+        "new_r007",
+        "new_r008",
+        "new_r009",
+        "new_r010",
+        "new_r011",
+        "new_r012",
+        "new_r013",
+        "new_r014",
+        "new_r015",
+        "new_r016",
+        "new_r017",
+        "new_r018",
+        "new_r019",
+        "new_r020",
+        "new_r021",
+        "new_r022",
+        "new_r023",
+        "new_r024"
+      ]
+    },
+    "prioruse": "Historicalbank alreadyexamined; sixcostcasesreused innewprocedurepilot explicitly; no untouchedclaim",
+    "role_sha256": "d9c8bac3325fb74fe06bd1585bb79d0c64b8c30ddf1eeb7a5ab783cdb0512746"
+  },
+  "analysis_and_selection_rules": "Freezebeforeviewingnew124calibratedoutcomes; pilotrankstep.02 cutoff.04 untied; no accuratelyestimatedfivepercent-size/power claim. Preserveallfailures/planneddenominators; no significancebasedextension. 2149productionseparatelyreviewed/rootG4costrelease.",
+  "execution_status": "Exploratory124-case pilot completed:122 complete cases and2 partial numerical outcomes retained. Full2149-case production is proposed and unreleased.",
+  "execution_status_scope": "Checkpoint metadata only; source_receipt_sha256 identifies the original pilot recipe. Recovery lineage, per-case records and coordinator final report remain authoritative.",
+  "pilot_status": {
+    "planned_cases": 124,
+    "complete_cases": 122,
+    "partial_cases": 2,
+    "partial_policy": "Preserve unresolved cell/procedure outcomes and planned denominators; no success-chasing retries",
+    "production_status": "proposed_unreleased",
+    "production_case_count": 2149
+  },
+  "status_as_of": "19 October2026"
+}

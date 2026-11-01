@@ -1,0 +1,776 @@
+{
+  "notation_notes": [
+    "Source strings beta or b in productivity/conditional-mark formulas denote the training magnitude rate. alpha in trigger settings denotes Mittag-Leffler order. They are different from an external source paper using beta for fractional order.",
+    "Both protocols retain trigger tau1day,alpha.5,spectral_step.4,spectral_tail_bound1e-8; source p1.3 is retained inactive serialization for the ML kernel, not an extra fitted shape parameter.",
+    "The stress-amplitude formula exp((.75log10)*(q-1)) is distinct from the temporal trigger density g(t).",
+    "Starts, exact-floor lineage, failure-only solver recovery and all mandatory-start completion rules are preserved verbatim as source settings; they do not certify global optimality.",
+    "Profiles and candidate forecast spreads are descriptive; no CIs/power claim. Heldout scores govern prespecified scientific continuation but never parameter selection.",
+    "Conditional stage2 fields describe an unexecuted plan only; they are not executed results or available fitted models."
+  ],
+  "purpose": "Compact public display of actual frozen model/nuisance/numerical/start/recovery/profile/gate policy for the two completed follow-ups.",
+  "schema_version": 1,
+  "scope": "Extracted settings and formulas only. No scientific fitting,simulation,calibration,resampling,raw catalogue orNPZ reading.",
+  "status": "editorial_settings_excerpt_not_replacement_protocol",
+  "studies": [
+    {
+      "copied_top_level_fields": [
+        "question",
+        "scientific_scope",
+        "variants",
+        "common_nuisance",
+        "models",
+        "parameter_bounds",
+        "fit_policy",
+        "numerical_gates",
+        "fitter_recipe",
+        "scoring",
+        "decision"
+      ],
+      "data_identity_excerpt": {
+        "events": 913,
+        "horizon_days": 24394.0,
+        "minimum_magnitude": 5.0,
+        "sha256": "feacccb7581d1c4c33f88874cd6b198c41639da6930a7fc35e46f910a594fb3e",
+        "time_coordinate": "days since1960-01-01UTC; x=2t/24394-1"
+      },
+      "frozen_checkpoint": "stop_no_robust_joint_gain",
+      "omitted": "Absolute input/cache paths, provider/private execution material, raw event records, artifact pin maps and unrelated resource/history records are omitted. This is an editorial excerpt, not an executable replacement producer protocol.",
+      "override_precedence": "The serialized fitter recipe gives defaults; fit_policy.primary_family_budget and ablation_floor specify the primary60+60-secondE1/E1_h0 family and required floor. Keep sensitivity120-secondE1 ceilings distinct.",
+      "profile_execution": "No profiles were prescribed or performed in this history study.",
+      "run_id": "magnitude_prediction_20261023T222049Z",
+      "settings": {
+        "common_nuisance": {
+          "conditional_loglik": "N*log(b)-b*(sumQ-Nhigh*c)-Nlow*log(1-exp(-b*c))",
+          "conditional_score": "N/b-(sumQ-Nhigh*c)-Nlow*c/expm1(b*c)",
+          "difference_from_historical": "New matched nuisance/optimization protocol; do not claim unchanged historicalestimationrecipe. Existing oldcandidate equations and independent fixedparameterreference retained.",
+          "excess_cut": 0.5,
+          "hyperparameter_selection": "No cataloguetest tuning, no alternativebins/kernels/cutoffs searched inthisrun.",
+          "magnitude_rate": "training-only conditional-within-bin MLE common toallcandidates",
+          "productivity": "kappa(q)=(1-r)*exp(b*r*q)",
+          "productivity_ratio": 0.7,
+          "stress": "Same finite mixture; g(q)=exp((.75*log(10))*(q-1)), preeventstrictleftlimits",
+          "trigger": {
+            "alpha": 0.5,
+            "kind": "ml",
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08,
+            "tau": 1.0
+          }
+        },
+        "decision": {
+          "history_specific_gain": "Secondaryprimary-onlyablation: E1-E1_h0jointgain>=.01nats/event andpositivein>=2of3primarywindows. Otherwiseanoverallfamilygaincannotbeattributed specificallytomarkhistory.",
+          "joint_gain": "Primary E1jointgain>=.01nats/event overE0andI0; SAMEatleast2of3windows positiveagainstbothcomparators. Bothprespecifiedsensitivities require aggregategain>0againstboth and SAMEatleast2of3windows positiveagainstboth.",
+          "mark_led": "Jointgainwithouttimingbenefit reportedasbettermarkedpredictiononly, not explanationofinhibition",
+          "minimum_aggregate_gain_nats_per_event": 0.01,
+          "potential_timing_replacement": "Amongrobustjointwins, E1-I0timinggain>=-.01nats/event acrossvariants labelleddescriptivecomparability, notformalnoninferiority",
+          "stop": "No meaningfuljointgain/background or earlycatalogueinstability => archiveboundednegative. Numerical/witnessfailures => inconclusive. Weak parameter estimatesalone limitinterpretation, not predictive comparison. Empiricaltrainingequivalentforecasts instability separatelyclassified."
+        },
+        "fit_policy": {
+          "ablation_floor": "When both primary E1 and E1_h0 mandatory searches complete, admit the accepted h0 optimum as an exact training-only full-E1 candidate, without further optimization; preserve raw full-E1 selection and floor lineage. Select final E1 forecast only afterwards; include floor in near-optimum forecast spread. If either component incomplete, primary full-family status unknown; preserve diagnostic full-search outputs.",
+          "boundaries": "Explicit n=0/background candidates; exact eta=0 and h=delta=0 nesting; report boundary/gradient diagnostics",
+          "candidate_rules": "Only converged finite feasible independentlyrecomputed nonworsening returns eligible; retainallfailures. Explicit E0 fittingcandidate retained inI0/E1; no trainingimprovementalone interpretedasbenefit.",
+          "dependent_failure": "If E0prescribedsearch incomplete, I0/E1/E1_h0unknown_dependency; no defaultstartsubstitution.",
+          "every_prescribed_start_required": true,
+          "failure_only_recovery": [
+            "same originalstart L-BFGS-B maxls200",
+            "same originalstart bounded Powell maxiter400 maxfev5000"
+          ],
+          "fitter_recipe": "Exact code-emitted fit_recipe.json copiedinto protocol beforefreeze",
+          "matched_wall_seconds_per_model": 120,
+          "optimality": "Localmultistart procedure only, no globalcertificate.",
+          "primary_family_budget": {
+            "E0": 120,
+            "E1_full_search": 60,
+            "E1_h0_search": 60,
+            "I0": 120,
+            "family_total": 120,
+            "reason": "Same total family fit-time ceiling as each baseline; primary full E1 search gets60s vs120s for sensitivity E1."
+          },
+          "primary_solver": {
+            "ftol": 1e-10,
+            "gtol": 2e-06,
+            "maxiter": 200,
+            "maxls": 40,
+            "method": "L-BFGS-B"
+          },
+          "starts": {
+            "E0_fixed_d": "a in[a0,a0-.5] x n in[.1,.35,.65,.85], d=0",
+            "E0_free_d": "a in[a0,a0-.5] x d in[-.2,.2] x n in[.2,.6]",
+            "E1_h0_delta": [
+              -1,
+              -0.7,
+              -0.4,
+              -0.1,
+              0.1,
+              0.4,
+              0.7,
+              1
+            ],
+            "E1_h_delta": [
+              [
+                "0",
+                0
+              ],
+              [
+                ".4",
+                0
+              ],
+              [
+                ".85",
+                0.6
+              ],
+              [
+                ".85",
+                -0.6
+              ],
+              [
+                ".5*h_lower",
+                0.6
+              ],
+              [
+                ".5*h_lower",
+                -0.6
+              ],
+              [
+                ".9*h_lower",
+                0.9
+              ],
+              [
+                ".9*h_lower",
+                -0.9
+              ]
+            ],
+            "I0_eta": [
+              0,
+              0.1,
+              0.2,
+              0.4,
+              0.7,
+              1,
+              2,
+              3
+            ],
+            "a0": "clip(log(.6*Ntrain/(train_end-train_start)),-11.5,-.1)",
+            "clip": "Allstartcoordinatesclipped tofrozenbounds; no targetadjustment.",
+            "higher_models_background_n": "Completed selectedE0parameters"
+          },
+          "starts_per_model": 8,
+          "state": "Frozen reviewed bounded local fitting procedure"
+        },
+        "fitter_recipe": {
+          "coarse_fine_nll_tolerance": 0.0001,
+          "completion": "Every prescribed start must have an accepted solver return; finite explicit boundary points remain separately recorded.",
+          "fixed_d": null,
+          "fresh_nll_tolerance": 1e-07,
+          "model_order": [
+            "E0",
+            "I0",
+            "E1"
+          ],
+          "near_optimal_nll_gap": 0.0004,
+          "nonworsening_tolerance": 1e-08,
+          "optimizer": {
+            "ftol": 1e-10,
+            "gtol": 2e-06,
+            "maxfun": 20000,
+            "maxiter": 200,
+            "maxls": 40
+          },
+          "powell": {
+            "ftol": 1e-10,
+            "maxfev": 5000,
+            "maxiter": 400,
+            "xtol": 1e-06
+          },
+          "recovery_maxls": 200,
+          "schema_version": 1,
+          "seconds_by_model": {},
+          "seconds_per_model": 120.0,
+          "starts_per_model": 8
+        },
+        "models": {
+          "E0": {
+            "mark_density": "b*exp(-b*q)",
+            "name": "matched existing excitatory candidate",
+            "parameters": [
+              "a",
+              "d",
+              "n"
+            ],
+            "timing": "exp(a+d*x)+n*(H0+H1)"
+          },
+          "E1": {
+            "B": "n*P*diag(R)/rho",
+            "P": "P_ij=(1-h)*p_i+h*I(i=j), receivingrows/sourcecolumns",
+            "R": "[exp(-delta/2),exp(delta/2)]",
+            "intensity": "lambda_i=p_i*exp(a+d*x)+sum_j B_ij*Hj",
+            "joint_density": "lambda_class*(b*exp(-b*q)/p_class)",
+            "m": "[(1-exp(-b*(1-r)*c))/(1-exp(-b*c)),exp(b*r*c)]",
+            "marginals": "p definesimmigrant/within-bin law; overall event-class/magnitude marginals and timing generallychange. Previous gamma0matchedmarginal proofdoesnotapply.",
+            "name": "history-dependent multitype excitatory candidate",
+            "nesting": "h=0,delta=0 recovers E0 exactly; n=0 leaves h/deltaunidentified",
+            "p": "[1-exp(-b*c),exp(-b*c)]",
+            "parameters": [
+              "a",
+              "d",
+              "n",
+              "h",
+              "delta"
+            ],
+            "rho": "Perronroot(P*diag(R*m))",
+            "signed_h": "Negativeh permits class anti-persistence while allP/Bentriesremainpositive; no negativeHawkesweights.",
+            "stability": "Expected offspringmatrix B*diag(m) hasradiusn<1 for the stated linear markedlaw. No transfer to I0/nonlinear/general exactmemorytheorem."
+          },
+          "E1_h0": {
+            "constraint": "h fixed0; reoptimize all remaining params,8 mandatory starts,60-second primary cap; exact E0 floor",
+            "fitted_windows": "primary3folds only, alwaysrun",
+            "interpretation": "Fertilitytimingextension withindependentmarks; separates historygain fromresidualfertilitygain.",
+            "name": "prespecifiedprimaryhistoryablation withinE1family",
+            "parameters": [
+              "a",
+              "d",
+              "n",
+              "delta"
+            ]
+          },
+          "I0": {
+            "mark_density": "b*exp(-b*q)",
+            "name": "matched existing inhibitory candidate",
+            "parameters": [
+              "a",
+              "d",
+              "n",
+              "eta"
+            ],
+            "timing": "exp(a+d*x-eta*G)+n*(H0+H1)"
+          }
+        },
+        "numerical_gates": {
+          "failed_generation_or_required_fit": "Unknown, retain every plannedidentity; no replacement orsuccess-onlyprimaryanalysis",
+          "fixed_parameter_reference": "E0/I0 C++ against preserved observedobjective/score to1e-4; E1 independentoracle/gradient/integral checks",
+          "gradient": "Central/onesided finite differences atfixed interior/boundary fixtures, withstatedsteps/tolerance beforetesting",
+          "joint_score_identity": "time+conditionalmark=joint; same continuousmark measure acrossallcandidates",
+          "quadrature": "order16 fitting and separateorder32 selectedtraining/test objectivechecks; absolute1e-4gate, no silenttolerancechange"
+        },
+        "parameter_bounds": {
+          "a": [
+            -12,
+            0
+          ],
+          "d": [
+            -2,
+            2
+          ],
+          "delta": [
+            -1,
+            1
+          ],
+          "eta": [
+            0,
+            3
+          ],
+          "h": "[-.95*min(p0/p1,p1/p0),.95], computed once from trainingb/p; declared interior of positiveP domain",
+          "n": [
+            0,
+            0.98
+          ]
+        },
+        "question": "Does a fitted history-dependent excitatory extension improve matched retrospective prediction compared with the existing excitatory and inhibitory candidate equations?",
+        "scientific_scope": "One low-dimensional two-class multitype excitatory family with shared finite Mittag-Leffler mixture kernel and retained continuous magnitude productivity. Not the full authors MDFHP fit and not a combined inhibitory model.",
+        "scoring": {
+          "ablation": "E1_h0 is a fourth fittedprocedure inside samefamily, primary3windows only; time/mark/joint allreported.",
+          "aggregation": "Sumtestlogscore differences dividedbyactualheldoutevents ofsamevariant; alsoall3windowvalues",
+          "decomposition": [
+            "timinglogscore",
+            "conditionalmarklogdensity",
+            "jointlogscore"
+          ],
+          "forecast_ambiguity": {
+            "range_per_event_threshold": 0.01,
+            "selection": "Training-only selected candidate; forecast spread diagnostic never selects by heldout score.",
+            "training_band": 0.0004
+          },
+          "forecast_stability": {
+            "candidates": "Accepted finalsolverreturns andeligibleboundarypoints includingselected, exactparamsdeduplicated; include primary completed h0 training floor",
+            "failure": "Ambiguityorunverifieddiagnosticcandidate preventsrobustadvance; selected-score stillreported.",
+            "heldout_joint_spread_material_nats_per_event": 0.01,
+            "meaning": "Empiricalnumerical-resolutionband, notrigorouserrorbound",
+            "parameter_recovery": "No tight six-path parametererror/bias/coveragegate",
+            "selection": "Alwaysselectbytrainingonly, neverbyheldoutscore",
+            "training_nll_band": 0.0004
+          },
+          "model_cost": "Same heldouttarget/exposure/commontrainingnuisance, matchedfitwallceiling; parametersfitontrainingonly.",
+          "primary": "test joint conditional logscore includingintegratedintensity andallquietexposure",
+          "uncertainty": "Only3correlated historicalwindows; descriptive robustness andperwindowresults, no eventiid ormanufacturedblock95%CI."
+        },
+        "variants": [
+          {
+            "background": "loglinear",
+            "d_estimated": true,
+            "id": "primary",
+            "training_start_days": 0.0
+          },
+          {
+            "background": "constant",
+            "d_estimated": false,
+            "id": "constant_background",
+            "training_start_days": 0.0
+          },
+          {
+            "background": "loglinear",
+            "d_estimated": true,
+            "id": "post1980_training",
+            "note": "Early catalogue training sensitivity, not a complete detection/incompleteness model. Retain pre1980parents.",
+            "training_start_days": 7305.0
+          }
+        ]
+      },
+      "source_protocol_name": "observed_protocol.json",
+      "source_protocol_sha256": "81838dd3125548edfe37b846abc93bed2b771ce2bc2052e7839daf904b476683",
+      "windows_excerpt": {
+        "minimum_training_events_per_bin": 30,
+        "origins_fraction": [
+          0.5,
+          0.65,
+          0.8
+        ],
+        "rolling_history": "parameters frozen pertestwindow; actual observed past events updatehistory, never futureevents",
+        "test_end_fraction": [
+          0.65,
+          0.8,
+          1.0
+        ],
+        "test_interval": "[origin*T,next_end*T)",
+        "training_end": "origin*T",
+        "training_start_primary": 0.0
+      }
+    },
+    {
+      "conditional_unexecuted_stage": {
+        "execution": "not_run",
+        "planned_policy_subset": {
+          "fertility_attribution": "Tabulate old fixed-r versus new free-r primary h0 delta estimates and forecast components descriptively. Shrinkage is compatible with compensation; local fits/nuisance assumptions preclude definitive causation.",
+          "models": [
+            "E1_h0_r",
+            "E1_r"
+          ],
+          "only_if": "All frozen stage1 robust_productivity_gain requirements and independent audit pass,plus entire1800-second numerical reserve remains and run deadline permits stage2. Missing reserve means explicitly not run; do not spend beyond ceiling.",
+          "primary_association_lead": "E1_r aggregate joint gain>=.01nats/event over BOTH completed E0_free and I0_free,and over E1_h0_r,with at least2 same primary windows positive versus all3; all6 stage2 procedures audited and no forecast ambiguity. Otherwise stop_no_primary_association_gain_after_free_r. This is primary-only exploratory evidence,not robustness across variants.",
+          "scope": "Primary3folds only; no new bins/kernels/nuisance fitting scheme."
+        },
+        "resource_reserve_available": true,
+        "scientific_gate_failed": true,
+        "source_field": "stage2_conditional"
+      },
+      "copied_top_level_fields": [
+        "question",
+        "scientific_scope",
+        "variants",
+        "common_nuisance",
+        "models",
+        "parameter_bounds",
+        "fit_policy",
+        "numerical_gates",
+        "productivity",
+        "profiles",
+        "stage1"
+      ],
+      "data_identity_excerpt": {
+        "events": 913,
+        "horizon_days": 24394.0,
+        "minimum_magnitude": 5.0,
+        "sha256": "feacccb7581d1c4c33f88874cd6b198c41639da6930a7fc35e46f910a594fb3e",
+        "time_coordinate": "days since1960-01-01UTC; x=2t/24394-1"
+      },
+      "frozen_checkpoint": "stop_no_robust_productivity_gain",
+      "omitted": "Absolute input/cache paths, provider/private execution material, raw event records, artifact pin maps and unrelated resource/history records are omitted. This is an editorial excerpt, not an executable replacement producer protocol.",
+      "run_id": "productivity_slope_20261024T023501Z",
+      "settings": {
+        "common_nuisance": {
+          "conditional_loglik": "N*log(b)-b*(sumQ-Nhigh*c)-Nlow*log(1-exp(-b*c))",
+          "conditional_score": "N/b-(sumQ-Nhigh*c)-Nlow*c/expm1(b*c)",
+          "difference_from_historical": "New matched nuisance/optimization protocol; do not claim unchanged historicalestimationrecipe. Existing oldcandidate equations and independent fixedparameterreference retained.",
+          "excess_cut": 0.5,
+          "hyperparameter_selection": "No cataloguetest tuning, no alternativebins/kernels/cutoffs searched inthisrun.",
+          "magnitude_rate": "training-only conditional-within-bin MLE common toallcandidates",
+          "stress": "Same finite mixture; g(q)=exp((.75*log(10))*(q-1)), preeventstrictleftlimits",
+          "trigger": {
+            "alpha": 0.5,
+            "kind": "ml",
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08,
+            "tau": 1.0
+          }
+        },
+        "fit_policy": {
+          "a0": "clip(log(.6*Ntrain/(train_end-train_start)),-11.5,-.1)",
+          "acceptance": "Converged,finite,feasible solver return, independently fresh evaluated,not worse than its original start within1e-8,and order16/32 absolute joint-NLL difference<=1e-4. No finite partial candidate completes an unresolved required start. Explicit floors cannot cure incomplete mandatory searches.",
+          "candidate_selection": "Minimize training joint NLL only. Final primary free models admit all eligible completed profile points as exact within-family training candidates without further full-r optimization; preserve raw full-search selection and floor lineage. Final parameters chosen before any held-out score is used.",
+          "coarse_fine_nll_tolerance": 0.0001,
+          "dependent_failure": "A procedure requiring an incomplete lower-model floor is unknown_dependency. All36 base procedures and required42 profile nodes must resolve for stage1 robustness. Retain all outcomes/failures without denominator removal.",
+          "every_prescribed_start_required": true,
+          "exact_floor_chain": {
+            "E0_fixed": [
+              "constant Poisson point n=0,d=0,a=clip(log(N/duration),-12,0),r=.7"
+            ],
+            "E0_free": [
+              "completed E0_fixed at exact r=.7"
+            ],
+            "I0_fixed": [
+              "completed E0_fixed at eta=0,r=.7"
+            ],
+            "I0_free": [
+              "completed E0_fixed at eta=0,r=.7 (explicit redundant nested witness)",
+              "completed I0_fixed at exact r=.7",
+              "completed final E0_free at eta=0"
+            ]
+          },
+          "failure_only_recovery": [
+            {
+              "maxls": 200,
+              "method": "L-BFGS-B",
+              "same_original_start": true
+            },
+            {
+              "ftol": 1e-10,
+              "maxfev": 5000,
+              "maxiter": 400,
+              "method": "Powell",
+              "same_original_start": true,
+              "xtol": 1e-06
+            }
+          ],
+          "fresh_nll_tolerance": 1e-07,
+          "model_order": [
+            "E0_fixed",
+            "E0_free",
+            "I0_fixed",
+            "I0_free"
+          ],
+          "near_optimal_nll_gap": 0.0004,
+          "nonworsening_tolerance": 1e-08,
+          "optimality": "Bounded local multistart fitting, not a global optimum or formal parameter-identification certificate.",
+          "optimizer": {
+            "ftol": 1e-10,
+            "gtol": 2e-06,
+            "maxfun": 20000,
+            "maxiter": 200,
+            "maxls": 40,
+            "method": "L-BFGS-B"
+          },
+          "primary_free_family_seconds": {
+            "all_profiles": 60.0,
+            "family_total": 120.0,
+            "full_search": 60.0
+          },
+          "seconds_per_model": 120.0,
+          "starts": {
+            "E0_fixed_d0": "legacy a in[a0,a0-.5] x n in[.1,.35,.65,.85],d=0,r=.7",
+            "E0_fixed_free_d": "legacy a in[a0,a0-.5] x d in[-.2,.2] x n in[.2,.6], r=.7",
+            "E0_free": {
+              "base": "completed selected E0_fixed a,d; same base in all8 slots",
+              "n": [
+                "max(n_fixed,.1)",
+                0.2,
+                0.6,
+                0.2,
+                0.6,
+                "n_fixed",
+                0.2,
+                0.6
+              ],
+              "r": [
+                0.0,
+                0.15,
+                0.3,
+                0.45,
+                0.6,
+                0.7,
+                0.85,
+                0.95
+              ]
+            },
+            "I0_fixed": {
+              "base": "completed selected E0_fixed a,d,n; r=.7",
+              "eta": [
+                0.0,
+                0.1,
+                0.2,
+                0.4,
+                0.7,
+                1.0,
+                2.0,
+                3.0
+              ]
+            },
+            "I0_free": {
+              "slots_0_to_3": {
+                "base": "completed selected I0_fixed a,d,n,eta",
+                "n": "max(n_I0fixed,.1) except r=.7 slot retains exact n_I0fixed",
+                "r": [
+                  0.0,
+                  0.3,
+                  0.7,
+                  0.95
+                ]
+              },
+              "slots_4_to_7": {
+                "base": "completed final E0_free a,d,n,r",
+                "eta": [
+                  0.0,
+                  0.2,
+                  1.0,
+                  3.0
+                ]
+              }
+            },
+            "clip": "All starts clipped once to declared bounds; d=0 enforced in constant variant. Fixed coordinates remain exact."
+          },
+          "starts_per_model": 8
+        },
+        "models": {
+          "E0_fixed": {
+            "engine": "E0",
+            "fixed": {
+              "r": 0.7
+            },
+            "mark_density": "beta*exp(-beta*q)",
+            "parameters": [
+              "a",
+              "d",
+              "n",
+              "r"
+            ],
+            "timing": "exp(a+d*x)+n*H_r"
+          },
+          "E0_free": {
+            "engine": "E0",
+            "fixed": {},
+            "mark_density": "beta*exp(-beta*q)",
+            "parameters": [
+              "a",
+              "d",
+              "n",
+              "r"
+            ],
+            "timing": "exp(a+d*x)+n*H_r"
+          },
+          "I0_fixed": {
+            "engine": "I0",
+            "fixed": {
+              "r": 0.7
+            },
+            "mark_density": "beta*exp(-beta*q)",
+            "parameters": [
+              "a",
+              "d",
+              "n",
+              "eta",
+              "r"
+            ],
+            "timing": "exp(a+d*x-eta*G)+n*H_r"
+          },
+          "I0_free": {
+            "engine": "I0",
+            "fixed": {},
+            "mark_density": "beta*exp(-beta*q)",
+            "parameters": [
+              "a",
+              "d",
+              "n",
+              "eta",
+              "r"
+            ],
+            "timing": "exp(a+d*x-eta*G)+n*H_r"
+          }
+        },
+        "numerical_gates": {
+          "absolute_joint_nll_tolerance": 0.0001,
+          "gradients": "Central differences at interior coordinates; one-sided checks at r0/r.95,n0,eta0. Controls include nonstationary background and original stress survival law.",
+          "identity_checks": [
+            "Stage1 r=.7 fixed/free evaluation identity; E0/E1 h=delta=0 nesting is required only if conditional stage2 executes",
+            "eta=0 exact E0/I0 nesting",
+            "all stage1 mark logscore identical at fixed common beta",
+            "joint=timing+mark",
+            "n=0 flat r derivative and timing independent of r",
+            "future-event exclusion",
+            "prehistory retention and strict t_parent<t_event",
+            "event/compensator r derivatives recomputed from same geometry",
+            "no event deletion,jitter,magnitude clipping or positive-exposure removal"
+          ],
+          "observed_mark_identity_absolute_tolerance": 1e-08,
+          "observed_score_decomposition_absolute_tolerance": 1e-08,
+          "orders": [
+            16,
+            32
+          ],
+          "source_and_input_pins": "Conductor freezes exact source,DLL,recipe,protocol,oracle and synthetic-generator hashes after independent review and before scientific fitting.",
+          "value_gradient_oracle": "Independent direct parent summation and compensator integrals; r derivative included; fixed-r new module regression against immutable old fixed-feature DLL at r=0,.4,.7,.95 on handcrafted fixtures."
+        },
+        "parameter_bounds": {
+          "a": [
+            -12.0,
+            0.0
+          ],
+          "d": [
+            -2.0,
+            2.0
+          ],
+          "eta": [
+            0.0,
+            3.0
+          ],
+          "fixed_constraints": "d=0 only constant_background; r=.7 for fixed models. Distinguish fixed coordinates from estimated-coordinate box-boundary hits.",
+          "n": [
+            0.0,
+            0.98
+          ],
+          "r": [
+            0.0,
+            0.95
+          ]
+        },
+        "productivity": {
+          "beta_rule": "A single training-only conditional-within-bin beta estimate is shared by all models in each case and remains fixed throughout all r searches/profiles/test scores.",
+          "bound_rationale": "r=.95 provides fixed numerical distance from the divergent r=1 endpoint of the retained unbounded mark law. r=0 is an allowed one-sided optimum; upper-bound estimates are bound-limited. Neither boundary alone proves nonidentification. No bound expansion after results.",
+          "derivative": "d kappa/dr=kappa*(beta*q-1/(1-r))",
+          "equal_mark_ridge": "If all parent q=q0,trigger depends on n*kappa_r(q0); n2=n1*kappa_r1(q0)/kappa_r2(q0) gives identical fixed-history timing when both n remain admissible. Sparse profiles reoptimize n/background; no separate profile with n fixed is added.",
+          "feature_rule": "Each objective evaluation must recompute all r-dependent parent amplitudes, event histories, compensators and,if E1 is run,class moments/Perron normalization from r-independent geometry. Editing only old cache metadata is forbidden.",
+          "fixed_r": 0.7,
+          "free_r_bounds": [
+            0.0,
+            0.95
+          ],
+          "higher_moments": {
+            "formula": "For m>0,r>=0,E[kappa_r(Q)^m]=(1-r)^m/(1-m*r),finite iff m*r<1; otherwise diverges under the retained unbounded Exponential mark law.",
+            "limitation": "The retained r=.7 baseline and allowed r>=.5 lack finite productivity variance. This pilot uses finite conditional log scores and engineering controls,not iid-normal inference,branching-variance estimates,bootstrap coverage or asymptotic LRT. The .95 domain is a first-moment/numerical bound,not a finite-variance guarantee.",
+            "no_posthoc_family_change": "Do not cap below.5 or taper marks after results; that would exclude the fixed.7 baseline/change the scientific family."
+          },
+          "identification": "At n=0, r has no timing effect and is unidentified. Report selected gradients, estimated-coordinate boundary hits and sparse profile support without global or confidence claims.",
+          "law": "kappa_r(q)=(1-r)*exp(beta*r*q)",
+          "normalization": "Under retained Q~Exp(beta), E[kappa_r(Q)]=1 for0<=r<1. For E0 with normalized temporal kernel,n is mean direct offspring; no immigrant-mean or physical branching interpretation automatically transferred to I0/E1."
+        },
+        "profiles": {
+          "ambiguity": "max minus min held-out joint logscore among eligible near-training-equivalent candidates divided by n_test>.01 makes scientific robust gate false. Any unknown candidate score likewise blocks it.",
+          "candidate_forecast_gap": 0.0004,
+          "candidate_forecast_rule": "Score all full-search/nested/profile candidates within4e-4 of final training minimum on held-out window using their own frozen parameters; report range and r/n/background coordinates. Test scores never choose parameters.",
+          "completion": "All4 prescribed starts at every node resolve. An unresolved node makes its primary free family unknown_profile_incomplete even if direct8-start search completed. No adaptive nodes or grid refinement.",
+          "descriptive_forecast_rule": "Evaluate every completed profile-node optimum on both train and test coarse/fine caches and save its fixed parameters,train NLL,test timing/mark/joint scores and errors in a separate profile table (42points total). This is descriptive sensitivity,not candidate selection. Only near4e-4 final-training-equivalent pooled candidates govern the declared numerical forecast-ambiguity flag;2-nat support is not a confidence or predictive interval.",
+          "descriptive_profile_forecast_points": 42,
+          "descriptive_support_nll_gap": 2.0,
+          "final_floor_admission": "Eligible profile candidates enter final free-family training pool,with exact origin and source node/start; no further full-r solve. Original direct selected remains recorded. Apply I0free E0free floor only after final E0free profile admission.",
+          "floors": "E0 profile retains constant Poisson point at every r and completed E0_fixed point only at r=.7. I0 profile retains completed E0 profile optimum at SAME r with eta=0,and completed I0_fixed point only at r=.7. Fresh value/fine checks required; never reuse an old point evaluation after changing r.",
+          "forecast_ambiguity_threshold_nats_per_event": 0.01,
+          "mandatory_starts": 168,
+          "nodes": 42,
+          "parameter_constraints": "Fix r to exact grid node,reoptimize other estimated coordinates with same bounds,solver and failure recovery. Fixed d remains fixed if applicable.",
+          "parameter_notes": "Report whether r=.7 lies in sparse2-nat support,grid span,endpoint support,and n=0. Broad support does not itself constitute forecast ambiguity or force stopping if forecasts stable.",
+          "r_grid": [
+            0.0,
+            0.2,
+            0.35,
+            0.5,
+            0.7,
+            0.85,
+            0.95
+          ],
+          "scope": "Primary3folds,E0_free and I0_free only",
+          "seconds_per_node": 8.571428571428571,
+          "starts": {
+            "E0": [
+              "raw full-search selected a,d,n at node r",
+              "completed E0_fixed selected a,d,n at node r",
+              "a0,d=-.2,n=.2 at node r",
+              "a0-.5,d=.2,n=.7 at node r"
+            ],
+            "I0": [
+              "raw full-search selected a,d,n,eta at node r",
+              "completed I0_fixed selected a,d,n,eta at node r",
+              "completed E0 profile optimum at SAME node,a,d,n,eta=.2",
+              "completed final E0_free a,d,n,eta=1 at node r"
+            ]
+          },
+          "starts_per_node": 4,
+          "support_label": "Sparse2-nat training profile support; not a confidence interval,coverage estimate or likelihood-ratio significance test. Display off-grid selected free point separately."
+        },
+        "question": "Does training-estimated magnitude productivity ratio r improve conditional timing forecasts over fixed r=.7, and how does this affect the matched inhibitory comparison?",
+        "scientific_scope": "One continuous normalized exponential productivity family. Stage1 compares fixed/free r in E0 and I0. Conditional primary E1_r/E1_h0_r stage only after frozen stage1 gate. No broken-slope/saturation search, new data, power/calibration campaign or physical-causality claim.",
+        "stage1": {
+          "checkpoint_order": [
+            "unknown_incomplete_or_invalid if any required result/audit/identity unresolved or failed",
+            "stop_forecast_ambiguity if saved candidate score spread exceeds threshold",
+            "stop_no_robust_productivity_gain if aggregate/window requirements fail",
+            "productivity_lead_proceed_primary_association_check if all above pass and stage2 reserve available",
+            "productivity_lead_stage2_not_run_resource if robust gain passes but stage2 reserve unavailable"
+          ],
+          "comparisons": [
+            "E0_free-E0_fixed (primary)",
+            "I0_free-I0_fixed (secondary productivity comparison)",
+            "E0_free-I0_free (matched inhibitory comparison)",
+            "E0_fixed-I0_fixed (recomputed fixed baseline)"
+          ],
+          "interpretation": "Any success supports predictive utility of this bounded free-r procedure under retained assumptions,not true physical slope or r=.7 falsification. No event-iid CI or confirmatory significance.",
+          "mandatory_base_starts": 288,
+          "mandatory_profile_starts": 168,
+          "metric": "For each fixed chronological window, timing and joint logscore differences; common-beta mark scores are mathematically identical. Aggregate=sum differences/sum n_test,not average window rates.612 targets reused across3 variants,not1836 independent observations.",
+          "planned_base_fit_procedures": 36,
+          "planned_cases": 9,
+          "planned_profile_procedures": 42,
+          "robust_productivity_gain": {
+            "all_required_complete_and_audited": true,
+            "each_sensitivity_E0free_minus_E0fixed_gain_strictly_above": 0.0,
+            "each_sensitivity_positive_windows_at_least": 2,
+            "mark_identity_required": true,
+            "no_forecast_ambiguity": true,
+            "primary_E0free_minus_E0fixed_gain_at_least": 0.01,
+            "primary_positive_windows_at_least": 2
+          },
+          "total_fit_procedures": 78,
+          "total_mandatory_starts": 456
+        },
+        "variants": [
+          {
+            "background": "loglinear",
+            "d_estimated": true,
+            "id": "primary",
+            "training_start_days": 0.0
+          },
+          {
+            "background": "constant",
+            "d_estimated": false,
+            "id": "constant_background",
+            "training_start_days": 0.0
+          },
+          {
+            "background": "loglinear",
+            "d_estimated": true,
+            "id": "post1980_training",
+            "note": "Early catalogue training sensitivity, not a complete detection/incompleteness model. Retain pre1980parents.",
+            "training_start_days": 7305.0
+          }
+        ]
+      },
+      "source_protocol_name": "observed_protocol.json",
+      "source_protocol_sha256": "b556152ab71ac2fb9763dd170de0011542ac50990c29cb11659523275aa3cde1",
+      "windows_excerpt": {
+        "minimum_training_events_per_bin": 30,
+        "origins_fraction": [
+          0.5,
+          0.65,
+          0.8
+        ],
+        "rolling_history": "parameters frozen pertestwindow; actual observed past events updatehistory, never futureevents",
+        "test_end_fraction": [
+          0.65,
+          0.8,
+          1.0
+        ],
+        "test_interval": "[origin*T,next_end*T)",
+        "training_end": "origin*T",
+        "training_start_primary": 0.0
+      }
+    }
+  ]
+}

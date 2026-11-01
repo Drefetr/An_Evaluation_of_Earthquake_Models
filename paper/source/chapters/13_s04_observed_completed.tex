@@ -1,0 +1,59 @@
+\section{Observed California fixed-backbone inhibition}
+
+\label{sec:s04-observed-completed}
+
+The planned observed comparison uses the same three California folds and 315 targets; numerical resolution status is retained for each row. Background and excitation nuisance inputs are fixed and shared between each candidate and its exact uninhibited floor. The common mark term cancels from each held-out joint gain, reported as floor NLL minus selected NLL. These are joint-score contrasts; no timing or location decomposition is inferred from the six-output objective ABI.
+
+Original LI is retained unpenalized. Magnitude-scaled LI+ is evaluated with immigrant-only and total-intensity attenuation, each with raw training selection and with the declared training-only BIC-style gate. A gate may select the exact floor. A negative held-out gain is retained, while an unresolved numerical result remains unknown rather than being assigned zero.
+
+\begin{table}[htbp]\centering\caption{Held-out joint gains (nats) relative to the shared uninhibited floor. Unknown or failed rows retain their planned targets and are displayed as --.}\label{tab:s04-observed}
+
+\begin{tabular}{llllrll}\toprule Fold & Model & Gate & Status & Gain & Win & Active\\\midrule
+
+0 & LI & raw & resolved & 0.0000 & no & no \\
+
+0 & LI+ immigrant & raw & resolved & 0.0000 & no & no \\
+
+0 & LI+ immigrant & BIC & resolved & 0.0000 & no & no \\
+
+0 & LI+ total & raw & resolved & -0.2245 & no & yes \\
+
+0 & LI+ total & BIC & resolved & 0.0000 & no & no \\
+
+1 & LI & raw & resolved & 0.0000 & no & no \\
+
+1 & LI+ immigrant & raw & resolved & 0.0000 & no & no \\
+
+1 & LI+ immigrant & BIC & resolved & 0.0000 & no & no \\
+
+1 & LI+ total & raw & resolved & -1.9529 & no & yes \\
+
+1 & LI+ total & BIC & resolved & 0.0000 & no & no \\
+
+2 & LI & raw & resolved & 0.0000 & no & no \\
+
+2 & LI+ immigrant & raw & resolved & 0.0000 & no & no \\
+
+2 & LI+ immigrant & BIC & resolved & 0.0000 & no & no \\
+
+2 & LI+ total & raw & resolved & -0.2093 & no & yes \\
+
+2 & LI+ total & BIC & resolved & 0.0000 & no & no \\
+
+\bottomrule\end{tabular}\end{table}
+
+The BIC-style gate is a complexity penalty, not a Davies-calibrated test or a guarantee of nominal size. A training-active fit, a selected floor and a held-out win are distinct outcomes. The same-history numerical acceptance and retained-state checks have the scope recorded in the reporting acceptance receipt; parent process completion alone is not scientific acceptance. These observed folds are adaptively inspected retrospective evidence, not a new untouched prospective cohort.
+
+\begin{figure}[htbp]\centering\includegraphics[width=\textwidth]{s04_observed_joint_gains.pdf}\caption{Accepted held-out joint gains on the fixed three-fold population. Missing markers denote explicit unknown/failed rows, not zero gain.}\end{figure}
+
+\begin{center}\begin{tabular}{lrr}\toprule Fold & Training targets & Planned held-out targets\\\midrule
+
+0 & 851 & 79 \\
+
+1 & 930 & 167 \\
+
+2 & 1097 & 69 \\
+
+\bottomrule\end{tabular}\end{center}
+
+All original LI and magnitude-scaled immigrant-only fits select their exact uninhibited floor. Raw total-intensity inhibition is active but loses held-out joint score in each fold. Its BIC-gated version selects the floor in every fold. These outcomes do not establish a predictive benefit from the revised inhibition mechanisms on this fixed observed population.

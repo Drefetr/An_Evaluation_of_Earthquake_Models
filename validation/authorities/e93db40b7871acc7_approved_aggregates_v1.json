@@ -1,0 +1,4329 @@
+{
+  "schema": "california_m45_approved_aggregates_v1",
+  "scenario_id": "california_m45_v1",
+  "aggregate_release_approved": true,
+  "root_release_sha256": "12dac0f1bff6273027589c1baefd38acd83c3151e403eeb660df2a210ab69b26",
+  "protocol_sha256": "0548483fd68b12b4f2af17ee9e85d992a0eaf35bd0e1d801157bf43b57922b2c",
+  "audit_sha256": "3e29e5a3edd62ca2bd8640c5758a0a58ce72ebb6ebff228d3cc090c42bd58e35",
+  "report_contract_sha256": "ecd2909d9fd557dee1d19a188a015ac6cbfec4257fd9dfcfd05b2c5777ad9e6d",
+  "planned_denominators": {
+    "population": 391,
+    "warmup": 33,
+    "training": [
+      271,
+      287,
+      340
+    ],
+    "targets": [
+      16,
+      53,
+      18
+    ],
+    "total_targets": 87,
+    "procedures": 30,
+    "starts": 240,
+    "floors": 33,
+    "candidate_slots": 273,
+    "model_window_statuses": 15,
+    "primary_arm_windows": 12,
+    "contrast_windows": 9
+  },
+  "reached_denominators": {
+    "procedures": 30,
+    "starts": 240,
+    "floors": 33,
+    "candidates": 273,
+    "finite_solver_returns": 240,
+    "model_statuses": 15,
+    "primary_windows": 12
+  },
+  "model_statuses": [
+    {
+      "fold": 0,
+      "model": "fixedML_smooth_cont",
+      "primary": true,
+      "status": "complete"
+    },
+    {
+      "fold": 0,
+      "model": "commonML_smooth_cont",
+      "primary": true,
+      "status": "complete"
+    },
+    {
+      "fold": 0,
+      "model": "Omori_smooth_cont",
+      "primary": true,
+      "status": "complete"
+    },
+    {
+      "fold": 0,
+      "model": "Omori_smooth_lift",
+      "primary": true,
+      "status": "complete"
+    },
+    {
+      "fold": 0,
+      "model": "fixedML_smooth_lift",
+      "primary": false,
+      "status": "complete"
+    },
+    {
+      "fold": 1,
+      "model": "fixedML_smooth_cont",
+      "primary": true,
+      "status": "complete"
+    },
+    {
+      "fold": 1,
+      "model": "commonML_smooth_cont",
+      "primary": true,
+      "status": "complete"
+    },
+    {
+      "fold": 1,
+      "model": "Omori_smooth_cont",
+      "primary": true,
+      "status": "complete"
+    },
+    {
+      "fold": 1,
+      "model": "Omori_smooth_lift",
+      "primary": true,
+      "status": "complete"
+    },
+    {
+      "fold": 1,
+      "model": "fixedML_smooth_lift",
+      "primary": false,
+      "status": "complete"
+    },
+    {
+      "fold": 2,
+      "model": "fixedML_smooth_cont",
+      "primary": true,
+      "status": "complete"
+    },
+    {
+      "fold": 2,
+      "model": "commonML_smooth_cont",
+      "primary": true,
+      "status": "complete"
+    },
+    {
+      "fold": 2,
+      "model": "Omori_smooth_cont",
+      "primary": true,
+      "status": "complete"
+    },
+    {
+      "fold": 2,
+      "model": "Omori_smooth_lift",
+      "primary": true,
+      "status": "complete"
+    },
+    {
+      "fold": 2,
+      "model": "fixedML_smooth_lift",
+      "primary": false,
+      "status": "complete"
+    }
+  ],
+  "windows": [
+    {
+      "fold_id": 0,
+      "arm_id": "fixedML_smooth_cont",
+      "status": "complete",
+      "target_count": 16,
+      "training_count": 271,
+      "components": {
+        "event_ground_log": -39.020866946794385,
+        "integrated_intensity": 31.099973050022754,
+        "conditional_zone_logscore": -9.503572734426527,
+        "conditional_cell_logscore": -7.273136744834304,
+        "within_cell_density_logscore": -131.12440618027352,
+        "mark_logscore": -0.764910145626656,
+        "timing_logscore": -70.12083999681714,
+        "conditional_location_logscore": -147.90111565953436,
+        "joint_logscore": -218.78686580197814
+      },
+      "nats_per_target": {
+        "event_ground_log": -2.438804184174649,
+        "integrated_intensity": 1.9437483156264221,
+        "conditional_zone_logscore": -0.5939732959016579,
+        "conditional_cell_logscore": -0.454571046552144,
+        "within_cell_density_logscore": -8.195275386267095,
+        "mark_logscore": -0.047806884101666,
+        "timing_logscore": -4.382552499801071,
+        "conditional_location_logscore": -9.243819728720897,
+        "joint_logscore": -13.674179112623634
+      },
+      "stability": {
+        "near_optimal_forecast_stable": true,
+        "cross_grid_forecast_stable": true
+      }
+    },
+    {
+      "fold_id": 0,
+      "arm_id": "commonML_smooth_cont",
+      "status": "complete",
+      "target_count": 16,
+      "training_count": 271,
+      "components": {
+        "event_ground_log": -37.896124231375126,
+        "integrated_intensity": 31.32650286254763,
+        "conditional_zone_logscore": -9.663221296959598,
+        "conditional_cell_logscore": -7.261207603233366,
+        "within_cell_density_logscore": -131.12568296572888,
+        "mark_logscore": -0.764910145626656,
+        "timing_logscore": -69.22262709392275,
+        "conditional_location_logscore": -148.05011186592185,
+        "joint_logscore": -218.03764910547127
+      },
+      "nats_per_target": {
+        "event_ground_log": -2.3685077644609454,
+        "integrated_intensity": 1.957906428909227,
+        "conditional_zone_logscore": -0.6039513310599749,
+        "conditional_cell_logscore": -0.4538254752020854,
+        "within_cell_density_logscore": -8.195355185358055,
+        "mark_logscore": -0.047806884101666,
+        "timing_logscore": -4.326414193370172,
+        "conditional_location_logscore": -9.253131991620116,
+        "joint_logscore": -13.627353069091955
+      },
+      "stability": {
+        "near_optimal_forecast_stable": true,
+        "cross_grid_forecast_stable": true
+      }
+    },
+    {
+      "fold_id": 0,
+      "arm_id": "Omori_smooth_cont",
+      "status": "complete",
+      "target_count": 16,
+      "training_count": 271,
+      "components": {
+        "event_ground_log": -37.716422200873126,
+        "integrated_intensity": 32.32644940637332,
+        "conditional_zone_logscore": -9.412057615688525,
+        "conditional_cell_logscore": -7.324309099302589,
+        "within_cell_density_logscore": -131.119848253161,
+        "mark_logscore": -0.764910145626656,
+        "timing_logscore": -70.04287160724644,
+        "conditional_location_logscore": -147.8562149681521,
+        "joint_logscore": -218.6639967210252
+      },
+      "nats_per_target": {
+        "event_ground_log": -2.3572763875545704,
+        "integrated_intensity": 2.0204030878983326,
+        "conditional_zone_logscore": -0.5882536009805328,
+        "conditional_cell_logscore": -0.4577693187064118,
+        "within_cell_density_logscore": -8.194990515822562,
+        "mark_logscore": -0.047806884101666,
+        "timing_logscore": -4.3776794754529025,
+        "conditional_location_logscore": -9.241013435509506,
+        "joint_logscore": -13.666499795064075
+      },
+      "stability": {
+        "near_optimal_forecast_stable": true,
+        "cross_grid_forecast_stable": true
+      }
+    },
+    {
+      "fold_id": 0,
+      "arm_id": "Omori_smooth_lift",
+      "status": "complete",
+      "target_count": 16,
+      "training_count": 271,
+      "components": {
+        "event_ground_log": -36.07336270577761,
+        "integrated_intensity": 42.58711403168877,
+        "conditional_zone_logscore": -10.35438161122341,
+        "conditional_cell_logscore": -7.312318587353474,
+        "within_cell_density_logscore": -166.26520651335406,
+        "mark_logscore": -0.764910145626656,
+        "timing_logscore": -78.66047673746638,
+        "conditional_location_logscore": -183.93190671193094,
+        "joint_logscore": -263.3572935950239
+      },
+      "nats_per_target": {
+        "event_ground_log": -2.2545851691111007,
+        "integrated_intensity": 2.661694626980548,
+        "conditional_zone_logscore": -0.6471488507014631,
+        "conditional_cell_logscore": -0.4570199117095921,
+        "within_cell_density_logscore": -10.391575407084629,
+        "mark_logscore": -0.047806884101666,
+        "timing_logscore": -4.916279796091649,
+        "conditional_location_logscore": -11.495744169495683,
+        "joint_logscore": -16.459830849688995
+      },
+      "stability": {
+        "near_optimal_forecast_stable": true,
+        "cross_grid_forecast_stable": true
+      }
+    },
+    {
+      "fold_id": 1,
+      "arm_id": "fixedML_smooth_cont",
+      "status": "complete",
+      "target_count": 53,
+      "training_count": 287,
+      "components": {
+        "event_ground_log": 18.064835949918724,
+        "integrated_intensity": 45.54034924582202,
+        "conditional_zone_logscore": -20.77500157390857,
+        "conditional_cell_logscore": -13.183952498114143,
+        "within_cell_density_logscore": -435.26279245008993,
+        "mark_logscore": 0.09891475977448749,
+        "timing_logscore": -27.475513295903298,
+        "conditional_location_logscore": -469.22174652211265,
+        "joint_logscore": -496.5983450582414
+      },
+      "nats_per_target": {
+        "event_ground_log": 0.3408459613192212,
+        "integrated_intensity": 0.8592518725626797,
+        "conditional_zone_logscore": -0.39198116177185977,
+        "conditional_cell_logscore": -0.2487538207191348,
+        "within_cell_density_logscore": -8.212505517926225,
+        "mark_logscore": 0.0018663162221601414,
+        "timing_logscore": -0.5184059112434585,
+        "conditional_location_logscore": -8.85324050041722,
+        "joint_logscore": -9.369780095438518
+      },
+      "stability": {
+        "near_optimal_forecast_stable": true,
+        "cross_grid_forecast_stable": true
+      }
+    },
+    {
+      "fold_id": 1,
+      "arm_id": "commonML_smooth_cont",
+      "status": "complete",
+      "target_count": 53,
+      "training_count": 287,
+      "components": {
+        "event_ground_log": 23.489795439043725,
+        "integrated_intensity": 45.47189006925159,
+        "conditional_zone_logscore": -21.199131334856986,
+        "conditional_cell_logscore": -13.27353086149936,
+        "within_cell_density_logscore": -434.69070176831536,
+        "mark_logscore": 0.09891475977448749,
+        "timing_logscore": -21.982094630207868,
+        "conditional_location_logscore": -469.1633639646717,
+        "joint_logscore": -491.0465438351051
+      },
+      "nats_per_target": {
+        "event_ground_log": 0.44320368752912687,
+        "integrated_intensity": 0.8579601899858791,
+        "conditional_zone_logscore": -0.39998361009164124,
+        "conditional_cell_logscore": -0.25044397851885586,
+        "within_cell_density_logscore": -8.201711354119158,
+        "mark_logscore": 0.0018663162221601414,
+        "timing_logscore": -0.4147565024567522,
+        "conditional_location_logscore": -8.852138942729654,
+        "joint_logscore": -9.265029128964247
+      },
+      "stability": {
+        "near_optimal_forecast_stable": true,
+        "cross_grid_forecast_stable": true
+      }
+    },
+    {
+      "fold_id": 1,
+      "arm_id": "Omori_smooth_cont",
+      "status": "complete",
+      "target_count": 53,
+      "training_count": 287,
+      "components": {
+        "event_ground_log": 29.392858366434705,
+        "integrated_intensity": 45.12707896067211,
+        "conditional_zone_logscore": -20.996800551101657,
+        "conditional_cell_logscore": -13.236601715869554,
+        "within_cell_density_logscore": -435.03617831043834,
+        "mark_logscore": 0.09891475977448749,
+        "timing_logscore": -15.734220594237403,
+        "conditional_location_logscore": -469.26958057740956,
+        "joint_logscore": -484.90488641187244
+      },
+      "nats_per_target": {
+        "event_ground_log": 0.5545822333289567,
+        "integrated_intensity": 0.8514543200126813,
+        "conditional_zone_logscore": -0.39616604813399353,
+        "conditional_cell_logscore": -0.24974720218621801,
+        "within_cell_density_logscore": -8.208229779442233,
+        "mark_logscore": 0.0018663162221601414,
+        "timing_logscore": -0.29687208668372456,
+        "conditional_location_logscore": -8.854143029762444,
+        "joint_logscore": -9.149148800224008
+      },
+      "stability": {
+        "near_optimal_forecast_stable": true,
+        "cross_grid_forecast_stable": true
+      }
+    },
+    {
+      "fold_id": 1,
+      "arm_id": "Omori_smooth_lift",
+      "status": "complete",
+      "target_count": 53,
+      "training_count": 287,
+      "components": {
+        "event_ground_log": 21.860890647953518,
+        "integrated_intensity": 42.492642592386346,
+        "conditional_zone_logscore": -25.787169185778193,
+        "conditional_cell_logscore": -13.774464335912036,
+        "within_cell_density_logscore": -552.5784799410395,
+        "mark_logscore": 0.09891475977448749,
+        "timing_logscore": -20.63175194443283,
+        "conditional_location_logscore": -592.1401134627297,
+        "joint_logscore": -612.672950647388
+      },
+      "nats_per_target": {
+        "event_ground_log": 0.4124696348670475,
+        "integrated_intensity": 0.8017479734412518,
+        "conditional_zone_logscore": -0.486550361995815,
+        "conditional_cell_logscore": -0.25989555350777427,
+        "within_cell_density_logscore": -10.426009055491312,
+        "mark_logscore": 0.0018663162221601414,
+        "timing_logscore": -0.3892783385742043,
+        "conditional_location_logscore": -11.1724549709949,
+        "joint_logscore": -11.559866993346944
+      },
+      "stability": {
+        "near_optimal_forecast_stable": true,
+        "cross_grid_forecast_stable": true
+      }
+    },
+    {
+      "fold_id": 2,
+      "arm_id": "fixedML_smooth_cont",
+      "status": "complete",
+      "target_count": 18,
+      "training_count": 340,
+      "components": {
+        "event_ground_log": -64.02243751288064,
+        "integrated_intensity": 20.863099411522803,
+        "conditional_zone_logscore": -15.447042104753564,
+        "conditional_cell_logscore": -12.881766615999894,
+        "within_cell_density_logscore": -157.67109279219295,
+        "mark_logscore": 2.217928592555962,
+        "timing_logscore": -84.88553692440345,
+        "conditional_location_logscore": -185.9999015129464,
+        "joint_logscore": -268.6675098447939
+      },
+      "nats_per_target": {
+        "event_ground_log": -3.5568020840489245,
+        "integrated_intensity": 1.1590610784179336,
+        "conditional_zone_logscore": -0.8581690058196424,
+        "conditional_cell_logscore": -0.715653700888883,
+        "within_cell_density_logscore": -8.75950515512183,
+        "mark_logscore": 0.1232182551419979,
+        "timing_logscore": -4.715863162466858,
+        "conditional_location_logscore": -10.333327861830355,
+        "joint_logscore": -14.925972769155218
+      },
+      "stability": {
+        "near_optimal_forecast_stable": true,
+        "cross_grid_forecast_stable": true
+      }
+    },
+    {
+      "fold_id": 2,
+      "arm_id": "commonML_smooth_cont",
+      "status": "complete",
+      "target_count": 18,
+      "training_count": 340,
+      "components": {
+        "event_ground_log": -63.08867677245362,
+        "integrated_intensity": 20.931965418071908,
+        "conditional_zone_logscore": -15.398685865297601,
+        "conditional_cell_logscore": -13.16638947242275,
+        "within_cell_density_logscore": -157.7926562455927,
+        "mark_logscore": 2.217928592555962,
+        "timing_logscore": -84.02064219052552,
+        "conditional_location_logscore": -186.35773158331304,
+        "joint_logscore": -268.1604451812826
+      },
+      "nats_per_target": {
+        "event_ground_log": -3.504926487358534,
+        "integrated_intensity": 1.1628869676706615,
+        "conditional_zone_logscore": -0.8554825480720889,
+        "conditional_cell_logscore": -0.7314660818012639,
+        "within_cell_density_logscore": -8.766258680310706,
+        "mark_logscore": 0.1232182551419979,
+        "timing_logscore": -4.667813455029195,
+        "conditional_location_logscore": -10.353207310184057,
+        "joint_logscore": -14.897802510071257
+      },
+      "stability": {
+        "near_optimal_forecast_stable": true,
+        "cross_grid_forecast_stable": true
+      }
+    },
+    {
+      "fold_id": 2,
+      "arm_id": "Omori_smooth_cont",
+      "status": "complete",
+      "target_count": 18,
+      "training_count": 340,
+      "components": {
+        "event_ground_log": -61.8920093945451,
+        "integrated_intensity": 21.563365129736304,
+        "conditional_zone_logscore": -15.369049039814286,
+        "conditional_cell_logscore": -12.626013666024406,
+        "within_cell_density_logscore": -157.6991489762604,
+        "mark_logscore": 2.217928592555962,
+        "timing_logscore": -83.45537452428141,
+        "conditional_location_logscore": -185.69421168209908,
+        "joint_logscore": -266.93165761382454
+      },
+      "nats_per_target": {
+        "event_ground_log": -3.4384449663636167,
+        "integrated_intensity": 1.1979647294297946,
+        "conditional_zone_logscore": -0.8538360577674603,
+        "conditional_cell_logscore": -0.7014452036680225,
+        "within_cell_density_logscore": -8.761063832014466,
+        "mark_logscore": 0.1232182551419979,
+        "timing_logscore": -4.636409695793412,
+        "conditional_location_logscore": -10.316345093449948,
+        "joint_logscore": -14.829536534101363
+      },
+      "stability": {
+        "near_optimal_forecast_stable": true,
+        "cross_grid_forecast_stable": true
+      }
+    },
+    {
+      "fold_id": 2,
+      "arm_id": "Omori_smooth_lift",
+      "status": "complete",
+      "target_count": 18,
+      "training_count": 340,
+      "components": {
+        "event_ground_log": -60.13240693583348,
+        "integrated_intensity": 23.926409983255912,
+        "conditional_zone_logscore": -15.518137366979893,
+        "conditional_cell_logscore": -14.572261977058673,
+        "within_cell_density_logscore": -181.43405698231862,
+        "mark_logscore": 2.217928592555962,
+        "timing_logscore": -84.0588169190894,
+        "conditional_location_logscore": -211.52445632635718,
+        "joint_logscore": -293.3653446528906
+      },
+      "nats_per_target": {
+        "event_ground_log": -3.3406892742129712,
+        "integrated_intensity": 1.3292449990697728,
+        "conditional_zone_logscore": -0.8621187426099941,
+        "conditional_cell_logscore": -0.8095701098365929,
+        "within_cell_density_logscore": -10.079669832351035,
+        "mark_logscore": 0.1232182551419979,
+        "timing_logscore": -4.6699342732827445,
+        "conditional_location_logscore": -11.751358684797621,
+        "joint_logscore": -16.298074702938365
+      },
+      "stability": {
+        "near_optimal_forecast_stable": true,
+        "cross_grid_forecast_stable": true
+      }
+    }
+  ],
+  "contrasts": [
+    {
+      "fold_id": 0,
+      "contrast_id": "timing_OC_minus_fixedML",
+      "arm_A": "Omori_smooth_cont",
+      "arm_B": "fixedML_smooth_cont",
+      "primary_component": "timing_logscore",
+      "status": "complete",
+      "target_count": 16,
+      "components": {
+        "event_ground_log": 1.3044447459212591,
+        "integrated_intensity": 1.2264763563505667,
+        "conditional_zone_logscore": 0.09151511873800189,
+        "conditional_cell_logscore": -0.051172354468285164,
+        "within_cell_density_logscore": 0.004557927112529114,
+        "mark_logscore": 0.0,
+        "timing_logscore": 0.07796838957069951,
+        "conditional_location_logscore": 0.044900691382252944,
+        "joint_logscore": 0.12286908095293825
+      },
+      "nats_per_target": {
+        "event_ground_log": 0.0815277966200787,
+        "integrated_intensity": 0.07665477227191042,
+        "conditional_zone_logscore": 0.005719694921125118,
+        "conditional_cell_logscore": -0.0031982721542678227,
+        "within_cell_density_logscore": 0.00028487044453306964,
+        "mark_logscore": 0.0,
+        "timing_logscore": 0.00487302434816872,
+        "conditional_location_logscore": 0.002806293211390809,
+        "joint_logscore": 0.0076793175595586405
+      }
+    },
+    {
+      "fold_id": 0,
+      "contrast_id": "location_OC_minus_OL",
+      "arm_A": "Omori_smooth_cont",
+      "arm_B": "Omori_smooth_lift",
+      "primary_component": "conditional_location_logscore",
+      "status": "complete",
+      "target_count": 16,
+      "components": {
+        "event_ground_log": -1.643059495095514,
+        "integrated_intensity": -10.26066462531545,
+        "conditional_zone_logscore": 0.9423239955348848,
+        "conditional_cell_logscore": -0.011990511949115046,
+        "within_cell_density_logscore": 35.14535826019306,
+        "mark_logscore": 0.0,
+        "timing_logscore": 8.617605130219943,
+        "conditional_location_logscore": 36.07569174377883,
+        "joint_logscore": 44.69329687399872
+      },
+      "nats_per_target": {
+        "event_ground_log": -0.10269121844346962,
+        "integrated_intensity": -0.6412915390822156,
+        "conditional_zone_logscore": 0.0588952497209303,
+        "conditional_cell_logscore": -0.0007494069968196904,
+        "within_cell_density_logscore": 2.1965848912620665,
+        "mark_logscore": 0.0,
+        "timing_logscore": 0.5386003206387464,
+        "conditional_location_logscore": 2.254730733986177,
+        "joint_logscore": 2.79333105462492
+      }
+    },
+    {
+      "fold_id": 0,
+      "contrast_id": "joint_OC_minus_commonML",
+      "arm_A": "Omori_smooth_cont",
+      "arm_B": "commonML_smooth_cont",
+      "primary_component": "joint_logscore",
+      "status": "complete",
+      "target_count": 16,
+      "components": {
+        "event_ground_log": 0.17970203050199984,
+        "integrated_intensity": 0.9999465438256898,
+        "conditional_zone_logscore": 0.25116368127107336,
+        "conditional_cell_logscore": -0.06310149606922266,
+        "within_cell_density_logscore": 0.005834712567889255,
+        "mark_logscore": 0.0,
+        "timing_logscore": -0.8202445133236864,
+        "conditional_location_logscore": 0.19389689776974706,
+        "joint_logscore": -0.6263476155539252
+      },
+      "nats_per_target": {
+        "event_ground_log": 0.01123137690637499,
+        "integrated_intensity": 0.06249665898910561,
+        "conditional_zone_logscore": 0.015697730079442085,
+        "conditional_cell_logscore": -0.003943843504326416,
+        "within_cell_density_logscore": 0.00036466953549307846,
+        "mark_logscore": 0.0,
+        "timing_logscore": -0.0512652820827304,
+        "conditional_location_logscore": 0.012118556110609191,
+        "joint_logscore": -0.03914672597212032
+      }
+    },
+    {
+      "fold_id": 1,
+      "contrast_id": "timing_OC_minus_fixedML",
+      "arm_A": "Omori_smooth_cont",
+      "arm_B": "fixedML_smooth_cont",
+      "primary_component": "timing_logscore",
+      "status": "complete",
+      "target_count": 53,
+      "components": {
+        "event_ground_log": 11.328022416515982,
+        "integrated_intensity": -0.41327028514991326,
+        "conditional_zone_logscore": -0.22179897719308883,
+        "conditional_cell_logscore": -0.05264921775541076,
+        "within_cell_density_logscore": 0.22661413965158772,
+        "mark_logscore": 0.0,
+        "timing_logscore": 11.741292701665895,
+        "conditional_location_logscore": -0.04783405529690299,
+        "joint_logscore": 11.693458646368981
+      },
+      "nats_per_target": {
+        "event_ground_log": 0.2137362720097355,
+        "integrated_intensity": -0.007797552549998364,
+        "conditional_zone_logscore": -0.0041848863621337514,
+        "conditional_cell_logscore": -0.000993381467083222,
+        "within_cell_density_logscore": 0.004275738483992221,
+        "mark_logscore": 0.0,
+        "timing_logscore": 0.22153382455973386,
+        "conditional_location_logscore": -0.0009025293452245847,
+        "joint_logscore": 0.22063129521450908
+      }
+    },
+    {
+      "fold_id": 1,
+      "contrast_id": "location_OC_minus_OL",
+      "arm_A": "Omori_smooth_cont",
+      "arm_B": "Omori_smooth_lift",
+      "primary_component": "conditional_location_logscore",
+      "status": "complete",
+      "target_count": 53,
+      "components": {
+        "event_ground_log": 7.531967718481187,
+        "integrated_intensity": 2.634436368285762,
+        "conditional_zone_logscore": 4.790368634676536,
+        "conditional_cell_logscore": 0.5378626200424819,
+        "within_cell_density_logscore": 117.54230163060117,
+        "mark_logscore": 0.0,
+        "timing_logscore": 4.897531350195425,
+        "conditional_location_logscore": 122.87053288532013,
+        "joint_logscore": 127.76806423551557
+      },
+      "nats_per_target": {
+        "event_ground_log": 0.14211259846190918,
+        "integrated_intensity": 0.04970634657142947,
+        "conditional_zone_logscore": 0.09038431386182144,
+        "conditional_cell_logscore": 0.010148351321556262,
+        "within_cell_density_logscore": 2.217779276049079,
+        "mark_logscore": 0.0,
+        "timing_logscore": 0.09240625189047973,
+        "conditional_location_logscore": 2.318311941232455,
+        "joint_logscore": 2.410718193122935
+      }
+    },
+    {
+      "fold_id": 1,
+      "contrast_id": "joint_OC_minus_commonML",
+      "arm_A": "Omori_smooth_cont",
+      "arm_B": "commonML_smooth_cont",
+      "primary_component": "joint_logscore",
+      "status": "complete",
+      "target_count": 53,
+      "components": {
+        "event_ground_log": 5.90306292739098,
+        "integrated_intensity": -0.34481110857948494,
+        "conditional_zone_logscore": 0.20233078375532898,
+        "conditional_cell_logscore": 0.03692914562980576,
+        "within_cell_density_logscore": -0.34547654212298085,
+        "mark_logscore": 0.0,
+        "timing_logscore": 6.247874035970465,
+        "conditional_location_logscore": -0.10621661273785321,
+        "joint_logscore": 6.141657423232687
+      },
+      "nats_per_target": {
+        "event_ground_log": 0.11137854579982982,
+        "integrated_intensity": -0.006505869973197829,
+        "conditional_zone_logscore": 0.0038175619576477165,
+        "conditional_cell_logscore": 0.0006967763326378445,
+        "within_cell_density_logscore": -0.0065184253230751105,
+        "mark_logscore": 0.0,
+        "timing_logscore": 0.11788441577302765,
+        "conditional_location_logscore": -0.002004087032789683,
+        "joint_logscore": 0.11588032874023937
+      }
+    },
+    {
+      "fold_id": 2,
+      "contrast_id": "timing_OC_minus_fixedML",
+      "arm_A": "Omori_smooth_cont",
+      "arm_B": "fixedML_smooth_cont",
+      "primary_component": "timing_logscore",
+      "status": "complete",
+      "target_count": 18,
+      "components": {
+        "event_ground_log": 2.1304281183355442,
+        "integrated_intensity": 0.700265718213501,
+        "conditional_zone_logscore": 0.07799306493927816,
+        "conditional_cell_logscore": 0.2557529499754878,
+        "within_cell_density_logscore": -0.02805618406745225,
+        "mark_logscore": 0.0,
+        "timing_logscore": 1.4301624001220432,
+        "conditional_location_logscore": 0.3056898308473137,
+        "joint_logscore": 1.7358522309693853
+      },
+      "nats_per_target": {
+        "event_ground_log": 0.11835711768530802,
+        "integrated_intensity": 0.03890365101186117,
+        "conditional_zone_logscore": 0.004332948052182119,
+        "conditional_cell_logscore": 0.014208497220860435,
+        "within_cell_density_logscore": -0.0015586768926362361,
+        "mark_logscore": 0.0,
+        "timing_logscore": 0.07945346667344684,
+        "conditional_location_logscore": 0.016982768380406316,
+        "joint_logscore": 0.09643623505385474
+      }
+    },
+    {
+      "fold_id": 2,
+      "contrast_id": "location_OC_minus_OL",
+      "arm_A": "Omori_smooth_cont",
+      "arm_B": "Omori_smooth_lift",
+      "primary_component": "conditional_location_logscore",
+      "status": "complete",
+      "target_count": 18,
+      "components": {
+        "event_ground_log": -1.759602458711619,
+        "integrated_intensity": -2.3630448535196074,
+        "conditional_zone_logscore": 0.14908832716560738,
+        "conditional_cell_logscore": 1.9462483110342674,
+        "within_cell_density_logscore": 23.73490800605822,
+        "mark_logscore": 0.0,
+        "timing_logscore": 0.6034423948079848,
+        "conditional_location_logscore": 25.8302446442581,
+        "joint_logscore": 26.433687039066058
+      },
+      "nats_per_target": {
+        "event_ground_log": -0.0977556921506455,
+        "integrated_intensity": -0.1312802696399782,
+        "conditional_zone_logscore": 0.008282684842533743,
+        "conditional_cell_logscore": 0.10812490616857041,
+        "within_cell_density_logscore": 1.3186060003365678,
+        "mark_logscore": 0.0,
+        "timing_logscore": 0.03352457748933249,
+        "conditional_location_logscore": 1.4350135913476723,
+        "joint_logscore": 1.4685381688370032
+      }
+    },
+    {
+      "fold_id": 2,
+      "contrast_id": "joint_OC_minus_commonML",
+      "arm_A": "Omori_smooth_cont",
+      "arm_B": "commonML_smooth_cont",
+      "primary_component": "joint_logscore",
+      "status": "complete",
+      "target_count": 18,
+      "components": {
+        "event_ground_log": 1.1966673779085184,
+        "integrated_intensity": 0.6313997116643968,
+        "conditional_zone_logscore": 0.029636825483315477,
+        "conditional_cell_logscore": 0.5403758063983446,
+        "within_cell_density_logscore": 0.09350726933229225,
+        "mark_logscore": 0.0,
+        "timing_logscore": 0.565267666244111,
+        "conditional_location_logscore": 0.6635199012139594,
+        "joint_logscore": 1.2287875674580846
+      },
+      "nats_per_target": {
+        "event_ground_log": 0.06648152099491769,
+        "integrated_intensity": 0.03507776175913316,
+        "conditional_zone_logscore": 0.0016464903046286377,
+        "conditional_cell_logscore": 0.030020878133241367,
+        "within_cell_density_logscore": 0.005194848296238458,
+        "mark_logscore": 0.0,
+        "timing_logscore": 0.031403759235783944,
+        "conditional_location_logscore": 0.03686221673410886,
+        "joint_logscore": 0.06826597596989359
+      }
+    }
+  ],
+  "pooled_arms": [
+    {
+      "arm_id": "fixedML_smooth_cont",
+      "status": "complete",
+      "target_count": 87,
+      "components": {
+        "event_ground_log": -84.97846850975631,
+        "integrated_intensity": 97.50342170736758,
+        "conditional_zone_logscore": -45.72561641308866,
+        "conditional_cell_logscore": -33.33885585894834,
+        "within_cell_density_logscore": -724.0582914225564,
+        "mark_logscore": 1.5519332067037936,
+        "timing_logscore": -182.4818902171239,
+        "conditional_location_logscore": -803.1227636945935,
+        "joint_logscore": -984.0527207050135
+      },
+      "nats_per_target": {
+        "event_ground_log": -0.9767640058592679,
+        "integrated_intensity": 1.120728985142156,
+        "conditional_zone_logscore": -0.5255817978515938,
+        "conditional_cell_logscore": -0.38320523975802695,
+        "within_cell_density_logscore": -8.322509096810993,
+        "mark_logscore": 0.01783831272073326,
+        "timing_logscore": -2.097492991001424,
+        "conditional_location_logscore": -9.231296134420614,
+        "joint_logscore": -11.310950812701304
+      }
+    },
+    {
+      "arm_id": "commonML_smooth_cont",
+      "status": "complete",
+      "target_count": 87,
+      "components": {
+        "event_ground_log": -77.49500556478502,
+        "integrated_intensity": 97.73035834987112,
+        "conditional_zone_logscore": -46.261038497114185,
+        "conditional_cell_logscore": -33.701127937155476,
+        "within_cell_density_logscore": -723.6090409796369,
+        "mark_logscore": 1.5519332067037936,
+        "timing_logscore": -175.22536391465616,
+        "conditional_location_logscore": -803.5712074139066,
+        "joint_logscore": -977.244638121859
+      },
+      "nats_per_target": {
+        "event_ground_log": -0.8907471903998277,
+        "integrated_intensity": 1.1233374522973691,
+        "conditional_zone_logscore": -0.5317360746794734,
+        "conditional_cell_logscore": -0.38736928663397097,
+        "within_cell_density_logscore": -8.317345298616516,
+        "mark_logscore": 0.01783831272073326,
+        "timing_logscore": -2.0140846426971972,
+        "conditional_location_logscore": -9.236450659929961,
+        "joint_logscore": -11.232696989906426
+      }
+    },
+    {
+      "arm_id": "Omori_smooth_cont",
+      "status": "complete",
+      "target_count": 87,
+      "components": {
+        "event_ground_log": -70.21557322898352,
+        "integrated_intensity": 99.01689349678173,
+        "conditional_zone_logscore": -45.77790720660447,
+        "conditional_cell_logscore": -33.18692448119655,
+        "within_cell_density_logscore": -723.8551755398597,
+        "mark_logscore": 1.5519332067037936,
+        "timing_logscore": -169.23246672576525,
+        "conditional_location_logscore": -802.8200072276608,
+        "joint_logscore": -970.5005407467222
+      },
+      "nats_per_target": {
+        "event_ground_log": -0.8070755543561323,
+        "integrated_intensity": 1.1381252126066865,
+        "conditional_zone_logscore": -0.5261828414552238,
+        "conditional_cell_logscore": -0.38145890208271893,
+        "within_cell_density_logscore": -8.32017443149264,
+        "mark_logscore": 0.01783831272073326,
+        "timing_logscore": -1.9452007669628189,
+        "conditional_location_logscore": -9.227816175030583,
+        "joint_logscore": -11.155178629272669
+      }
+    },
+    {
+      "arm_id": "Omori_smooth_lift",
+      "status": "complete",
+      "target_count": 87,
+      "components": {
+        "event_ground_log": -74.34487899365757,
+        "integrated_intensity": 109.00616660733102,
+        "conditional_zone_logscore": -51.6596881639815,
+        "conditional_cell_logscore": -35.65904490032418,
+        "within_cell_density_logscore": -900.2777434367122,
+        "mark_logscore": 1.5519332067037936,
+        "timing_logscore": -183.3510456009886,
+        "conditional_location_logscore": -987.5964765010178,
+        "joint_logscore": -1169.3955888953026
+      },
+      "nats_per_target": {
+        "event_ground_log": -0.8545388390075583,
+        "integrated_intensity": 1.2529444437624255,
+        "conditional_zone_logscore": -0.5937895191262241,
+        "conditional_cell_logscore": -0.40987407931407105,
+        "within_cell_density_logscore": -10.348020039502439,
+        "mark_logscore": 0.01783831272073326,
+        "timing_logscore": -2.107483282769984,
+        "conditional_location_logscore": -11.351683637942733,
+        "joint_logscore": -13.441328607991984
+      }
+    }
+  ],
+  "pooled_contrasts": [
+    {
+      "contrast_id": "timing_OC_minus_fixedML",
+      "status": "complete",
+      "target_count": 87,
+      "components": {
+        "event_ground_log": 14.762895280772785,
+        "integrated_intensity": 1.5134717894141545,
+        "conditional_zone_logscore": -0.05229079351580879,
+        "conditional_cell_logscore": 0.15193137775179189,
+        "within_cell_density_logscore": 0.20311588269666458,
+        "mark_logscore": 0.0,
+        "timing_logscore": 13.249423491358638,
+        "conditional_location_logscore": 0.30275646693266367,
+        "joint_logscore": 13.552179958291305
+      },
+      "nats_per_target": {
+        "event_ground_log": 0.16968845150313547,
+        "integrated_intensity": 0.01739622746453051,
+        "conditional_zone_logscore": -0.0006010436036299861,
+        "conditional_cell_logscore": 0.0017463376753079527,
+        "within_cell_density_logscore": 0.0023346653183524664,
+        "mark_logscore": 0.0,
+        "timing_logscore": 0.15229222403860504,
+        "conditional_location_logscore": 0.003479959390030617,
+        "joint_logscore": 0.1557721834286357
+      }
+    },
+    {
+      "contrast_id": "location_OC_minus_OL",
+      "status": "complete",
+      "target_count": 87,
+      "components": {
+        "event_ground_log": 4.129305764674054,
+        "integrated_intensity": -9.989273110549295,
+        "conditional_zone_logscore": 5.881780957377028,
+        "conditional_cell_logscore": 2.4721204191276342,
+        "within_cell_density_logscore": 176.42256789685246,
+        "mark_logscore": 0.0,
+        "timing_logscore": 14.118578875223353,
+        "conditional_location_logscore": 184.77646927335707,
+        "joint_logscore": 198.89504814858034
+      },
+      "nats_per_target": {
+        "event_ground_log": 0.047463284651425915,
+        "integrated_intensity": -0.11481923115573903,
+        "conditional_zone_logscore": 0.06760667767100033,
+        "conditional_cell_logscore": 0.028415177231352118,
+        "within_cell_density_logscore": 2.027845608009798,
+        "mark_logscore": 0.0,
+        "timing_logscore": 0.16228251580716496,
+        "conditional_location_logscore": 2.12386746291215,
+        "joint_logscore": 2.2861499787193145
+      }
+    },
+    {
+      "contrast_id": "joint_OC_minus_commonML",
+      "status": "complete",
+      "target_count": 87,
+      "components": {
+        "event_ground_log": 7.2794323358014985,
+        "integrated_intensity": 1.2865351469106017,
+        "conditional_zone_logscore": 0.4831312905097178,
+        "conditional_cell_logscore": 0.5142034559589277,
+        "within_cell_density_logscore": -0.24613456022279934,
+        "mark_logscore": 0.0,
+        "timing_logscore": 5.99289718889089,
+        "conditional_location_logscore": 0.7512001862458533,
+        "joint_logscore": 6.744097375136846
+      },
+      "nats_per_target": {
+        "event_ground_log": 0.08367163604369539,
+        "integrated_intensity": 0.01478776030931726,
+        "conditional_zone_logscore": 0.0055532332242496305,
+        "conditional_cell_logscore": 0.005910384551252043,
+        "within_cell_density_logscore": -0.00282913287612413,
+        "mark_logscore": 0.0,
+        "timing_logscore": 0.06888387573437804,
+        "conditional_location_logscore": 0.008634484899377624,
+        "joint_logscore": 0.07751836063375685
+      }
+    }
+  ],
+  "numerical_audit": {
+    "maximum_absolute_score_error": 1.1226575225009583e-11,
+    "maximum_absolute_gradient_error": 1.280568540096283e-09,
+    "maximum_gradient_criterion_ratio": 8.634848152305222e-06,
+    "score_absolute_tolerance": 0.0001,
+    "gradient_criterion": "abs(delta)<=2e-5+2e-10*maxabs_per_coordinate"
+  },
+  "stability_policy": {
+    "near_optimal_training_delta_nll": 0.0004,
+    "maximum_forecast_spread_nats_per_target": 0.01,
+    "no_test_based_reselection": true
+  },
+  "annual": {
+    "status": "independently_reproduced",
+    "planned_denominators": {
+      "arm_blocks": 60,
+      "contrast_blocks": 45,
+      "targets": 87
+    },
+    "maximum_absolute_discrepancy": 1.1368683772161603e-13,
+    "arm_blocks": [
+      {
+        "fold_id": 0,
+        "arm_id": "fixedML_smooth_cont",
+        "block_id": "california_fold_0__year_2011",
+        "start_utc": "2011-01-01T00:00:00Z",
+        "end_utc": "2012-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": -7.327799492138837,
+          "integrated_intensity": 5.851789807983442,
+          "conditional_zone_logscore": -1.1508310800526007,
+          "conditional_cell_logscore": -0.13598385510880462,
+          "within_cell_density_logscore": -17.930166357282026,
+          "mark_logscore": 0.24625804956932917,
+          "timing_logscore": -13.179589300122279,
+          "conditional_location_logscore": -19.216981292443432,
+          "joint_logscore": -32.15031254299638
+        },
+        "nats_per_target": {
+          "event_ground_log": -3.6638997460694185,
+          "integrated_intensity": 2.925894903991721,
+          "conditional_zone_logscore": -0.5754155400263004,
+          "conditional_cell_logscore": -0.06799192755440231,
+          "within_cell_density_logscore": -8.965083178641013,
+          "mark_logscore": 0.12312902478466459,
+          "timing_logscore": -6.5897946500611395,
+          "conditional_location_logscore": -9.608490646221716,
+          "joint_logscore": -16.07515627149819
+        }
+      },
+      {
+        "fold_id": 0,
+        "arm_id": "fixedML_smooth_cont",
+        "block_id": "california_fold_0__year_2012",
+        "start_utc": "2012-01-01T00:00:00Z",
+        "end_utc": "2013-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 10,
+        "components": {
+          "event_ground_log": -14.543363840259556,
+          "integrated_intensity": 9.049712167880262,
+          "conditional_zone_logscore": -5.416443323416235,
+          "conditional_cell_logscore": -1.7452187172532274,
+          "within_cell_density_logscore": -70.12124635358867,
+          "mark_logscore": -1.5247225600437302,
+          "timing_logscore": -23.593076008139818,
+          "conditional_location_logscore": -77.28290839425814,
+          "joint_logscore": -102.40070696244169
+        },
+        "nats_per_target": {
+          "event_ground_log": -1.4543363840259556,
+          "integrated_intensity": 0.9049712167880262,
+          "conditional_zone_logscore": -0.5416443323416236,
+          "conditional_cell_logscore": -0.17452187172532274,
+          "within_cell_density_logscore": -7.012124635358868,
+          "mark_logscore": -0.15247225600437303,
+          "timing_logscore": -2.359307600813982,
+          "conditional_location_logscore": -7.7282908394258145,
+          "joint_logscore": -10.24007069624417
+        }
+      },
+      {
+        "fold_id": 0,
+        "arm_id": "fixedML_smooth_cont",
+        "block_id": "california_fold_0__year_2013",
+        "start_utc": "2013-01-01T00:00:00Z",
+        "end_utc": "2014-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": -8.557379564177054,
+          "integrated_intensity": 5.597634610909677,
+          "conditional_zone_logscore": -1.704132363844023,
+          "conditional_cell_logscore": -4.8275964664089965,
+          "within_cell_density_logscore": -21.51274007347235,
+          "mark_logscore": 0.43560244095111034,
+          "timing_logscore": -14.15501417508673,
+          "conditional_location_logscore": -28.04446890372537,
+          "joint_logscore": -41.76388063786099
+        },
+        "nats_per_target": {
+          "event_ground_log": -4.278689782088527,
+          "integrated_intensity": 2.7988173054548384,
+          "conditional_zone_logscore": -0.8520661819220114,
+          "conditional_cell_logscore": -2.4137982332044983,
+          "within_cell_density_logscore": -10.756370036736175,
+          "mark_logscore": 0.21780122047555517,
+          "timing_logscore": -7.077507087543365,
+          "conditional_location_logscore": -14.022234451862685,
+          "joint_logscore": -20.881940318930496
+        }
+      },
+      {
+        "fold_id": 0,
+        "arm_id": "fixedML_smooth_cont",
+        "block_id": "california_fold_0__year_2014",
+        "start_utc": "2014-01-01T00:00:00Z",
+        "end_utc": "2015-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": -8.592324050218929,
+          "integrated_intensity": 5.648644717500982,
+          "conditional_zone_logscore": -1.2321659671136755,
+          "conditional_cell_logscore": -0.5643377060632719,
+          "within_cell_density_logscore": -21.560253395930452,
+          "mark_logscore": 0.07795192389663419,
+          "timing_logscore": -14.240968767719911,
+          "conditional_location_logscore": -23.3567570691074,
+          "joint_logscore": -37.519773912930674
+        },
+        "nats_per_target": {
+          "event_ground_log": -4.2961620251094645,
+          "integrated_intensity": 2.824322358750491,
+          "conditional_zone_logscore": -0.6160829835568378,
+          "conditional_cell_logscore": -0.28216885303163597,
+          "within_cell_density_logscore": -10.780126697965226,
+          "mark_logscore": 0.038975961948317095,
+          "timing_logscore": -7.120484383859956,
+          "conditional_location_logscore": -11.6783785345537,
+          "joint_logscore": -18.759886956465337
+        }
+      },
+      {
+        "fold_id": 0,
+        "arm_id": "fixedML_smooth_cont",
+        "block_id": "california_fold_0__year_2015",
+        "start_utc": "2015-01-01T00:00:00Z",
+        "end_utc": "2016-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 0,
+        "components": {
+          "event_ground_log": 0.0,
+          "integrated_intensity": 4.952191745748382,
+          "conditional_zone_logscore": 0.0,
+          "conditional_cell_logscore": 0.0,
+          "within_cell_density_logscore": 0.0,
+          "mark_logscore": 0.0,
+          "timing_logscore": -4.952191745748382,
+          "conditional_location_logscore": 0.0,
+          "joint_logscore": -4.952191745748382
+        },
+        "nats_per_target": {
+          "event_ground_log": null,
+          "integrated_intensity": null,
+          "conditional_zone_logscore": null,
+          "conditional_cell_logscore": null,
+          "within_cell_density_logscore": null,
+          "mark_logscore": null,
+          "timing_logscore": null,
+          "conditional_location_logscore": null,
+          "joint_logscore": null
+        }
+      },
+      {
+        "fold_id": 0,
+        "arm_id": "commonML_smooth_cont",
+        "block_id": "california_fold_0__year_2011",
+        "start_utc": "2011-01-01T00:00:00Z",
+        "end_utc": "2012-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": -7.542553400500057,
+          "integrated_intensity": 5.803160197247373,
+          "conditional_zone_logscore": -1.2851066159395175,
+          "conditional_cell_logscore": -0.15256096456872292,
+          "within_cell_density_logscore": -17.99052336222418,
+          "mark_logscore": 0.24625804956932917,
+          "timing_logscore": -13.34571359774743,
+          "conditional_location_logscore": -19.42819094273242,
+          "joint_logscore": -32.52764649091052
+        },
+        "nats_per_target": {
+          "event_ground_log": -3.7712767002500285,
+          "integrated_intensity": 2.9015800986236866,
+          "conditional_zone_logscore": -0.6425533079697587,
+          "conditional_cell_logscore": -0.07628048228436146,
+          "within_cell_density_logscore": -8.99526168111209,
+          "mark_logscore": 0.12312902478466459,
+          "timing_logscore": -6.672856798873715,
+          "conditional_location_logscore": -9.71409547136621,
+          "joint_logscore": -16.26382324545526
+        }
+      },
+      {
+        "fold_id": 0,
+        "arm_id": "commonML_smooth_cont",
+        "block_id": "california_fold_0__year_2012",
+        "start_utc": "2012-01-01T00:00:00Z",
+        "end_utc": "2013-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 10,
+        "components": {
+          "event_ground_log": -13.246968123275996,
+          "integrated_intensity": 9.094470142354488,
+          "conditional_zone_logscore": -5.440229748112477,
+          "conditional_cell_logscore": -1.7633034910689065,
+          "within_cell_density_logscore": -70.06651501235643,
+          "mark_logscore": -1.5247225600437302,
+          "timing_logscore": -22.341438265630487,
+          "conditional_location_logscore": -77.27004825153782,
+          "joint_logscore": -101.13620907721203
+        },
+        "nats_per_target": {
+          "event_ground_log": -1.3246968123275997,
+          "integrated_intensity": 0.9094470142354488,
+          "conditional_zone_logscore": -0.5440229748112477,
+          "conditional_cell_logscore": -0.17633034910689066,
+          "within_cell_density_logscore": -7.006651501235643,
+          "mark_logscore": -0.15247225600437303,
+          "timing_logscore": -2.2341438265630487,
+          "conditional_location_logscore": -7.727004825153782,
+          "joint_logscore": -10.113620907721202
+        }
+      },
+      {
+        "fold_id": 0,
+        "arm_id": "commonML_smooth_cont",
+        "block_id": "california_fold_0__year_2013",
+        "start_utc": "2013-01-01T00:00:00Z",
+        "end_utc": "2014-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": -8.545928212833697,
+          "integrated_intensity": 5.640739438896083,
+          "conditional_zone_logscore": -1.715292138026694,
+          "conditional_cell_logscore": -4.779636934149123,
+          "within_cell_density_logscore": -21.515408584176406,
+          "mark_logscore": 0.43560244095111034,
+          "timing_logscore": -14.186667651729781,
+          "conditional_location_logscore": -28.010337656352224,
+          "joint_logscore": -41.7614028671309
+        },
+        "nats_per_target": {
+          "event_ground_log": -4.272964106416849,
+          "integrated_intensity": 2.8203697194480415,
+          "conditional_zone_logscore": -0.857646069013347,
+          "conditional_cell_logscore": -2.3898184670745617,
+          "within_cell_density_logscore": -10.757704292088203,
+          "mark_logscore": 0.21780122047555517,
+          "timing_logscore": -7.093333825864891,
+          "conditional_location_logscore": -14.005168828176112,
+          "joint_logscore": -20.88070143356545
+        }
+      },
+      {
+        "fold_id": 0,
+        "arm_id": "commonML_smooth_cont",
+        "block_id": "california_fold_0__year_2014",
+        "start_utc": "2014-01-01T00:00:00Z",
+        "end_utc": "2015-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": -8.560674494765374,
+          "integrated_intensity": 5.733221002388378,
+          "conditional_zone_logscore": -1.222592794880903,
+          "conditional_cell_logscore": -0.5657062134466253,
+          "within_cell_density_logscore": -21.55323600697186,
+          "mark_logscore": 0.07795192389663419,
+          "timing_logscore": -14.293895497153752,
+          "conditional_location_logscore": -23.34153501529939,
+          "joint_logscore": -37.557478588556506
+        },
+        "nats_per_target": {
+          "event_ground_log": -4.280337247382687,
+          "integrated_intensity": 2.866610501194189,
+          "conditional_zone_logscore": -0.6112963974404515,
+          "conditional_cell_logscore": -0.28285310672331265,
+          "within_cell_density_logscore": -10.77661800348593,
+          "mark_logscore": 0.038975961948317095,
+          "timing_logscore": -7.146947748576876,
+          "conditional_location_logscore": -11.670767507649694,
+          "joint_logscore": -18.778739294278253
+        }
+      },
+      {
+        "fold_id": 0,
+        "arm_id": "commonML_smooth_cont",
+        "block_id": "california_fold_0__year_2015",
+        "start_utc": "2015-01-01T00:00:00Z",
+        "end_utc": "2016-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 0,
+        "components": {
+          "event_ground_log": 0.0,
+          "integrated_intensity": 5.054912081661308,
+          "conditional_zone_logscore": 0.0,
+          "conditional_cell_logscore": 0.0,
+          "within_cell_density_logscore": 0.0,
+          "mark_logscore": 0.0,
+          "timing_logscore": -5.054912081661308,
+          "conditional_location_logscore": 0.0,
+          "joint_logscore": -5.054912081661308
+        },
+        "nats_per_target": {
+          "event_ground_log": null,
+          "integrated_intensity": null,
+          "conditional_zone_logscore": null,
+          "conditional_cell_logscore": null,
+          "within_cell_density_logscore": null,
+          "mark_logscore": null,
+          "timing_logscore": null,
+          "conditional_location_logscore": null,
+          "joint_logscore": null
+        }
+      },
+      {
+        "fold_id": 0,
+        "arm_id": "Omori_smooth_cont",
+        "block_id": "california_fold_0__year_2011",
+        "start_utc": "2011-01-01T00:00:00Z",
+        "end_utc": "2012-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": -7.587605607220837,
+          "integrated_intensity": 6.285023373970938,
+          "conditional_zone_logscore": -1.1904952428879434,
+          "conditional_cell_logscore": -0.13556127185414102,
+          "within_cell_density_logscore": -17.90094941756133,
+          "mark_logscore": 0.24625804956932917,
+          "timing_logscore": -13.872628981191774,
+          "conditional_location_logscore": -19.227005932303413,
+          "joint_logscore": -32.85337686392586
+        },
+        "nats_per_target": {
+          "event_ground_log": -3.7938028036104186,
+          "integrated_intensity": 3.142511686985469,
+          "conditional_zone_logscore": -0.5952476214439717,
+          "conditional_cell_logscore": -0.06778063592707051,
+          "within_cell_density_logscore": -8.950474708780664,
+          "mark_logscore": 0.12312902478466459,
+          "timing_logscore": -6.936314490595887,
+          "conditional_location_logscore": -9.613502966151707,
+          "joint_logscore": -16.42668843196293
+        }
+      },
+      {
+        "fold_id": 0,
+        "arm_id": "Omori_smooth_cont",
+        "block_id": "california_fold_0__year_2012",
+        "start_utc": "2012-01-01T00:00:00Z",
+        "end_utc": "2013-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 10,
+        "components": {
+          "event_ground_log": -13.19223874924492,
+          "integrated_intensity": 9.185685570678803,
+          "conditional_zone_logscore": -5.259307484916219,
+          "conditional_cell_logscore": -1.6886468536883037,
+          "within_cell_density_logscore": -70.15987483125213,
+          "mark_logscore": -1.5247225600437302,
+          "timing_logscore": -22.37792431992372,
+          "conditional_location_logscore": -77.10782916985664,
+          "joint_logscore": -101.01047604982409
+        },
+        "nats_per_target": {
+          "event_ground_log": -1.319223874924492,
+          "integrated_intensity": 0.9185685570678803,
+          "conditional_zone_logscore": -0.5259307484916219,
+          "conditional_cell_logscore": -0.16886468536883037,
+          "within_cell_density_logscore": -7.015987483125213,
+          "mark_logscore": -0.15247225600437303,
+          "timing_logscore": -2.2377924319923723,
+          "conditional_location_logscore": -7.710782916985664,
+          "joint_logscore": -10.101047604982409
+        }
+      },
+      {
+        "fold_id": 0,
+        "arm_id": "Omori_smooth_cont",
+        "block_id": "california_fold_0__year_2013",
+        "start_utc": "2013-01-01T00:00:00Z",
+        "end_utc": "2014-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": -8.436409949264567,
+          "integrated_intensity": 5.869813392922101,
+          "conditional_zone_logscore": -1.6816057905522,
+          "conditional_cell_logscore": -4.938133189186838,
+          "within_cell_density_logscore": -21.50866587126086,
+          "mark_logscore": 0.43560244095111034,
+          "timing_logscore": -14.306223342186668,
+          "conditional_location_logscore": -28.1284048509999,
+          "joint_logscore": -41.999025752235454
+        },
+        "nats_per_target": {
+          "event_ground_log": -4.218204974632283,
+          "integrated_intensity": 2.9349066964610504,
+          "conditional_zone_logscore": -0.8408028952761,
+          "conditional_cell_logscore": -2.469066594593419,
+          "within_cell_density_logscore": -10.75433293563043,
+          "mark_logscore": 0.21780122047555517,
+          "timing_logscore": -7.153111671093334,
+          "conditional_location_logscore": -14.06420242549995,
+          "joint_logscore": -20.999512876117727
+        }
+      },
+      {
+        "fold_id": 0,
+        "arm_id": "Omori_smooth_cont",
+        "block_id": "california_fold_0__year_2014",
+        "start_utc": "2014-01-01T00:00:00Z",
+        "end_utc": "2015-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": -8.5001678951428,
+          "integrated_intensity": 5.847084490549683,
+          "conditional_zone_logscore": -1.2806490973321667,
+          "conditional_cell_logscore": -0.5619677845733007,
+          "within_cell_density_logscore": -21.550358133086714,
+          "mark_logscore": 0.07795192389663419,
+          "timing_logscore": -14.347252385692483,
+          "conditional_location_logscore": -23.39297501499218,
+          "joint_logscore": -37.66227547678803
+        },
+        "nats_per_target": {
+          "event_ground_log": -4.2500839475714,
+          "integrated_intensity": 2.9235422452748416,
+          "conditional_zone_logscore": -0.6403245486660833,
+          "conditional_cell_logscore": -0.2809838922866503,
+          "within_cell_density_logscore": -10.775179066543357,
+          "mark_logscore": 0.038975961948317095,
+          "timing_logscore": -7.173626192846242,
+          "conditional_location_logscore": -11.69648750749609,
+          "joint_logscore": -18.831137738394016
+        }
+      },
+      {
+        "fold_id": 0,
+        "arm_id": "Omori_smooth_cont",
+        "block_id": "california_fold_0__year_2015",
+        "start_utc": "2015-01-01T00:00:00Z",
+        "end_utc": "2016-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 0,
+        "components": {
+          "event_ground_log": 0.0,
+          "integrated_intensity": 5.138842578251782,
+          "conditional_zone_logscore": 0.0,
+          "conditional_cell_logscore": 0.0,
+          "within_cell_density_logscore": 0.0,
+          "mark_logscore": 0.0,
+          "timing_logscore": -5.138842578251782,
+          "conditional_location_logscore": 0.0,
+          "joint_logscore": -5.138842578251782
+        },
+        "nats_per_target": {
+          "event_ground_log": null,
+          "integrated_intensity": null,
+          "conditional_zone_logscore": null,
+          "conditional_cell_logscore": null,
+          "within_cell_density_logscore": null,
+          "mark_logscore": null,
+          "timing_logscore": null,
+          "conditional_location_logscore": null,
+          "joint_logscore": null
+        }
+      },
+      {
+        "fold_id": 0,
+        "arm_id": "Omori_smooth_lift",
+        "block_id": "california_fold_0__year_2011",
+        "start_utc": "2011-01-01T00:00:00Z",
+        "end_utc": "2012-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": -7.486288457341159,
+          "integrated_intensity": 8.048691986070196,
+          "conditional_zone_logscore": -1.823321123413851,
+          "conditional_cell_logscore": -0.2195771687240864,
+          "within_cell_density_logscore": -18.790597011198127,
+          "mark_logscore": 0.24625804956932917,
+          "timing_logscore": -15.534980443411355,
+          "conditional_location_logscore": -20.833495303336065,
+          "joint_logscore": -36.12221769717809
+        },
+        "nats_per_target": {
+          "event_ground_log": -3.7431442286705794,
+          "integrated_intensity": 4.024345993035098,
+          "conditional_zone_logscore": -0.9116605617069256,
+          "conditional_cell_logscore": -0.1097885843620432,
+          "within_cell_density_logscore": -9.395298505599063,
+          "mark_logscore": 0.12312902478466459,
+          "timing_logscore": -7.767490221705677,
+          "conditional_location_logscore": -10.416747651668032,
+          "joint_logscore": -18.061108848589043
+        }
+      },
+      {
+        "fold_id": 0,
+        "arm_id": "Omori_smooth_lift",
+        "block_id": "california_fold_0__year_2012",
+        "start_utc": "2012-01-01T00:00:00Z",
+        "end_utc": "2013-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 10,
+        "components": {
+          "event_ground_log": -13.163515916440003,
+          "integrated_intensity": 10.398496814645085,
+          "conditional_zone_logscore": -5.5903939465150305,
+          "conditional_cell_logscore": -1.7937380752453547,
+          "within_cell_density_logscore": -104.43564605548379,
+          "mark_logscore": -1.5247225600437302,
+          "timing_logscore": -23.56201273108509,
+          "conditional_location_logscore": -111.81977807724417,
+          "joint_logscore": -136.906513368373
+        },
+        "nats_per_target": {
+          "event_ground_log": -1.3163515916440003,
+          "integrated_intensity": 1.0398496814645086,
+          "conditional_zone_logscore": -0.5590393946515031,
+          "conditional_cell_logscore": -0.17937380752453547,
+          "within_cell_density_logscore": -10.443564605548378,
+          "mark_logscore": -0.15247225600437303,
+          "timing_logscore": -2.356201273108509,
+          "conditional_location_logscore": -11.181977807724417,
+          "joint_logscore": -13.6906513368373
+        }
+      },
+      {
+        "fold_id": 0,
+        "arm_id": "Omori_smooth_lift",
+        "block_id": "california_fold_0__year_2013",
+        "start_utc": "2013-01-01T00:00:00Z",
+        "end_utc": "2014-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": -7.71913152768091,
+          "integrated_intensity": 8.087412215321708,
+          "conditional_zone_logscore": -1.726947593717056,
+          "conditional_cell_logscore": -4.732094175071759,
+          "within_cell_density_logscore": -21.498025733141542,
+          "mark_logscore": 0.43560244095111034,
+          "timing_logscore": -15.806543743002617,
+          "conditional_location_logscore": -27.957067501930357,
+          "joint_logscore": -43.32800880398187
+        },
+        "nats_per_target": {
+          "event_ground_log": -3.859565763840455,
+          "integrated_intensity": 4.043706107660854,
+          "conditional_zone_logscore": -0.863473796858528,
+          "conditional_cell_logscore": -2.3660470875358794,
+          "within_cell_density_logscore": -10.749012866570771,
+          "mark_logscore": 0.21780122047555517,
+          "timing_logscore": -7.903271871501309,
+          "conditional_location_logscore": -13.978533750965179,
+          "joint_logscore": -21.664004401990933
+        }
+      },
+      {
+        "fold_id": 0,
+        "arm_id": "Omori_smooth_lift",
+        "block_id": "california_fold_0__year_2014",
+        "start_utc": "2014-01-01T00:00:00Z",
+        "end_utc": "2015-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": -7.704426804315544,
+          "integrated_intensity": 8.224947156557505,
+          "conditional_zone_logscore": -1.2137189475774748,
+          "conditional_cell_logscore": -0.566909168312268,
+          "within_cell_density_logscore": -21.540937713530596,
+          "mark_logscore": 0.07795192389663419,
+          "timing_logscore": -15.929373960873049,
+          "conditional_location_logscore": -23.32156582942034,
+          "joint_logscore": -39.17298786639675
+        },
+        "nats_per_target": {
+          "event_ground_log": -3.852213402157772,
+          "integrated_intensity": 4.1124735782787525,
+          "conditional_zone_logscore": -0.6068594737887374,
+          "conditional_cell_logscore": -0.283454584156134,
+          "within_cell_density_logscore": -10.770468856765298,
+          "mark_logscore": 0.038975961948317095,
+          "timing_logscore": -7.964686980436524,
+          "conditional_location_logscore": -11.66078291471017,
+          "joint_logscore": -19.586493933198376
+        }
+      },
+      {
+        "fold_id": 0,
+        "arm_id": "Omori_smooth_lift",
+        "block_id": "california_fold_0__year_2015",
+        "start_utc": "2015-01-01T00:00:00Z",
+        "end_utc": "2016-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 0,
+        "components": {
+          "event_ground_log": 0.0,
+          "integrated_intensity": 7.827565859094269,
+          "conditional_zone_logscore": 0.0,
+          "conditional_cell_logscore": 0.0,
+          "within_cell_density_logscore": 0.0,
+          "mark_logscore": 0.0,
+          "timing_logscore": -7.827565859094269,
+          "conditional_location_logscore": 0.0,
+          "joint_logscore": -7.827565859094269
+        },
+        "nats_per_target": {
+          "event_ground_log": null,
+          "integrated_intensity": null,
+          "conditional_zone_logscore": null,
+          "conditional_cell_logscore": null,
+          "within_cell_density_logscore": null,
+          "mark_logscore": null,
+          "timing_logscore": null,
+          "conditional_location_logscore": null,
+          "joint_logscore": null
+        }
+      },
+      {
+        "fold_id": 1,
+        "arm_id": "fixedML_smooth_cont",
+        "block_id": "california_fold_1__year_2016",
+        "start_utc": "2016-01-01T00:00:00Z",
+        "end_utc": "2017-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": -9.537120936669313,
+          "integrated_intensity": 3.966826849033193,
+          "conditional_zone_logscore": -3.123158843321699,
+          "conditional_cell_logscore": -3.326108735908157,
+          "within_cell_density_logscore": -20.676817910472074,
+          "mark_logscore": -0.7483698091674245,
+          "timing_logscore": -13.503947785702506,
+          "conditional_location_logscore": -27.12608548970193,
+          "joint_logscore": -41.37840308457186
+        },
+        "nats_per_target": {
+          "event_ground_log": -4.768560468334656,
+          "integrated_intensity": 1.9834134245165964,
+          "conditional_zone_logscore": -1.5615794216608494,
+          "conditional_cell_logscore": -1.6630543679540786,
+          "within_cell_density_logscore": -10.338408955236037,
+          "mark_logscore": -0.37418490458371223,
+          "timing_logscore": -6.751973892851253,
+          "conditional_location_logscore": -13.563042744850964,
+          "joint_logscore": -20.68920154228593
+        }
+      },
+      {
+        "fold_id": 1,
+        "arm_id": "fixedML_smooth_cont",
+        "block_id": "california_fold_1__year_2017",
+        "start_utc": "2017-01-01T00:00:00Z",
+        "end_utc": "2018-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 0,
+        "components": {
+          "event_ground_log": 0.0,
+          "integrated_intensity": 3.0237182366290805,
+          "conditional_zone_logscore": 0.0,
+          "conditional_cell_logscore": 0.0,
+          "within_cell_density_logscore": 0.0,
+          "mark_logscore": 0.0,
+          "timing_logscore": -3.0237182366290805,
+          "conditional_location_logscore": 0.0,
+          "joint_logscore": -3.0237182366290805
+        },
+        "nats_per_target": {
+          "event_ground_log": null,
+          "integrated_intensity": null,
+          "conditional_zone_logscore": null,
+          "conditional_cell_logscore": null,
+          "within_cell_density_logscore": null,
+          "mark_logscore": null,
+          "timing_logscore": null,
+          "conditional_location_logscore": null,
+          "joint_logscore": null
+        }
+      },
+      {
+        "fold_id": 1,
+        "arm_id": "fixedML_smooth_cont",
+        "block_id": "california_fold_1__year_2018",
+        "start_utc": "2018-01-01T00:00:00Z",
+        "end_utc": "2019-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 3,
+        "components": {
+          "event_ground_log": -14.408438692140844,
+          "integrated_intensity": 4.129774637796979,
+          "conditional_zone_logscore": -3.8016161301551694,
+          "conditional_cell_logscore": -5.854772654293797,
+          "within_cell_density_logscore": -33.95613872280924,
+          "mark_logscore": -0.3477105136457328,
+          "timing_logscore": -18.538213329937825,
+          "conditional_location_logscore": -43.61252750725821,
+          "joint_logscore": -62.49845135084176
+        },
+        "nats_per_target": {
+          "event_ground_log": -4.8028128973802815,
+          "integrated_intensity": 1.3765915459323264,
+          "conditional_zone_logscore": -1.2672053767183897,
+          "conditional_cell_logscore": -1.9515908847645989,
+          "within_cell_density_logscore": -11.31871290760308,
+          "mark_logscore": -0.1159035045485776,
+          "timing_logscore": -6.179404443312609,
+          "conditional_location_logscore": -14.53750916908607,
+          "joint_logscore": -20.832817116947254
+        }
+      },
+      {
+        "fold_id": 1,
+        "arm_id": "fixedML_smooth_cont",
+        "block_id": "california_fold_1__year_2019",
+        "start_utc": "2019-01-01T00:00:00Z",
+        "end_utc": "2020-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 37,
+        "components": {
+          "event_ground_log": 84.60379090695,
+          "integrated_intensity": 26.55306356602254,
+          "conditional_zone_logscore": -3.006723552605059,
+          "conditional_cell_logscore": -0.4490318261915951,
+          "within_cell_density_logscore": -281.90376501913124,
+          "mark_logscore": 1.0709093824316867,
+          "timing_logscore": 58.05072734092745,
+          "conditional_location_logscore": -285.3595203979279,
+          "joint_logscore": -226.23788367456876
+        },
+        "nats_per_target": {
+          "event_ground_log": 2.286588943431081,
+          "integrated_intensity": 0.7176503666492579,
+          "conditional_zone_logscore": -0.08126279871905565,
+          "conditional_cell_logscore": -0.012135995302475543,
+          "within_cell_density_logscore": -7.619020676192736,
+          "mark_logscore": 0.02894349682247802,
+          "timing_logscore": 1.568938576781823,
+          "conditional_location_logscore": -7.712419470214267,
+          "joint_logscore": -6.1145373966099665
+        }
+      },
+      {
+        "fold_id": 1,
+        "arm_id": "fixedML_smooth_cont",
+        "block_id": "california_fold_1__year_2020",
+        "start_utc": "2020-01-01T00:00:00Z",
+        "end_utc": "2021-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 11,
+        "components": {
+          "event_ground_log": -42.59339532822111,
+          "integrated_intensity": 7.866965956340222,
+          "conditional_zone_logscore": -10.843503047826632,
+          "conditional_cell_logscore": -3.55403928172059,
+          "within_cell_density_logscore": -98.72607079767737,
+          "mark_logscore": 0.12408570015596254,
+          "timing_logscore": -50.46036128456134,
+          "conditional_location_logscore": -113.12361312722459,
+          "joint_logscore": -163.45988871162996
+        },
+        "nats_per_target": {
+          "event_ground_log": -3.8721268480201014,
+          "integrated_intensity": 0.7151787233036565,
+          "conditional_zone_logscore": -0.9857730043478756,
+          "conditional_cell_logscore": -0.3230944801564173,
+          "within_cell_density_logscore": -8.975097345243396,
+          "mark_logscore": 0.011280518195996595,
+          "timing_logscore": -4.587305571323758,
+          "conditional_location_logscore": -10.28396482974769,
+          "joint_logscore": -14.859989882875452
+        }
+      },
+      {
+        "fold_id": 1,
+        "arm_id": "commonML_smooth_cont",
+        "block_id": "california_fold_1__year_2016",
+        "start_utc": "2016-01-01T00:00:00Z",
+        "end_utc": "2017-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": -9.499314239843734,
+          "integrated_intensity": 4.025318970890887,
+          "conditional_zone_logscore": -3.123944581370634,
+          "conditional_cell_logscore": -3.322879236425366,
+          "within_cell_density_logscore": -20.679756327782396,
+          "mark_logscore": -0.7483698091674245,
+          "timing_logscore": -13.52463321073462,
+          "conditional_location_logscore": -27.126580145578394,
+          "joint_logscore": -41.399583165480436
+        },
+        "nats_per_target": {
+          "event_ground_log": -4.749657119921867,
+          "integrated_intensity": 2.0126594854454436,
+          "conditional_zone_logscore": -1.561972290685317,
+          "conditional_cell_logscore": -1.661439618212683,
+          "within_cell_density_logscore": -10.339878163891198,
+          "mark_logscore": -0.37418490458371223,
+          "timing_logscore": -6.76231660536731,
+          "conditional_location_logscore": -13.563290072789197,
+          "joint_logscore": -20.699791582740218
+        }
+      },
+      {
+        "fold_id": 1,
+        "arm_id": "commonML_smooth_cont",
+        "block_id": "california_fold_1__year_2017",
+        "start_utc": "2017-01-01T00:00:00Z",
+        "end_utc": "2018-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 0,
+        "components": {
+          "event_ground_log": 0.0,
+          "integrated_intensity": 3.0890551640161803,
+          "conditional_zone_logscore": 0.0,
+          "conditional_cell_logscore": 0.0,
+          "within_cell_density_logscore": 0.0,
+          "mark_logscore": 0.0,
+          "timing_logscore": -3.0890551640161803,
+          "conditional_location_logscore": 0.0,
+          "joint_logscore": -3.0890551640161803
+        },
+        "nats_per_target": {
+          "event_ground_log": null,
+          "integrated_intensity": null,
+          "conditional_zone_logscore": null,
+          "conditional_cell_logscore": null,
+          "within_cell_density_logscore": null,
+          "mark_logscore": null,
+          "timing_logscore": null,
+          "conditional_location_logscore": null,
+          "joint_logscore": null
+        }
+      },
+      {
+        "fold_id": 1,
+        "arm_id": "commonML_smooth_cont",
+        "block_id": "california_fold_1__year_2018",
+        "start_utc": "2018-01-01T00:00:00Z",
+        "end_utc": "2019-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 3,
+        "components": {
+          "event_ground_log": -14.35345181212821,
+          "integrated_intensity": 4.195744069499616,
+          "conditional_zone_logscore": -3.7867557874031856,
+          "conditional_cell_logscore": -5.847120351508695,
+          "within_cell_density_logscore": -33.95504763966226,
+          "mark_logscore": -0.3477105136457328,
+          "timing_logscore": -18.549195881627824,
+          "conditional_location_logscore": -43.58892377857414,
+          "joint_logscore": -62.485830173847695
+        },
+        "nats_per_target": {
+          "event_ground_log": -4.78448393737607,
+          "integrated_intensity": 1.3985813564998721,
+          "conditional_zone_logscore": -1.2622519291343952,
+          "conditional_cell_logscore": -1.949040117169565,
+          "within_cell_density_logscore": -11.318349213220754,
+          "mark_logscore": -0.1159035045485776,
+          "timing_logscore": -6.183065293875941,
+          "conditional_location_logscore": -14.529641259524714,
+          "joint_logscore": -20.82861005794923
+        }
+      },
+      {
+        "fold_id": 1,
+        "arm_id": "commonML_smooth_cont",
+        "block_id": "california_fold_1__year_2019",
+        "start_utc": "2019-01-01T00:00:00Z",
+        "end_utc": "2020-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 37,
+        "components": {
+          "event_ground_log": 90.61173640107395,
+          "integrated_intensity": 26.443316581284353,
+          "conditional_zone_logscore": -3.2675967906112393,
+          "conditional_cell_logscore": -0.4590906063974515,
+          "within_cell_density_logscore": -281.72726291465295,
+          "mark_logscore": 1.0709093824316867,
+          "timing_logscore": 64.1684198197896,
+          "conditional_location_logscore": -285.45395031166163,
+          "joint_logscore": -220.21462110944034
+        },
+        "nats_per_target": {
+          "event_ground_log": 2.4489658486776746,
+          "integrated_intensity": 0.7146842319266041,
+          "conditional_zone_logscore": -0.08831342677327673,
+          "conditional_cell_logscore": -0.012407854226958148,
+          "within_cell_density_logscore": -7.614250349044674,
+          "mark_logscore": 0.02894349682247802,
+          "timing_logscore": 1.7342816167510704,
+          "conditional_location_logscore": -7.714971630044909,
+          "joint_logscore": -5.951746516471361
+        }
+      },
+      {
+        "fold_id": 1,
+        "arm_id": "commonML_smooth_cont",
+        "block_id": "california_fold_1__year_2020",
+        "start_utc": "2020-01-01T00:00:00Z",
+        "end_utc": "2021-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 11,
+        "components": {
+          "event_ground_log": -43.2691749100583,
+          "integrated_intensity": 7.718455283560563,
+          "conditional_zone_logscore": -11.020834175471904,
+          "conditional_cell_logscore": -3.6444406671678697,
+          "within_cell_density_logscore": -98.32863488621788,
+          "mark_logscore": 0.12408570015596254,
+          "timing_logscore": -50.98763019361886,
+          "conditional_location_logscore": -112.99390972885766,
+          "joint_logscore": -163.85745422232057
+        },
+        "nats_per_target": {
+          "event_ground_log": -3.933561355459845,
+          "integrated_intensity": 0.7016777530509603,
+          "conditional_zone_logscore": -1.0018940159519913,
+          "conditional_cell_logscore": -0.3313127879243518,
+          "within_cell_density_logscore": -8.93896680783799,
+          "mark_logscore": 0.011280518195996595,
+          "timing_logscore": -4.635239108510806,
+          "conditional_location_logscore": -10.272173611714333,
+          "joint_logscore": -14.896132202029143
+        }
+      },
+      {
+        "fold_id": 1,
+        "arm_id": "Omori_smooth_cont",
+        "block_id": "california_fold_1__year_2016",
+        "start_utc": "2016-01-01T00:00:00Z",
+        "end_utc": "2017-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": -9.460395711018725,
+          "integrated_intensity": 4.049439090783974,
+          "conditional_zone_logscore": -3.101235587859489,
+          "conditional_cell_logscore": -3.3311784201560783,
+          "within_cell_density_logscore": -20.691860600920844,
+          "mark_logscore": -0.7483698091674245,
+          "timing_logscore": -13.509834801802699,
+          "conditional_location_logscore": -27.12427460893641,
+          "joint_logscore": -41.382479219906536
+        },
+        "nats_per_target": {
+          "event_ground_log": -4.7301978555093624,
+          "integrated_intensity": 2.024719545391987,
+          "conditional_zone_logscore": -1.5506177939297445,
+          "conditional_cell_logscore": -1.6655892100780392,
+          "within_cell_density_logscore": -10.345930300460422,
+          "mark_logscore": -0.37418490458371223,
+          "timing_logscore": -6.754917400901349,
+          "conditional_location_logscore": -13.562137304468205,
+          "joint_logscore": -20.691239609953268
+        }
+      },
+      {
+        "fold_id": 1,
+        "arm_id": "Omori_smooth_cont",
+        "block_id": "california_fold_1__year_2017",
+        "start_utc": "2017-01-01T00:00:00Z",
+        "end_utc": "2018-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 0,
+        "components": {
+          "event_ground_log": 0.0,
+          "integrated_intensity": 3.126444991966662,
+          "conditional_zone_logscore": 0.0,
+          "conditional_cell_logscore": 0.0,
+          "within_cell_density_logscore": 0.0,
+          "mark_logscore": 0.0,
+          "timing_logscore": -3.126444991966662,
+          "conditional_location_logscore": 0.0,
+          "joint_logscore": -3.126444991966662
+        },
+        "nats_per_target": {
+          "event_ground_log": null,
+          "integrated_intensity": null,
+          "conditional_zone_logscore": null,
+          "conditional_cell_logscore": null,
+          "within_cell_density_logscore": null,
+          "mark_logscore": null,
+          "timing_logscore": null,
+          "conditional_location_logscore": null,
+          "joint_logscore": null
+        }
+      },
+      {
+        "fold_id": 1,
+        "arm_id": "Omori_smooth_cont",
+        "block_id": "california_fold_1__year_2018",
+        "start_utc": "2018-01-01T00:00:00Z",
+        "end_utc": "2019-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 3,
+        "components": {
+          "event_ground_log": -14.319428582894414,
+          "integrated_intensity": 4.169127025807195,
+          "conditional_zone_logscore": -3.802024490222501,
+          "conditional_cell_logscore": -5.909016579763891,
+          "within_cell_density_logscore": -33.969411780574255,
+          "mark_logscore": -0.3477105136457328,
+          "timing_logscore": -18.48855560870161,
+          "conditional_location_logscore": -43.68045285056065,
+          "joint_logscore": -62.51671897290799
+        },
+        "nats_per_target": {
+          "event_ground_log": -4.773142860964804,
+          "integrated_intensity": 1.3897090086023984,
+          "conditional_zone_logscore": -1.2673414967408336,
+          "conditional_cell_logscore": -1.9696721932546304,
+          "within_cell_density_logscore": -11.323137260191418,
+          "mark_logscore": -0.1159035045485776,
+          "timing_logscore": -6.162851869567203,
+          "conditional_location_logscore": -14.560150950186882,
+          "joint_logscore": -20.838906324302663
+        }
+      },
+      {
+        "fold_id": 1,
+        "arm_id": "Omori_smooth_cont",
+        "block_id": "california_fold_1__year_2019",
+        "start_utc": "2019-01-01T00:00:00Z",
+        "end_utc": "2020-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 37,
+        "components": {
+          "event_ground_log": 94.75902870862863,
+          "integrated_intensity": 25.731221024128757,
+          "conditional_zone_logscore": -3.1527336142734845,
+          "conditional_cell_logscore": -0.4812568452305674,
+          "within_cell_density_logscore": -281.3908974513062,
+          "mark_logscore": 1.0709093824316867,
+          "timing_logscore": 69.02780768449988,
+          "conditional_location_logscore": -285.02488791081026,
+          "joint_logscore": -214.9261708438787
+        },
+        "nats_per_target": {
+          "event_ground_log": 2.561054829962936,
+          "integrated_intensity": 0.6954384060575339,
+          "conditional_zone_logscore": -0.08520901660198607,
+          "conditional_cell_logscore": -0.013006941762988307,
+          "within_cell_density_logscore": -7.605159390575844,
+          "mark_logscore": 0.02894349682247802,
+          "timing_logscore": 1.865616423905402,
+          "conditional_location_logscore": -7.703375348940818,
+          "joint_logscore": -5.808815428212938
+        }
+      },
+      {
+        "fold_id": 1,
+        "arm_id": "Omori_smooth_cont",
+        "block_id": "california_fold_1__year_2020",
+        "start_utc": "2020-01-01T00:00:00Z",
+        "end_utc": "2021-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 11,
+        "components": {
+          "event_ground_log": -41.586346048280795,
+          "integrated_intensity": 8.050846827985522,
+          "conditional_zone_logscore": -10.940806858746157,
+          "conditional_cell_logscore": -3.5151498707190174,
+          "within_cell_density_logscore": -98.98400847763702,
+          "mark_logscore": 0.12408570015596254,
+          "timing_logscore": -49.63719287626632,
+          "conditional_location_logscore": -113.43996520710219,
+          "joint_logscore": -162.95307238321254
+        },
+        "nats_per_target": {
+          "event_ground_log": -3.7805769134800724,
+          "integrated_intensity": 0.731895166180502,
+          "conditional_zone_logscore": -0.9946188053405597,
+          "conditional_cell_logscore": -0.3195590791562743,
+          "within_cell_density_logscore": -8.998546225239728,
+          "mark_logscore": 0.011280518195996595,
+          "timing_logscore": -4.512472079660575,
+          "conditional_location_logscore": -10.312724109736562,
+          "joint_logscore": -14.81391567120114
+        }
+      },
+      {
+        "fold_id": 1,
+        "arm_id": "Omori_smooth_lift",
+        "block_id": "california_fold_1__year_2016",
+        "start_utc": "2016-01-01T00:00:00Z",
+        "end_utc": "2017-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": -8.809741484913648,
+          "integrated_intensity": 5.06258875475995,
+          "conditional_zone_logscore": -3.1239204222559147,
+          "conditional_cell_logscore": -3.322116127793974,
+          "within_cell_density_logscore": -20.57166942408991,
+          "mark_logscore": -0.7483698091674245,
+          "timing_logscore": -13.872330239673598,
+          "conditional_location_logscore": -27.0177059741398,
+          "joint_logscore": -41.638406022980824
+        },
+        "nats_per_target": {
+          "event_ground_log": -4.404870742456824,
+          "integrated_intensity": 2.531294377379975,
+          "conditional_zone_logscore": -1.5619602111279574,
+          "conditional_cell_logscore": -1.661058063896987,
+          "within_cell_density_logscore": -10.285834712044956,
+          "mark_logscore": -0.37418490458371223,
+          "timing_logscore": -6.936165119836799,
+          "conditional_location_logscore": -13.5088529870699,
+          "joint_logscore": -20.819203011490412
+        }
+      },
+      {
+        "fold_id": 1,
+        "arm_id": "Omori_smooth_lift",
+        "block_id": "california_fold_1__year_2017",
+        "start_utc": "2017-01-01T00:00:00Z",
+        "end_utc": "2018-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 0,
+        "components": {
+          "event_ground_log": 0.0,
+          "integrated_intensity": 4.369501808400482,
+          "conditional_zone_logscore": 0.0,
+          "conditional_cell_logscore": 0.0,
+          "within_cell_density_logscore": 0.0,
+          "mark_logscore": 0.0,
+          "timing_logscore": -4.369501808400482,
+          "conditional_location_logscore": 0.0,
+          "joint_logscore": -4.369501808400482
+        },
+        "nats_per_target": {
+          "event_ground_log": null,
+          "integrated_intensity": null,
+          "conditional_zone_logscore": null,
+          "conditional_cell_logscore": null,
+          "within_cell_density_logscore": null,
+          "mark_logscore": null,
+          "timing_logscore": null,
+          "conditional_location_logscore": null,
+          "joint_logscore": null
+        }
+      },
+      {
+        "fold_id": 1,
+        "arm_id": "Omori_smooth_lift",
+        "block_id": "california_fold_1__year_2018",
+        "start_utc": "2018-01-01T00:00:00Z",
+        "end_utc": "2019-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 3,
+        "components": {
+          "event_ground_log": -13.323302663132399,
+          "integrated_intensity": 5.106659995713504,
+          "conditional_zone_logscore": -3.7718539790079815,
+          "conditional_cell_logscore": -5.84172037692819,
+          "within_cell_density_logscore": -33.925807706029794,
+          "mark_logscore": -0.3477105136457328,
+          "timing_logscore": -18.429962658845902,
+          "conditional_location_logscore": -43.539382061965966,
+          "joint_logscore": -62.3170552344576
+        },
+        "nats_per_target": {
+          "event_ground_log": -4.4411008877108,
+          "integrated_intensity": 1.7022199985711681,
+          "conditional_zone_logscore": -1.2572846596693272,
+          "conditional_cell_logscore": -1.9472401256427299,
+          "within_cell_density_logscore": -11.308602568676598,
+          "mark_logscore": -0.1159035045485776,
+          "timing_logscore": -6.143320886281967,
+          "conditional_location_logscore": -14.513127353988656,
+          "joint_logscore": -20.7723517448192
+        }
+      },
+      {
+        "fold_id": 1,
+        "arm_id": "Omori_smooth_lift",
+        "block_id": "california_fold_1__year_2019",
+        "start_utc": "2019-01-01T00:00:00Z",
+        "end_utc": "2020-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 37,
+        "components": {
+          "event_ground_log": 85.34689793408924,
+          "integrated_intensity": 20.52839374943151,
+          "conditional_zone_logscore": -6.621416823350194,
+          "conditional_cell_logscore": -0.6081599155893165,
+          "within_cell_density_logscore": -389.80303181572015,
+          "mark_logscore": 1.0709093824316867,
+          "timing_logscore": 64.81850418465774,
+          "conditional_location_logscore": -397.03260855465965,
+          "joint_logscore": -331.1431949875702
+        },
+        "nats_per_target": {
+          "event_ground_log": 2.306672917137547,
+          "integrated_intensity": 0.5548214526873381,
+          "conditional_zone_logscore": -0.17895721144189713,
+          "conditional_cell_logscore": -0.016436754475386933,
+          "within_cell_density_logscore": -10.535217076100544,
+          "mark_logscore": 0.02894349682247802,
+          "timing_logscore": 1.7518514644502092,
+          "conditional_location_logscore": -10.730611042017829,
+          "joint_logscore": -8.94981608074514
+        }
+      },
+      {
+        "fold_id": 1,
+        "arm_id": "Omori_smooth_lift",
+        "block_id": "california_fold_1__year_2020",
+        "start_utc": "2020-01-01T00:00:00Z",
+        "end_utc": "2021-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 11,
+        "components": {
+          "event_ground_log": -41.352963138089656,
+          "integrated_intensity": 7.425498284080902,
+          "conditional_zone_logscore": -12.269977961164123,
+          "conditional_cell_logscore": -4.002467915600544,
+          "within_cell_density_logscore": -108.27797099519981,
+          "mark_logscore": 0.12408570015596254,
+          "timing_logscore": -48.77846142217056,
+          "conditional_location_logscore": -124.55041687196447,
+          "joint_logscore": -173.20479259397908
+        },
+        "nats_per_target": {
+          "event_ground_log": -3.7593602852808776,
+          "integrated_intensity": 0.6750452985528093,
+          "conditional_zone_logscore": -1.115452541924011,
+          "conditional_cell_logscore": -0.36386071960004945,
+          "within_cell_density_logscore": -9.843451908654528,
+          "mark_logscore": 0.011280518195996595,
+          "timing_logscore": -4.434405583833687,
+          "conditional_location_logscore": -11.322765170178588,
+          "joint_logscore": -15.74589023581628
+        }
+      },
+      {
+        "fold_id": 2,
+        "arm_id": "fixedML_smooth_cont",
+        "block_id": "california_fold_2__year_2021",
+        "start_utc": "2021-01-01T00:00:00Z",
+        "end_utc": "2022-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": -9.481447635733495,
+          "integrated_intensity": 4.06459822593706,
+          "conditional_zone_logscore": -2.3851270299813505,
+          "conditional_cell_logscore": -0.29890096231965035,
+          "within_cell_density_logscore": -15.717860947379942,
+          "mark_logscore": -0.616668871721995,
+          "timing_logscore": -13.546045861670557,
+          "conditional_location_logscore": -18.401888939680944,
+          "joint_logscore": -32.5646036730735
+        },
+        "nats_per_target": {
+          "event_ground_log": -4.740723817866748,
+          "integrated_intensity": 2.03229911296853,
+          "conditional_zone_logscore": -1.1925635149906753,
+          "conditional_cell_logscore": -0.14945048115982518,
+          "within_cell_density_logscore": -7.858930473689971,
+          "mark_logscore": -0.3083344358609975,
+          "timing_logscore": -6.773022930835278,
+          "conditional_location_logscore": -9.200944469840472,
+          "joint_logscore": -16.28230183653675
+        }
+      },
+      {
+        "fold_id": 2,
+        "arm_id": "fixedML_smooth_cont",
+        "block_id": "california_fold_2__year_2022",
+        "start_utc": "2022-01-01T00:00:00Z",
+        "end_utc": "2023-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 1,
+        "components": {
+          "event_ground_log": -4.814757904444826,
+          "integrated_intensity": 3.202228510608826,
+          "conditional_zone_logscore": -1.363832395098143,
+          "conditional_cell_logscore": -0.1709691297045497,
+          "within_cell_density_logscore": -7.337279928194743,
+          "mark_logscore": 0.5782248967429819,
+          "timing_logscore": -8.016986415053651,
+          "conditional_location_logscore": -8.872081452997435,
+          "joint_logscore": -16.310842971308105
+        },
+        "nats_per_target": {
+          "event_ground_log": -4.814757904444826,
+          "integrated_intensity": 3.202228510608826,
+          "conditional_zone_logscore": -1.363832395098143,
+          "conditional_cell_logscore": -0.1709691297045497,
+          "within_cell_density_logscore": -7.337279928194743,
+          "mark_logscore": 0.5782248967429819,
+          "timing_logscore": -8.016986415053651,
+          "conditional_location_logscore": -8.872081452997435,
+          "joint_logscore": -16.310842971308105
+        }
+      },
+      {
+        "fold_id": 2,
+        "arm_id": "fixedML_smooth_cont",
+        "block_id": "california_fold_2__year_2023",
+        "start_utc": "2023-01-01T00:00:00Z",
+        "end_utc": "2024-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": -9.679689398180393,
+          "integrated_intensity": 3.674922306462314,
+          "conditional_zone_logscore": -2.008357708503162,
+          "conditional_cell_logscore": -2.7081158708639856,
+          "within_cell_density_logscore": -22.22095395485556,
+          "mark_logscore": -0.363366205263715,
+          "timing_logscore": -13.354611704642707,
+          "conditional_location_logscore": -26.937427534222707,
+          "joint_logscore": -40.65540544412913
+        },
+        "nats_per_target": {
+          "event_ground_log": -4.839844699090197,
+          "integrated_intensity": 1.837461153231157,
+          "conditional_zone_logscore": -1.004178854251581,
+          "conditional_cell_logscore": -1.3540579354319928,
+          "within_cell_density_logscore": -11.11047697742778,
+          "mark_logscore": -0.1816831026318575,
+          "timing_logscore": -6.6773058523213535,
+          "conditional_location_logscore": -13.468713767111353,
+          "joint_logscore": -20.327702722064565
+        }
+      },
+      {
+        "fold_id": 2,
+        "arm_id": "fixedML_smooth_cont",
+        "block_id": "california_fold_2__year_2024",
+        "start_utc": "2024-01-01T00:00:00Z",
+        "end_utc": "2025-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 12,
+        "components": {
+          "event_ground_log": -35.20187633651216,
+          "integrated_intensity": 6.47382208460745,
+          "conditional_zone_logscore": -8.510324620552607,
+          "conditional_cell_logscore": -7.691785959901066,
+          "within_cell_density_logscore": -99.57705660380006,
+          "mark_logscore": 3.371352874961678,
+          "timing_logscore": -41.675698421119606,
+          "conditional_location_logscore": -115.77916718425374,
+          "joint_logscore": -154.08351273041166
+        },
+        "nats_per_target": {
+          "event_ground_log": -2.9334896947093463,
+          "integrated_intensity": 0.5394851737172875,
+          "conditional_zone_logscore": -0.7091937183793839,
+          "conditional_cell_logscore": -0.6409821633250888,
+          "within_cell_density_logscore": -8.298088050316672,
+          "mark_logscore": 0.2809460729134732,
+          "timing_logscore": -3.472974868426634,
+          "conditional_location_logscore": -9.648263932021145,
+          "joint_logscore": -12.840292727534305
+        }
+      },
+      {
+        "fold_id": 2,
+        "arm_id": "fixedML_smooth_cont",
+        "block_id": "california_fold_2__year_2025",
+        "start_utc": "2025-01-01T00:00:00Z",
+        "end_utc": "2026-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 1,
+        "components": {
+          "event_ground_log": -4.8446662380097765,
+          "integrated_intensity": 3.447528283907161,
+          "conditional_zone_logscore": -1.1794003506182875,
+          "conditional_cell_logscore": -2.011994693210659,
+          "within_cell_density_logscore": -12.817941357962674,
+          "mark_logscore": -0.7516141021629873,
+          "timing_logscore": -8.292194521916937,
+          "conditional_location_logscore": -16.00933640179162,
+          "joint_logscore": -25.053145025871544
+        },
+        "nats_per_target": {
+          "event_ground_log": -4.8446662380097765,
+          "integrated_intensity": 3.447528283907161,
+          "conditional_zone_logscore": -1.1794003506182875,
+          "conditional_cell_logscore": -2.011994693210659,
+          "within_cell_density_logscore": -12.817941357962674,
+          "mark_logscore": -0.7516141021629873,
+          "timing_logscore": -8.292194521916937,
+          "conditional_location_logscore": -16.00933640179162,
+          "joint_logscore": -25.053145025871544
+        }
+      },
+      {
+        "fold_id": 2,
+        "arm_id": "commonML_smooth_cont",
+        "block_id": "california_fold_2__year_2021",
+        "start_utc": "2021-01-01T00:00:00Z",
+        "end_utc": "2022-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": -9.517701121631967,
+          "integrated_intensity": 4.023038784132108,
+          "conditional_zone_logscore": -2.361267266017756,
+          "conditional_cell_logscore": -0.3051367576425834,
+          "within_cell_density_logscore": -15.654273909199734,
+          "mark_logscore": -0.616668871721995,
+          "timing_logscore": -13.540739905764076,
+          "conditional_location_logscore": -18.32067793286007,
+          "joint_logscore": -32.47808671034614
+        },
+        "nats_per_target": {
+          "event_ground_log": -4.758850560815984,
+          "integrated_intensity": 2.011519392066054,
+          "conditional_zone_logscore": -1.180633633008878,
+          "conditional_cell_logscore": -0.1525683788212917,
+          "within_cell_density_logscore": -7.827136954599867,
+          "mark_logscore": -0.3083344358609975,
+          "timing_logscore": -6.770369952882038,
+          "conditional_location_logscore": -9.160338966430036,
+          "joint_logscore": -16.23904335517307
+        }
+      },
+      {
+        "fold_id": 2,
+        "arm_id": "commonML_smooth_cont",
+        "block_id": "california_fold_2__year_2022",
+        "start_utc": "2022-01-01T00:00:00Z",
+        "end_utc": "2023-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 1,
+        "components": {
+          "event_ground_log": -4.804356173995831,
+          "integrated_intensity": 3.2278621630472557,
+          "conditional_zone_logscore": -1.404063120503018,
+          "conditional_cell_logscore": -0.18131888466726753,
+          "within_cell_density_logscore": -7.3740621896873355,
+          "mark_logscore": 0.5782248967429819,
+          "timing_logscore": -8.032218337043087,
+          "conditional_location_logscore": -8.959444194857621,
+          "joint_logscore": -16.413437635157727
+        },
+        "nats_per_target": {
+          "event_ground_log": -4.804356173995831,
+          "integrated_intensity": 3.2278621630472557,
+          "conditional_zone_logscore": -1.404063120503018,
+          "conditional_cell_logscore": -0.18131888466726753,
+          "within_cell_density_logscore": -7.3740621896873355,
+          "mark_logscore": 0.5782248967429819,
+          "timing_logscore": -8.032218337043087,
+          "conditional_location_logscore": -8.959444194857621,
+          "joint_logscore": -16.413437635157727
+        }
+      },
+      {
+        "fold_id": 2,
+        "arm_id": "commonML_smooth_cont",
+        "block_id": "california_fold_2__year_2023",
+        "start_utc": "2023-01-01T00:00:00Z",
+        "end_utc": "2024-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": -9.65121827413536,
+          "integrated_intensity": 3.728252602545968,
+          "conditional_zone_logscore": -1.9835300487756573,
+          "conditional_cell_logscore": -2.7104644186489946,
+          "within_cell_density_logscore": -22.213038536572288,
+          "mark_logscore": -0.363366205263715,
+          "timing_logscore": -13.379470876681328,
+          "conditional_location_logscore": -26.90703300399694,
+          "joint_logscore": -40.649870085941984
+        },
+        "nats_per_target": {
+          "event_ground_log": -4.82560913706768,
+          "integrated_intensity": 1.864126301272984,
+          "conditional_zone_logscore": -0.9917650243878287,
+          "conditional_cell_logscore": -1.3552322093244973,
+          "within_cell_density_logscore": -11.106519268286144,
+          "mark_logscore": -0.1816831026318575,
+          "timing_logscore": -6.689735438340664,
+          "conditional_location_logscore": -13.45351650199847,
+          "joint_logscore": -20.324935042970992
+        }
+      },
+      {
+        "fold_id": 2,
+        "arm_id": "commonML_smooth_cont",
+        "block_id": "california_fold_2__year_2024",
+        "start_utc": "2024-01-01T00:00:00Z",
+        "end_utc": "2025-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 12,
+        "components": {
+          "event_ground_log": -34.27647084081464,
+          "integrated_intensity": 6.48848949904657,
+          "conditional_zone_logscore": -8.47564755275043,
+          "conditional_cell_logscore": -7.975467270195055,
+          "within_cell_density_logscore": -99.73345688738,
+          "mark_logscore": 3.371352874961678,
+          "timing_logscore": -40.76496033986121,
+          "conditional_location_logscore": -116.18457171032549,
+          "joint_logscore": -153.57817917522502
+        },
+        "nats_per_target": {
+          "event_ground_log": -2.8563725700678866,
+          "integrated_intensity": 0.5407074582538808,
+          "conditional_zone_logscore": -0.7063039627292026,
+          "conditional_cell_logscore": -0.6646222725162546,
+          "within_cell_density_logscore": -8.311121407281666,
+          "mark_logscore": 0.2809460729134732,
+          "timing_logscore": -3.3970800283217675,
+          "conditional_location_logscore": -9.682047642527124,
+          "joint_logscore": -12.798181597935418
+        }
+      },
+      {
+        "fold_id": 2,
+        "arm_id": "commonML_smooth_cont",
+        "block_id": "california_fold_2__year_2025",
+        "start_utc": "2025-01-01T00:00:00Z",
+        "end_utc": "2026-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 1,
+        "components": {
+          "event_ground_log": -4.838930361875811,
+          "integrated_intensity": 3.4643223693000067,
+          "conditional_zone_logscore": -1.1741778772507354,
+          "conditional_cell_logscore": -1.9940021412688589,
+          "within_cell_density_logscore": -12.817824722753324,
+          "mark_logscore": -0.7516141021629873,
+          "timing_logscore": -8.303252731175817,
+          "conditional_location_logscore": -15.986004741272918,
+          "joint_logscore": -25.04087157461172
+        },
+        "nats_per_target": {
+          "event_ground_log": -4.838930361875811,
+          "integrated_intensity": 3.4643223693000067,
+          "conditional_zone_logscore": -1.1741778772507354,
+          "conditional_cell_logscore": -1.9940021412688589,
+          "within_cell_density_logscore": -12.817824722753324,
+          "mark_logscore": -0.7516141021629873,
+          "timing_logscore": -8.303252731175817,
+          "conditional_location_logscore": -15.986004741272918,
+          "joint_logscore": -25.04087157461172
+        }
+      },
+      {
+        "fold_id": 2,
+        "arm_id": "Omori_smooth_cont",
+        "block_id": "california_fold_2__year_2021",
+        "start_utc": "2021-01-01T00:00:00Z",
+        "end_utc": "2022-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": -9.314731966542105,
+          "integrated_intensity": 4.298259691412788,
+          "conditional_zone_logscore": -2.449416038324161,
+          "conditional_cell_logscore": -0.2948741865193707,
+          "within_cell_density_logscore": -15.764195281479958,
+          "mark_logscore": -0.616668871721995,
+          "timing_logscore": -13.612991657954893,
+          "conditional_location_logscore": -18.50848550632349,
+          "joint_logscore": -32.73814603600038
+        },
+        "nats_per_target": {
+          "event_ground_log": -4.657365983271053,
+          "integrated_intensity": 2.149129845706394,
+          "conditional_zone_logscore": -1.2247080191620805,
+          "conditional_cell_logscore": -0.14743709325968535,
+          "within_cell_density_logscore": -7.882097640739979,
+          "mark_logscore": -0.3083344358609975,
+          "timing_logscore": -6.806495828977447,
+          "conditional_location_logscore": -9.254242753161744,
+          "joint_logscore": -16.36907301800019
+        }
+      },
+      {
+        "fold_id": 2,
+        "arm_id": "Omori_smooth_cont",
+        "block_id": "california_fold_2__year_2022",
+        "start_utc": "2022-01-01T00:00:00Z",
+        "end_utc": "2023-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 1,
+        "components": {
+          "event_ground_log": -4.751312055907029,
+          "integrated_intensity": 3.3916700492887806,
+          "conditional_zone_logscore": -1.2810609016139178,
+          "conditional_cell_logscore": -0.15435687155344535,
+          "within_cell_density_logscore": -7.261467091567652,
+          "mark_logscore": 0.5782248967429819,
+          "timing_logscore": -8.14298210519581,
+          "conditional_location_logscore": -8.696884864735015,
+          "joint_logscore": -16.261642073187843
+        },
+        "nats_per_target": {
+          "event_ground_log": -4.751312055907029,
+          "integrated_intensity": 3.3916700492887806,
+          "conditional_zone_logscore": -1.2810609016139178,
+          "conditional_cell_logscore": -0.15435687155344535,
+          "within_cell_density_logscore": -7.261467091567652,
+          "mark_logscore": 0.5782248967429819,
+          "timing_logscore": -8.14298210519581,
+          "conditional_location_logscore": -8.696884864735015,
+          "joint_logscore": -16.261642073187843
+        }
+      },
+      {
+        "fold_id": 2,
+        "arm_id": "Omori_smooth_cont",
+        "block_id": "california_fold_2__year_2023",
+        "start_utc": "2023-01-01T00:00:00Z",
+        "end_utc": "2024-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": -9.57900412868085,
+          "integrated_intensity": 3.803612077834794,
+          "conditional_zone_logscore": -2.0505246872287106,
+          "conditional_cell_logscore": -2.707137797578783,
+          "within_cell_density_logscore": -22.24809408559117,
+          "mark_logscore": -0.363366205263715,
+          "timing_logscore": -13.382616206515644,
+          "conditional_location_logscore": -27.005756570398663,
+          "joint_logscore": -40.751738982178026
+        },
+        "nats_per_target": {
+          "event_ground_log": -4.789502064340425,
+          "integrated_intensity": 1.901806038917397,
+          "conditional_zone_logscore": -1.0252623436143553,
+          "conditional_cell_logscore": -1.3535688987893915,
+          "within_cell_density_logscore": -11.124047042795585,
+          "mark_logscore": -0.1816831026318575,
+          "timing_logscore": -6.691308103257822,
+          "conditional_location_logscore": -13.502878285199332,
+          "joint_logscore": -20.375869491089013
+        }
+      },
+      {
+        "fold_id": 2,
+        "arm_id": "Omori_smooth_cont",
+        "block_id": "california_fold_2__year_2024",
+        "start_utc": "2024-01-01T00:00:00Z",
+        "end_utc": "2025-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 12,
+        "components": {
+          "event_ground_log": -33.456237601018344,
+          "integrated_intensity": 6.490705864041984,
+          "conditional_zone_logscore": -8.40551100805428,
+          "conditional_cell_logscore": -7.422087392123246,
+          "within_cell_density_logscore": -99.61234456680684,
+          "mark_logscore": 3.371352874961678,
+          "timing_logscore": -39.94694346506033,
+          "conditional_location_logscore": -115.43994296698436,
+          "joint_logscore": -152.01553355708302
+        },
+        "nats_per_target": {
+          "event_ground_log": -2.788019800084862,
+          "integrated_intensity": 0.540892155336832,
+          "conditional_zone_logscore": -0.70045925067119,
+          "conditional_cell_logscore": -0.6185072826769372,
+          "within_cell_density_logscore": -8.30102871390057,
+          "mark_logscore": 0.2809460729134732,
+          "timing_logscore": -3.328911955421694,
+          "conditional_location_logscore": -9.619995247248697,
+          "joint_logscore": -12.667961129756918
+        }
+      },
+      {
+        "fold_id": 2,
+        "arm_id": "Omori_smooth_cont",
+        "block_id": "california_fold_2__year_2025",
+        "start_utc": "2025-01-01T00:00:00Z",
+        "end_utc": "2026-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 1,
+        "components": {
+          "event_ground_log": -4.790723642396775,
+          "integrated_intensity": 3.5791174471579645,
+          "conditional_zone_logscore": -1.182536404593204,
+          "conditional_cell_logscore": -2.047557418249572,
+          "within_cell_density_logscore": -12.813047950814768,
+          "mark_logscore": -0.7516141021629873,
+          "timing_logscore": -8.36984108955474,
+          "conditional_location_logscore": -16.043141773657545,
+          "joint_logscore": -25.16459696537527
+        },
+        "nats_per_target": {
+          "event_ground_log": -4.790723642396775,
+          "integrated_intensity": 3.5791174471579645,
+          "conditional_zone_logscore": -1.182536404593204,
+          "conditional_cell_logscore": -2.047557418249572,
+          "within_cell_density_logscore": -12.813047950814768,
+          "mark_logscore": -0.7516141021629873,
+          "timing_logscore": -8.36984108955474,
+          "conditional_location_logscore": -16.043141773657545,
+          "joint_logscore": -25.16459696537527
+        }
+      },
+      {
+        "fold_id": 2,
+        "arm_id": "Omori_smooth_lift",
+        "block_id": "california_fold_2__year_2021",
+        "start_utc": "2021-01-01T00:00:00Z",
+        "end_utc": "2022-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": -9.00220490752941,
+          "integrated_intensity": 4.718406999269705,
+          "conditional_zone_logscore": -2.3540318153381365,
+          "conditional_cell_logscore": -0.3063847905602666,
+          "within_cell_density_logscore": -15.632259991361153,
+          "mark_logscore": -0.616668871721995,
+          "timing_logscore": -13.720611906799116,
+          "conditional_location_logscore": -18.292676597259558,
+          "joint_logscore": -32.62995737578067
+        },
+        "nats_per_target": {
+          "event_ground_log": -4.501102453764705,
+          "integrated_intensity": 2.3592034996348525,
+          "conditional_zone_logscore": -1.1770159076690683,
+          "conditional_cell_logscore": -0.1531923952801333,
+          "within_cell_density_logscore": -7.816129995680576,
+          "mark_logscore": -0.3083344358609975,
+          "timing_logscore": -6.860305953399558,
+          "conditional_location_logscore": -9.146338298629779,
+          "joint_logscore": -16.314978687890335
+        }
+      },
+      {
+        "fold_id": 2,
+        "arm_id": "Omori_smooth_lift",
+        "block_id": "california_fold_2__year_2022",
+        "start_utc": "2022-01-01T00:00:00Z",
+        "end_utc": "2023-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 1,
+        "components": {
+          "event_ground_log": -4.533618833622125,
+          "integrated_intensity": 4.0989562148996335,
+          "conditional_zone_logscore": -1.4222548975470781,
+          "conditional_cell_logscore": -0.18612382093163227,
+          "within_cell_density_logscore": -7.455175910609985,
+          "mark_logscore": 0.5782248967429819,
+          "timing_logscore": -8.632575048521758,
+          "conditional_location_logscore": -9.063554629088696,
+          "joint_logscore": -17.117904780867473
+        },
+        "nats_per_target": {
+          "event_ground_log": -4.533618833622125,
+          "integrated_intensity": 4.0989562148996335,
+          "conditional_zone_logscore": -1.4222548975470781,
+          "conditional_cell_logscore": -0.18612382093163227,
+          "within_cell_density_logscore": -7.455175910609985,
+          "mark_logscore": 0.5782248967429819,
+          "timing_logscore": -8.632575048521758,
+          "conditional_location_logscore": -9.063554629088696,
+          "joint_logscore": -17.117904780867473
+        }
+      },
+      {
+        "fold_id": 2,
+        "arm_id": "Omori_smooth_lift",
+        "block_id": "california_fold_2__year_2023",
+        "start_utc": "2023-01-01T00:00:00Z",
+        "end_utc": "2024-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": -9.112195571727213,
+          "integrated_intensity": 4.446699071208816,
+          "conditional_zone_logscore": -1.97178148459912,
+          "conditional_cell_logscore": -2.7121787721541324,
+          "within_cell_density_logscore": -22.18742956028326,
+          "mark_logscore": -0.363366205263715,
+          "timing_logscore": -13.558894642936028,
+          "conditional_location_logscore": -26.871389817036512,
+          "joint_logscore": -40.79365066523626
+        },
+        "nats_per_target": {
+          "event_ground_log": -4.5560977858636065,
+          "integrated_intensity": 2.223349535604408,
+          "conditional_zone_logscore": -0.98589074229956,
+          "conditional_cell_logscore": -1.3560893860770662,
+          "within_cell_density_logscore": -11.09371478014163,
+          "mark_logscore": -0.1816831026318575,
+          "timing_logscore": -6.779447321468014,
+          "conditional_location_logscore": -13.435694908518256,
+          "joint_logscore": -20.39682533261813
+        }
+      },
+      {
+        "fold_id": 2,
+        "arm_id": "Omori_smooth_lift",
+        "block_id": "california_fold_2__year_2024",
+        "start_utc": "2024-01-01T00:00:00Z",
+        "end_utc": "2025-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 12,
+        "components": {
+          "event_ground_log": -32.90746764744371,
+          "integrated_intensity": 6.48287623436085,
+          "conditional_zone_logscore": -8.598828069048247,
+          "conditional_cell_logscore": -9.380226655357111,
+          "within_cell_density_logscore": -123.36382311488667,
+          "mark_logscore": 3.371352874961678,
+          "timing_logscore": -39.39034388180456,
+          "conditional_location_logscore": -141.34287783929204,
+          "joint_logscore": -177.36186884613494
+        },
+        "nats_per_target": {
+          "event_ground_log": -2.7422889706203093,
+          "integrated_intensity": 0.5402396861967375,
+          "conditional_zone_logscore": -0.7165690057540206,
+          "conditional_cell_logscore": -0.7816855546130926,
+          "within_cell_density_logscore": -10.280318592907223,
+          "mark_logscore": 0.2809460729134732,
+          "timing_logscore": -3.2825286568170466,
+          "conditional_location_logscore": -11.778573153274337,
+          "joint_logscore": -14.780155737177912
+        }
+      },
+      {
+        "fold_id": 2,
+        "arm_id": "Omori_smooth_lift",
+        "block_id": "california_fold_2__year_2025",
+        "start_utc": "2025-01-01T00:00:00Z",
+        "end_utc": "2026-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 1,
+        "components": {
+          "event_ground_log": -4.576919975511038,
+          "integrated_intensity": 4.179471463516913,
+          "conditional_zone_logscore": -1.1712411004472978,
+          "conditional_cell_logscore": -1.9873479380555334,
+          "within_cell_density_logscore": -12.795368405177529,
+          "mark_logscore": -0.7516141021629873,
+          "timing_logscore": -8.75639143902795,
+          "conditional_location_logscore": -15.953957443680359,
+          "joint_logscore": -25.461962984871295
+        },
+        "nats_per_target": {
+          "event_ground_log": -4.576919975511038,
+          "integrated_intensity": 4.179471463516913,
+          "conditional_zone_logscore": -1.1712411004472978,
+          "conditional_cell_logscore": -1.9873479380555334,
+          "within_cell_density_logscore": -12.795368405177529,
+          "mark_logscore": -0.7516141021629873,
+          "timing_logscore": -8.75639143902795,
+          "conditional_location_logscore": -15.953957443680359,
+          "joint_logscore": -25.461962984871295
+        }
+      }
+    ],
+    "contrast_blocks": [
+      {
+        "fold_id": 0,
+        "contrast_id": "timing_OC_minus_fixedML",
+        "block_id": "california_fold_0__year_2011",
+        "start_utc": "2011-01-01T00:00:00Z",
+        "end_utc": "2012-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": -0.25980611508200013,
+          "integrated_intensity": 0.4332335659874955,
+          "conditional_zone_logscore": -0.03966416283534269,
+          "conditional_cell_logscore": 0.0004225832546635999,
+          "within_cell_density_logscore": 0.02921693972069761,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.6930396810694948,
+          "conditional_location_logscore": -0.010024639859981477,
+          "joint_logscore": -0.703064320929478
+        },
+        "nats_per_target": {
+          "event_ground_log": -0.12990305754100007,
+          "integrated_intensity": 0.21661678299374776,
+          "conditional_zone_logscore": -0.019832081417671343,
+          "conditional_cell_logscore": 0.00021129162733179996,
+          "within_cell_density_logscore": 0.014608469860348805,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.3465198405347474,
+          "conditional_location_logscore": -0.005012319929990738,
+          "joint_logscore": -0.351532160464739
+        }
+      },
+      {
+        "fold_id": 0,
+        "contrast_id": "location_OC_minus_OL",
+        "block_id": "california_fold_0__year_2011",
+        "start_utc": "2011-01-01T00:00:00Z",
+        "end_utc": "2012-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": -0.10131714987967833,
+          "integrated_intensity": -1.7636686120992584,
+          "conditional_zone_logscore": 0.6328258805259077,
+          "conditional_cell_logscore": 0.08401589686994537,
+          "within_cell_density_logscore": 0.8896475936367985,
+          "mark_logscore": 0.0,
+          "timing_logscore": 1.662351462219581,
+          "conditional_location_logscore": 1.6064893710326515,
+          "joint_logscore": 3.268840833252227
+        },
+        "nats_per_target": {
+          "event_ground_log": -0.05065857493983916,
+          "integrated_intensity": -0.8818343060496292,
+          "conditional_zone_logscore": 0.31641294026295386,
+          "conditional_cell_logscore": 0.042007948434972686,
+          "within_cell_density_logscore": 0.44482379681839923,
+          "mark_logscore": 0.0,
+          "timing_logscore": 0.8311757311097905,
+          "conditional_location_logscore": 0.8032446855163258,
+          "joint_logscore": 1.6344204166261136
+        }
+      },
+      {
+        "fold_id": 0,
+        "contrast_id": "joint_OC_minus_commonML",
+        "block_id": "california_fold_0__year_2011",
+        "start_utc": "2011-01-01T00:00:00Z",
+        "end_utc": "2012-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": -0.04505220672078014,
+          "integrated_intensity": 0.4818631767235644,
+          "conditional_zone_logscore": 0.09461137305157408,
+          "conditional_cell_logscore": 0.016999692714581904,
+          "within_cell_density_logscore": 0.08957394466285251,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.5269153834443436,
+          "conditional_location_logscore": 0.2011850104290076,
+          "joint_logscore": -0.3257303730153396
+        },
+        "nats_per_target": {
+          "event_ground_log": -0.02252610336039007,
+          "integrated_intensity": 0.2409315883617822,
+          "conditional_zone_logscore": 0.04730568652578704,
+          "conditional_cell_logscore": 0.008499846357290952,
+          "within_cell_density_logscore": 0.044786972331426256,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.2634576917221718,
+          "conditional_location_logscore": 0.1005925052145038,
+          "joint_logscore": -0.1628651865076698
+        }
+      },
+      {
+        "fold_id": 0,
+        "contrast_id": "timing_OC_minus_fixedML",
+        "block_id": "california_fold_0__year_2012",
+        "start_utc": "2012-01-01T00:00:00Z",
+        "end_utc": "2013-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 10,
+        "components": {
+          "event_ground_log": 1.3511250910146355,
+          "integrated_intensity": 0.1359734027985411,
+          "conditional_zone_logscore": 0.15713583850001633,
+          "conditional_cell_logscore": 0.05657186356492372,
+          "within_cell_density_logscore": -0.03862847766345112,
+          "mark_logscore": 0.0,
+          "timing_logscore": 1.2151516882160962,
+          "conditional_location_logscore": 0.17507922440150026,
+          "joint_logscore": 1.3902309126175965
+        },
+        "nats_per_target": {
+          "event_ground_log": 0.13511250910146355,
+          "integrated_intensity": 0.013597340279854108,
+          "conditional_zone_logscore": 0.015713583850001635,
+          "conditional_cell_logscore": 0.005657186356492372,
+          "within_cell_density_logscore": -0.0038628477663451124,
+          "mark_logscore": 0.0,
+          "timing_logscore": 0.12151516882160962,
+          "conditional_location_logscore": 0.017507922440150026,
+          "joint_logscore": 0.13902309126175966
+        }
+      },
+      {
+        "fold_id": 0,
+        "contrast_id": "location_OC_minus_OL",
+        "block_id": "california_fold_0__year_2012",
+        "start_utc": "2012-01-01T00:00:00Z",
+        "end_utc": "2013-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 10,
+        "components": {
+          "event_ground_log": -0.02872283280491672,
+          "integrated_intensity": -1.2128112439662821,
+          "conditional_zone_logscore": 0.3310864615988116,
+          "conditional_cell_logscore": 0.10509122155705097,
+          "within_cell_density_logscore": 34.27577122423166,
+          "mark_logscore": 0.0,
+          "timing_logscore": 1.184088411161369,
+          "conditional_location_logscore": 34.71194890738752,
+          "joint_logscore": 35.896037318548906
+        },
+        "nats_per_target": {
+          "event_ground_log": -0.002872283280491672,
+          "integrated_intensity": -0.12128112439662822,
+          "conditional_zone_logscore": 0.03310864615988116,
+          "conditional_cell_logscore": 0.010509122155705097,
+          "within_cell_density_logscore": 3.427577122423166,
+          "mark_logscore": 0.0,
+          "timing_logscore": 0.11840884111613689,
+          "conditional_location_logscore": 3.471194890738752,
+          "joint_logscore": 3.589603731854891
+        }
+      },
+      {
+        "fold_id": 0,
+        "contrast_id": "joint_OC_minus_commonML",
+        "block_id": "california_fold_0__year_2012",
+        "start_utc": "2012-01-01T00:00:00Z",
+        "end_utc": "2013-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 10,
+        "components": {
+          "event_ground_log": 0.05472937403107636,
+          "integrated_intensity": 0.09121542832431473,
+          "conditional_zone_logscore": 0.18092226319625837,
+          "conditional_cell_logscore": 0.0746566373806028,
+          "within_cell_density_logscore": -0.09335981889569211,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.036486054293234815,
+          "conditional_location_logscore": 0.16221908168117238,
+          "joint_logscore": 0.12573302738793757
+        },
+        "nats_per_target": {
+          "event_ground_log": 0.0054729374031076364,
+          "integrated_intensity": 0.009121542832431473,
+          "conditional_zone_logscore": 0.018092226319625836,
+          "conditional_cell_logscore": 0.0074656637380602795,
+          "within_cell_density_logscore": -0.009335981889569212,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.0036486054293234814,
+          "conditional_location_logscore": 0.01622190816811724,
+          "joint_logscore": 0.012573302738793757
+        }
+      },
+      {
+        "fold_id": 0,
+        "contrast_id": "timing_OC_minus_fixedML",
+        "block_id": "california_fold_0__year_2013",
+        "start_utc": "2013-01-01T00:00:00Z",
+        "end_utc": "2014-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": 0.1209696149124877,
+          "integrated_intensity": 0.27217878201242396,
+          "conditional_zone_logscore": 0.02252657329182295,
+          "conditional_cell_logscore": -0.11053672277784177,
+          "within_cell_density_logscore": 0.00407420221149124,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.15120916709993715,
+          "conditional_location_logscore": -0.08393594727452935,
+          "joint_logscore": -0.23514511437446117
+        },
+        "nats_per_target": {
+          "event_ground_log": 0.06048480745624385,
+          "integrated_intensity": 0.13608939100621198,
+          "conditional_zone_logscore": 0.011263286645911474,
+          "conditional_cell_logscore": -0.055268361388920884,
+          "within_cell_density_logscore": 0.00203710110574562,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.07560458354996857,
+          "conditional_location_logscore": -0.04196797363726468,
+          "joint_logscore": -0.11757255718723059
+        }
+      },
+      {
+        "fold_id": 0,
+        "contrast_id": "location_OC_minus_OL",
+        "block_id": "california_fold_0__year_2013",
+        "start_utc": "2013-01-01T00:00:00Z",
+        "end_utc": "2014-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": -0.7172784215836572,
+          "integrated_intensity": -2.217598822399607,
+          "conditional_zone_logscore": 0.04534180316485603,
+          "conditional_cell_logscore": -0.2060390141150794,
+          "within_cell_density_logscore": -0.0106401381193173,
+          "mark_logscore": 0.0,
+          "timing_logscore": 1.5003204008159496,
+          "conditional_location_logscore": -0.17133734906954246,
+          "joint_logscore": 1.3289830517464125
+        },
+        "nats_per_target": {
+          "event_ground_log": -0.3586392107918286,
+          "integrated_intensity": -1.1087994111998034,
+          "conditional_zone_logscore": 0.022670901582428016,
+          "conditional_cell_logscore": -0.1030195070575397,
+          "within_cell_density_logscore": -0.00532006905965865,
+          "mark_logscore": 0.0,
+          "timing_logscore": 0.7501602004079748,
+          "conditional_location_logscore": -0.08566867453477123,
+          "joint_logscore": 0.6644915258732063
+        }
+      },
+      {
+        "fold_id": 0,
+        "contrast_id": "joint_OC_minus_commonML",
+        "block_id": "california_fold_0__year_2013",
+        "start_utc": "2013-01-01T00:00:00Z",
+        "end_utc": "2014-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": 0.10951826356913053,
+          "integrated_intensity": 0.22907395402601782,
+          "conditional_zone_logscore": 0.03368634747449395,
+          "conditional_cell_logscore": -0.15849625503771492,
+          "within_cell_density_logscore": 0.0067427129155461785,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.11955569045688641,
+          "conditional_location_logscore": -0.11806719464767568,
+          "joint_logscore": -0.23762288510455676
+        },
+        "nats_per_target": {
+          "event_ground_log": 0.05475913178456526,
+          "integrated_intensity": 0.11453697701300891,
+          "conditional_zone_logscore": 0.016843173737246975,
+          "conditional_cell_logscore": -0.07924812751885746,
+          "within_cell_density_logscore": 0.0033713564577730892,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.059777845228443205,
+          "conditional_location_logscore": -0.05903359732383784,
+          "joint_logscore": -0.11881144255227838
+        }
+      },
+      {
+        "fold_id": 0,
+        "contrast_id": "timing_OC_minus_fixedML",
+        "block_id": "california_fold_0__year_2014",
+        "start_utc": "2014-01-01T00:00:00Z",
+        "end_utc": "2015-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": 0.09215615507612895,
+          "integrated_intensity": 0.19843977304870108,
+          "conditional_zone_logscore": -0.048483130218491155,
+          "conditional_cell_logscore": 0.002369921489971283,
+          "within_cell_density_logscore": 0.009895262843738095,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.10628361797257213,
+          "conditional_location_logscore": -0.036217945884782665,
+          "joint_logscore": -0.14250156385735835
+        },
+        "nats_per_target": {
+          "event_ground_log": 0.04607807753806448,
+          "integrated_intensity": 0.09921988652435054,
+          "conditional_zone_logscore": -0.024241565109245578,
+          "conditional_cell_logscore": 0.0011849607449856414,
+          "within_cell_density_logscore": 0.004947631421869048,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.053141808986286065,
+          "conditional_location_logscore": -0.018108972942391333,
+          "joint_logscore": -0.07125078192867917
+        }
+      },
+      {
+        "fold_id": 0,
+        "contrast_id": "location_OC_minus_OL",
+        "block_id": "california_fold_0__year_2014",
+        "start_utc": "2014-01-01T00:00:00Z",
+        "end_utc": "2015-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": -0.7957410908272564,
+          "integrated_intensity": -2.3778626660078217,
+          "conditional_zone_logscore": -0.06693014975469191,
+          "conditional_cell_logscore": 0.004941383738967353,
+          "within_cell_density_logscore": -0.009420419556118276,
+          "mark_logscore": 0.0,
+          "timing_logscore": 1.5821215751805653,
+          "conditional_location_logscore": -0.0714091855718415,
+          "joint_logscore": 1.5107123896087202
+        },
+        "nats_per_target": {
+          "event_ground_log": -0.3978705454136282,
+          "integrated_intensity": -1.1889313330039109,
+          "conditional_zone_logscore": -0.03346507487734596,
+          "conditional_cell_logscore": 0.0024706918694836766,
+          "within_cell_density_logscore": -0.004710209778059138,
+          "mark_logscore": 0.0,
+          "timing_logscore": 0.7910607875902826,
+          "conditional_location_logscore": -0.03570459278592075,
+          "joint_logscore": 0.7553561948043601
+        }
+      },
+      {
+        "fold_id": 0,
+        "contrast_id": "joint_OC_minus_commonML",
+        "block_id": "california_fold_0__year_2014",
+        "start_utc": "2014-01-01T00:00:00Z",
+        "end_utc": "2015-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": 0.06050659962257399,
+          "integrated_intensity": 0.11386348816130543,
+          "conditional_zone_logscore": -0.0580563024512637,
+          "conditional_cell_logscore": 0.0037384288733246507,
+          "within_cell_density_logscore": 0.002877873885147153,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.05335688853873144,
+          "conditional_location_logscore": -0.05143999969279278,
+          "joint_logscore": -0.104796888231526
+        },
+        "nats_per_target": {
+          "event_ground_log": 0.030253299811286993,
+          "integrated_intensity": 0.05693174408065271,
+          "conditional_zone_logscore": -0.02902815122563185,
+          "conditional_cell_logscore": 0.0018692144366623253,
+          "within_cell_density_logscore": 0.0014389369425735765,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.02667844426936572,
+          "conditional_location_logscore": -0.02571999984639639,
+          "joint_logscore": -0.052398444115763
+        }
+      },
+      {
+        "fold_id": 0,
+        "contrast_id": "timing_OC_minus_fixedML",
+        "block_id": "california_fold_0__year_2015",
+        "start_utc": "2015-01-01T00:00:00Z",
+        "end_utc": "2016-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 0,
+        "components": {
+          "event_ground_log": 0.0,
+          "integrated_intensity": 0.18665083250339976,
+          "conditional_zone_logscore": 0.0,
+          "conditional_cell_logscore": 0.0,
+          "within_cell_density_logscore": 0.0,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.18665083250339976,
+          "conditional_location_logscore": 0.0,
+          "joint_logscore": -0.18665083250339976
+        },
+        "nats_per_target": {
+          "event_ground_log": null,
+          "integrated_intensity": null,
+          "conditional_zone_logscore": null,
+          "conditional_cell_logscore": null,
+          "within_cell_density_logscore": null,
+          "mark_logscore": null,
+          "timing_logscore": null,
+          "conditional_location_logscore": null,
+          "joint_logscore": null
+        }
+      },
+      {
+        "fold_id": 0,
+        "contrast_id": "location_OC_minus_OL",
+        "block_id": "california_fold_0__year_2015",
+        "start_utc": "2015-01-01T00:00:00Z",
+        "end_utc": "2016-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 0,
+        "components": {
+          "event_ground_log": 0.0,
+          "integrated_intensity": -2.6887232808424875,
+          "conditional_zone_logscore": 0.0,
+          "conditional_cell_logscore": 0.0,
+          "within_cell_density_logscore": 0.0,
+          "mark_logscore": 0.0,
+          "timing_logscore": 2.6887232808424875,
+          "conditional_location_logscore": 0.0,
+          "joint_logscore": 2.6887232808424875
+        },
+        "nats_per_target": {
+          "event_ground_log": null,
+          "integrated_intensity": null,
+          "conditional_zone_logscore": null,
+          "conditional_cell_logscore": null,
+          "within_cell_density_logscore": null,
+          "mark_logscore": null,
+          "timing_logscore": null,
+          "conditional_location_logscore": null,
+          "joint_logscore": null
+        }
+      },
+      {
+        "fold_id": 0,
+        "contrast_id": "joint_OC_minus_commonML",
+        "block_id": "california_fold_0__year_2015",
+        "start_utc": "2015-01-01T00:00:00Z",
+        "end_utc": "2016-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 0,
+        "components": {
+          "event_ground_log": 0.0,
+          "integrated_intensity": 0.08393049659047414,
+          "conditional_zone_logscore": 0.0,
+          "conditional_cell_logscore": 0.0,
+          "within_cell_density_logscore": 0.0,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.08393049659047414,
+          "conditional_location_logscore": 0.0,
+          "joint_logscore": -0.08393049659047414
+        },
+        "nats_per_target": {
+          "event_ground_log": null,
+          "integrated_intensity": null,
+          "conditional_zone_logscore": null,
+          "conditional_cell_logscore": null,
+          "within_cell_density_logscore": null,
+          "mark_logscore": null,
+          "timing_logscore": null,
+          "conditional_location_logscore": null,
+          "joint_logscore": null
+        }
+      },
+      {
+        "fold_id": 1,
+        "contrast_id": "timing_OC_minus_fixedML",
+        "block_id": "california_fold_1__year_2016",
+        "start_utc": "2016-01-01T00:00:00Z",
+        "end_utc": "2017-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": 0.0767252256505877,
+          "integrated_intensity": 0.08261224175078086,
+          "conditional_zone_logscore": 0.021923255462209745,
+          "conditional_cell_logscore": -0.005069684247921202,
+          "within_cell_density_logscore": -0.015042690448769491,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.00588701610019271,
+          "conditional_location_logscore": 0.0018108807655181636,
+          "joint_logscore": -0.004076135334678099
+        },
+        "nats_per_target": {
+          "event_ground_log": 0.03836261282529385,
+          "integrated_intensity": 0.04130612087539043,
+          "conditional_zone_logscore": 0.010961627731104873,
+          "conditional_cell_logscore": -0.002534842123960601,
+          "within_cell_density_logscore": -0.007521345224384746,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.002943508050096355,
+          "conditional_location_logscore": 0.0009054403827590818,
+          "joint_logscore": -0.0020380676673390496
+        }
+      },
+      {
+        "fold_id": 1,
+        "contrast_id": "location_OC_minus_OL",
+        "block_id": "california_fold_1__year_2016",
+        "start_utc": "2016-01-01T00:00:00Z",
+        "end_utc": "2017-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": -0.6506542261050772,
+          "integrated_intensity": -1.0131496639759767,
+          "conditional_zone_logscore": 0.022684834396425657,
+          "conditional_cell_logscore": -0.00906229236210443,
+          "within_cell_density_logscore": -0.12019117683093228,
+          "mark_logscore": 0.0,
+          "timing_logscore": 0.36249543787089955,
+          "conditional_location_logscore": -0.10656863479660927,
+          "joint_logscore": 0.2559268030742885
+        },
+        "nats_per_target": {
+          "event_ground_log": -0.3253271130525386,
+          "integrated_intensity": -0.5065748319879884,
+          "conditional_zone_logscore": 0.011342417198212829,
+          "conditional_cell_logscore": -0.004531146181052215,
+          "within_cell_density_logscore": -0.06009558841546614,
+          "mark_logscore": 0.0,
+          "timing_logscore": 0.18124771893544978,
+          "conditional_location_logscore": -0.05328431739830464,
+          "joint_logscore": 0.12796340153714425
+        }
+      },
+      {
+        "fold_id": 1,
+        "contrast_id": "joint_OC_minus_commonML",
+        "block_id": "california_fold_1__year_2016",
+        "start_utc": "2016-01-01T00:00:00Z",
+        "end_utc": "2017-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": 0.038918528825009346,
+          "integrated_intensity": 0.02412011989308649,
+          "conditional_zone_logscore": 0.02270899351114508,
+          "conditional_cell_logscore": -0.008299183730712478,
+          "within_cell_density_logscore": -0.012104273138447752,
+          "mark_logscore": 0.0,
+          "timing_logscore": 0.01479840893192197,
+          "conditional_location_logscore": 0.002305536641983963,
+          "joint_logscore": 0.017103945573900603
+        },
+        "nats_per_target": {
+          "event_ground_log": 0.019459264412504673,
+          "integrated_intensity": 0.012060059946543245,
+          "conditional_zone_logscore": 0.01135449675557254,
+          "conditional_cell_logscore": -0.004149591865356239,
+          "within_cell_density_logscore": -0.006052136569223876,
+          "mark_logscore": 0.0,
+          "timing_logscore": 0.007399204465960985,
+          "conditional_location_logscore": 0.0011527683209919815,
+          "joint_logscore": 0.008551972786950301
+        }
+      },
+      {
+        "fold_id": 1,
+        "contrast_id": "timing_OC_minus_fixedML",
+        "block_id": "california_fold_1__year_2017",
+        "start_utc": "2017-01-01T00:00:00Z",
+        "end_utc": "2018-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 0,
+        "components": {
+          "event_ground_log": 0.0,
+          "integrated_intensity": 0.10272675533758147,
+          "conditional_zone_logscore": 0.0,
+          "conditional_cell_logscore": 0.0,
+          "within_cell_density_logscore": 0.0,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.10272675533758147,
+          "conditional_location_logscore": 0.0,
+          "joint_logscore": -0.10272675533758147
+        },
+        "nats_per_target": {
+          "event_ground_log": null,
+          "integrated_intensity": null,
+          "conditional_zone_logscore": null,
+          "conditional_cell_logscore": null,
+          "within_cell_density_logscore": null,
+          "mark_logscore": null,
+          "timing_logscore": null,
+          "conditional_location_logscore": null,
+          "joint_logscore": null
+        }
+      },
+      {
+        "fold_id": 1,
+        "contrast_id": "location_OC_minus_OL",
+        "block_id": "california_fold_1__year_2017",
+        "start_utc": "2017-01-01T00:00:00Z",
+        "end_utc": "2018-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 0,
+        "components": {
+          "event_ground_log": 0.0,
+          "integrated_intensity": -1.2430568164338203,
+          "conditional_zone_logscore": 0.0,
+          "conditional_cell_logscore": 0.0,
+          "within_cell_density_logscore": 0.0,
+          "mark_logscore": 0.0,
+          "timing_logscore": 1.2430568164338203,
+          "conditional_location_logscore": 0.0,
+          "joint_logscore": 1.2430568164338203
+        },
+        "nats_per_target": {
+          "event_ground_log": null,
+          "integrated_intensity": null,
+          "conditional_zone_logscore": null,
+          "conditional_cell_logscore": null,
+          "within_cell_density_logscore": null,
+          "mark_logscore": null,
+          "timing_logscore": null,
+          "conditional_location_logscore": null,
+          "joint_logscore": null
+        }
+      },
+      {
+        "fold_id": 1,
+        "contrast_id": "joint_OC_minus_commonML",
+        "block_id": "california_fold_1__year_2017",
+        "start_utc": "2017-01-01T00:00:00Z",
+        "end_utc": "2018-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 0,
+        "components": {
+          "event_ground_log": 0.0,
+          "integrated_intensity": 0.037389827950481624,
+          "conditional_zone_logscore": 0.0,
+          "conditional_cell_logscore": 0.0,
+          "within_cell_density_logscore": 0.0,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.037389827950481624,
+          "conditional_location_logscore": 0.0,
+          "joint_logscore": -0.037389827950481624
+        },
+        "nats_per_target": {
+          "event_ground_log": null,
+          "integrated_intensity": null,
+          "conditional_zone_logscore": null,
+          "conditional_cell_logscore": null,
+          "within_cell_density_logscore": null,
+          "mark_logscore": null,
+          "timing_logscore": null,
+          "conditional_location_logscore": null,
+          "joint_logscore": null
+        }
+      },
+      {
+        "fold_id": 1,
+        "contrast_id": "timing_OC_minus_fixedML",
+        "block_id": "california_fold_1__year_2018",
+        "start_utc": "2018-01-01T00:00:00Z",
+        "end_utc": "2019-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 3,
+        "components": {
+          "event_ground_log": 0.0890101092464306,
+          "integrated_intensity": 0.03935238801021601,
+          "conditional_zone_logscore": -0.0004083600673316923,
+          "conditional_cell_logscore": -0.05424392547009482,
+          "within_cell_density_logscore": -0.013273057765012197,
+          "mark_logscore": 0.0,
+          "timing_logscore": 0.04965772123621548,
+          "conditional_location_logscore": -0.06792534330244138,
+          "joint_logscore": -0.018267622066225897
+        },
+        "nats_per_target": {
+          "event_ground_log": 0.02967003641547687,
+          "integrated_intensity": 0.013117462670072003,
+          "conditional_zone_logscore": -0.00013612002244389743,
+          "conditional_cell_logscore": -0.018081308490031606,
+          "within_cell_density_logscore": -0.004424352588337399,
+          "mark_logscore": 0.0,
+          "timing_logscore": 0.01655257374540516,
+          "conditional_location_logscore": -0.02264178110081379,
+          "joint_logscore": -0.006089207355408632
+        }
+      },
+      {
+        "fold_id": 1,
+        "contrast_id": "location_OC_minus_OL",
+        "block_id": "california_fold_1__year_2018",
+        "start_utc": "2018-01-01T00:00:00Z",
+        "end_utc": "2019-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 3,
+        "components": {
+          "event_ground_log": -0.9961259197620151,
+          "integrated_intensity": -0.9375329699063091,
+          "conditional_zone_logscore": -0.030170511214519635,
+          "conditional_cell_logscore": -0.06729620283570181,
+          "within_cell_density_logscore": -0.04360407454446147,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.05859294985570784,
+          "conditional_location_logscore": -0.14107078859468203,
+          "joint_logscore": -0.19966373845038987
+        },
+        "nats_per_target": {
+          "event_ground_log": -0.33204197325400503,
+          "integrated_intensity": -0.3125109899687697,
+          "conditional_zone_logscore": -0.010056837071506545,
+          "conditional_cell_logscore": -0.022432067611900603,
+          "within_cell_density_logscore": -0.014534691514820489,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.019530983285235948,
+          "conditional_location_logscore": -0.047023596198227345,
+          "joint_logscore": -0.06655457948346329
+        }
+      },
+      {
+        "fold_id": 1,
+        "contrast_id": "joint_OC_minus_commonML",
+        "block_id": "california_fold_1__year_2018",
+        "start_utc": "2018-01-01T00:00:00Z",
+        "end_utc": "2019-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 3,
+        "components": {
+          "event_ground_log": 0.03402322923379586,
+          "integrated_intensity": -0.026617043692421127,
+          "conditional_zone_logscore": -0.015268702819315472,
+          "conditional_cell_logscore": -0.06189622825519603,
+          "within_cell_density_logscore": -0.014364140911993672,
+          "mark_logscore": 0.0,
+          "timing_logscore": 0.06064027292621432,
+          "conditional_location_logscore": -0.09152907198650695,
+          "joint_logscore": -0.030888799060292627
+        },
+        "nats_per_target": {
+          "event_ground_log": 0.011341076411265286,
+          "integrated_intensity": -0.008872347897473709,
+          "conditional_zone_logscore": -0.00508956760643849,
+          "conditional_cell_logscore": -0.020632076085065343,
+          "within_cell_density_logscore": -0.004788046970664557,
+          "mark_logscore": 0.0,
+          "timing_logscore": 0.02021342430873811,
+          "conditional_location_logscore": -0.030509690662168982,
+          "joint_logscore": -0.010296266353430875
+        }
+      },
+      {
+        "fold_id": 1,
+        "contrast_id": "timing_OC_minus_fixedML",
+        "block_id": "california_fold_1__year_2019",
+        "start_utc": "2019-01-01T00:00:00Z",
+        "end_utc": "2020-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 37,
+        "components": {
+          "event_ground_log": 10.155237801678638,
+          "integrated_intensity": -0.8218425418937834,
+          "conditional_zone_logscore": -0.14601006166842545,
+          "conditional_cell_logscore": -0.03222501903897229,
+          "within_cell_density_logscore": 0.5128675678250261,
+          "mark_logscore": 0.0,
+          "timing_logscore": 10.977080343572425,
+          "conditional_location_logscore": 0.3346324871176307,
+          "joint_logscore": 11.311712830690055
+        },
+        "nats_per_target": {
+          "event_ground_log": 0.27446588653185505,
+          "integrated_intensity": -0.022211960591723874,
+          "conditional_zone_logscore": -0.003946217882930417,
+          "conditional_cell_logscore": -0.0008709464605127646,
+          "within_cell_density_logscore": 0.013861285616892597,
+          "mark_logscore": 0.0,
+          "timing_logscore": 0.29667784712357903,
+          "conditional_location_logscore": 0.009044121273449479,
+          "joint_logscore": 0.30572196839702853
+        }
+      },
+      {
+        "fold_id": 1,
+        "contrast_id": "location_OC_minus_OL",
+        "block_id": "california_fold_1__year_2019",
+        "start_utc": "2019-01-01T00:00:00Z",
+        "end_utc": "2020-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 37,
+        "components": {
+          "event_ground_log": 9.412130774539392,
+          "integrated_intensity": 5.202827274697249,
+          "conditional_zone_logscore": 3.4686832090767097,
+          "conditional_cell_logscore": 0.1269030703587491,
+          "within_cell_density_logscore": 108.41213436441393,
+          "mark_logscore": 0.0,
+          "timing_logscore": 4.209303499842136,
+          "conditional_location_logscore": 112.00772064384938,
+          "joint_logscore": 116.2170241436915
+        },
+        "nats_per_target": {
+          "event_ground_log": 0.25438191282538897,
+          "integrated_intensity": 0.14061695337019592,
+          "conditional_zone_logscore": 0.09374819483991108,
+          "conditional_cell_logscore": 0.003429812712398624,
+          "within_cell_density_logscore": 2.9300576855247007,
+          "mark_logscore": 0.0,
+          "timing_logscore": 0.11376495945519287,
+          "conditional_location_logscore": 3.02723569307701,
+          "joint_logscore": 3.141000652532203
+        }
+      },
+      {
+        "fold_id": 1,
+        "contrast_id": "joint_OC_minus_commonML",
+        "block_id": "california_fold_1__year_2019",
+        "start_utc": "2019-01-01T00:00:00Z",
+        "end_utc": "2020-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 37,
+        "components": {
+          "event_ground_log": 4.147292307554679,
+          "integrated_intensity": -0.712095557155596,
+          "conditional_zone_logscore": 0.11486317633775478,
+          "conditional_cell_logscore": -0.022166238833115914,
+          "within_cell_density_logscore": 0.33636546334673767,
+          "mark_logscore": 0.0,
+          "timing_logscore": 4.859387864710271,
+          "conditional_location_logscore": 0.4290624008513646,
+          "joint_logscore": 5.288450265561636
+        },
+        "nats_per_target": {
+          "event_ground_log": 0.1120889812852616,
+          "integrated_intensity": -0.019245825869070164,
+          "conditional_zone_logscore": 0.0031044101712906697,
+          "conditional_cell_logscore": -0.0005990875360301598,
+          "within_cell_density_logscore": 0.009090958468830748,
+          "mark_logscore": 0.0,
+          "timing_logscore": 0.13133480715433166,
+          "conditional_location_logscore": 0.011596281104090935,
+          "joint_logscore": 0.1429310882584226
+        }
+      },
+      {
+        "fold_id": 1,
+        "contrast_id": "timing_OC_minus_fixedML",
+        "block_id": "california_fold_1__year_2020",
+        "start_utc": "2020-01-01T00:00:00Z",
+        "end_utc": "2021-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 11,
+        "components": {
+          "event_ground_log": 1.0070492799403183,
+          "integrated_intensity": 0.1838808716453002,
+          "conditional_zone_logscore": -0.09730381091952545,
+          "conditional_cell_logscore": 0.038889411001572505,
+          "within_cell_density_logscore": -0.2579376799596531,
+          "mark_logscore": 0.0,
+          "timing_logscore": 0.8231684082950181,
+          "conditional_location_logscore": -0.3163520798776034,
+          "joint_logscore": 0.5068163284174148
+        },
+        "nats_per_target": {
+          "event_ground_log": 0.09154993454002894,
+          "integrated_intensity": 0.016716442876845473,
+          "conditional_zone_logscore": -0.008845800992684132,
+          "conditional_cell_logscore": 0.003535401000142955,
+          "within_cell_density_logscore": -0.023448879996332102,
+          "mark_logscore": 0.0,
+          "timing_logscore": 0.07483349166318347,
+          "conditional_location_logscore": -0.028759279988873034,
+          "joint_logscore": 0.04607421167431043
+        }
+      },
+      {
+        "fold_id": 1,
+        "contrast_id": "location_OC_minus_OL",
+        "block_id": "california_fold_1__year_2020",
+        "start_utc": "2020-01-01T00:00:00Z",
+        "end_utc": "2021-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 11,
+        "components": {
+          "event_ground_log": -0.2333829101911391,
+          "integrated_intensity": 0.6253485439046198,
+          "conditional_zone_logscore": 1.3291711024179662,
+          "conditional_cell_logscore": 0.48731804488152664,
+          "within_cell_density_logscore": 9.29396251756279,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.8587314540957607,
+          "conditional_location_logscore": 11.110451664862282,
+          "joint_logscore": 10.251720210766536
+        },
+        "nats_per_target": {
+          "event_ground_log": -0.021216628199194464,
+          "integrated_intensity": 0.05684986762769271,
+          "conditional_zone_logscore": 0.12083373658345148,
+          "conditional_cell_logscore": 0.04430164044377515,
+          "within_cell_density_logscore": 0.8449056834147991,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.07806649582688734,
+          "conditional_location_logscore": 1.0100410604420256,
+          "joint_logscore": 0.9319745646151396
+        }
+      },
+      {
+        "fold_id": 1,
+        "contrast_id": "joint_OC_minus_commonML",
+        "block_id": "california_fold_1__year_2020",
+        "start_utc": "2020-01-01T00:00:00Z",
+        "end_utc": "2021-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 11,
+        "components": {
+          "event_ground_log": 1.6828288617775016,
+          "integrated_intensity": 0.3323915444249588,
+          "conditional_zone_logscore": 0.08002731672574726,
+          "conditional_cell_logscore": 0.12929079644885233,
+          "within_cell_density_logscore": -0.655373591419135,
+          "mark_logscore": 0.0,
+          "timing_logscore": 1.3504373173525437,
+          "conditional_location_logscore": -0.4460554782445314,
+          "joint_logscore": 0.9043818391080265
+        },
+        "nats_per_target": {
+          "event_ground_log": 0.15298444197977287,
+          "integrated_intensity": 0.030217413129541706,
+          "conditional_zone_logscore": 0.007275210611431568,
+          "conditional_cell_logscore": 0.011753708768077485,
+          "within_cell_density_logscore": -0.05957941740173955,
+          "mark_logscore": 0.0,
+          "timing_logscore": 0.12276702885023125,
+          "conditional_location_logscore": -0.040550498022230125,
+          "joint_logscore": 0.08221653082800241
+        }
+      },
+      {
+        "fold_id": 2,
+        "contrast_id": "timing_OC_minus_fixedML",
+        "block_id": "california_fold_2__year_2021",
+        "start_utc": "2021-01-01T00:00:00Z",
+        "end_utc": "2022-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": 0.16671566919139025,
+          "integrated_intensity": 0.23366146547572786,
+          "conditional_zone_logscore": -0.06428900834281048,
+          "conditional_cell_logscore": 0.004026775800279658,
+          "within_cell_density_logscore": -0.04633433410001686,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.06694579628433672,
+          "conditional_location_logscore": -0.10659656664254413,
+          "joint_logscore": -0.17354236292688086
+        },
+        "nats_per_target": {
+          "event_ground_log": 0.08335783459569512,
+          "integrated_intensity": 0.11683073273786393,
+          "conditional_zone_logscore": -0.03214450417140524,
+          "conditional_cell_logscore": 0.002013387900139829,
+          "within_cell_density_logscore": -0.02316716705000843,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.03347289814216836,
+          "conditional_location_logscore": -0.053298283321272066,
+          "joint_logscore": -0.08677118146344043
+        }
+      },
+      {
+        "fold_id": 2,
+        "contrast_id": "location_OC_minus_OL",
+        "block_id": "california_fold_2__year_2021",
+        "start_utc": "2021-01-01T00:00:00Z",
+        "end_utc": "2022-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": -0.3125270590126945,
+          "integrated_intensity": -0.4201473078569169,
+          "conditional_zone_logscore": -0.09538422298602445,
+          "conditional_cell_logscore": 0.011510604040895878,
+          "within_cell_density_logscore": -0.13193529011880578,
+          "mark_logscore": 0.0,
+          "timing_logscore": 0.10762024884422239,
+          "conditional_location_logscore": -0.2158089090639308,
+          "joint_logscore": -0.10818866021971019
+        },
+        "nats_per_target": {
+          "event_ground_log": -0.15626352950634725,
+          "integrated_intensity": -0.21007365392845845,
+          "conditional_zone_logscore": -0.047692111493012224,
+          "conditional_cell_logscore": 0.005755302020447939,
+          "within_cell_density_logscore": -0.06596764505940289,
+          "mark_logscore": 0.0,
+          "timing_logscore": 0.053810124422111194,
+          "conditional_location_logscore": -0.1079044545319654,
+          "joint_logscore": -0.05409433010985509
+        }
+      },
+      {
+        "fold_id": 2,
+        "contrast_id": "joint_OC_minus_commonML",
+        "block_id": "california_fold_2__year_2021",
+        "start_utc": "2021-01-01T00:00:00Z",
+        "end_utc": "2022-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": 0.20296915508986224,
+          "integrated_intensity": 0.27522090728067994,
+          "conditional_zone_logscore": -0.08814877230640494,
+          "conditional_cell_logscore": 0.010262571123212716,
+          "within_cell_density_logscore": -0.10992137228022436,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.0722517521908177,
+          "conditional_location_logscore": -0.1878075734634166,
+          "joint_logscore": -0.2600593256542396
+        },
+        "nats_per_target": {
+          "event_ground_log": 0.10148457754493112,
+          "integrated_intensity": 0.13761045364033997,
+          "conditional_zone_logscore": -0.04407438615320247,
+          "conditional_cell_logscore": 0.005131285561606358,
+          "within_cell_density_logscore": -0.05496068614011218,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.03612587609540885,
+          "conditional_location_logscore": -0.0939037867317083,
+          "joint_logscore": -0.1300296628271198
+        }
+      },
+      {
+        "fold_id": 2,
+        "contrast_id": "timing_OC_minus_fixedML",
+        "block_id": "california_fold_2__year_2022",
+        "start_utc": "2022-01-01T00:00:00Z",
+        "end_utc": "2023-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 1,
+        "components": {
+          "event_ground_log": 0.06344584853779711,
+          "integrated_intensity": 0.1894415386799544,
+          "conditional_zone_logscore": 0.08277149348422519,
+          "conditional_cell_logscore": 0.016612258151104342,
+          "within_cell_density_logscore": 0.07581283662709115,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.12599569014215817,
+          "conditional_location_logscore": 0.1751965882624198,
+          "joint_logscore": 0.04920089812026163
+        },
+        "nats_per_target": {
+          "event_ground_log": 0.06344584853779711,
+          "integrated_intensity": 0.1894415386799544,
+          "conditional_zone_logscore": 0.08277149348422519,
+          "conditional_cell_logscore": 0.016612258151104342,
+          "within_cell_density_logscore": 0.07581283662709115,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.12599569014215817,
+          "conditional_location_logscore": 0.1751965882624198,
+          "joint_logscore": 0.04920089812026163
+        }
+      },
+      {
+        "fold_id": 2,
+        "contrast_id": "location_OC_minus_OL",
+        "block_id": "california_fold_2__year_2022",
+        "start_utc": "2022-01-01T00:00:00Z",
+        "end_utc": "2023-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 1,
+        "components": {
+          "event_ground_log": -0.21769322228490395,
+          "integrated_intensity": -0.7072861656108529,
+          "conditional_zone_logscore": 0.1411939959331603,
+          "conditional_cell_logscore": 0.031766949378186915,
+          "within_cell_density_logscore": 0.1937088190423335,
+          "mark_logscore": 0.0,
+          "timing_logscore": 0.48959294332594894,
+          "conditional_location_logscore": 0.3666697643536807,
+          "joint_logscore": 0.8562627076796296
+        },
+        "nats_per_target": {
+          "event_ground_log": -0.21769322228490395,
+          "integrated_intensity": -0.7072861656108529,
+          "conditional_zone_logscore": 0.1411939959331603,
+          "conditional_cell_logscore": 0.031766949378186915,
+          "within_cell_density_logscore": 0.1937088190423335,
+          "mark_logscore": 0.0,
+          "timing_logscore": 0.48959294332594894,
+          "conditional_location_logscore": 0.3666697643536807,
+          "joint_logscore": 0.8562627076796296
+        }
+      },
+      {
+        "fold_id": 2,
+        "contrast_id": "joint_OC_minus_commonML",
+        "block_id": "california_fold_2__year_2022",
+        "start_utc": "2022-01-01T00:00:00Z",
+        "end_utc": "2023-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 1,
+        "components": {
+          "event_ground_log": 0.053044118088802605,
+          "integrated_intensity": 0.16380788624152487,
+          "conditional_zone_logscore": 0.12300221888910023,
+          "conditional_cell_logscore": 0.02696201311382218,
+          "within_cell_density_logscore": 0.11259509811968371,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.11076376815272226,
+          "conditional_location_logscore": 0.2625593301226061,
+          "joint_logscore": 0.15179556196988386
+        },
+        "nats_per_target": {
+          "event_ground_log": 0.053044118088802605,
+          "integrated_intensity": 0.16380788624152487,
+          "conditional_zone_logscore": 0.12300221888910023,
+          "conditional_cell_logscore": 0.02696201311382218,
+          "within_cell_density_logscore": 0.11259509811968371,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.11076376815272226,
+          "conditional_location_logscore": 0.2625593301226061,
+          "joint_logscore": 0.15179556196988386
+        }
+      },
+      {
+        "fold_id": 2,
+        "contrast_id": "timing_OC_minus_fixedML",
+        "block_id": "california_fold_2__year_2023",
+        "start_utc": "2023-01-01T00:00:00Z",
+        "end_utc": "2024-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": 0.10068526949954304,
+          "integrated_intensity": 0.12868977137247972,
+          "conditional_zone_logscore": -0.04216697872554853,
+          "conditional_cell_logscore": 0.0009780732852027185,
+          "within_cell_density_logscore": -0.027140130735610057,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.028004501872937126,
+          "conditional_location_logscore": -0.06832903617595676,
+          "joint_logscore": -0.09633353804889566
+        },
+        "nats_per_target": {
+          "event_ground_log": 0.05034263474977152,
+          "integrated_intensity": 0.06434488568623986,
+          "conditional_zone_logscore": -0.021083489362774266,
+          "conditional_cell_logscore": 0.0004890366426013593,
+          "within_cell_density_logscore": -0.013570065367805029,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.014002250936468563,
+          "conditional_location_logscore": -0.03416451808797838,
+          "joint_logscore": -0.04816676902444783
+        }
+      },
+      {
+        "fold_id": 2,
+        "contrast_id": "location_OC_minus_OL",
+        "block_id": "california_fold_2__year_2023",
+        "start_utc": "2023-01-01T00:00:00Z",
+        "end_utc": "2024-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": -0.4668085569536373,
+          "integrated_intensity": -0.6430869933740224,
+          "conditional_zone_logscore": -0.07874320262959067,
+          "conditional_cell_logscore": 0.005040974575349466,
+          "within_cell_density_logscore": -0.06066452530791011,
+          "mark_logscore": 0.0,
+          "timing_logscore": 0.1762784364203842,
+          "conditional_location_logscore": -0.13436675336215131,
+          "joint_logscore": 0.04191168305823112
+        },
+        "nats_per_target": {
+          "event_ground_log": -0.23340427847681866,
+          "integrated_intensity": -0.3215434966870112,
+          "conditional_zone_logscore": -0.039371601314795335,
+          "conditional_cell_logscore": 0.002520487287674733,
+          "within_cell_density_logscore": -0.030332262653955055,
+          "mark_logscore": 0.0,
+          "timing_logscore": 0.0881392182101921,
+          "conditional_location_logscore": -0.06718337668107566,
+          "joint_logscore": 0.02095584152911556
+        }
+      },
+      {
+        "fold_id": 2,
+        "contrast_id": "joint_OC_minus_commonML",
+        "block_id": "california_fold_2__year_2023",
+        "start_utc": "2023-01-01T00:00:00Z",
+        "end_utc": "2024-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 2,
+        "components": {
+          "event_ground_log": 0.07221414545450955,
+          "integrated_intensity": 0.0753594752888258,
+          "conditional_zone_logscore": -0.06699463845305331,
+          "conditional_cell_logscore": 0.003326621070211644,
+          "within_cell_density_logscore": -0.03505554901888175,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.0031453298343162572,
+          "conditional_location_logscore": -0.09872356640172342,
+          "joint_logscore": -0.10186889623604145
+        },
+        "nats_per_target": {
+          "event_ground_log": 0.036107072727254774,
+          "integrated_intensity": 0.0376797376444129,
+          "conditional_zone_logscore": -0.033497319226526656,
+          "conditional_cell_logscore": 0.001663310535105822,
+          "within_cell_density_logscore": -0.017527774509440874,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.0015726649171581286,
+          "conditional_location_logscore": -0.04936178320086171,
+          "joint_logscore": -0.050934448118020725
+        }
+      },
+      {
+        "fold_id": 2,
+        "contrast_id": "timing_OC_minus_fixedML",
+        "block_id": "california_fold_2__year_2024",
+        "start_utc": "2024-01-01T00:00:00Z",
+        "end_utc": "2025-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 12,
+        "components": {
+          "event_ground_log": 1.745638735493813,
+          "integrated_intensity": 0.016883779434533785,
+          "conditional_zone_logscore": 0.10481361249832766,
+          "conditional_cell_logscore": 0.2696985677778194,
+          "within_cell_density_logscore": -0.03528796300678039,
+          "mark_logscore": 0.0,
+          "timing_logscore": 1.7287549560592765,
+          "conditional_location_logscore": 0.33922421726937557,
+          "joint_logscore": 2.067979173328638
+        },
+        "nats_per_target": {
+          "event_ground_log": 0.14546989462448442,
+          "integrated_intensity": 0.0014069816195444822,
+          "conditional_zone_logscore": 0.008734467708193971,
+          "conditional_cell_logscore": 0.02247488064815162,
+          "within_cell_density_logscore": -0.0029406635838983655,
+          "mark_logscore": 0.0,
+          "timing_logscore": 0.1440629130049397,
+          "conditional_location_logscore": 0.028268684772447965,
+          "joint_logscore": 0.1723315977773865
+        }
+      },
+      {
+        "fold_id": 2,
+        "contrast_id": "location_OC_minus_OL",
+        "block_id": "california_fold_2__year_2024",
+        "start_utc": "2024-01-01T00:00:00Z",
+        "end_utc": "2025-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 12,
+        "components": {
+          "event_ground_log": -0.5487699535746344,
+          "integrated_intensity": 0.007829629681133987,
+          "conditional_zone_logscore": 0.19331706099396762,
+          "conditional_cell_logscore": 1.958139263233865,
+          "within_cell_density_logscore": 23.75147854807983,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.5565995832557675,
+          "conditional_location_logscore": 25.902934872307682,
+          "joint_logscore": 25.346335289051922
+        },
+        "nats_per_target": {
+          "event_ground_log": -0.04573082946455287,
+          "integrated_intensity": 0.000652469140094499,
+          "conditional_zone_logscore": 0.016109755082830635,
+          "conditional_cell_logscore": 0.16317827193615542,
+          "within_cell_density_logscore": 1.9792898790066527,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.046383298604647294,
+          "conditional_location_logscore": 2.15857790602564,
+          "joint_logscore": 2.1121946074209936
+        }
+      },
+      {
+        "fold_id": 2,
+        "contrast_id": "joint_OC_minus_commonML",
+        "block_id": "california_fold_2__year_2024",
+        "start_utc": "2024-01-01T00:00:00Z",
+        "end_utc": "2025-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 12,
+        "components": {
+          "event_ground_log": 0.8202332397962948,
+          "integrated_intensity": 0.0022163649954141107,
+          "conditional_zone_logscore": 0.07013654469615105,
+          "conditional_cell_logscore": 0.5533798780718087,
+          "within_cell_density_logscore": 0.12111232057316101,
+          "mark_logscore": 0.0,
+          "timing_logscore": 0.8180168748008825,
+          "conditional_location_logscore": 0.7446287433411243,
+          "joint_logscore": 1.5626456181419996
+        },
+        "nats_per_target": {
+          "event_ground_log": 0.06835276998302457,
+          "integrated_intensity": 0.0001846970829511759,
+          "conditional_zone_logscore": 0.005844712058012587,
+          "conditional_cell_logscore": 0.04611498983931739,
+          "within_cell_density_logscore": 0.010092693381096751,
+          "mark_logscore": 0.0,
+          "timing_logscore": 0.06816807290007354,
+          "conditional_location_logscore": 0.06205239527842702,
+          "joint_logscore": 0.13022046817849997
+        }
+      },
+      {
+        "fold_id": 2,
+        "contrast_id": "timing_OC_minus_fixedML",
+        "block_id": "california_fold_2__year_2025",
+        "start_utc": "2025-01-01T00:00:00Z",
+        "end_utc": "2026-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 1,
+        "components": {
+          "event_ground_log": 0.05394259561300174,
+          "integrated_intensity": 0.1315891632508035,
+          "conditional_zone_logscore": -0.003136053974916564,
+          "conditional_cell_logscore": -0.035562725038913,
+          "within_cell_density_logscore": 0.0048934071479056485,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.07764656763780309,
+          "conditional_location_logscore": -0.03380537186592392,
+          "joint_logscore": -0.111451939503727
+        },
+        "nats_per_target": {
+          "event_ground_log": 0.05394259561300174,
+          "integrated_intensity": 0.1315891632508035,
+          "conditional_zone_logscore": -0.003136053974916564,
+          "conditional_cell_logscore": -0.035562725038913,
+          "within_cell_density_logscore": 0.0048934071479056485,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.07764656763780309,
+          "conditional_location_logscore": -0.03380537186592392,
+          "joint_logscore": -0.111451939503727
+        }
+      },
+      {
+        "fold_id": 2,
+        "contrast_id": "location_OC_minus_OL",
+        "block_id": "california_fold_2__year_2025",
+        "start_utc": "2025-01-01T00:00:00Z",
+        "end_utc": "2026-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 1,
+        "components": {
+          "event_ground_log": -0.21380366688573638,
+          "integrated_intensity": -0.6003540163589487,
+          "conditional_zone_logscore": -0.011295304145906293,
+          "conditional_cell_logscore": -0.06020948019403871,
+          "within_cell_density_logscore": -0.017679545637239613,
+          "mark_logscore": 0.0,
+          "timing_logscore": 0.386550349473211,
+          "conditional_location_logscore": -0.0891843299771864,
+          "joint_logscore": 0.2973660194960246
+        },
+        "nats_per_target": {
+          "event_ground_log": -0.21380366688573638,
+          "integrated_intensity": -0.6003540163589487,
+          "conditional_zone_logscore": -0.011295304145906293,
+          "conditional_cell_logscore": -0.06020948019403871,
+          "within_cell_density_logscore": -0.017679545637239613,
+          "mark_logscore": 0.0,
+          "timing_logscore": 0.386550349473211,
+          "conditional_location_logscore": -0.0891843299771864,
+          "joint_logscore": 0.2973660194960246
+        }
+      },
+      {
+        "fold_id": 2,
+        "contrast_id": "joint_OC_minus_commonML",
+        "block_id": "california_fold_2__year_2025",
+        "start_utc": "2025-01-01T00:00:00Z",
+        "end_utc": "2026-01-01T00:00:00Z",
+        "status": "succeeded",
+        "target_count": 1,
+        "components": {
+          "event_ground_log": 0.048206719479035876,
+          "integrated_intensity": 0.11479507785795784,
+          "conditional_zone_logscore": -0.008358527342468669,
+          "conditional_cell_logscore": -0.05355527698071327,
+          "within_cell_density_logscore": 0.004776771938555413,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.06658835837892241,
+          "conditional_location_logscore": -0.05713703238462742,
+          "joint_logscore": -0.12372539076354983
+        },
+        "nats_per_target": {
+          "event_ground_log": 0.048206719479035876,
+          "integrated_intensity": 0.11479507785795784,
+          "conditional_zone_logscore": -0.008358527342468669,
+          "conditional_cell_logscore": -0.05355527698071327,
+          "within_cell_density_logscore": 0.004776771938555413,
+          "mark_logscore": 0.0,
+          "timing_logscore": -0.06658835837892241,
+          "conditional_location_logscore": -0.05713703238462742,
+          "joint_logscore": -0.12372539076354983
+        }
+      }
+    ]
+  },
+  "terminal_jobs": [
+    {
+      "role": "pilot_fit",
+      "job_id": "m45_pilot_fit_v1",
+      "job_sha256": "4018cc493a4fc0285712e679611e529e7856df1a7b3ae7e4cdbe70798ac8388c",
+      "receipt_sha256": "d27b6567b1f00dcbb5798ca9b40a64945902e4bd7a6a81fa3bf882c447f186f5",
+      "wall_seconds": 38.82456850001472
+    },
+    {
+      "role": "remainder_fit",
+      "job_id": "m45_remainder_fit_v1",
+      "job_sha256": "cf01ca0e87e76d3add709bd6611ec301860b3e6ff7329f8acd342c94ba7a1432",
+      "receipt_sha256": "92ceaaa4beabd9a83dbcb99d61a947d4fc803ec4bfd6ea71c19d15cb27d33a52",
+      "wall_seconds": 61.789061499992386
+    },
+    {
+      "role": "full_audit",
+      "job_id": "m45_full_audit_v1",
+      "job_sha256": "92b7a775de53f1a8b6980fa71210cee25fe54070f7847c49f92504489d983e30",
+      "receipt_sha256": "465ca0a947b982ff246ee3c8188431849579388837fb8bc563e73f12063f4df8",
+      "wall_seconds": 327.7771282000176
+    },
+    {
+      "role": "annual_production",
+      "job_id": "m45_annual_production_v1",
+      "job_sha256": "09ea772323db2bb501e3a7d3654096b208990a4d14625a65718e7f4d2e50f065",
+      "receipt_sha256": "45cbd104b8a74fd07cd1e6a67957926f1a2a06025643d28d70d312a2b7d16aed",
+      "wall_seconds": 30.340851699991617
+    },
+    {
+      "role": "annual_audit",
+      "job_id": "m45_annual_independent_v1",
+      "job_sha256": "a78262e50922fdbc0194b9be936f07a9516261d527b7228053d24da92a17e570",
+      "receipt_sha256": "142cb73882f0b88bd843ab9d47c0ed3c9475fb36207274859e77b13e096d2152",
+      "wall_seconds": 126.34679790001246
+    }
+  ],
+  "limitations": [
+    "Exploratory revised-history comparison; targets have been inspected, no unused-holdout claim.",
+    "Threshold applies to mixed provider preferred magnitude types, without homogenizing to moment magnitude or inferring physical completeness.",
+    "87 targets is below inherited descriptive100total/20perwindow reference; fixed windows remain unchanged.",
+    "M4 and M4.5 scores describe different event populations; cross-threshold score changes are not paired gains.",
+    "No causal claims or statistical-inference claims; complete-procedure score differences need not establish calibration.",
+    "Historical objective DLL compiler provenance is unknown; exact admitted binary retained."
+  ]
+}

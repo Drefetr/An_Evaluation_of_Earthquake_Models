@@ -1,0 +1,172 @@
+\section{Restricted class history and productivity sensitivity}
+\label{a2:models}
+
+The class-history candidate is a restricted two-class, shared-kernel
+construction motivated by multivariate representations of marked excitation
+\citep{DavisBaeumerWang2026,DavisKresinBaeumerWang2026}.
+The equations below specify the implemented follow-up family; they are not
+the full fitted model or a reproduction of the empirical comparisons in those
+papers. It simplifies class and temporal-kernel structure while changing the
+mark support, and is not a strict submodel of the authors' bounded-mark
+family. Shared target kernels and the low-dimensional association parameter
+are choices of this experiment. Notation is local: our \(\beta\) denotes the
+magnitude rate, rather than a source paper's fractional-kernel order.
+
+\subsection{Class association and the conditional ground intensity}
+
+Write \(q=M-5\), let the class cut be \(c=0.5\), and define
+\(\mathcal C_0=[0,c)\), \(\mathcal C_1=[c,\infty)\). Write
+\(p_0=1-e^{-\beta c}\), \(p_1=e^{-\beta c}\) for the background class
+probabilities under the working excess-exponential law. The common
+\(\beta>0\) is estimated using training marks only and held fixed in each
+forecast window. Let \(C_k\in\{0,1\}\) be the class label of event \(k\).
+For source class \(j\), define the strictly past history
+\[
+ H_j(t)=\sum_{k:\,t_k<t,\ C_k=j}\kappa_{0.7}(q_k)g(t-t_k),
+ \qquad
+ R_0(\delta)=e^{-\delta/2},\quad R_1(\delta)=e^{\delta/2},
+\]
+where \(g\) is the retained unit-integral finite positive exponential
+mixture and \(\kappa_r\) is defined in equation~\eqref{a2:productivity}.
+Write \(\mu(t)=\exp\{a+d x(t)\}\) for the background, with the affine
+observation coordinate specified in Section~\ref{a2:protocol}.
+The implemented target-class intensity is
+\begin{equation}
+ \begin{aligned}
+ \lambda_i(t)&=p_i\mu(t)+\frac{n}{\rho(h,\delta)}
+       \sum_{j=0}^1 P_{ij}(h)R_j(\delta)H_j(t),\\
+ P_{ij}(h)&=(1-h)p_i+h\,\mathbf 1_{\{i=j\}}.
+ \end{aligned}
+ \label{a2:class-intensity}
+\end{equation}
+Here \(n\) is the class-history candidate's scalar branching parameter and
+\(\rho(h,\delta)\) is the normalizing Perron root specified below.
+The frozen parameter box is
+\[
+ -0.95\min(p_0/p_1,p_1/p_0)\leq h\leq0.95,\qquad
+ -1\leq\delta\leq1,\qquad 0\leq n\leq0.98.
+\]
+The factor \(0.95\) retains a margin inside the mathematical
+nonnegativity limit for \(P\); the Perron root \(\rho(h,\delta)\) is
+strictly positive.
+For the working within-class magnitude laws, let
+\[
+ m_j=E[\kappa_{0.7}(Q)\mid Q\in\mathcal C_j],\qquad
+ m_0=\frac{1-e^{-0.3\beta c}}{p_0},\quad m_1=e^{0.7\beta c}.
+\]
+The raw mean offspring matrix and its normalization are
+\[
+ A_{ij}(h,\delta)=P_{ij}(h)R_j(\delta)m_j,\qquad
+ \rho(h,\delta)=\rho_{\rm PF}(A),\qquad K=\frac{n}{\rho}A,
+\]
+where \(\rho_{\rm PF}\) denotes the Perron root. Thus \(K\) is the
+class-history candidate's mean offspring matrix, with Perron radius \(n\).
+Association \(h\) and fertility contrast \(\delta\) play different roles.
+Signed association can describe class anti-persistence while all
+excitation coefficients remain nonnegative. At \(n=0\),
+\(\lambda_i=p_i\mu\); trigger association and fertility are unidentified.
+
+For every source class, \(\sum_iP_{ij}(h)=1\). Thus, conditional on a
+fixed observed marked history,
+\begin{equation}
+ \Lambda(t)=\sum_i\lambda_i(t)
+ =\mu(t)+s\{R_0(\delta)H_0(t)+R_1(\delta)H_1(t)\},
+ \qquad s=\frac{n}{\rho(h,\delta)}.
+ \label{a2:ground-intensity}
+\end{equation}
+The direct redistribution across target classes cancels from the ground
+intensity. The conditional timing log likelihood is
+\[
+ \ell_{\rm time}=\sum_k\log\Lambda(t_k)-\int_{\mathcal W}\Lambda(t)\,dt.
+\]
+For these classes, the conditional within-class magnitude density is
+\[
+ f_i(q)=\frac{\beta e^{-\beta q}}{p_i}\mathbf1_{\{q\in\mathcal C_i\}}.
+\]
+The mark density at an observed event of class \(i\) is
+\(\{\lambda_i(t)/\Lambda(t)\} f_i(q)\), giving mark log density
+\(\log(\lambda_i/\Lambda)+\log\beta-\beta q-\log p_i\).
+This gives the saved decomposition
+\(\ell_{\rm joint}=\ell_{\rm time}+\ell_{\rm mark}\).
+
+Equation~\eqref{a2:ground-intensity} has several qualifications.
+First, holding \(n\) fixed does not remove \(h\), because \(\rho\) may
+depend on \(h\). Second, matching an effective scale at \(h=0\) requires
+\[
+ n_0=n\frac{\rho(0,\delta)}{\rho(h,\delta)}.
+\]
+This mapping preserves timing intensities only if the mapped parameter is
+admissible, in particular \(0\leq n_0\leq0.98\); \(n=0\) gives the
+trivial no-trigger case. The frozen bound on \(n\), and any relevant
+stability constraint, can make feasible effective-scale ranges depend on
+\(h\). We therefore do not assert that all constrained timing families are
+identical. Third, joint timing-and-mark estimation can shift \(s,\delta\)
+and background parameters, producing indirect changes in timing forecasts.
+Finally, the identity conditions on the actually observed marked past.
+When future marks themselves are generated by the model, their class
+composition can depend on \(h\), and so can a multistep or unconditional
+timing law.
+
+At \(h=0\), \(\lambda_i(t)=p_i\Lambda(t)\); the conditional magnitude law
+is history-free even when \(\delta\) remains fitted. Consequently, we denote this association-zero ablation \(E1_{h=0}\);
+it is the appropriate primary ablation for the association parameter
+within this restricted family. It is not the same restriction
+as setting both \(h\) and \(\delta\) to zero.
+
+\subsection{Continuous productivity and dynamic evaluation}
+
+The second follow-up replaces fixed \(r=0.7\) by a training-estimated
+\(r\in[0,0.95]\) in
+\begin{equation}
+ \kappa_r(q)=(1-r)e^{\beta rq},\qquad
+ \partial_r\kappa_r(q)=\kappa_r(q)
+            \left(\beta q-\frac{1}{1-r}\right).
+ \label{a2:productivity}
+\end{equation}
+For \(Q\sim{\rm Exp}(\beta)\), \(E[\kappa_r(Q)]=1\) when \(r<1\).
+This is a normalization under the working law, not an empirical statement
+about the historical magnitude catalogue.
+
+The geometry records \(D_{ik}=g(t_i-t_k)\mathbf 1_{\{t_k<t_i\}}\)
+and each parent's full-window exposure \(J_k\), independently of \(r\).
+Every C++ value and gradient evaluation recomputes
+\[
+ H_r(t_i)=\sum_k D_{ik}\kappa_r(q_k),\quad
+ K(r)=\sum_kJ_k\kappa_r(q_k)
+\]
+and their \(r\)-derivatives. In the excitatory candidate, and in the
+inhibitory candidate whose supplied stress feature is independent of \(r\),
+\begin{equation}
+ \partial_r{\rm NLL}
+ =n\left\{K'(r)-\sum_i\frac{\partial_rH_r(t_i)}{\Lambda(t_i)}\right\}.
+ \label{a2:r-gradient}
+\end{equation}
+The common training magnitude law gives exactly the same mark score to
+the fixed- and free-\(r\) stage-one candidates. Their score differences
+therefore concern timing. At \(n=0\), the timing score is independent of
+\(r\), its derivative vanishes and \(r\) is unidentified. Complete quiet
+exposure, pretraining parents,
+strictly past event histories and the final censor are retained.
+
+For the same unbounded exponential working law and \(m>0\),
+\[
+ E[\kappa_r(Q)^m]=\frac{(1-r)^m}{1-mr}
+ \quad\text{when }mr<1;
+\]
+the moment diverges for \(mr\geq1\). In particular, productivity variance
+is infinite at \(r\geq0.5\), including the baseline \(r=0.7\).
+Finite saved-catalogue likelihoods and numerical checks do not supply
+variance-based confidence or power conclusions.
+
+\subsection{Synthetic normalization and information}
+
+The engineering controls are execution witnesses. For a multitype mean
+offspring matrix \(K\), fixing its Perron radius does not fix the expected
+first-generation offspring count of an immigrant with class law \(p\):
+the latter is \(\mathbf 1^\top Kp\). The class-active history control
+changed this quantity and the resulting offspring/event composition despite
+using the same Perron branching parameter as its control. Its offspring
+dilution must therefore be retained when interpreting successful fits or
+forecast gains. Neither these controls nor the small fixed-\(r\) and
+free-\(r\) engineering examples constitute matched-power, bias, coverage or
+reliable-recovery studies.

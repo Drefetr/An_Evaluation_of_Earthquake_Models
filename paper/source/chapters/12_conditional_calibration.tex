@@ -1,0 +1,57 @@
+\chapter{Conditional Simulation Diagnostics of Frozen Forecasts}
+\label{ch:calibration}
+\section{Conditional diagnostics: useful discrimination without overall adequacy}
+
+\subsection{Frozen target and diagnostic reference}
+
+The completed conditional check targets original frozen OC alone. For each of its three origins, 999 complete branching-future paths were generated conditional on that origin's fixed fitted state, nuisance choices and original prehistory. Descendants can generate further descendants. All 2,997 paths completed; failed and unknown counts are zero. They are dependent-event paths under the model, not 2,997 independent earthquake samples. The observed-path exposure is a realised predictable compensator; it is not a Poisson future-count mean.
+
+Each origin has 84 recorded coordinates, covering count, time gaps and dependence, spatial transforms and allocation, scores and subblocks. The 252 entries are not 252 independent diagnostic tests: immigrant exposure is a deterministic bookkeeping coordinate at each fixed origin, and total-exposure and trigger-exposure ranks coincide because their difference is that fixed constant. Those entries are retained for accounting, explicitly flagged in Appendix~\ref{app:audit12}, and add no independent evidence of adequacy. The spatial transforms draw on the probability-integral-transform tradition \citep{Rosenblatt1952,Schoenberg2003}. A coordinate's insertion interval is
+
+\begin{equation}
+\left[\frac{1+\#\{S^{(r)}<S^{\rm obs}\}}{1000},\quad
+\frac{1+\#\{S^{(r)}\leq S^{\rm obs}\}}{1000}\right].
+\end{equation}
+
+The resolution is 0.001. Boundary ranks are finite reference comparisons, not zero probability or exact population tail probabilities. Ties can create wide intervals. This descriptive collection has no asserted omnibus significance test, and its coordinates are not separate unadjusted discoveries. Empirical reference intervals describe simulated catalogues, not confidence intervals for fitted parameters or scientific validity.
+
+\subsection{Discrepant and ordinary-looking results coexist}
+
+\begingroup\footnotesize\setlength{\tabcolsep}{2pt}\renewcommand{\arraystretch}{1.18}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.1800\textwidth}>{\raggedright\arraybackslash}p{0.1800\textwidth}>{\raggedright\arraybackslash}p{0.1800\textwidth}>{\raggedright\arraybackslash}p{0.1800\textwidth}>{\raggedright\arraybackslash}p{0.1800\textwidth}@{}}
+\toprule
+{}Origin & Recorded count & Supplied simulated count interval & Count insertion interval & Selected diagnostic evidence \\
+\midrule\endfirsthead
+\toprule
+Origin & Recorded count & Supplied simulated count interval & Count insertion interval & Selected diagnostic evidence \\
+\midrule\endhead
+\midrule\multicolumn{5}{r}{\emph{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+{}Early & 79 & 121-453 & [0.001, 0.001] & Gap KS, serial statistic and spatial KS exceed every reference \\
+{}Middle & 167 & 90-398 & [0.704, 0.712] & Ordinary total hides yearly concentration and dependence \\
+{}Late & 69 & 69-279 & [0.021, 0.028] & Marginal gap/spatial KS ordinary; dependence and variance discrepant \\
+\end{longtable}\endgroup
+
+Early count is below all 999 simulated counts. Its exposure and trigger exposure are also below all references. Its gap KS is 0.222245 and spatial Rosenblatt KS is 0.167335, each above every reference. Yet the time event-logsum insertion is 0.583, the censored terminal tail 0.111 and within-cell absolute maximum 0.187. The model does not fail every coordinate in the same way.
+
+Middle total count looks ordinary, but the five yearly counts are 12, 4, 8, 116 and 27. Its subblock balance maximum has insertion 0.998; the gap serial statistic exceeds all references. Its conditional-location score insertion is 0.364 and within-cell density score 0.312, while spatial KS, cross dependence and allocation show discrepancies. A satisfactory-looking total or score coordinate does not settle concentration or dependence.
+
+Late gap KS has insertion 0.676 and spatial KS 0.810, yet serial dependence has insertion 0.998, the spatial cross statistic 0.992, and dimensionless location variance exceeds every reference. Across origins, cell 4 observed counts 15, 7 and 8 are below conditional allocations 23.493717, 16.132286 and 14.770085. These allocations sum conditional probabilities at observed event times; they are not unconditional event-count means. Empty-cell ties require particular care: one zero count has insertion [0.001, 0.563], which cannot be summarized by its lower endpoint.
+
+Raw score totals also depend on target count and density measure. Early total location and joint scores exceed all simulated totals while its count is below all simulated counts; this does not validate its probabilities. Immigrant exposure ties identically across paths within a fixed state by construction. Neither that deterministic tie nor count-dependent mark totals validates the underlying recipe.
+
+\subsection{Diagnostic scope}
+
+OC shows material conditional diagnostic discrepancies in all three origins: early count and several dependence/spatial coordinates, middle concentration and dependence, and late dependence and location variance. The fixed-state forecast therefore lacks demonstrated conditional adequacy. That original coordinate-wise conclusion was descriptive rather than an omnibus rejection. EP was absent from that historical OC-only simulation experiment. The subsequent comparative conditional evaluation in Section~\ref{sec:s05-completed} includes EP and the declared within-origin omnibus statistics. Simulation-based forecast testing separates these questions \citep{Schorlemmer2007,Zechar2010}. Fitting, selection, measurement and catalogue-revision uncertainty are excluded by fixing the state. Later training histories include earlier target periods; separate per-origin simulations do not define a coherent cross-origin joint null. Cross-window patterns remain descriptive. Heavy-tailed productivity has infinite second moment under the fixed mark recipe, and normal/CLT count inference is not used. A censored terminal tail is survival information, not an additional completed gap.
+
+The conditional diagnostic report and current evidence index retain the coordinate-level source and audit scope. All paths received identity/count/mark/exposure checks; independent full 84-coordinate raw replay covered nine paths, three prescribed indices per origin, not all 2,997 complete vectors.
+
+
+
+\section{Complete diagnostic record and subsequent evaluation}
+Appendix~\ref{app:custody}, Section~\ref{app:audit12}, retains the complete coordinate tables and origin-specific rank figures, their reference definitions, and the independent numerical audit. The compact summary above and that full record describe the same frozen OC experiment.
+
+The subsequent score-concentration and catalogue-robustness evaluation retained both discrepant and ordinary-looking diagnostics. Its completed results appear in Chapter~\ref{ch:external}; the frozen OC calibration target was not replaced by that follow-on.
+
+\input{chapters/12_s05_completed}

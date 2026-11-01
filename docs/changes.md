@@ -1,5 +1,9 @@
 # Manuscript readability update
 
+## 1 November 2026 unified monograph and S04B scientific-completion edition
+
+Integrated the 231-page unified LaTeX monograph (`paper/manuscript_unified.pdf`), 8-page plain-language companion (`companion/lay_guide_to_the_research.pdf`), interactive website and findings explorer (`website/site/index.html`), Stage 2 (`S01`–`S06`) and matched-generator `S04B` C++/Python source implementations (`engine/stage2_followup/`), and typed claim-reconciliation ledger (`validation/MASTER_CLAIM_LEDGER.json` and `scripts/verify_claims.py`, verifying 27,069 claim and documentary metadata records across 140 bundled authorities). Preserved historical `engine/iteration_*` source pins and baseline supplements so all archival links continue to resolve.
+
 ## 22 October 2026 minor review corrections
 
 Clarified that the separate historical/continuation input-identity and case-role check is source-reported and is not reproduced in this compact packet. No paired historical/continuation outcome comparison is reported. Corrected four manuscript PDF bookmark destinations by loading the heading packages before hyperlink setup; manuscript typography and pagination are unchanged. Rebuilt the manuscript and F addendum, checked all 64 manuscript bookmark destinations, and visually inspected the two changed addendum pages. Counts, equations, scientific settings, figures, credits and licence scope are unchanged. See `validation/minor_fixes_checks.json` for the current PDF bindings and check scope.

@@ -1,0 +1,67 @@
+\section{Frozen exploratory protocols and score targets}
+\label{a2:protocol}
+
+The primary observed selection contains 913 GeoNet earthquakes with
+\(M\geq5\), in the archived 24,394-day interval beginning 1960-01-01.
+The provider is the GeoNet earthquake catalogue \citep{GeoNetCatalogue}.
+Both follow-ups use the exact selected snapshot rather than a new provider
+download \citep{MagnitudePredictionPilot2026,ProductivitySlopePilot2026}.
+Their training origins are \(0.50T,0.65T,0.80T\), with forecast endpoints
+\(0.65T,0.80T,T\), where \(T=24{,}394\) days. Initial training counts are
+301, 504 and 659; the consecutive held-out counts are 203, 155 and 254.
+The frozen history rule retains all available strictly earlier parents,
+including events before the training-likelihood start. In the post-1980
+sensitivity that start is day 7,305. Matching saved training-count
+differences imply 164 earlier selected events. Their retention follows
+the protocol rule and is documented by historical audit records; this
+editorial aggregate check does not newly verify parent geometry. The
+constant-background sensitivity fixes the background trend at zero.
+
+The ground candidates are
+\[
+ \Lambda_{E0}(t)=e^{a+d x(t)}+nH_r(t),\qquad
+ \Lambda_{I0}(t)=e^{a+d x(t)-\eta G(t)}+nH_r(t),
+ \quad x(t)=2t/T-1.
+\]
+Here \(G\) is the retained stress feature, \(H_r\) is productivity-weighted
+triggering, and the finite positive exponential mixture and stress-law
+settings are fixed within each declared protocol. The \(E1\) class
+candidate is given by equation~\eqref{a2:class-intensity};
+\(E1_{h=0}\) estimates fertility while fixing association at zero.
+Continuous free-\(r\) estimation is performed in E0 and I0, with the
+class-history extension conditional on the declared continuation gate.
+
+The retained temporal kernel is a normalized finite positive exponential
+approximation to Mittag-Leffler memory. In particular, its finite value
+at zero is not the exact fractional kernel's short-lag singularity.
+Earlier closed-form or reference-kernel checks and the later predictive
+mixture representation are distinct numerical objects.
+
+At a forecast event, the information set contains the actually observed
+marked past only. The ground intensity uses a left limit, and all
+initial, inter-event and terminal quiet exposure enters the compensator.
+The common conditional-within-bin exponential magnitude-rate estimate is
+computed from training marks at cut \(c=0.5\), then frozen for all matched
+candidates in that window. The joint score is a density log score with
+timing and mark components, not a comparison of a bin probability mass to
+an unrelated continuous density. The use of proper scores motivates
+evaluating complete predictive distributions \citep{GneitingRaftery2007};
+it does not make previously inspected windows independent validation data.
+
+The historical class-history fits required eight starts for every
+procedure. The productivity follow-up likewise required eight starts per
+main procedure, with seven fixed-\(r\) profile nodes and four starts per
+node for primary free-\(r\) models. Nested fixed-parameter candidates and
+same-\(r\) excitation-to-inhibition floors are admitted using training
+scores. All profile candidates enter the training pool before forecasts
+are evaluated. The selected parameter vector minimizes the prescribed
+training objective; descriptive profile forecasts cannot replace it.
+The saved near-training-equivalent band and its forecast-spread diagnostic
+assess the retained candidate pool, not global optimizer uncertainty.
+
+For clarity, held-out scores intentionally decide whether the next
+prespecified scientific stage is warranted. They do not choose parameter
+values, optimization starts or an adaptively refined profile grid.
+Failure and unknown states remain explicit. The follow-up comparisons
+have no new null calibration, prospective holdout or size-matched power
+interpretation.

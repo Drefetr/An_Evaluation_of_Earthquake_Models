@@ -1,0 +1,422 @@
+{
+  "title": "Understanding the earthquake research",
+  "subtitle": "A plain language guide to the questions, findings and limits",
+  "edition": "Scientific completion companion - 1 November 2026",
+  "status": "This guide describes the completed scientific follow-up studies alongside the revised monograph. The comparisons use historical catalogues and simulations; they do not establish an operational earthquake forecasting service.",
+  "pages": [
+    {
+      "title": "The research in five minutes",
+      "kicker": "01  The question",
+      "source": "Manuscript chapters 1, 2 and 14; completed empirical sections in chapters 7\u201313.",
+      "blocks": [
+        {
+          "type": "lead",
+          "text": "Can a model learn when an earthquake makes later activity less likely, as well as when it makes later activity more likely? And does that extra detail actually improve forecasts?"
+        },
+        {
+          "type": "p",
+          "text": "That is the central question of this research. An earthquake catalogue records events: when they happened, where they were located and their reported magnitudes. It does not directly label how much each event encouraged or discouraged later earthquakes. The research asks what can be learned from those records, what requires extra assumptions, and what survives a predictive test."
+        },
+        {
+          "type": "callout",
+          "title": "The main finding",
+          "text": "In the completed observed-catalogue comparisons, adding the tested inhibition mechanisms has not established better predictive performance than the corresponding models without inhibition. Some controlled simulations do show gains. This is a finding about the tested models and studies, not proof that physical inhibition never happens."
+        },
+        {
+          "type": "h2",
+          "text": "Three different achievements"
+        },
+        {
+          "type": "p",
+          "text": "A model can be mathematically well defined, have parameters that could in principle be distinguished, and still fail to improve predictions from a finite catalogue. The manuscript treats these as separate questions. A good fit to the past is not enough to settle any of them."
+        },
+        {
+          "type": "p",
+          "text": "The contribution is therefore broader than a league table of forecasts. It develops restricted mathematical results, tests where learning becomes difficult, and records both the successes and failures of particular forecasting procedures."
+        },
+        {
+          "type": "h2",
+          "text": "How to read this guide"
+        },
+        {
+          "type": "p",
+          "text": "Pages 2\u20134 explain the models and the tests. Pages 5\u20136 explain the completed simulation and regional findings. Pages 7\u20138 set out the remaining limits, define common terms and point to the relevant manuscript chapters. No equations are needed."
+        },
+        {
+          "type": "note",
+          "text": "These are research comparisons using historical catalogues and simulations. The project has not established an operational earthquake forecasting service."
+        }
+      ]
+    },
+    {
+      "title": "What goes into a model",
+      "kicker": "02  The ingredients",
+      "source": "Manuscript chapter 2; spatial models in chapters 10\u201311; local inhibition in chapter 13.",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Here, a model is a recipe for assigning a changing rate of earthquake occurrence across time and, in the spatial studies, across a region. It gives a distribution of possible activity rather than a single certain date and location for the next earthquake."
+        },
+        {
+          "type": "diagram",
+          "name": "ingredients",
+          "alt": "Three ingredients: background activity, triggering from past events, and a possible suppressing effect. Different models combine these ingredients differently."
+        },
+        {
+          "type": "h2",
+          "text": "Background activity"
+        },
+        {
+          "type": "p",
+          "text": "This is the part of the model's event rate that is not attributed to triggering by recorded earlier events. It may change over time and place. Calling an event a background event is a modelling description; it is not a direct observation of its geological cause."
+        },
+        {
+          "type": "h2",
+          "text": "Triggering and inhibition"
+        },
+        {
+          "type": "p",
+          "text": "Triggering raises the modelled rate after earlier events. Inhibition lowers a specified part of that rate. In the original local-inhibition model, only the background contribution is reduced. One newer version also reduces the triggered contribution. Those are different hypotheses, even when they use the same event history."
+        },
+        {
+          "type": "h2",
+          "text": "The place and the size of an event matter"
+        },
+        {
+          "type": "p",
+          "text": "The spatial models distinguish a region's background pattern from the pattern of later events around an earlier earthquake. A map of long-term activity and a model of an aftershock cloud do different jobs. The research tests choices about both."
+        },
+        {
+          "type": "p",
+          "text": "The original local-inhibition model gives all eligible past events the same suppressing weight. LI+, the revised family, gives larger magnitudes more weight. This changes how event size enters the hypothesis. It does not by itself make the model more accurate or turn it into a measured map of stress inside the Earth."
+        },
+        {
+          "type": "note",
+          "text": "The manuscript separates a physical loading model from diagnostic forecasting models with separately specified backgrounds. Results about one formulation do not automatically apply to the other."
+        }
+      ]
+    },
+    {
+      "title": "Memory and what can be learned",
+      "kicker": "03  The mathematical questions",
+      "source": "Manuscript chapters 2\u20135, especially finite-mode assumptions and the zero-inhibition boundary.",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Memory means that the influence of an earlier event fades over time. A short memory concentrates influence soon after an event. A longer memory allows it to persist. It is a feature of the model, not an extra quantity directly recorded in the catalogue."
+        },
+        {
+          "type": "diagram",
+          "name": "memory",
+          "alt": "Schematic short and long fading influences after an event. The curves are conceptual illustrations, not fitted results."
+        },
+        {
+          "type": "h2",
+          "text": "Many simple fading effects can represent a complex memory"
+        },
+        {
+          "type": "p",
+          "text": "Some computations combine a finite collection of simple fading components, each with its own speed. This gives the computer a compact state to update as events arrive. It can approximate a more complicated memory law over a chosen range, but a finite approximation is not the same mathematical object as an exact long-memory law."
+        },
+        {
+          "type": "h2",
+          "text": "Stability has a precise and limited meaning"
+        },
+        {
+          "type": "p",
+          "text": "For the physical finite-mode model, the results require constant loading, fewer than one directly triggered event per event on average, and suitable conditions on the response and event properties. Under those assumptions, the theory controls expected activity. That does not mean every simulated sequence is small or that all measures of variability are finite. The manuscript shows why first-moment results\u2014results about averages\u2014can coexist with difficulties involving second moments, which concern variability."
+        },
+        {
+          "type": "h2",
+          "text": "Some settings cannot be distinguished"
+        },
+        {
+          "type": "p",
+          "text": "Imagine turning the strength of a model's inhibitory effect to zero. Changing its proposed range or duration then makes no difference to the forecast. The catalogue cannot identify those unused settings from that forecast. A reported range at zero strength is a convention, not a discovered physical length scale."
+        },
+        {
+          "type": "p",
+          "text": "Even away from zero, two effects can compete to explain the same pattern. A changing background can make it harder to learn an inhibition effect. Knowing that parameters are distinguishable in an ideal mathematical law does not guarantee accurate estimates from the particular catalogue available."
+        }
+      ]
+    },
+    {
+      "title": "How the comparisons work",
+      "kicker": "04  Fit, prediction and calibration",
+      "source": "Manuscript chapters 5\u20136 and 8\u201312; likelihood, held-out scoring and conditional calibration.",
+      "blocks": [
+        {
+          "type": "h2",
+          "text": "Fit first, then test on later observations"
+        },
+        {
+          "type": "p",
+          "text": "The model's adjustable settings are fitted using a training history. A predictive comparison then scores observations outside that fitting period under the declared rules. The relevant comparison uses the same events, time window and region for both models."
+        },
+        {
+          "type": "diagram",
+          "name": "split",
+          "alt": "Earlier observations are used for fitting. A marked origin separates them from later observations used for scoring. This is an illustrative split; study window lengths vary."
+        },
+        {
+          "type": "h2",
+          "text": "A score rewards useful probabilities"
+        },
+        {
+          "type": "p",
+          "text": "The research uses log scores: a way of evaluating the probabilities or rates a model assigns to what actually happens. A model cannot win simply by announcing high activity everywhere. Its score also accounts for the activity it predicted across the full observation window. Higher scores are better within the same scoring comparison."
+        },
+        {
+          "type": "p",
+          "text": "Scores can be separated into contributions for timing, location and magnitude. A model may improve where it places activity while making the timing worse. The overall result and the component results therefore need to be read together."
+        },
+        {
+          "type": "h2",
+          "text": "Calibration asks a different question"
+        },
+        {
+          "type": "p",
+          "text": "A forecast that assigns a one-in-five chance to an event should, across suitable repeated comparisons, see that event about one time in five. That is the idea of calibration. In this research, simulated futures are compared with the actual future to look for discrepancies in counts, event spacing and locations."
+        },
+        {
+          "type": "callout",
+          "title": "Winning does not mean passing every test",
+          "text": "One model can score better than another while both give poor descriptions of important features of the data. The benchmark's score advantage is not a calibration certificate."
+        },
+        {
+          "type": "note",
+          "text": "A log-score difference reported in nats is a difference on a logarithmic scale. It is not a percentage improvement or a number of earthquakes correctly predicted."
+        }
+      ]
+    },
+    {
+      "title": "What the controlled studies show",
+      "kicker": "05  Experiments with known rules",
+      "source": "Completed controlled studies in chapters 7, 9 and 13, including the distinct matched-generator S04B extension.",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A simulation creates a catalogue from a specified model. Because the generating rules are known, researchers can ask whether a fitting procedure notices an effect that was put there, or invents one when it was absent. Its conclusions still belong to those chosen rules."
+        },
+        {
+          "type": "h2",
+          "text": "Knowing the background can change the answer"
+        },
+        {
+          "type": "p",
+          "text": "The completed study now evaluates all four procedures on the same 1,000 no-inhibition histories and 150 alternative histories. It shows why the ability to detect inhibition depends on what background information is supplied or estimated. Its reference calibration still uses the known generating law. This is an oracle experiment: it gives the researcher information that a real catalogue does not provide."
+        },
+        {
+          "type": "h2",
+          "text": "A nonzero fitted effect is not enough"
+        },
+        {
+          "type": "p",
+          "text": "The magnitude-history study uses 100 paired simulation units, each used at three levels of magnitude dependence. Correcting a mismatch in how magnitude affects triggering reduces the average apparent evidence relative to the mismatched candidate, but small positive fitted effects remain common. Thresholds estimated from the same control bank are descriptive checks, not an independent demonstration of a real-world false-alarm rate. Making that relationship match does not remove every difference between the simulator and fitted model."
+        },
+        {
+          "type": "h2",
+          "text": "The expanded inhibition controls have mixed outcomes"
+        },
+        {
+          "type": "p",
+          "text": "The larger local-inhibition study uses 80 histories across four settings. Original inhibition and magnitude-weighted background inhibition gain, on average, in the setting with broad, long-lasting inhibition. Suppressing both background and triggered activity has a negative mean gain there. Other settings retain substantial losses. In those original controls, penalties choose no inhibition throughout both null settings and the narrow, short-lived setting."
+        },
+        {
+          "type": "callout",
+          "title": "Which law generated those histories matters",
+          "text": "The original controls use equal suppressing weights. The separate matched-generator extension now also generates histories directly from the magnitude-weighted background-only and total-intensity laws. These remain fixed-backbone simulations, with separate results for each generating setting."
+        },
+        {
+          "type": "p",
+          "text": "In the separate matched-law study, both matching procedures gain on every broad, long-lasting history. Narrow, short-lived inhibition remains difficult: both matching unpenalized procedures lose on average. Their penalties usually select no inhibition. A small positive gated mean under the narrow total-intensity law comes from a single winning history, with all other histories tied at no inhibition; it is not reliable recovery. Losses remain included. Histories are paired across procedures; sample error bars are descriptive and win intervals do not establish real-world detection power."
+        }
+      ]
+    },
+    {
+      "title": "What the regional studies show",
+      "kicker": "06  New Zealand, California and Japan",
+      "source": "Manuscript chapters 8\u201313; completed spatial ablations and regional backtests in chapter 11.",
+      "blocks": [
+        {
+          "type": "h2",
+          "text": "New Zealand is a development record"
+        },
+        {
+          "type": "p",
+          "text": "The same held-out earthquakes were examined across successive modelling studies. This helped develop and diagnose the models, but it makes the later comparisons exploratory. Freezing the next procedure does not make previously inspected observations new again."
+        },
+        {
+          "type": "p",
+          "text": "Moving from a coarse location reference to a continuous spatial model can produce large score gains. That shows a benefit over the particular coarse reference. It does not establish superiority over a strong competing spatial model."
+        },
+        {
+          "type": "h2",
+          "text": "California separates the main comparison from the backtest"
+        },
+        {
+          "type": "p",
+          "text": "The inverse-power aftershock benchmark, EP, beats OC in each original primary California test fold, chiefly through location. Original inhibition and magnitude-weighted background-only inhibition select zero strength in all three observed folds. The revised model that also suppresses triggered activity loses held-out score in every fold; its complexity penalty selects no inhibition."
+        },
+        {
+          "type": "p",
+          "text": "A separate episode-based backtest now covers five eligible historical episodes. It fits each model using only the history before that episode, but the roster was selected retrospectively. Results vary by episode: EP does not win every one. These episodes are not five independent confirmations."
+        },
+        {
+          "type": "h2",
+          "text": "Japan exposes a timing problem"
+        },
+        {
+          "type": "p",
+          "text": "Against the reference model with a fixed triggering-time law, the timing gain seen in the original California comparison becomes a loss in Japan. Fixing its background trend to be constant reduces the overall timing deficit but does not remove it. OC also remains behind EP jointly in that study. The trend choice is therefore not a complete explanation of the reversal."
+        },
+        {
+          "type": "callout",
+          "title": "A better location model does not settle the whole forecast",
+          "text": "The completed spatial ablations retain an overall EP advantage over OC in California and New Zealand, mainly through location. Individual fold results vary, and several model features change across the arms. The comparison does not isolate a single physical cause."
+        },
+        {
+          "type": "note",
+          "text": "A fold is one training-and-test comparison. Different studies use different windows and model settings, so their scores should not be treated as one interchangeable league table."
+        }
+      ]
+    },
+    {
+      "title": "What remains open",
+      "kicker": "07  The boundaries of the evidence",
+      "source": "Manuscript chapters 5\u20137 and 12\u201314; working-release status at the date of this guide.",
+      "blocks": [
+        {
+          "type": "h2",
+          "text": "A failed model does not rule out a physical process"
+        },
+        {
+          "type": "p",
+          "text": "A model can lose because its form is too restrictive, its background is inadequate, its fitting search misses better settings, the catalogue contains too little information, or the proposed effect adds little predictive value in that setting. These studies narrow some explanations. They do not identify a unique geological cause or prove the absence of physical inhibition."
+        },
+        {
+          "type": "h2",
+          "text": "Looking back is different from issuing a forecast"
+        },
+        {
+          "type": "p",
+          "text": "Using only earlier data when fitting is an important safeguard. It does not turn a retrospectively chosen set of episodes into a genuinely prospective study. Overlapping training histories and related earthquake sequences also limit how many independent pieces of evidence the comparisons supply."
+        },
+        {
+          "type": "h2",
+          "text": "Better computation answers a specific question"
+        },
+        {
+          "type": "p",
+          "text": "Faster engines, completed missing fits and numerical cross-checks make the stated calculations more reliable and complete. They do not create new independent observations, guarantee the best possible fitted parameters, or repair every assumption in the model. Numerical agreement and scientific validation are different achievements."
+        },
+        {
+          "type": "callout",
+          "title": "Better scores do not settle calibration",
+          "text": "The completed study compares OC and EP with 999 simulated futures at each of three forecast origins. Combined checks using continuous timing and spatial statistics flag discrepancies for both models in every origin. EP can score better while still giving an inadequate description of some features. These checks hold fitted parameters fixed; they do not include uncertainty about those parameters."
+        },
+        {
+          "type": "h2",
+          "text": "What would strengthen the evidence next"
+        },
+        {
+          "type": "p",
+          "text": "The matched revised-law simulations are now complete for their declared settings. Stronger empirical evidence would freeze model choices before genuinely unseen future earthquakes occur. Further methodological work should jointly estimate background, triggering and inhibition rather than supply the shared nuisance backbone. Neither step is replaced by a larger simulation bank."
+        },
+        {
+          "type": "note",
+          "text": "No fresh untouched New Zealand holdout is claimed here. The prospective prototype remains disabled and supplies no forecast-performance result."
+        }
+      ]
+    },
+    {
+      "title": "A small glossary and reading map",
+      "kicker": "08  Finding your way through the manuscript",
+      "source": "Terms are used in the sense defined by this manuscript. Chapter references avoid changing page numbers.",
+      "blocks": [
+        {
+          "type": "glossary",
+          "rows": [
+            [
+              "Catalogue",
+              "The recorded times, locations and magnitudes of selected earthquakes."
+            ],
+            [
+              "Parameter",
+              "An adjustable model setting, such as the strength or duration of an effect."
+            ],
+            [
+              "Inhibition",
+              "A mechanism that reduces a specified part of the modelled event rate."
+            ],
+            [
+              "Identifiability",
+              "Whether different settings could be distinguished from the model's observable law, in principle."
+            ],
+            [
+              "Null control",
+              "A simulated case without the effect the procedure is supposed to detect."
+            ],
+            [
+              "Oracle calibration",
+              "A simulation-based reference using the known generating law."
+            ],
+            [
+              "Held-out data",
+              "Observations outside a particular fitting step; repeated inspection can still make them part of model development."
+            ],
+            [
+              "Zero-strength boundary",
+              "The setting where inhibition is switched off and its unused range and memory cannot be identified."
+            ],
+            [
+              "Calibration",
+              "Agreement between a forecast's probability statements and repeated outcomes under the declared comparison."
+            ],
+            [
+              "OC, EP, LI and LI+",
+              "OC uses a regional background map to weight where triggered activity is placed; EP omits that weighting and uses its own distance-decay rule. LI adds local background suppression to OC; LI+ gives larger events stronger suppressing weights."
+            ]
+          ]
+        },
+        {
+          "type": "h2",
+          "text": "Where to read more"
+        },
+        {
+          "type": "reading_map",
+          "rows": [
+            [
+              "The model and its mathematical limits",
+              "Chapters 2\u20135"
+            ],
+            [
+              "Study design and controlled detection",
+              "Chapters 6\u20137"
+            ],
+            [
+              "Historical temporal and magnitude comparisons",
+              "Chapters 8\u20139"
+            ],
+            [
+              "Spatial models, regional transfer and backtests",
+              "Chapters 10\u201311"
+            ],
+            [
+              "Calibration and local inhibition",
+              "Chapters 12\u201313"
+            ],
+            [
+              "Overall interpretation and remaining questions",
+              "Chapter 14"
+            ]
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Read each numerical result with its comparator, scored observations and stated assumptions. The manuscript and its evidence records contain the detailed definitions, denominators and validation coverage. This companion provides a route into that material, not a replacement for it."
+        }
+      ]
+    }
+  ]
+}

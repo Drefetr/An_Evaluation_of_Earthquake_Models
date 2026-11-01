@@ -1,0 +1,645 @@
+\section{New Zealand spatial audit tables}
+
+In the tables, $I_{\mathrm{d,g}}$ denotes distance excitation with global stress (the saved identifier \texttt{I\_distance\_globalG}). A stacked mantissa and power of ten form one scientific-notation value; their full displayed precision is retained.
+\label{app:audit10}
+
+\subsection{C1 fold and zone accounting}
+\label{app:audit10-c1}
+
+\subsubsection{Per-fold comparisons}
+
+\begingroup\scriptsize\setlength{\tabcolsep}{2pt}\renewcommand{\arraystretch}{1.18}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.1080\textwidth}>{\raggedright\arraybackslash}p{0.1080\textwidth}>{\raggedright\arraybackslash}p{0.1080\textwidth}>{\raggedright\arraybackslash}p{0.1080\textwidth}>{\raggedright\arraybackslash}p{0.1080\textwidth}>{\raggedright\arraybackslash}p{0.1080\textwidth}>{\raggedright\arraybackslash}p{0.1080\textwidth}>{\raggedright\arraybackslash}p{0.1080\textwidth}@{}}
+\toprule
+{}Fold & Contrast & Events & Event & $\Delta C$ & Regional timing & Conditional zone & Joint \\
+\midrule\endfirsthead
+\toprule
+Fold & Contrast & Events & Event & $\Delta C$ & Regional timing & Conditional zone & Joint \\
+\midrule\endhead
+\midrule\multicolumn{8}{r}{\emph{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+{}0 & \modeltag{E0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{global} & 203 & 103.29 & 1.81424 & -2.08324 & 107.188 & 105.105 \\
+{}0 & \modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{I0}{global} & 203 & 134.194 & -12.3089 & 14.0738 & 107.812 & 121.885 \\
+{}0 & \modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{local} & 203 & -3.00076 & 2.7929 & -0.831697 & 0.623835 & -0.207862 \\
+{}0 & \modeltag{I0}{global}\allowbreak{}-\allowbreak{}\modeltag{E0}{global} & 203 & -33.9047 & 16.916 & -16.9887 & \shortstack[r]{$-1.13687$\\$\times10^{-13}$} & -16.9887 \\
+{}1 & \modeltag{E0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{global} & 155 & 113.7 & 5.30083 & 1.79756 & 117.203 & 119.001 \\
+{}1 & \modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{I0}{global} & 155 & 116.119 & -0.282139 & 0.579009 & 115.258 & 115.837 \\
+{}1 & \modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{local} & 155 & 0.385632 & -3.57753 & -1.24604 & -1.94585 & -3.1919 \\
+{}1 & \modeltag{I0}{global}\allowbreak{}-\allowbreak{}\modeltag{E0}{global} & 155 & -2.03292 & 2.00544 & -0.0274878 & \shortstack[r]{$1.13687$\\$\times10^{-13}$} & -0.0274878 \\
+{}2 & \modeltag{E0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{global} & 254 & 121.606 & 4.07498 & 2.11386 & 123.567 & 125.681 \\
+{}2 & \modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{I0}{global} & 254 & 126.523 & 0.327849 & 3.28405 & 123.567 & 126.851 \\
+{}2 & \modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{local} & 254 & \shortstack[r]{$-4.43908$\\$\times10^{-6}$} & \shortstack[r]{$1.47191$\\$\times10^{-6}$} & \shortstack[r]{$-2.6669$\\$\times10^{-6}$} & \shortstack[r]{$-3.00271$\\$\times10^{-7}$} & \shortstack[r]{$-2.96717$\\$\times10^{-6}$} \\
+{}2 & \modeltag{I0}{global}\allowbreak{}-\allowbreak{}\modeltag{E0}{global} & 254 & -4.91733 & 3.74714 & -1.17019 & \shortstack[r]{$-5.11591$\\$\times10^{-13}$} & -1.17019 \\
+{}0 & (\modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{local})-(\modeltag{I0}{global}\allowbreak{}-\allowbreak{}\modeltag{E0}{global}) & 203 & 30.904 & -14.1231 & 16.157 & 0.623835 & 16.7809 \\
+{}1 & (\modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{local})-(\modeltag{I0}{global}\allowbreak{}-\allowbreak{}\modeltag{E0}{global}) & 155 & 2.41856 & -5.58296 & -1.21855 & -1.94585 & -3.16441 \\
+{}2 & (\modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{local})-(\modeltag{I0}{global}\allowbreak{}-\allowbreak{}\modeltag{E0}{global}) & 254 & 4.91732 & -3.74714 & 1.17018 & \shortstack[r]{$-3.00271$\\$\times10^{-7}$} & 1.17018 \\
+\end{longtable}\endgroup
+
+\subsubsection{Exact zone decomposition}
+
+\begingroup\scriptsize\setlength{\tabcolsep}{2pt}\renewcommand{\arraystretch}{1.18}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.1251\textwidth}>{\raggedright\arraybackslash}p{0.1251\textwidth}>{\raggedright\arraybackslash}p{0.1251\textwidth}>{\raggedright\arraybackslash}p{0.1251\textwidth}>{\raggedright\arraybackslash}p{0.1251\textwidth}>{\raggedright\arraybackslash}p{0.1251\textwidth}>{\raggedright\arraybackslash}p{0.1251\textwidth}@{}}
+\toprule
+{}Fold & Contrast & Zone & Events & Event & $\Delta C$ & Sum \\
+\midrule\endfirsthead
+\toprule
+Fold & Contrast & Zone & Events & Event & $\Delta C$ & Sum \\
+\midrule\endhead
+\midrule\multicolumn{7}{r}{\emph{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+{}0 & \modeltag{E0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{global} & south & 43 & 24.4051 & 2.40447 & 26.8096 \\
+{}0 & \modeltag{E0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{global} & central & 37 & -2.32422 & 17.1847 & 14.8605 \\
+{}0 & \modeltag{E0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{global} & north & 123 & 81.2094 & -17.775 & 63.4344 \\
+{}0 & \modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{I0}{global} & south & 43 & 37.0734 & -1.66038 & 35.413 \\
+{}0 & \modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{I0}{global} & central & 37 & 9.42696 & 10.7779 & 20.2049 \\
+{}0 & \modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{I0}{global} & north & 123 & 87.694 & -21.4264 & 66.2676 \\
+{}0 & \modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{local} & south & 43 & 0.532678 & -0.243298 & 0.289381 \\
+{}0 & \modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{local} & central & 37 & -0.366395 & 0.224714 & -0.141682 \\
+{}0 & \modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{local} & north & 123 & -3.16705 & 2.81148 & -0.355561 \\
+{}0 & \modeltag{I0}{global}\allowbreak{}-\allowbreak{}\modeltag{E0}{global} & south & 43 & -12.1355 & 3.82156 & -8.31398 \\
+{}0 & \modeltag{I0}{global}\allowbreak{}-\allowbreak{}\modeltag{E0}{global} & central & 37 & -12.1176 & 6.63152 & -5.48605 \\
+{}0 & \modeltag{I0}{global}\allowbreak{}-\allowbreak{}\modeltag{E0}{global} & north & 123 & -9.65163 & 6.46293 & -3.18871 \\
+{}1 & \modeltag{E0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{global} & south & 115 & 130.41 & -109.594 & 20.8165 \\
+{}1 & \modeltag{E0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{global} & central & 23 & -12.0792 & 40.2793 & 28.2001 \\
+{}1 & \modeltag{E0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{global} & north & 17 & -4.63109 & 74.6154 & 69.9844 \\
+{}1 & \modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{I0}{global} & south & 115 & 128.878 & -108.752 & 20.1265 \\
+{}1 & \modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{I0}{global} & central & 23 & -9.14046 & 36.0405 & 26.9 \\
+{}1 & \modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{I0}{global} & north & 17 & -3.61925 & 72.4293 & 68.8101 \\
+{}1 & \modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{local} & south & 115 & -2.77278 & 1.28366 & -1.48912 \\
+{}1 & \modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{local} & central & 23 & 2.62957 & -3.62209 & -0.992518 \\
+{}1 & \modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{local} & north & 17 & 0.528839 & -1.2391 & -0.710261 \\
+{}1 & \modeltag{I0}{global}\allowbreak{}-\allowbreak{}\modeltag{E0}{global} & south & 115 & -1.24078 & 0.441674 & -0.799105 \\
+{}1 & \modeltag{I0}{global}\allowbreak{}-\allowbreak{}\modeltag{E0}{global} & central & 23 & -0.309142 & 0.616751 & 0.307609 \\
+{}1 & \modeltag{I0}{global}\allowbreak{}-\allowbreak{}\modeltag{E0}{global} & north & 17 & -0.483004 & 0.947012 & 0.464008 \\
+{}2 & \modeltag{E0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{global} & south & 66 & -1.36256 & 33.6904 & 32.3278 \\
+{}2 & \modeltag{E0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{global} & central & 129 & 108.706 & -54.8 & 53.906 \\
+{}2 & \modeltag{E0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{global} & north & 59 & 14.2625 & 25.1847 & 39.4472 \\
+{}2 & \modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{I0}{global} & south & 66 & 0.601783 & 32.4053 & 33.0071 \\
+{}2 & \modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{I0}{global} & central & 129 & 110.286 & -55.8122 & 54.4742 \\
+{}2 & \modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{I0}{global} & north & 59 & 15.6351 & 23.7347 & 39.3698 \\
+{}2 & \modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{local} & south & 66 & \shortstack[r]{$-2.68952$\\$\times10^{-6}$} & \shortstack[r]{$1.02233$\\$\times10^{-6}$} & \shortstack[r]{$-1.66719$\\$\times10^{-6}$} \\
+{}2 & \modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{local} & central & 129 & \shortstack[r]{$-6.95975$\\$\times10^{-7}$} & \shortstack[r]{$-4.98334$\\$\times10^{-7}$} & \shortstack[r]{$-1.19431$\\$\times10^{-6}$} \\
+{}2 & \modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{local} & north & 59 & \shortstack[r]{$-1.05358$\\$\times10^{-6}$} & \shortstack[r]{$9.47913$\\$\times10^{-7}$} & \shortstack[r]{$-1.05669$\\$\times10^{-7}$} \\
+{}2 & \modeltag{I0}{global}\allowbreak{}-\allowbreak{}\modeltag{E0}{global} & south & 66 & -1.96435 & 1.28506 & -0.679292 \\
+{}2 & \modeltag{I0}{global}\allowbreak{}-\allowbreak{}\modeltag{E0}{global} & central & 129 & -1.58037 & 1.01213 & -0.568246 \\
+{}2 & \modeltag{I0}{global}\allowbreak{}-\allowbreak{}\modeltag{E0}{global} & north & 59 & -1.3726 & 1.44995 & 0.077351 \\
+{}0 & (\modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{local})-(\modeltag{I0}{global}\allowbreak{}-\allowbreak{}\modeltag{E0}{global}) & south & 43 & 12.6682 & -4.06485 & 8.60336 \\
+{}0 & (\modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{local})-(\modeltag{I0}{global}\allowbreak{}-\allowbreak{}\modeltag{E0}{global}) & central & 37 & 11.7512 & -6.40681 & 5.34437 \\
+{}0 & (\modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{local})-(\modeltag{I0}{global}\allowbreak{}-\allowbreak{}\modeltag{E0}{global}) & north & 123 & 6.48459 & -3.65144 & 2.83315 \\
+{}1 & (\modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{local})-(\modeltag{I0}{global}\allowbreak{}-\allowbreak{}\modeltag{E0}{global}) & south & 115 & -1.532 & 0.841991 & -0.690012 \\
+{}1 & (\modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{local})-(\modeltag{I0}{global}\allowbreak{}-\allowbreak{}\modeltag{E0}{global}) & central & 23 & 2.93872 & -4.23884 & -1.30013 \\
+{}1 & (\modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{local})-(\modeltag{I0}{global}\allowbreak{}-\allowbreak{}\modeltag{E0}{global}) & north & 17 & 1.01184 & -2.18611 & -1.17427 \\
+{}2 & (\modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{local})-(\modeltag{I0}{global}\allowbreak{}-\allowbreak{}\modeltag{E0}{global}) & south & 66 & 1.96435 & -1.28506 & 0.679291 \\
+{}2 & (\modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{local})-(\modeltag{I0}{global}\allowbreak{}-\allowbreak{}\modeltag{E0}{global}) & central & 129 & 1.58037 & -1.01213 & 0.568245 \\
+{}2 & (\modeltag{I0}{local}\allowbreak{}-\allowbreak{}\modeltag{E0}{local})-(\modeltag{I0}{global}\allowbreak{}-\allowbreak{}\modeltag{E0}{global}) & north & 59 & 1.3726 & -1.44995 & -0.0773511 \\
+\end{longtable}\endgroup
+
+
+\subsection{W window and target-region accounting}
+\label{app:audit10-w}
+
+\subsubsection{Per-window event and compensator decomposition}
+
+\begingroup\scriptsize\setlength{\tabcolsep}{2pt}\renewcommand{\arraystretch}{1.18}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.0874\textwidth}>{\raggedright\arraybackslash}p{0.1020\textwidth}>{\raggedright\arraybackslash}p{0.0947\textwidth}>{\raggedright\arraybackslash}p{0.0947\textwidth}>{\raggedright\arraybackslash}p{0.0947\textwidth}>{\raggedright\arraybackslash}p{0.0947\textwidth}>{\raggedright\arraybackslash}p{0.0947\textwidth}>{\raggedright\arraybackslash}p{0.0947\textwidth}>{\raggedright\arraybackslash}p{0.0947\textwidth}@{}}
+\toprule
+{}Fold & Contrast & Events & Event & $\Delta C$ & Timing & Zone & Cell given zone & Joint \\
+\midrule\endfirsthead
+\toprule
+Fold & Contrast & Events & Event & $\Delta C$ & Timing & Zone & Cell given zone & Joint \\
+\midrule\endhead
+\midrule\multicolumn{9}{r}{\emph{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+{}0 & \modeltag{E}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 203 & 2.74011 & -0.446709 & 0.865688 & 1.42771 & 0 & 2.2934 \\
+{}0 & \modeltag{E}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 203 & 106.03 & 1.36751 & -1.21754 & 108.615 & 0 & 107.398 \\
+{}0 & \modeltag{Ilocal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{wfree} & 203 & -2.00297 & 2.09027 & -0.704286 & 0.791583 & 0 & 0.0872966 \\
+{}0 & \modeltag{Iglobal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{wfree} & 203 & -24.9079 & 13.7159 & -10.0284 & -1.16355 & 0 & -11.1919 \\
+{}0 & \modeltag{Ilocal}{w0}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 203 & -3.00086 & 2.79298 & -0.831722 & 0.623842 & 0 & -0.20788 \\
+{}0 & \modeltag{Iglobal}{w0}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 203 & -2.63908 & 1.63403 & -0.528321 & -0.476723 & 0 & -1.00504 \\
+{}0 & \modeltag{Ilocal}{w1}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 203 & \shortstack[r]{$-4.09687$\\$\times10^{-5}$} & \shortstack[r]{$2.90728$\\$\times10^{-5}$} & \shortstack[r]{$-1.18959$\\$\times10^{-5}$} & \shortstack[r]{$1.13687$\\$\times10^{-13}$} & 0 & \shortstack[r]{$-1.18959$\\$\times10^{-5}$} \\
+{}0 & \modeltag{Iglobal}{w1}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 203 & -33.9047 & 16.916 & -16.9887 & \shortstack[r]{$2.55795$\\$\times10^{-13}$} & 0 & -16.9887 \\
+{}0 & \modeltag{Ilocal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{Iglobal}{wfree} & 203 & 22.9049 & -11.6256 & 9.32411 & 1.95513 & 0 & 11.2792 \\
+{}1 & \modeltag{E}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 155 & 9.62251 & -1.4458 & -0.561462 & 8.73818 & 0 & 8.17672 \\
+{}1 & \modeltag{E}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 155 & 123.323 & 3.85493 & 1.23607 & 125.942 & 0 & 127.178 \\
+{}1 & \modeltag{Ilocal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{wfree} & 155 & 0.561647 & -3.79426 & -1.29001 & -1.9426 & 0 & -3.23262 \\
+{}1 & \modeltag{Iglobal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{wfree} & 155 & -0.646655 & 1.28603 & 0.0912276 & 0.548152 & 0 & 0.639379 \\
+{}1 & \modeltag{Ilocal}{w0}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 155 & 0.385602 & -3.57749 & -1.24603 & -1.94586 & 0 & -3.19188 \\
+{}1 & \modeltag{Iglobal}{w0}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 155 & \shortstack[r]{$-3.47829$\\$\times10^{-5}$} & \shortstack[r]{$5.21426$\\$\times10^{-5}$} & \shortstack[r]{$1.5626$\\$\times10^{-5}$} & \shortstack[r]{$1.73366$\\$\times10^{-6}$} & 0 & \shortstack[r]{$1.73597$\\$\times10^{-5}$} \\
+{}1 & \modeltag{Ilocal}{w1}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 155 & 0 & 0 & 0 & 0 & 0 & 0 \\
+{}1 & \modeltag{Iglobal}{w1}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 155 & -2.03289 & 2.00539 & -0.0275043 & \shortstack[r]{$-1.42109$\\$\times10^{-13}$} & 0 & -0.0275043 \\
+{}1 & \modeltag{Ilocal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{Iglobal}{wfree} & 155 & 1.2083 & -5.0803 & -1.38124 & -2.49075 & 0 & -3.872 \\
+{}2 & \modeltag{E}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 254 & 0.282971 & -0.199715 & -3.54035 & 3.6236 & 0 & 0.0832556 \\
+{}2 & \modeltag{E}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 254 & 121.889 & 3.87531 & -1.4265 & 127.191 & 0 & 125.764 \\
+{}2 & \modeltag{Ilocal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{wfree} & 254 & -1.02061 & 0.528631 & -0.298122 & -0.193855 & 0 & -0.491977 \\
+{}2 & \modeltag{Iglobal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{wfree} & 254 & -7.33546 & 5.0003 & -1.65631 & -0.678847 & 0 & -2.33516 \\
+{}2 & \modeltag{Ilocal}{w0}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 254 & \shortstack[r]{$1.92136$\\$\times10^{-5}$} & \shortstack[r]{$-1.83895$\\$\times10^{-5}$} & \shortstack[r]{$7.43356$\\$\times10^{-7}$} & \shortstack[r]{$8.07663$\\$\times10^{-8}$} & 0 & \shortstack[r]{$8.24122$\\$\times10^{-7}$} \\
+{}2 & \modeltag{Iglobal}{w0}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 254 & \shortstack[r]{$1.92136$\\$\times10^{-5}$} & \shortstack[r]{$-1.83895$\\$\times10^{-5}$} & \shortstack[r]{$7.43356$\\$\times10^{-7}$} & \shortstack[r]{$8.07663$\\$\times10^{-8}$} & 0 & \shortstack[r]{$8.24122$\\$\times10^{-7}$} \\
+{}2 & \modeltag{Ilocal}{w1}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 254 & \shortstack[r]{$-2.23743$\\$\times10^{-5}$} & \shortstack[r]{$2.54481$\\$\times10^{-6}$} & \shortstack[r]{$-1.98295$\\$\times10^{-5}$} & \shortstack[r]{$-2.84217$\\$\times10^{-13}$} & 0 & \shortstack[r]{$-1.98295$\\$\times10^{-5}$} \\
+{}2 & \modeltag{Iglobal}{w1}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 254 & -4.91733 & 3.74713 & -1.1702 & \shortstack[r]{$-2.84217$\\$\times10^{-13}$} & 0 & -1.1702 \\
+{}2 & \modeltag{Ilocal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{Iglobal}{wfree} & 254 & 6.31485 & -4.47167 & 1.35819 & 0.484993 & 0 & 1.84318 \\
+\end{longtable}\endgroup
+
+\subsubsection{Proper target-region exposures}
+
+\begingroup\scriptsize\setlength{\tabcolsep}{2pt}\renewcommand{\arraystretch}{1.18}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.1480\textwidth}>{\raggedright\arraybackslash}p{0.1480\textwidth}>{\raggedright\arraybackslash}p{0.1480\textwidth}>{\raggedright\arraybackslash}p{0.1480\textwidth}>{\raggedright\arraybackslash}p{0.1480\textwidth}>{\raggedright\arraybackslash}p{0.1480\textwidth}@{}}
+\toprule
+{}Fold & Contrast & Target & Event & $\Delta C$ & Sum \\
+\midrule\endfirsthead
+\toprule
+Fold & Contrast & Target & Event & $\Delta C$ & Sum \\
+\midrule\endhead
+\midrule\multicolumn{6}{r}{\emph{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+{}0 & \modeltag{E}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 0 & -0.807672 & -0.131685 & -0.939358 \\
+{}0 & \modeltag{E}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 1 & 2.56945 & -0.429232 & 2.14022 \\
+{}0 & \modeltag{E}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 2 & 0.978328 & 0.114208 & 1.09254 \\
+{}0 & \modeltag{E}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 0 & 23.5975 & 2.27278 & 25.8703 \\
+{}0 & \modeltag{E}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 1 & 0.245243 & 16.7555 & 17.0007 \\
+{}0 & \modeltag{E}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 2 & 82.1877 & -17.6608 & 64.527 \\
+{}0 & \modeltag{Ilocal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{wfree} & 0 & 0.422907 & -0.17919 & 0.243717 \\
+{}0 & \modeltag{Ilocal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{wfree} & 1 & -0.202542 & 0.165563 & -0.0369782 \\
+{}0 & \modeltag{Ilocal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{wfree} & 2 & -2.22334 & 2.10389 & -0.119442 \\
+{}0 & \modeltag{Iglobal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{wfree} & 0 & -8.61409 & 3.12587 & -5.48823 \\
+{}0 & \modeltag{Iglobal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{wfree} & 1 & -9.74315 & 5.60211 & -4.14104 \\
+{}0 & \modeltag{Iglobal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{wfree} & 2 & -6.55061 & 4.98793 & -1.56268 \\
+{}0 & \modeltag{Ilocal}{w0}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 0 & 0.532671 & -0.243296 & 0.289375 \\
+{}0 & \modeltag{Ilocal}{w0}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 1 & -0.366428 & 0.224736 & -0.141692 \\
+{}0 & \modeltag{Ilocal}{w0}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 2 & -3.1671 & 2.81154 & -0.355562 \\
+{}0 & \modeltag{Iglobal}{w0}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 0 & -0.605392 & 0.373352 & -0.23204 \\
+{}0 & \modeltag{Iglobal}{w0}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 1 & -1.34317 & 0.675289 & -0.667881 \\
+{}0 & \modeltag{Iglobal}{w0}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 2 & -0.690514 & 0.58539 & -0.105123 \\
+{}0 & \modeltag{Ilocal}{w1}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 0 & \shortstack[r]{$-2.32084$\\$\times10^{-5}$} & \shortstack[r]{$6.56795$\\$\times10^{-6}$} & \shortstack[r]{$-1.66405$\\$\times10^{-5}$} \\
+{}0 & \modeltag{Ilocal}{w1}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 1 & \shortstack[r]{$-1.97879$\\$\times10^{-5}$} & \shortstack[r]{$1.13973$\\$\times10^{-5}$} & \shortstack[r]{$-8.3906$\\$\times10^{-6}$} \\
+{}0 & \modeltag{Ilocal}{w1}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 2 & \shortstack[r]{$2.02764$\\$\times10^{-6}$} & \shortstack[r]{$1.11076$\\$\times10^{-5}$} & \shortstack[r]{$1.31352$\\$\times10^{-5}$} \\
+{}0 & \modeltag{Iglobal}{w1}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 0 & -12.1355 & 3.82156 & -8.31397 \\
+{}0 & \modeltag{Iglobal}{w1}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 1 & -12.1176 & 6.63152 & -5.48605 \\
+{}0 & \modeltag{Iglobal}{w1}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 2 & -9.65164 & 6.46292 & -3.18871 \\
+{}0 & \modeltag{Ilocal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{Iglobal}{wfree} & 0 & 9.037 & -3.30506 & 5.73194 \\
+{}0 & \modeltag{Ilocal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{Iglobal}{wfree} & 1 & 9.54061 & -5.43655 & 4.10406 \\
+{}0 & \modeltag{Ilocal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{Iglobal}{wfree} & 2 & 4.32727 & -2.88403 & 1.44324 \\
+{}1 & \modeltag{E}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 0 & 1.64758 & 1.76103 & 3.40861 \\
+{}1 & \modeltag{E}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 1 & 6.60185 & -1.17024 & 5.43161 \\
+{}1 & \modeltag{E}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 2 & 1.37308 & -2.03658 & -0.663505 \\
+{}1 & \modeltag{E}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 0 & 132.058 & -107.833 & 24.2251 \\
+{}1 & \modeltag{E}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 1 & -5.47731 & 39.109 & 33.6317 \\
+{}1 & \modeltag{E}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 2 & -3.258 & 72.5788 & 69.3208 \\
+{}1 & \modeltag{Ilocal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{wfree} & 0 & -2.69947 & 1.32516 & -1.37431 \\
+{}1 & \modeltag{Ilocal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{wfree} & 1 & 2.65283 & -3.85229 & -1.19946 \\
+{}1 & \modeltag{Ilocal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{wfree} & 2 & 0.60829 & -1.26714 & -0.65885 \\
+{}1 & \modeltag{Iglobal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{wfree} & 0 & -0.188234 & 0.0366368 & -0.151597 \\
+{}1 & \modeltag{Iglobal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{wfree} & 1 & -0.136832 & 0.481554 & 0.344722 \\
+{}1 & \modeltag{Iglobal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{wfree} & 2 & -0.321589 & 0.767843 & 0.446254 \\
+{}1 & \modeltag{Ilocal}{w0}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 0 & -2.7728 & 1.28367 & -1.48912 \\
+{}1 & \modeltag{Ilocal}{w0}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 1 & 2.62957 & -3.62208 & -0.992516 \\
+{}1 & \modeltag{Ilocal}{w0}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 2 & 0.52883 & -1.23908 & -0.710248 \\
+{}1 & \modeltag{Iglobal}{w0}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 0 & \shortstack[r]{$-1.01594$\\$\times10^{-5}$} & \shortstack[r]{$7.07895$\\$\times10^{-6}$} & \shortstack[r]{$-3.08047$\\$\times10^{-6}$} \\
+{}1 & \modeltag{Iglobal}{w0}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 1 & \shortstack[r]{$-1.32397$\\$\times10^{-5}$} & \shortstack[r]{$1.75729$\\$\times10^{-5}$} & \shortstack[r]{$4.33326$\\$\times10^{-6}$} \\
+{}1 & \modeltag{Iglobal}{w0}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 2 & \shortstack[r]{$-1.13838$\\$\times10^{-5}$} & \shortstack[r]{$2.74907$\\$\times10^{-5}$} & \shortstack[r]{$1.61069$\\$\times10^{-5}$} \\
+{}1 & \modeltag{Ilocal}{w1}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 0 & 0 & 0 & 0 \\
+{}1 & \modeltag{Ilocal}{w1}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 1 & 0 & 0 & 0 \\
+{}1 & \modeltag{Ilocal}{w1}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 2 & 0 & 0 & 0 \\
+{}1 & \modeltag{Iglobal}{w1}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 0 & -1.24076 & 0.441663 & -0.799097 \\
+{}1 & \modeltag{Iglobal}{w1}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 1 & -0.309135 & 0.616737 & 0.307602 \\
+{}1 & \modeltag{Iglobal}{w1}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 2 & -0.482999 & 0.94699 & 0.463991 \\
+{}1 & \modeltag{Ilocal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{Iglobal}{wfree} & 0 & -2.51124 & 1.28853 & -1.22271 \\
+{}1 & \modeltag{Ilocal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{Iglobal}{wfree} & 1 & 2.78966 & -4.33384 & -1.54418 \\
+{}1 & \modeltag{Ilocal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{Iglobal}{wfree} & 2 & 0.929879 & -2.03498 & -1.1051 \\
+{}2 & \modeltag{E}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 0 & -0.215898 & -0.637351 & -0.853249 \\
+{}2 & \modeltag{E}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 1 & -2.47187 & 0.930783 & -1.54109 \\
+{}2 & \modeltag{E}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 2 & 2.97074 & -0.493147 & 2.47759 \\
+{}2 & \modeltag{E}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 0 & -1.57849 & 33.053 & 31.4745 \\
+{}2 & \modeltag{E}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 1 & 106.234 & -53.8692 & 52.3649 \\
+{}2 & \modeltag{E}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 2 & 17.2332 & 24.6915 & 41.9248 \\
+{}2 & \modeltag{Ilocal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{wfree} & 0 & -0.833143 & 0.399447 & -0.433696 \\
+{}2 & \modeltag{Ilocal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{wfree} & 1 & -0.262932 & 0.201889 & -0.061043 \\
+{}2 & \modeltag{Ilocal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{wfree} & 2 & 0.0754677 & -0.0727058 & 0.00276194 \\
+{}2 & \modeltag{Iglobal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{wfree} & 0 & -3.47924 & 1.8192 & -1.66004 \\
+{}2 & \modeltag{Iglobal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{wfree} & 1 & -1.6334 & 1.16994 & -0.463461 \\
+{}2 & \modeltag{Iglobal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{E}{wfree} & 2 & -2.22283 & 2.01117 & -0.211657 \\
+{}2 & \modeltag{Ilocal}{w0}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 0 & \shortstack[r]{$5.45463$\\$\times10^{-6}$} & \shortstack[r]{$-4.18448$\\$\times10^{-6}$} & \shortstack[r]{$1.27015$\\$\times10^{-6}$} \\
+{}2 & \modeltag{Ilocal}{w0}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 1 & \shortstack[r]{$9.29142$\\$\times10^{-6}$} & \shortstack[r]{$-8.64058$\\$\times10^{-6}$} & \shortstack[r]{$6.50837$\\$\times10^{-7}$} \\
+{}2 & \modeltag{Ilocal}{w0}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 2 & \shortstack[r]{$4.46759$\\$\times10^{-6}$} & \shortstack[r]{$-5.56446$\\$\times10^{-6}$} & \shortstack[r]{$-1.09687$\\$\times10^{-6}$} \\
+{}2 & \modeltag{Iglobal}{w0}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 0 & \shortstack[r]{$5.45463$\\$\times10^{-6}$} & \shortstack[r]{$-4.18448$\\$\times10^{-6}$} & \shortstack[r]{$1.27015$\\$\times10^{-6}$} \\
+{}2 & \modeltag{Iglobal}{w0}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 1 & \shortstack[r]{$9.29142$\\$\times10^{-6}$} & \shortstack[r]{$-8.64058$\\$\times10^{-6}$} & \shortstack[r]{$6.50837$\\$\times10^{-7}$} \\
+{}2 & \modeltag{Iglobal}{w0}\allowbreak{}-\allowbreak{}\modeltag{E}{w0} & 2 & \shortstack[r]{$4.46759$\\$\times10^{-6}$} & \shortstack[r]{$-5.56446$\\$\times10^{-6}$} & \shortstack[r]{$-1.09687$\\$\times10^{-6}$} \\
+{}2 & \modeltag{Ilocal}{w1}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 0 & \shortstack[r]{$-1.51857$\\$\times10^{-5}$} & \shortstack[r]{$8.72726$\\$\times10^{-7}$} & \shortstack[r]{$-1.43129$\\$\times10^{-5}$} \\
+{}2 & \modeltag{Ilocal}{w1}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 1 & \shortstack[r]{$-2.74149$\\$\times10^{-6}$} & \shortstack[r]{$6.87368$\\$\times10^{-7}$} & \shortstack[r]{$-2.05412$\\$\times10^{-6}$} \\
+{}2 & \modeltag{Ilocal}{w1}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 2 & \shortstack[r]{$-4.44716$\\$\times10^{-6}$} & \shortstack[r]{$9.84713$\\$\times10^{-7}$} & \shortstack[r]{$-3.46245$\\$\times10^{-6}$} \\
+{}2 & \modeltag{Iglobal}{w1}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 0 & -1.96436 & 1.28506 & -0.679301 \\
+{}2 & \modeltag{Iglobal}{w1}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 1 & -1.58037 & 1.01212 & -0.568248 \\
+{}2 & \modeltag{Iglobal}{w1}\allowbreak{}-\allowbreak{}\modeltag{E}{w1} & 2 & -1.3726 & 1.44995 & 0.077349 \\
+{}2 & \modeltag{Ilocal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{Iglobal}{wfree} & 0 & 2.64609 & -1.41975 & 1.22634 \\
+{}2 & \modeltag{Ilocal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{Iglobal}{wfree} & 1 & 1.37046 & -0.968047 & 0.402418 \\
+{}2 & \modeltag{Ilocal}{wfree}\allowbreak{}-\allowbreak{}\modeltag{Iglobal}{wfree} & 2 & 2.29829 & -2.08387 & 0.214419 \\
+\end{longtable}\endgroup
+
+
+\subsection{D window and target-cell accounting}
+\label{app:audit10-d}
+
+\subsubsection{Per-window event and compensator decomposition}
+
+\begingroup\scriptsize\setlength{\tabcolsep}{2pt}\renewcommand{\arraystretch}{1.18}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.0874\textwidth}>{\raggedright\arraybackslash}p{0.1020\textwidth}>{\raggedright\arraybackslash}p{0.0947\textwidth}>{\raggedright\arraybackslash}p{0.0947\textwidth}>{\raggedright\arraybackslash}p{0.0947\textwidth}>{\raggedright\arraybackslash}p{0.0947\textwidth}>{\raggedright\arraybackslash}p{0.0947\textwidth}>{\raggedright\arraybackslash}p{0.0947\textwidth}>{\raggedright\arraybackslash}p{0.0947\textwidth}@{}}
+\toprule
+{}Fold & Contrast & Events & Event & $\Delta C$ & Timing & Zone & Cell given zone & Joint \\
+\midrule\endfirsthead
+\toprule
+Fold & Contrast & Events & Event & $\Delta C$ & Timing & Zone & Cell given zone & Joint \\
+\midrule\endhead
+\midrule\multicolumn{9}{r}{\emph{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+{}0 & \modeltag{E}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 203 & 103.29 & 1.81423 & -2.08323 & 107.188 & \shortstack[r]{$2.27374$\\$\times10^{-13}$} & 105.105 \\
+{}0 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{I}{global} & 203 & 134.194 & -12.3088 & 14.0738 & 107.812 & \shortstack[r]{$5.68434$\\$\times10^{-14}$} & 121.885 \\
+{}0 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 203 & -3.00086 & 2.79298 & -0.831722 & 0.623842 & \shortstack[r]{$5.68434$\\$\times10^{-14}$} & -0.20788 \\
+{}0 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 203 & 3.45382 & -0.00881186 & 0.67817 & -5.19369 & 7.96052 & 3.44501 \\
+{}0 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 203 & 106.744 & 1.80542 & -1.40506 & 101.994 & 7.96052 & 108.55 \\
+{}0 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{distance} & 203 & 1.89808 & -1.44588 & 1.22564 & -0.500322 & -0.27312 & 0.4522 \\
+{}0 & \modeltag{I}{d,g}-\modeltag{E}{distance} & 203 & -7.75799 & 5.42857 & -2.45323 & 0.248731 & -0.124921 & -2.32942 \\
+{}0 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{I}{d,g} & 203 & 9.65607 & -6.87445 & 3.67887 & -0.749053 & -0.148199 & 2.78162 \\
+{}1 & \modeltag{E}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 155 & 113.7 & 5.30079 & 1.79755 & 117.203 & \shortstack[r]{$7.10543$\\$\times10^{-14}$} & 119.001 \\
+{}1 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{I}{global} & 155 & 116.119 & -0.282137 & 0.57901 & 115.258 & \shortstack[r]{$-4.26326$\\$\times10^{-14}$} & 115.837 \\
+{}1 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 155 & 0.385602 & -3.57749 & -1.24603 & -1.94586 & \shortstack[r]{$2.84217$\\$\times10^{-14}$} & -3.19188 \\
+{}1 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 155 & 34.2708 & -1.00246 & -0.43472 & -2.64504 & 36.3481 & 33.2684 \\
+{}1 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 155 & 147.971 & 4.29832 & 1.36283 & 114.558 & 36.3481 & 152.269 \\
+{}1 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{distance} & 155 & 4.4095 & -7.15026 & -2.26963 & -5.46472 & 4.99359 & -2.74076 \\
+{}1 & \modeltag{I}{d,g}-\modeltag{E}{distance} & 155 & -0.409991 & 0.72405 & 0.0964919 & 0.196743 & 0.0208243 & 0.31406 \\
+{}1 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{I}{d,g} & 155 & 4.81949 & -7.87431 & -2.36612 & -5.66147 & 4.97277 & -3.05482 \\
+{}2 & \modeltag{E}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 254 & 121.606 & 4.07505 & 2.11386 & 123.567 & \shortstack[r]{$-2.84217$\\$\times10^{-13}$} & 125.681 \\
+{}2 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{I}{global} & 254 & 126.523 & 0.327865 & 3.28404 & 123.567 & \shortstack[r]{$-2.27374$\\$\times10^{-13}$} & 126.851 \\
+{}2 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 254 & \shortstack[r]{$1.91887$\\$\times10^{-5}$} & \shortstack[r]{$-1.83711$\\$\times10^{-5}$} & \shortstack[r]{$7.37475$\\$\times10^{-7}$} & \shortstack[r]{$8.00863$\\$\times10^{-8}$} & \shortstack[r]{$-5.68434$\\$\times10^{-14}$} & \shortstack[r]{$8.17562$\\$\times10^{-7}$} \\
+{}2 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 254 & 37.1782 & 0.952261 & -3.50292 & 2.13441 & 39.4989 & 38.1304 \\
+{}2 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 254 & 158.784 & 5.02731 & -1.38906 & 125.701 & 39.4989 & 163.811 \\
+{}2 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{distance} & 254 & 1.56192 & -1.54844 & 0.527849 & -0.144115 & -0.370255 & 0.0134791 \\
+{}2 & \modeltag{I}{d,g}-\modeltag{E}{distance} & 254 & -3.31077 & 2.33536 & -0.496628 & -0.362222 & -0.116559 & -0.97541 \\
+{}2 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{I}{d,g} & 254 & 4.87269 & -3.8838 & 1.02448 & 0.218107 & -0.253695 & 0.988889 \\
+\end{longtable}\endgroup
+
+\subsubsection{Proper target-region exposures}
+
+\begingroup\scriptsize\setlength{\tabcolsep}{2pt}\renewcommand{\arraystretch}{1.18}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.1480\textwidth}>{\raggedright\arraybackslash}p{0.1480\textwidth}>{\raggedright\arraybackslash}p{0.1480\textwidth}>{\raggedright\arraybackslash}p{0.1480\textwidth}>{\raggedright\arraybackslash}p{0.1480\textwidth}>{\raggedright\arraybackslash}p{0.1480\textwidth}@{}}
+\toprule
+{}Fold & Contrast & Target & Event & $\Delta C$ & Sum \\
+\midrule\endfirsthead
+\toprule
+Fold & Contrast & Target & Event & $\Delta C$ & Sum \\
+\midrule\endhead
+\midrule\multicolumn{6}{r}{\emph{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+{}0 & \modeltag{E}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 0 & 22.2146 & 2.23149 & 24.4461 \\
+{}0 & \modeltag{E}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 1 & 2.1905 & 0.155685 & 2.34618 \\
+{}0 & \modeltag{E}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 2 & 0 & 0.0172983 & 0.0172983 \\
+{}0 & \modeltag{E}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 3 & 0 & 0.0719026 & 0.0719026 \\
+{}0 & \modeltag{E}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 4 & 6.10393 & 9.56305 & 15.667 \\
+{}0 & \modeltag{E}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 5 & -8.42815 & 7.54978 & -0.87837 \\
+{}0 & \modeltag{E}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 6 & 0 & -0.0762874 & -0.0762874 \\
+{}0 & \modeltag{E}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 7 & 0 & -0.0762874 & -0.0762874 \\
+{}0 & \modeltag{E}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 8 & 81.2094 & -17.6224 & 63.587 \\
+{}0 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{I}{global} & 0 & 33.4739 & -1.54093 & 31.933 \\
+{}0 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{I}{global} & 1 & 3.59941 & -0.107507 & 3.49191 \\
+{}0 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{I}{global} & 2 & 0 & -0.0119452 & -0.0119452 \\
+{}0 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{I}{global} & 3 & 0 & 0.045096 & 0.045096 \\
+{}0 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{I}{global} & 4 & 15.2089 & 5.99776 & 21.2066 \\
+{}0 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{I}{global} & 5 & -5.78193 & 4.73508 & -1.04685 \\
+{}0 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{I}{global} & 6 & 0 & -0.0919586 & -0.0919586 \\
+{}0 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{I}{global} & 7 & 0 & -0.0919586 & -0.0919586 \\
+{}0 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{I}{global} & 8 & 87.6939 & -21.2424 & 66.4515 \\
+{}0 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 0 & 0.493526 & -0.225793 & 0.267734 \\
+{}0 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 1 & 0.0391442 & -0.015753 & 0.0233912 \\
+{}0 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 2 & 0 & -0.00175033 & -0.00175033 \\
+{}0 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 3 & 0 & 0.000940318 & 0.000940318 \\
+{}0 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 4 & -0.273347 & 0.125062 & -0.148285 \\
+{}0 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 5 & -0.0930809 & 0.0987334 & 0.00565254 \\
+{}0 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 6 & 0 & 0.0120667 & 0.0120667 \\
+{}0 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 7 & 0 & 0.0120667 & 0.0120667 \\
+{}0 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 8 & -3.1671 & 2.78741 & -0.379696 \\
+{}0 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 0 & 1.52369 & -1.56967 & -0.0459846 \\
+{}0 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 1 & -1.7412 & 0.755243 & -0.985952 \\
+{}0 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 2 & 0 & 0.110556 & 0.110556 \\
+{}0 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 3 & 0 & 0.0441556 & 0.0441556 \\
+{}0 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 4 & 4.45311 & -3.1711 & 1.28201 \\
+{}0 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 5 & 5.39786 & 0.300324 & 5.69819 \\
+{}0 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 6 & 0 & 0.209397 & 0.209397 \\
+{}0 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 7 & 0 & 0.202572 & 0.202572 \\
+{}0 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 8 & -6.17964 & 3.10972 & -3.06993 \\
+{}0 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 0 & 23.7383 & 0.661813 & 24.4001 \\
+{}0 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 1 & 0.449301 & 0.910928 & 1.36023 \\
+{}0 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 2 & 0 & 0.127854 & 0.127854 \\
+{}0 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 3 & 0 & 0.116058 & 0.116058 \\
+{}0 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 4 & 10.557 & 6.39195 & 16.949 \\
+{}0 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 5 & -3.03028 & 7.8501 & 4.81982 \\
+{}0 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 6 & 0 & 0.133109 & 0.133109 \\
+{}0 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 7 & 0 & 0.126284 & 0.126284 \\
+{}0 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 8 & 75.0297 & -14.5127 & 60.5171 \\
+{}0 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{distance} & 0 & 0.8838 & -0.414348 & 0.469452 \\
+{}0 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{distance} & 1 & 0.781575 & -0.317988 & 0.463587 \\
+{}0 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{distance} & 2 & 0 & -0.0379157 & -0.0379157 \\
+{}0 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{distance} & 3 & 0 & -0.0363839 & -0.0363839 \\
+{}0 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{distance} & 4 & 2.77134 & -2.05343 & 0.717913 \\
+{}0 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{distance} & 5 & 1.61461 & -1.85018 & -0.235565 \\
+{}0 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{distance} & 6 & 0 & -0.0388164 & -0.0388164 \\
+{}0 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{distance} & 7 & 0 & -0.0368891 & -0.0368891 \\
+{}0 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{distance} & 8 & -4.15325 & 3.34007 & -0.813181 \\
+{}0 & \modeltag{I}{d,g}-\modeltag{E}{distance} & 0 & -2.12819 & 1.14069 & -0.987506 \\
+{}0 & \modeltag{I}{d,g}-\modeltag{E}{distance} & 1 & -0.380981 & 0.0873014 & -0.293679 \\
+{}0 & \modeltag{I}{d,g}-\modeltag{E}{distance} & 2 & 0 & 0.00993793 & 0.00993793 \\
+{}0 & \modeltag{I}{d,g}-\modeltag{E}{distance} & 3 & 0 & 0.00991384 & 0.00991384 \\
+{}0 & \modeltag{I}{d,g}-\modeltag{E}{distance} & 4 & -2.43525 & 1.23782 & -1.19744 \\
+{}0 & \modeltag{I}{d,g}-\modeltag{E}{distance} & 5 & -0.603029 & 1.00225 & 0.399222 \\
+{}0 & \modeltag{I}{d,g}-\modeltag{E}{distance} & 6 & 0 & 0.0100631 & 0.0100631 \\
+{}0 & \modeltag{I}{d,g}-\modeltag{E}{distance} & 7 & 0 & 0.0100022 & 0.0100022 \\
+{}0 & \modeltag{I}{d,g}-\modeltag{E}{distance} & 8 & -2.21053 & 1.9206 & -0.289934 \\
+{}0 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{I}{d,g} & 0 & 3.01199 & -1.55504 & 1.45696 \\
+{}0 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{I}{d,g} & 1 & 1.16256 & -0.405289 & 0.757266 \\
+{}0 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{I}{d,g} & 2 & 0 & -0.0478537 & -0.0478537 \\
+{}0 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{I}{d,g} & 3 & 0 & -0.0462978 & -0.0462978 \\
+{}0 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{I}{d,g} & 4 & 5.20659 & -3.29124 & 1.91535 \\
+{}0 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{I}{d,g} & 5 & 2.21764 & -2.85243 & -0.634786 \\
+{}0 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{I}{d,g} & 6 & 0 & -0.0488796 & -0.0488796 \\
+{}0 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{I}{d,g} & 7 & 0 & -0.0468913 & -0.0468913 \\
+{}0 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{I}{d,g} & 8 & -1.94272 & 1.41947 & -0.523247 \\
+{}1 & \modeltag{E}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 0 & 110.126 & -101.801 & 8.32533 \\
+{}1 & \modeltag{E}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 1 & 20.2845 & -7.30626 & 12.9783 \\
+{}1 & \modeltag{E}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 2 & 0 & -0.487084 & -0.487084 \\
+{}1 & \modeltag{E}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 3 & 0 & 0.128688 & 0.128688 \\
+{}1 & \modeltag{E}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 4 & -9.51127 & 24.322 & 14.8107 \\
+{}1 & \modeltag{E}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 5 & -2.5679 & 15.8286 & 13.2607 \\
+{}1 & \modeltag{E}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 6 & 0 & 0.155773 & 0.155773 \\
+{}1 & \modeltag{E}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 7 & 0 & 0.155773 & 0.155773 \\
+{}1 & \modeltag{E}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 8 & -4.63109 & 74.3039 & 69.6728 \\
+{}1 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{I}{global} & 0 & 109.576 & -101.018 & 8.55788 \\
+{}1 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{I}{global} & 1 & 19.3021 & -7.25013 & 12.0519 \\
+{}1 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{I}{global} & 2 & 0 & -0.483342 & -0.483342 \\
+{}1 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{I}{global} & 3 & 0 & 0.115145 & 0.115145 \\
+{}1 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{I}{global} & 4 & -8.77441 & 21.7624 & 12.988 \\
+{}1 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{I}{global} & 5 & -0.366054 & 14.1629 & 13.7968 \\
+{}1 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{I}{global} & 6 & 0 & 0.151209 & 0.151209 \\
+{}1 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{I}{global} & 7 & 0 & 0.151209 & 0.151209 \\
+{}1 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{I}{global} & 8 & -3.61925 & 72.1269 & 68.5077 \\
+{}1 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 0 & -1.16362 & 1.19239 & 0.0287677 \\
+{}1 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 1 & -1.60917 & 0.0855783 & -1.52359 \\
+{}1 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 2 & 0 & 0.00570522 & 0.00570522 \\
+{}1 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 3 & 0 & -0.0115721 & -0.0115721 \\
+{}1 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 4 & 0.669144 & -2.18714 & -1.51799 \\
+{}1 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 5 & 1.96042 & -1.42337 & 0.537049 \\
+{}1 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 6 & 0 & -0.0025868 & -0.0025868 \\
+{}1 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 7 & 0 & -0.0025868 & -0.0025868 \\
+{}1 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 8 & 0.52883 & -1.2339 & -0.705074 \\
+{}1 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 0 & 5.55823 & 10.7002 & 16.2585 \\
+{}1 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 1 & 8.45207 & 7.72506 & 16.1771 \\
+{}1 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 2 & 0 & 0.636456 & 0.636456 \\
+{}1 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 3 & 0 & 0.0127908 & 0.0127908 \\
+{}1 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 4 & 19.1858 & -15.8708 & 3.31501 \\
+{}1 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 5 & 1.36242 & -1.14838 & 0.214035 \\
+{}1 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 6 & 0 & 0.0124583 & 0.0124583 \\
+{}1 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 7 & 0 & 0.0104879 & 0.0104879 \\
+{}1 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 8 & -0.287695 & -3.0808 & -3.3685 \\
+{}1 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 0 & 115.684 & -91.1003 & 24.5838 \\
+{}1 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 1 & 28.7366 & 0.4188 & 29.1554 \\
+{}1 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 2 & 0 & 0.149372 & 0.149372 \\
+{}1 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 3 & 0 & 0.141479 & 0.141479 \\
+{}1 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 4 & 9.67452 & 8.45122 & 18.1257 \\
+{}1 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 5 & -1.20548 & 14.6802 & 13.4747 \\
+{}1 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 6 & 0 & 0.168232 & 0.168232 \\
+{}1 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 7 & 0 & 0.166261 & 0.166261 \\
+{}1 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 8 & -4.91878 & 71.2231 & 66.3043 \\
+{}1 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{distance} & 0 & -4.06396 & 3.6889 & -0.375064 \\
+{}1 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{distance} & 1 & 2.61989 & -0.628783 & 1.99111 \\
+{}1 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{distance} & 2 & 0 & -0.0468517 & -0.0468517 \\
+{}1 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{distance} & 3 & 0 & -0.0439742 & -0.0439742 \\
+{}1 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{distance} & 4 & 0.965733 & -5.09986 & -4.13412 \\
+{}1 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{distance} & 5 & 4.32996 & -3.58338 & 0.74658 \\
+{}1 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{distance} & 6 & 0 & -0.0479659 & -0.0479659 \\
+{}1 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{distance} & 7 & 0 & -0.0465053 & -0.0465053 \\
+{}1 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{distance} & 8 & 0.557883 & -1.34185 & -0.783963 \\
+{}1 & \modeltag{I}{d,g}-\modeltag{E}{distance} & 0 & 0.0401512 & -0.0628927 & -0.0227416 \\
+{}1 & \modeltag{I}{d,g}-\modeltag{E}{distance} & 1 & -0.117479 & 0.0114469 & -0.106032 \\
+{}1 & \modeltag{I}{d,g}-\modeltag{E}{distance} & 2 & 0 & 0.00104176 & 0.00104176 \\
+{}1 & \modeltag{I}{d,g}-\modeltag{E}{distance} & 3 & 0 & 0.00102631 & 0.00102631 \\
+{}1 & \modeltag{I}{d,g}-\modeltag{E}{distance} & 4 & -0.00263744 & 0.152015 & 0.149378 \\
+{}1 & \modeltag{I}{d,g}-\modeltag{E}{distance} & 5 & -0.0595624 & 0.119992 & 0.0604293 \\
+{}1 & \modeltag{I}{d,g}-\modeltag{E}{distance} & 6 & 0 & 0.00109003 & 0.00109003 \\
+{}1 & \modeltag{I}{d,g}-\modeltag{E}{distance} & 7 & 0 & 0.00108551 & 0.00108551 \\
+{}1 & \modeltag{I}{d,g}-\modeltag{E}{distance} & 8 & -0.270463 & 0.499245 & 0.228782 \\
+{}1 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{I}{d,g} & 0 & -4.10411 & 3.75179 & -0.352322 \\
+{}1 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{I}{d,g} & 1 & 2.73737 & -0.64023 & 2.09714 \\
+{}1 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{I}{d,g} & 2 & 0 & -0.0478935 & -0.0478935 \\
+{}1 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{I}{d,g} & 3 & 0 & -0.0450005 & -0.0450005 \\
+{}1 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{I}{d,g} & 4 & 0.96837 & -5.25187 & -4.2835 \\
+{}1 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{I}{d,g} & 5 & 4.38952 & -3.70337 & 0.68615 \\
+{}1 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{I}{d,g} & 6 & 0 & -0.0490559 & -0.0490559 \\
+{}1 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{I}{d,g} & 7 & 0 & -0.0475908 & -0.0475908 \\
+{}1 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{I}{d,g} & 8 & 0.828346 & -1.84109 & -1.01274 \\
+{}2 & \modeltag{E}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 0 & -1.40194 & 28.6553 & 27.2534 \\
+{}2 & \modeltag{E}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 1 & 0.0508683 & 4.961 & 5.01187 \\
+{}2 & \modeltag{E}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 2 & -0.0115199 & 0.0740448 & 0.0625249 \\
+{}2 & \modeltag{E}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 3 & 0 & -0.152646 & -0.152646 \\
+{}2 & \modeltag{E}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 4 & 102.851 & -31.9031 & 70.9478 \\
+{}2 & \modeltag{E}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 5 & 5.85504 & -22.7443 & -16.8893 \\
+{}2 & \modeltag{E}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 6 & 0 & 0.0490929 & 0.0490929 \\
+{}2 & \modeltag{E}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 7 & 0 & 0.0490929 & 0.0490929 \\
+{}2 & \modeltag{E}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 8 & 14.2625 & 25.0865 & 39.349 \\
+{}2 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{I}{global} & 0 & 0.476653 & 27.5623 & 28.039 \\
+{}2 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{I}{global} & 1 & 0.099788 & 4.77177 & 4.87156 \\
+{}2 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{I}{global} & 2 & 0.0253261 & 0.0712205 & 0.0965466 \\
+{}2 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{I}{global} & 3 & 0 & -0.155466 & -0.155466 \\
+{}2 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{I}{global} & 4 & 103.676 & -32.4923 & 71.1839 \\
+{}2 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{I}{global} & 5 & 6.61009 & -23.1644 & -16.5543 \\
+{}2 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{I}{global} & 6 & 0 & 0.0462665 & 0.0462665 \\
+{}2 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{I}{global} & 7 & 0 & 0.0462665 & 0.0462665 \\
+{}2 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{I}{global} & 8 & 15.6351 & 23.6422 & 39.2773 \\
+{}2 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 0 & \shortstack[r]{$5.16499$\\$\times10^{-6}$} & \shortstack[r]{$-3.55438$\\$\times10^{-6}$} & \shortstack[r]{$1.6106$\\$\times10^{-6}$} \\
+{}2 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 1 & \shortstack[r]{$1.86419$\\$\times10^{-7}$} & \shortstack[r]{$-6.15359$\\$\times10^{-7}$} & \shortstack[r]{$-4.28939$\\$\times10^{-7}$} \\
+{}2 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 2 & \shortstack[r]{$9.33217$\\$\times10^{-8}$} & \shortstack[r]{$-9.18446$\\$\times10^{-9}$} & \shortstack[r]{$8.41372$\\$\times10^{-8}$} \\
+{}2 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 3 & 0 & \shortstack[r]{$-2.4051$\\$\times10^{-8}$} & \shortstack[r]{$-2.4051$\\$\times10^{-8}$} \\
+{}2 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 4 & \shortstack[r]{$7.2178$\\$\times10^{-6}$} & \shortstack[r]{$-5.02665$\\$\times10^{-6}$} & \shortstack[r]{$2.19115$\\$\times10^{-6}$} \\
+{}2 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 5 & \shortstack[r]{$2.06441$\\$\times10^{-6}$} & \shortstack[r]{$-3.58359$\\$\times10^{-6}$} & \shortstack[r]{$-1.51918$\\$\times10^{-6}$} \\
+{}2 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 6 & 0 & \shortstack[r]{$-1.08341$\\$\times10^{-8}$} & \shortstack[r]{$-1.08341$\\$\times10^{-8}$} \\
+{}2 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 7 & 0 & \shortstack[r]{$-1.08341$\\$\times10^{-8}$} & \shortstack[r]{$-1.08341$\\$\times10^{-8}$} \\
+{}2 & \modeltag{I}{bridge}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 8 & \shortstack[r]{$4.46174$\\$\times10^{-6}$} & \shortstack[r]{$-5.53622$\\$\times10^{-6}$} & \shortstack[r]{$-1.07449$\\$\times10^{-6}$} \\
+{}2 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 0 & 2.12054 & -4.12809 & -2.00755 \\
+{}2 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 1 & -0.276221 & 2.69055 & 2.41433 \\
+{}2 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 2 & -0.142578 & 0.056243 & -0.0863347 \\
+{}2 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 3 & 0 & 0.289847 & 0.289847 \\
+{}2 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 4 & 37.3107 & -28.3568 & 8.95392 \\
+{}2 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 5 & -4.49236 & 30.5329 & 26.0406 \\
+{}2 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 6 & 0 & 0.0988367 & 0.0988367 \\
+{}2 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 7 & 0 & 0.0944831 & 0.0944831 \\
+{}2 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{bridge} & 8 & 2.65809 & -0.325752 & 2.33234 \\
+{}2 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 0 & 0.718607 & 24.5272 & 25.2459 \\
+{}2 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 1 & -0.225353 & 7.65155 & 7.4262 \\
+{}2 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 2 & -0.154098 & 0.130288 & -0.0238098 \\
+{}2 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 3 & 0 & 0.137201 & 0.137201 \\
+{}2 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 4 & 140.162 & -60.2598 & 79.9018 \\
+{}2 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 5 & 1.36268 & 7.78862 & 9.1513 \\
+{}2 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 6 & 0 & 0.14793 & 0.14793 \\
+{}2 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 7 & 0 & 0.143576 & 0.143576 \\
+{}2 & \modeltag{E}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{global} & 8 & 16.9206 & 24.7607 & 41.6813 \\
+{}2 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{distance} & 0 & -1.53184 & 0.632313 & -0.899524 \\
+{}2 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{distance} & 1 & 0.165263 & -0.266383 & -0.101119 \\
+{}2 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{distance} & 2 & 0.0866314 & -0.00400427 & 0.0826271 \\
+{}2 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{distance} & 3 & 0 & -0.00395532 & -0.00395532 \\
+{}2 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{distance} & 4 & 1.10552 & -0.78696 & 0.318564 \\
+{}2 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{distance} & 5 & 1.17792 & -0.478157 & 0.699764 \\
+{}2 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{distance} & 6 & 0 & -0.00397012 & -0.00397012 \\
+{}2 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{distance} & 7 & 0 & -0.00397023 & -0.00397023 \\
+{}2 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{E}{distance} & 8 & 0.558417 & -0.633355 & -0.0749378 \\
+{}2 & \modeltag{I}{d,g}-\modeltag{E}{distance} & 0 & -1.52164 & 0.731077 & -0.790564 \\
+{}2 & \modeltag{I}{d,g}-\modeltag{E}{distance} & 1 & -0.0211498 & 0.133934 & 0.112784 \\
+{}2 & \modeltag{I}{d,g}-\modeltag{E}{distance} & 2 & -0.0197161 & 0.0020338 & -0.0176823 \\
+{}2 & \modeltag{I}{d,g}-\modeltag{E}{distance} & 3 & 0 & 0.00204564 & 0.00204564 \\
+{}2 & \modeltag{I}{d,g}-\modeltag{E}{distance} & 4 & -0.246055 & 0.235195 & -0.01086 \\
+{}2 & \modeltag{I}{d,g}-\modeltag{E}{distance} & 5 & -0.469565 & 0.277432 & -0.192132 \\
+{}2 & \modeltag{I}{d,g}-\modeltag{E}{distance} & 6 & 0 & 0.00207327 & 0.00207327 \\
+{}2 & \modeltag{I}{d,g}-\modeltag{E}{distance} & 7 & 0 & 0.00206385 & 0.00206385 \\
+{}2 & \modeltag{I}{d,g}-\modeltag{E}{distance} & 8 & -1.03264 & 0.949504 & -0.0831372 \\
+{}2 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{I}{d,g} & 0 & -0.0101955 & -0.0987639 & -0.108959 \\
+{}2 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{I}{d,g} & 1 & 0.186413 & -0.400316 & -0.213903 \\
+{}2 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{I}{d,g} & 2 & 0.106347 & -0.00603807 & 0.100309 \\
+{}2 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{I}{d,g} & 3 & 0 & -0.00600096 & -0.00600096 \\
+{}2 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{I}{d,g} & 4 & 1.35158 & -1.02215 & 0.329424 \\
+{}2 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{I}{d,g} & 5 & 1.64749 & -0.755589 & 0.891897 \\
+{}2 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{I}{d,g} & 6 & 0 & -0.00604339 & -0.00604339 \\
+{}2 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{I}{d,g} & 7 & 0 & -0.00603409 & -0.00603409 \\
+{}2 & \modeltag{I}{distance}\allowbreak{}-\allowbreak{}\modeltag{I}{d,g} & 8 & 1.59106 & -1.58286 & 0.00819931 \\
+\end{longtable}\endgroup
+
+
+\subsection{Secondary common-space window arithmetic}
+\label{app:audit10-common}
+
+\subsubsection{Per-window arithmetic}
+
+\begingroup\scriptsize\setlength{\tabcolsep}{2pt}\renewcommand{\arraystretch}{1.18}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.0947\textwidth}>{\raggedright\arraybackslash}p{0.0947\textwidth}>{\raggedright\arraybackslash}p{0.0947\textwidth}>{\raggedright\arraybackslash}p{0.0947\textwidth}>{\raggedright\arraybackslash}p{0.0947\textwidth}>{\raggedright\arraybackslash}p{0.0947\textwidth}>{\raggedright\arraybackslash}p{0.0947\textwidth}>{\raggedright\arraybackslash}p{0.0947\textwidth}>{\raggedright\arraybackslash}p{0.0947\textwidth}@{}}
+\toprule
+{}Fold & D candidate & Events & Event & $\Delta C$ & Timing & Zone & Cell given zone & Joint \\
+\midrule\endfirsthead
+\toprule
+Fold & D candidate & Events & Event & $\Delta C$ & Timing & Zone & Cell given zone & Joint \\
+\midrule\endhead
+\midrule\multicolumn{9}{r}{\emph{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+{}0 & \modeltag{E}{global} & 203 & -106.03 & -1.36753 & 1.21755 & -108.615 & \shortstack[r]{$1.42109$\\$\times10^{-14}$} & -107.398 \\
+{}0 & \modeltag{I}{global} & 203 & -139.935 & 15.5485 & -15.7712 & -108.615 & \shortstack[r]{$1.42109$\\$\times10^{-14}$} & -124.387 \\
+{}0 & \modeltag{E}{bridge} & 203 & -2.74011 & 0.446709 & -0.865688 & -1.42771 & \shortstack[r]{$1.42109$\\$\times10^{-14}$} & -2.2934 \\
+{}0 & \modeltag{I}{bridge} & 203 & -5.74097 & 3.23969 & -1.69741 & -0.803867 & \shortstack[r]{$1.42109$\\$\times10^{-14}$} & -2.50128 \\
+{}0 & \modeltag{E}{distance} & 203 & 0.713712 & 0.437897 & -0.187518 & -6.6214 & 7.96052 & 1.15161 \\
+{}0 & \modeltag{I}{distance} & 203 & 2.61179 & -1.00798 & 1.03812 & -7.12172 & 7.6874 & 1.60381 \\
+{}0 & \modeltag{I}{d,g} & 203 & -7.04427 & 5.86647 & -2.64074 & -6.37267 & 7.8356 & -1.17781 \\
+{}1 & \modeltag{E}{global} & 155 & -123.323 & -3.85499 & -1.23609 & -125.942 & 0 & -127.178 \\
+{}1 & \modeltag{I}{global} & 155 & -125.356 & -1.84955 & -1.26358 & -125.942 & 0 & -127.205 \\
+{}1 & \modeltag{E}{bridge} & 155 & -9.62251 & 1.4458 & 0.561462 & -8.73818 & 0 & -8.17672 \\
+{}1 & \modeltag{I}{bridge} & 155 & -9.23691 & -2.13169 & -0.684567 & -10.684 & 0 & -11.3686 \\
+{}1 & \modeltag{E}{distance} & 155 & 24.6483 & 0.443333 & 0.126742 & -11.3832 & 36.3481 & 25.0916 \\
+{}1 & \modeltag{I}{distance} & 155 & 29.0578 & -6.70693 & -2.14289 & -16.8479 & 41.3417 & 22.3509 \\
+{}1 & \modeltag{I}{d,g} & 155 & 24.2383 & 1.16738 & 0.223234 & -11.1865 & 36.3689 & 25.4057 \\
+{}2 & \modeltag{E}{global} & 254 & -121.889 & -3.87533 & 1.42649 & -127.191 & 0 & -125.764 \\
+{}2 & \modeltag{I}{global} & 254 & -126.806 & -0.128169 & 0.256312 & -127.191 & \shortstack[r]{$-1.42109$\\$\times10^{-14}$} & -126.934 \\
+{}2 & \modeltag{E}{bridge} & 254 & -0.282971 & 0.199715 & 3.54035 & -3.6236 & 0 & -0.0832556 \\
+{}2 & \modeltag{I}{bridge} & 254 & -0.282952 & 0.199697 & 3.54035 & -3.6236 & \shortstack[r]{$-1.42109$\\$\times10^{-14}$} & -0.0832547 \\
+{}2 & \modeltag{E}{distance} & 254 & 36.8952 & 1.15198 & 0.037426 & -1.48919 & 39.4989 & 38.0472 \\
+{}2 & \modeltag{I}{distance} & 254 & 38.4571 & -0.396465 & 0.565275 & -1.63331 & 39.1287 & 38.0607 \\
+{}2 & \modeltag{I}{d,g} & 254 & 33.5844 & 3.48733 & -0.459202 & -1.85141 & 39.3824 & 37.0718 \\
+\end{longtable}\endgroup
+
+Both stage-specific raw-row audits, source/input pins, raw event time/excess/category ordering, training proportions/smoothing, identical windows and shared beta were checked before arithmetic. Per-cell P+C contributions are retained as aggregates in summary.json; raw catalogue rows, event arrays and caches are not exported. Original primary tables and fit/start denominators remain unchanged.
+
+This comparison was planned after the W result and before opening D outcomes. It is secondary adaptive reporting and does not turn reused windows into independent validation or establish physical causality.
+
+
+\subsection{Complete factorial and bounded-scale score record}
+\label{app:audit10-factorial}
+The model identifiers below encode temporal family, background (cell or smooth KDE-enriched) and offspring geography (cont or lift). Each fold's twelve rows use the same selected baseline spatial scale and test targets. Absolute log density scores depend on the declared square-kilometre measure; only matched differences carry the comparison interpretation. The common magnitude score is retained rather than absorbed into location. These are all primary arms, including the losing temporal/lift combinations.
+\begingroup\scriptsize\setlength{\tabcolsep}{2pt}\renewcommand{\arraystretch}{1.18}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.0400\textwidth}>{\raggedright\arraybackslash}p{0.1500\textwidth}>{\raggedright\arraybackslash}p{0.0600\textwidth}>{\raggedright\arraybackslash}p{0.0950\textwidth}>{\raggedright\arraybackslash}p{0.0950\textwidth}>{\raggedright\arraybackslash}p{0.0950\textwidth}>{\raggedright\arraybackslash}p{0.1150\textwidth}>{\raggedright\arraybackslash}p{0.0750\textwidth}>{\raggedright\arraybackslash}p{0.1000\textwidth}@{}}
+\toprule
+Fold & Arm & $N$ & Timing & Zone & Cell given zone & Within-cell density & Mark & Joint \\
+\midrule\endfirsthead
+\toprule
+Fold & Arm & $N$ & Timing & Zone & Cell given zone & Within-cell density & Mark & Joint \\
+\midrule\endhead
+\midrule\multicolumn{9}{r}{\emph{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+{}F0 & fixedML\_\allowbreak{}cell\_\allowbreak{}cont & 203 & -334.242 & -109.786 & -25.8562 & -1968.98 & 34.2981 & -2404.57 \\
+{}F0 & commonML\_\allowbreak{}cell\_\allowbreak{}cont & 203 & -333.662 & -109.884 & -25.8391 & -1968.77 & 34.2981 & -2403.86 \\
+{}F0 & Omori\_\allowbreak{}cell\_\allowbreak{}cont & 203 & -331.395 & -110.326 & -25.7421 & -1964.35 & 34.2981 & -2397.51 \\
+{}F0 & fixedML\_\allowbreak{}cell\_\allowbreak{}lift & 203 & -331.846 & -113.936 & -27.8384 & -2514 & 34.2981 & -2953.33 \\
+{}F0 & commonML\_\allowbreak{}cell\_\allowbreak{}lift & 203 & -331.499 & -114.038 & -27.8009 & -2514 & 34.2981 & -2953.04 \\
+{}F0 & Omori\_\allowbreak{}cell\_\allowbreak{}lift & 203 & -329.13 & -114.862 & -27.7262 & -2514 & 34.2981 & -2951.42 \\
+{}F0 & fixedML\_\allowbreak{}smooth\_\allowbreak{}cont & 203 & -337.85 & -109.568 & -25.6119 & -1941.49 & 34.2981 & -2380.23 \\
+{}F0 & commonML\_\allowbreak{}smooth\_\allowbreak{}cont & 203 & -336.616 & -109.995 & -25.5726 & -1940.56 & 34.2981 & -2378.45 \\
+{}F0 & Omori\_\allowbreak{}smooth\_\allowbreak{}cont & 203 & -334.808 & -111.005 & -25.5254 & -1942.5 & 34.2981 & -2379.54 \\
+{}F0 & fixedML\_\allowbreak{}smooth\_\allowbreak{}lift & 203 & -362.798 & -115.451 & -27.6931 & -2467.26 & 34.2981 & -2938.9 \\
+{}F0 & commonML\_\allowbreak{}smooth\_\allowbreak{}lift & 203 & -368.404 & -118.704 & -27.791 & -2465.77 & 34.2981 & -2946.37 \\
+{}F0 & Omori\_\allowbreak{}smooth\_\allowbreak{}lift & 203 & -370.741 & -121.533 & -27.9344 & -2465.09 & 34.2981 & -2951 \\
+{}F1 & fixedML\_\allowbreak{}cell\_\allowbreak{}cont & 155 & -158.445 & -106.119 & -35.2124 & -1461.23 & -3.84474 & -1764.85 \\
+{}F1 & commonML\_\allowbreak{}cell\_\allowbreak{}cont & 155 & -157.564 & -106.198 & -35.2265 & -1461.37 & -3.84474 & -1764.2 \\
+{}F1 & Omori\_\allowbreak{}cell\_\allowbreak{}cont & 155 & -150.352 & -103.402 & -37.9133 & -1451.06 & -3.84474 & -1746.57 \\
+{}F1 & fixedML\_\allowbreak{}cell\_\allowbreak{}lift & 155 & -158.719 & -99.5906 & -48.3143 & -1907.4 & -3.84474 & -2217.87 \\
+{}F1 & commonML\_\allowbreak{}cell\_\allowbreak{}lift & 155 & -154.521 & -100.104 & -48.3944 & -1907.4 & -3.84474 & -2214.27 \\
+{}F1 & Omori\_\allowbreak{}cell\_\allowbreak{}lift & 155 & -155.095 & -97.8026 & -49.8916 & -1907.4 & -3.84474 & -2214.03 \\
+{}F1 & fixedML\_\allowbreak{}smooth\_\allowbreak{}cont & 155 & -156.905 & -106.779 & -35.2247 & -1444.76 & -3.84474 & -1747.51 \\
+{}F1 & commonML\_\allowbreak{}smooth\_\allowbreak{}cont & 155 & -148.447 & -107.784 & -35.4844 & -1445.55 & -3.84474 & -1741.11 \\
+{}F1 & Omori\_\allowbreak{}smooth\_\allowbreak{}cont & 155 & -154.611 & -107.477 & -35.9637 & -1444.77 & -3.84474 & -1746.67 \\
+{}F1 & fixedML\_\allowbreak{}smooth\_\allowbreak{}lift & 155 & -160.171 & -102.05 & -48.8902 & -1883.91 & -3.84474 & -2198.87 \\
+{}F1 & commonML\_\allowbreak{}smooth\_\allowbreak{}lift & 155 & -142.14 & -105.305 & -49.7509 & -1881.47 & -3.84474 & -2182.51 \\
+{}F1 & Omori\_\allowbreak{}smooth\_\allowbreak{}lift & 155 & -152.303 & -108.517 & -50.5331 & -1879.42 & -3.84474 & -2194.62 \\
+{}F2 & fixedML\_\allowbreak{}cell\_\allowbreak{}cont & 254 & -507.66 & -172.693 & -58.1854 & -2676.78 & -26.9106 & -3442.23 \\
+{}F2 & commonML\_\allowbreak{}cell\_\allowbreak{}cont & 254 & -507.667 & -172.23 & -57.8413 & -2680.19 & -26.9106 & -3444.83 \\
+{}F2 & Omori\_\allowbreak{}cell\_\allowbreak{}cont & 254 & -495.18 & -169.315 & -62.8372 & -2645.34 & -26.9106 & -3399.59 \\
+{}F2 & fixedML\_\allowbreak{}cell\_\allowbreak{}lift & 254 & -499.65 & -170.042 & -59.1399 & -3137.99 & -26.9106 & -3893.74 \\
+{}F2 & commonML\_\allowbreak{}cell\_\allowbreak{}lift & 254 & -497.357 & -169.958 & -59.0612 & -3137.99 & -26.9106 & -3891.28 \\
+{}F2 & Omori\_\allowbreak{}cell\_\allowbreak{}lift & 254 & -492.084 & -167.66 & -60.7759 & -3137.99 & -26.9106 & -3885.42 \\
+{}F2 & fixedML\_\allowbreak{}smooth\_\allowbreak{}cont & 254 & -494.298 & -171.266 & -58.4698 & -2647.22 & -26.9106 & -3398.16 \\
+{}F2 & commonML\_\allowbreak{}smooth\_\allowbreak{}cont & 254 & -494.337 & -171.008 & -58.0393 & -2650.43 & -26.9106 & -3400.73 \\
+{}F2 & Omori\_\allowbreak{}smooth\_\allowbreak{}cont & 254 & -489.266 & -169.026 & -58.8698 & -2640.15 & -26.9106 & -3384.22 \\
+{}F2 & fixedML\_\allowbreak{}smooth\_\allowbreak{}lift & 254 & -482.63 & -169.703 & -59.712 & -3073.31 & -26.9106 & -3812.26 \\
+{}F2 & commonML\_\allowbreak{}smooth\_\allowbreak{}lift & 254 & -483.972 & -171.463 & -60.3154 & -3072.04 & -26.9106 & -3814.7 \\
+{}F2 & Omori\_\allowbreak{}smooth\_\allowbreak{}lift & 254 & -483.526 & -172.269 & -60.7074 & -3071.18 & -26.9106 & -3814.6 \\
+\end{longtable}\endgroup
+\subsubsection{Every small-scale sensitivity fit}
+\label{app:audit10-sensitivity}
+Each row changes only the declared fixed-ML continuous procedure's fixed spatial scale, under its named background, relative to that background's primary selected-scale procedure. These rows are not an expanded-grid twelve-arm factorial and do not select the primary forecast. Every joint difference is negative; occasional timing improvements are retained.
+\begingroup\scriptsize\setlength{\tabcolsep}{2pt}\renewcommand{\arraystretch}{1.18}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.0500\textwidth}>{\raggedright\arraybackslash}p{0.2100\textwidth}>{\raggedright\arraybackslash}p{0.1000\textwidth}>{\raggedright\arraybackslash}p{0.1000\textwidth}>{\raggedright\arraybackslash}p{0.1300\textwidth}>{\raggedright\arraybackslash}p{0.1300\textwidth}>{\raggedright\arraybackslash}p{0.1300\textwidth}@{}}
+\toprule
+Fold & Primary reference & Sensitivity km & Primary km & Joint delta & Timing delta & Joint per target \\
+\midrule\endfirsthead
+\toprule
+Fold & Primary reference & Sensitivity km & Primary km & Joint delta & Timing delta & Joint per target \\
+\midrule\endhead
+\midrule\multicolumn{7}{r}{\emph{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+{}F0 & fixedML\_\allowbreak{}cell\_\allowbreak{}cont & 1 & 5 & -252.691 & -4.91036 & -1.24479 \\
+{}F0 & fixedML\_\allowbreak{}cell\_\allowbreak{}cont & 2 & 5 & -114.734 & -2.58132 & -0.565193 \\
+{}F0 & fixedML\_\allowbreak{}smooth\_\allowbreak{}cont & 1 & 5 & -248.566 & -8.51238 & -1.22447 \\
+{}F0 & fixedML\_\allowbreak{}smooth\_\allowbreak{}cont & 2 & 5 & -111.301 & -3.90217 & -0.548279 \\
+{}F1 & fixedML\_\allowbreak{}cell\_\allowbreak{}cont & 1 & 15 & -207.359 & 2.87971 & -1.3378 \\
+{}F1 & fixedML\_\allowbreak{}cell\_\allowbreak{}cont & 2 & 15 & -100.135 & 2.52249 & -0.646035 \\
+{}F1 & fixedML\_\allowbreak{}smooth\_\allowbreak{}cont & 1 & 15 & -201.315 & 0.647017 & -1.2988 \\
+{}F1 & fixedML\_\allowbreak{}smooth\_\allowbreak{}cont & 2 & 15 & -96.988 & 0.821518 & -0.625729 \\
+{}F2 & fixedML\_\allowbreak{}cell\_\allowbreak{}cont & 1 & 15 & -308.064 & 15.0179 & -1.21285 \\
+{}F2 & fixedML\_\allowbreak{}cell\_\allowbreak{}cont & 2 & 15 & -167.638 & 11.0334 & -0.659992 \\
+{}F2 & fixedML\_\allowbreak{}smooth\_\allowbreak{}cont & 1 & 15 & -290.547 & 8.74533 & -1.14389 \\
+{}F2 & fixedML\_\allowbreak{}smooth\_\allowbreak{}cont & 2 & 15 & -159.63 & 5.66373 & -0.628465 \\
+\end{longtable}\endgroup
+
+\subsection{Numerical protocol coordinates and controls}
+\label{app:audit10-protocol}
+The factorial study fixes a nine-cell domain, a six-point primary spatial grid and eight starts per procedure. Background amplitude, trend and branching coordinates use $a\in[-12,0]$, $d\in[-2,2]$ and $n\in[0,0.98]$. Common ML scale ranges from 0.001 to 20 days; Omori uses $c\in[0.0001,20]$ days and $p\in[1.01,2.5]$. The primary bandwidth and spatial grids are 5, 15, 50, 150, 500 and 1500 km. The background mixes 95\% training KDE with a 5\% cell-density floor.
+
+Geometry uses latitude edges $-48.5,-43.5,-38.5,-33.5$ degrees, longitude edges $165,170,175,180$ degrees, Earth radius 6371.0088 km and projection origin $(-41,172.5)$ degrees. These are finite-domain numerical choices, not physical scale estimates.
+
+The exact start offsets, optimizer settings, finite-difference steps, quadrature controls and both fixed-seed engineering laws are retained without alteration in the supplementary TeX fragment \path{paper/supplements/factorial_protocol_full.tex} and the bundled frozen protocol. Selected estimates above remain distinct from search limits and initial values. The configuration is a reproducibility contract, not another set of empirical replications.

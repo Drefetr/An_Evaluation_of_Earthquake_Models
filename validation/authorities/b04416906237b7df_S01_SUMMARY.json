@@ -1,0 +1,191 @@
+{
+  "status": "complete",
+  "controlled_statistic_counts": {
+    "reference": {
+      "I00": 999,
+      "I10": 999,
+      "I01": 999,
+      "I11": 999
+    },
+    "null_query": {
+      "I00": 1000,
+      "I10": 1000,
+      "I01": 1000,
+      "I11": 1000
+    },
+    "alternative_query": {
+      "I00": 150,
+      "I10": 150,
+      "I01": 150,
+      "I11": 150
+    }
+  },
+  "new_controlled_cells": 1528,
+  "unresolved_cells": 0,
+  "planned_roles": {
+    "reference": 999,
+    "null_query": 1000,
+    "alternative_query": 150
+  },
+  "calibration": {
+    "null_query": {
+      "planned_queries": 1000,
+      "decisions": {
+        "I00": {
+          "R": 49,
+          "NR": 951,
+          "U": 0
+        },
+        "I10": {
+          "R": 47,
+          "NR": 953,
+          "U": 0
+        },
+        "I01": {
+          "R": 52,
+          "NR": 948,
+          "U": 0
+        },
+        "I11": {
+          "R": 44,
+          "NR": 956,
+          "U": 0
+        }
+      },
+      "rejection_bounds": {
+        "I00": [
+          0.049,
+          0.049
+        ],
+        "I10": [
+          0.047,
+          0.047
+        ],
+        "I01": [
+          0.052,
+          0.052
+        ],
+        "I11": [
+          0.044,
+          0.044
+        ]
+      },
+      "interaction_bounds": [
+        -0.006,
+        -0.006
+      ],
+      "interaction": {
+        "status": "resolved",
+        "mean": -0.006,
+        "mcse": 0.00948968145166391
+      }
+    },
+    "alternative_query": {
+      "planned_queries": 150,
+      "decisions": {
+        "I00": {
+          "R": 150,
+          "NR": 0,
+          "U": 0
+        },
+        "I10": {
+          "R": 122,
+          "NR": 28,
+          "U": 0
+        },
+        "I01": {
+          "R": 150,
+          "NR": 0,
+          "U": 0
+        },
+        "I11": {
+          "R": 68,
+          "NR": 82,
+          "U": 0
+        }
+      },
+      "rejection_bounds": {
+        "I00": [
+          1.0,
+          1.0
+        ],
+        "I10": [
+          0.8133333333333334,
+          0.8133333333333334
+        ],
+        "I01": [
+          1.0,
+          1.0
+        ],
+        "I11": [
+          0.4533333333333333,
+          0.4533333333333333
+        ]
+      },
+      "interaction_bounds": [
+        -0.36,
+        -0.36
+      ],
+      "interaction": {
+        "status": "resolved",
+        "mean": -0.36,
+        "mcse": 0.04564232111220974
+      }
+    }
+  },
+  "bootstrap": {
+    "null_query": {
+      "bank_only": {
+        "replicates": 2000,
+        "status_counts": {
+          "resolved": 2000
+        },
+        "interaction_mean_quantiles": {
+          "0.025": -0.022,
+          "0.5": -0.003,
+          "0.975": 0.015
+        }
+      },
+      "bank_and_paired_query": {
+        "replicates": 2000,
+        "status_counts": {
+          "resolved": 2000
+        },
+        "interaction_mean_quantiles": {
+          "0.025": -0.029,
+          "0.5": -0.004,
+          "0.975": 0.023
+        }
+      }
+    },
+    "alternative_query": {
+      "bank_only": {
+        "replicates": 2000,
+        "status_counts": {
+          "resolved": 2000
+        },
+        "interaction_mean_quantiles": {
+          "0.025": -0.4066666666666667,
+          "0.5": -0.35333333333333333,
+          "0.975": -0.30666666666666664
+        }
+      },
+      "bank_and_paired_query": {
+        "replicates": 2000,
+        "status_counts": {
+          "resolved": 2000
+        },
+        "interaction_mean_quantiles": {
+          "0.025": -0.4666666666666667,
+          "0.5": -0.36,
+          "0.975": -0.25333333333333335
+        }
+      }
+    }
+  },
+  "completed_bootstrap_replicates": 2000,
+  "bootstrap_seconds": 113.98230029991828,
+  "complete_meshes": 11,
+  "planned_meshes": 11,
+  "procedure": "authorized hybrid original-resolved plus missing-only eight-start recovery; oracle bank retained; no nested plug-in recalibration"
+}

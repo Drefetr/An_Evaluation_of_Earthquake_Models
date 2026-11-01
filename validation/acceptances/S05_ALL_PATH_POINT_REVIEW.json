@@ -1,0 +1,54 @@
+{
+  "status": "accepted_fullpoint5994_independent_raw_replay_full84_pending",
+  "passed": true,
+  "coverage": {
+    "planned": 5994,
+    "passed": 5994,
+    "failed": 0,
+    "models": [
+      "OC",
+      "EP"
+    ],
+    "origins": 3,
+    "per_model_origin": 999,
+    "pilot_rows_reused": 6
+  },
+  "raw_recomputed_fields": [
+    "count",
+    "immigrant_exposure",
+    "trigger_exposure",
+    "exposure",
+    "time_event_logsum",
+    "timing_logscore",
+    "location_logscore",
+    "mark_logscore",
+    "joint_logscore"
+  ],
+  "maximum_error": 1.1714291758835316e-09,
+  "session_seconds": 400.1580985999899,
+  "artifact_pins": {
+    "research_runs\\scientific_stage2_closure_20261101T070411Z\\s05\\point_complete\\report.json": "2bc2a2c246a7e49e0f19f0313af3b4e80620fc56b5132533f2041b000feed7fb",
+    "research_runs\\scientific_stage2_closure_20261101T070411Z\\s05\\point_complete\\progress.jsonl": "370cb31c13fd9dc0032fbb56e92fbd1836ffb3a27ddab370e8cfda2c40f806db",
+    "research_runs\\scientific_stage2_closure_20261101T070411Z\\s05\\point_complete\\binding.json": "8f2f554ba0a81eddff649a165ba56aef814e9aa6e9984ba7ceb37948cee4836b",
+    "research_runs\\scientific_stage2_closure_20261101T070411Z\\s05\\point_complete\\pilot_reuse.json": "7f0e3a014c327745fdd9af76c8870cfd037e3ce92c6097bd85afb66921642f0d",
+    "research_runs\\scientific_stage2_closure_20261101T070411Z\\s05\\point_pilot\\report.json": "a905a610163e19ae0679df73d6d69f46fc8f1ba889ce06b407658ce823d5612f",
+    "research_runs\\scientific_stage2_closure_20261101T070411Z\\s05\\controls.json": "49654a7d24a5eeae259010984ce152c667aad729d42bafabab81c48e49abfc88",
+    "research_runs\\scientific_stage2_resume_20261031T205913Z\\s05_terminal_recovery\\saved_manifest.json": "6e1c3948ca87c342bb6d08fd1022fb244936eb524ff1c1cb400486a3a6695490",
+    "research_runs\\scientific_stage2_closure_20261101T070411Z\\s05\\independent.dll": "2281790c249d344c58cb551fcd072f30b140923dc9369c5439ecb7fccc1b8095",
+    "research_runs\\scientific_stage2_closure_20261101T070411Z\\s05\\integration\\publish.py": "83d93914732d9010781fb9a6b5604057b564c662f207c7ea0dfefb5f31d16646"
+  },
+  "checks": [
+    "Exact5994unique model-origin-index roster",
+    "Allpassed finite raw point+temporalmetrics and?1e-4 tolerance",
+    "Journal/sidecar/report equality",
+    "Unchanged accepted6pilot rows reused",
+    "Controls+source+DLL+manifest currenthashes match",
+    "Every report receiptSHA matches frozenmanifest artifact entry"
+  ],
+  "scope_limits": [
+    "Full84/PIT closure still pending",
+    "Savedreceipt/reraw reconstruction inspected; reviewer did not rerun numericalengine",
+    "DeepSeek supplementary timeout is not acceptance evidence"
+  ],
+  "reviewer_numerical_execution": false
+}

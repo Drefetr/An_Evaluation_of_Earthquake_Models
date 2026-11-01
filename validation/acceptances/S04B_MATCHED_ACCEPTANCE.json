@@ -1,0 +1,62 @@
+{
+  "schema": "S04B_MATCHED_ACCEPTANCE_v1",
+  "reviewer": "Q01 independent native scientific and numerical auditor",
+  "accepted": true,
+  "final_scientific_accepted": true,
+  "completed_utc": "2026-11-01T12:22:15.169625+00:00",
+  "complete_audit_sha256": "a898831111d267095655d13b4b6de17d75e4745858018aa1f3288296f31198f3",
+  "audit_receipt": {
+    "path": "research_runs\\s04b_matched_liplus_20261101T104429Z\\validation\\Q01_complete_audit.json",
+    "sha256": "a898831111d267095655d13b4b6de17d75e4745858018aa1f3288296f31198f3"
+  },
+  "counts": {
+    "cases": 80,
+    "score_rows": 400,
+    "summary_rows": 20,
+    "cpu_contexts": 48
+  },
+  "cases": 80,
+  "score_rows": 400,
+  "summary_rows": 20,
+  "cpu_contexts": 48,
+  "running": false,
+  "remaining": [],
+  "unresolved_cases": [],
+  "omitted_cases": [],
+  "generator_failures_observed": 0,
+  "numerical_gate_maxima": {
+    "quadrature_max": 1.8849724767733278e-06,
+    "order32_gap": 6.45741238258779e-11,
+    "replay_max": 0.0,
+    "spread": 0.00014700184285512194
+  },
+  "cpu_absolute_tolerance": 1e-08,
+  "cpu_output_maxima": [
+    2.4010660126805305e-10,
+    1.4914537174726128e-09,
+    1.85075954561853e-10,
+    2.1720936160818383e-10,
+    2.39795738821158e-10,
+    2.842170943040401e-14
+  ],
+  "cpu_state_vectors": 384,
+  "cpu_output_scalars": 2304,
+  "acceptance_scope": "Exact predeclared80matched LI+positive-control histories, five paired procedures, seven saved-state numerical gates, complete scalar arithmetic and four predeclared independent CPU anchor replays. No new numerical optimization performed by Q01.",
+  "limitations": [
+    "Fixed shared nuisance backbone; no joint nuisance recovery claim.",
+    "Total held-out nats per simulated history;400paired scores are not400independent histories.",
+    "CPU objective/gradient/all-output replay covers four first-seed anchors, not every case.",
+    "MCSE is descriptive without an automatic finite-variance/Gaussian guarantee; Wilson intervals describe win indicators, not mean gains or calibrated power.",
+    "Inherited finite-clock rounding edge fails closed; no such failure occurred in the80frozen histories; no seed replaced or result omitted.",
+    "Finite prescribed starts and numerical gates do not certify a global optimum or universal recovery.",
+    "Publication rendering and final release custody require separate acceptance."
+  ],
+  "evidence_pins": {
+    "research_runs\\s04b_matched_liplus_20261101T104429Z\\validation\\Q01_complete_audit.json": "a898831111d267095655d13b4b6de17d75e4745858018aa1f3288296f31198f3",
+    "research_runs\\s04b_matched_liplus_20261101T104429Z\\reviews\\Q01_protocol_review.json": "91b4d617e1de3aea8ac68f37562045228893267e1a74639bbadbf263ff853be3",
+    "research_runs\\s04b_matched_liplus_20261101T104429Z\\reviews\\Q01_all_CPU_anchors_review.json": "eb33a4984716e0bb31d1d906a3d7eca87c88bdb84a2f9583e7372b4d61173bde",
+    "research_runs\\s04b_matched_liplus_20261101T104429Z\\reviews\\Q01_boundary_adjudication.json": "afc22ba73713d828a88d2ea4024ac172f977380d3b096a46dd0a1259f3da30fd",
+    "research_runs\\s04b_matched_liplus_20261101T104429Z\\execution\\execute_20261101T105035Z\\receipt.json": "42cbaa17110f3f33966533828156191950c7a19fcae5bb7f54b525f6bb5c2822",
+    "research_runs\\s04b_matched_liplus_20261101T104429Z\\validation\\machine_lease_terminal.json": "bcf1083bac3badca601018636e3a2e4c0c79eacf3e96056f40b772874e0b6f08"
+  }
+}

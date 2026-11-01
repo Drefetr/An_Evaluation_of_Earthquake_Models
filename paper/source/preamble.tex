@@ -10,6 +10,7 @@
 \usepackage{float}
 \usepackage[round,authoryear]{natbib}
 \usepackage{xurl}
+\urlstyle{same}
 \usepackage{fancyhdr}
 \usepackage{titlesec}
 % Install hyperlink anchors after sectioning changes; cleveref must remain last.
@@ -19,7 +20,7 @@
 \captionsetup{font=small,labelfont=bf,skip=7pt}
 \setlength{\parskip}{4pt}
 \setlength{\parindent}{1.2em}
-\setlength{\emergencystretch}{2em}
+\setlength{\emergencystretch}{4em}
 \setlist{nosep,leftmargin=*}
 \renewcommand{\arraystretch}{1.15}
 \titleformat{\chapter}[display]{\normalfont\huge\bfseries\raggedright\hyphenpenalty=10000\exhyphenpenalty=10000}{\chaptertitlename\ \thechapter}{10pt}{\Huge}
@@ -28,7 +29,7 @@
 \titlespacing*{\chapter}{0pt}{-12pt}{24pt}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\small\nouppercase{\leftmark}}
+\fancyhead[L]{\small Inhibitory and spatial--temporal earthquake models}
 \fancyfoot[C]{\thepage}
 \renewcommand{\headrulewidth}{0.3pt}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -46,3 +47,14 @@
 \newcommand{\sourcesupp}[1]{\hyperlink{#1}{Source supplement~\texttt{#1}}}
 \newcommand{\dif}{\mathop{}\!\mathrm{d}}
 \numberwithin{equation}{chapter}
+
+\setcounter{tocdepth}{1}
+
+\widowpenalty=10000
+\clubpenalty=10000
+\makeatletter
+\renewcommand*\l@section{\@dottedtocline{1}{1.5em}{3.2em}}
+\makeatother
+
+% Display-only model identifiers; archive keys remain literal in custody records.
+\newcommand{\modeltag}[2]{\ensuremath{\mathrm{#1}_{\mathrm{#2}}}}

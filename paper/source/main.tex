@@ -1,12 +1,17 @@
 \documentclass[11pt,a4paper,oneside,openany]{report}
 \input{preamble}
-\hypersetup{pdftitle={Stability and identification in inhibitory earthquake models},pdfsubject={Research manuscript}}
-\title{Stability and identification in inhibitory earthquake models\\[12pt]\large Restricted mathematics, nuisance sensitivity and predictive evidence}
-\author{\small Collaborators: \href{https://github.com/Drefetr}{Drefetr}, \href{https://github.com/magna-nz}{magna-nz};\\[3pt]\small \href{https://www.anthropic.com/claude-opus-5-5}{Claude Opus 5.5}, \href{https://www.deepseek.com/en/news/deepseek-v4-1-flash/}{DeepSeek 4.1 Flash},\\[3pt]\small \href{https://ai.google.dev/gemini-api/docs/models/gemini-4-argon}{Gemini 4.0 Argon}, \href{https://developers.openai.com/api/docs/models/gpt-6-astra}{GPT 6.0 Astra}, \href{https://developers.openai.com/api/docs/models/gpt-6.1-sol}{GPT 6.1 Sol}}
-\date{22 October 2026}
+\hypersetup{pdftitle={Stability, Identification, and Predictive Evaluation in Inhibitory and Spatial--Temporal Earthquake Models},pdfsubject={Consolidated research monograph}}
+\title{Stability, Identification, and Predictive Evaluation in Inhibitory and Spatial--Temporal Earthquake Models\\[12pt]\large Unified LaTeX edition}
+\author{\href{https://github.com/Drefetr}{Drefetr} \and \href{https://github.com/magna-nz}{magna-nz}}
+\date{1 November 2026}
 \begin{document}
 \hypersetup{pageanchor=false}
 \maketitle
+\thispagestyle{empty}
+\noindent\textbf{Edition and licence.} This single-volume edition consolidates the restricted manuscript, Addenda I--V and the historically completed follow-up programme and separately identified scientific extensions. Manuscript text and figures: Creative Commons Attribution 4.0 International (CC-BY-4.0). Original project software: MIT licence. Third-party catalogue records and cited works retain their own terms. Human collaborators are identified by their reported handles. Computational and AI assistance is disclosed in Appendix~\ref{sec:ai-assistance}; historical model names are reported credits, not certification of execution routes.
+
+\noindent This scientific-completion edition combines preserved historical findings with explicitly identified numerical follow-up studies. The follow-up sections distinguish new fitting and simulation from saved-result reconciliation; no operational forecast issuance is claimed. Independent computational review is distinguished from external academic peer review.
+\clearpage
 \input{abstract}
 \clearpage
 \pagenumbering{roman}
@@ -14,6 +19,7 @@
 \tableofcontents
 \clearpage
 \pagenumbering{arabic}
+\part{Mathematical Foundations, Identifiability, and Nuisance Sensitivity}
 \input{chapters/01_introduction}
 \input{chapters/02_models}
 \input{chapters/03_stability}
@@ -21,13 +27,17 @@
 \input{chapters/05_inference}
 \input{chapters/06_design}
 \input{chapters/07_synthetic}
-\input{chapters/08_observed}
-\input{chapters/09_discussion}
-\input{chapters/10_conclusion}
+\part{Temporal, Mark-History, and Orthogonalized Extensions in New Zealand}
+\input{chapters/08_observed_baseline}
+\input{chapters/09_temporal_mark_extensions}
+\part{Spatial Structure, External Replication, Competitive Benchmarks, and Continuous Local Inhibition}
+\input{chapters/10_nz_spatial_background}
+\input{chapters/11_external_transfer_benchmarks}
+\input{chapters/12_conditional_calibration}
+\input{chapters/13_continuous_local_inhibition}
+\part{Synthesis and Programme Boundaries}
+\input{chapters/14_discussion_conclusion}
 \appendix
 \input{appendices}
-{\small
-\setlength{\bibsep}{4pt}
-\bibliographystyle{plainnat}
-\bibliography{references}}
+{\small\setlength{\bibsep}{4pt}\bibliographystyle{plainnat}\bibliography{references}}
 \end{document}

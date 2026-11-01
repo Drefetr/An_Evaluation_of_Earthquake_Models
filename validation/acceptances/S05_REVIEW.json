@@ -1,0 +1,109 @@
+{
+  "passed": true,
+  "status": "recommend_S05_reporting_acceptance",
+  "attempt": "727d6c27-be2e-4d93-bcfb-b89bba10c6be",
+  "source_pins": {
+    "research_runs\\scientific_stage2_resume_20261031T205913Z\\s05_final\\normalize.py": "831bbc7c075655fb5ed0eda2e4279f79debf6121e5817dd977facd8bdafaba81",
+    "research_runs\\scientific_stage2_resume_20261031T205913Z\\s05_final\\S05_public.json": "d461b5d635d109dfdd7b9240cec3fb2af6b4143c9e7248cd7d6e2f2fc6c1a7bd",
+    "research_runs\\scientific_stage2_resume_20261031T205913Z\\s05_final\\proposed_reporting_acceptance.json": "01545edc1dcb44bef4d65a5244f8805e1fee6c05b5990c3820eda40d4b1ad5a5",
+    "research_runs\\scientific_stage2_resume_20261031T205913Z\\s05_final\\omnibus.json": "7c9918a97adff6dd4ef802a71ae812418add8ea2beb62b6906d69be4979e19af",
+    "research_runs\\scientific_stage2_resume_20261031T205913Z\\s05_final\\sample.json": "c3fa49196e5792cc0d5af746c5e29bc458e45c477be0233a517c2b7c0f5cd94e",
+    "research_runs\\scientific_stage2_resume_20261031T205913Z\\s05_final\\controls.json": "db4f0c24f175969eaaef3170a8fa2b09f61f8a371301bc81f7345c5a1be49648",
+    "research_runs\\scientific_stage2_resume_20261031T205913Z\\s05_terminal_recovery\\reconciled_v1\\reconciliation.json": "d45b59830bbe1f337b36b8694232edef290a01d51571472f903d3e12494af530",
+    "research_runs\\scientific_stage2_resume_20261031T205913Z\\s05_terminal_recovery\\reconciled_v1\\production_receipt.json": "2f6336e536e74b5b94d4b65f048e651626d3effc3aefce70940a8476b4412325",
+    "research_runs\\scientific_stage2_resume_20261031T205913Z\\s05_terminal_recovery\\saved_manifest.json": "6e1c3948ca87c342bb6d08fd1022fb244936eb524ff1c1cb400486a3a6695490",
+    "research_runs\\scientific_stage2_resume_20261031T205913Z\\s05_terminal_recovery\\saved_manifest_reconciliation_lineage.json": "3ebbf12383916d2c4eae7f18cddd4e93275817a0274d1d1b258c1a7924e17944"
+  },
+  "public_mapping": "Exact source-to-public projection verified for all6 model/origin rows: minimumrank,quadratic,Fisher,conditionalN andduplicatecounts unchanged; explicit8coordinate order,ridge1e-8 andminus-sum-log definition retained",
+  "denominators": {
+    "EP_simulated_paths": 2997,
+    "OC_simulated_paths": 2997,
+    "simulated_total": 5994,
+    "observed_vectors": 6,
+    "all_vectors": 6000,
+    "unique_vector_identities": 6000,
+    "origins_per_model": 3,
+    "simulations_per_origin": 999,
+    "pooled_rows_per_test": 1000
+  },
+  "execution_custody": "Terminalreconciliation has2997completeEPpaths; zero livewriters before/after; originalproducerartifacts untouched; savedadapterlineagehash binds derivativeparentreceipt only. Originalfailedbookkeeping remains distinct.",
+  "independent_validation": {
+    "EP_sample_roster": {
+      "origins": [
+        "california_fold_0",
+        "california_fold_1",
+        "california_fold_2"
+      ],
+      "indices": [
+        0,
+        499,
+        998
+      ]
+    },
+    "paths": 9,
+    "max_absolute_score_error": 7.275957614183426e-12,
+    "independent_full84_replays": 0,
+    "geometry_gate": "Validatedglobalbudgetcandidate source/binary/validator andreceipt bound; priorfailures preserved",
+    "synthetic_omnibus_controls": 7
+  },
+  "public_pvalues": [
+    {
+      "model": "OC",
+      "origin": "california_fold_0",
+      "minimum_rank": 0.07,
+      "quadratic": 0.004,
+      "Fisher_style": 0.001,
+      "conditional_count_two_sided": 0.002
+    },
+    {
+      "model": "OC",
+      "origin": "california_fold_1",
+      "minimum_rank": 0.075,
+      "quadratic": 0.003,
+      "Fisher_style": 0.004,
+      "conditional_count_two_sided": 0.594
+    },
+    {
+      "model": "OC",
+      "origin": "california_fold_2",
+      "minimum_rank": 0.069,
+      "quadratic": 0.007,
+      "Fisher_style": 0.012,
+      "conditional_count_two_sided": 0.056
+    },
+    {
+      "model": "EP",
+      "origin": "california_fold_0",
+      "minimum_rank": 0.07,
+      "quadratic": 0.004,
+      "Fisher_style": 0.002,
+      "conditional_count_two_sided": 0.002
+    },
+    {
+      "model": "EP",
+      "origin": "california_fold_1",
+      "minimum_rank": 0.075,
+      "quadratic": 0.005,
+      "Fisher_style": 0.006,
+      "conditional_count_two_sided": 0.698
+    },
+    {
+      "model": "EP",
+      "origin": "california_fold_2",
+      "minimum_rank": 0.069,
+      "quadratic": 0.009,
+      "Fisher_style": 0.008,
+      "conditional_count_two_sided": 0.036
+    }
+  ],
+  "interpretation": [
+    "Predeclared continuous-statistic quadratic andFisher-style checks flagconditional discrepancies forbothmodels atallthree origins; retainedminimum-rank pvalues.069-.075 do not reject at.05. Differentstatistics are differentlysensitive, not contradictory.",
+    "Better heldoutEPscores do not establish conditional adequacy.",
+    "Alltests are fixed-parameter conditional simulations, not parameter-uncertainty-integrated or unconditional populationcalibration.",
+    "Origintraininghistories/catalogues overlap; sixrows are not six independentreplications. Severalstatistics are not a familywise/multiplicity-adjusted certification.",
+    "SamplednativeTier1 covers9EPpaths; all6000vectors receivedsavedcustody/schema/arithmetic, not exhaustiveindependentlikelihood/PIT/84coordinate reconstruction."
+  ],
+  "proposed_reporting_status": "pending_root_acceptance",
+  "mandatory_fixes": [],
+  "scope": "Savedsource/resultnormalization,denominator,provenance andinterpretation review only; no likelihood/model execution, no omnibusrecomputation or additionalcalibrationjob"
+}

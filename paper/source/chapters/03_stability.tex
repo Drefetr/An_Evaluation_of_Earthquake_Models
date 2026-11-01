@@ -1,4 +1,4 @@
-\chapter{Stability, approximation and exact memory}\label{ch:stability}
+\chapter{Finite-Mode Stability and Exact-Memory Obstructions}\label{chap:stability}\label{ch:stability}
 
 The finite-mode model admits a comparatively complete stability theory under autonomous loading and integrable marks. The theory combines a branching domination, a Lyapunov function, a synchronous coupling and a small-set estimate. Kernel approximation is then controlled on a fixed horizon. Finally, exact memory reveals a sharp obstruction without feedback and a resolvent response for an associated linear system; neither statement supplies a general nonlinear stationary theory.
 
@@ -9,9 +9,21 @@ The finite-mode model admits a comparatively complete stability theory under aut
 \label{fig:theory_scope}
 \end{figure}
 
+\paragraph{Initialization and theorem scope.}
+The autonomous finite-mode result concerns the stated finite-dimensional state
+and its admissible initial states. It must be distinguished from the later
+finite-horizon kernel comparison, which fixes a common finite initial stress
+and no prehistory, and from the marked-resolvent identity, which assumes scalar
+initial stress $X_0\Phi(t)$, zero initial excitation and no additional prehistory.
+An arbitrary initialized excitation state contributes an additional homogeneous
+term; it is not covered by silently reusing that scalar resolvent display.
+None of these statements proves convergence of invariant laws as the number of
+modes increases. The physical stress coordinate in this chapter is the
+theoretical state, rather than the observed diagnostic's affine time coordinate.
+
 \section{Autonomous finite-mode stability}\label{sec:finite-stability}
 
-Return to the physical convention \(n=\E _F\kappa(M)\). Suppose \(m_1<\infty\), \(n<1\), and \(\Psi:(-\infty,\bar x]\to(0,\infty)\) is nondecreasing and Lipschitz on the whole half-line. Write \(\bar\Psi=\Psi(\bar x)\). Put
+Fix the finite index set \(j\in\{1,\ldots,m\}\), \(m<\infty\), from Section~\ref{sec:model_physical}, and return to the physical convention \(n=\E _F\kappa(M)\). Suppose \(m_1<\infty\), \(n<1\), and \(\Psi:(-\infty,\bar x]\to(0,\infty)\) is nondecreasing and Lipschitz on the whole half-line. Write \(\bar\Psi=\Psi(\bar x)\). Put
 \[
 y_j=x_j^*-Z_j,\qquad Y=\sum_jw_jy_j,\qquad
 W=\sum_j\frac{w_jU_j}{\vartheta_j},\qquad V=1+Y+cW,
@@ -50,13 +62,13 @@ The constants generally depend on the rates, weights, \(m_1\), \(n\), the Lipsch
 \[
 h_d(t)=\sum_jw_j\vartheta_je^{-\vartheta_jt},
 \]
-and initial excitation \(\sum_jw_jU_j(0)e^{-\vartheta_jt}\). The latter integrates to \(W(z)\), and each cluster has expected total size \(1/(1-n)\). For every nonnegative mark weight \(\omega\) with finite mean,
+and initial excitation \(\sum_jw_jU_j(0)e^{-\vartheta_jt}\). The latter integrates to \(W(z)\), and each cluster has expected total size \(1/(1-n)\). For every nonnegative mark weight \(\chi\) with finite mean,
 \begin{equation}\label{eq:cluster-moment}
-\E _z\sum_{T_i\leq T}\omega(M_i)
-\leq\frac{\E _F\omega(M)}{1-n}
+\E _z\sum_{T_i\leq T}\chi(M_i)
+\leq\frac{\E _F\chi(M)}{1-n}
 \{\bar\Psi T+W(z)\}.
 \end{equation}
-A generation is created before its marks are drawn, so \eqref{eq:cluster-moment} remains valid when \(\omega\) and \(\kappa\) are correlated. Finite expected counts imply nonexplosion; the deterministic flow and fresh Poisson increments yield the strong Markov property.
+A generation is created before its marks are drawn, so \eqref{eq:cluster-moment} remains valid when \(\chi\) and \(\kappa\) are correlated. Finite expected counts imply nonexplosion; the deterministic flow and fresh Poisson increments yield the strong Markov property.
 
 \emph{Lyapunov estimate.} Since the flow gives \(\dot Y=-\sum_jw_j\vartheta_jy_j\) and \(\dot W=-H\), while a jump adds \((g,\kappa)\), the extended generator satisfies
 \[
@@ -67,17 +79,17 @@ A generation is created before its marks are drawn, so \eqref{eq:cluster-moment}
 \]
 Because \(\Psi(X)\leq\bar\Psi\) on \(\mathcal X\), direct comparison with the positive relaxation terms gives
 \begin{equation}\label{eq:generator-bound}
-\mathcal AV\leq-\omega V+D,
+\mathcal AV\leq-\kappa_V V+D,
 \end{equation}
 where
 \[
 K_0=(m_1+cn)\bar\Psi,\qquad
-\omega=\vartheta_{\min}\min\{1,\delta/c\},\qquad
-D=\omega+K_0.
+\kappa_V=\vartheta_{\min}\min\{1,\delta/c\},\qquad
+D=\kappa_V+K_0.
 \]
-The weighted jump bound \eqref{eq:cluster-moment} makes the stopped compensated jump integral integrable. Applying the product formula to \(e^{\omega t}V(z_t)\) and then Fatou's lemma gives
+The weighted jump bound \eqref{eq:cluster-moment} makes the stopped compensated jump integral integrable. Applying the product formula to \(e^{\kappa_V t}V(z_t)\) and then Fatou's lemma gives
 \begin{equation}\label{eq:lyap-moment}
-P_tV(z)\leq e^{-\omega t}V(z)+\frac{D}{\omega}(1-e^{-\omega t}).
+P_tV(z)\leq e^{-\kappa_V t}V(z)+\frac{D}{\kappa_V}(1-e^{-\kappa_V t}).
 \end{equation}
 
 \emph{Coupling and smallness.} Couple two copies synchronously until their first unmatched event \(\sigma\). Identical jumps cancel before \(\sigma\), so
@@ -95,7 +107,12 @@ W_{d_\epsilon}(P_tz,P_tz')
 \leq\left(e^{-\vartheta_{\min}t}
 +\frac{L\epsilon}{\vartheta_{\min}}\right)d_\epsilon(z,z').
 \end{equation}
-Choose \(\epsilon\) small and then \(t\) large enough to make the coefficient less than one up to the prescribed margin. Sublevel sets \(\{V\leq R\}\) are compact and have finite diameter \(D_R\). On such a set, event-free flow decreases both \(Y\) and \(W\), and the event rate is at most \(\Lambda_R=\bar\Psi+\vartheta_{\max}R/c\). 
+First fix \(R=4D/\kappa_V\) from the Lyapunov bound. Because the mode set is finite, \(\{V\leq R\}\) is compact and has finite diameter \(D_R\). Next choose \(\epsilon>0\) so that \(L\epsilon/\vartheta_{\min}\leq1/4\), and then choose \(t_0\) so that
+\[
+e^{-\vartheta_{\min}t_0}\leq1/4,
+\qquad e^{-\vartheta_{\min}t_0}D_R\leq\epsilon/2.
+\]
+Thus \eqref{eq:coupling-contraction} has coefficient at most \(1/2\) for every \(t\geq t_0\). On the fixed sublevel set, event-free flow decreases both \(Y\) and \(W\), and the event rate is at most \(\Lambda_R=\bar\Psi+\vartheta_{\max}R/c\).
 Use the same marked Poisson random measure $\Pi$ for both
 copies, with intensity $\dif s\,\dif u\,F(\dif m)$ and the
 usual acceptance threshold. The event
@@ -109,7 +126,7 @@ most $\Lambda_R$, so neither jumps. Thus the synchronous coupling gives probabil
 \sup_{V(z),V(z')\leq R}W_{d_\epsilon}(P_tz,P_tz')
 \leq1-\tfrac12e^{-\Lambda_Rt}<1.
 \]
-The same coupling shows that the state at a fixed time converges in probability as the initial state varies continuously. Expectations of bounded continuous functions therefore converge, establishing the Feller property. To choose a common time for contraction and smallness, first fix \(R=4D/\omega\) from the Lyapunov bound, then choose time sufficiently large for both inequalities.
+The same coupling shows that the state at a fixed time converges in probability as the initial state varies continuously. Expectations of bounded continuous functions therefore converge, establishing the Feller property. Taking \(t=t_0\) verifies contraction and smallness at the same time; the choices were made in the order \(R,\epsilon,t_0\).
 
 Together with \eqref{eq:lyap-moment} this verifies the Lyapunov, contraction and smallness hypotheses of \citet{HairerMattinglyScheutzow2011}, Theorem~4.8 in the author-final version. Their Corollary~4.11 adds existence under the Feller and completeness conditions used here. Existence also follows from tight time-averaged laws, compact sublevels and \eqref{eq:lyap-moment}. The contraction time provided by the theorem may be later than the time used to check the hypotheses. Replacing \(d_\epsilon\) by \(\widetilde d\) and iterating the resulting contraction, while using \eqref{eq:lyap-moment} for the residual time, gives \eqref{eq:weighted-contraction}. No second mark moment is required.
 
@@ -119,10 +136,20 @@ To see that every invariant probability has the same finite moment without subtr
 \]
 For \(K\geq b/(1-a)\), the integrand is at least
 \([(1-a)V-b]\mathbf 1_{\{V\leq K\}}\). Hence
-\(\nu(V\mathbf 1_{\{V\leq K\}})\leq b/(1-a)\). Monotone convergence and \eqref{eq:lyap-moment} yield \(\nu(V)\leq D/\omega\). The weak Harris theorem supplies uniqueness.
+\(\nu(V\mathbf 1_{\{V\leq K\}})\leq b/(1-a)\). Monotone convergence and \eqref{eq:lyap-moment} yield \(\nu(V)\leq D/\kappa_V\). The weak Harris theorem supplies uniqueness.
 \end{proof}
 
-Under the invariant law, let \(\Lambda=\pi(\Psi(X)+H)>0\). Stationarity in the coordinate equations, justified by the weighted jump bound, gives
+Under the invariant law, let \(\Lambda=\pi(\Psi(X)+H)>0\). Since \(\pi(V)<\infty\), every \(U_j\) and \(|Z_j|\) is integrable, and \(\Lambda<\infty\). The mild coordinate equations and fresh-mark compensation therefore give, for \(t>0\),
+\[
+\begin{aligned}
+\pi(U_j)&=e^{-\vartheta_jt}\pi(U_j)
+             +n\Lambda(1-e^{-\vartheta_jt}),\\
+\pi(Z_j)&=e^{-\vartheta_jt}\pi(Z_j)
+             +\frac{\rho-m_1\Lambda}{\vartheta_j}
+               (1-e^{-\vartheta_jt}).
+\end{aligned}
+\]
+All expectations are finite before cancellation: the expected marked jump sums are bounded by their first mark moments times \(\Lambda t\). Cancelling \(1-e^{-\vartheta_jt}>0\), then using \(H=\sum_jw_jU_j\), gives
 \[
 \pi(U_j)=n\Lambda,\qquad
 \pi(Z_j)=\frac{\rho-m_1\Lambda}{\vartheta_j},\qquad
@@ -160,7 +187,7 @@ The argument concerns the corresponding jump transform: it asserts stress diverg
 
 \section{Fixed-horizon kernel approximation}
 
-Let \(\Phi\) and \(\Phi_d\) be nonnegative decreasing absolutely continuous kernels, normalised to one at zero and tending to zero at infinity, so that \(h=-\Phi'\) and \(h_d=-\Phi_d'\) are probability densities. Use the same finite initial stress and constant loading, no prehistory, fresh marks, and the first-moment assumptions above. Let \(\Psi\) be positive, nondecreasing and locally Lipschitz on \(\mathbb R\). For fixed \(T<\infty\), put
+Let \(\Phi\) and \(\Phi_d\) be nonnegative decreasing absolutely continuous kernels, normalised to one at zero and tending to zero at infinity, so that \(h=-\Phi'\) and \(h_d=-\Phi_d'\) are probability densities. Use the same scalar initial term \(X_0\Phi(t)\) (and \(X_0\Phi_d(t)\)), zero initial excitation, constant loading, no prehistory, fresh marks, and the first-moment assumptions above. In a finite mixture this scalar initial term means equal initial stress coordinates. These are not stationary initializations drawn from \(\pi_d\). Let \(\Psi\) be positive, nondecreasing and locally Lipschitz on \(\mathbb R\). For fixed \(T<\infty\), put
 \[
 B=A_T=|X_0|+\rho T,\qquad
 K_T=\frac{\Psi(B)T}{1-n},
@@ -205,7 +232,7 @@ For \(R>0\), let \(L_R\) be a Lipschitz constant of \(\Psi\) on \([-|X_0|-R,B]\)
 On common prehistories whose cumulative release is at most \(R\), both stresses lie in the compact interval on which \(L_R\) is valid, and the half-line calculation applies with \(R\) in place of the full released mass. The complement has probability at most \(m_1K_T/R\) by Markov's inequality. Fix \(R\), let the two kernel errors tend to zero, and then let \(R\to\infty\).
 \end{proof}
 
-Thus half-line Lipschitz continuity gives a quantitative error rate, whereas local Lipschitz continuity gives only qualitative fixed-horizon convergence. A finite half-line constant cannot be inferred from local Lipschitz continuity. Nor do these results exchange the kernel-approximation and long-time limits.
+Thus half-line Lipschitz continuity gives a quantitative error rate, whereas local Lipschitz continuity gives only qualitative fixed-horizon convergence. A finite half-line constant cannot be inferred from local Lipschitz continuity. The constants depend on \(T\) through \(B\), \(K_T\) and the relevant Lipschitz constant, and can deteriorate rapidly as the horizon increases. Neither bound is uniform in \(T\), and neither exchanges the kernel-approximation and long-time limits.
 
 \section{Exact-memory obstruction and response}
 
@@ -240,6 +267,13 @@ Above the threshold, the two-sided compensated integrals converge in \(L^2\) by 
 \end{proof}
 
 This is a no-feedback statement. It does not assert nonstationarity of the stress-sensitive nonlinear model, and a stationary compensated construction is not the subtraction of two separately divergent, uncompensated past integrals.
+
+Even the stationary unit-mark construction for \(\alpha>1/2\) has unbounded upper support. At a fixed stationary time split its stress as
+\[
+X_\infty=-\int_0^L\Phi(u)\,\widetilde N(\dif u)+R_L,
+\qquad \E R_L^2=\mu\int_L^\infty\Phi(u)^2\,\dif u\longrightarrow0,
+\]
+where the recent and remote Poisson restrictions are independent. For any \(K\), choose \(L\) large enough that \(\mu\int_0^L\Phi(u)\,\dif u>K+1\) and \(\E R_L^2<1\). No recent event has probability \(e^{-\mu L}>0\), and \(\Pr(R_L>-1)>0\) by the second-moment bound. Their intersection gives \(X_\infty>K\). Hence \(\operatorname{ess\,sup}X_\infty=\infty\): finite variance does not provide a deterministic upper stress cap. For \(b>0\), \(e^{a+bX_\infty}\) is unbounded above, so the finite-mode half-line argument cannot be transferred to this law. Introducing that stress-dependent rate changes the no-feedback process and requires separate analysis; unbounded support alone proves neither nonexistence of a nonlinear invariant law nor divergence of the mean exponential rate.
 
 For an auxiliary excitation-inclusive system, a positive stress-to-rate slope changes the response through an integrable resolvent with a heavy tail. Let \(m_1>0\), \(0\leq n<1\) and \(\ell>0\), and consider
 \begin{equation}\label{eq:aux-response-equations}
@@ -304,16 +338,23 @@ The weak-feedback crossover is equally explicit. Put \(t_\gamma=(a_{\mathrm{rel}
 \]
 At \(\gamma=0\), \(R_0(t)=E_\alpha(-a_{\mathrm{rel}}t^\alpha)\) is not integrable. The crossover is separated from the early-time scale \(a_{\mathrm{rel}}^{-1/\alpha}\) only when \(\gamma\ll a_{\mathrm{rel}}^{1/\alpha}\). This is a statement about an auxiliary impulse response, not a nonlinear mixing time.
 
-A restricted nonlinear observation follows from the same resolvent. For
+An abstract signed-response equation illustrates the limit of this resolvent method. Let \(\psi:\mathbb R\to\mathbb R\), \(\psi(0)=0\), and consider
 \[
-y=\psi(x)+nh*y+\xi,\qquad \psi(0)=0,
+y=\psi(x)+nh*y+\xi,\qquad
+\mathcal E(x)=m_1\psi(x)-\gamma x.
 \]
-write \(\mathcal E(x)=m_1\psi(x)-\gamma x\). If \(\mathcal E\) is globally Lipschitz with constant \(L<\gamma\), the equivalent map
+If \(\mathcal E\) is globally Lipschitz with constant \(L<\gamma\), the map
 \[
 x=-R_\gamma*(m_1\xi+\mathcal E(x))
 \]
-is a contraction on bounded causal functions, and
-\(\|x\|_\infty\leq m_1\|\xi\|_\infty/(\gamma-L)\). This is only an externally forced auxiliary Volterra result. The positive exponential rate does not satisfy such a global sector condition, since its derivative tends to zero as stress tends to negative infinity. For jointly measurable stationary forcing with an almost surely uniform deterministic bound, the integrable-resolvent fixed-point equation has a unique bounded causal stationary solution by contraction and shift-equivariant Picard iteration, but it does not assert absolute convergence of the two-sided convolution \(\Phi*y\), because \(\Phi\) is not integrable.
+has contraction constant at most \(L\|R_\gamma\|_1=L/\gamma<1\) on bounded causal functions, and
+\(\|x\|_\infty\leq m_1\|\xi\|_\infty/(\gamma-L)\). This nonempty abstract class includes the signed linear response \(\psi(x)=\gamma x/m_1\). For jointly measurable stationary forcing on \(\mathbb R\) with an almost surely uniform deterministic bound, the analogous two-sided causal resolvent map has a stationary fixed point by shift-equivariant Picard iteration. This assertion concerns the integrable-resolvent equation, not absolute convergence of a two-sided \(\Phi*y\).
+
+It is \emph{not} a global contraction criterion for the physical positive link. If \(\psi(x)=\Psi(x+x_*)-\Psi(x_*)\) on its lower-unbounded domain and \(\Psi>0\), then \(\psi(x)\geq-\Psi(x_*)\) and \(\mathcal E(0)=0\). For negative \(x\),
+\[
+\mathcal E(x)\geq\gamma|x|-m_1\Psi(x_*),
+\]
+so any global Lipschitz constant of \(\mathcal E\) is at least \(\gamma\). No differentiability assumption is needed for this obstruction. In particular, every positive nondecreasing physical link is excluded, not only the exponential example. A contraction restricted to a compact stress band would additionally require that the map preserve that band; no such invariant-band or exit control is proved here.
 
 The obstruction and resolvent calculation therefore delimit the demonstrated scope. Neither supplies a generic stationary theorem for the nonlinear stress-sensitive exact-memory process.
 
@@ -327,7 +368,7 @@ The actual marked process has two noise sources rather than a single prescribed 
 where $N_g$ and $N_\kappa$ accumulate the corresponding marks. These martingales are generally correlated: both jump at the same events, and the two transforms of a fresh mark need not be independent. 
 
 \begin{samepage}
-Set $Q_\gamma=R_\gamma-nR_\gamma*h$, and let $X^+(t)$ denote post-event stress, including releases at time $t$. For scalar initial stress \(X_0\Phi(t)\), zero initial excitation and no additional prehistory, finite-horizon compensation and the same Laplace-resolvent algebra give the exact identity
+In the following exact identity, \(\gamma>0\) is an auxiliary parameter added and subtracted algebraically; it is not an established lower physical restoring slope. Set $Q_\gamma=R_\gamma-nR_\gamma*h$, and let $X^+(t)$ denote post-event stress, including releases at time $t$. For scalar initial stress \(X_0\Phi(t)\), zero initial excitation and no additional prehistory, finite-horizon compensation and the same Laplace-resolvent algebra give the exact identity
 \begin{align}
 X^+(t)={}&X_0Q_\gamma(t)+\rho\int_0^tQ_\gamma(u)\,\dif u \notag\\
 &+[R_\gamma*(\gamma X^+-m_1\Psi(X^+_-))](t) \notag\\
@@ -373,14 +414,13 @@ causal convolution identities under the stated integrability conditions;
 no infinite-history transform of a nonlinear sample path or stationary
 exact-memory limit is asserted.
 
-The worked event-free example and expanded derivations are provided in the new explanatory supplement E04, \path{supplements/explanatory_supplement.pdf}.
+The worked event-free example and expanded derivations are provided in the separate \href{https://github.com/Drefetr/InhibitoryEarthquakeModels/blob/main/paper/supplements/explanatory_supplement.pdf}{E04 explanatory supplement}; this archival supplement is not included in the present delivery package.
 
-The stationary balance of finite mixtures provides only a conditional further observation. If $A_d=\int_0^\infty\Phi_d(t)\dif t\to\infty$, $m_1>0$, and their invariant means satisfy $\sup_d|\E _{\pi_d}X_d|<\infty$, then
+A uniform invariant-mean bound cannot be inferred from fixed-mode stability. If $\sup_d|\E _{\pi_d}X_d|<\infty$, $m_1>0$ and $A_d=\int_0^\infty\Phi_d(t)\dif t\to\infty$, stationary balance gives the following conditional implication; it establishes neither invariant-law convergence nor an exchange of limits:
 \[
 \E _{\pi_d}X_d=(\rho-m_1\Lambda_d)A_d
 \quad\Longrightarrow\quad
 m_1\Lambda_d\longrightarrow\rho.
 \]
-The assumed uniform bound is precisely what the fixed-mode theorem does not supply. This consequence cannot establish convergence of invariant laws or justify interchanging the mode and stationary limits.
 
 

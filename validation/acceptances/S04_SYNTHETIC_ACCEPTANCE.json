@@ -1,0 +1,55 @@
+{
+  "decision": "accepted_complete_S04_80_case_matrix",
+  "coverage": {
+    "total": 80,
+    "accepted": 80,
+    "missing": [],
+    "stage_counts": {
+      "first_pass": 59,
+      "fixed_state_refinement": 3,
+      "order16_refit": 18
+    }
+  },
+  "unique_case_count": 80,
+  "score_rows": 400,
+  "summary_rows": 20,
+  "datasets_per_regime_per_model_gate": 20,
+  "all_stage_sets_disjoint": true,
+  "all_source_ledger_payload_tree_identity_bindings_verified": true,
+  "all_csv_values_match_accepted_source_rows": true,
+  "statistics_independently_recomputed": "Means, medians, MonteCarloSE, win/offfloor counts and Wilson95 intervals match all20cells",
+  "negative_score_rows": 135,
+  "zero_score_rows": 149,
+  "positive_score_rows": 116,
+  "new_refit_cases": 18,
+  "all_new_refits_complete_eight_starts_and_scientific_gates": true,
+  "cpu_refit_anchor_cases": 4,
+  "cpu_anchor_phase_model_comparisons": 48,
+  "maximum_refit_order16_32_nll_difference": 1.7553797988512088e-06,
+  "maximum_refit_order32_selected_gap": 1.4779288903810084e-12,
+  "maximum_refit_cpu_gpu_output_difference": 4.239737450006942e-09,
+  "observed_peak_gpu_mib": 5243,
+  "observed_peak_gpu_gib": 5.1201171875,
+  "refit_wall_seconds": 3665.0824716179923,
+  "overlap_process_seconds": 910.0329022730002,
+  "terminal_exit_code": 0,
+  "no_live_workers_verified": true,
+  "source_pins": {
+    "consolidate.py": "74025a0378e1cfb02716afccf903e33481f376d15dfd33be6a080e732e7163b4",
+    "make_report.py": "69aee070f154cc02d14e421cbf2e4157a187bac6582640a9a84e482a34c3fda3",
+    "RESULTS.md": "d4cde55b6c9859d5625d0aece21a4710f9c7bfcc2a3b8865370ea84c14520c31",
+    "consolidated\\coverage.json": "da70c4404fbebd7f4ebeeeeec2469adb876733bcd52cf3d59ca2563b06f5eaa9",
+    "consolidated\\scores.csv": "6213276c9188f38d003fb380e40b43e5bfee057179660c850e1d87fd19d908a0",
+    "consolidated\\summary.json": "efe1f9efbb10fa605e8082ab96d4e7094aa2a4537dc911c17ec69a358cc6ffc2",
+    "consolidated\\provenance.json": "da80c5d7342cd2396dd2c53fd4c6446ee2bc70f5c1d02ec7db639d0762978cfc",
+    "execution\\refit_v1\\receipt.json": "2b2cce07f9f6bab98d89af9f3930948a85e5cae1f1df57c5077a81cb5097d7d1",
+    "execution\\refit_v1\\results\\progress.json": "196f7581d8c02714df4ca01d932bacc7521cdd7d0bf2e37f7c1a98edeb6d6c74"
+  },
+  "likelihood_generator_optimizer_execution_by_reviewer": false,
+  "scope_limits": [
+    "Completion is the S04 synthetic-control matrix only, not observed-data or monograph workstreams.",
+    "Audit sampling labels are preserved; this is metadata/scalar/provenance validation, not newCPUreplay of everycase.",
+    "Order16 refits retain exact training winner; order32 uncertainty tolerance is explicit, not a claim of global/order32 optimization.",
+    "Peak memory is observed sampled memory; overlap is concurrent process time, not a campaign speedup baseline."
+  ]
+}

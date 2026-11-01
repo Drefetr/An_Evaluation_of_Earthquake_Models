@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "status": "verified_derived_aggregate_parent_count",
+  "claim": "The selected catalogue contains 164 events before the post-1980 training-likelihood start; those earlier selected parents are retained under the frozen history rule.",
+  "count": 164,
+  "method": "Deterministic set-difference of saved aggregate training counts for the same catalogue, common training end and different training starts. No raw event rows, NPZ or raw-audit replay.",
+  "formula": "N([0,7305)) = N([0,t_end)) - N([7305,t_end)) = 301 - 137 = 164 for fold 0; all three origins give the same difference.",
+  "interval_days_since1960_01_01": "[0,7305)",
+  "conditions": [
+    "Same frozen selected catalogue and magnitude/depth/geography filters.",
+    "Primary starts at day 0 and post-1980 starts at day 7305; the windows share each origin and use the same half-open training convention.",
+    "Counts refer to the selected catalogue, not completeness of all physical earlier earthquakes."
+  ],
+  "catalogue_sha256_as_reported_in_protocol": "feacccb7581d1c4c33f88874cd6b198c41639da6930a7fc35e46f910a594fb3e",
+  "pairs": [
+    {
+      "fold_id": 0,
+      "primary_case_id": "primary_fold_0",
+      "post1980_case_id": "post1980_training_fold_0",
+      "primary_train_start_days": 0.0,
+      "post1980_train_start_days": 7305.0,
+      "same_train_end_days": 12197.0,
+      "primary_training_events": 301,
+      "post1980_training_events": 137,
+      "derived_events_before_day7305": 164,
+      "n_test": 203,
+      "parameter_csv_lines": [
+        2,
+        3,
+        4,
+        5,
+        26,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "fold_id": 1,
+      "primary_case_id": "primary_fold_1",
+      "post1980_case_id": "post1980_training_fold_1",
+      "primary_train_start_days": 0.0,
+      "post1980_train_start_days": 7305.0,
+      "same_train_end_days": 15856.1,
+      "primary_training_events": 504,
+      "post1980_training_events": 340,
+      "derived_events_before_day7305": 164,
+      "n_test": 155,
+      "parameter_csv_lines": [
+        6,
+        7,
+        8,
+        9,
+        30,
+        31,
+        32,
+        33
+      ]
+    },
+    {
+      "fold_id": 2,
+      "primary_case_id": "primary_fold_2",
+      "post1980_case_id": "post1980_training_fold_2",
+      "primary_train_start_days": 0.0,
+      "post1980_train_start_days": 7305.0,
+      "same_train_end_days": 19515.2,
+      "primary_training_events": 659,
+      "post1980_training_events": 495,
+      "derived_events_before_day7305": 164,
+      "n_test": 254,
+      "parameter_csv_lines": [
+        10,
+        11,
+        12,
+        13,
+        34,
+        35,
+        36,
+        37
+      ]
+    }
+  ],
+  "retention_evidence": {
+    "classification": "source-reported frozen policy and saved independent-audit result, not a newly repeated raw audit",
+    "variant_policy": {
+      "id": "post1980_training",
+      "background": "loglinear",
+      "training_start_days": 7305.0,
+      "d_estimated": true,
+      "note": "Early catalogue training sensitivity, not a complete detection/incompleteness model. Retain pre1980parents."
+    },
+    "history_rule": "all observed parents before predictiontime retained, including pretraininghistory",
+    "saved_train_geometry_checks": [
+      {
+        "case_id": "post1980_training_fold_0",
+        "phase": "train",
+        "order": 16,
+        "passed": true,
+        "parent_exposures_checked": 301,
+        "event_kernel_entries_checked": 41237,
+        "all_rows_checked": true
+      },
+      {
+        "case_id": "post1980_training_fold_0",
+        "phase": "train",
+        "order": 32,
+        "passed": true,
+        "parent_exposures_checked": 301,
+        "event_kernel_entries_checked": 41237,
+        "all_rows_checked": true
+      }
+    ]
+  },
+  "source_identities": [
+    {
+      "artifact": "research_runs/productivity_slope_20261024T023501Z/results/analysis/fitted_parameters.csv",
+      "sha256": "071809e3ab39f30f27f28bd04f7a0be4e832a5807f86f9adaa57b1e180cfbb16",
+      "bytes": 8136
+    },
+    {
+      "artifact": "research_runs/productivity_slope_20261024T023501Z/results/analysis/model_scores.csv",
+      "sha256": "b16e9966ab354b66e0f42dc33c8a4d200c664c7fab761f5ccf3f61ae281dcba4",
+      "bytes": 7621
+    },
+    {
+      "artifact": "research_runs/productivity_slope_20261024T023501Z/results/observed/outcomes.json",
+      "sha256": "32f647918342e94722e350d4a5f21fe4af9de5dad0dca721b6aac5662597d8c2",
+      "bytes": 408336
+    },
+    {
+      "artifact": "research_runs/productivity_slope_20261024T023501Z/observed_protocol.json",
+      "sha256": "b556152ab71ac2fb9763dd170de0011542ac50990c29cb11659523275aa3cde1",
+      "bytes": 60710
+    },
+    {
+      "artifact": "research_runs/productivity_slope_20261024T023501Z/methods/observed_saved_audit.json",
+      "sha256": "28fa5a57e60211b2c116d44b0b84208dafa30e352a3508e0de7c8f5328fa1742",
+      "bytes": 46014
+    }
+  ],
+  "public_recheck": "The complete parameter and model-score CSVs show training counts 301/137, 504/340 and 659/495; public settings give starts 0/7305 and common origins. This excerpt also preserves relevant terminal-case and saved-audit fields with their original source identities."
+}

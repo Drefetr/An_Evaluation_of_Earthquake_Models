@@ -1,0 +1,630 @@
+{
+  "reviewer_id": "native-sol-locality-review-supervisor",
+  "role": "independent_saved_calibration_G5",
+  "status": "approved",
+  "reviewed_utc": "2026-10-19T12:19:53.935763+00:00",
+  "protocol_sha256": "441d53cc5f9ef0a307bea7b226a0700102b8eb09b8a981102e0d0896cc1786a0",
+  "bank_manifest_sha256": "288aad53c13a6555168d7d30d65875806934d396dfc44575fb3bb406a697753d",
+  "calibration_sha256": "7adc55750318e8e5a54a60750544d472e317d8038017184216e2ad1a543e055f",
+  "completion_sha256": "49f377b901f8946075a181a489ef11e2fc2e6fdc5b2a6472970b8f8e9d427f11",
+  "execution_sha256": "ff2aae63b2fbf52b8bd38b556ea7985cfd17bd3c0c8f31856bd63c6059d844b4",
+  "audit_output_sha256": "0af18517c33f9785b2dae71996e0d90dfe0de8d9c115af516e3f0133739efcaf",
+  "audit_execution_sha256": "dc4106f3996d645e7be90bf9b06e851cf1d9c1a2647fb83c2f0354c08f0ddc38",
+  "released_audit_plan_sha256": "3a395767ada93d2e44a831be6938ee5b9d0da80e22c5b48b34c3eda7f4305bf2",
+  "source_review_pins": [
+    {
+      "path": "reviews/F04_calibration_audit_numerical_source_review01.json",
+      "sha256": "aa4fbce9cd37e41778035f1b67ad4e59627f2f0aa7d9f355d24d941a4ba51b30"
+    },
+    {
+      "path": "reviews/F04_calibration_audit_statistical_source_review01.json",
+      "sha256": "7b8d4e52a12d064a95576bd4a97a5ec845f92ef7e1f2180f462cff09265f9cdb"
+    }
+  ],
+  "audit_source_sha256": "033e4487d72ffc83257cd00a6ff5471f8997747e875d77db0ff10eee84ea1482",
+  "independence": "Reviewer independent from KF/external calibration authors; reviewer authored separate no-author-import validation code, itself independently reviewed by ROOTnumerical andDstat before execution.",
+  "actual_execution": {
+    "calibration_seconds": 118.44450700003654,
+    "audit_seconds": 6.078156600007787,
+    "completed_replicates": 2000,
+    "chunks": 80,
+    "replicates_per_chunk": 25,
+    "resource_result": "Both exit0/no stop, full observedownedtree telemetry, no terminationerrors, released serialslots."
+  },
+  "verification_scope": {
+    "full_base": "All planned999references/1000null/150alternative rows independently reconstructed: >=ties/addone/unknownintervals/decisions/rejectionbounds/pairedinteractionbounds/status/MCSE exactly equal savedbase.",
+    "reference_stream": "All2000frozen reference plans regenerated and all80chunk hashes matched, same source-coupled stream across4cells andbothroles.",
+    "selected_replicate_arithmetic": "Exactly8fixedindices[0,1,24,25,999,1000,1998,1999] x2roles x2modes=32witnesses, all4cell lower/upper endpoints and interactionbounds/pointMCSE checked with separatequery streams and exactpairing.",
+    "explicit_not_claimed": "Does not recompute all2000 query-replicate arithmetic. Fullchunk continuity/hashes and selectedwitness checks support source-bound implementation, not exhaustiverecomputation."
+  },
+  "base_R_NR_U": {
+    "null_query": {
+      "I00": {
+        "NR": 593,
+        "R": 30,
+        "U": 377
+      },
+      "I10": {
+        "NR": 588,
+        "R": 35,
+        "U": 377
+      },
+      "I01": {
+        "NR": 586,
+        "R": 31,
+        "U": 383
+      },
+      "I11": {
+        "NR": 589,
+        "R": 31,
+        "U": 380
+      }
+    },
+    "alternative_query": {
+      "I00": {
+        "R": 150
+      },
+      "I10": {
+        "R": 122,
+        "NR": 28
+      },
+      "I01": {
+        "R": 150
+      },
+      "I11": {
+        "NR": 82,
+        "R": 65,
+        "U": 3
+      }
+    }
+  },
+  "base_rejection_bounds": {
+    "null_query": {
+      "I00": [
+        0.03,
+        0.407
+      ],
+      "I10": [
+        0.035,
+        0.412
+      ],
+      "I01": [
+        0.031,
+        0.414
+      ],
+      "I11": [
+        0.031,
+        0.411
+      ]
+    },
+    "alternative_query": {
+      "I00": [
+        1.0,
+        1.0
+      ],
+      "I10": [
+        0.8133333333333334,
+        0.8133333333333334
+      ],
+      "I01": [
+        1.0,
+        1.0
+      ],
+      "I11": [
+        0.43333333333333335,
+        0.4533333333333333
+      ]
+    }
+  },
+  "base_interaction": {
+    "null_query": {
+      "interaction_bounds": [
+        -0.765,
+        0.752
+      ],
+      "interaction": {
+        "status": "unresolved",
+        "mean": null,
+        "mcse": null
+      }
+    },
+    "alternative_query": {
+      "interaction_bounds": [
+        -0.38,
+        -0.36
+      ],
+      "interaction": {
+        "status": "unresolved",
+        "mean": null,
+        "mcse": null
+      }
+    }
+  },
+  "chunk_pins": [
+    {
+      "name": "bootstrap_chunk_0.json",
+      "sha256": "112d05e839d466dfaf30fd16fc414fdab99283204d735918d7099fa39205e4c0",
+      "offset": 0,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_25.json",
+      "sha256": "98633999c5421a66671d12c6aa7135f10ae499b532ca39e12d7d8768f65a13f1",
+      "offset": 25,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_50.json",
+      "sha256": "f8a0b2e8761e24968491511f773fbc7e49eb8a9844e541c45a5019741cdf6a36",
+      "offset": 50,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_75.json",
+      "sha256": "e43f7086edcf50fa7dd1ec1c6577d16add7a05cee9b4d5ca9ea48872fd014c8a",
+      "offset": 75,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_100.json",
+      "sha256": "005d4f03b52e8d003be3903395dac3dcc78d5f1e8e3bb115a0721f91cb222040",
+      "offset": 100,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_125.json",
+      "sha256": "5e96e9ba60ae07714147ec12faf06c4df0b11f3f4efbf2bf88d146b05173552b",
+      "offset": 125,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_150.json",
+      "sha256": "5ff9f07b0e2d5b86b51070131136f34750fe633d4d2bf6b708641cfb16a41b45",
+      "offset": 150,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_175.json",
+      "sha256": "68da299c378eb44a44dbddc9b4f3c9141c1ef7aaaccf15a49ed9e96475f3f3ef",
+      "offset": 175,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_200.json",
+      "sha256": "5d7260d6f0f9ab33b43692573a7f3692ab19b0ace3896f7dbf94581462bf0b8f",
+      "offset": 200,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_225.json",
+      "sha256": "587e0ca330d496173d93c5c1b33ce59a1b2c6ca9e6da018f114c6c1d0aabcadf",
+      "offset": 225,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_250.json",
+      "sha256": "9363ad476d202244945b3379b106a350799bb2dab596009419beb63fb1f2eabf",
+      "offset": 250,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_275.json",
+      "sha256": "02b1a174cd3a385ef90409130b879509e3dab6870f063dec10b27b413e73f3c3",
+      "offset": 275,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_300.json",
+      "sha256": "580c90a19172f3b14d03101bfce64cdcb728805bc64b63d4f90c1a25ddf45068",
+      "offset": 300,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_325.json",
+      "sha256": "13c0a32231249d3da704d98f4dc0f15e9f8591834ef9d1d05062c415fca8d17b",
+      "offset": 325,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_350.json",
+      "sha256": "3d9b174d3ef1960717f45dcf777cdb7007c8e561b72c4c3a62424c6d1fd411c1",
+      "offset": 350,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_375.json",
+      "sha256": "cd389505ccd9bf59f548117b52a84b775463fe23173c8f9c21dd105ba54475be",
+      "offset": 375,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_400.json",
+      "sha256": "ade510f4a412b49ad834e2d56d5385fb3a9ef4ca858509f60e95c4098e2086f5",
+      "offset": 400,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_425.json",
+      "sha256": "87a5e72332b8078a91db452ca7095f099ce36c9e0103a08308735e3647b9cab8",
+      "offset": 425,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_450.json",
+      "sha256": "51e20f7e14bd66e05f2740d0309958c9b6f0f3c66fe74c8a776a935c64654ea8",
+      "offset": 450,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_475.json",
+      "sha256": "a3b848805492fa751636dae3c99ea3b13ca612673520725ea2a1599265a3f51e",
+      "offset": 475,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_500.json",
+      "sha256": "f10861a0daedbc3a653ff43402892e2206ad245dc1abcf9a3d51b72177abc55d",
+      "offset": 500,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_525.json",
+      "sha256": "ba2813b4e63cfdb5ef9b12771a90bb4cf3cc73a5226e1832fff12db2e5108ccd",
+      "offset": 525,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_550.json",
+      "sha256": "b151d93068c7da2b4565187cc85bd391e3bbbfd1694f1a83e696461a8c00f752",
+      "offset": 550,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_575.json",
+      "sha256": "09e54e88a07d6b36915952bb9b71469b51eddd95975e4ce83afbfd88b1a92218",
+      "offset": 575,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_600.json",
+      "sha256": "67bdd103d15c7dce03a44fd2b31d5a3983ad4767f6c78b712d20891e469a5356",
+      "offset": 600,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_625.json",
+      "sha256": "1d034ede6bf26960c76aece7980a1898f43b396da60e0ede6940f68f748fb47b",
+      "offset": 625,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_650.json",
+      "sha256": "621d774e84eed36f36fdbc208e967aa0bc7fe4c382111e1eb3d93d7b9a2e9485",
+      "offset": 650,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_675.json",
+      "sha256": "177efad43e44ee5efe1f43f28ae8df3bf48d113e6a54d5acf8ba97f96cdb3e70",
+      "offset": 675,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_700.json",
+      "sha256": "41a13c784ce8a5c67dd79988e03e1e163af87cba2c71db2bfd843a17ff88a792",
+      "offset": 700,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_725.json",
+      "sha256": "b93678e941b406247158a42f75e92621326d39f60f2138aaa002ed9b6ca58837",
+      "offset": 725,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_750.json",
+      "sha256": "36f0f962e2e3394cc6a9a85cecc942ac0697b903f3523f9eacacfd2538ceede4",
+      "offset": 750,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_775.json",
+      "sha256": "7fa72faeef51cc5b701e7ad9d0ce2330505e0a9b9fd81753e660e5c3f17dbe09",
+      "offset": 775,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_800.json",
+      "sha256": "fe631cd3dfeb362075d5e22801de2f59270ecb79459d63ff58e8fa4c10d8dc22",
+      "offset": 800,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_825.json",
+      "sha256": "95a9114b68ec8c6e9ae13fb9d0adecce9771daa7ded8cafbde5ad838114d92d7",
+      "offset": 825,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_850.json",
+      "sha256": "4c7ecd6155e49011cf785aa3c658f7c52c3e3f3376094edfd02f3c73a92452ba",
+      "offset": 850,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_875.json",
+      "sha256": "3c380091eea169f75f1f1eaab47e030db49f0108058a76f20cca48d8664746e1",
+      "offset": 875,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_900.json",
+      "sha256": "df8d7fefd86b5cb50a5195183414a7562f84b3d4a241604e4b97297f97ea0053",
+      "offset": 900,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_925.json",
+      "sha256": "eb8d338cdaa487644c0b0b02cfa09dd67b2bc8b7e46e0a4c2257c8ec27fd359b",
+      "offset": 925,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_950.json",
+      "sha256": "5c14ebf7a9a99de3f53bcb2ddb7b2da52056f2e7c9fabc3f55b8b53a4330977d",
+      "offset": 950,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_975.json",
+      "sha256": "d115d4aef4a89b214e8059032feaade292821481f7ac6c1ecb9e2f9028201ec9",
+      "offset": 975,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1000.json",
+      "sha256": "b92269877034f0803e532763a9658db3f334a39bbf955c8e768ae7cedf6c9673",
+      "offset": 1000,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1025.json",
+      "sha256": "05f6df2c82f904a15b93f2c66edce6cc6c8c9e4712b66fbf7147b823dd405874",
+      "offset": 1025,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1050.json",
+      "sha256": "9fc234d481d2521620aada689db2f38b4d15fd67a020f537f4905d8a626af349",
+      "offset": 1050,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1075.json",
+      "sha256": "7dcc2dbf0b0c75f988702b4c9f24bd385c5cf813a653db1489bbb08c99fda347",
+      "offset": 1075,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1100.json",
+      "sha256": "8b49f6b77164fdfe3e86386968d626a914238ab1fb9cb9f5adf7511777b20f1e",
+      "offset": 1100,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1125.json",
+      "sha256": "d7ec8fc275ec9d779d389e4f2a411b7de9150e49d3a03ae23e0cf26a5e0a4c75",
+      "offset": 1125,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1150.json",
+      "sha256": "55e5db006291640b72bc955d6a9b4dc20c923b0aeba40b9fdae08424ffa32b13",
+      "offset": 1150,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1175.json",
+      "sha256": "20334c55e9400e779361b435ddf8402931e23e2cfb3b45193cacfb1c6e2663dd",
+      "offset": 1175,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1200.json",
+      "sha256": "4160fbcca7837100845379482addfb0b19511affef9b5273fb23de0d86017249",
+      "offset": 1200,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1225.json",
+      "sha256": "1639b71879636f0375db3dc421c6c9c758c48e8757a49abb116fe7c26cd3fd22",
+      "offset": 1225,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1250.json",
+      "sha256": "68e97c49622b6cc584c7842c84cad6f4e239677fdfe74413f206365f0b33d264",
+      "offset": 1250,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1275.json",
+      "sha256": "377c815f9bf9039c87a02a4752a48e1b6cc8a95d6272c7d5446c5dc559d0d5f2",
+      "offset": 1275,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1300.json",
+      "sha256": "0a1ef120fba73bac55d442d55533df6e9ad290ab89671ff8a938e4adcbdf0b89",
+      "offset": 1300,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1325.json",
+      "sha256": "5e973be754e67e2f8208e5b33bb510d72df7e7bb557f1faf5e0660dd00bcdf56",
+      "offset": 1325,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1350.json",
+      "sha256": "71db0373874f5ddbe1c09de03e101f2d0de46645a12a323800f976a87feecd98",
+      "offset": 1350,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1375.json",
+      "sha256": "d49bc16509b61cfef227d66b3aeecd7c96c42405f501fd47ab0934fa257637cf",
+      "offset": 1375,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1400.json",
+      "sha256": "bfb32d46e157144a827a1db8ff3b821e81476b2e50136ddcb5c0ebb0412a0dea",
+      "offset": 1400,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1425.json",
+      "sha256": "e5199bb36399378ccb0f7b97d7ec950cb36bbc1518341833869a79b3f1e19fe2",
+      "offset": 1425,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1450.json",
+      "sha256": "7523c4975c1415f3b499dbd997f045afd1c2951773730eef13f0645613f9c82b",
+      "offset": 1450,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1475.json",
+      "sha256": "810b6c9e9085ecbc2065ad4cbed432bca35f625ea18270a03cdb1d7528db8dea",
+      "offset": 1475,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1500.json",
+      "sha256": "3f19161d72647cc6c3b280e9fe91e22e8a5e8d41177c356cc4a2709fdd238c0a",
+      "offset": 1500,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1525.json",
+      "sha256": "22b8a11591ff4e70f6b9cbdfe73e5593f02c5b51ad0520ad03b14db6a35ba08a",
+      "offset": 1525,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1550.json",
+      "sha256": "31e30481ded3a272d3a2c672de841e0a427eae1ac19e2243a0333e6d81f1f77a",
+      "offset": 1550,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1575.json",
+      "sha256": "25d7ad4099a00c7f4a99c93afe71a7b3a5b70849d43c6f09fd4f0fbab2a77127",
+      "offset": 1575,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1600.json",
+      "sha256": "538acb39fecd58b63b18c70d126c91cf539340c28f634da72f57a9e5c6f2a4dd",
+      "offset": 1600,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1625.json",
+      "sha256": "6956340db108fec1dcd68dbc2ca41fc6e5ae62d2aa4ae3b0cedf7080a6dddfe9",
+      "offset": 1625,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1650.json",
+      "sha256": "7fe77170a84253b0f11c1b66274d603526c3dfc497bedd483cff97d5ea194ec0",
+      "offset": 1650,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1675.json",
+      "sha256": "01e51a6ad15c4e59a250558f3751944cd7ec298494c4cbf7a628412b7ebdbfa7",
+      "offset": 1675,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1700.json",
+      "sha256": "0ecef755cdf2e0639193eccfaf21391f71e29133477dfd61d1da8ff1f441f911",
+      "offset": 1700,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1725.json",
+      "sha256": "633bb5702a3c6a4af13b3c61e42152597f0e0a23d7c89a7768143f9ea398e3b6",
+      "offset": 1725,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1750.json",
+      "sha256": "93ebf7f688c20a040d0b8e3f04920257e19d700806e7c8d1661e96c2778f3caa",
+      "offset": 1750,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1775.json",
+      "sha256": "6e8434f08387f7d0a407d70b62a048fd315cf157f270f1be3a853a8a5bea91c4",
+      "offset": 1775,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1800.json",
+      "sha256": "ba02ad72d066a195cdef7112f56da7a6442430e33549fedcefe2ce8e77cd9f58",
+      "offset": 1800,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1825.json",
+      "sha256": "addb19d3a8b6a4140181d8f2c0cd14c7f9caa1988e69e9e878aeb034b6419744",
+      "offset": 1825,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1850.json",
+      "sha256": "d269e1f48b66de2c1e3ec907f4d623bfadf0f22322f9472f8accf73e708e4550",
+      "offset": 1850,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1875.json",
+      "sha256": "da9fbb34ec1b29fc7dbfd0b432f3db33219ec8429517ddedb0dd94357027a3ea",
+      "offset": 1875,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1900.json",
+      "sha256": "7f1a8fef129e0fdf503e1691b3a6bd42ed2436efbd62b5ea382056cc436af888",
+      "offset": 1900,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1925.json",
+      "sha256": "0341d343acd162b2b2bf8a62452f67f02e15019a97b4343b334dcff7a09ad1e7",
+      "offset": 1925,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1950.json",
+      "sha256": "07381bb5c233596db941e23277f55407e592fd39784c8b441a3bc135caebbdf3",
+      "offset": 1950,
+      "reference_plan_replay": true
+    },
+    {
+      "name": "bootstrap_chunk_1975.json",
+      "sha256": "d40f3706067da71437f6dc7b8324cc445bce559043a27df8d66fdf133485ab21",
+      "offset": 1975,
+      "reference_plan_replay": true
+    }
+  ],
+  "limits": [
+    "Missing scientificcase/method values remainNone and allplanned denominators retained; no fit reruns, unknownimputation or resolved-only filtering.",
+    "Rates/bounds descriptive for reused/adaptivefiniteprocedure; endpointbootstrap is exploratory sensitivity, no confirmatorycoverage/exactpower or physicalclaim. ConditionalqueryMCSE excludes referencebank uncertainty.",
+    "Subsequent reporting/plotting still requires exactinput protocols/reviews/release and actualoutput/visual audit. No additional RNGplans or audit rerun undertaken in this review."
+  ]
+}

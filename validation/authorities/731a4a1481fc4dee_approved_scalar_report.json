@@ -1,0 +1,5635 @@
+{
+  "schema": "thread02_approved_scalar_report_v2",
+  "planned_R": 999,
+  "scope": "retrospective fixed-state conditional OC checks",
+  "prior_inspection": {
+    "targets_total": 315,
+    "targets_by_origin": {
+      "california_fold_0": 79,
+      "california_fold_1": 167,
+      "california_fold_2": 69
+    }
+  },
+  "interpretation": {
+    "reference_unit": "per-origin only",
+    "cross_origin_joint_null": false,
+    "pooled_reference": false,
+    "fitting_or_selection_uncertainty_included": false,
+    "claims": "exploratory; not validation or general calibration"
+  },
+  "audit_scope": {
+    "full_vector_replay": "fixed indices 0, floor((R-1)/2), R-1 per origin; only complete selected paths",
+    "all_path_checks": "raw count, mark, temporal exposure, identities, hashes, statuses, planned seed indices"
+  },
+  "complete": 2997,
+  "failed": 0,
+  "unknown": 0,
+  "planned_full_replay_indices": [
+    0,
+    499,
+    998
+  ],
+  "full_raw_diagnostic_replays": 9,
+  "audit_receipt_sha256": "24bec3b8c2468687f7bcf6aa5df7e40bd67c0dcd0f146b548e9405e9b0c51390",
+  "observed_evidence": {
+    "california_fold_0": {
+      "execution_receipt_sha256": "f7b00c4b4c12c181128a2b4f40548502946684b003ed59994a71cdf965870967",
+      "oracle_receipt_sha256": "0b677f2c6d928e4902b6878e750d54e0dab32a10de9e911da5e1117613037991"
+    },
+    "california_fold_1": {
+      "execution_receipt_sha256": "c5db77754f8f888619a28e38561cb0d66bffb30de8cb1e7631cac1c33fdc13ef",
+      "oracle_receipt_sha256": "38f3594e8756abdcfda931cfbc32af99e60e891a3ecb85f9b43c676b5a1f7e60"
+    },
+    "california_fold_2": {
+      "execution_receipt_sha256": "d4746146db3ca58ada04ca8b3c8b902fa460031823dc139d125485eeabfaf86d",
+      "oracle_receipt_sha256": "5b61d9c5e683b2313ce472e7641c40840f2dbdc00e3654627b8af27a270e7221"
+    }
+  },
+  "provenance": {
+    "protocol_sha256": "4db722305b5f6cbab776460bebf949c72ae166c5e0972fbc99899a96a83ed1d8",
+    "contracts_sha256": "ed0c10226a674d15bd2581fd52fe6b88d97dc394bb19b0e533ecc8d43adb3193",
+    "oracle_packet_sha256": "98c415285db60331afbfde1ac82d2e81e54d7407646d07de250ff7f9baa803c2",
+    "source_binding_code_sha256": "c68587af4ba2b3a8852357a749339ba972b00e4596880b10a2cab4b8408ecc6d",
+    "source_authority_manifest_sha256": "c4e377917386b3cfedc16e8ec781c36fb400aef80dd63b970a956d71448868a3",
+    "independent_oracle_code_sha256": "c399ad207c4c61fb9e778426b8d1f5d1ceea2d05045f5dac150e2f7421230860",
+    "independent_audit_code_sha256": "dd7403be283f5f57f6badb772d7d9893dfbd42898dc2f8033a2b1111eaa44585",
+    "producer_adapter_sha256": "dbc49126c728e7f221a4a7710b0faf4b308536ecd4ce2c302d1a4e1467059804",
+    "producer_binary_sha256": "fa9fda744b779ae3081f7a10bb0f7ffe66231e73eed9553f9611faf717acf17f",
+    "scientific_manifest_sha256": "8cc93b0f1105dc84f907ab1afb0f7fa6bdcf76253591b26509f340cb089a5285",
+    "production_matrix_sha256": "9f43de6b51ffe87d2d31018ffc5c57eec213a2a403e8e20b7500300cd592fc52",
+    "reporting_job_sha256": "d170a3b721b0d39a2353121d8ed2da1ccf92ee7e78940f33ceff203319b1f94a",
+    "campaign_job_sha256": "1076500b418d69988a434b8b94fe66463032c9a93540752553eff54f79c1c6e3",
+    "campaign_receipt_sha256": "24bec3b8c2468687f7bcf6aa5df7e40bd67c0dcd0f146b548e9405e9b0c51390",
+    "reporter_sha256": "a9fd6c5a2b0195fafd23448ce59d393ae6b91f8646de3497b33137f0427301d3"
+  },
+  "origins": {
+    "california_fold_0": {
+      "complete": 999,
+      "failed": 0,
+      "unknown": 0,
+      "observed_count": 79.0,
+      "diagnostics": {
+        "count": {
+          "observed": 79.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 0,
+          "upper_tail_count_ge": 999,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 0,
+          "insertion_rank_inclusive_count_le": 0,
+          "reference_complete": true,
+          "p_low": 0.001,
+          "p_high": 1.0,
+          "insertion_rank": [
+            0.001,
+            0.001
+          ],
+          "reference_interval": [
+            121.0,
+            453.0
+          ]
+        },
+        "exposure": {
+          "observed": 114.54932024184329,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 0,
+          "upper_tail_count_ge": 999,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 0,
+          "insertion_rank_inclusive_count_le": 0,
+          "reference_complete": true,
+          "p_low": 0.001,
+          "p_high": 1.0,
+          "insertion_rank": [
+            0.001,
+            0.001
+          ],
+          "reference_interval": [
+            135.56781665968998,
+            486.7588373636398
+          ]
+        },
+        "immigrant_exposure": {
+          "observed": 75.72749396852048,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 999,
+          "upper_tail_count_ge": 999,
+          "tie_count": 999,
+          "insertion_rank_strict_count_lt": 0,
+          "insertion_rank_inclusive_count_le": 999,
+          "reference_complete": true,
+          "p_low": 1.0,
+          "p_high": 1.0,
+          "insertion_rank": [
+            0.001,
+            1.0
+          ],
+          "reference_interval": [
+            75.72749396852048,
+            75.72749396852048
+          ]
+        },
+        "trigger_exposure": {
+          "observed": 38.82182627332281,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 0,
+          "upper_tail_count_ge": 999,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 0,
+          "insertion_rank_inclusive_count_le": 0,
+          "reference_complete": true,
+          "p_low": 0.001,
+          "p_high": 1.0,
+          "insertion_rank": [
+            0.001,
+            0.001
+          ],
+          "reference_interval": [
+            59.840322691169504,
+            411.03134339511934
+          ]
+        },
+        "count_minus_exposure": {
+          "observed": -35.54932024184329,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 10,
+          "upper_tail_count_ge": 989,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 10,
+          "insertion_rank_inclusive_count_le": 10,
+          "reference_complete": true,
+          "p_low": 0.011,
+          "p_high": 0.99,
+          "insertion_rank": [
+            0.011,
+            0.011
+          ],
+          "reference_interval": [
+            -27.688296280024673,
+            30.060444876918297
+          ]
+        },
+        "time_event_logsum": {
+          "observed": -176.45877385777717,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 582,
+          "upper_tail_count_ge": 417,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 582,
+          "insertion_rank_inclusive_count_le": 582,
+          "reference_complete": true,
+          "p_low": 0.583,
+          "p_high": 0.418,
+          "insertion_rank": [
+            0.583,
+            0.583
+          ],
+          "reference_interval": [
+            -286.5127593466273,
+            722.9245098523315
+          ]
+        },
+        "timing_logscore": {
+          "observed": -291.00809409962045,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 832,
+          "upper_tail_count_ge": 167,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 832,
+          "insertion_rank_inclusive_count_le": 832,
+          "reference_complete": true,
+          "p_low": 0.833,
+          "p_high": 0.168,
+          "insertion_rank": [
+            0.833,
+            0.833
+          ],
+          "reference_interval": [
+            -457.2451094458201,
+            177.5294078363986
+          ]
+        },
+        "location_logscore": {
+          "observed": -816.4419063302124,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 999,
+          "upper_tail_count_ge": 0,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 999,
+          "insertion_rank_inclusive_count_le": 999,
+          "reference_complete": true,
+          "p_low": 1.0,
+          "p_high": 0.001,
+          "insertion_rank": [
+            1.0,
+            1.0
+          ],
+          "reference_interval": [
+            -3711.0572699039108,
+            -1114.3627523187763
+          ]
+        },
+        "mark_logscore": {
+          "observed": 6.457475253738915,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 995,
+          "upper_tail_count_ge": 4,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 995,
+          "insertion_rank_inclusive_count_le": 995,
+          "reference_complete": true,
+          "p_low": 0.996,
+          "p_high": 0.005,
+          "insertion_rank": [
+            0.996,
+            0.996
+          ],
+          "reference_interval": [
+            -99.96431904129243,
+            -0.7288862827928956
+          ]
+        },
+        "joint_logscore": {
+          "observed": -1100.992525176094,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 999,
+          "upper_tail_count_ge": 0,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 999,
+          "insertion_rank_inclusive_count_le": 999,
+          "reference_complete": true,
+          "p_low": 1.0,
+          "p_high": 0.001,
+          "insertion_rank": [
+            1.0,
+            1.0
+          ],
+          "reference_interval": [
+            -3577.5107710811094,
+            -1463.1505681205665
+          ]
+        },
+        "zone_logscore": {
+          "observed": -74.79271735349445,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 993,
+          "upper_tail_count_ge": 6,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 993,
+          "insertion_rank_inclusive_count_le": 993,
+          "reference_complete": true,
+          "p_low": 0.994,
+          "p_high": 0.007,
+          "insertion_rank": [
+            0.994,
+            0.994
+          ],
+          "reference_interval": [
+            -165.84118963728275,
+            -82.98806536238033
+          ]
+        },
+        "cell_given_zone_logscore": {
+          "observed": -42.53939693772509,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 989,
+          "upper_tail_count_ge": 10,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 989,
+          "insertion_rank_inclusive_count_le": 989,
+          "reference_complete": true,
+          "p_low": 0.99,
+          "p_high": 0.011,
+          "insertion_rank": [
+            0.99,
+            0.99
+          ],
+          "reference_interval": [
+            -118.87048622330485,
+            -46.17417728167845
+          ]
+        },
+        "within_cell_density_logscore": {
+          "observed": -699.1097920389929,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 999,
+          "upper_tail_count_ge": 0,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 999,
+          "insertion_rank_inclusive_count_le": 999,
+          "reference_complete": true,
+          "p_low": 1.0,
+          "p_high": 0.001,
+          "insertion_rank": [
+            1.0,
+            1.0
+          ],
+          "reference_interval": [
+            -3254.5248960319013,
+            -969.2567845105789
+          ]
+        },
+        "subblock_balance_max": {
+          "observed": 0.46136676667844795,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 960,
+          "upper_tail_count_ge": 39,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 960,
+          "insertion_rank_inclusive_count_le": 960,
+          "reference_complete": true,
+          "p_low": 0.961,
+          "p_high": 0.04,
+          "insertion_rank": [
+            0.961,
+            0.961
+          ],
+          "reference_interval": [
+            0.09944111667161903,
+            0.481693160801643
+          ]
+        },
+        "gap_ks": {
+          "observed": 0.22224496322920195,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 999,
+          "upper_tail_count_ge": 0,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 999,
+          "insertion_rank_inclusive_count_le": 999,
+          "reference_complete": true,
+          "p_low": 1.0,
+          "p_high": 0.001,
+          "insertion_rank": [
+            1.0,
+            1.0
+          ],
+          "reference_interval": [
+            0.03012272248403658,
+            0.11125043994026007
+          ]
+        },
+        "gap_serial": {
+          "observed": 0.025311536051231393,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 999,
+          "upper_tail_count_ge": 0,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 999,
+          "insertion_rank_inclusive_count_le": 999,
+          "reference_complete": true,
+          "p_low": 1.0,
+          "p_high": 0.001,
+          "insertion_rank": [
+            1.0,
+            1.0
+          ],
+          "reference_interval": [
+            -0.012511698548783354,
+            0.01266304632110315
+          ]
+        },
+        "censored_tail": {
+          "observed": 0.3630339660854385,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 110,
+          "upper_tail_count_ge": 889,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 110,
+          "insertion_rank_inclusive_count_le": 110,
+          "reference_complete": true,
+          "p_low": 0.111,
+          "p_high": 0.89,
+          "insertion_rank": [
+            0.111,
+            0.111
+          ],
+          "reference_interval": [
+            0.17244313180812987,
+            4.357424331947924
+          ]
+        },
+        "spatial_rosenblatt_ks_max": {
+          "observed": 0.16733517789142327,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 999,
+          "upper_tail_count_ge": 0,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 999,
+          "insertion_rank_inclusive_count_le": 999,
+          "reference_complete": true,
+          "p_low": 1.0,
+          "p_high": 0.001,
+          "insertion_rank": [
+            1.0,
+            1.0
+          ],
+          "reference_interval": [
+            0.03699319519466915,
+            0.12049120340149982
+          ]
+        },
+        "spatial_rosenblatt_cross_abs": {
+          "observed": 0.0136966741515359,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 979,
+          "upper_tail_count_ge": 20,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 979,
+          "insertion_rank_inclusive_count_le": 979,
+          "reference_complete": true,
+          "p_low": 0.98,
+          "p_high": 0.021,
+          "insertion_rank": [
+            0.98,
+            0.98
+          ],
+          "reference_interval": [
+            0.00018001394086227071,
+            0.01341490885545926
+          ]
+        },
+        "cell_mass_residual_max": {
+          "observed": 0.9447746784159475,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 940,
+          "upper_tail_count_ge": 59,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 940,
+          "insertion_rank_inclusive_count_le": 940,
+          "reference_complete": true,
+          "p_low": 0.941,
+          "p_high": 0.06,
+          "insertion_rank": [
+            0.941,
+            0.941
+          ],
+          "reference_interval": [
+            0.273418861521684,
+            1.2515211643818198
+          ]
+        },
+        "location_dimensionless_log_mean": {
+          "observed": 2.4494637138726643,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 0,
+          "upper_tail_count_ge": 999,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 0,
+          "insertion_rank_inclusive_count_le": 0,
+          "reference_complete": true,
+          "p_low": 0.001,
+          "p_high": 1.0,
+          "insertion_rank": [
+            0.001,
+            0.001
+          ],
+          "reference_interval": [
+            3.2234473115925217,
+            5.123334810207665
+          ]
+        },
+        "location_dimensionless_log_variance": {
+          "observed": 10.653917170486158,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 999,
+          "upper_tail_count_ge": 0,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 999,
+          "insertion_rank_inclusive_count_le": 999,
+          "reference_complete": true,
+          "p_low": 1.0,
+          "p_high": 0.001,
+          "insertion_rank": [
+            1.0,
+            1.0
+          ],
+          "reference_interval": [
+            5.425324654072042,
+            8.421187972061608
+          ]
+        },
+        "within_cell_dimensionless_absmax": {
+          "observed": 6.188942628525362,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 186,
+          "upper_tail_count_ge": 813,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 186,
+          "insertion_rank_inclusive_count_le": 186,
+          "reference_complete": true,
+          "p_low": 0.187,
+          "p_high": 0.814,
+          "insertion_rank": [
+            0.187,
+            0.187
+          ],
+          "reference_interval": [
+            6.055966658043472,
+            6.938326422637497
+          ]
+        },
+        "within_cell_dimensionless_sum": {
+          "observed": 137.84391668052655,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 0,
+          "upper_tail_count_ge": 999,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 0,
+          "insertion_rank_inclusive_count_le": 0,
+          "reference_complete": true,
+          "p_low": 0.001,
+          "p_high": 1.0,
+          "insertion_rank": [
+            0.001,
+            0.001
+          ],
+          "reference_interval": [
+            280.6814319917778,
+            1543.4569929307852
+          ]
+        },
+        "year_count[0]": {
+          "observed": 14.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 17,
+          "upper_tail_count_ge": 988,
+          "tie_count": 6,
+          "insertion_rank_strict_count_lt": 11,
+          "insertion_rank_inclusive_count_le": 17,
+          "reference_complete": true,
+          "p_low": 0.018,
+          "p_high": 0.989,
+          "insertion_rank": [
+            0.012,
+            0.018
+          ],
+          "reference_interval": [
+            16.0,
+            137.0
+          ]
+        },
+        "year_count[1]": {
+          "observed": 30.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 408,
+          "upper_tail_count_ge": 630,
+          "tie_count": 39,
+          "insertion_rank_strict_count_lt": 369,
+          "insertion_rank_inclusive_count_le": 408,
+          "reference_complete": true,
+          "p_low": 0.409,
+          "p_high": 0.631,
+          "insertion_rank": [
+            0.37,
+            0.409
+          ],
+          "reference_interval": [
+            14.0,
+            102.0
+          ]
+        },
+        "year_count[2]": {
+          "observed": 13.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 16,
+          "upper_tail_count_ge": 990,
+          "tie_count": 7,
+          "insertion_rank_strict_count_lt": 9,
+          "insertion_rank_inclusive_count_le": 16,
+          "reference_complete": true,
+          "p_low": 0.017,
+          "p_high": 0.991,
+          "insertion_rank": [
+            0.01,
+            0.017
+          ],
+          "reference_interval": [
+            14.0,
+            121.0
+          ]
+        },
+        "year_count[3]": {
+          "observed": 12.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 19,
+          "upper_tail_count_ge": 986,
+          "tie_count": 6,
+          "insertion_rank_strict_count_lt": 13,
+          "insertion_rank_inclusive_count_le": 19,
+          "reference_complete": true,
+          "p_low": 0.02,
+          "p_high": 0.987,
+          "insertion_rank": [
+            0.014,
+            0.02
+          ],
+          "reference_interval": [
+            14.0,
+            152.0
+          ]
+        },
+        "year_count[4]": {
+          "observed": 10.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 2,
+          "upper_tail_count_ge": 998,
+          "tie_count": 1,
+          "insertion_rank_strict_count_lt": 1,
+          "insertion_rank_inclusive_count_le": 2,
+          "reference_complete": true,
+          "p_low": 0.003,
+          "p_high": 0.999,
+          "insertion_rank": [
+            0.002,
+            0.003
+          ],
+          "reference_interval": [
+            15.0,
+            137.0
+          ]
+        },
+        "year_exposure[0]": {
+          "observed": 22.376796828655227,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 7,
+          "upper_tail_count_ge": 992,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 7,
+          "insertion_rank_inclusive_count_le": 7,
+          "reference_complete": true,
+          "p_low": 0.008,
+          "p_high": 0.993,
+          "insertion_rank": [
+            0.008,
+            0.008
+          ],
+          "reference_interval": [
+            23.47448643277159,
+            132.73399495994803
+          ]
+        },
+        "year_exposure[1]": {
+          "observed": 30.686684581233745,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 382,
+          "upper_tail_count_ge": 617,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 382,
+          "insertion_rank_inclusive_count_le": 382,
+          "reference_complete": true,
+          "p_low": 0.383,
+          "p_high": 0.618,
+          "insertion_rank": [
+            0.383,
+            0.383
+          ],
+          "reference_interval": [
+            22.422534581447284,
+            104.07887702721173
+          ]
+        },
+        "year_exposure[2]": {
+          "observed": 20.85718067996815,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 4,
+          "upper_tail_count_ge": 995,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 4,
+          "insertion_rank_inclusive_count_le": 4,
+          "reference_complete": true,
+          "p_low": 0.005,
+          "p_high": 0.996,
+          "insertion_rank": [
+            0.005,
+            0.005
+          ],
+          "reference_interval": [
+            22.424870871252423,
+            111.5897073502337
+          ]
+        },
+        "year_exposure[3]": {
+          "observed": 21.20659853979513,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 10,
+          "upper_tail_count_ge": 989,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 10,
+          "insertion_rank_inclusive_count_le": 10,
+          "reference_complete": true,
+          "p_low": 0.011,
+          "p_high": 0.99,
+          "insertion_rank": [
+            0.011,
+            0.011
+          ],
+          "reference_interval": [
+            22.41757906171992,
+            150.93798209710098
+          ]
+        },
+        "year_exposure[4]": {
+          "observed": 19.42205961219115,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 0,
+          "upper_tail_count_ge": 999,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 0,
+          "insertion_rank_inclusive_count_le": 0,
+          "reference_complete": true,
+          "p_low": 0.001,
+          "p_high": 1.0,
+          "insertion_rank": [
+            0.001,
+            0.001
+          ],
+          "reference_interval": [
+            22.965845702595516,
+            124.5939919157942
+          ]
+        },
+        "year_count_minus_exposure[0]": {
+          "observed": -8.376796828655227,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 65,
+          "upper_tail_count_ge": 934,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 65,
+          "insertion_rank_inclusive_count_le": 65,
+          "reference_complete": true,
+          "p_low": 0.066,
+          "p_high": 0.935,
+          "insertion_rank": [
+            0.066,
+            0.066
+          ],
+          "reference_interval": [
+            -10.409708307173904,
+            14.720681474321005
+          ]
+        },
+        "year_count_minus_exposure[1]": {
+          "observed": -0.6866845812337452,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 470,
+          "upper_tail_count_ge": 529,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 470,
+          "insertion_rank_inclusive_count_le": 470,
+          "reference_complete": true,
+          "p_low": 0.471,
+          "p_high": 0.53,
+          "insertion_rank": [
+            0.471,
+            0.471
+          ],
+          "reference_interval": [
+            -10.12019725563626,
+            14.01571834603979
+          ]
+        },
+        "year_count_minus_exposure[2]": {
+          "observed": -7.857180679968149,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 88,
+          "upper_tail_count_ge": 911,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 88,
+          "insertion_rank_inclusive_count_le": 88,
+          "reference_complete": true,
+          "p_low": 0.089,
+          "p_high": 0.912,
+          "insertion_rank": [
+            0.089,
+            0.089
+          ],
+          "reference_interval": [
+            -10.826951548899455,
+            14.850002010381985
+          ]
+        },
+        "year_count_minus_exposure[3]": {
+          "observed": -9.20659853979513,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 64,
+          "upper_tail_count_ge": 935,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 64,
+          "insertion_rank_inclusive_count_le": 64,
+          "reference_complete": true,
+          "p_low": 0.065,
+          "p_high": 0.936,
+          "insertion_rank": [
+            0.065,
+            0.065
+          ],
+          "reference_interval": [
+            -11.397232320108188,
+            14.903882136855415
+          ]
+        },
+        "year_count_minus_exposure[4]": {
+          "observed": -9.422059612191148,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 40,
+          "upper_tail_count_ge": 959,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 40,
+          "insertion_rank_inclusive_count_le": 40,
+          "reference_complete": true,
+          "p_low": 0.041,
+          "p_high": 0.96,
+          "insertion_rank": [
+            0.041,
+            0.041
+          ],
+          "reference_interval": [
+            -10.328733639724032,
+            17.671626878222014
+          ]
+        },
+        "cell_count[0]": {
+          "observed": 1.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 898,
+          "upper_tail_count_ge": 288,
+          "tie_count": 187,
+          "insertion_rank_strict_count_lt": 711,
+          "insertion_rank_inclusive_count_le": 898,
+          "reference_complete": true,
+          "p_low": 0.899,
+          "p_high": 0.289,
+          "insertion_rank": [
+            0.712,
+            0.899
+          ],
+          "reference_interval": [
+            0.0,
+            5.0
+          ]
+        },
+        "cell_count[1]": {
+          "observed": 5.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 325,
+          "upper_tail_count_ge": 763,
+          "tie_count": 89,
+          "insertion_rank_strict_count_lt": 236,
+          "insertion_rank_inclusive_count_le": 325,
+          "reference_complete": true,
+          "p_low": 0.326,
+          "p_high": 0.764,
+          "insertion_rank": [
+            0.237,
+            0.326
+          ],
+          "reference_interval": [
+            1.0,
+            41.0
+          ]
+        },
+        "cell_count[2]": {
+          "observed": 39.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 169,
+          "upper_tail_count_ge": 852,
+          "tie_count": 22,
+          "insertion_rank_strict_count_lt": 147,
+          "insertion_rank_inclusive_count_le": 169,
+          "reference_complete": true,
+          "p_low": 0.17,
+          "p_high": 0.853,
+          "insertion_rank": [
+            0.148,
+            0.17
+          ],
+          "reference_interval": [
+            27.0,
+            178.0
+          ]
+        },
+        "cell_count[3]": {
+          "observed": 2.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 260,
+          "upper_tail_count_ge": 854,
+          "tie_count": 115,
+          "insertion_rank_strict_count_lt": 145,
+          "insertion_rank_inclusive_count_le": 260,
+          "reference_complete": true,
+          "p_low": 0.261,
+          "p_high": 0.855,
+          "insertion_rank": [
+            0.146,
+            0.261
+          ],
+          "reference_interval": [
+            0.0,
+            23.0
+          ]
+        },
+        "cell_count[4]": {
+          "observed": 15.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 0,
+          "upper_tail_count_ge": 999,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 0,
+          "insertion_rank_inclusive_count_le": 0,
+          "reference_complete": true,
+          "p_low": 0.001,
+          "p_high": 1.0,
+          "insertion_rank": [
+            0.001,
+            0.001
+          ],
+          "reference_interval": [
+            35.0,
+            218.0
+          ]
+        },
+        "cell_count[5]": {
+          "observed": 2.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 12,
+          "upper_tail_count_ge": 994,
+          "tie_count": 7,
+          "insertion_rank_strict_count_lt": 5,
+          "insertion_rank_inclusive_count_le": 12,
+          "reference_complete": true,
+          "p_low": 0.013,
+          "p_high": 0.995,
+          "insertion_rank": [
+            0.006,
+            0.013
+          ],
+          "reference_interval": [
+            3.0,
+            42.0
+          ]
+        },
+        "cell_count[6]": {
+          "observed": 7.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 660,
+          "upper_tail_count_ge": 414,
+          "tie_count": 75,
+          "insertion_rank_strict_count_lt": 585,
+          "insertion_rank_inclusive_count_le": 660,
+          "reference_complete": true,
+          "p_low": 0.661,
+          "p_high": 0.415,
+          "insertion_rank": [
+            0.586,
+            0.661
+          ],
+          "reference_interval": [
+            1.0,
+            31.0
+          ]
+        },
+        "cell_count[7]": {
+          "observed": 8.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 227,
+          "upper_tail_count_ge": 834,
+          "tie_count": 62,
+          "insertion_rank_strict_count_lt": 165,
+          "insertion_rank_inclusive_count_le": 227,
+          "reference_complete": true,
+          "p_low": 0.228,
+          "p_high": 0.835,
+          "insertion_rank": [
+            0.166,
+            0.228
+          ],
+          "reference_interval": [
+            4.0,
+            56.0
+          ]
+        },
+        "cell_count[8]": {
+          "observed": 0.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 562,
+          "upper_tail_count_ge": 999,
+          "tie_count": 562,
+          "insertion_rank_strict_count_lt": 0,
+          "insertion_rank_inclusive_count_le": 562,
+          "reference_complete": true,
+          "p_low": 0.563,
+          "p_high": 1.0,
+          "insertion_rank": [
+            0.001,
+            0.563
+          ],
+          "reference_interval": [
+            0.0,
+            5.0
+          ]
+        },
+        "cell_conditional_expected[0]": {
+          "observed": 0.2647945182900121,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 22,
+          "upper_tail_count_ge": 977,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 22,
+          "insertion_rank_inclusive_count_le": 22,
+          "reference_complete": true,
+          "p_low": 0.023,
+          "p_high": 0.978,
+          "insertion_rank": [
+            0.023,
+            0.023
+          ],
+          "reference_interval": [
+            0.2666052733668406,
+            2.603460878202516
+          ]
+        },
+        "cell_conditional_expected[1]": {
+          "observed": 3.3976540629284036,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 0,
+          "upper_tail_count_ge": 999,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 0,
+          "insertion_rank_inclusive_count_le": 0,
+          "reference_complete": true,
+          "p_low": 0.001,
+          "p_high": 1.0,
+          "insertion_rank": [
+            0.001,
+            0.001
+          ],
+          "reference_interval": [
+            4.203365563424513,
+            38.48659812564885
+          ]
+        },
+        "cell_conditional_expected[2]": {
+          "observed": 34.778158367404565,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 49,
+          "upper_tail_count_ge": 950,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 49,
+          "insertion_rank_inclusive_count_le": 49,
+          "reference_complete": true,
+          "p_low": 0.05,
+          "p_high": 0.951,
+          "insertion_rank": [
+            0.05,
+            0.05
+          ],
+          "reference_interval": [
+            32.78032806070707,
+            180.08595479196129
+          ]
+        },
+        "cell_conditional_expected[3]": {
+          "observed": 2.422055911117281,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 0,
+          "upper_tail_count_ge": 999,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 0,
+          "insertion_rank_inclusive_count_le": 0,
+          "reference_complete": true,
+          "p_low": 0.001,
+          "p_high": 1.0,
+          "insertion_rank": [
+            0.001,
+            0.001
+          ],
+          "reference_interval": [
+            2.771681076825427,
+            21.786267799155535
+          ]
+        },
+        "cell_conditional_expected[4]": {
+          "observed": 23.493716546234523,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 0,
+          "upper_tail_count_ge": 999,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 0,
+          "insertion_rank_inclusive_count_le": 0,
+          "reference_complete": true,
+          "p_low": 0.001,
+          "p_high": 1.0,
+          "insertion_rank": [
+            0.001,
+            0.001
+          ],
+          "reference_interval": [
+            39.12496071200316,
+            218.36004275645092
+          ]
+        },
+        "cell_conditional_expected[5]": {
+          "observed": 5.337864672917706,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 0,
+          "upper_tail_count_ge": 999,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 0,
+          "insertion_rank_inclusive_count_le": 0,
+          "reference_complete": true,
+          "p_low": 0.001,
+          "p_high": 1.0,
+          "insertion_rank": [
+            0.001,
+            0.001
+          ],
+          "reference_interval": [
+            7.365463191605454,
+            39.43901253984584
+          ]
+        },
+        "cell_conditional_expected[6]": {
+          "observed": 3.113587084811356,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 40,
+          "upper_tail_count_ge": 959,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 40,
+          "insertion_rank_inclusive_count_le": 40,
+          "reference_complete": true,
+          "p_low": 0.041,
+          "p_high": 0.96,
+          "insertion_rank": [
+            0.041,
+            0.041
+          ],
+          "reference_interval": [
+            3.006728211407283,
+            27.222918232797394
+          ]
+        },
+        "cell_conditional_expected[7]": {
+          "observed": 5.784266222966054,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 1,
+          "upper_tail_count_ge": 998,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 1,
+          "insertion_rank_inclusive_count_le": 1,
+          "reference_complete": true,
+          "p_low": 0.002,
+          "p_high": 0.999,
+          "insertion_rank": [
+            0.002,
+            0.002
+          ],
+          "reference_interval": [
+            7.40275632074073,
+            53.288426628438934
+          ]
+        },
+        "cell_conditional_expected[8]": {
+          "observed": 0.40790261333009664,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 0,
+          "upper_tail_count_ge": 999,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 0,
+          "insertion_rank_inclusive_count_le": 0,
+          "reference_complete": true,
+          "p_low": 0.001,
+          "p_high": 1.0,
+          "insertion_rank": [
+            0.001,
+            0.001
+          ],
+          "reference_interval": [
+            0.4830737693812487,
+            4.032504088632105
+          ]
+        },
+        "cell_exposure[0]": {
+          "observed": 0.5589116883814972,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 837,
+          "upper_tail_count_ge": 162,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 837,
+          "insertion_rank_inclusive_count_le": 837,
+          "reference_complete": true,
+          "p_low": 0.838,
+          "p_high": 0.163,
+          "insertion_rank": [
+            0.838,
+            0.838
+          ],
+          "reference_interval": [
+            0.32112946757755223,
+            2.055081610926935
+          ]
+        },
+        "cell_exposure[1]": {
+          "observed": 5.719352151731332,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 149,
+          "upper_tail_count_ge": 850,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 149,
+          "insertion_rank_inclusive_count_le": 149,
+          "reference_complete": true,
+          "p_low": 0.15,
+          "p_high": 0.851,
+          "insertion_rank": [
+            0.15,
+            0.15
+          ],
+          "reference_interval": [
+            4.993538456150598,
+            37.889329529159085
+          ]
+        },
+        "cell_exposure[2]": {
+          "observed": 43.19828369968258,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 134,
+          "upper_tail_count_ge": 865,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 134,
+          "insertion_rank_inclusive_count_le": 134,
+          "reference_complete": true,
+          "p_low": 0.135,
+          "p_high": 0.866,
+          "insertion_rank": [
+            0.135,
+            0.135
+          ],
+          "reference_interval": [
+            37.60580202507246,
+            176.19306610198356
+          ]
+        },
+        "cell_exposure[3]": {
+          "observed": 4.015741066788378,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 317,
+          "upper_tail_count_ge": 682,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 317,
+          "insertion_rank_inclusive_count_le": 317,
+          "reference_complete": true,
+          "p_low": 0.318,
+          "p_high": 0.683,
+          "insertion_rank": [
+            0.318,
+            0.318
+          ],
+          "reference_interval": [
+            3.1728890134253174,
+            20.745315784142864
+          ]
+        },
+        "cell_exposure[4]": {
+          "observed": 36.140422500336605,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 0,
+          "upper_tail_count_ge": 999,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 0,
+          "insertion_rank_inclusive_count_le": 0,
+          "reference_complete": true,
+          "p_low": 0.001,
+          "p_high": 1.0,
+          "insertion_rank": [
+            0.001,
+            0.001
+          ],
+          "reference_interval": [
+            45.59695125821622,
+            209.27705562433047
+          ]
+        },
+        "cell_exposure[5]": {
+          "observed": 7.846269555471099,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 2,
+          "upper_tail_count_ge": 997,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 2,
+          "insertion_rank_inclusive_count_le": 2,
+          "reference_complete": true,
+          "p_low": 0.003,
+          "p_high": 0.998,
+          "insertion_rank": [
+            0.003,
+            0.003
+          ],
+          "reference_interval": [
+            8.538530113522986,
+            38.811637035076174
+          ]
+        },
+        "cell_exposure[6]": {
+          "observed": 6.715148057868313,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 666,
+          "upper_tail_count_ge": 333,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 666,
+          "insertion_rank_inclusive_count_le": 666,
+          "reference_complete": true,
+          "p_low": 0.667,
+          "p_high": 0.334,
+          "insertion_rank": [
+            0.667,
+            0.667
+          ],
+          "reference_interval": [
+            3.5637389432700464,
+            27.117065393712377
+          ]
+        },
+        "cell_exposure[7]": {
+          "observed": 9.773139729390087,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 103,
+          "upper_tail_count_ge": 896,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 103,
+          "insertion_rank_inclusive_count_le": 103,
+          "reference_complete": true,
+          "p_low": 0.104,
+          "p_high": 0.897,
+          "insertion_rank": [
+            0.104,
+            0.104
+          ],
+          "reference_interval": [
+            8.740612330015475,
+            47.38112115160922
+          ]
+        },
+        "cell_exposure[8]": {
+          "observed": 0.5820517921935396,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 0,
+          "upper_tail_count_ge": 999,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 0,
+          "insertion_rank_inclusive_count_le": 0,
+          "reference_complete": true,
+          "p_low": 0.001,
+          "p_high": 1.0,
+          "insertion_rank": [
+            0.001,
+            0.001
+          ],
+          "reference_interval": [
+            0.582164072460521,
+            3.1967783307259605
+          ]
+        },
+        "cell_count_minus_conditional_expected[0]": {
+          "observed": 0.7352054817099879,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 918,
+          "upper_tail_count_ge": 81,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 918,
+          "insertion_rank_inclusive_count_le": 918,
+          "reference_complete": true,
+          "p_low": 0.919,
+          "p_high": 0.082,
+          "insertion_rank": [
+            0.919,
+            0.919
+          ],
+          "reference_interval": [
+            -0.38686986708704685,
+            2.1547083180763016
+          ]
+        },
+        "cell_count_minus_conditional_expected[1]": {
+          "observed": 1.6023459370715964,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 744,
+          "upper_tail_count_ge": 255,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 744,
+          "insertion_rank_inclusive_count_le": 744,
+          "reference_complete": true,
+          "p_low": 0.745,
+          "p_high": 0.256,
+          "insertion_rank": [
+            0.745,
+            0.745
+          ],
+          "reference_interval": [
+            -4.116390628832374,
+            5.823729765011256
+          ]
+        },
+        "cell_count_minus_conditional_expected[2]": {
+          "observed": 4.221841632595435,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 808,
+          "upper_tail_count_ge": 191,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 808,
+          "insertion_rank_inclusive_count_le": 808,
+          "reference_complete": true,
+          "p_low": 0.809,
+          "p_high": 0.192,
+          "insertion_rank": [
+            0.809,
+            0.809
+          ],
+          "reference_interval": [
+            -10.355010149947496,
+            9.623147958963415
+          ]
+        },
+        "cell_count_minus_conditional_expected[3]": {
+          "observed": -0.422055911117281,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 473,
+          "upper_tail_count_ge": 526,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 473,
+          "insertion_rank_inclusive_count_le": 473,
+          "reference_complete": true,
+          "p_low": 0.474,
+          "p_high": 0.527,
+          "insertion_rank": [
+            0.474,
+            0.474
+          ],
+          "reference_interval": [
+            -3.2166921552927823,
+            4.604727467672985
+          ]
+        },
+        "cell_count_minus_conditional_expected[4]": {
+          "observed": -8.493716546234523,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 73,
+          "upper_tail_count_ge": 926,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 73,
+          "insertion_rank_inclusive_count_le": 73,
+          "reference_complete": true,
+          "p_low": 0.074,
+          "p_high": 0.927,
+          "insertion_rank": [
+            0.074,
+            0.074
+          ],
+          "reference_interval": [
+            -11.078423529070989,
+            10.79246464937944
+          ]
+        },
+        "cell_count_minus_conditional_expected[5]": {
+          "observed": -3.337864672917706,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 139,
+          "upper_tail_count_ge": 860,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 139,
+          "insertion_rank_inclusive_count_le": 139,
+          "reference_complete": true,
+          "p_low": 0.14,
+          "p_high": 0.861,
+          "insertion_rank": [
+            0.14,
+            0.14
+          ],
+          "reference_interval": [
+            -5.785349580687853,
+            6.840442166685648
+          ]
+        },
+        "cell_count_minus_conditional_expected[6]": {
+          "observed": 3.886412915188644,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 940,
+          "upper_tail_count_ge": 59,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 940,
+          "insertion_rank_inclusive_count_le": 940,
+          "reference_complete": true,
+          "p_low": 0.941,
+          "p_high": 0.06,
+          "insertion_rank": [
+            0.941,
+            0.941
+          ],
+          "reference_interval": [
+            -3.314071523080734,
+            5.278763019582419
+          ]
+        },
+        "cell_count_minus_conditional_expected[7]": {
+          "observed": 2.215733777033946,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 748,
+          "upper_tail_count_ge": 251,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 748,
+          "insertion_rank_inclusive_count_le": 748,
+          "reference_complete": true,
+          "p_low": 0.749,
+          "p_high": 0.252,
+          "insertion_rank": [
+            0.749,
+            0.749
+          ],
+          "reference_interval": [
+            -5.472836585757424,
+            6.7455024422958765
+          ]
+        },
+        "cell_count_minus_conditional_expected[8]": {
+          "observed": -0.40790261333009664,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 571,
+          "upper_tail_count_ge": 428,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 571,
+          "insertion_rank_inclusive_count_le": 571,
+          "reference_complete": true,
+          "p_low": 0.572,
+          "p_high": 0.429,
+          "insertion_rank": [
+            0.572,
+            0.572
+          ],
+          "reference_interval": [
+            -0.6805621354484103,
+            2.205533482162007
+          ]
+        },
+        "cell_count_minus_exposure[0]": {
+          "observed": 0.4410883116185028,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 782,
+          "upper_tail_count_ge": 217,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 782,
+          "insertion_rank_inclusive_count_le": 782,
+          "reference_complete": true,
+          "p_low": 0.783,
+          "p_high": 0.218,
+          "insertion_rank": [
+            0.783,
+            0.783
+          ],
+          "reference_interval": [
+            -0.3691832281388137,
+            2.338479441467838
+          ]
+        },
+        "cell_count_minus_exposure[1]": {
+          "observed": -0.7193521517313322,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 442,
+          "upper_tail_count_ge": 557,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 442,
+          "insertion_rank_inclusive_count_le": 442,
+          "reference_complete": true,
+          "p_low": 0.443,
+          "p_high": 0.558,
+          "insertion_rank": [
+            0.443,
+            0.443
+          ],
+          "reference_interval": [
+            -4.479761984146776,
+            7.522989573173415
+          ]
+        },
+        "cell_count_minus_exposure[2]": {
+          "observed": -4.198283699682577,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 332,
+          "upper_tail_count_ge": 667,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 332,
+          "insertion_rank_inclusive_count_le": 332,
+          "reference_complete": true,
+          "p_low": 0.333,
+          "p_high": 0.668,
+          "insertion_rank": [
+            0.333,
+            0.333
+          ],
+          "reference_interval": [
+            -14.45461606636134,
+            18.92749887449969
+          ]
+        },
+        "cell_count_minus_exposure[3]": {
+          "observed": -2.0157410667883777,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 198,
+          "upper_tail_count_ge": 801,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 198,
+          "insertion_rank_inclusive_count_le": 198,
+          "reference_complete": true,
+          "p_low": 0.199,
+          "p_high": 0.802,
+          "insertion_rank": [
+            0.199,
+            0.199
+          ],
+          "reference_interval": [
+            -3.206636176638498,
+            6.013190715980919
+          ]
+        },
+        "cell_count_minus_exposure[4]": {
+          "observed": -21.140422500336605,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 7,
+          "upper_tail_count_ge": 992,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 7,
+          "insertion_rank_inclusive_count_le": 7,
+          "reference_complete": true,
+          "p_low": 0.008,
+          "p_high": 0.993,
+          "insertion_rank": [
+            0.008,
+            0.008
+          ],
+          "reference_interval": [
+            -15.766141894539231,
+            19.76821724892369
+          ]
+        },
+        "cell_count_minus_exposure[5]": {
+          "observed": -5.846269555471099,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 32,
+          "upper_tail_count_ge": 967,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 32,
+          "insertion_rank_inclusive_count_le": 32,
+          "reference_complete": true,
+          "p_low": 0.033,
+          "p_high": 0.968,
+          "insertion_rank": [
+            0.033,
+            0.033
+          ],
+          "reference_interval": [
+            -6.137660582596705,
+            8.003330786260012
+          ]
+        },
+        "cell_count_minus_exposure[6]": {
+          "observed": 0.2848519421316871,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 614,
+          "upper_tail_count_ge": 385,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 614,
+          "insertion_rank_inclusive_count_le": 614,
+          "reference_complete": true,
+          "p_low": 0.615,
+          "p_high": 0.386,
+          "insertion_rank": [
+            0.615,
+            0.615
+          ],
+          "reference_interval": [
+            -3.3929276756592155,
+            6.607890693230699
+          ]
+        },
+        "cell_count_minus_exposure[7]": {
+          "observed": -1.7731397293900866,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 367,
+          "upper_tail_count_ge": 632,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 367,
+          "insertion_rank_inclusive_count_le": 367,
+          "reference_complete": true,
+          "p_low": 0.368,
+          "p_high": 0.633,
+          "insertion_rank": [
+            0.368,
+            0.368
+          ],
+          "reference_interval": [
+            -6.522301836884113,
+            9.491547923825834
+          ]
+        },
+        "cell_count_minus_exposure[8]": {
+          "observed": -0.5820517921935396,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 571,
+          "upper_tail_count_ge": 428,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 571,
+          "insertion_rank_inclusive_count_le": 571,
+          "reference_complete": true,
+          "p_low": 0.572,
+          "p_high": 0.429,
+          "insertion_rank": [
+            0.572,
+            0.572
+          ],
+          "reference_interval": [
+            -0.6090900590050761,
+            2.4549863150896107
+          ]
+        }
+      }
+    },
+    "california_fold_1": {
+      "complete": 999,
+      "failed": 0,
+      "unknown": 0,
+      "observed_count": 167.0,
+      "diagnostics": {
+        "count": {
+          "observed": 167.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 711,
+          "upper_tail_count_ge": 296,
+          "tie_count": 8,
+          "insertion_rank_strict_count_lt": 703,
+          "insertion_rank_inclusive_count_le": 711,
+          "reference_complete": true,
+          "p_low": 0.712,
+          "p_high": 0.297,
+          "insertion_rank": [
+            0.704,
+            0.712
+          ],
+          "reference_interval": [
+            90.0,
+            398.0
+          ]
+        },
+        "exposure": {
+          "observed": 171.3732906519999,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 766,
+          "upper_tail_count_ge": 233,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 766,
+          "insertion_rank_inclusive_count_le": 766,
+          "reference_complete": true,
+          "p_low": 0.767,
+          "p_high": 0.234,
+          "insertion_rank": [
+            0.767,
+            0.767
+          ],
+          "reference_interval": [
+            106.12307862508305,
+            397.7176553930881
+          ]
+        },
+        "immigrant_exposure": {
+          "observed": 65.12820992122843,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 999,
+          "upper_tail_count_ge": 999,
+          "tie_count": 999,
+          "insertion_rank_strict_count_lt": 0,
+          "insertion_rank_inclusive_count_le": 999,
+          "reference_complete": true,
+          "p_low": 1.0,
+          "p_high": 1.0,
+          "insertion_rank": [
+            0.001,
+            1.0
+          ],
+          "reference_interval": [
+            65.12820992122843,
+            65.12820992122843
+          ]
+        },
+        "trigger_exposure": {
+          "observed": 106.24508073077146,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 766,
+          "upper_tail_count_ge": 233,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 766,
+          "insertion_rank_inclusive_count_le": 766,
+          "reference_complete": true,
+          "p_low": 0.767,
+          "p_high": 0.234,
+          "insertion_rank": [
+            0.767,
+            0.767
+          ],
+          "reference_interval": [
+            40.99486870385462,
+            332.5894454718597
+          ]
+        },
+        "count_minus_exposure": {
+          "observed": -4.373290651999895,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 390,
+          "upper_tail_count_ge": 609,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 390,
+          "insertion_rank_inclusive_count_le": 390,
+          "reference_complete": true,
+          "p_low": 0.391,
+          "p_high": 0.61,
+          "insertion_rank": [
+            0.391,
+            0.391
+          ],
+          "reference_interval": [
+            -24.36304833015754,
+            26.37370060343224
+          ]
+        },
+        "time_event_logsum": {
+          "observed": 326.50433396627767,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 963,
+          "upper_tail_count_ge": 36,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 963,
+          "insertion_rank_inclusive_count_le": 963,
+          "reference_complete": true,
+          "p_low": 0.964,
+          "p_high": 0.037,
+          "insertion_rank": [
+            0.964,
+            0.964
+          ],
+          "reference_interval": [
+            -265.1318901939191,
+            583.3833505216883
+          ]
+        },
+        "timing_logscore": {
+          "observed": 155.13104331427778,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 971,
+          "upper_tail_count_ge": 28,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 971,
+          "insertion_rank_inclusive_count_le": 971,
+          "reference_complete": true,
+          "p_low": 0.972,
+          "p_high": 0.029,
+          "insertion_rank": [
+            0.972,
+            0.972
+          ],
+          "reference_interval": [
+            -404.0987837538697,
+            178.1639922441339
+          ]
+        },
+        "location_logscore": {
+          "observed": -1377.2122159660285,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 363,
+          "upper_tail_count_ge": 636,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 363,
+          "insertion_rank_inclusive_count_le": 363,
+          "reference_complete": true,
+          "p_low": 0.364,
+          "p_high": 0.637,
+          "insertion_rank": [
+            0.364,
+            0.364
+          ],
+          "reference_interval": [
+            -3078.5327441769778,
+            -854.2404337570142
+          ]
+        },
+        "mark_logscore": {
+          "observed": -15.03903662108132,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 680,
+          "upper_tail_count_ge": 319,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 680,
+          "insertion_rank_inclusive_count_le": 680,
+          "reference_complete": true,
+          "p_low": 0.681,
+          "p_high": 0.32,
+          "insertion_rank": [
+            0.681,
+            0.681
+          ],
+          "reference_interval": [
+            -81.68141991597025,
+            1.5258857118819078
+          ]
+        },
+        "joint_logscore": {
+          "observed": -1237.120209272832,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 948,
+          "upper_tail_count_ge": 51,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 948,
+          "insertion_rank_inclusive_count_le": 948,
+          "reference_complete": true,
+          "p_low": 0.949,
+          "p_high": 0.052,
+          "insertion_rank": [
+            0.949,
+            0.949
+          ],
+          "reference_interval": [
+            -3090.695760404099,
+            -1158.6666983824693
+          ]
+        },
+        "zone_logscore": {
+          "observed": -54.351240321737635,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 998,
+          "upper_tail_count_ge": 1,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 998,
+          "insertion_rank_inclusive_count_le": 998,
+          "reference_complete": true,
+          "p_low": 0.999,
+          "p_high": 0.002,
+          "insertion_rank": [
+            0.999,
+            0.999
+          ],
+          "reference_interval": [
+            -141.06349727296217,
+            -64.91967824998906
+          ]
+        },
+        "cell_given_zone_logscore": {
+          "observed": -45.40932366542472,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 852,
+          "upper_tail_count_ge": 147,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 852,
+          "insertion_rank_inclusive_count_le": 852,
+          "reference_complete": true,
+          "p_low": 0.853,
+          "p_high": 0.148,
+          "insertion_rank": [
+            0.853,
+            0.853
+          ],
+          "reference_interval": [
+            -94.99759274159192,
+            -36.34467053782302
+          ]
+        },
+        "within_cell_density_logscore": {
+          "observed": -1277.451651978866,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 311,
+          "upper_tail_count_ge": 688,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 311,
+          "insertion_rank_inclusive_count_le": 311,
+          "reference_complete": true,
+          "p_low": 0.312,
+          "p_high": 0.689,
+          "insertion_rank": [
+            0.312,
+            0.312
+          ],
+          "reference_interval": [
+            -2827.300983507339,
+            -745.7810501667373
+          ]
+        },
+        "subblock_balance_max": {
+          "observed": 0.6836875842626084,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 997,
+          "upper_tail_count_ge": 2,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 997,
+          "insertion_rank_inclusive_count_le": 997,
+          "reference_complete": true,
+          "p_low": 0.998,
+          "p_high": 0.003,
+          "insertion_rank": [
+            0.998,
+            0.998
+          ],
+          "reference_interval": [
+            0.1093335581913649,
+            0.5342755611363699
+          ]
+        },
+        "gap_ks": {
+          "observed": 0.15088891163993823,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 991,
+          "upper_tail_count_ge": 8,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 991,
+          "insertion_rank_inclusive_count_le": 991,
+          "reference_complete": true,
+          "p_low": 0.992,
+          "p_high": 0.009,
+          "insertion_rank": [
+            0.992,
+            0.992
+          ],
+          "reference_interval": [
+            0.03382369741694077,
+            0.13359889570638359
+          ]
+        },
+        "gap_serial": {
+          "observed": 0.05049115130656217,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 999,
+          "upper_tail_count_ge": 0,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 999,
+          "insertion_rank_inclusive_count_le": 999,
+          "reference_complete": true,
+          "p_low": 1.0,
+          "p_high": 0.001,
+          "insertion_rank": [
+            1.0,
+            1.0
+          ],
+          "reference_interval": [
+            -0.014771943541407762,
+            0.013331891414106456
+          ]
+        },
+        "censored_tail": {
+          "observed": 0.6161336957772795,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 236,
+          "upper_tail_count_ge": 763,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 236,
+          "insertion_rank_inclusive_count_le": 236,
+          "reference_complete": true,
+          "p_low": 0.237,
+          "p_high": 0.764,
+          "insertion_rank": [
+            0.237,
+            0.237
+          ],
+          "reference_interval": [
+            0.1877093442858882,
+            4.197445714551701
+          ]
+        },
+        "spatial_rosenblatt_ks_max": {
+          "observed": 0.16932136137657972,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 995,
+          "upper_tail_count_ge": 4,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 995,
+          "insertion_rank_inclusive_count_le": 995,
+          "reference_complete": true,
+          "p_low": 0.996,
+          "p_high": 0.005,
+          "insertion_rank": [
+            0.996,
+            0.996
+          ],
+          "reference_interval": [
+            0.04190715397337763,
+            0.13574043815306824
+          ]
+        },
+        "spatial_rosenblatt_cross_abs": {
+          "observed": 0.027677364202278305,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 999,
+          "upper_tail_count_ge": 0,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 999,
+          "insertion_rank_inclusive_count_le": 999,
+          "reference_complete": true,
+          "p_low": 1.0,
+          "p_high": 0.001,
+          "insertion_rank": [
+            1.0,
+            1.0
+          ],
+          "reference_interval": [
+            0.00016408038722648556,
+            0.015467075009819826
+          ]
+        },
+        "cell_mass_residual_max": {
+          "observed": 1.278459418085198,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 988,
+          "upper_tail_count_ge": 11,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 988,
+          "insertion_rank_inclusive_count_le": 988,
+          "reference_complete": true,
+          "p_low": 0.989,
+          "p_high": 0.012,
+          "insertion_rank": [
+            0.989,
+            0.989
+          ],
+          "reference_interval": [
+            0.2905358523199022,
+            1.1221640823347008
+          ]
+        },
+        "location_dimensionless_log_mean": {
+          "observed": 4.537391652615119,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 906,
+          "upper_tail_count_ge": 93,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 906,
+          "insertion_rank_inclusive_count_le": 906,
+          "reference_complete": true,
+          "p_low": 0.907,
+          "p_high": 0.094,
+          "insertion_rank": [
+            0.907,
+            0.907
+          ],
+          "reference_interval": [
+            3.0267311767975027,
+            5.1304041165101495
+          ]
+        },
+        "location_dimensionless_log_variance": {
+          "observed": 8.76988111778304,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 976,
+          "upper_tail_count_ge": 23,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 976,
+          "insertion_rank_inclusive_count_le": 976,
+          "reference_complete": true,
+          "p_low": 0.977,
+          "p_high": 0.024,
+          "insertion_rank": [
+            0.977,
+            0.977
+          ],
+          "reference_interval": [
+            5.1386695203907955,
+            8.729679565946432
+          ]
+        },
+        "within_cell_dimensionless_absmax": {
+          "observed": 6.212347511740378,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 340,
+          "upper_tail_count_ge": 659,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 340,
+          "insertion_rank_inclusive_count_le": 340,
+          "reference_complete": true,
+          "p_low": 0.341,
+          "p_high": 0.66,
+          "insertion_rank": [
+            0.341,
+            0.341
+          ],
+          "reference_interval": [
+            6.004244461245964,
+            6.929971103980396
+          ]
+        },
+        "within_cell_dimensionless_sum": {
+          "observed": 488.3608010838824,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 732,
+          "upper_tail_count_ge": 267,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 732,
+          "insertion_rank_inclusive_count_le": 732,
+          "reference_complete": true,
+          "p_low": 0.733,
+          "p_high": 0.268,
+          "insertion_rank": [
+            0.733,
+            0.733
+          ],
+          "reference_interval": [
+            205.40046709925653,
+            1400.596642397477
+          ]
+        },
+        "year_count[0]": {
+          "observed": 12.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 71,
+          "upper_tail_count_ge": 952,
+          "tie_count": 24,
+          "insertion_rank_strict_count_lt": 47,
+          "insertion_rank_inclusive_count_le": 71,
+          "reference_complete": true,
+          "p_low": 0.072,
+          "p_high": 0.953,
+          "insertion_rank": [
+            0.048,
+            0.072
+          ],
+          "reference_interval": [
+            10.0,
+            90.0
+          ]
+        },
+        "year_count[1]": {
+          "observed": 4.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 1,
+          "upper_tail_count_ge": 999,
+          "tie_count": 1,
+          "insertion_rank_strict_count_lt": 0,
+          "insertion_rank_inclusive_count_le": 1,
+          "reference_complete": true,
+          "p_low": 0.002,
+          "p_high": 1.0,
+          "insertion_rank": [
+            0.001,
+            0.002
+          ],
+          "reference_interval": [
+            11.0,
+            84.0
+          ]
+        },
+        "year_count[2]": {
+          "observed": 8.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 8,
+          "upper_tail_count_ge": 995,
+          "tie_count": 4,
+          "insertion_rank_strict_count_lt": 4,
+          "insertion_rank_inclusive_count_le": 8,
+          "reference_complete": true,
+          "p_low": 0.009,
+          "p_high": 0.996,
+          "insertion_rank": [
+            0.005,
+            0.009
+          ],
+          "reference_interval": [
+            11.0,
+            101.0
+          ]
+        },
+        "year_count[3]": {
+          "observed": 116.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 985,
+          "upper_tail_count_ge": 14,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 985,
+          "insertion_rank_inclusive_count_le": 985,
+          "reference_complete": true,
+          "p_low": 0.986,
+          "p_high": 0.015,
+          "insertion_rank": [
+            0.986,
+            0.986
+          ],
+          "reference_interval": [
+            11.0,
+            82.0
+          ]
+        },
+        "year_count[4]": {
+          "observed": 27.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 514,
+          "upper_tail_count_ge": 525,
+          "tie_count": 40,
+          "insertion_rank_strict_count_lt": 474,
+          "insertion_rank_inclusive_count_le": 514,
+          "reference_complete": true,
+          "p_low": 0.515,
+          "p_high": 0.526,
+          "insertion_rank": [
+            0.475,
+            0.515
+          ],
+          "reference_interval": [
+            10.0,
+            78.0
+          ]
+        },
+        "year_exposure[0]": {
+          "observed": 18.29107124174531,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 73,
+          "upper_tail_count_ge": 926,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 73,
+          "insertion_rank_inclusive_count_le": 73,
+          "reference_complete": true,
+          "p_low": 0.074,
+          "p_high": 0.927,
+          "insertion_rank": [
+            0.074,
+            0.074
+          ],
+          "reference_interval": [
+            17.208322515693965,
+            89.54125377108929
+          ]
+        },
+        "year_exposure[1]": {
+          "observed": 14.807156947487934,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 0,
+          "upper_tail_count_ge": 999,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 0,
+          "insertion_rank_inclusive_count_le": 0,
+          "reference_complete": true,
+          "p_low": 0.001,
+          "p_high": 1.0,
+          "insertion_rank": [
+            0.001,
+            0.001
+          ],
+          "reference_interval": [
+            17.635852582105965,
+            78.94189519241708
+          ]
+        },
+        "year_exposure[2]": {
+          "observed": 17.96035065156303,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 26,
+          "upper_tail_count_ge": 973,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 26,
+          "insertion_rank_inclusive_count_le": 26,
+          "reference_complete": true,
+          "p_low": 0.027,
+          "p_high": 0.974,
+          "insertion_rank": [
+            0.027,
+            0.027
+          ],
+          "reference_interval": [
+            17.91690200624949,
+            106.20971472868413
+          ]
+        },
+        "year_exposure[3]": {
+          "observed": 90.06882058131374,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 980,
+          "upper_tail_count_ge": 19,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 980,
+          "insertion_rank_inclusive_count_le": 980,
+          "reference_complete": true,
+          "p_low": 0.981,
+          "p_high": 0.02,
+          "insertion_rank": [
+            0.981,
+            0.981
+          ],
+          "reference_interval": [
+            18.22269860423967,
+            78.00677749971402
+          ]
+        },
+        "year_exposure[4]": {
+          "observed": 30.24589122988964,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 643,
+          "upper_tail_count_ge": 356,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 643,
+          "insertion_rank_inclusive_count_le": 643,
+          "reference_complete": true,
+          "p_low": 0.644,
+          "p_high": 0.357,
+          "insertion_rank": [
+            0.644,
+            0.644
+          ],
+          "reference_interval": [
+            18.129240503461144,
+            75.47965941271092
+          ]
+        },
+        "year_count_minus_exposure[0]": {
+          "observed": -6.2910712417453105,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 100,
+          "upper_tail_count_ge": 899,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 100,
+          "insertion_rank_inclusive_count_le": 100,
+          "reference_complete": true,
+          "p_low": 0.101,
+          "p_high": 0.9,
+          "insertion_rank": [
+            0.101,
+            0.101
+          ],
+          "reference_interval": [
+            -9.385635615830058,
+            12.275381426765385
+          ]
+        },
+        "year_count_minus_exposure[1]": {
+          "observed": -10.807156947487934,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 13,
+          "upper_tail_count_ge": 986,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 13,
+          "insertion_rank_inclusive_count_le": 13,
+          "reference_complete": true,
+          "p_low": 0.014,
+          "p_high": 0.987,
+          "insertion_rank": [
+            0.014,
+            0.014
+          ],
+          "reference_interval": [
+            -9.30059471567419,
+            11.851754438918626
+          ]
+        },
+        "year_count_minus_exposure[2]": {
+          "observed": -9.96035065156303,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 15,
+          "upper_tail_count_ge": 984,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 15,
+          "insertion_rank_inclusive_count_le": 15,
+          "reference_complete": true,
+          "p_low": 0.016,
+          "p_high": 0.985,
+          "insertion_rank": [
+            0.016,
+            0.016
+          ],
+          "reference_interval": [
+            -9.099935040314975,
+            12.814569806637579
+          ]
+        },
+        "year_count_minus_exposure[3]": {
+          "observed": 25.931179418686256,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 997,
+          "upper_tail_count_ge": 2,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 997,
+          "insertion_rank_inclusive_count_le": 997,
+          "reference_complete": true,
+          "p_low": 0.998,
+          "p_high": 0.003,
+          "insertion_rank": [
+            0.998,
+            0.998
+          ],
+          "reference_interval": [
+            -8.603574578212452,
+            13.245250793272206
+          ]
+        },
+        "year_count_minus_exposure[4]": {
+          "observed": -3.24589122988964,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 323,
+          "upper_tail_count_ge": 676,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 323,
+          "insertion_rank_inclusive_count_le": 323,
+          "reference_complete": true,
+          "p_low": 0.324,
+          "p_high": 0.677,
+          "insertion_rank": [
+            0.324,
+            0.324
+          ],
+          "reference_interval": [
+            -9.779299563795927,
+            11.445485954804372
+          ]
+        },
+        "cell_count[0]": {
+          "observed": 0.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 717,
+          "upper_tail_count_ge": 999,
+          "tie_count": 717,
+          "insertion_rank_strict_count_lt": 0,
+          "insertion_rank_inclusive_count_le": 717,
+          "reference_complete": true,
+          "p_low": 0.718,
+          "p_high": 1.0,
+          "insertion_rank": [
+            0.001,
+            0.718
+          ],
+          "reference_interval": [
+            0.0,
+            4.0
+          ]
+        },
+        "cell_count[1]": {
+          "observed": 5.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 452,
+          "upper_tail_count_ge": 634,
+          "tie_count": 87,
+          "insertion_rank_strict_count_lt": 365,
+          "insertion_rank_inclusive_count_le": 452,
+          "reference_complete": true,
+          "p_low": 0.453,
+          "p_high": 0.635,
+          "insertion_rank": [
+            0.366,
+            0.453
+          ],
+          "reference_interval": [
+            1.0,
+            27.0
+          ]
+        },
+        "cell_count[2]": {
+          "observed": 17.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 13,
+          "upper_tail_count_ge": 988,
+          "tie_count": 2,
+          "insertion_rank_strict_count_lt": 11,
+          "insertion_rank_inclusive_count_le": 13,
+          "reference_complete": true,
+          "p_low": 0.014,
+          "p_high": 0.989,
+          "insertion_rank": [
+            0.012,
+            0.014
+          ],
+          "reference_interval": [
+            19.0,
+            134.0
+          ]
+        },
+        "cell_count[3]": {
+          "observed": 5.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 732,
+          "upper_tail_count_ge": 343,
+          "tie_count": 76,
+          "insertion_rank_strict_count_lt": 656,
+          "insertion_rank_inclusive_count_le": 732,
+          "reference_complete": true,
+          "p_low": 0.733,
+          "p_high": 0.344,
+          "insertion_rank": [
+            0.657,
+            0.733
+          ],
+          "reference_interval": [
+            0.0,
+            20.0
+          ]
+        },
+        "cell_count[4]": {
+          "observed": 7.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 0,
+          "upper_tail_count_ge": 999,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 0,
+          "insertion_rank_inclusive_count_le": 0,
+          "reference_complete": true,
+          "p_low": 0.001,
+          "p_high": 1.0,
+          "insertion_rank": [
+            0.001,
+            0.001
+          ],
+          "reference_interval": [
+            25.0,
+            191.0
+          ]
+        },
+        "cell_count[5]": {
+          "observed": 3.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 80,
+          "upper_tail_count_ge": 969,
+          "tie_count": 50,
+          "insertion_rank_strict_count_lt": 30,
+          "insertion_rank_inclusive_count_le": 80,
+          "reference_complete": true,
+          "p_low": 0.081,
+          "p_high": 0.97,
+          "insertion_rank": [
+            0.031,
+            0.081
+          ],
+          "reference_interval": [
+            2.0,
+            30.0
+          ]
+        },
+        "cell_count[6]": {
+          "observed": 4.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 454,
+          "upper_tail_count_ge": 626,
+          "tie_count": 81,
+          "insertion_rank_strict_count_lt": 373,
+          "insertion_rank_inclusive_count_le": 454,
+          "reference_complete": true,
+          "p_low": 0.455,
+          "p_high": 0.627,
+          "insertion_rank": [
+            0.374,
+            0.455
+          ],
+          "reference_interval": [
+            0.0,
+            27.0
+          ]
+        },
+        "cell_count[7]": {
+          "observed": 124.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 991,
+          "upper_tail_count_ge": 8,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 991,
+          "insertion_rank_inclusive_count_le": 991,
+          "reference_complete": true,
+          "p_low": 0.992,
+          "p_high": 0.009,
+          "insertion_rank": [
+            0.992,
+            0.992
+          ],
+          "reference_interval": [
+            2.0,
+            45.0
+          ]
+        },
+        "cell_count[8]": {
+          "observed": 2.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 947,
+          "upper_tail_count_ge": 129,
+          "tie_count": 77,
+          "insertion_rank_strict_count_lt": 870,
+          "insertion_rank_inclusive_count_le": 947,
+          "reference_complete": true,
+          "p_low": 0.948,
+          "p_high": 0.13,
+          "insertion_rank": [
+            0.871,
+            0.948
+          ],
+          "reference_interval": [
+            0.0,
+            4.0
+          ]
+        },
+        "cell_conditional_expected[0]": {
+          "observed": 0.19643543552286286,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 0,
+          "upper_tail_count_ge": 999,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 0,
+          "insertion_rank_inclusive_count_le": 0,
+          "reference_complete": true,
+          "p_low": 0.001,
+          "p_high": 1.0,
+          "insertion_rank": [
+            0.001,
+            0.001
+          ],
+          "reference_interval": [
+            0.2838224630684332,
+            2.717009445291833
+          ]
+        },
+        "cell_conditional_expected[1]": {
+          "observed": 3.2810458048500513,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 8,
+          "upper_tail_count_ge": 991,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 8,
+          "insertion_rank_inclusive_count_le": 8,
+          "reference_complete": true,
+          "p_low": 0.009,
+          "p_high": 0.992,
+          "insertion_rank": [
+            0.009,
+            0.009
+          ],
+          "reference_interval": [
+            3.4779819362141984,
+            24.337725212943887
+          ]
+        },
+        "cell_conditional_expected[2]": {
+          "observed": 20.528594029053302,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 5,
+          "upper_tail_count_ge": 994,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 5,
+          "insertion_rank_inclusive_count_le": 5,
+          "reference_complete": true,
+          "p_low": 0.006,
+          "p_high": 0.995,
+          "insertion_rank": [
+            0.006,
+            0.006
+          ],
+          "reference_interval": [
+            23.484448765896335,
+            129.7224741434147
+          ]
+        },
+        "cell_conditional_expected[3]": {
+          "observed": 1.6483874820088815,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 0,
+          "upper_tail_count_ge": 999,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 0,
+          "insertion_rank_inclusive_count_le": 0,
+          "reference_complete": true,
+          "p_low": 0.001,
+          "p_high": 1.0,
+          "insertion_rank": [
+            0.001,
+            0.001
+          ],
+          "reference_interval": [
+            2.2429345251889004,
+            18.50566654358448
+          ]
+        },
+        "cell_conditional_expected[4]": {
+          "observed": 16.132286198379887,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 0,
+          "upper_tail_count_ge": 999,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 0,
+          "insertion_rank_inclusive_count_le": 0,
+          "reference_complete": true,
+          "p_low": 0.001,
+          "p_high": 1.0,
+          "insertion_rank": [
+            0.001,
+            0.001
+          ],
+          "reference_interval": [
+            30.178335673995278,
+            188.07665797608536
+          ]
+        },
+        "cell_conditional_expected[5]": {
+          "observed": 3.842886450197055,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 0,
+          "upper_tail_count_ge": 999,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 0,
+          "insertion_rank_inclusive_count_le": 0,
+          "reference_complete": true,
+          "p_low": 0.001,
+          "p_high": 1.0,
+          "insertion_rank": [
+            0.001,
+            0.001
+          ],
+          "reference_interval": [
+            5.560330152231931,
+            25.249585806928852
+          ]
+        },
+        "cell_conditional_expected[6]": {
+          "observed": 1.9813996560799216,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 0,
+          "upper_tail_count_ge": 999,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 0,
+          "insertion_rank_inclusive_count_le": 0,
+          "reference_complete": true,
+          "p_low": 0.001,
+          "p_high": 1.0,
+          "insertion_rank": [
+            0.001,
+            0.001
+          ],
+          "reference_interval": [
+            2.817957403924999,
+            26.17046239292152
+          ]
+        },
+        "cell_conditional_expected[7]": {
+          "observed": 119.07228579825917,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 991,
+          "upper_tail_count_ge": 8,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 991,
+          "insertion_rank_inclusive_count_le": 991,
+          "reference_complete": true,
+          "p_low": 0.992,
+          "p_high": 0.009,
+          "insertion_rank": [
+            0.992,
+            0.992
+          ],
+          "reference_interval": [
+            5.882854944119923,
+            43.05442767688772
+          ]
+        },
+        "cell_conditional_expected[8]": {
+          "observed": 0.3166791456488524,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 1,
+          "upper_tail_count_ge": 998,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 1,
+          "insertion_rank_inclusive_count_le": 1,
+          "reference_complete": true,
+          "p_low": 0.002,
+          "p_high": 0.999,
+          "insertion_rank": [
+            0.002,
+            0.002
+          ],
+          "reference_interval": [
+            0.3755219246162881,
+            3.2375882320898213
+          ]
+        },
+        "cell_exposure[0]": {
+          "observed": 0.3513802419539744,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 620,
+          "upper_tail_count_ge": 379,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 620,
+          "insertion_rank_inclusive_count_le": 620,
+          "reference_complete": true,
+          "p_low": 0.621,
+          "p_high": 0.38,
+          "insertion_rank": [
+            0.621,
+            0.621
+          ],
+          "reference_interval": [
+            0.34628645577116907,
+            2.4503751631660995
+          ]
+        },
+        "cell_exposure[1]": {
+          "observed": 6.3740114116565225,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 553,
+          "upper_tail_count_ge": 446,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 553,
+          "insertion_rank_inclusive_count_le": 553,
+          "reference_complete": true,
+          "p_low": 0.554,
+          "p_high": 0.447,
+          "insertion_rank": [
+            0.554,
+            0.554
+          ],
+          "reference_interval": [
+            4.150067424618574,
+            23.38326686640217
+          ]
+        },
+        "cell_exposure[2]": {
+          "observed": 26.88929036533755,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 9,
+          "upper_tail_count_ge": 990,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 9,
+          "insertion_rank_inclusive_count_le": 9,
+          "reference_complete": true,
+          "p_low": 0.01,
+          "p_high": 0.991,
+          "insertion_rank": [
+            0.01,
+            0.01
+          ],
+          "reference_interval": [
+            28.56601816400981,
+            135.6548372546258
+          ]
+        },
+        "cell_exposure[3]": {
+          "observed": 4.989623645314049,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 768,
+          "upper_tail_count_ge": 231,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 768,
+          "insertion_rank_inclusive_count_le": 768,
+          "reference_complete": true,
+          "p_low": 0.769,
+          "p_high": 0.232,
+          "insertion_rank": [
+            0.769,
+            0.769
+          ],
+          "reference_interval": [
+            2.6199121950608886,
+            17.811100538518158
+          ]
+        },
+        "cell_exposure[4]": {
+          "observed": 28.87425541554352,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 0,
+          "upper_tail_count_ge": 999,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 0,
+          "insertion_rank_inclusive_count_le": 0,
+          "reference_complete": true,
+          "p_low": 0.001,
+          "p_high": 1.0,
+          "insertion_rank": [
+            0.001,
+            0.001
+          ],
+          "reference_interval": [
+            35.987220040198814,
+            179.3315674759068
+          ]
+        },
+        "cell_exposure[5]": {
+          "observed": 6.650028747443474,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 29,
+          "upper_tail_count_ge": 970,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 29,
+          "insertion_rank_inclusive_count_le": 29,
+          "reference_complete": true,
+          "p_low": 0.03,
+          "p_high": 0.971,
+          "insertion_rank": [
+            0.03,
+            0.03
+          ],
+          "reference_interval": [
+            6.596111232855201,
+            21.63402492752512
+          ]
+        },
+        "cell_exposure[6]": {
+          "observed": 4.618089051216613,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 406,
+          "upper_tail_count_ge": 593,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 406,
+          "insertion_rank_inclusive_count_le": 406,
+          "reference_complete": true,
+          "p_low": 0.407,
+          "p_high": 0.594,
+          "insertion_rank": [
+            0.407,
+            0.407
+          ],
+          "reference_interval": [
+            3.218458581081999,
+            24.28143171327687
+          ]
+        },
+        "cell_exposure[7]": {
+          "observed": 91.48552733307443,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 988,
+          "upper_tail_count_ge": 11,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 988,
+          "insertion_rank_inclusive_count_le": 988,
+          "reference_complete": true,
+          "p_low": 0.989,
+          "p_high": 0.012,
+          "insertion_rank": [
+            0.989,
+            0.989
+          ],
+          "reference_interval": [
+            7.132696069020776,
+            42.738689903253245
+          ]
+        },
+        "cell_exposure[8]": {
+          "observed": 1.1410844404595146,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 930,
+          "upper_tail_count_ge": 69,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 930,
+          "insertion_rank_inclusive_count_le": 930,
+          "reference_complete": true,
+          "p_low": 0.931,
+          "p_high": 0.07,
+          "insertion_rank": [
+            0.931,
+            0.931
+          ],
+          "reference_interval": [
+            0.45785209918580383,
+            2.5670785468474246
+          ]
+        },
+        "cell_count_minus_conditional_expected[0]": {
+          "observed": -0.19643543552286286,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 724,
+          "upper_tail_count_ge": 275,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 724,
+          "insertion_rank_inclusive_count_le": 724,
+          "reference_complete": true,
+          "p_low": 0.725,
+          "p_high": 0.276,
+          "insertion_rank": [
+            0.725,
+            0.725
+          ],
+          "reference_interval": [
+            -0.4282078896948201,
+            2.029422743703944
+          ]
+        },
+        "cell_count_minus_conditional_expected[1]": {
+          "observed": 1.7189541951499487,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 779,
+          "upper_tail_count_ge": 220,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 779,
+          "insertion_rank_inclusive_count_le": 779,
+          "reference_complete": true,
+          "p_low": 0.78,
+          "p_high": 0.221,
+          "insertion_rank": [
+            0.78,
+            0.78
+          ],
+          "reference_interval": [
+            -3.3859908836301367,
+            5.563524390482268
+          ]
+        },
+        "cell_count_minus_conditional_expected[2]": {
+          "observed": -3.528594029053302,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 230,
+          "upper_tail_count_ge": 769,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 230,
+          "insertion_rank_inclusive_count_le": 230,
+          "reference_complete": true,
+          "p_low": 0.231,
+          "p_high": 0.77,
+          "insertion_rank": [
+            0.231,
+            0.231
+          ],
+          "reference_interval": [
+            -8.642296737263933,
+            9.322099033688403
+          ]
+        },
+        "cell_count_minus_conditional_expected[3]": {
+          "observed": 3.3516125179911187,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 942,
+          "upper_tail_count_ge": 57,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 942,
+          "insertion_rank_inclusive_count_le": 942,
+          "reference_complete": true,
+          "p_low": 0.943,
+          "p_high": 0.058,
+          "insertion_rank": [
+            0.943,
+            0.943
+          ],
+          "reference_interval": [
+            -2.8012189319513974,
+            4.550262646195626
+          ]
+        },
+        "cell_count_minus_conditional_expected[4]": {
+          "observed": -9.132286198379887,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 28,
+          "upper_tail_count_ge": 971,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 28,
+          "insertion_rank_inclusive_count_le": 28,
+          "reference_complete": true,
+          "p_low": 0.029,
+          "p_high": 0.972,
+          "insertion_rank": [
+            0.029,
+            0.029
+          ],
+          "reference_interval": [
+            -9.232555110737955,
+            10.203280839245814
+          ]
+        },
+        "cell_count_minus_conditional_expected[5]": {
+          "observed": -0.8428864501970552,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 410,
+          "upper_tail_count_ge": 589,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 410,
+          "insertion_rank_inclusive_count_le": 410,
+          "reference_complete": true,
+          "p_low": 0.411,
+          "p_high": 0.59,
+          "insertion_rank": [
+            0.411,
+            0.411
+          ],
+          "reference_interval": [
+            -4.914076383173725,
+            6.045125861313414
+          ]
+        },
+        "cell_count_minus_conditional_expected[6]": {
+          "observed": 2.0186003439200784,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 850,
+          "upper_tail_count_ge": 149,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 850,
+          "insertion_rank_inclusive_count_le": 850,
+          "reference_complete": true,
+          "p_low": 0.851,
+          "p_high": 0.15,
+          "insertion_rank": [
+            0.851,
+            0.851
+          ],
+          "reference_interval": [
+            -3.2286830872120955,
+            4.453603625744261
+          ]
+        },
+        "cell_count_minus_conditional_expected[7]": {
+          "observed": 4.927714201740827,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 951,
+          "upper_tail_count_ge": 48,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 951,
+          "insertion_rank_inclusive_count_le": 951,
+          "reference_complete": true,
+          "p_low": 0.952,
+          "p_high": 0.049,
+          "insertion_rank": [
+            0.952,
+            0.952
+          ],
+          "reference_interval": [
+            -4.8856258904924506,
+            5.9179583115627
+          ]
+        },
+        "cell_count_minus_conditional_expected[8]": {
+          "observed": 1.6833208543511475,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 974,
+          "upper_tail_count_ge": 25,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 974,
+          "insertion_rank_inclusive_count_le": 974,
+          "reference_complete": true,
+          "p_low": 0.975,
+          "p_high": 0.026,
+          "insertion_rank": [
+            0.975,
+            0.975
+          ],
+          "reference_interval": [
+            -0.5464029108266599,
+            1.6837267078387044
+          ]
+        },
+        "cell_count_minus_exposure[0]": {
+          "observed": -0.3513802419539744,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 102,
+          "upper_tail_count_ge": 897,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 102,
+          "insertion_rank_inclusive_count_le": 102,
+          "reference_complete": true,
+          "p_low": 0.103,
+          "p_high": 0.898,
+          "insertion_rank": [
+            0.103,
+            0.103
+          ],
+          "reference_interval": [
+            -0.38333180455753746,
+            2.1732181523496
+          ]
+        },
+        "cell_count_minus_exposure[1]": {
+          "observed": -1.3740114116565225,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 346,
+          "upper_tail_count_ge": 653,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 346,
+          "insertion_rank_inclusive_count_le": 346,
+          "reference_complete": true,
+          "p_low": 0.347,
+          "p_high": 0.654,
+          "insertion_rank": [
+            0.347,
+            0.347
+          ],
+          "reference_interval": [
+            -3.7215207179961114,
+            7.351792914489888
+          ]
+        },
+        "cell_count_minus_exposure[2]": {
+          "observed": -9.889290365337551,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 59,
+          "upper_tail_count_ge": 940,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 59,
+          "insertion_rank_inclusive_count_le": 59,
+          "reference_complete": true,
+          "p_low": 0.06,
+          "p_high": 0.941,
+          "insertion_rank": [
+            0.06,
+            0.06
+          ],
+          "reference_interval": [
+            -12.998214078327948,
+            15.090722518355264
+          ]
+        },
+        "cell_count_minus_exposure[3]": {
+          "observed": 0.010376354685950773,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 604,
+          "upper_tail_count_ge": 395,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 604,
+          "insertion_rank_inclusive_count_le": 604,
+          "reference_complete": true,
+          "p_low": 0.605,
+          "p_high": 0.396,
+          "insertion_rank": [
+            0.605,
+            0.605
+          ],
+          "reference_interval": [
+            -2.7644097757400985,
+            5.5350541651086616
+          ]
+        },
+        "cell_count_minus_exposure[4]": {
+          "observed": -21.87425541554352,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 4,
+          "upper_tail_count_ge": 995,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 4,
+          "insertion_rank_inclusive_count_le": 4,
+          "reference_complete": true,
+          "p_low": 0.005,
+          "p_high": 0.996,
+          "insertion_rank": [
+            0.005,
+            0.005
+          ],
+          "reference_interval": [
+            -13.599705381444963,
+            17.611661693786253
+          ]
+        },
+        "cell_count_minus_exposure[5]": {
+          "observed": -3.650028747443474,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 109,
+          "upper_tail_count_ge": 890,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 109,
+          "insertion_rank_inclusive_count_le": 109,
+          "reference_complete": true,
+          "p_low": 0.11,
+          "p_high": 0.891,
+          "insertion_rank": [
+            0.11,
+            0.11
+          ],
+          "reference_interval": [
+            -5.038231602797723,
+            6.976472844885368
+          ]
+        },
+        "cell_count_minus_exposure[6]": {
+          "observed": -0.6180890512166126,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 474,
+          "upper_tail_count_ge": 525,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 474,
+          "insertion_rank_inclusive_count_le": 474,
+          "reference_complete": true,
+          "p_low": 0.475,
+          "p_high": 0.526,
+          "insertion_rank": [
+            0.475,
+            0.475
+          ],
+          "reference_interval": [
+            -3.2232068668089795,
+            7.210843773363017
+          ]
+        },
+        "cell_count_minus_exposure[7]": {
+          "observed": 32.51447266692557,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 998,
+          "upper_tail_count_ge": 1,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 998,
+          "insertion_rank_inclusive_count_le": 998,
+          "reference_complete": true,
+          "p_low": 0.999,
+          "p_high": 0.002,
+          "insertion_rank": [
+            0.999,
+            0.999
+          ],
+          "reference_interval": [
+            -5.529713348862682,
+            8.405554791404963
+          ]
+        },
+        "cell_count_minus_exposure[8]": {
+          "observed": 0.8589155595404854,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 895,
+          "upper_tail_count_ge": 104,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 895,
+          "insertion_rank_inclusive_count_le": 895,
+          "reference_complete": true,
+          "p_low": 0.896,
+          "p_high": 0.105,
+          "insertion_rank": [
+            0.896,
+            0.896
+          ],
+          "reference_interval": [
+            -0.47408414773140284,
+            1.8500284668679465
+          ]
+        }
+      }
+    },
+    "california_fold_2": {
+      "complete": 999,
+      "failed": 0,
+      "unknown": 0,
+      "observed_count": 69.0,
+      "diagnostics": {
+        "count": {
+          "observed": 69.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 27,
+          "upper_tail_count_ge": 979,
+          "tie_count": 7,
+          "insertion_rank_strict_count_lt": 20,
+          "insertion_rank_inclusive_count_le": 27,
+          "reference_complete": true,
+          "p_low": 0.028,
+          "p_high": 0.98,
+          "insertion_rank": [
+            0.021,
+            0.028
+          ],
+          "reference_interval": [
+            69.0,
+            279.0
+          ]
+        },
+        "exposure": {
+          "observed": 82.98011402768624,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 11,
+          "upper_tail_count_ge": 988,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 11,
+          "insertion_rank_inclusive_count_le": 11,
+          "reference_complete": true,
+          "p_low": 0.012,
+          "p_high": 0.989,
+          "insertion_rank": [
+            0.012,
+            0.012
+          ],
+          "reference_interval": [
+            84.63910442014598,
+            273.41609881229346
+          ]
+        },
+        "immigrant_exposure": {
+          "observed": 51.19150695498898,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 999,
+          "upper_tail_count_ge": 999,
+          "tie_count": 999,
+          "insertion_rank_strict_count_lt": 0,
+          "insertion_rank_inclusive_count_le": 999,
+          "reference_complete": true,
+          "p_low": 1.0,
+          "p_high": 1.0,
+          "insertion_rank": [
+            0.001,
+            1.0
+          ],
+          "reference_interval": [
+            51.19150695498898,
+            51.19150695498898
+          ]
+        },
+        "trigger_exposure": {
+          "observed": 31.78860707269726,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 11,
+          "upper_tail_count_ge": 988,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 11,
+          "insertion_rank_inclusive_count_le": 11,
+          "reference_complete": true,
+          "p_low": 0.012,
+          "p_high": 0.989,
+          "insertion_rank": [
+            0.012,
+            0.012
+          ],
+          "reference_interval": [
+            33.447597465157,
+            222.22459185730446
+          ]
+        },
+        "count_minus_exposure": {
+          "observed": -13.980114027686241,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 109,
+          "upper_tail_count_ge": 890,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 109,
+          "insertion_rank_inclusive_count_le": 109,
+          "reference_complete": true,
+          "p_low": 0.11,
+          "p_high": 0.891,
+          "insertion_rank": [
+            0.11,
+            0.11
+          ],
+          "reference_interval": [
+            -21.516201861490444,
+            25.730431360837983
+          ]
+        },
+        "time_event_logsum": {
+          "observed": -146.59291236182796,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 609,
+          "upper_tail_count_ge": 390,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 609,
+          "insertion_rank_inclusive_count_le": 609,
+          "reference_complete": true,
+          "p_low": 0.61,
+          "p_high": 0.391,
+          "insertion_rank": [
+            0.61,
+            0.61
+          ],
+          "reference_interval": [
+            -232.88313618752468,
+            319.67822429713823
+          ]
+        },
+        "timing_logscore": {
+          "observed": -229.5730263895142,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 782,
+          "upper_tail_count_ge": 217,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 782,
+          "insertion_rank_inclusive_count_le": 782,
+          "reference_complete": true,
+          "p_low": 0.783,
+          "p_high": 0.218,
+          "insertion_rank": [
+            0.783,
+            0.783
+          ],
+          "reference_interval": [
+            -348.99757164544127,
+            48.51157900753179
+          ]
+        },
+        "location_logscore": {
+          "observed": -672.8781278567991,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 969,
+          "upper_tail_count_ge": 30,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 969,
+          "insertion_rank_inclusive_count_le": 969,
+          "reference_complete": true,
+          "p_low": 0.97,
+          "p_high": 0.031,
+          "insertion_rank": [
+            0.97,
+            0.97
+          ],
+          "reference_interval": [
+            -2179.897199023438,
+            -658.5854964466687
+          ]
+        },
+        "mark_logscore": {
+          "observed": 4.795665965226562,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 953,
+          "upper_tail_count_ge": 46,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 953,
+          "insertion_rank_inclusive_count_le": 953,
+          "reference_complete": true,
+          "p_low": 0.954,
+          "p_high": 0.047,
+          "insertion_rank": [
+            0.954,
+            0.954
+          ],
+          "reference_interval": [
+            -55.185279408241406,
+            7.879563134738778
+          ]
+        },
+        "joint_logscore": {
+          "observed": -897.6554882810867,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 975,
+          "upper_tail_count_ge": 24,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 975,
+          "insertion_rank_inclusive_count_le": 975,
+          "reference_complete": true,
+          "p_low": 0.976,
+          "p_high": 0.025,
+          "insertion_rank": [
+            0.976,
+            0.976
+          ],
+          "reference_interval": [
+            -2266.968496450347,
+            -899.6214521113319
+          ]
+        },
+        "zone_logscore": {
+          "observed": -55.07810653518308,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 981,
+          "upper_tail_count_ge": 18,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 981,
+          "insertion_rank_inclusive_count_le": 981,
+          "reference_complete": true,
+          "p_low": 0.982,
+          "p_high": 0.019,
+          "insertion_rank": [
+            0.982,
+            0.982
+          ],
+          "reference_interval": [
+            -120.76605284225494,
+            -56.73137685981759
+          ]
+        },
+        "cell_given_zone_logscore": {
+          "observed": -47.44870618924307,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 375,
+          "upper_tail_count_ge": 624,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 375,
+          "insertion_rank_inclusive_count_le": 375,
+          "reference_complete": true,
+          "p_low": 0.376,
+          "p_high": 0.625,
+          "insertion_rank": [
+            0.376,
+            0.376
+          ],
+          "reference_interval": [
+            -80.91549222667163,
+            -25.348352347791717
+          ]
+        },
+        "within_cell_density_logscore": {
+          "observed": -570.351315132373,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 974,
+          "upper_tail_count_ge": 25,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 974,
+          "insertion_rank_inclusive_count_le": 974,
+          "reference_complete": true,
+          "p_low": 0.975,
+          "p_high": 0.026,
+          "insertion_rank": [
+            0.975,
+            0.975
+          ],
+          "reference_interval": [
+            -1993.3626847148519,
+            -568.0985845830087
+          ]
+        },
+        "subblock_balance_max": {
+          "observed": 0.5067415866304383,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 912,
+          "upper_tail_count_ge": 87,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 912,
+          "insertion_rank_inclusive_count_le": 912,
+          "reference_complete": true,
+          "p_low": 0.913,
+          "p_high": 0.088,
+          "insertion_rank": [
+            0.913,
+            0.913
+          ],
+          "reference_interval": [
+            0.13027991005001163,
+            0.5977092960194359
+          ]
+        },
+        "gap_ks": {
+          "observed": 0.0881227829042357,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 675,
+          "upper_tail_count_ge": 324,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 675,
+          "insertion_rank_inclusive_count_le": 675,
+          "reference_complete": true,
+          "p_low": 0.676,
+          "p_high": 0.325,
+          "insertion_rank": [
+            0.676,
+            0.676
+          ],
+          "reference_interval": [
+            0.03890685472687,
+            0.1515294451755272
+          ]
+        },
+        "gap_serial": {
+          "observed": 0.02308692546525953,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 997,
+          "upper_tail_count_ge": 2,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 997,
+          "insertion_rank_inclusive_count_le": 997,
+          "reference_complete": true,
+          "p_low": 0.998,
+          "p_high": 0.003,
+          "insertion_rank": [
+            0.998,
+            0.998
+          ],
+          "reference_interval": [
+            -0.016474054122240584,
+            0.01581461393156039
+          ]
+        },
+        "censored_tail": {
+          "observed": 1.586732938471152,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 699,
+          "upper_tail_count_ge": 300,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 699,
+          "insertion_rank_inclusive_count_le": 699,
+          "reference_complete": true,
+          "p_low": 0.7,
+          "p_high": 0.301,
+          "insertion_rank": [
+            0.7,
+            0.7
+          ],
+          "reference_interval": [
+            0.20475815863390756,
+            4.1602047948060665
+          ]
+        },
+        "spatial_rosenblatt_ks_max": {
+          "observed": 0.1129696501693383,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 809,
+          "upper_tail_count_ge": 190,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 809,
+          "insertion_rank_inclusive_count_le": 809,
+          "reference_complete": true,
+          "p_low": 0.81,
+          "p_high": 0.191,
+          "insertion_rank": [
+            0.81,
+            0.81
+          ],
+          "reference_interval": [
+            0.04654454029690297,
+            0.15507137981463015
+          ]
+        },
+        "spatial_rosenblatt_cross_abs": {
+          "observed": 0.021671079327220788,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 991,
+          "upper_tail_count_ge": 8,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 991,
+          "insertion_rank_inclusive_count_le": 991,
+          "reference_complete": true,
+          "p_low": 0.992,
+          "p_high": 0.009,
+          "insertion_rank": [
+            0.992,
+            0.992
+          ],
+          "reference_interval": [
+            0.00027744438685294053,
+            0.018252598010173187
+          ]
+        },
+        "cell_mass_residual_max": {
+          "observed": 0.9353000407946973,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 928,
+          "upper_tail_count_ge": 71,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 928,
+          "insertion_rank_inclusive_count_le": 928,
+          "reference_complete": true,
+          "p_low": 0.929,
+          "p_high": 0.072,
+          "insertion_rank": [
+            0.929,
+            0.929
+          ],
+          "reference_interval": [
+            0.29059965091976264,
+            1.1369099079940341
+          ]
+        },
+        "location_dimensionless_log_mean": {
+          "observed": 3.0323144634777903,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 37,
+          "upper_tail_count_ge": 962,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 37,
+          "insertion_rank_inclusive_count_le": 37,
+          "reference_complete": true,
+          "p_low": 0.038,
+          "p_high": 0.963,
+          "insertion_rank": [
+            0.038,
+            0.038
+          ],
+          "reference_interval": [
+            2.9727657609201517,
+            5.071058680477996
+          ]
+        },
+        "location_dimensionless_log_variance": {
+          "observed": 12.30394407102264,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 999,
+          "upper_tail_count_ge": 0,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 999,
+          "insertion_rank_inclusive_count_le": 999,
+          "reference_complete": true,
+          "p_low": 1.0,
+          "p_high": 0.001,
+          "insertion_rank": [
+            1.0,
+            1.0
+          ],
+          "reference_interval": [
+            5.115680545645017,
+            8.90203834133091
+          ]
+        },
+        "within_cell_dimensionless_absmax": {
+          "observed": 6.222589974706672,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 498,
+          "upper_tail_count_ge": 501,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 498,
+          "insertion_rank_inclusive_count_le": 498,
+          "reference_complete": true,
+          "p_low": 0.499,
+          "p_high": 0.502,
+          "insertion_rank": [
+            0.499,
+            0.499
+          ],
+          "reference_interval": [
+            5.935671300203616,
+            6.92541183337746
+          ]
+        },
+        "within_cell_dimensionless_sum": {
+          "observed": 160.5763321022822,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 29,
+          "upper_tail_count_ge": 970,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 29,
+          "insertion_rank_inclusive_count_le": 29,
+          "reference_complete": true,
+          "p_low": 0.03,
+          "p_high": 0.971,
+          "insertion_rank": [
+            0.03,
+            0.03
+          ],
+          "reference_interval": [
+            157.92323331402645,
+            976.0888013620179
+          ]
+        },
+        "year_count[0]": {
+          "observed": 14.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 188,
+          "upper_tail_count_ge": 851,
+          "tie_count": 40,
+          "insertion_rank_strict_count_lt": 148,
+          "insertion_rank_inclusive_count_le": 188,
+          "reference_complete": true,
+          "p_low": 0.189,
+          "p_high": 0.852,
+          "insertion_rank": [
+            0.149,
+            0.189
+          ],
+          "reference_interval": [
+            8.0,
+            69.0
+          ]
+        },
+        "year_count[1]": {
+          "observed": 6.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 13,
+          "upper_tail_count_ge": 994,
+          "tie_count": 8,
+          "insertion_rank_strict_count_lt": 5,
+          "insertion_rank_inclusive_count_le": 13,
+          "reference_complete": true,
+          "p_low": 0.014,
+          "p_high": 0.995,
+          "insertion_rank": [
+            0.006,
+            0.014
+          ],
+          "reference_interval": [
+            7.0,
+            77.0
+          ]
+        },
+        "year_count[2]": {
+          "observed": 11.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 112,
+          "upper_tail_count_ge": 913,
+          "tie_count": 26,
+          "insertion_rank_strict_count_lt": 86,
+          "insertion_rank_inclusive_count_le": 112,
+          "reference_complete": true,
+          "p_low": 0.113,
+          "p_high": 0.914,
+          "insertion_rank": [
+            0.087,
+            0.113
+          ],
+          "reference_interval": [
+            7.0,
+            83.0
+          ]
+        },
+        "year_count[3]": {
+          "observed": 31.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 793,
+          "upper_tail_count_ge": 219,
+          "tie_count": 13,
+          "insertion_rank_strict_count_lt": 780,
+          "insertion_rank_inclusive_count_le": 793,
+          "reference_complete": true,
+          "p_low": 0.794,
+          "p_high": 0.22,
+          "insertion_rank": [
+            0.781,
+            0.794
+          ],
+          "reference_interval": [
+            7.0,
+            75.0
+          ]
+        },
+        "year_count[4]": {
+          "observed": 7.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 28,
+          "upper_tail_count_ge": 983,
+          "tie_count": 12,
+          "insertion_rank_strict_count_lt": 16,
+          "insertion_rank_inclusive_count_le": 28,
+          "reference_complete": true,
+          "p_low": 0.029,
+          "p_high": 0.984,
+          "insertion_rank": [
+            0.017,
+            0.029
+          ],
+          "reference_interval": [
+            7.0,
+            68.0
+          ]
+        },
+        "year_exposure[0]": {
+          "observed": 16.938048471817385,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 138,
+          "upper_tail_count_ge": 861,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 138,
+          "insertion_rank_inclusive_count_le": 138,
+          "reference_complete": true,
+          "p_low": 0.139,
+          "p_high": 0.862,
+          "insertion_rank": [
+            0.139,
+            0.139
+          ],
+          "reference_interval": [
+            15.058973492339794,
+            59.874545106243616
+          ]
+        },
+        "year_exposure[1]": {
+          "observed": 13.191344354739721,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 2,
+          "upper_tail_count_ge": 997,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 2,
+          "insertion_rank_inclusive_count_le": 2,
+          "reference_complete": true,
+          "p_low": 0.003,
+          "p_high": 0.998,
+          "insertion_rank": [
+            0.003,
+            0.003
+          ],
+          "reference_interval": [
+            14.546886220629323,
+            73.61762201751523
+          ]
+        },
+        "year_exposure[2]": {
+          "observed": 15.339667416692466,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 79,
+          "upper_tail_count_ge": 920,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 79,
+          "insertion_rank_inclusive_count_le": 79,
+          "reference_complete": true,
+          "p_low": 0.08,
+          "p_high": 0.921,
+          "insertion_rank": [
+            0.08,
+            0.08
+          ],
+          "reference_interval": [
+            14.018568867129577,
+            78.5319368895116
+          ]
+        },
+        "year_exposure[3]": {
+          "observed": 23.092088325547895,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 616,
+          "upper_tail_count_ge": 383,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 616,
+          "insertion_rank_inclusive_count_le": 616,
+          "reference_complete": true,
+          "p_low": 0.617,
+          "p_high": 0.384,
+          "insertion_rank": [
+            0.617,
+            0.617
+          ],
+          "reference_interval": [
+            14.007174868637135,
+            74.50980500448411
+          ]
+        },
+        "year_exposure[4]": {
+          "observed": 14.41896545888891,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 44,
+          "upper_tail_count_ge": 955,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 44,
+          "insertion_rank_inclusive_count_le": 44,
+          "reference_complete": true,
+          "p_low": 0.045,
+          "p_high": 0.956,
+          "insertion_rank": [
+            0.045,
+            0.045
+          ],
+          "reference_interval": [
+            13.678177206581847,
+            64.75938563019379
+          ]
+        },
+        "year_count_minus_exposure[0]": {
+          "observed": -2.9380484718173854,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 299,
+          "upper_tail_count_ge": 700,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 299,
+          "insertion_rank_inclusive_count_le": 299,
+          "reference_complete": true,
+          "p_low": 0.3,
+          "p_high": 0.701,
+          "insertion_rank": [
+            0.3,
+            0.3
+          ],
+          "reference_interval": [
+            -7.672486168001907,
+            12.218605269723561
+          ]
+        },
+        "year_count_minus_exposure[1]": {
+          "observed": -7.191344354739721,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 41,
+          "upper_tail_count_ge": 958,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 41,
+          "insertion_rank_inclusive_count_le": 41,
+          "reference_complete": true,
+          "p_low": 0.042,
+          "p_high": 0.959,
+          "insertion_rank": [
+            0.042,
+            0.042
+          ],
+          "reference_interval": [
+            -7.930696293059958,
+            11.088192049666894
+          ]
+        },
+        "year_count_minus_exposure[2]": {
+          "observed": -4.339667416692466,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 189,
+          "upper_tail_count_ge": 810,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 189,
+          "insertion_rank_inclusive_count_le": 189,
+          "reference_complete": true,
+          "p_low": 0.19,
+          "p_high": 0.811,
+          "insertion_rank": [
+            0.19,
+            0.19
+          ],
+          "reference_interval": [
+            -8.342794365572786,
+            12.644755685288388
+          ]
+        },
+        "year_count_minus_exposure[3]": {
+          "observed": 7.907911674452105,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 932,
+          "upper_tail_count_ge": 67,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 932,
+          "insertion_rank_inclusive_count_le": 932,
+          "reference_complete": true,
+          "p_low": 0.933,
+          "p_high": 0.068,
+          "insertion_rank": [
+            0.933,
+            0.933
+          ],
+          "reference_interval": [
+            -7.934942241033699,
+            11.300222460919628
+          ]
+        },
+        "year_count_minus_exposure[4]": {
+          "observed": -7.418965458888909,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 34,
+          "upper_tail_count_ge": 965,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 34,
+          "insertion_rank_inclusive_count_le": 34,
+          "reference_complete": true,
+          "p_low": 0.035,
+          "p_high": 0.966,
+          "insertion_rank": [
+            0.035,
+            0.035
+          ],
+          "reference_interval": [
+            -7.752868160347148,
+            10.925204548467764
+          ]
+        },
+        "cell_count[0]": {
+          "observed": 0.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 814,
+          "upper_tail_count_ge": 999,
+          "tie_count": 814,
+          "insertion_rank_strict_count_lt": 0,
+          "insertion_rank_inclusive_count_le": 814,
+          "reference_complete": true,
+          "p_low": 0.815,
+          "p_high": 1.0,
+          "insertion_rank": [
+            0.001,
+            0.815
+          ],
+          "reference_interval": [
+            0.0,
+            2.0
+          ]
+        },
+        "cell_count[1]": {
+          "observed": 6.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 711,
+          "upper_tail_count_ge": 359,
+          "tie_count": 71,
+          "insertion_rank_strict_count_lt": 640,
+          "insertion_rank_inclusive_count_le": 711,
+          "reference_complete": true,
+          "p_low": 0.712,
+          "p_high": 0.36,
+          "insertion_rank": [
+            0.641,
+            0.712
+          ],
+          "reference_interval": [
+            0.0,
+            27.0
+          ]
+        },
+        "cell_count[2]": {
+          "observed": 30.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 576,
+          "upper_tail_count_ge": 457,
+          "tie_count": 34,
+          "insertion_rank_strict_count_lt": 542,
+          "insertion_rank_inclusive_count_le": 576,
+          "reference_complete": true,
+          "p_low": 0.577,
+          "p_high": 0.458,
+          "insertion_rank": [
+            0.543,
+            0.577
+          ],
+          "reference_interval": [
+            12.0,
+            87.0
+          ]
+        },
+        "cell_count[3]": {
+          "observed": 11.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 946,
+          "upper_tail_count_ge": 66,
+          "tie_count": 13,
+          "insertion_rank_strict_count_lt": 933,
+          "insertion_rank_inclusive_count_le": 946,
+          "reference_complete": true,
+          "p_low": 0.947,
+          "p_high": 0.067,
+          "insertion_rank": [
+            0.934,
+            0.947
+          ],
+          "reference_interval": [
+            0.0,
+            16.0
+          ]
+        },
+        "cell_count[4]": {
+          "observed": 8.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 1,
+          "upper_tail_count_ge": 998,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 1,
+          "insertion_rank_inclusive_count_le": 1,
+          "reference_complete": true,
+          "p_low": 0.002,
+          "p_high": 0.999,
+          "insertion_rank": [
+            0.002,
+            0.002
+          ],
+          "reference_interval": [
+            15.0,
+            103.0
+          ]
+        },
+        "cell_count[5]": {
+          "observed": 0.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 7,
+          "upper_tail_count_ge": 999,
+          "tie_count": 7,
+          "insertion_rank_strict_count_lt": 0,
+          "insertion_rank_inclusive_count_le": 7,
+          "reference_complete": true,
+          "p_low": 0.008,
+          "p_high": 1.0,
+          "insertion_rank": [
+            0.001,
+            0.008
+          ],
+          "reference_interval": [
+            1.0,
+            21.0
+          ]
+        },
+        "cell_count[6]": {
+          "observed": 4.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 669,
+          "upper_tail_count_ge": 440,
+          "tie_count": 110,
+          "insertion_rank_strict_count_lt": 559,
+          "insertion_rank_inclusive_count_le": 669,
+          "reference_complete": true,
+          "p_low": 0.67,
+          "p_high": 0.441,
+          "insertion_rank": [
+            0.56,
+            0.67
+          ],
+          "reference_interval": [
+            0.0,
+            22.0
+          ]
+        },
+        "cell_count[7]": {
+          "observed": 9.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 32,
+          "upper_tail_count_ge": 977,
+          "tie_count": 10,
+          "insertion_rank_strict_count_lt": 22,
+          "insertion_rank_inclusive_count_le": 32,
+          "reference_complete": true,
+          "p_low": 0.033,
+          "p_high": 0.978,
+          "insertion_rank": [
+            0.023,
+            0.033
+          ],
+          "reference_interval": [
+            9.0,
+            107.0
+          ]
+        },
+        "cell_count[8]": {
+          "observed": 1.0,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 864,
+          "upper_tail_count_ge": 367,
+          "tie_count": 232,
+          "insertion_rank_strict_count_lt": 632,
+          "insertion_rank_inclusive_count_le": 864,
+          "reference_complete": true,
+          "p_low": 0.865,
+          "p_high": 0.368,
+          "insertion_rank": [
+            0.633,
+            0.865
+          ],
+          "reference_interval": [
+            0.0,
+            4.0
+          ]
+        },
+        "cell_conditional_expected[0]": {
+          "observed": 0.18590902218327643,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 45,
+          "upper_tail_count_ge": 954,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 45,
+          "insertion_rank_inclusive_count_le": 45,
+          "reference_complete": true,
+          "p_low": 0.046,
+          "p_high": 0.955,
+          "insertion_rank": [
+            0.046,
+            0.046
+          ],
+          "reference_interval": [
+            0.17972498629162484,
+            1.2881850480187231
+          ]
+        },
+        "cell_conditional_expected[1]": {
+          "observed": 2.617010206399609,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 68,
+          "upper_tail_count_ge": 931,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 68,
+          "insertion_rank_inclusive_count_le": 68,
+          "reference_complete": true,
+          "p_low": 0.069,
+          "p_high": 0.932,
+          "insertion_rank": [
+            0.069,
+            0.069
+          ],
+          "reference_interval": [
+            2.401650142826233,
+            27.271191335622422
+          ]
+        },
+        "cell_conditional_expected[2]": {
+          "observed": 27.399679421880357,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 493,
+          "upper_tail_count_ge": 506,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 493,
+          "insertion_rank_inclusive_count_le": 493,
+          "reference_complete": true,
+          "p_low": 0.494,
+          "p_high": 0.507,
+          "insertion_rank": [
+            0.494,
+            0.494
+          ],
+          "reference_interval": [
+            15.238497761670468,
+            88.36317874889525
+          ]
+        },
+        "cell_conditional_expected[3]": {
+          "observed": 5.694895699906994,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 871,
+          "upper_tail_count_ge": 128,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 871,
+          "insertion_rank_inclusive_count_le": 871,
+          "reference_complete": true,
+          "p_low": 0.872,
+          "p_high": 0.129,
+          "insertion_rank": [
+            0.872,
+            0.872
+          ],
+          "reference_interval": [
+            1.6198221541912485,
+            13.481007984938824
+          ]
+        },
+        "cell_conditional_expected[4]": {
+          "observed": 14.770085109767768,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 2,
+          "upper_tail_count_ge": 997,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 2,
+          "insertion_rank_inclusive_count_le": 2,
+          "reference_complete": true,
+          "p_low": 0.003,
+          "p_high": 0.998,
+          "insertion_rank": [
+            0.003,
+            0.003
+          ],
+          "reference_interval": [
+            18.094286619351053,
+            99.71131763678771
+          ]
+        },
+        "cell_conditional_expected[5]": {
+          "observed": 3.34588982852101,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 11,
+          "upper_tail_count_ge": 988,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 11,
+          "insertion_rank_inclusive_count_le": 11,
+          "reference_complete": true,
+          "p_low": 0.012,
+          "p_high": 0.989,
+          "insertion_rank": [
+            0.012,
+            0.012
+          ],
+          "reference_interval": [
+            3.553103994933522,
+            17.78125567906493
+          ]
+        },
+        "cell_conditional_expected[6]": {
+          "observed": 2.043021303703966,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 61,
+          "upper_tail_count_ge": 938,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 61,
+          "insertion_rank_inclusive_count_le": 61,
+          "reference_complete": true,
+          "p_low": 0.062,
+          "p_high": 0.939,
+          "insertion_rank": [
+            0.062,
+            0.062
+          ],
+          "reference_interval": [
+            1.903583057129579,
+            19.41103013334672
+          ]
+        },
+        "cell_conditional_expected[7]": {
+          "observed": 12.587101570511495,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 19,
+          "upper_tail_count_ge": 980,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 19,
+          "insertion_rank_inclusive_count_le": 19,
+          "reference_complete": true,
+          "p_low": 0.02,
+          "p_high": 0.981,
+          "insertion_rank": [
+            0.02,
+            0.02
+          ],
+          "reference_interval": [
+            13.261884297634136,
+            101.83705967149344
+          ]
+        },
+        "cell_conditional_expected[8]": {
+          "observed": 0.3564078371255701,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 111,
+          "upper_tail_count_ge": 888,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 111,
+          "insertion_rank_inclusive_count_le": 111,
+          "reference_complete": true,
+          "p_low": 0.112,
+          "p_high": 0.889,
+          "insertion_rank": [
+            0.112,
+            0.112
+          ],
+          "reference_interval": [
+            0.3237623148387416,
+            2.8966572512724387
+          ]
+        },
+        "cell_exposure[0]": {
+          "observed": 0.2342671027186755,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 533,
+          "upper_tail_count_ge": 466,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 533,
+          "insertion_rank_inclusive_count_le": 533,
+          "reference_complete": true,
+          "p_low": 0.534,
+          "p_high": 0.467,
+          "insertion_rank": [
+            0.534,
+            0.534
+          ],
+          "reference_interval": [
+            0.2336960612725122,
+            1.1838488430745455
+          ]
+        },
+        "cell_exposure[1]": {
+          "observed": 5.151399301307641,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 671,
+          "upper_tail_count_ge": 328,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 671,
+          "insertion_rank_inclusive_count_le": 671,
+          "reference_complete": true,
+          "p_low": 0.672,
+          "p_high": 0.329,
+          "insertion_rank": [
+            0.672,
+            0.672
+          ],
+          "reference_interval": [
+            2.9018711509192574,
+            23.999611624307644
+          ]
+        },
+        "cell_exposure[2]": {
+          "observed": 25.8568197386675,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 386,
+          "upper_tail_count_ge": 613,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 386,
+          "insertion_rank_inclusive_count_le": 386,
+          "reference_complete": true,
+          "p_low": 0.387,
+          "p_high": 0.614,
+          "insertion_rank": [
+            0.387,
+            0.387
+          ],
+          "reference_interval": [
+            19.071337558812317,
+            87.71229952019588
+          ]
+        },
+        "cell_exposure[3]": {
+          "observed": 6.829527153734484,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 923,
+          "upper_tail_count_ge": 76,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 923,
+          "insertion_rank_inclusive_count_le": 923,
+          "reference_complete": true,
+          "p_low": 0.924,
+          "p_high": 0.077,
+          "insertion_rank": [
+            0.924,
+            0.924
+          ],
+          "reference_interval": [
+            2.024636589759541,
+            12.600984082472984
+          ]
+        },
+        "cell_exposure[4]": {
+          "observed": 20.348740295009677,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 0,
+          "upper_tail_count_ge": 999,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 0,
+          "insertion_rank_inclusive_count_le": 0,
+          "reference_complete": true,
+          "p_low": 0.001,
+          "p_high": 1.0,
+          "insertion_rank": [
+            0.001,
+            0.001
+          ],
+          "reference_interval": [
+            23.410105024391708,
+            96.20694992789286
+          ]
+        },
+        "cell_exposure[5]": {
+          "observed": 4.210469797801029,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 0,
+          "upper_tail_count_ge": 999,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 0,
+          "insertion_rank_inclusive_count_le": 0,
+          "reference_complete": true,
+          "p_low": 0.001,
+          "p_high": 1.0,
+          "insertion_rank": [
+            0.001,
+            0.001
+          ],
+          "reference_interval": [
+            4.439629797333118,
+            16.652393159011666
+          ]
+        },
+        "cell_exposure[6]": {
+          "observed": 3.420258870261951,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 504,
+          "upper_tail_count_ge": 495,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 504,
+          "insertion_rank_inclusive_count_le": 504,
+          "reference_complete": true,
+          "p_low": 0.505,
+          "p_high": 0.496,
+          "insertion_rank": [
+            0.505,
+            0.505
+          ],
+          "reference_interval": [
+            2.355462642035312,
+            18.93874707673959
+          ]
+        },
+        "cell_exposure[7]": {
+          "observed": 16.186550324075863,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 22,
+          "upper_tail_count_ge": 977,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 22,
+          "insertion_rank_inclusive_count_le": 22,
+          "reference_complete": true,
+          "p_low": 0.023,
+          "p_high": 0.978,
+          "insertion_rank": [
+            0.023,
+            0.023
+          ],
+          "reference_interval": [
+            16.302769152274553,
+            98.99652075875032
+          ]
+        },
+        "cell_exposure[8]": {
+          "observed": 0.7420814441095265,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 847,
+          "upper_tail_count_ge": 152,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 847,
+          "insertion_rank_inclusive_count_le": 847,
+          "reference_complete": true,
+          "p_low": 0.848,
+          "p_high": 0.153,
+          "insertion_rank": [
+            0.848,
+            0.848
+          ],
+          "reference_interval": [
+            0.4142194044878332,
+            2.097579973289681
+          ]
+        },
+        "cell_count_minus_conditional_expected[0]": {
+          "observed": -0.18590902218327643,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 771,
+          "upper_tail_count_ge": 228,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 771,
+          "insertion_rank_inclusive_count_le": 771,
+          "reference_complete": true,
+          "p_low": 0.772,
+          "p_high": 0.229,
+          "insertion_rank": [
+            0.772,
+            0.772
+          ],
+          "reference_interval": [
+            -0.30369582870850165,
+            1.4773215732823326
+          ]
+        },
+        "cell_count_minus_conditional_expected[1]": {
+          "observed": 3.382989793600391,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 943,
+          "upper_tail_count_ge": 56,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 943,
+          "insertion_rank_inclusive_count_le": 943,
+          "reference_complete": true,
+          "p_low": 0.944,
+          "p_high": 0.057,
+          "insertion_rank": [
+            0.944,
+            0.944
+          ],
+          "reference_interval": [
+            -3.059274953804243,
+            4.332622617048959
+          ]
+        },
+        "cell_count_minus_conditional_expected[2]": {
+          "observed": 2.600320578119643,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 753,
+          "upper_tail_count_ge": 246,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 753,
+          "insertion_rank_inclusive_count_le": 753,
+          "reference_complete": true,
+          "p_low": 0.754,
+          "p_high": 0.247,
+          "insertion_rank": [
+            0.754,
+            0.754
+          ],
+          "reference_interval": [
+            -6.858743762727311,
+            7.807522277989275
+          ]
+        },
+        "cell_count_minus_conditional_expected[3]": {
+          "observed": 5.305104300093006,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 990,
+          "upper_tail_count_ge": 9,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 990,
+          "insertion_rank_inclusive_count_le": 990,
+          "reference_complete": true,
+          "p_low": 0.991,
+          "p_high": 0.01,
+          "insertion_rank": [
+            0.991,
+            0.991
+          ],
+          "reference_interval": [
+            -2.297152047468647,
+            4.0011014964537175
+          ]
+        },
+        "cell_count_minus_conditional_expected[4]": {
+          "observed": -6.770085109767768,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 46,
+          "upper_tail_count_ge": 953,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 46,
+          "insertion_rank_inclusive_count_le": 46,
+          "reference_complete": true,
+          "p_low": 0.047,
+          "p_high": 0.954,
+          "insertion_rank": [
+            0.047,
+            0.047
+          ],
+          "reference_interval": [
+            -7.939752029576436,
+            8.921365665660566
+          ]
+        },
+        "cell_count_minus_conditional_expected[5]": {
+          "observed": -3.34588982852101,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 46,
+          "upper_tail_count_ge": 953,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 46,
+          "insertion_rank_inclusive_count_le": 46,
+          "reference_complete": true,
+          "p_low": 0.047,
+          "p_high": 0.954,
+          "insertion_rank": [
+            0.047,
+            0.047
+          ],
+          "reference_interval": [
+            -3.716022535672022,
+            5.013551833174805
+          ]
+        },
+        "cell_count_minus_conditional_expected[6]": {
+          "observed": 1.956978696296034,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 894,
+          "upper_tail_count_ge": 105,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 894,
+          "insertion_rank_inclusive_count_le": 894,
+          "reference_complete": true,
+          "p_low": 0.895,
+          "p_high": 0.106,
+          "insertion_rank": [
+            0.895,
+            0.895
+          ],
+          "reference_interval": [
+            -2.4857016606856437,
+            3.8492602926829798
+          ]
+        },
+        "cell_count_minus_conditional_expected[7]": {
+          "observed": -3.5871015705114946,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 162,
+          "upper_tail_count_ge": 837,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 162,
+          "insertion_rank_inclusive_count_le": 162,
+          "reference_complete": true,
+          "p_low": 0.163,
+          "p_high": 0.838,
+          "insertion_rank": [
+            0.163,
+            0.163
+          ],
+          "reference_interval": [
+            -6.956987707030514,
+            7.655049866143898
+          ]
+        },
+        "cell_count_minus_conditional_expected[8]": {
+          "observed": 0.6435921628744299,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 873,
+          "upper_tail_count_ge": 126,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 873,
+          "insertion_rank_inclusive_count_le": 873,
+          "reference_complete": true,
+          "p_low": 0.874,
+          "p_high": 0.127,
+          "insertion_rank": [
+            0.874,
+            0.874
+          ],
+          "reference_interval": [
+            -0.5096319566645792,
+            2.014686218947828
+          ]
+        },
+        "cell_count_minus_exposure[0]": {
+          "observed": -0.2342671027186755,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 285,
+          "upper_tail_count_ge": 714,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 285,
+          "insertion_rank_inclusive_count_le": 285,
+          "reference_complete": true,
+          "p_low": 0.286,
+          "p_high": 0.715,
+          "insertion_rank": [
+            0.286,
+            0.286
+          ],
+          "reference_interval": [
+            -0.2778153771877794,
+            1.4609321686953354
+          ]
+        },
+        "cell_count_minus_exposure[1]": {
+          "observed": 0.8486006986923593,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 703,
+          "upper_tail_count_ge": 296,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 703,
+          "insertion_rank_inclusive_count_le": 703,
+          "reference_complete": true,
+          "p_low": 0.704,
+          "p_high": 0.297,
+          "insertion_rank": [
+            0.704,
+            0.704
+          ],
+          "reference_interval": [
+            -2.9899294964599603,
+            5.3292071117537985
+          ]
+        },
+        "cell_count_minus_exposure[2]": {
+          "observed": 4.1431802613325,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 771,
+          "upper_tail_count_ge": 228,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 771,
+          "insertion_rank_inclusive_count_le": 771,
+          "reference_complete": true,
+          "p_low": 0.772,
+          "p_high": 0.229,
+          "insertion_rank": [
+            0.772,
+            0.772
+          ],
+          "reference_interval": [
+            -9.05910828994045,
+            12.781739774774891
+          ]
+        },
+        "cell_count_minus_exposure[3]": {
+          "observed": 4.170472846265516,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 956,
+          "upper_tail_count_ge": 43,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 956,
+          "insertion_rank_inclusive_count_le": 956,
+          "reference_complete": true,
+          "p_low": 0.957,
+          "p_high": 0.044,
+          "insertion_rank": [
+            0.957,
+            0.957
+          ],
+          "reference_interval": [
+            -2.125126976459654,
+            4.977807553573983
+          ]
+        },
+        "cell_count_minus_exposure[4]": {
+          "observed": -12.348740295009677,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 9,
+          "upper_tail_count_ge": 990,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 9,
+          "insertion_rank_inclusive_count_le": 9,
+          "reference_complete": true,
+          "p_low": 0.01,
+          "p_high": 0.991,
+          "insertion_rank": [
+            0.01,
+            0.01
+          ],
+          "reference_interval": [
+            -10.604783922645389,
+            13.703068328647873
+          ]
+        },
+        "cell_count_minus_exposure[5]": {
+          "observed": -4.210469797801029,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 16,
+          "upper_tail_count_ge": 983,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 16,
+          "insertion_rank_inclusive_count_le": 16,
+          "reference_complete": true,
+          "p_low": 0.017,
+          "p_high": 0.984,
+          "insertion_rank": [
+            0.017,
+            0.017
+          ],
+          "reference_interval": [
+            -3.74351997240268,
+            6.044362753963771
+          ]
+        },
+        "cell_count_minus_exposure[6]": {
+          "observed": 0.579741129738049,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 719,
+          "upper_tail_count_ge": 280,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 719,
+          "insertion_rank_inclusive_count_le": 719,
+          "reference_complete": true,
+          "p_low": 0.72,
+          "p_high": 0.281,
+          "insertion_rank": [
+            0.72,
+            0.72
+          ],
+          "reference_interval": [
+            -2.401031685271969,
+            5.959103407190623
+          ]
+        },
+        "cell_count_minus_exposure[7]": {
+          "observed": -7.1865503240758635,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 60,
+          "upper_tail_count_ge": 939,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 60,
+          "insertion_rank_inclusive_count_le": 60,
+          "reference_complete": true,
+          "p_low": 0.061,
+          "p_high": 0.94,
+          "insertion_rank": [
+            0.061,
+            0.061
+          ],
+          "reference_interval": [
+            -8.777379985379493,
+            12.114711279011448
+          ]
+        },
+        "cell_count_minus_exposure[8]": {
+          "observed": 0.2579185558904735,
+          "planned_R": 999,
+          "complete": 999,
+          "failed_or_unknown": 0,
+          "lower_tail_count_le": 683,
+          "upper_tail_count_ge": 316,
+          "tie_count": 0,
+          "insertion_rank_strict_count_lt": 683,
+          "insertion_rank_inclusive_count_le": 683,
+          "reference_complete": true,
+          "p_low": 0.684,
+          "p_high": 0.317,
+          "insertion_rank": [
+            0.684,
+            0.684
+          ],
+          "reference_interval": [
+            -0.4227927570971259,
+            2.3571056844020157
+          ]
+        }
+      }
+    }
+  }
+}

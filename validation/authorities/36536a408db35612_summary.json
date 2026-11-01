@@ -1,0 +1,5974 @@
+{
+  "created_utc": "2026-10-16T08:34:04.031318+00:00",
+  "plan_id": "18e6e98a77bbaf9079fb1fc2cecd30c8e4f1c6dbc38fc1069045c94dcc669f80",
+  "R": 25,
+  "B": 1999,
+  "requested": 50,
+  "validated": 50,
+  "all_planned_validated": true,
+  "arms": {
+    "old": {
+      "requested": 25,
+      "rejections": 6,
+      "resolved": 25,
+      "unknown": 0,
+      "computational_missingness_bounds": [
+        0.24,
+        0.24
+      ],
+      "conditional_power": 0.24,
+      "monte_carlo_se": 0.0854166260162505,
+      "exact_binomial_95_interval": [
+        0.09356443933174284,
+        0.4512880178166865
+      ]
+    },
+    "new": {
+      "requested": 25,
+      "rejections": 11,
+      "resolved": 25,
+      "unknown": 0,
+      "computational_missingness_bounds": [
+        0.44,
+        0.44
+      ],
+      "conditional_power": 0.44,
+      "monte_carlo_se": 0.09927738916792686,
+      "exact_binomial_95_interval": [
+        0.24402366514720802,
+        0.6507183660086642
+      ]
+    }
+  },
+  "paired": {
+    "requested": 25,
+    "complete": true,
+    "table": {
+      "neither": 12,
+      "old_only": 2,
+      "new_only": 7,
+      "both": 4,
+      "unknown": 0
+    },
+    "mean_gain": 0.2,
+    "MCSE": 0.11547005383792515,
+    "accounting_bounds": [
+      0.2,
+      0.2
+    ],
+    "scope": "Paired conditional screening-frequency difference; descriptive MCSE, no confidence interval"
+  },
+  "outcomes": [
+    {
+      "id": "old_r00",
+      "setting_id": "old",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "old",
+      "pair_id": "pair_00",
+      "replication": 0,
+      "seed": 8459463316837876904,
+      "status": "validated",
+      "statistics": {
+        "feedback": 0.4979810876325246,
+        "sharing": 0.015724413897260092
+      },
+      "n_events": 542,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.5465403631556336,
+        "mean_event_fixed_history_total_suppression": 0.15949139748615618,
+        "median_event_fixed_history_total_suppression": 0.14895564328302624,
+        "eta": 0.2839974288868791,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.299641938043369,
+            0.01420321259847958,
+            0.4450331377336137
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.438299056066479,
+            0.01165600649498412,
+            0.492953642571577
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -4.290843928818957,
+            0.1009049544982325,
+            0.49633476392078607,
+            0.12219061040579743
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -4.28805070421562,
+            0.10250285029823596,
+            0.49669793942407825,
+            0.39341328859699265
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 0.1,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 4.547473508864641e-13,
+      "fit_sha256": "7acf3bf5bf6a0d5d70ac0d92750292c080129b9527bec0bb3c75eccc64192fa3",
+      "validation_sha256": "3d6775f1d0f9406c1f7f149b25099cc1277821ae099427c66dd9624c2081b2ff",
+      "catalogue_sha256": "3b966c9ae15b8ab988f7e4fba007806d0ac5ae6d452f6419bf3e24a1aece8fda",
+      "rank": 0.4245,
+      "reject": false
+    },
+    {
+      "id": "new_r00",
+      "setting_id": "new",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "new",
+      "pair_id": "pair_00",
+      "replication": 0,
+      "seed": 8459463316837876904,
+      "status": "validated",
+      "statistics": {
+        "feedback": 8.821679439383843,
+        "sharing": 0.051124080345744005
+      },
+      "n_events": 446,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.5448337263137552,
+        "mean_event_fixed_history_total_suppression": 0.21468094461727222,
+        "median_event_fixed_history_total_suppression": 0.16924587412112796,
+        "eta": 0.4885010300470942,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.5269838930583655,
+            0.10181777403449786,
+            0.5058349568712759
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.652596281448347,
+            0.109177105738383,
+            0.5959951429172586
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -3.774420056907974,
+            0.608170915706636,
+            0.6117654048586925,
+            0.8537499033723756
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -3.756104480942634,
+            0.622804855504836,
+            0.6090964136455221,
+            0.27771477569322023
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 10.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 4.547473508864641e-13,
+      "fit_sha256": "4401e86de02c8563cbc61280cd6dd9be2d135da261565625fba139948dc0728b",
+      "validation_sha256": "e8e279c558a46d43bff27f983ab05516e15a9fcbe8b370cb8a914919a9893957",
+      "catalogue_sha256": "6fd50bdfd0865eeff79b7d3181f4828782145e0917f3765854e7521f6748b1c7",
+      "rank": 0.007,
+      "reject": true
+    },
+    {
+      "id": "old_r01",
+      "setting_id": "old",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "old",
+      "pair_id": "pair_01",
+      "replication": 1,
+      "seed": 13608901048721271656,
+      "status": "validated",
+      "statistics": {
+        "feedback": 3.376200384985623,
+        "sharing": 0.06348353192743161
+      },
+      "n_events": 555,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.519504007926497,
+        "mean_event_fixed_history_total_suppression": 0.15688914495318332,
+        "median_event_fixed_history_total_suppression": 0.1533671238540866,
+        "eta": 0.2839974288868791,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.304772783721581,
+            -0.1352754048821566,
+            0.370733380844757
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.463765722129156,
+            -0.08732069303135669,
+            0.4545705788691369
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -3.9714048561484674,
+            0.1188961181011645,
+            0.46322428985645286,
+            0.3929368019104522
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -3.9662147831187498,
+            0.12085570167381271,
+            0.46387336914215116,
+            1.254575953822481
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 0.1,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 0.0,
+      "fit_sha256": "aab03a19e7820534c06d812af8cd1400b55548b9b302eee204421bfedfb8b568",
+      "validation_sha256": "9a9ced43510f08b7640b737659902d3033ef9d9896118f3b179ba5a0a93b7b04",
+      "catalogue_sha256": "fb388d25c07af15bdb7accaefd8e10068f689809c555d23c30c231edf27d55b6",
+      "rank": 0.082,
+      "reject": false
+    },
+    {
+      "id": "new_r01",
+      "setting_id": "new",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "new",
+      "pair_id": "pair_01",
+      "replication": 1,
+      "seed": 13608901048721271656,
+      "status": "validated",
+      "statistics": {
+        "feedback": 4.33135607428494,
+        "sharing": 0.02427987002693044
+      },
+      "n_events": 495,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.5103769692160086,
+        "mean_event_fixed_history_total_suppression": 0.21631065982826594,
+        "median_event_fixed_history_total_suppression": 0.1895500259188185,
+        "eta": 0.4885010300470942,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.449248228214858,
+            -0.05988619425198297,
+            0.36037423534637186
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.614387178748327,
+            0.024050973666705822,
+            0.43789992373518233
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -4.009686817102479,
+            0.30375340544460194,
+            0.4473884381363304,
+            0.5432345402851927
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -4.00692976690597,
+            0.30504647889439457,
+            0.4480192494817781,
+            1.7244553607293136
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 0.1,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 4.547473508864641e-13,
+      "fit_sha256": "c9f8dceeac8ae7761b13e37a7441efdffdc770ce01b271e20b78062231bc9f14",
+      "validation_sha256": "2cf1b6664083836e76993bcf883e92185aaf13a35dff333be38e848ee87e55f8",
+      "catalogue_sha256": "d385a755bfb4be1712a897ec352c402d2701967ad147fcf9295a2dc9db60a487",
+      "rank": 0.0545,
+      "reject": false
+    },
+    {
+      "id": "old_r02",
+      "setting_id": "old",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "old",
+      "pair_id": "pair_02",
+      "replication": 2,
+      "seed": 4012396888271871157,
+      "status": "validated",
+      "statistics": {
+        "feedback": 1.805536488533562,
+        "sharing": 0.01428911568609692
+      },
+      "n_events": 455,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.5793660523395702,
+        "mean_event_fixed_history_total_suppression": 0.13939878320405935,
+        "median_event_fixed_history_total_suppression": 0.13983094929978426,
+        "eta": 0.2839974288868791,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.4407992999263906,
+            0.1049082435192716,
+            0.43289806692781
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.591370558571469,
+            0.1317778471729646,
+            0.5402280616833396
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -4.192818191057869,
+            0.42784916112876825,
+            0.5508082668493368,
+            0.43211820563792264
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -4.17879992483511,
+            0.4399612648223793,
+            0.5490936019513387,
+            0.14262851729190323
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 10.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 2.2737367544323206e-13,
+      "fit_sha256": "52b108f2935e398df7e16d529635b93e58950e1662758371f351e512164e0ef3",
+      "validation_sha256": "514efdfe7739e6c4f1dd02c051e1ae5752dae6d6572973013344d24054b51dc1",
+      "catalogue_sha256": "6b2c08681ef956bd5f5a0d2862fb3a52e94bc65943c57f2de7ed329532810eb0",
+      "rank": 0.195,
+      "reject": false
+    },
+    {
+      "id": "new_r02",
+      "setting_id": "new",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "new",
+      "pair_id": "pair_02",
+      "replication": 2,
+      "seed": 4012396888271871157,
+      "status": "validated",
+      "statistics": {
+        "feedback": 0.22245060736577216,
+        "sharing": 0.053472398630674434
+      },
+      "n_events": 397,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.6073529648376992,
+        "mean_event_fixed_history_total_suppression": 0.19856253057378198,
+        "median_event_fixed_history_total_suppression": 0.20755613917996885,
+        "eta": 0.4885010300470942,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.540218325253362,
+            0.0036002903331916985,
+            0.42160219056354925
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.6877026407968385,
+            -0.010426011370726296,
+            0.5352575235635416
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -4.544180192949286,
+            0.09735130329665138,
+            0.5396564228763199,
+            0.17919792888454866
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -4.5164581078143256,
+            0.11920115951172491,
+            0.5393268464321367,
+            0.06815605178494455
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 10.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 6.821210263296962e-13,
+      "fit_sha256": "52962b30537d46904812f984f1e0555068887ab2601a20df8e1459f406651c3a",
+      "validation_sha256": "cb29a3bb8697ee5dbc5af609404287c38a5b60a2d7b7ea14809cb17fb1572748",
+      "catalogue_sha256": "225f5bf43ac83edc4e16a5b8f7b9dff7dd63036deab2a3ee411fa4501ee39470",
+      "rank": 0.5175,
+      "reject": false
+    },
+    {
+      "id": "old_r03",
+      "setting_id": "old",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "old",
+      "pair_id": "pair_03",
+      "replication": 3,
+      "seed": 17908837104382597945,
+      "status": "validated",
+      "statistics": {
+        "feedback": 4.115250190141978,
+        "sharing": 0.20763899804796893
+      },
+      "n_events": 479,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.5755848831993976,
+        "mean_event_fixed_history_total_suppression": 0.12610714289141392,
+        "median_event_fixed_history_total_suppression": 0.11806955146869968,
+        "eta": 0.2839974288868791,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.396335782459984,
+            0.25558621699485395,
+            0.38099105889756535
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.501537441440212,
+            0.18942423191854332,
+            0.5030486032257503
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -4.060762426134487,
+            0.5734613174085791,
+            0.517347936686427,
+            0.5416483226423038
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -4.044004380447242,
+            0.5886570429456895,
+            0.5154897904079135,
+            0.17949366553317764
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 10.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 4.547473508864641e-13,
+      "fit_sha256": "32e002e6e511e4554a8a91d41d2f4ce7e2ab84e85bb43363af3a8a7dbfe31271",
+      "validation_sha256": "bd58fd3eca4d30811b0361af348aa44a808dbc6012a5826ea166f9e9d84d163f",
+      "catalogue_sha256": "e3946c6dcb8c42f10f3ded78b0a9f444186868719a72324bb0eece64b68635c9",
+      "rank": 0.058,
+      "reject": false
+    },
+    {
+      "id": "new_r03",
+      "setting_id": "new",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "new",
+      "pair_id": "pair_03",
+      "replication": 3,
+      "seed": 17908837104382597945,
+      "status": "validated",
+      "statistics": {
+        "feedback": 4.8657737999255914,
+        "sharing": 0.338272584391234
+      },
+      "n_events": 387,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.6310237502203102,
+        "mean_event_fixed_history_total_suppression": 0.18957854495389687,
+        "median_event_fixed_history_total_suppression": 0.20718681952302248,
+        "eta": 0.4885010300470942,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.54082758929493,
+            0.09286678240226619,
+            0.4479122885780217
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.645302921133115,
+            0.08070866576058591,
+            0.5434687487217393
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -3.6841925258644843,
+            0.7147221771358667,
+            0.5664942662875532,
+            1.3485411738201476
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -3.6208128312977026,
+            0.761578146051793,
+            0.5625492013116353,
+            0.4585119697765594
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 10.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 4.547473508864641e-13,
+      "fit_sha256": "45c57d5292600b2499b86def1c203d3bf97ff7980c2df9b5f7a1995b1c245bfb",
+      "validation_sha256": "40eb530fa958f95669cffa955a2920c9578443e59921ef6cb3ab934faa88e4dd",
+      "catalogue_sha256": "3486d858c2396485e33e78ec0ef8358071a186e6bfc7776d3393f511453ed7ba",
+      "rank": 0.041,
+      "reject": true
+    },
+    {
+      "id": "old_r04",
+      "setting_id": "old",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "old",
+      "pair_id": "pair_04",
+      "replication": 4,
+      "seed": 12302605251989057389,
+      "status": "validated",
+      "statistics": {
+        "feedback": 1.9434757385511148,
+        "sharing": 0.0
+      },
+      "n_events": 529,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.5320760636288012,
+        "mean_event_fixed_history_total_suppression": 0.13884312057561396,
+        "median_event_fixed_history_total_suppression": 0.12282288854730264,
+        "eta": 0.2839974288868791,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.345874827809423,
+            -0.17297878530582206,
+            0.43879157249389605
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.5038428611641645,
+            -0.20437107446352568,
+            0.4905844177951994
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -4.159593363509193,
+            0.03491845064269292,
+            0.5339005749262972,
+            0.2940853230333131
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -4.159593363509193,
+            0.03491845064269292,
+            0.5339005749262972,
+            0.2940853230333131
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 2.2737367544323206e-13,
+      "fit_sha256": "01ef0d8f973e90e80ce7ba5340b4a1195dd579036a72838305b12a7fa588eccd",
+      "validation_sha256": "4afd9a3748573712876be8a78d77d917c1a0c3fd650e7b4a8d5a1bfc4b890fff",
+      "catalogue_sha256": "9c93aed563527bc2a5af4368d5046f7dad83f13c4357cf6a70ad621ab2ce5b7b",
+      "rank": 0.1795,
+      "reject": false
+    },
+    {
+      "id": "new_r04",
+      "setting_id": "new",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "new",
+      "pair_id": "pair_04",
+      "replication": 4,
+      "seed": 12302605251989057389,
+      "status": "validated",
+      "statistics": {
+        "feedback": 9.200705304925577,
+        "sharing": 0.35993025431935166
+      },
+      "n_events": 468,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.5096310307321801,
+        "mean_event_fixed_history_total_suppression": 0.19661961991583518,
+        "median_event_fixed_history_total_suppression": 0.2135730450650527,
+        "eta": 0.4885010300470942,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.51015803535366,
+            -0.034528731527354424,
+            0.4429581155242627
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.6709155059462,
+            -0.05368430191214975,
+            0.534731475259307
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -3.713676541428034,
+            0.5581481837155408,
+            0.5529099861073464,
+            0.9531156855141392
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -3.679743013041212,
+            0.5829757321644994,
+            0.5507697597533067,
+            0.3144343753066449
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 10.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 1.3642420526593924e-12,
+      "fit_sha256": "940ae011210875c259bf9a5fd68677e9b0964aa3a52336a218d2bbec892b3812",
+      "validation_sha256": "2d01e7823cda81dbbf71bc2edad7891954ee09223217e13163718d72be7bfc92",
+      "catalogue_sha256": "f1f9eaf1b58b463cb61f75e61cbb5d23491a9f7287b521e5a1845848d2698032",
+      "rank": 0.0065,
+      "reject": true
+    },
+    {
+      "id": "old_r05",
+      "setting_id": "old",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "old",
+      "pair_id": "pair_05",
+      "replication": 5,
+      "seed": 7887875663872300513,
+      "status": "validated",
+      "statistics": {
+        "feedback": 2.252810976937326,
+        "sharing": 0.09813607687055992
+      },
+      "n_events": 536,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.5803651165563436,
+        "mean_event_fixed_history_total_suppression": 0.1515400380349194,
+        "median_event_fixed_history_total_suppression": 0.17089911515264,
+        "eta": 0.2839974288868791,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.255069181558301,
+            0.19133741082366384,
+            0.46254389048852046
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.387007933910083,
+            0.18979396496446843,
+            0.4956442565155614
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -3.91805009925051,
+            0.4907431327895211,
+            0.5068287049528799,
+            0.4640852589657764
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -3.90648850258256,
+            0.4977994031563265,
+            0.508032130902236,
+            1.5021774540558215
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 0.1,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 4.547473508864641e-13,
+      "fit_sha256": "8b20c21955d6b717a51c343b3dfbee7fff792d53fbfb31a86da623f9cf4deefb",
+      "validation_sha256": "1f7b889e7b3df194108349c3b8831af3b13574bdc965cc354f2a3c1c1809e203",
+      "catalogue_sha256": "c13677f48a1bc9d45b319460bd485059d09fd2cd888c40ef912497303868e602",
+      "rank": 0.1525,
+      "reject": false
+    },
+    {
+      "id": "new_r05",
+      "setting_id": "new",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "new",
+      "pair_id": "pair_05",
+      "replication": 5,
+      "seed": 7887875663872300513,
+      "status": "validated",
+      "statistics": {
+        "feedback": 0.2109386877787074,
+        "sharing": 0.023759810292176553
+      },
+      "n_events": 427,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.6322098449380744,
+        "mean_event_fixed_history_total_suppression": 0.22283594125765338,
+        "median_event_fixed_history_total_suppression": 0.2916662732706694,
+        "eta": 0.4885010300470942,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.311191925691519,
+            0.01597988250259265,
+            0.3534228724142842
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "exp",
+            "tau": 0.1,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.526139152435938,
+            0.0792688045527184,
+            0.5813438264967495
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -4.3810172398823015,
+            0.14015196620698414,
+            0.5852617442311898,
+            0.16702397614794168
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -4.37166739648573,
+            0.14405274467912013,
+            0.5860819311548594,
+            0.5617222666636335
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 0.1,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 2.2737367544323206e-13,
+      "fit_sha256": "3f60f1305df0a19b6b56a856bc8ef4c1e5bb62ed0441031f157325c42dac196e",
+      "validation_sha256": "fa6af5cf075cb0f6dad54355157d1edbd3df24c42f77006fccca14cb1616d02c",
+      "catalogue_sha256": "744672091cce8d8cc248f32d580dfed2d9211444483a566e8bf6a6d87f4ae5c6",
+      "rank": 0.522,
+      "reject": false
+    },
+    {
+      "id": "old_r06",
+      "setting_id": "old",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "old",
+      "pair_id": "pair_06",
+      "replication": 6,
+      "seed": 2662099657853135992,
+      "status": "validated",
+      "statistics": {
+        "feedback": 1.5792937406786223,
+        "sharing": 0.1812903465920499
+      },
+      "n_events": 517,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.5574105982773562,
+        "mean_event_fixed_history_total_suppression": 0.14339745621249592,
+        "median_event_fixed_history_total_suppression": 0.13295334075250886,
+        "eta": 0.2839974288868791,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.3167459079441555,
+            -0.0850197798420084,
+            0.4003232336366971
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.489433286551462,
+            -0.05998078390325269,
+            0.5123487185634094
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -4.129524634168415,
+            0.15650555413969167,
+            0.5225246671646108,
+            0.35311044390916196
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -4.1120089231953605,
+            0.16877313694308982,
+            0.5211363770856224,
+            0.1179248096915794
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 10.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 6.821210263296962e-13,
+      "fit_sha256": "f205104351d21b1c163671d14d6a76e4838f635ca40e5b8b5f3808303e820d94",
+      "validation_sha256": "ca63801179a3ca8b816b85ba025becb5570bfa8bc6ac1f64bdd31d331b6ecd23",
+      "catalogue_sha256": "932771bd3892a44f212ddec213a71dbfb7bd65ba04cd9e0932cfa3c903c0cf88",
+      "rank": 0.221,
+      "reject": false
+    },
+    {
+      "id": "new_r06",
+      "setting_id": "new",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "new",
+      "pair_id": "pair_06",
+      "replication": 6,
+      "seed": 2662099657853135992,
+      "status": "validated",
+      "statistics": {
+        "feedback": 2.453814560739829,
+        "sharing": 0.05732924954554619
+      },
+      "n_events": 439,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.5623553957930407,
+        "mean_event_fixed_history_total_suppression": 0.19411909194649604,
+        "median_event_fixed_history_total_suppression": 0.1948660347884794,
+        "eta": 0.4885010300470942,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.495549352376956,
+            -0.05723497152074552,
+            0.3923929743993737
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.658975428590678,
+            -0.061638807071763994,
+            0.49214428318143705
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -4.1177076331075275,
+            0.2888136559431303,
+            0.5051389067842774,
+            0.6310719399927384
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -4.117817534180079,
+            0.2909240058439752,
+            0.5031270216494318,
+            0.2008814856324218
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 10.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 2.2737367544323206e-13,
+      "fit_sha256": "aeb48f8d478de15b10e935f1a1eed9f1c3ea22af122b49dc118538eea4ed3c34",
+      "validation_sha256": "aedefb36a55cf5e8fbc7fb6e791cccf9f74b52152ab9c9f9ba6a7a486d11333f",
+      "catalogue_sha256": "8f30d272e6a05d94a7b00fe937507dde35b8067290e7b71f5b31b4274357b72a",
+      "rank": 0.1395,
+      "reject": false
+    },
+    {
+      "id": "old_r07",
+      "setting_id": "old",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "old",
+      "pair_id": "pair_07",
+      "replication": 7,
+      "seed": 7549319326409779339,
+      "status": "validated",
+      "statistics": {
+        "feedback": 5.4569682106375694e-12,
+        "sharing": 0.0
+      },
+      "n_events": 531,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.5525434743956422,
+        "mean_event_fixed_history_total_suppression": 0.15980492993402895,
+        "median_event_fixed_history_total_suppression": 0.14361150217416718,
+        "eta": 0.2839974288868791,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.284611569949465,
+            -0.004164235349011462,
+            0.4471226009526629
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.433415143279953,
+            -0.0040738559901758635,
+            0.5581746532700975
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -4.433415270758457,
+            -0.004073996660860137,
+            0.5581746762736925,
+            0.0
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -4.433415270758457,
+            -0.004073996660860137,
+            0.5581746762736925,
+            0.0
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 9.094947017729282e-13,
+      "fit_sha256": "329a6778d0e3e615dada13eb6369895a2c3d9012489a84346f26cac857e9de18",
+      "validation_sha256": "a5682a4539b5700b8521152f02241b1d893598488c4c9fab7746a5743f36c420",
+      "catalogue_sha256": "3ea7392dcfcb3a0071fe80ec3428e84a106f15300cfba38e2fd5826d73d812fc",
+      "rank": 0.8805,
+      "reject": false
+    },
+    {
+      "id": "new_r07",
+      "setting_id": "new",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "new",
+      "pair_id": "pair_07",
+      "replication": 7,
+      "seed": 7549319326409779339,
+      "status": "validated",
+      "statistics": {
+        "feedback": 1.4087385063639886,
+        "sharing": 0.24706515232401216
+      },
+      "n_events": 502,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.5203231342497884,
+        "mean_event_fixed_history_total_suppression": 0.21058207051797198,
+        "median_event_fixed_history_total_suppression": 0.16003053742751971,
+        "eta": 0.4885010300470942,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.4065712035489595,
+            0.029613735013190385,
+            0.4445809163686987
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.599656699676343,
+            -0.033912307563802396,
+            0.5150647419862106
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -4.250752441549611,
+            0.20177780890945246,
+            0.5252599427763979,
+            0.33086626471364655
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -4.214694991803391,
+            0.22803653930424167,
+            0.5245672705146313,
+            0.11626682164953295
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 10.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 6.821210263296962e-13,
+      "fit_sha256": "9bd345f175a9a97df1bdbd625d06ec33751841162a618a2f1b24f9502ba3e8b1",
+      "validation_sha256": "001a0dbc99f36be9958a36e931c5fb498598fc1e38589f7bccf1f3f1236e2b5b",
+      "catalogue_sha256": "1ef4bc32c946f9e124ec14f47cff52f207c8e9cff2a7b406e82d0ec13707b9b6",
+      "rank": 0.239,
+      "reject": false
+    },
+    {
+      "id": "old_r08",
+      "setting_id": "old",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "old",
+      "pair_id": "pair_08",
+      "replication": 8,
+      "seed": 16947221342903599469,
+      "status": "validated",
+      "statistics": {
+        "feedback": 2.1079133156172247,
+        "sharing": 0.004799063225618738
+      },
+      "n_events": 577,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.5239158470466139,
+        "mean_event_fixed_history_total_suppression": 0.1361674669942275,
+        "median_event_fixed_history_total_suppression": 0.11954659307805977,
+        "eta": 0.2839974288868791,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.281859784822607,
+            0.1456029594229348,
+            0.3778049695721511
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.430120712576185,
+            0.08109168963273891,
+            0.455809761308014
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -4.053060581357723,
+            0.41004395261239357,
+            0.4650969528306578,
+            0.37193384656905887
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -4.050653740992449,
+            0.41449436292969577,
+            0.4639725690239635,
+            0.11939154733552605
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 10.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 0.0,
+      "fit_sha256": "6b9774c66f0a978069f2d357fdafebafc5f2fe59b8c9f4da2735028d063a66e2",
+      "validation_sha256": "f25be79c37ecc1c191920cad6373bbdb3fd06e61cb0a50204d930c08f72edb6e",
+      "catalogue_sha256": "9d8b54aa1669d5a9c561c9ea989d6b29619257cdc8c1642e4737d99e5524c7e0",
+      "rank": 0.1625,
+      "reject": false
+    },
+    {
+      "id": "new_r08",
+      "setting_id": "new",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "new",
+      "pair_id": "pair_08",
+      "replication": 8,
+      "seed": 16947221342903599469,
+      "status": "validated",
+      "statistics": {
+        "feedback": 7.281917284183692,
+        "sharing": 0.0
+      },
+      "n_events": 456,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.5788067044056594,
+        "mean_event_fixed_history_total_suppression": 0.19499201094900565,
+        "median_event_fixed_history_total_suppression": 0.20069228046492765,
+        "eta": 0.4885010300470942,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.304545925365454,
+            -0.03154730621643866,
+            0.315542772686072
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 0.1,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.5899885842281,
+            -0.0714554212820115,
+            0.5235325809234613
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -3.4442660537659076,
+            0.6909894500256127,
+            0.5442936000584936,
+            1.3528562248574358
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -3.4442660537659076,
+            0.6909894500256127,
+            0.5442936000584936,
+            1.3528562248574358
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 4.547473508864641e-13,
+      "fit_sha256": "f85c70a4340e326a02c756b2a4f06aa84fcb042a01a2eb8ec5fc322d0fa39a14",
+      "validation_sha256": "101e17f495f5fdeb19ccadb8817ef1f6120e7d6e7c9921ec06e26ff2ee87f288",
+      "catalogue_sha256": "3a8c4d1dd4cea70f3f850c0e2cb6e82d1e223e8becdc93188de28c586c1e8bdf",
+      "rank": 0.0145,
+      "reject": true
+    },
+    {
+      "id": "old_r09",
+      "setting_id": "old",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "old",
+      "pair_id": "pair_09",
+      "replication": 9,
+      "seed": 13982997424382566958,
+      "status": "validated",
+      "statistics": {
+        "feedback": 5.951711240418263,
+        "sharing": 0.13016875448920473
+      },
+      "n_events": 532,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.6200569104072681,
+        "mean_event_fixed_history_total_suppression": 0.14229977939529867,
+        "median_event_fixed_history_total_suppression": 0.12587614523774626,
+        "eta": 0.2839974288868791,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.215008444933479,
+            -0.040900677953901045,
+            0.3677371846725799
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.324635440264379,
+            -0.06004670585861961,
+            0.4508339061846469
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -3.2684760352401216,
+            0.7182582097491071,
+            0.46873543884805596,
+            1.1409916774452615
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -3.206944853006294,
+            0.7702687112369169,
+            0.46479283977901564,
+            0.3854183976943829
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 10.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 4.547473508864641e-13,
+      "fit_sha256": "622d470a3ef57d7d02ca6b9def88982422c4a0bc528a8541b1ceeea2b5d84ed5",
+      "validation_sha256": "2f64594c9570498b305d6f696d306cef800a778e8525e2ae258e7e2e0157c4d6",
+      "catalogue_sha256": "2c47f3cd8af089ed4fbfe97fa9ea702a4400dfcc24eb0d07c299f273b98fa643",
+      "rank": 0.0265,
+      "reject": true
+    },
+    {
+      "id": "new_r09",
+      "setting_id": "new",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "new",
+      "pair_id": "pair_09",
+      "replication": 9,
+      "seed": 13982997424382566958,
+      "status": "validated",
+      "statistics": {
+        "feedback": 5.088297795577546,
+        "sharing": 0.0
+      },
+      "n_events": 495,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.5851930516026145,
+        "mean_event_fixed_history_total_suppression": 0.19328441864962484,
+        "median_event_fixed_history_total_suppression": 0.19241594303541,
+        "eta": 0.4885010300470942,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.350225999653561,
+            -0.2211112877993367,
+            0.4856159772508511
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.496014248014927,
+            -0.2949596489447671,
+            0.5124357330416234
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -3.4393649898845386,
+            0.49162029907871874,
+            0.5327107423278686,
+            1.2094954730325653
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -3.4393649898845386,
+            0.49162029907871874,
+            0.5327107423278686,
+            1.2094954730325653
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 6.821210263296962e-13,
+      "fit_sha256": "da4e06d29016b7339b9a36e28c98aeeef67f01551fe5aa1b844d1c15ef280d64",
+      "validation_sha256": "3fba96c1eff77403c9b20e592158d97dc2018b04af9586798f7377a274799b66",
+      "catalogue_sha256": "636c5cc1f1d1c17a5ee8f04d3229d842ffefdb751c3eebf8e811fc0de77bd20c",
+      "rank": 0.0385,
+      "reject": true
+    },
+    {
+      "id": "old_r10",
+      "setting_id": "old",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "old",
+      "pair_id": "pair_10",
+      "replication": 10,
+      "seed": 12190858988867315219,
+      "status": "validated",
+      "statistics": {
+        "feedback": 0.0058469733676247415,
+        "sharing": 0.002293923480920057
+      },
+      "n_events": 536,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.55495164520602,
+        "mean_event_fixed_history_total_suppression": 0.1462195339090759,
+        "median_event_fixed_history_total_suppression": 0.11660353491960398,
+        "eta": 0.2839974288868791,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.3035618371457325,
+            0.30853768317023356,
+            0.429352203264976
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.464454000713438,
+            0.26547846076542825,
+            0.5425864785949399
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -4.448070039486671,
+            0.28216770920383105,
+            0.5431490910929235,
+            0.016687763430228757
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -4.441781873665998,
+            0.2886391005257023,
+            0.5431924808740822,
+            0.007371100516947738
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 10.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 2.2737367544323206e-13,
+      "fit_sha256": "4ba46f0b2ae699e39a6f036e9bc93c068ddb3a625f335b849ef6ca49b1c7017c",
+      "validation_sha256": "3bd1c1ec9657d3cff08ee0f2978a5d32fddf40732f0974d0a95ca9e8ba92a268",
+      "catalogue_sha256": "379ce75327dcaed6c7c6114544cabcec3e6464336c2309538f0b877e6e5084dc",
+      "rank": 0.676,
+      "reject": false
+    },
+    {
+      "id": "new_r10",
+      "setting_id": "new",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "new",
+      "pair_id": "pair_10",
+      "replication": 10,
+      "seed": 12190858988867315219,
+      "status": "validated",
+      "statistics": {
+        "feedback": 2.3557828800953757,
+        "sharing": 0.14713611219985978
+      },
+      "n_events": 437,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.6124052828675559,
+        "mean_event_fixed_history_total_suppression": 0.20415124262224918,
+        "median_event_fixed_history_total_suppression": 0.18175154574727317,
+        "eta": 0.4885010300470942,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.43653414863104,
+            0.027085818698891016,
+            0.40912161315173007
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.563369157974151,
+            0.028048564174796304,
+            0.5077958873752698
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -3.8541317167641043,
+            0.4850820004238892,
+            0.5239612297187977,
+            0.867952763867703
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -3.797764923888866,
+            0.5252817941930485,
+            0.5213496879135778,
+            0.2988196805270738
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 10.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 4.547473508864641e-13,
+      "fit_sha256": "801506f447ec8ccb8a3d0ee30fdda24fd24013db0ec8ad75557c494bf173277e",
+      "validation_sha256": "d63775828f26da0c213a2258ca87cfc65f3c9d197f2330715ef3a80cd3a0f8e5",
+      "catalogue_sha256": "c2ef02e4ad802205423b6c51c3f9b4c8cf24615d311123e7d83797c68a68aeca",
+      "rank": 0.145,
+      "reject": false
+    },
+    {
+      "id": "old_r11",
+      "setting_id": "old",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "old",
+      "pair_id": "pair_11",
+      "replication": 11,
+      "seed": 4877590419713854566,
+      "status": "validated",
+      "statistics": {
+        "feedback": 2.1284140601637773,
+        "sharing": 0.0
+      },
+      "n_events": 449,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.6634178815547138,
+        "mean_event_fixed_history_total_suppression": 0.13666110353026661,
+        "median_event_fixed_history_total_suppression": 0.13970765948994282,
+        "eta": 0.2839974288868791,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.32726977870106,
+            0.1615171991694654,
+            0.34207718614345134
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.387532867848832,
+            0.16075315755265124,
+            0.3940809022191402
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.7,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -4.079043683131291,
+            0.3319086472444829,
+            0.4150795184490756,
+            2.7977837044064606
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.7,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.7,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -4.079043683131291,
+            0.3319086472444829,
+            0.4150795184490756,
+            2.7977837044064606
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.7,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.7,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 4.547473508864641e-13,
+      "fit_sha256": "9114e649afbdbf118ff667ac748246bbc7272a783054dfb8c1c0e593aafad8de",
+      "validation_sha256": "6fa922b59e836a1b02330700ce1b14632cde6aedf2baa809bb99f47c981af79c",
+      "catalogue_sha256": "a96136671a6e75845e7bd7570de95a590d21578ffde9ea9cb3f0fa05099f6285",
+      "rank": 0.1615,
+      "reject": false
+    },
+    {
+      "id": "new_r11",
+      "setting_id": "new",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "new",
+      "pair_id": "pair_11",
+      "replication": 11,
+      "seed": 4877590419713854566,
+      "status": "validated",
+      "statistics": {
+        "feedback": 4.99298866449999,
+        "sharing": 0.0
+      },
+      "n_events": 427,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.639332710122753,
+        "mean_event_fixed_history_total_suppression": 0.20128841394764838,
+        "median_event_fixed_history_total_suppression": 0.21258526924636323,
+        "eta": 0.4885010300470942,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.421925014258897,
+            0.0018459765832389036,
+            0.3868006429915149
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.531188455218217,
+            0.0018367100131606259,
+            0.4779765668182521
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -3.4351150575849667,
+            0.7439379442069948,
+            0.49963685559093407,
+            1.4270641570987515
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -3.4351150575849667,
+            0.7439379442069948,
+            0.49963685559093407,
+            1.4270641570987515
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 4.547473508864641e-13,
+      "fit_sha256": "d865627c7200ff73dd8c98b2fc04df6a32496324f303d25a310127dbc2a438cb",
+      "validation_sha256": "88cf6295c49cd60b76044157714bd6476a1bb35404c7a508d2c5cf7d283ce48b",
+      "catalogue_sha256": "1ec143cf094c89a5016d94215aac92ebbab82905c5da628d4c3259d8e958ce37",
+      "rank": 0.041,
+      "reject": true
+    },
+    {
+      "id": "old_r12",
+      "setting_id": "old",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "old",
+      "pair_id": "pair_12",
+      "replication": 12,
+      "seed": 11965709229137450094,
+      "status": "validated",
+      "statistics": {
+        "feedback": 0.02071906170613147,
+        "sharing": 0.004668507463975402
+      },
+      "n_events": 516,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.5291242967416935,
+        "mean_event_fixed_history_total_suppression": 0.13464387071188152,
+        "median_event_fixed_history_total_suppression": 0.11346079110825455,
+        "eta": 0.2839974288868791,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.374902755714673,
+            0.0015447917812132798,
+            0.34865290542614136
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.524110199520607,
+            -0.06531645705096023,
+            0.42242954147727696
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -4.493672668847827,
+            -0.03989517996103715,
+            0.42336336160885457,
+            0.030056547744958546
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -4.487161028003416,
+            -0.0342912230014663,
+            0.42336880591389153,
+            0.011629944740235878
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 10.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 9.094947017729282e-13,
+      "fit_sha256": "17db2d87f106b3b5e460616f8b06c6f74d9431d58e36599815038f26666221cd",
+      "validation_sha256": "44771c016440a34aa4d13179ac13a53c9ffbe0987b1603f0970fe4744c957823",
+      "catalogue_sha256": "2110cd598d91831c0e4578d21afa1c81d055ea613b0bd3563086340daee5db76",
+      "rank": 0.659,
+      "reject": false
+    },
+    {
+      "id": "new_r12",
+      "setting_id": "new",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "new",
+      "pair_id": "pair_12",
+      "replication": 12,
+      "seed": 11965709229137450094,
+      "status": "validated",
+      "statistics": {
+        "feedback": 0.12393341702681937,
+        "sharing": 0.002893991772452864
+      },
+      "n_events": 417,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.6135402326083315,
+        "mean_event_fixed_history_total_suppression": 0.2050373492050354,
+        "median_event_fixed_history_total_suppression": 0.23038786222155538,
+        "eta": 0.4885010300470942,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.469457453622317,
+            -0.0031692480119271493,
+            0.3611229494256148
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.591813973069479,
+            -0.020629908398426964,
+            0.4485534667398221
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -4.4946797227950315,
+            0.04600001624428274,
+            0.45115808696793985,
+            0.11689134267793325
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -4.49533188921572,
+            0.045555164284601664,
+            0.4514056098388111,
+            0.3668295905751511
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 0.1,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 2.2737367544323206e-13,
+      "fit_sha256": "6ad344d42db1547d936f7e6ae294767621bfca17f5e7a27fac09231085bbc0d5",
+      "validation_sha256": "573d31749112c0eaa6d56fbef9a3b19330e8f051086f874986f3680dc336362f",
+      "catalogue_sha256": "75fa3daad24e7dad17534caefabaa9e7465b09e9806e6aacfc0f84909f91e84c",
+      "rank": 0.567,
+      "reject": false
+    },
+    {
+      "id": "old_r13",
+      "setting_id": "old",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "old",
+      "pair_id": "pair_13",
+      "replication": 13,
+      "seed": 12057455252491203866,
+      "status": "validated",
+      "statistics": {
+        "feedback": 2.7443357850888788,
+        "sharing": 0.17222335236510844
+      },
+      "n_events": 543,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.5813780351983153,
+        "mean_event_fixed_history_total_suppression": 0.15031500121621694,
+        "median_event_fixed_history_total_suppression": 0.1484925685872144,
+        "eta": 0.2839974288868791,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.235676526505607,
+            0.04782051561767381,
+            0.5207118427740794
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.380253352558886,
+            0.02139385308035267,
+            0.6557363885682602
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -3.620108787432125,
+            0.4710674671855095,
+            0.6755368008888116,
+            0.7401104487083888
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -3.5681737107403624,
+            0.5064143640331842,
+            0.6719081825984692,
+            0.2521543269612771
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 10.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 4.547473508864641e-13,
+      "fit_sha256": "c8d5af0bf0b12d5c3324bc1624123f26c8c30a03c63e3aaab8284ba31ed00d0e",
+      "validation_sha256": "e6c64ffcaf0b0bc53092bc8691c7f010ec75e3a77b7c3bd8e1dd51481996f955",
+      "catalogue_sha256": "aaf9b69070bf5d86ec081e735037410961883bcc799a1387560f3dae7e15283f",
+      "rank": 0.119,
+      "reject": false
+    },
+    {
+      "id": "new_r13",
+      "setting_id": "new",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "new",
+      "pair_id": "pair_13",
+      "replication": 13,
+      "seed": 12057455252491203866,
+      "status": "validated",
+      "statistics": {
+        "feedback": 3.3227629831822014,
+        "sharing": 0.04204530529159456
+      },
+      "n_events": 444,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.5992715216351081,
+        "mean_event_fixed_history_total_suppression": 0.21144766985775262,
+        "median_event_fixed_history_total_suppression": 0.23757926791706924,
+        "eta": 0.4885010300470942,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.43914323975137,
+            -0.1371666330353006,
+            0.5098016437693014
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.554955031551326,
+            -0.1299443315840277,
+            0.6191227419417836
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -3.905862429651051,
+            0.16340116196389182,
+            0.6357467657444199,
+            0.7224135460713629
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -3.9020244369577073,
+            0.16473238213590558,
+            0.637311362601449,
+            2.295885669786736
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 0.1,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 0.0,
+      "fit_sha256": "9cbe4ca98b29256704e5f2124bfde1b6efa2a5b8ed0d2682ecc113a5298699b9",
+      "validation_sha256": "c846d9e5722b4ccf1d8908a8ba0fd10314c9945d10c4569d0145b2a9e4af148f",
+      "catalogue_sha256": "dd86d01ec6a8e99539349cd5bac9f5287536f11e4a6ba5bd8e93bb56b803647b",
+      "rank": 0.0835,
+      "reject": false
+    },
+    {
+      "id": "old_r14",
+      "setting_id": "old",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "old",
+      "pair_id": "pair_14",
+      "replication": 14,
+      "seed": 9200682026645540215,
+      "status": "validated",
+      "statistics": {
+        "feedback": 26.194996045429434,
+        "sharing": 0.01696071160313295
+      },
+      "n_events": 1663,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.15660253950856595,
+        "mean_event_fixed_history_total_suppression": 0.04653637681213901,
+        "median_event_fixed_history_total_suppression": 0.0006476875227931737,
+        "eta": 0.2839974288868791,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.318707722781185,
+            0.047653872695626834,
+            0.4799964126539709
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.659284743421879,
+            -0.3743598257672446,
+            0.5157308161475894
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -4.163522019318116,
+            0.3795019341352356,
+            0.5196381014814397,
+            0.28140868277659764
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -4.1627689042634595,
+            0.3798772164958771,
+            0.5197021190314302,
+            0.8908081465435241
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 0.1,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 7.275957614183426e-12,
+      "fit_sha256": "7574f4dd01be5dbbe29b3b3d2f56883f87484d4283262760b912dbe71aedcdfc",
+      "validation_sha256": "3c9a40bc8450d5b8f07f3129adc033a3cdb308043dae5af521f5632cab856fef",
+      "catalogue_sha256": "f50ce1a06bdee5a826b136e4a83e37633e3cdf775eadbb4653cb7d1c3e5b86fc",
+      "rank": 0.001,
+      "reject": true
+    },
+    {
+      "id": "new_r14",
+      "setting_id": "new",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "new",
+      "pair_id": "pair_14",
+      "replication": 14,
+      "seed": 9200682026645540215,
+      "status": "validated",
+      "statistics": {
+        "feedback": 2.89812695180035,
+        "sharing": 0.035582136197263026
+      },
+      "n_events": 454,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.5919684698680716,
+        "mean_event_fixed_history_total_suppression": 0.1990628347926169,
+        "median_event_fixed_history_total_suppression": 0.17012396826973228,
+        "eta": 0.4885010300470942,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.428518151397492,
+            -0.05810918470663597,
+            0.36053751312034155
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.545497917060851,
+            -0.09274513594309228,
+            0.434061963100424
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -4.075950092995306,
+            0.2557350446296812,
+            0.4437543589809543,
+            0.5445684796529126
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -4.06595579319731,
+            0.26559281351170705,
+            0.44210942254727476,
+            0.17732714916269643
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 10.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 6.821210263296962e-13,
+      "fit_sha256": "b0a51a66b69294dbe65925482e3d081f23b3ccb85797919158f443e574e1de1a",
+      "validation_sha256": "b4b866a4f0fe4c0ac20a88ff5b82bf7a74799793413246ec0229446d5a29ba0b",
+      "catalogue_sha256": "90fa66750611083ab5439c3f06d45a6a7efd36f6f2e326aea47bc937fefb7328",
+      "rank": 0.107,
+      "reject": false
+    },
+    {
+      "id": "old_r15",
+      "setting_id": "old",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "old",
+      "pair_id": "pair_15",
+      "replication": 15,
+      "seed": 17848754228678483117,
+      "status": "validated",
+      "statistics": {
+        "feedback": 9.263163969902507,
+        "sharing": 0.18237462902561674
+      },
+      "n_events": 581,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.4810499682867748,
+        "mean_event_fixed_history_total_suppression": 0.14621605752808986,
+        "median_event_fixed_history_total_suppression": 0.102941430343739,
+        "eta": 0.2839974288868791,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.342228376116979,
+            -0.05199992249826645,
+            0.44757106446994493
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.526755760786075,
+            -0.059728359269317195,
+            0.5432808087445552
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -3.5749608862480313,
+            0.547823665722333,
+            0.5625809315737026,
+            0.7577420192490902
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -3.5627613197175934,
+            0.5601278668795653,
+            0.5604167061320352,
+            0.24426844825994037
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 10.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 4.547473508864641e-13,
+      "fit_sha256": "48e023c7143de4fc69a434f488494c957e1b355860bfaa707710f21dfa0ef52f",
+      "validation_sha256": "8229afca3a59ebf28baea1fd2d0d967fd55ed3b68ead2121cc0590863853df1b",
+      "catalogue_sha256": "ba12ac8de599a70cfcae106a57f97fd78c36b8c2c298832ed852a4fc2c517e83",
+      "rank": 0.0055,
+      "reject": true
+    },
+    {
+      "id": "new_r15",
+      "setting_id": "new",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "new",
+      "pair_id": "pair_15",
+      "replication": 15,
+      "seed": 17848754228678483117,
+      "status": "validated",
+      "statistics": {
+        "feedback": 13.098375565701645,
+        "sharing": 0.0
+      },
+      "n_events": 452,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.5523753020139254,
+        "mean_event_fixed_history_total_suppression": 0.20301346923695482,
+        "median_event_fixed_history_total_suppression": 0.21474623297845874,
+        "eta": 0.4885010300470942,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.507304691945341,
+            -0.16287093059473567,
+            0.42817407634780036
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.643183068217131,
+            -0.13554024510893517,
+            0.5128181077923518
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -3.5256697532982835,
+            0.43041008161143524,
+            0.5309072825177822,
+            1.1583251495962987
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -3.5256697532982835,
+            0.43041008161143524,
+            0.5309072825177822,
+            1.1583251495962987
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 2.2737367544323206e-13,
+      "fit_sha256": "3d18389a1f9b7d1a1e030106524151c701262d47d42ac67f0cfbeec76c644091",
+      "validation_sha256": "e1bd224a8c0e9a39a91945181532d0217af8a37d138d0ee4c1f431c0b2aeb487",
+      "catalogue_sha256": "34d9687672138f2455c631234867cfc9c123c6f349a240491a223727da4151b8",
+      "rank": 0.0015,
+      "reject": true
+    },
+    {
+      "id": "old_r16",
+      "setting_id": "old",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "old",
+      "pair_id": "pair_16",
+      "replication": 16,
+      "seed": 9596674660371971983,
+      "status": "validated",
+      "statistics": {
+        "feedback": 3.01718346649659,
+        "sharing": 0.10939582902938128
+      },
+      "n_events": 542,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.5510693385178319,
+        "mean_event_fixed_history_total_suppression": 0.15181157990837468,
+        "median_event_fixed_history_total_suppression": 0.17802498526890892,
+        "eta": 0.2839974288868791,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.309900868129899,
+            0.2216120658870876,
+            0.4619390692771475
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.47227120766603,
+            0.26950136233746574,
+            0.5720308762808853
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -3.780636829661818,
+            0.5737140345583865,
+            0.5888009739733168,
+            0.6515904738094123
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -3.7580769381337893,
+            0.5849247909048628,
+            0.5860404144329793,
+            0.21443105525272002
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 10.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 4.547473508864641e-13,
+      "fit_sha256": "27be614136bb8e66b017fce1d23e4ea73442fc0b3a37b58bdbc9f9378570128f",
+      "validation_sha256": "112a4c8968478e2e81db0d75741ebb8a6d34331fa100a3efd55561ec4da9b624",
+      "catalogue_sha256": "62486b6696f62d2d884f822a8f0a9a26497f56d6686029438ca611fc9c5acc36",
+      "rank": 0.0975,
+      "reject": false
+    },
+    {
+      "id": "new_r16",
+      "setting_id": "new",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "new",
+      "pair_id": "pair_16",
+      "replication": 16,
+      "seed": 9596674660371971983,
+      "status": "validated",
+      "statistics": {
+        "feedback": 11.690933167583353,
+        "sharing": 0.17464780742966468
+      },
+      "n_events": 474,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.5121217246038401,
+        "mean_event_fixed_history_total_suppression": 0.2082667397349716,
+        "median_event_fixed_history_total_suppression": 0.18134601670753142,
+        "eta": 0.4885010300470942,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.498466017502419,
+            -0.031305903825364134,
+            0.5250453067145117
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.667689062437845,
+            0.03438333132842773,
+            0.6387485316736188
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -3.507334915980581,
+            0.5783194275200998,
+            0.6628360279595863,
+            1.1003468416830235
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -3.4943482112156254,
+            0.5866767573463492,
+            0.6593317046942467,
+            0.35406213045292717
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 10.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 2.2737367544323206e-13,
+      "fit_sha256": "e0295aa1755968a463809d9a93f4b3a3e0df70fa636931e84d23d5a216bd60e0",
+      "validation_sha256": "3f1046da25dac8ca2ba5fd87cf6eb7730f2f7dff13462194af79caa8f11262f6",
+      "catalogue_sha256": "cdcffbe121c031e925ab99a7ba3afda6c94f72d0305675cbb5f1bc8749339fd0",
+      "rank": 0.0025,
+      "reject": true
+    },
+    {
+      "id": "old_r17",
+      "setting_id": "old",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "old",
+      "pair_id": "pair_17",
+      "replication": 17,
+      "seed": 8066551599271453922,
+      "status": "validated",
+      "statistics": {
+        "feedback": 6.4489759955672525,
+        "sharing": 0.0
+      },
+      "n_events": 643,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.44302112788091824,
+        "mean_event_fixed_history_total_suppression": 0.1133203351576912,
+        "median_event_fixed_history_total_suppression": 0.05960908891155734,
+        "eta": 0.2839974288868791,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.336315849932884,
+            0.06325126451904432,
+            0.45759067058452463
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.46485829446698,
+            -0.09622740896873136,
+            0.5005846325739843
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -4.065175599741362,
+            0.3093774509580537,
+            0.51152674823091,
+            0.3781653913627006
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -4.065175599741362,
+            0.3093774509580537,
+            0.51152674823091,
+            0.3781653913627006
+          ],
+          "ratio": 0.8,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 4.774847184307873e-12,
+      "fit_sha256": "41f90208f1cd12440ee6e3c6e827f06daf0df0c5394178003c4ba2b80466ddaa",
+      "validation_sha256": "a9036e539d8ad406f7fbd8a6d8fef54e98141b3074dc6feba02b5c679f1c2a2c",
+      "catalogue_sha256": "fcf99441ea3c0b7934f1705f060d463d1669fac62e7b041bda89392a0158347a",
+      "rank": 0.0235,
+      "reject": true
+    },
+    {
+      "id": "new_r17",
+      "setting_id": "new",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "new",
+      "pair_id": "pair_17",
+      "replication": 17,
+      "seed": 8066551599271453922,
+      "status": "validated",
+      "statistics": {
+        "feedback": 5.722128732492365,
+        "sharing": 0.04351915238748916
+      },
+      "n_events": 413,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.6221705533393503,
+        "mean_event_fixed_history_total_suppression": 0.19309171437285064,
+        "median_event_fixed_history_total_suppression": 0.22387299295199858,
+        "eta": 0.4885010300470942,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.49383534921876,
+            -0.12180060796236832,
+            0.38896363005130935
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.589364125979374,
+            -0.1498292424218059,
+            0.4605066175748974
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -3.800452627685557,
+            0.404665348432547,
+            0.47153809541342573,
+            0.9900160290874152
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -3.8319976707743675,
+            0.3815155555341369,
+            0.4724404616288504,
+            3.0
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 0.1,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 6.821210263296962e-13,
+      "fit_sha256": "043b1f203e496f3643e2650393e260e4f5e07f4aa57c17c7b6222cb693dc447e",
+      "validation_sha256": "b0675908e3b2ea85dfec945a8f5ef35d517f734a8cc97cbb8ea8a03c23ce51b3",
+      "catalogue_sha256": "32c9cd44ca9dc3c09f16380557ecbc799abbe9d06fcd1ac01a8f408fb284e95e",
+      "rank": 0.031,
+      "reject": true
+    },
+    {
+      "id": "old_r18",
+      "setting_id": "old",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "old",
+      "pair_id": "pair_18",
+      "replication": 18,
+      "seed": 16304241810833579324,
+      "status": "validated",
+      "statistics": {
+        "feedback": 0.7995264023284108,
+        "sharing": 0.02213543439802379
+      },
+      "n_events": 532,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.5605643492198648,
+        "mean_event_fixed_history_total_suppression": 0.14238302086348795,
+        "median_event_fixed_history_total_suppression": 0.11485088731495918,
+        "eta": 0.2839974288868791,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.289089961436753,
+            -0.09871831609467721,
+            0.37892355235944736
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.434696301360614,
+            -0.16936402889959923,
+            0.4675864028991207
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -4.196958628497453,
+            0.04164521362843948,
+            0.47530838296440925,
+            0.22342968910683714
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -4.191671173241238,
+            0.048218941519893414,
+            0.47437011509010124,
+            0.07279888351307594
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 10.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 6.821210263296962e-13,
+      "fit_sha256": "4817bb01d9e9ddfdb60abde42b24335229a093e2fc57520b5a18874a857fcfed",
+      "validation_sha256": "d60f71fa4cc8abec18b96dbdb863316d8ef3f6ba527e07f9f1dc35558c1696d2",
+      "catalogue_sha256": "e8a58ef2730f4f977aafae2d8d5f9fb4d6bb6c75d2a27d943a43fe2071a19b12",
+      "rank": 0.343,
+      "reject": false
+    },
+    {
+      "id": "new_r18",
+      "setting_id": "new",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "new",
+      "pair_id": "pair_18",
+      "replication": 18,
+      "seed": 16304241810833579324,
+      "status": "validated",
+      "statistics": {
+        "feedback": 0.6954933831702874,
+        "sharing": 0.011870891680246132
+      },
+      "n_events": 429,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.6145280587932823,
+        "mean_event_fixed_history_total_suppression": 0.2031740552374756,
+        "median_event_fixed_history_total_suppression": 0.18323466192889917,
+        "eta": 0.4885010300470942,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.443447615343167,
+            -0.052681447949922106,
+            0.368620598442108
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.559313126729361,
+            -0.0762125435139522,
+            0.45266875931975736
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -4.263943517518122,
+            0.1703891741611416,
+            0.4600599064566092,
+            0.3498009246209704
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -4.262366696195739,
+            0.17146719308235564,
+            0.46083931838232467,
+            1.1111612994037603
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 0.1,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 0.0,
+      "fit_sha256": "6a75b02deeed64ae382411f29f30008f36343a7f0601befa15352676351ce548",
+      "validation_sha256": "72c620dc6ce5dcd852e703138d8ffaf03e8c7653e5acc099eb8145822f94f2f3",
+      "catalogue_sha256": "23cb3b49ccba855c08eeb517cb44c23423d92ae3b7606f48d5b0604ad7aa1221",
+      "rank": 0.3655,
+      "reject": false
+    },
+    {
+      "id": "old_r19",
+      "setting_id": "old",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "old",
+      "pair_id": "pair_19",
+      "replication": 19,
+      "seed": 12766150656406777602,
+      "status": "validated",
+      "statistics": {
+        "feedback": 7.988671625887946,
+        "sharing": 0.1060343884496433
+      },
+      "n_events": 587,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.49325917325636087,
+        "mean_event_fixed_history_total_suppression": 0.15505435500547918,
+        "median_event_fixed_history_total_suppression": 0.1403276262051769,
+        "eta": 0.2839974288868791,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.2800701165546595,
+            -0.021984324663354128,
+            0.4119763681859072
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.470776356932922,
+            -0.028949464274384492,
+            0.5122988869758749
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -3.564459842881128,
+            0.5481605681796076,
+            0.5259142715781119,
+            0.682055123586201
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -3.5429128746902427,
+            0.5646756264505377,
+            0.5239005685687566,
+            0.22246621720304352
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 10.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 4.547473508864641e-13,
+      "fit_sha256": "f3123992c9dee6836b7ba48afc3013a2a4b3fa68eb6ad0c8f30b7898115c8717",
+      "validation_sha256": "2043c74ba24f2badbdec24e99d4fbf38959bfed36616d59d58ba160966134342",
+      "catalogue_sha256": "b3a0cee835584885835458886010325e9841346f08d55ac8bba4582c03957699",
+      "rank": 0.01,
+      "reject": true
+    },
+    {
+      "id": "new_r19",
+      "setting_id": "new",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "new",
+      "pair_id": "pair_19",
+      "replication": 19,
+      "seed": 12766150656406777602,
+      "status": "validated",
+      "statistics": {
+        "feedback": 9.591129712481234,
+        "sharing": 0.4598094110060629
+      },
+      "n_events": 539,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.4755073956875038,
+        "mean_event_fixed_history_total_suppression": 0.208436367208217,
+        "median_event_fixed_history_total_suppression": 0.17368804021433182,
+        "eta": 0.4885010300470942,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.408344106292358,
+            -0.10615635405410627,
+            0.4311014227069594
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.61995570411536,
+            -0.10020994694609485,
+            0.5360539836696101
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -3.5929109986514334,
+            0.593475938136332,
+            0.5536626197626523,
+            0.8473013534324146
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -3.554468075239389,
+            0.6214825993146427,
+            0.551802503336173,
+            0.27991958762431063
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 10.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 4.547473508864641e-13,
+      "fit_sha256": "f4e3f5008c0b835c1018bc4a089ed2d0b8343a42237ae6e68b92dad048e4d2c6",
+      "validation_sha256": "d4088c925882537594e4a5318d20eb60ca9302527e26465d33524f8d6ebfe927",
+      "catalogue_sha256": "29fda8f8a34cf38272f4a72e5cde7c34c362dd62e18b7bea2d77aa0f9709670a",
+      "rank": 0.0045,
+      "reject": true
+    },
+    {
+      "id": "old_r20",
+      "setting_id": "old",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "old",
+      "pair_id": "pair_20",
+      "replication": 20,
+      "seed": 15511472192056317536,
+      "status": "validated",
+      "statistics": {
+        "feedback": 1.958564279501843,
+        "sharing": 0.07164871034910902
+      },
+      "n_events": 529,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.5918877859100237,
+        "mean_event_fixed_history_total_suppression": 0.16030021523472684,
+        "median_event_fixed_history_total_suppression": 0.16602707649006157,
+        "eta": 0.2839974288868791,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.254018006975616,
+            0.06866402549290057,
+            0.36074808630070104
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.370657041159559,
+            0.0715343710665045,
+            0.43905226474478093
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -3.922514594435604,
+            0.33679888097259236,
+            0.44761316504796345,
+            0.41184263995425996
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -3.9041833423614367,
+            0.34999073153034643,
+            0.44583343064903075,
+            0.13666834234042832
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 10.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 4.547473508864641e-13,
+      "fit_sha256": "b143782bc4ac33f723f441781208b6045b4491a4a19b83da3a4fc19e8527179d",
+      "validation_sha256": "607cc0309d4bf238bd0a0bcabaff1b8cf395343071dd087fb90354c2907d7eaf",
+      "catalogue_sha256": "acf7a3da469940cdd803331ceff7dc70822651184c75ff2cd010642f82a9044a",
+      "rank": 0.1775,
+      "reject": false
+    },
+    {
+      "id": "new_r20",
+      "setting_id": "new",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "new",
+      "pair_id": "pair_20",
+      "replication": 20,
+      "seed": 15511472192056317536,
+      "status": "validated",
+      "statistics": {
+        "feedback": 1.6901265365208928,
+        "sharing": 0.2723938524509322
+      },
+      "n_events": 472,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.5964204457922762,
+        "mean_event_fixed_history_total_suppression": 0.21492126501864978,
+        "median_event_fixed_history_total_suppression": 0.23335023046886716,
+        "eta": 0.4885010300470942,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.357113938475854,
+            -0.0164692982082137,
+            0.3707198894484224
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.502089272977497,
+            -0.03842782409734359,
+            0.47187263203023416
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -4.04414970170444,
+            0.2797951087041882,
+            0.4819197919547355,
+            0.4961721466774299
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -3.983436132510889,
+            0.32405043246819126,
+            0.48054332728350735,
+            0.1792309712471734
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 10.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 2.2737367544323206e-13,
+      "fit_sha256": "d66149e25499894d2a00ed04efdc4d912c7d78fe326112b102a026b94888941e",
+      "validation_sha256": "ad026edc505f2ac5429fe16ffc70fb397534456b4f8f68d102e79a325a955fbc",
+      "catalogue_sha256": "fd099d2a5688051b5cfe9a1ac89dfc9e94caf327faa5a6385a5c20a0f497597d",
+      "rank": 0.207,
+      "reject": false
+    },
+    {
+      "id": "old_r21",
+      "setting_id": "old",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "old",
+      "pair_id": "pair_21",
+      "replication": 21,
+      "seed": 1253378448775181288,
+      "status": "validated",
+      "statistics": {
+        "feedback": 10.71426000773863,
+        "sharing": 0.11128233664112486
+      },
+      "n_events": 653,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.4653304845313562,
+        "mean_event_fixed_history_total_suppression": 0.13808032664969286,
+        "median_event_fixed_history_total_suppression": 0.07437632446594393,
+        "eta": 0.2839974288868791,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.238000478998897,
+            0.12990002225360545,
+            0.42673912319716123
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.436464524254447,
+            0.06030275808156269,
+            0.5223881731533118
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -3.3581804758637976,
+            0.9750390372812084,
+            0.540892806522074,
+            0.9028485701498747
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -3.3508681807315046,
+            0.9804420166637733,
+            0.5417567318177916,
+            2.871423028622784
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 0.1,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 2.7284841053187847e-12,
+      "fit_sha256": "caabe1afa7e7aa4bd2396a5f9d95cacfcc5abad810d73682cb30cd0f6c7c51c8",
+      "validation_sha256": "58131c2b6d9b3c96b257eda102447a300c40ac459bec0eda277dbebc4e2ac8cc",
+      "catalogue_sha256": "6e753c2c76bb9c9be71e46d6a0d824e9679d66d3f7b788644165542b3410a19d",
+      "rank": 0.0025,
+      "reject": true
+    },
+    {
+      "id": "new_r21",
+      "setting_id": "new",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "new",
+      "pair_id": "pair_21",
+      "replication": 21,
+      "seed": 1253378448775181288,
+      "status": "validated",
+      "statistics": {
+        "feedback": 2.2014034031217307,
+        "sharing": 0.024246424038210534
+      },
+      "n_events": 521,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.51542926167977,
+        "mean_event_fixed_history_total_suppression": 0.21013750534708903,
+        "median_event_fixed_history_total_suppression": 0.1319746758803485,
+        "eta": 0.4885010300470942,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.390454069839302,
+            0.050941701444289486,
+            0.4144395982767371
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.565757139940828,
+            0.023831319446614208,
+            0.5105047798468019
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -4.019151164682972,
+            0.4424644349573728,
+            0.5247425442917186,
+            0.5164201725156352
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -4.020739231137451,
+            0.44352539397152263,
+            0.52292787287881,
+            0.1639203924526012
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 10.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 2.2737367544323206e-13,
+      "fit_sha256": "8b12367e0ca141307dc820a418bf32107c1015d129bf048b8153f52263fef7f8",
+      "validation_sha256": "25bc0df42f4f6e9a8d50a684940f04473e5f7ccb04eb461981047c26ab174bb7",
+      "catalogue_sha256": "95e08457e1fa56d328fb7b89dfabb836e15cb5b80a90bceb40eed360a288662d",
+      "rank": 0.1565,
+      "reject": false
+    },
+    {
+      "id": "old_r22",
+      "setting_id": "old",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "old",
+      "pair_id": "pair_22",
+      "replication": 22,
+      "seed": 3540806094099244458,
+      "status": "validated",
+      "statistics": {
+        "feedback": 3.486092832790746,
+        "sharing": 0.02080953137601682
+      },
+      "n_events": 588,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.5210516532454921,
+        "mean_event_fixed_history_total_suppression": 0.15852627653479195,
+        "median_event_fixed_history_total_suppression": 0.1315937755861643,
+        "eta": 0.2839974288868791,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.261806565487713,
+            0.11141369895564682,
+            0.4634190131353647
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.433279511561448,
+            0.14584122743137454,
+            0.5696163441637991
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -3.735157558389018,
+            0.5859603688234721,
+            0.5835086413934065,
+            0.5714515147655956
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -3.7234038514061116,
+            0.5953344744051607,
+            0.581017312517429,
+            0.1851068187952066
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 10.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 4.547473508864641e-13,
+      "fit_sha256": "98c585c7742bff0878f274488344a9dfc438923e04824bb58f192f68f866c1b3",
+      "validation_sha256": "d443a956254aafd3a203c04fb34d8316719f95b7dbd893d9b17f951634f60afc",
+      "catalogue_sha256": "188da6f5ed9a8585612ee9b7d14849d88a4f69ea211bd6ca42565e6df25108fc",
+      "rank": 0.0785,
+      "reject": false
+    },
+    {
+      "id": "new_r22",
+      "setting_id": "new",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "new",
+      "pair_id": "pair_22",
+      "replication": 22,
+      "seed": 3540806094099244458,
+      "status": "validated",
+      "statistics": {
+        "feedback": 6.586229650477435,
+        "sharing": 0.06777724526591555
+      },
+      "n_events": 538,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.4931487508230423,
+        "mean_event_fixed_history_total_suppression": 0.20486684237449096,
+        "median_event_fixed_history_total_suppression": 0.16950183655803697,
+        "eta": 0.4885010300470942,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.4301177463658785,
+            -0.10083785819319228,
+            0.513652551728169
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.601240988916837,
+            -0.1406348668375933,
+            0.6119967815739396
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -3.6601849410924343,
+            0.4582614948427677,
+            0.626382448865951,
+            0.828776766892632
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -3.6561209748855825,
+            0.45993424516774145,
+            0.6274576548591018,
+            2.629987704605688
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 0.1,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 2.2737367544323206e-13,
+      "fit_sha256": "0fbc7b049a76890737dba1122e5ef537d43f30a3c6dfa945a8174f1864224171",
+      "validation_sha256": "ee20610e05ed531d1f755f635fa5565b6f881bcef0c35196716b90bbb47f7b09",
+      "catalogue_sha256": "3c69dc95deb05597aca4d8b10a15afaf210b074dcc37c3d70e97406da9202364",
+      "rank": 0.0225,
+      "reject": true
+    },
+    {
+      "id": "old_r23",
+      "setting_id": "old",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "old",
+      "pair_id": "pair_23",
+      "replication": 23,
+      "seed": 8636963949201660914,
+      "status": "validated",
+      "statistics": {
+        "feedback": 0.01739403636292991,
+        "sharing": 0.0
+      },
+      "n_events": 506,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.5676190250282891,
+        "mean_event_fixed_history_total_suppression": 0.14241148723417693,
+        "median_event_fixed_history_total_suppression": 0.13694865315748878,
+        "eta": 0.2839974288868791,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.35211204940203,
+            -0.06595019501176416,
+            0.4283818397089597
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.497545131658424,
+            -0.10868451490558248,
+            0.5260394324355746
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -4.460020322736472,
+            -0.08110362837207014,
+            0.5269802705480717,
+            0.03691757971632533
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -4.460020322736472,
+            -0.08110362837207014,
+            0.5269802705480717,
+            0.03691757971632533
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 0.0,
+      "fit_sha256": "227ac0240e4779c2833d5c76fbabb6ae26d7518483a842c04028f2039a4e30fc",
+      "validation_sha256": "f67e6c915b171c6b83e30d6ed928cb33e58e4d95a72e4da273688b74486e566e",
+      "catalogue_sha256": "8bbfb1138d329860d0ee70f530a144ec0674cc5e4bd3cecc89f5e88563d4f346",
+      "rank": 0.662,
+      "reject": false
+    },
+    {
+      "id": "new_r23",
+      "setting_id": "new",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "new",
+      "pair_id": "pair_23",
+      "replication": 23,
+      "seed": 8636963949201660914,
+      "status": "validated",
+      "statistics": {
+        "feedback": 1.9493704432802588,
+        "sharing": 0.0
+      },
+      "n_events": 449,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.5965983624913942,
+        "mean_event_fixed_history_total_suppression": 0.20204464899488053,
+        "median_event_fixed_history_total_suppression": 0.19090477265149344,
+        "eta": 0.4885010300470942,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.43690462627564,
+            -0.050395098207582874,
+            0.3880377222741156
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.555351586130809,
+            -0.08174132798969792,
+            0.4686376573341615
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -4.107986736378514,
+            0.24951305520791503,
+            0.47757949284945317,
+            0.5156224696422397
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -4.107986736378514,
+            0.24951305520791503,
+            0.47757949284945317,
+            0.5156224696422397
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 2.2737367544323206e-13,
+      "fit_sha256": "658d33d08d6d88b44afa95d3e4e149b4de1c55ad72f9ee3f9d166e4d5fa94d8b",
+      "validation_sha256": "fb3e8d753afcfe75850c17b58d502cbd6869afabfe164e098ba089bc97cf11b6",
+      "catalogue_sha256": "f0c42578c93d546b6cde5707ee01a7bef6ff09c021fa771004b84c35af2f2b4e",
+      "rank": 0.179,
+      "reject": false
+    },
+    {
+      "id": "old_r24",
+      "setting_id": "old",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "old",
+      "pair_id": "pair_24",
+      "replication": 24,
+      "seed": 12479343591504180598,
+      "status": "validated",
+      "statistics": {
+        "feedback": 1.3287485556047613,
+        "sharing": 0.18089463231626723
+      },
+      "n_events": 467,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.6266414118697337,
+        "mean_event_fixed_history_total_suppression": 0.1351054481828484,
+        "median_event_fixed_history_total_suppression": 0.15184724837060637,
+        "eta": 0.2839974288868791,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.332988223329134,
+            0.01955818312586176,
+            0.3726525996165517
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.465580639654817,
+            0.035539617845794465,
+            0.4768691918150079
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -4.008366466720454,
+            0.30968541734328214,
+            0.48903809814713745,
+            0.5562106435334307
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -3.966119665731069,
+            0.3372224877713919,
+            0.4870018589939759,
+            0.19374085074193437
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 10.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 2.2737367544323206e-13,
+      "fit_sha256": "752422882f2c6d43c29f379357259491621a45f0c7c94c52a0490abeeb2d1979",
+      "validation_sha256": "622da07f5c1db4c23a16a106dc58b6d27529e4fcb504adc4fa7ac93e1ea97616",
+      "catalogue_sha256": "409a6ffafed542a0145780fc74634a645a74dc4841fbb49ad5a2c0fb34bdd64a",
+      "rank": 0.25,
+      "reject": false
+    },
+    {
+      "id": "new_r24",
+      "setting_id": "new",
+      "role": "alternative",
+      "phase": "alternative",
+      "arm": "new",
+      "pair_id": "pair_24",
+      "replication": 24,
+      "seed": 12479343591504180598,
+      "status": "validated",
+      "statistics": {
+        "feedback": 2.750436231663116,
+        "sharing": 0.19368053696052812
+      },
+      "n_events": 434,
+      "simulation_complete": true,
+      "realized_effect": {
+        "mean_event_background_fraction": 0.6091288895889043,
+        "mean_event_fixed_history_total_suppression": 0.20088758307810609,
+        "median_event_fixed_history_total_suppression": 0.21531116613505644,
+        "eta": 0.4885010300470942,
+        "stress_second_moment_finite": false,
+        "productivity_second_moment_finite": false,
+        "scope": "DGP parameters and realized event history held fixed; not coupled causal event-count reduction"
+      },
+      "best_parameters": {
+        "exp": {
+          "pars": [
+            -4.435559385242152,
+            0.00983808439091405,
+            0.3891391951375376
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "exp",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_null": {
+          "pars": [
+            -4.585154848206662,
+            0.054982220896320926,
+            0.5000959526282361
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": null
+        },
+        "ml_shared": {
+          "pars": [
+            -3.9026767718176893,
+            0.44946949047609047,
+            0.5175988857335032,
+            0.8623041379318628
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        },
+        "ml_separate_scale": {
+          "pars": [
+            -3.8677814754180018,
+            0.4716338786259955,
+            0.5145413929893872,
+            0.2888275407038692
+          ],
+          "ratio": 0.7,
+          "trigger": {
+            "kind": "ml",
+            "tau": 1.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          },
+          "stress": {
+            "kind": "ml",
+            "tau": 10.0,
+            "alpha": 0.5,
+            "p": 1.3,
+            "spectral_step": 0.4,
+            "spectral_tail_bound": 1e-08
+          }
+        }
+      },
+      "maximum_CPU32_delta": 4.547473508864641e-13,
+      "fit_sha256": "8a24a53ee858bc64f65a1e945c232d722c22f1c62d22902cc773a133638379db",
+      "validation_sha256": "946d20cabe4d9dfd563e21bc2d58d210625e9a346093f6118f1bde8e557330d0",
+      "catalogue_sha256": "65335fc7b0171a3b42194cf9019a778b1801c9d736747555f7143c7e159e37c4",
+      "rank": 0.1185,
+      "reject": false
+    }
+  ],
+  "reference_authorities": {
+    "summary_sha256": "05738575873e38fcce3f855f0942e8660d0813771f2bb67cd3cec66400d7fb6a",
+    "manifest_sha256": "04c0de62fbb8f8c6cf775688668dc6ca0aa24a033e23223d14f6f9c642053fd3",
+    "reuse_review_sha256": "3654af975f70d692e2fcdff71dbdce1912c6f6fd91dc29dbc258c9a1393bfa1d"
+  },
+  "new_bank_review_sha256": "866de6de2580204ba6b7d4640846ec70795b308269917fae314f24d258cfa28f",
+  "allocation_sha256": "1bb3310d157212174b88e941bee9469aefd6d245790f2f30a149331241d1571b",
+  "runner_summary_sha256": "55b05bccf0be1cf3a4b692d64bddfbd334c9de55702a5776ce91a25ec79bac2b",
+  "estimand": "Known-generating-law fixed-reference conditional screening frequencies, not per-catalogue fitted-null bootstrap power",
+  "interval_scope": "Arm Clopper-Pearson intervals condition on fixed reference bank; paired MCSE is descriptive, not a gain interval",
+  "record_sha256": "a507cd82676894f5d17a9a7b4794a58ecc26528af6afa467796492125b269d47"
+}

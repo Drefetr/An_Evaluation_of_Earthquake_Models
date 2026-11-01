@@ -1,0 +1,439 @@
+{
+  "schema": "LI_data_free_protocol_subset_v2",
+  "source": {
+    "path": "research_runs/local_inhibition_experiment_20261027T180815Z/design/case_matrix_v1.json",
+    "sha256": "438d5e8eb6d872c22a352bbadb426d300049acf75bcc8aed9450768990bc5ddd"
+  },
+  "authority_scope": "Explicit data-free configuration whitelist; exact final LI acceptance manifest supersedes historical execution-status labels. Not fitted state.",
+  "observation_law": {
+    "minimum_magnitude": 4.0,
+    "latitude_closed": [
+      32,
+      37
+    ],
+    "longitude_closed": [
+      -121,
+      -114
+    ],
+    "depth_km_closed": [
+      -5,
+      40
+    ],
+    "history_start_utc": "1981-01-01T00:00:00Z",
+    "training_start_utc": "1986-01-01T00:00:00Z",
+    "ties": "strict_integer_timestamp_parent_less_than_target_no_within_batch_history",
+    "parameter_updates_within_test": false,
+    "T0_days": 16436
+  },
+  "observed_cases": [
+    {
+      "case_id": "LI_CA_M4_F0",
+      "fold": 0,
+      "train_end": "2011-01-01T00:00:00Z",
+      "test_start": "2011-01-01T00:00:00Z",
+      "test_end": "2016-01-01T00:00:00Z",
+      "training_targets": 851,
+      "test_targets": 79,
+      "exposure_days": 1826,
+      "fit_arm": "LI",
+      "reference_arms": [
+        "OC_sealed",
+        "EP_sealed"
+      ],
+      "starts": 8,
+      "floors": [
+        "constant_Poisson",
+        "accepted_OC_eta0"
+      ]
+    },
+    {
+      "case_id": "LI_CA_M4_F1",
+      "fold": 1,
+      "train_end": "2016-01-01T00:00:00Z",
+      "test_start": "2016-01-01T00:00:00Z",
+      "test_end": "2021-01-01T00:00:00Z",
+      "training_targets": 930,
+      "test_targets": 167,
+      "exposure_days": 1827,
+      "fit_arm": "LI",
+      "reference_arms": [
+        "OC_sealed",
+        "EP_sealed"
+      ],
+      "starts": 8,
+      "floors": [
+        "constant_Poisson",
+        "accepted_OC_eta0"
+      ]
+    },
+    {
+      "case_id": "LI_CA_M4_F2",
+      "fold": 2,
+      "train_end": "2021-01-01T00:00:00Z",
+      "test_start": "2021-01-01T00:00:00Z",
+      "test_end": "2026-01-01T00:00:00Z",
+      "training_targets": 1097,
+      "test_targets": 69,
+      "exposure_days": 1826,
+      "fit_arm": "LI",
+      "reference_arms": [
+        "OC_sealed",
+        "EP_sealed"
+      ],
+      "starts": 8,
+      "floors": [
+        "constant_Poisson",
+        "accepted_OC_eta0"
+      ]
+    }
+  ],
+  "law": {
+    "stress_mark_g": "1",
+    "memory": "exp(-lag_days/psi_days)",
+    "spatial_stress": "(1+projected_squared_distance_km2/ell_km^2)^(-2)",
+    "stress_spatial_normalization": false,
+    "suppressed_term": "immigrant_only",
+    "immigrant_renormalization": false,
+    "excitation": "exact_inherited_OC",
+    "new_nuisance_selection": false,
+    "eta0_canonical": {
+      "ell_km": 30,
+      "psi_days": 7
+    },
+    "measurement_scope": "Recorded-coordinate statistical prediction only; no empirical location-error distribution admitted; engineering ell_min does not establish physical resolution."
+  },
+  "optimizer": {
+    "coordinate_order": [
+      "a",
+      "d",
+      "n",
+      "logc",
+      "p",
+      "eta",
+      "logell",
+      "logpsi"
+    ],
+    "bounds_physical": {
+      "a": [
+        -12,
+        0
+      ],
+      "d": [
+        -2,
+        2
+      ],
+      "n": [
+        0,
+        0.98
+      ],
+      "c_days": [
+        0.0001,
+        20
+      ],
+      "p": [
+        1.01,
+        2.5
+      ],
+      "eta": [
+        0,
+        4
+      ],
+      "ell_km": [
+        5,
+        150
+      ],
+      "psi_days": [
+        0.041666666666666664,
+        365
+      ]
+    },
+    "shared_start_rule": "a,d,n from accepted matched OC; row0 retains OC c,p, others replace c,p as listed",
+    "start_rows": [
+      {
+        "ordinal": 0,
+        "c_days": "accepted_OC",
+        "p": "accepted_OC",
+        "eta": 0,
+        "ell_km": 30,
+        "psi_days": 7
+      },
+      {
+        "ordinal": 1,
+        "c_days": 0.0001,
+        "p": 1.1,
+        "eta": 0.1,
+        "ell_km": 5,
+        "psi_days": 0.041666666666666664
+      },
+      {
+        "ordinal": 2,
+        "c_days": 0.001,
+        "p": 1.3,
+        "eta": 0.3,
+        "ell_km": 15,
+        "psi_days": 0.25
+      },
+      {
+        "ordinal": 3,
+        "c_days": 0.01,
+        "p": 1.1,
+        "eta": 0.7,
+        "ell_km": 50,
+        "psi_days": 7
+      },
+      {
+        "ordinal": 4,
+        "c_days": 0.1,
+        "p": 1.3,
+        "eta": 1.5,
+        "ell_km": 150,
+        "psi_days": 30
+      },
+      {
+        "ordinal": 5,
+        "c_days": 1,
+        "p": 1.7,
+        "eta": 3,
+        "ell_km": 5,
+        "psi_days": 365
+      },
+      {
+        "ordinal": 6,
+        "c_days": 20,
+        "p": 2.5,
+        "eta": 4,
+        "ell_km": 150,
+        "psi_days": 0.041666666666666664
+      },
+      {
+        "ordinal": 7,
+        "c_days": 0.1,
+        "p": 1.01,
+        "eta": 0.5,
+        "ell_km": 30,
+        "psi_days": 365
+      }
+    ],
+    "L_BFGS_B": {
+      "maxiter": 200,
+      "maxfun": 20000,
+      "maxls": 200,
+      "ftol": 1e-10,
+      "gtol": 2e-06
+    },
+    "Powell_failure_only_same_original_start": {
+      "maxiter": 400,
+      "maxfev": 5000,
+      "xtol": 1e-06,
+      "ftol": 1e-10
+    },
+    "selection": "minimum accepted training joint NLL; exact ties OC floor, Poisson floor, start ordinal, method ordinal",
+    "near_optimal_training_nats": 0.0004,
+    "heldout_spread_gate_nats_per_target": 0.01
+  },
+  "synthetic_common": {
+    "domain_km": [
+      0,
+      100,
+      0,
+      100
+    ],
+    "time_days": {
+      "history_start": 0,
+      "warmup_end": 30,
+      "train_end": 395,
+      "test_end": 760
+    },
+    "X": "2*t/760-1",
+    "a": "log(.2)",
+    "d": 0.2,
+    "n": 0.35,
+    "c_days": 0.05,
+    "p": 1.3,
+    "sigma_km": 10,
+    "beta": 2,
+    "r": 0.7,
+    "reference": "uniform nine equal rectangular cells",
+    "smooth_background": ".05/10000+.95/2*sum of finite-domain normalized radial D_h at (25,25),(75,75), h=10km",
+    "nuisance": "known fixed equally in OC and LI",
+    "replicates_per_case": 2,
+    "fit_arms": [
+      "OC_synthetic",
+      "LI_synthetic"
+    ],
+    "starts_per_arm": 8,
+    "floors_per_replicate": {
+      "OC": 1,
+      "LI": 2
+    },
+    "generator": "chronological immigrant-envelope thinning with full accepted history and recursively scheduled offspring of accepted events only",
+    "RNG": "NumPy PCG64DXSM SeedSequence([replicate_seed,stream_code])",
+    "stream_codes": {
+      "immigrant_times": 0,
+      "immigrant_locations": 1,
+      "immigrant_marks": 2,
+      "immigrant_acceptance": 3,
+      "offspring_count_delay": 4,
+      "offspring_locations": 5,
+      "offspring_marks": 6
+    },
+    "caps": {
+      "total_candidates": 1000000,
+      "accepted_events": 100000,
+      "generation_numerical_seconds_per_replicate": 600
+    },
+    "failed_seed_replacement": false,
+    "spatial_sampling": "For each conditional exponent-two radial component draw radius=h*sqrt(U/(1-U)), angle=2*pi*V; reject outside D; max1000000 proposals/location. Smooth immigrant mixture weights .05 uniform,.475 center1,.475 center2. Uniform reference makes offspring the same conditional radial law at sigma.",
+    "time_sampling": "Exact cumulative B inversion using exp(a-d)*expm1(k*t)/k with k=2d/760, linear limit k0; offspring count Poisson(n*kappa*(1-S(H-parent))) and conditional delay c*expm1(log1p(-U*(1-S(H-parent)))/(1-p))).",
+    "mark_sampling": "q=-log1p(-U)/beta",
+    "zero_training_count": "retain case; OC a0 uses max(Ntrain,1); exact Poisson aP=-12 for Ntrain0",
+    "OC_start_fill": {
+      "status": "prospective previously unspecified computational choice; independently accepted by li_audit",
+      "a0": "clip(log(.6*max(Ntrain,1)/365),-11.5,-.1)",
+      "d0": 0.2,
+      "n0": 0.35,
+      "cp_rows": [
+        [
+          0.0001,
+          1.1
+        ],
+        [
+          0.001,
+          1.3
+        ],
+        [
+          0.01,
+          1.1
+        ],
+        [
+          0.1,
+          1.3
+        ],
+        [
+          1,
+          1.7
+        ],
+        [
+          20,
+          2.5
+        ],
+        [
+          0.01,
+          2.5
+        ],
+        [
+          0.1,
+          1.01
+        ]
+      ],
+      "auxiliary_fits": 0
+    }
+  },
+  "synthetic_cases": [
+    {
+      "case_id": "S0_uniform_null",
+      "background": "uniform",
+      "eta": 0,
+      "ell_km": 30,
+      "psi_days": 7,
+      "seeds": [
+        410001,
+        410002
+      ]
+    },
+    {
+      "case_id": "S1_smooth_null",
+      "background": "smooth",
+      "eta": 0,
+      "ell_km": 30,
+      "psi_days": 7,
+      "seeds": [
+        410101,
+        410102
+      ]
+    },
+    {
+      "case_id": "S2_narrow_short",
+      "background": "smooth",
+      "eta": 0.5,
+      "ell_km": 5,
+      "psi_days": 0.041666666666666664,
+      "seeds": [
+        410201,
+        410202
+      ]
+    },
+    {
+      "case_id": "S3_broad_long",
+      "background": "smooth",
+      "eta": 2,
+      "ell_km": 50,
+      "psi_days": 30,
+      "seeds": [
+        410301,
+        410302
+      ]
+    }
+  ],
+  "denominators": {
+    "observed": {
+      "procedures": 3,
+      "starts": 24,
+      "floors": 6,
+      "candidate_slots": 30,
+      "maximum_failure_only_recovery_calls": 24,
+      "targets": 315,
+      "exposure_days": 5479
+    },
+    "synthetic": {
+      "generated_replicate_slots": 8,
+      "procedures": 16,
+      "starts": 128,
+      "floors": 24,
+      "candidate_slots": 152,
+      "maximum_failure_only_recovery_calls": 128
+    },
+    "combined_new": {
+      "procedures": 19,
+      "starts": 152,
+      "floors": 30,
+      "candidate_slots": 182,
+      "maximum_failure_only_recovery_calls": 152
+    },
+    "empirical_reference_selected_state_replays": 6,
+    "new_background_LOO_candidates": 0,
+    "new_excitation_sigma_selectors": 0,
+    "archived_h_grid_values_to_verify": 18,
+    "archived_sigma_selector_procedure_identities_to_verify": 18,
+    "deterministic_fixture_families": 18,
+    "rule": "Failed/missing/blocked states remain in their original slots; recovery returns are additional records, never replacement identities."
+  },
+  "contrasts": {
+    "primary_extension": "LI minus matched OC joint",
+    "competitive": "LI minus EP joint",
+    "required_components": [
+      "event_point_logsum",
+      "event_ground_logsum",
+      "immigrant_positive_exposure",
+      "excitation_positive_exposure",
+      "full_positive_exposure",
+      "signed_exposure_contribution",
+      "timing",
+      "conditional_location",
+      "mark_once",
+      "joint"
+    ],
+    "reporting": "all three folds and pooled sum divided by315; no pool if any required fold unknown"
+  },
+  "clock_explanation": {
+    "observed": "Elapsed POSIX/civil days since 1981-01-01 UTC, excluding leap-second insertions; X=2*t/16436-1.",
+    "synthetic": "History starts at day 0; X=2*t/760-1; warmup end30/train end395/test end760.",
+    "source_exposition": "curated_protocols/LI_methods_context.md; fixed scientific case matrix controls explicit observation and synthetic clocks."
+  },
+  "initialization_scope": {
+    "LI": "Shared a,d,n from the accepted matched OC state; first LI start retains matched OC c,p. Symbolic state reference, no actual fitted values exported.",
+    "synthetic_OC": "Separate prescribed OC_start_fill: a0=clip(log(.6*max(Ntrain,1)/365),-11.5,-.1), d0=0.2, n0=0.35, fixed cp_rows.",
+    "canonical_scales": "At eta exactly 0, ell=30km and psi=7days are display conventions, not recovered fitted physical scales."
+  },
+  "privacy": "Only named law/bounds/schedule/configuration fields; no empirical event arrays, fitted vectors, raw catalogue/cache paths or provider payloads."
+}

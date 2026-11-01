@@ -18,3 +18,5 @@ Loader modules `simulator`, `paired`, `stable`, `restricted`, `fitting`, `staged
 The physical loading construction and independent-background diagnostic family are distinct. The precise clock retains paired timestamps and positive event gaps: do not jitter projected ties. Mark transforms, productivity conventions, left limits, full quiet exposure and the terminal no-event interval matter. Read the methods supplement before adapting APIs.
 
 Use public scripts for supported workflows. Direct historical `__main__` entry points can need unshipped states. The observed wrapper checks source and external-data hashes before fitting. Implementation availability is distinct from possessing every historical study input.
+
+The Stage 2 (`S01`–`S06`) and matched-generator `S04B` C++/Python implementations and independent `Q01` verification oracles are provided in [`engine/stage2_followup/`](../engine/stage2_followup/README.md).

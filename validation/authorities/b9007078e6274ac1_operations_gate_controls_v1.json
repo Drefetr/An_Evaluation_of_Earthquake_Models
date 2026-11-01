@@ -1,0 +1,147 @@
+{
+  "schema": "independent_ops_handcrafted_gate_controls_v1",
+  "source_sha256": "49058e4838e9c169bb760805a749ff91171a9fa8f60ecb009b457265b3decb96",
+  "case_count": 18,
+  "cases": [
+    {
+      "id": "valid_normal",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "valid_update",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "missing_trace",
+      "expected": false,
+      "actual": false,
+      "pass": true
+    },
+    {
+      "id": "missing_ack",
+      "expected": false,
+      "actual": false,
+      "pass": true
+    },
+    {
+      "id": "resume_before_ack",
+      "expected": false,
+      "actual": false,
+      "pass": true
+    },
+    {
+      "id": "reversed_times",
+      "expected": false,
+      "actual": false,
+      "pass": true
+    },
+    {
+      "id": "malformed_string_times",
+      "expected": false,
+      "actual": false,
+      "pass": true
+    },
+    {
+      "id": "malformed_bool_times",
+      "expected": false,
+      "actual": false,
+      "pass": true
+    },
+    {
+      "id": "update_ready_before_cleanup",
+      "expected": false,
+      "actual": false,
+      "pass": true
+    },
+    {
+      "id": "no_child_na",
+      "expected": [
+        null,
+        "not_applicable_expected_zero"
+      ],
+      "actual": [
+        null,
+        "not_applicable_expected_zero"
+      ],
+      "pass": true
+    },
+    {
+      "id": "missing_expected_child",
+      "expected": [
+        null,
+        "unknown_unobserved_expected_children"
+      ],
+      "actual": [
+        null,
+        "unknown_unobserved_expected_children"
+      ],
+      "pass": true
+    },
+    {
+      "id": "partial_expected_set",
+      "expected": [
+        null,
+        "unknown_unobserved_expected_children"
+      ],
+      "actual": [
+        null,
+        "unknown_unobserved_expected_children"
+      ],
+      "pass": true
+    },
+    {
+      "id": "known_not_terminal",
+      "expected": [
+        false,
+        "not_terminal"
+      ],
+      "actual": [
+        false,
+        "not_terminal"
+      ],
+      "pass": true
+    },
+    {
+      "id": "all_expected_terminal",
+      "expected": [
+        true,
+        "terminal"
+      ],
+      "actual": [
+        true,
+        "terminal"
+      ],
+      "pass": true
+    },
+    {
+      "id": "valid_handcrafted_receipt",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "missing_trace_receipt",
+      "expected": false,
+      "actual": false,
+      "pass": true
+    },
+    {
+      "id": "expected_child_missing_receipt",
+      "expected": false,
+      "actual": false,
+      "pass": true
+    },
+    {
+      "id": "known_nonterminal_receipt",
+      "expected": false,
+      "actual": false,
+      "pass": true
+    }
+  ],
+  "all_passed": true,
+  "scope": "18 fixed pure-function/receipt-admission controls; no process/kernel/production admission"
+}
