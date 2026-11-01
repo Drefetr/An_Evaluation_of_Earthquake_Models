@@ -34,14 +34,21 @@ jobs:
         id: publication
         env:
           SOURCE_SHA: ${{ github.sha }}
-          PAGES_ARTIFACT: ${{ runner.temp }}/artifact.tar
-        run: python -B scripts/publish_pages.py --bundle build/site --source-sha "$SOURCE_SHA" --output build/pages-published --artifact "$PAGES_ARTIFACT"
-      - uses: actions/upload-artifact@v4
+        run: python -B scripts/publish_pages.py --bundle build/site --source-sha "$SOURCE_SHA" --output build/pages-published
+      - uses: actions/upload-pages-artifact@v4
         with:
-          name: github-pages
-          path: ${{ runner.temp }}/artifact.tar
+          path: build/pages-published
           retention-days: 1
-          if-no-files-found: error
+      - name: Verify the official artifact against the published tree
+        env:
+          PAGES_ARTIFACT: ${{ runner.temp }}/artifact.tar
+        run: |
+          python -B - <<'PY'
+          import os, runpy
+          from pathlib import Path
+          publisher = runpy.run_path('scripts/publish_pages.py')
+          print(publisher['verify_artifact'](Path(os.environ['PAGES_ARTIFACT']), Path('build/pages-published')))
+          PY
   deploy:
     needs: publish
     if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')

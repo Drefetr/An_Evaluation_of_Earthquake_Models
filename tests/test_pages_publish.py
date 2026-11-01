@@ -123,6 +123,46 @@ class PagesPublish(unittest.TestCase):
         self.assertEqual(existing.read_bytes(),b'prior artifact')
         self.assert_source_unchanged()
 
+    def test_official_artifact_allows_only_empty_branch_marker_omission(self):
+        self.publish();output=self.repo/'build/published'
+        artifact=Path(self.temp.name)/'official.tar'
+        with tarfile.open(artifact,'w') as archive:
+            for name in ['.', 'downloads']:
+                entry=tarfile.TarInfo('./'+name);entry.type=tarfile.DIRTYPE
+                archive.addfile(entry)
+            for path in output.rglob('*'):
+                if path.is_file() and path.name!='.nojekyll':
+                    archive.add(path,arcname='./'+path.relative_to(output).as_posix(),recursive=False)
+        result=pages.verify_artifact(artifact,output)
+        self.assertEqual(result['omitted_branch_markers'],['.nojekyll'])
+        self.assertEqual(result['verified_public_files'],len([p for p in output.rglob('*') if p.is_file()])-1)
+        self.assert_source_unchanged()
+
+    def test_official_artifact_rejects_missing_changed_extra_and_link_members(self):
+        self.publish();output=self.repo/'build/published'
+        files={p.relative_to(output).as_posix():p.read_bytes() for p in output.rglob('*') if p.is_file()}
+        artifact=Path(self.temp.name)/'invalid.tar'
+        for variant in ['missing_pdf','changed_pdf','extra','duplicate','symlink','traversal']:
+            with self.subTest(variant=variant):
+                changed=dict(files)
+                if variant=='missing_pdf':changed.pop('downloads/guide.pdf')
+                if variant=='changed_pdf':changed['downloads/guide.pdf']=b'changed content'
+                if variant=='extra':changed['unexpected.txt']=b'extra'
+                with tarfile.open(artifact,'w') as archive:
+                    for name,raw in changed.items():
+                        entry=tarfile.TarInfo('./'+name);entry.size=len(raw)
+                        archive.addfile(entry,io.BytesIO(raw))
+                    if variant in ['duplicate','symlink','traversal']:
+                        name={'duplicate':'./index.html','symlink':'./link','traversal':'../escape'}[variant]
+                        entry=tarfile.TarInfo(name)
+                        if variant=='symlink':entry.type=tarfile.SYMTYPE;entry.linkname='index.html'
+                        archive.addfile(entry)
+                with self.assertRaises(ValueError):pages.verify_artifact(artifact,output)
+        (output/'.nojekyll').write_bytes(b'nonempty marker')
+        with self.assertRaisesRegex(ValueError,'complete exported publication'):
+            pages.verify_artifact(artifact,output)
+        self.assert_source_unchanged()
+
     def test_updates_are_children_of_previous_publication_without_source_mutation(self):
         first=self.publish()
         (self.repo/'notes.md').write_text('Accepted source revision.\n')

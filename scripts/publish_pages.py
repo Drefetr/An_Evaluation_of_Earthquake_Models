@@ -11,7 +11,7 @@ import hashlib
 import io
 import json
 import os
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 import re
 import subprocess
 import tarfile
@@ -93,6 +93,40 @@ def assert_refs(repository, remote, source_sha, expected_tip):
         raise RuntimeError('source main changed; publish the current main build instead')
     if refs.get(PUBLISH_REF) != expected_tip:
         raise RuntimeError('gh-pages changed concurrently; rebuild/retry against its current tip')
+
+
+def verify_artifact(artifact, published):
+    """Check the official Pages tar against the frozen exported publication.
+
+    GitHub's packager excludes dotfiles. Only the empty .nojekyll branch-build
+    marker may be absent: Actions deployments do not run Jekyll. All public
+    files, including the publication receipt and PDFs, must match exactly.
+    """
+    published = Path(published)
+    expected = {p.relative_to(published).as_posix(): p.read_bytes()
+                for p in published.rglob('*') if p.is_file()}
+    if expected.get('.nojekyll') != b'' or 'index.html' not in expected or RECEIPT not in expected:
+        raise ValueError('artifact verification requires a complete exported publication')
+    seen = set()
+    with tarfile.open(artifact, 'r:') as archive:
+        for member in archive.getmembers():
+            name = PurePosixPath(member.name)
+            if name.is_absolute() or '..' in name.parts or '\\' in member.name:
+                raise ValueError('unsafe artifact member path')
+            if member.isdir():
+                if name != PurePosixPath('.') and not any(name in PurePosixPath(p).parents for p in expected):
+                    raise ValueError('unexpected artifact directory')
+                continue
+            key = name.as_posix()
+            if not member.isfile() or key in seen or key not in expected:
+                raise ValueError('unexpected, duplicate or non-regular artifact member')
+            if member.size != len(expected[key]) or archive.extractfile(member).read() != expected[key]:
+                raise ValueError('artifact bytes differ from the published tree: ' + key)
+            seen.add(key)
+    missing = set(expected) - seen
+    if missing - {'.nojekyll'}:
+        raise ValueError('artifact omits published files: ' + ', '.join(sorted(missing)))
+    return {'verified_public_files': len(seen), 'omitted_branch_markers': sorted(missing)}
 
 
 def publish(bundle, source_sha, output, *, repository=ROOT, remote='origin', artifact=None):

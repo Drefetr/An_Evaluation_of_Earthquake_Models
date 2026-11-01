@@ -12,7 +12,7 @@
   "checks": {
     "main_unit_and_workflow_suite": {
       "passed": true,
-      "tests": 90,
+      "tests": 92,
       "command": "python -B -m unittest discover -s tests -v"
     },
     "stage2_portable": {
@@ -106,7 +106,7 @@
     },
     "pages_publication": {
       "passed": true,
-      "tests": 11,
+      "tests": 13,
       "scope": "Local bare-repository tests; live deployment is verified separately in hosted Actions.",
       "branch": "gh-pages",
       "branch_root_is_standalone": true,
@@ -115,6 +115,8 @@
       "stale_source_and_publication_races_rejected": true,
       "artifact_tar_matches_published_files_including_dotfiles": true,
       "existing_or_unsafe_artifact_outputs_rejected": true,
+      "official_artifact_public_file_identity_guard": true,
+      "only_empty_nojekyll_marker_may_be_omitted": true,
       "automatic_main_publication_with_explicit_pages_deployment": true
     }
   },
