@@ -1,21 +1,23 @@
 name: Publish research documents
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 permissions:
   contents: read
-  pages: write
-  id-token: write
 concurrency:
   group: pages
   cancel-in-progress: false
 jobs:
-  deploy:
+  publish:
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13'
@@ -24,12 +26,35 @@ jobs:
         with:
           node-version: '22'
       - run: python -m pip install -r requirements.txt
+      - run: python -B scripts/verify_repository.py
+      - run: python -B scripts/verify_claims.py
       - run: python -B website/build_site.py --output build/site
       - run: node website/check_interactions.cjs build/site
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - name: Publish the verified bundle to gh-pages
+        id: publication
+        env:
+          SOURCE_SHA: ${{ github.sha }}
+          PAGES_ARTIFACT: ${{ runner.temp }}/artifact.tar
+        run: python -B scripts/publish_pages.py --bundle build/site --source-sha "$SOURCE_SHA" --output build/pages-published --artifact "$PAGES_ARTIFACT"
+      - uses: actions/upload-artifact@v4
         with:
-          path: build/site
-      - name: Deploy
+          name: github-pages
+          path: ${{ runner.temp }}/artifact.tar
+          retention-days: 1
+          if-no-files-found: error
+  deploy:
+    needs: publish
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v5
+      - name: Deploy the same published tree
         id: deployment
         uses: actions/deploy-pages@v4

@@ -12,7 +12,7 @@
   "checks": {
     "main_unit_and_workflow_suite": {
       "passed": true,
-      "tests": 79,
+      "tests": 90,
       "command": "python -B -m unittest discover -s tests -v"
     },
     "stage2_portable": {
@@ -103,6 +103,19 @@
       "canonical_document_bytes_unchanged": true,
       "preview_and_generated_deployment_links_valid": true,
       "automatic_install_reintroduces_no_removed_assets": true
+    },
+    "pages_publication": {
+      "passed": true,
+      "tests": 11,
+      "scope": "Local bare-repository tests; live deployment is verified separately in hosted Actions.",
+      "branch": "gh-pages",
+      "branch_root_is_standalone": true,
+      "source_main_head_and_index_preserved": true,
+      "normal_child_with_expected_tip_lease": true,
+      "stale_source_and_publication_races_rejected": true,
+      "artifact_tar_matches_published_files_including_dotfiles": true,
+      "existing_or_unsafe_artifact_outputs_rejected": true,
+      "automatic_main_publication_with_explicit_pages_deployment": true
     }
   },
   "scope": "Bounded source/workflow checks only; scientific acceptance, theorem proof, raw-data replay and external peer review are separate."

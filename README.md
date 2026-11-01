@@ -8,7 +8,7 @@ The research studies restricted stability and identification, nuisance sensitivi
 
 - [Unified monograph](paper/manuscript_unified.pdf): the 231-page edition consolidating the mathematical foundations, Addenda I-V, completed Stage 2 studies (`S01`-`S06`), and matched-law synthetic controls (`S04B`).
 - [Plain-language guide](companion/lay_guide_to_the_research.pdf): an eight-page introduction, also available as [HTML](companion/lay_guide_to_the_research.html).
-- [Website and findings explorer files](website/site/index.html): serve these files locally to use the site; see [preview and deployment instructions](website/README.md). GitHub's file view displays HTML source.
+- [Research website and findings explorer](https://drefetr.github.io/An_Evaluation_of_Earthquake_Models/): the published site, served from the generated `gh-pages` bundle. See [local preview and deployment instructions](website/README.md).
 - [Reviewer guide](REVIEWER_START_HERE.md): evidence, accepted scope, and verification entry points.
 
 ## Install and check
