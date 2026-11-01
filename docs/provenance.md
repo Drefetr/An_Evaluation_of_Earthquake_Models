@@ -20,4 +20,4 @@ Public variants can replace machine-specific roots with portable identifiers whi
 
 Third-party event records, the earlier third-party manuscript PDF, complete raw result/cache trees, dependencies, and private investigation transcripts are excluded. Selected project-derived aggregates and scientifically relevant validation evidence remain. Work orchestration is distinguished from numerical controls and computational evidence; the latter are not discarded because a filename contains "control" or "review".
 
-The repository is publicly accessible at [Drefetr/InhibitoryEarthquakeModels](https://github.com/Drefetr/InhibitoryEarthquakeModels). Older prepublication privacy records describe their dated scope and must not be read as a current visibility, workflow, or credential guarantee.
+The repository is publicly accessible at [Drefetr/An_Evaluation_of_Earthquake_Models](https://github.com/Drefetr/An_Evaluation_of_Earthquake_Models). Older prepublication privacy records describe their dated scope and must not be read as a current visibility, workflow, or credential guarantee.
