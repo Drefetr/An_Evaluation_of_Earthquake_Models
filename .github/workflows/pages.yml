@@ -58,3 +58,27 @@ jobs:
       - name: Deploy the same published tree
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Report Pages deployment diagnostics
+        if: failure() && steps.deployment.outcome == 'failure'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import json, os, urllib.error, urllib.request
+          base = os.environ['GITHUB_API_URL'] + '/repos/' + os.environ['GITHUB_REPOSITORY']
+          for endpoint in ['/pages', '/pages/deployments/' + os.environ['GITHUB_SHA']]:
+              request = urllib.request.Request(base + endpoint, headers={
+                  'Authorization': 'Bearer ' + os.environ['GH_TOKEN'],
+                  'Accept': 'application/vnd.github+json',
+                  'X-GitHub-Api-Version': '2022-11-28',
+              })
+              try:
+                  with urllib.request.urlopen(request, timeout=30) as response:
+                      data = json.load(response)
+                  if endpoint == '/pages':
+                      data = {key: data.get(key) for key in ['status', 'build_type', 'source', 'html_url', 'cname']}
+                  print(endpoint + ': ' + json.dumps(data))
+              except urllib.error.HTTPError as error:
+                  print(endpoint + ': HTTP ' + str(error.code) + ' ' + error.read().decode('utf-8'))
+          PY
