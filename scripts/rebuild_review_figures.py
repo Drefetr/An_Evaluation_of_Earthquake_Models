@@ -1,6 +1,6 @@
 """Render saved aggregates and declared algebra only; never fit or simulate."""
 from pathlib import Path
-import argparse,fnmatch,hashlib,json,math,shutil
+import argparse,fnmatch,hashlib,json,math,re,shutil
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -9,6 +9,24 @@ ROOT=Path(__file__).resolve().parents[1]
 FIG=ROOT/'paper/figures';DATA=ROOT/'paper/data'
 plt.rcParams.update({'font.family':'DejaVu Sans','font.size':9.5,'axes.titlesize':10,'axes.labelsize':9.5,'xtick.labelsize':9.5,'ytick.labelsize':9.5,'legend.fontsize':9.5,'pdf.fonttype':42,'axes.spines.top':False,'axes.spines.right':False})
 outputs=[]
+
+def install_figures():
+ """Promote only formats referenced by the shipped LaTeX sources.
+
+ PNG previews and historical profile meshes remain useful build exports,
+ but are not part of the current manuscript's canonical figure payload.
+ """
+ referenced=set()
+ for source in (ROOT/'paper').rglob('*.tex'):
+  tex=re.sub(r'(?m)(?<!\\)%.*$','',source.read_text(encoding='utf-8'))
+  for name in re.findall(r'\\includegraphics\*?(?:\[[^\]]*\])?\{([^}]+)\}',tex):
+   referenced.add(Path(name).name)
+ installed=[]
+ for row in outputs:
+  if row['path'] in referenced:
+   shutil.copyfile(FIG/row['path'],ROOT/'paper/figures'/row['path'])
+   installed.append(row['path'])
+ return installed
 def authority(pattern):
  rows=json.loads((ROOT/'validation/authority_manifest.json').read_text(encoding='utf-8'))
  found=[r for r in rows if fnmatch.fnmatch(Path(r.get('historical_bundled_path',r['bundled_path'])).name,pattern)]
@@ -97,7 +115,7 @@ def main():
  global FIG
  parser=argparse.ArgumentParser(description=__doc__)
  parser.add_argument('--output',type=Path,default=ROOT/'build/review_figures',help='Fresh output directory (default: build/review_figures)')
- parser.add_argument('--install',action='store_true',help='Also install successful figures in paper/figures/. Requires visual review and manifest refresh.')
+ parser.add_argument('--install',action='store_true',help='Install only LaTeX-referenced figure formats in paper/figures/. Preview exports stay in build output; review and refresh the manifest.')
  args=parser.parse_args();FIG=args.output.resolve()
  protected=(ROOT/'paper').resolve()
  if FIG.is_relative_to(protected) or protected.is_relative_to(FIG):parser.error('output must be a fresh directory outside paper/')
@@ -106,8 +124,7 @@ def main():
  exact();details=geometry();regional();planned_bounds()
  inputs=[DATA/'geometry_summary.json',authority('bf4d50b9ecefc531*.json'),authority('e93db40b7871acc7*.json'),authority('37a8da3e0df262d4*.json')]
  receipt={'scope':'Saved data and illustrative algebra only; no scientific fits or simulations','nominal_minimum_font_pt':8.4,'figure_width_inches':5.8,'final_pdf_font_sizes_require_check':True,'inputs':[{'path':p.relative_to(ROOT).as_posix(),'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in inputs],'outputs':outputs,'geometry':details,'script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
+ receipt['installed_outputs']=install_figures() if args.install else []
  (FIG/'figure_revision.json').write_text(json.dumps(receipt,indent=2)+'\n',encoding='utf-8')
- if args.install:
-  for row in outputs:shutil.copyfile(FIG/row['path'],ROOT/'paper/figures'/row['path'])
- print(json.dumps({'outputs':len(outputs),'geometry':details}))
+ print(json.dumps({'outputs':len(outputs),'installed_outputs':receipt['installed_outputs'],'geometry':details}))
 if __name__=='__main__':main()

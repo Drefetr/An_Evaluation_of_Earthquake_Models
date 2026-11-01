@@ -7,12 +7,12 @@
     "python": "3.13.4",
     "node": "22.17.0",
     "native": "Windows x64/MSVC",
-    "dependency_install": "Fresh isolated venv from requirements.txt succeeded"
+    "dependency_install": "Pinned requirements were verified in a fresh baseline-cleanup environment; this follow-up uses the same installed host dependency versions."
   },
   "checks": {
     "main_unit_and_workflow_suite": {
       "passed": true,
-      "tests": 61,
+      "tests": 79,
       "command": "python -B -m unittest discover -s tests -v"
     },
     "stage2_portable": {
@@ -71,15 +71,38 @@
       "production_checks_passed": true,
       "underfull_boxes": 21,
       "accepted_document_installed": false,
-      "new_visual_review_claimed": false
+      "new_visual_review_claimed": false,
+      "asset_pruned_build_passed": true
     },
     "source_migration_review": {
       "passed": true,
       "retired_process_inventory_records": 36,
       "canonical_authority_aliases": 17,
       "sanitized_retained_authorities": 22,
-      "indexed_historical_files": 52,
+      "indexed_historical_files": 72,
       "semantic_values_unchanged": true
+    },
+    "compact_metadata": {
+      "passed": true,
+      "schema": "compact_display_custody_v1",
+      "all_record_json_types_preserved": true,
+      "total_records": 27033,
+      "full_legacy_presence_objects_reconstructable": 11293,
+      "shared_source_files": 28,
+      "regression_receipt_has_no_arrays": true,
+      "shared_method_once": true,
+      "net_metadata_bytes_saved": 7725205
+    },
+    "asset_payload": {
+      "passed": true,
+      "removed_files": 20,
+      "removed_bytes": 4457494,
+      "retained_images": 36,
+      "remaining_byte_identical_file_groups": 0,
+      "three_historical_pdfs_retained": true,
+      "canonical_document_bytes_unchanged": true,
+      "preview_and_generated_deployment_links_valid": true,
+      "automatic_install_reintroduces_no_removed_assets": true
     }
   },
   "scope": "Bounded source/workflow checks only; scientific acceptance, theorem proof, raw-data replay and external peer review are separate."

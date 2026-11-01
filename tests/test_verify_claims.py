@@ -139,7 +139,7 @@ class DisplayAndCustody(Fixture):
    with self.subTest(text=text):
     c=self.field(1,'1/3');c['display_format']={'kind':'count_over_total','denominator_pointer':'/denominator'};self.install(c,text);self.assertFails('declared_manuscript_display_absent')
  def test_persisted_display_id_is_checked(self):
-  self.install(self.field(1));_,ledger,_=v.verify(self.root,refresh_presence=True);ledger['claims'][0]['final_display_presence']['id']='other-claim'
+  self.install(self.field(1));_,ledger,_=v.verify(self.root,refresh_presence=True);ledger['claims'][0]['id']='other-claim'
   (self.root/'validation/MASTER_CLAIM_LEDGER.json').write_text(json.dumps(ledger));r,_,_=v.verify(self.root);self.assertFalse(r['passed']);self.assertIn('stale_persisted_display_metadata',r['failures'][0]['error'])
  def test_manuscript_sign_flip_is_not_substring_presence(self):
   for value,tex in [(1,'reported=-1'),(-1,'reported=+1')]:
@@ -168,5 +168,98 @@ class DisplayAndCustody(Fixture):
  def test_typed_citation_has_no_fake_numeric_value(self):
   c=self.field(1);line=r'\citep{Hawkes1971}';path,sha=self.source(line+'\n','meta.txt');m={'id':'meta','bundled_source':path,'source_sha256':sha,'source_locator':f'line 1, columns 1-{len(line)}: {line}','text':line,'metadata_kind':'citation'}
   self.install(c,metadata=[m]);self.assertTrue(self.result()['passed']);m['value']=971;self.install(c,metadata=[m]);self.assertFails('metadata_must_not_claim_numeric_value')
+
+class CompactCustody(Fixture):
+ def write(self,ledger):
+  (self.root/'validation/MASTER_CLAIM_LEDGER.json').write_bytes(v.format_ledger(ledger))
+ def freeze(self,claim=None,tex=None):
+  self.install(claim or self.field(1),tex)
+  receipt,ledger,checks=v.verify(self.root,refresh_presence=True)
+  self.assertTrue(receipt['release_ready'],receipt['failures']);self.write(ledger)
+  return ledger,checks
+ def assertReadonlyFails(self,ledger,error):
+  self.write(ledger);receipt,_,_=v.verify(self.root)
+  self.assertFalse(receipt['release_ready'],receipt)
+  self.assertTrue(any(error in row['error'] for row in receipt['failures']),receipt['failures'])
+ def legacy(self,ledger,checks):
+  legacy=copy.deepcopy(ledger);custody=legacy.pop('display_custody');byid={row['id']:row for row in checks}
+  for claim in legacy['claims']:
+   check=byid[claim['id']]
+   claim['final_display_presence']=dict(check,source_hashes={p:custody['source_hashes'][p] for p in check['source_files']},method=custody['method'])
+  return legacy
+ def test_shared_custody_and_all_matching_files_reconstruct_legacy_losslessly(self):
+  (self.root/'paper/source/second.tex').write_text('x=1',encoding='utf-8')
+  claim=self.field(1);claim['final_display_locations']=['chapter.tex','second.tex']
+  ledger,checks=self.freeze(claim)
+  custody=ledger['display_custody'];presence=ledger['claims'][0]['final_display_presence']
+  self.assertEqual(custody['schema'],v.DISPLAY_CUSTODY_SCHEMA)
+  self.assertEqual(custody['method'],v.DISPLAY_PRESENCE_METHOD)
+  self.assertEqual(set(presence),{'matching_files','binding_sha256'})
+  self.assertEqual(presence['matching_files'],['paper/source/chapter.tex','paper/source/second.tex'])
+  self.assertEqual(presence['binding_sha256'],v.presence_digest(checks[0]))
+  self.assertEqual(set(custody['source_hashes']),set(checks[0]['source_files']))
+  self.assertEqual(list(ledger).index('display_custody')+1,list(ledger).index('claims'))
+  legacy=self.legacy(ledger,checks);self.write(legacy)
+  self.assertTrue(v.verify(self.root)[0]['release_ready'])
+  receipt,refreshed,_=v.verify(self.root,refresh_presence=True)
+  self.assertTrue(receipt['release_ready']);self.assertEqual(ledger,refreshed)
+ def test_shared_source_hash_tampering_fails(self):
+  ledger,_=self.freeze();ledger['display_custody']['source_hashes']['paper/source/chapter.tex']='0'*64
+  self.assertReadonlyFails(ledger,'stale_persisted_source_hashes')
+ def test_missing_or_extra_shared_source_hash_fails(self):
+  ledger,_=self.freeze()
+  for hashes in [{},{**ledger['display_custody']['source_hashes'],'paper/source/unrelated.tex':'0'*64}]:
+   with self.subTest(hashes=hashes):
+    changed=copy.deepcopy(ledger);changed['display_custody']['source_hashes']=hashes
+    self.assertReadonlyFails(changed,'stale_persisted_source_hashes')
+ def test_shared_method_is_verified_not_just_documentary_text(self):
+  ledger,_=self.freeze();ledger['display_custody']['method']='numeric substring search'
+  self.assertReadonlyFails(ledger,'stale_persisted_display_method')
+  self.assertFalse(v.verify(self.root,refresh_presence=True)[0]['release_ready'])
+ def test_unknown_custody_schema_cannot_downgrade_to_legacy(self):
+  ledger,_=self.freeze();ledger['display_custody']['schema']='compact_display_custody_v0'
+  self.assertReadonlyFails(ledger,'unsupported_display_custody_schema')
+  self.assertFalse(v.verify(self.root,refresh_presence=True)[0]['release_ready'])
+ def test_matching_files_tampering_fails_even_with_recomputed_binding(self):
+  ledger,checks=self.freeze();false=copy.deepcopy(checks[0]);false['matching_files']=[];false['present']=False
+  ledger['claims'][0]['final_display_presence']={'matching_files':[],'binding_sha256':v.presence_digest(false)}
+  self.assertReadonlyFails(ledger,'stale_persisted_display_metadata')
+ def test_derived_display_type_is_bound_without_repeating_display(self):
+  ledger,_=self.freeze();ledger['claims'][0]['display']=1
+  self.assertReadonlyFails(ledger,'stale_persisted_display_metadata')
+ def test_derived_declared_source_order_is_bound_without_repeated_source_files(self):
+  (self.root/'paper/source/second.tex').write_text('x=2',encoding='utf-8')
+  claim=self.field(1);claim['final_display_locations']=['chapter.tex','second.tex']
+  ledger,_=self.freeze(claim);ledger['claims'][0]['final_display_locations'].reverse()
+  self.assertReadonlyFails(ledger,'stale_persisted_display_metadata')
+ def test_missing_compact_custody_cannot_fall_back_to_legacy(self):
+  ledger,_=self.freeze();del ledger['display_custody']
+  self.assertReadonlyFails(ledger,'compact_presence_without_custody')
+  self.assertFalse(v.verify(self.root,refresh_presence=True)[0]['release_ready'])
+ def test_missing_compact_per_claim_binding_is_rejected(self):
+  ledger,_=self.freeze();del ledger['claims'][0]['final_display_presence']
+  self.assertReadonlyFails(ledger,'missing_persisted_source_binding')
+ def test_legacy_presence_cannot_be_mixed_into_compact_schema(self):
+  ledger,checks=self.freeze();legacy=self.legacy(ledger,checks)
+  ledger['claims'][0]['final_display_presence']=legacy['claims'][0]['final_display_presence']
+  self.assertReadonlyFails(ledger,'stale_persisted_display_metadata')
+  self.assertFalse(v.verify(self.root,refresh_presence=True)[0]['release_ready'])
+ def test_legacy_method_tampering_is_rejected(self):
+  ledger,checks=self.freeze();legacy=self.legacy(ledger,checks)
+  legacy['claims'][0]['final_display_presence']['method']='unchecked'
+  self.assertReadonlyFails(legacy,'stale_persisted_display_method')
+  self.assertFalse(v.verify(self.root,refresh_presence=True)[0]['release_ready'])
+ def test_legacy_display_type_tampering_is_rejected(self):
+  claim=self.field(1);claim['display']=1
+  ledger,checks=self.freeze(claim)
+  for altered in [1.0,True]:
+   with self.subTest(display=altered):
+    legacy=self.legacy(ledger,checks)
+    legacy['claims'][0]['final_display_presence']['display']=altered
+    self.assertReadonlyFails(legacy,'stale_persisted_display_metadata')
+ def test_source_edit_cannot_pass_shared_custody_with_unchanged_numeric_token(self):
+  self.freeze();(self.root/'paper/source/chapter.tex').write_text('other words, same value=1',encoding='utf-8')
+  receipt,_,_=v.verify(self.root);self.assertFalse(receipt['release_ready'])
+  self.assertTrue(any(row['error']=='stale_persisted_source_hashes' for row in receipt['failures']))
 
 if __name__=='__main__':unittest.main(verbosity=2)

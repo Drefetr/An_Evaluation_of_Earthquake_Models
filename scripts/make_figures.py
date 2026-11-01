@@ -1,4 +1,9 @@
-"""Render saved evidence and explicitly algebraic diagrams; never fit or simulate."""
+"""Export baseline figures and PNG previews into a fresh build directory.
+
+No tracked figures are installed. Promote only formats referenced by the current
+LaTeX sources; raster previews do not belong in the canonical paper payload.
+Never fit or simulate.
+"""
 from pathlib import Path
 import csv, json, hashlib, math
 import sys

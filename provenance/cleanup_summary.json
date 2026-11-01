@@ -135,8 +135,8 @@
     },
     {
       "id": "27",
-      "disposition": "retained_with_policy",
-      "result": "Canonical documents retained with intentional generated offline deployment copies; build/download identities tested."
+      "disposition": "deduplicated",
+      "result": "Committed preview links canonical PDFs; generated deployment bundles alone copy documents into downloads/. Both preview and deployment links and identities tested."
     },
     {
       "id": "28",
@@ -145,8 +145,8 @@
     },
     {
       "id": "29",
-      "disposition": "standardized",
-      "result": "Both figure tools use fresh output directories with documented distinct scopes; later-review generator has explicit installation."
+      "disposition": "standardized_and_pruned",
+      "result": "Removed 18 unreferenced exports; both generators retain isolated preview outputs, and installation promotes only source-referenced formats."
     },
     {
       "id": "30",
@@ -155,15 +155,34 @@
     }
   ],
   "scientific_invariants": {
-    "manuscript_source_and_assets_unchanged": true,
     "accepted_monograph_and_companion_pdf_bytes_unchanged": true,
     "historical_iteration_source_bytes_unchanged": true,
     "site_study_values_unchanged": true,
-    "all_manuscript_claim_values_displays_transformations_comparators_denominators_preserved": true
+    "all_manuscript_claim_values_displays_transformations_comparators_denominators_preserved": true,
+    "manuscript_source_bytes_unchanged": true,
+    "included_figure_bytes_unchanged": true
   },
   "limits": [
     "Full historical replay requires excluded per-event inputs/banks/private fitted state.",
     "Native compilation verified on Windows/MSVC; GNU EP and other platforms are not newly certified.",
     "Rebuilt PDFs passed automated production checks; no new visual-review claim, and accepted PDFs were not replaced."
-  ]
+  ],
+  "payload_tidy_followup": {
+    "baseline_commit": "b24956379730408a0d8f8974a6d168b66f77d8fb",
+    "removed_unreferenced_figures": 18,
+    "figure_bytes_removed": 2122327,
+    "retained_included_figures": 36,
+    "removed_duplicate_preview_pdfs": 2,
+    "duplicate_pdf_bytes_removed": 2335167,
+    "metadata_bytes_saved": 7725205,
+    "compact_custody_schema": "compact_display_custody_v1",
+    "preserved_manuscript_bindings": 11293,
+    "preserved_total_claim_metadata_records": 27033,
+    "historical_pdfs_retained": [
+      "paper/manuscript.pdf",
+      "paper/supplements/explanatory_supplement.pdf",
+      "paper/supplements/f_nuisance_addendum.pdf"
+    ],
+    "scope": "Lossless storage and asset pruning; no scientific result or accepted document changes."
+  }
 }

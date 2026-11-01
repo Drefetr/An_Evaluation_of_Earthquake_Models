@@ -15,6 +15,8 @@ This directory separates current manuscript bindings, additional numerical sourc
 
 The default verifier checks both ledgers. Source inventory records are not automatically manuscript claims. A verified hash establishes source identity, while numerical reconciliation checks declared values/transformations. Neither establishes exhaustive theorem correctness, completeness of all manuscript claims, causal identification, or independent raw replay of every experiment.
 
+The manuscript ledger stores shared TeX source hashes and the fixed verification method once in `display_custody`. Each claim keeps its matching files and a digest binding its identity, displayed value, and declared locations. Ordinary verification recomputes every binding against current source bytes and rejects stale or missing custody. The display-regression receipt summarizes the verified ledger hashes, counts, and sources without copying the per-claim records. Explicit `scripts/verify_claims.py --write-receipts` migrates or refreshes this representation after deliberate source review.
+
 ## Check a checkout
 
 From the repository root after installing `requirements.txt` and Node.js 22 (also used by the workflow tests):

@@ -22,6 +22,8 @@ DOC_TRANSFORMS = {
  'identity of retained source text','identity of exact displayed source text; source precision retained, singleton JSON scalar unresolved',
  'identity of complete documentary numeric token'}
 ROLES = {'manuscript_binding','source_inventory_only','source_inventory_not_literal_final_display'}
+DISPLAY_CUSTODY_SCHEMA = 'compact_display_custody_v1'
+DISPLAY_PRESENCE_METHOD = 'Complete signed numeric literals; representation and source identity, not semantic completeness.'
 
 @dataclass(frozen=True)
 class Token:
@@ -219,6 +221,36 @@ def count_over_total(value,claim,data):
  if not m or type(value) is not int or type(denominator) is not int or not 0<=value<=denominator: raise ValueError('invalid_count_over_total')
  if (int(m[1]),int(m[2]))!=(value,denominator): raise ValueError('count_over_total_source_mismatch')
 
+def presence_digest(check):
+ """Bind the derived claim identity/display/locations without repeating them.
+
+ JSON types and list order are retained, including every matching file. Source
+ hashes and the fixed method are separately bound once by ledger custody.
+ """
+ return digest(json.dumps(check,sort_keys=True,ensure_ascii=False,separators=(',',':'),allow_nan=False).encode('utf-8'))
+
+def display_custody(ledger):
+ """None denotes a legacy full-presence ledger, never a compact fallback."""
+ if 'display_custody' not in ledger: return None
+ custody=ledger['display_custody']
+ if not isinstance(custody,dict) or set(custody)!={'schema','method','source_hashes'}:
+  raise ValueError('invalid_compact_display_custody')
+ if custody['schema']!=DISPLAY_CUSTODY_SCHEMA: raise ValueError('unsupported_display_custody_schema')
+ if custody['method']!=DISPLAY_PRESENCE_METHOD: raise ValueError('stale_persisted_display_method')
+ hashes=custody['source_hashes']
+ if not isinstance(hashes,dict) or any(not isinstance(p,str) or not isinstance(h,str) or not re.fullmatch('[0-9a-f]{64}',h) for p,h in hashes.items()):
+  raise ValueError('invalid_persisted_source_hashes')
+ return custody
+
+def persist_compact_custody(ledger,source_hashes):
+ """Place shared custody before claims while preserving all semantic fields."""
+ custody={'schema':DISPLAY_CUSTODY_SCHEMA,'method':DISPLAY_PRESENCE_METHOD,'source_hashes':source_hashes}
+ result={}
+ for key,value in ledger.items():
+  if key=='claims': result['display_custody']=custody
+  if key!='display_custody': result[key]=value
+ return result
+
 def verify(root=ROOT,*,authority_only=False,refresh_presence=False,ledger_path='validation/MASTER_CLAIM_LEDGER.json'):
  root=Path(root).resolve(); path=safe_path(root,str(ledger_path))
  failures,display_checks,source_hashes=[],[],{}; counts,cache=Counter(),{}
@@ -230,6 +262,7 @@ def verify(root=ROOT,*,authority_only=False,refresh_presence=False,ledger_path='
   ids=[x['id'] for x in claims+metadata]
   if any(not isinstance(i,str) or not i for i in ids): raise ValueError('invalid_claim_id')
   if len(ids)!=len(set(ids)): raise ValueError('duplicate_claim_id')
+  custody=display_custody(ledger)
  except Exception as exc: return {'passed':False,'release_ready':False,'failures':[{'error':str(exc)}],'counts':{}},None,[]
  result=copy.deepcopy(ledger); tex_cache={}
  def source(c):
@@ -294,15 +327,35 @@ def verify(root=ROOT,*,authority_only=False,refresh_presence=False,ledger_path='
      display_checks.append(check)
      current_hashes={p.relative_to(root).as_posix():source_hashes[p.relative_to(root).as_posix()] for p in paths}
      old_presence=c.get('final_display_presence')
+     # Refresh may deliberately rebind edited manuscript bytes, but must never
+     # reinterpret a malformed/unknown storage representation as legacy input.
+     if old_presence is not None:
+      if not isinstance(old_presence,dict): raise ValueError('missing_persisted_source_binding')
+      if custody is not None:
+       if set(old_presence)!={'matching_files','binding_sha256'}: raise ValueError('stale_persisted_display_metadata')
+      else:
+       if 'binding_sha256' in old_presence: raise ValueError('compact_presence_without_custody')
+       if old_presence.get('method')!=DISPLAY_PRESENCE_METHOD: raise ValueError('stale_persisted_display_method')
+       if set(old_presence)!=set(check)|{'source_hashes','method'}: raise ValueError('stale_persisted_display_metadata')
      if not refresh_presence:
       if not isinstance(old_presence,dict): raise ValueError('missing_persisted_source_binding')
-      if old_presence.get('source_hashes')!=current_hashes: raise ValueError('stale_persisted_source_hashes')
-      if any(old_presence.get(k)!=check[k] for k in ['id','present','display','source_files','matching_files']): raise ValueError('stale_persisted_display_metadata')
-     c['final_display_presence']=dict(check,source_hashes={p.relative_to(root).as_posix():source_hashes[p.relative_to(root).as_posix()] for p in paths},method='Complete signed numeric literals; representation and source identity, not semantic completeness.')
+      if custody is not None:
+       if old_presence['matching_files']!=locations or old_presence['binding_sha256']!=presence_digest(check):
+        raise ValueError('stale_persisted_display_metadata')
+      else:
+       if old_presence.get('source_hashes')!=current_hashes: raise ValueError('stale_persisted_source_hashes')
+       if type(old_presence.get('present')) is not bool or type(old_presence.get('display')) is not type(check['display']) or any(old_presence.get(k)!=check[k] for k in check):
+        raise ValueError('stale_persisted_display_metadata')
+     if refresh_presence:
+      c['final_display_presence']={'matching_files':locations,'binding_sha256':presence_digest(check)}
      if not present: raise ValueError('declared_manuscript_display_absent')
     elif authority_only: c.pop('final_display_presence',None)
    except Exception as exc:
     c['reconciliation_status']='failed'; failures.append({'id':c.get('id'),'error':str(exc),'display':c.get('display'),'bundled_source':c.get('bundled_source')})
+ if not authority_only and not refresh_presence and custody is not None and custody['source_hashes']!=source_hashes:
+  failures.append({'error':'stale_persisted_source_hashes'})
+ if refresh_presence and not authority_only: result=persist_compact_custody(result,source_hashes)
+ elif authority_only: result.pop('display_custody',None)
  counts.update(claims=len(result['claims']),documentary_metadata=len(result.get('documentary_metadata',[])),total_records=len(ids),distinct_authorities=len(cache))
  counts['literal_manuscript_display_records']=sum(x['present'] for x in display_checks)
  counts['missing_declared_manuscript_displays']=sum(not x['present'] for x in display_checks)
@@ -359,10 +412,24 @@ def verify_ledgers(root=ROOT,*,authority_only=False,refresh_presence=False):
   'completeness_limit':'Only enumerated claims are checked. Source inventory and documentary metadata are separate from literal manuscript bindings. Identity checks do not certify semantic completeness.'}
  return combined,ledgers,checks
 
+def regression_summary(receipt):
+ """Bind the verified ledgers, counts and sources without duplicating claims.
+
+ The ledger retains each claim's matching_files and derived presence binding;
+ its final digest makes this summary specific to those exact persisted records.
+ """
+ if not receipt.get('release_ready'): raise ValueError('regression_summary_requires_release_ready')
+ return {'schema':'complete_signed_literal_regression_v3',
+  'display_custody_schema':DISPLAY_CUSTODY_SCHEMA,
+  'ledger_sha256':receipt['ledger_sha256'],
+  'ledger_hashes':{r['path']:r['sha256'] for r in receipt['ledgers']},
+  'verifier_sha256':receipt['verifier_sha256'],'source_hashes':receipt['source_hashes'],
+  'counts':receipt['counts'],'passed':True,'scope':receipt['completeness_limit']}
+
 def main(argv=None):
  p=argparse.ArgumentParser(description=__doc__); p.add_argument('--root',type=Path,default=ROOT)
  p.add_argument('--authority-only',action='store_true',help='Incomplete pre-freeze verification, not release-ready')
- p.add_argument('--write-receipts',action='store_true',help='After source freeze refresh ledger and ledger-specific receipts')
+ p.add_argument('--write-receipts',action='store_true',help='After source freeze refresh custody, migrate to compact presence storage, and write summary receipts')
  args=p.parse_args(argv)
  if args.authority_only and args.write_receipts: p.error('authority-only cannot write final receipts')
  receipt,ledgers,checks=verify_ledgers(args.root,authority_only=args.authority_only,refresh_presence=args.write_receipts)
@@ -376,7 +443,7 @@ def main(argv=None):
   receipt['ledger_sha256']=receipt['ledgers'][0]['sha256']
   payload=json.dumps(receipt,indent=2,ensure_ascii=False)+'\n'
   (dest/'numeric_reconciliation_receipt.json').write_text(payload,encoding='utf-8')
-  (dest/'manuscript_display_regression.json').write_text(json.dumps({'schema':'complete_signed_literal_regression_v2','ledger_sha256':receipt['ledger_sha256'],'verifier_sha256':receipt['verifier_sha256'],'source_hashes':receipt['source_hashes'],'checks':checks,'passed':True,'scope':receipt['completeness_limit']},indent=2)+'\n',encoding='utf-8')
+  (dest/'manuscript_display_regression.json').write_text(json.dumps(regression_summary(receipt),indent=2)+'\n',encoding='utf-8')
  print(json.dumps(receipt,indent=2,ensure_ascii=False)); return 0 if receipt['passed'] else 1
 
 if __name__=='__main__': raise SystemExit(main())
