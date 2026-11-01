@@ -1,4 +1,4 @@
-# Inhibitory earthquake models
+# An Evaluation of Earthquake Models
 
 Research code, a unified monograph, a plain-language guide, and an interactive findings explorer for **Stability, Identification, and Predictive Evaluation in Inhibitory and Spatial-Temporal Earthquake Models**.
 
