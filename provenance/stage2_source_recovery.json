@@ -1,0 +1,53 @@
+{
+  "schema": "stage2_source_recovery_v1",
+  "baseline_commit": "5fdd135d788c2350bf27fda7b817d2b7c324d7c6",
+  "scope": "Recover exact local source dependencies; import/configuration adaptations do not change numerical algorithms.",
+  "recovered": [
+    {
+      "original_path": "research_runs/scientific_stage2_20261030T041738Z/M01/src/stage2_history.py",
+      "original_sha256": "8aa5ee7aaf8a19e0dd014940ec0d5bf979230eef5d7b7d4cb8fc1e8f186d6de0",
+      "public_path": "engine/stage2_followup/s01_s02_temporal/stage2_history.py",
+      "adaptation": "Import resolution only for adapters; arithmetic and rank algorithms unchanged.",
+      "public_sha256": "b97f776d9735f197932b80b779874f901488142636a0bb580cb422525b8feabc"
+    },
+    {
+      "original_path": "research_runs/scientific_stage2_20261030T041738Z/M01/src/fit_adapter_v2.py",
+      "original_sha256": "33ee1e46f9d9e866f1bc7da6c0bd128929fb129d264b11dc72257ac890f26c8f",
+      "public_path": "engine/stage2_followup/s01_s02_temporal/fit_adapter_v2.py",
+      "adaptation": "Import resolution only for adapters; arithmetic and rank algorithms unchanged.",
+      "public_sha256": "d5b79bcd3462741a28c6fe4157af15cc5fb55035148e85c5f73a3dc89139e476"
+    },
+    {
+      "original_path": "research_runs/scientific_stage2_20261030T041738Z/M01/src/calibration_arithmetic.py",
+      "original_sha256": "cabc735d62b97c849d8431020c1a474aaef12bf278737a8bbddc6ae7daef51a9",
+      "public_path": "engine/stage2_followup/s01_s02_temporal/calibration_arithmetic.py",
+      "adaptation": "Import resolution only for adapters; arithmetic and rank algorithms unchanged.",
+      "public_sha256": "cabc735d62b97c849d8431020c1a474aaef12bf278737a8bbddc6ae7daef51a9"
+    },
+    {
+      "original_path": "research_runs/scientific_remediation_20261029T233400Z/M03/rank_envelope.py",
+      "original_sha256": "e25e3197404884147863b60e23c2f24bfd97e86387a1c0da319cf06b55c5e0d2",
+      "public_path": "engine/stage2_followup/s03_s06_spatial_benchmarks/rank_envelope.py",
+      "adaptation": "Import resolution only for adapters; arithmetic and rank algorithms unchanged.",
+      "public_sha256": "e25e3197404884147863b60e23c2f24bfd97e86387a1c0da319cf06b55c5e0d2"
+    }
+  ],
+  "retired_orchestration": [
+    {
+      "historical_public_path": "engine/stage2_followup/s04_s04b_local_inhibition/refit_pipeline.py",
+      "original_sha256": "eac7e9ef2fd17126098d142e37ba01a71a0fbfb10de3c89a89fd81ff23ca1bd5",
+      "disposition": "Removed one-off environment/process wrapper from supported public tree; exact source retained in Git history at 5fdd135d788c2350bf27fda7b817d2b7c324d7c6."
+    },
+    {
+      "historical_public_path": "engine/stage2_followup/s04_s04b_local_inhibition/refit_worker.py",
+      "original_sha256": "8dec37543e2eec31aaaa537728001d067b25d704db80d36f96263efc82339db5",
+      "disposition": "Removed one-off environment/process wrapper from supported public tree; exact source retained in Git history at 5fdd135d788c2350bf27fda7b817d2b7c324d7c6."
+    },
+    {
+      "historical_public_path": "engine/stage2_followup/s04_s04b_local_inhibition/refine_worker.py",
+      "original_sha256": "0c59b563b1337118b3cc4be12611e53ddd1018ad0186b2173f078e9ffdb56da7",
+      "disposition": "Removed one-off environment/process wrapper from supported public tree; exact source retained in Git history at 5fdd135d788c2350bf27fda7b817d2b7c324d7c6."
+    }
+  ],
+  "unchanged_iteration_source_bytes": true
+}

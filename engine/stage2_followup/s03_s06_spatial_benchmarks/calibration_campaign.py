@@ -1,4 +1,4 @@
-"""Stage2 private EP binding and complete conditional-future campaign.
+"""Historical Stage2 EP campaign requiring original unshipped states/run plans.
 Console emits only aggregate counts/timing; private state/path/detail never printed.
 """
 from pathlib import Path
@@ -6,8 +6,11 @@ import argparse,hashlib,json,math,time,sys,os
 from concurrent.futures import ProcessPoolExecutor
 import numpy as np
 HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[2]
-sys.path.insert(0,str(HERE/'ep'))
-from adapter import Engine,run_job,sha
+if __package__:
+ from .ep.adapter import Engine,run_job,sha
+else:
+ sys.path.insert(0,str(HERE.parents[2]))
+ from engine.stage2_followup.s03_s06_spatial_benchmarks.ep.adapter import Engine,run_job,sha
 OLD=ROOT/'research_runs/conditional_calibration_20261025T085151Z'
 BENCH=ROOT/'research_runs/competitive_benchmarks_20261025T065609Z/results/observed_v2'
 

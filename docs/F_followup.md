@@ -1,26 +1,30 @@
-# F continuation: scope of the manuscript update
+# F continuation: historical checkpoint and completed S01 recovery
 
-This editorial revision is dated 22 October 2026. It incorporates findings from the bounded F research run executed on 19 October UTC (20 October in New Zealand at completion). No new fitting, simulation, resampling, catalogue acquisition or history scoring was performed for this manuscript update.
+The [separate F addendum](../paper/supplements/f_nuisance_addendum.pdf) records the bounded continuation as presented on 22 October 2026. Its incomplete coverage is a historical checkpoint. The current unified monograph includes the subsequent completed S01 recovery; see the [current chapter source](../paper/source/chapters/07_s01_completed.tex) and [S01 acceptance](../validation/acceptances/S01_ACCEPTANCE.json).
 
-The historical study and subsequent F continuation use different numerical contracts. Historical detections of 123/150 with level estimated and 68/150 with level and trend estimated remain in the paper, together with their original null counts, intervals, paired summaries, settings and figures. The continuation is a separate four-procedure comparison; all its alternatives estimate eta, including the supplied/supplied nuisance cell. It is not the historical fixed-eta oracle.
+## Current completed checkpoint
 
-At alpha .05, the continuation's alternative-query rejection/nonrejection/unknown counts are:
+Stage 2 filled only missing statistics: 11 reference histories, 384 null-query histories, and two alternative-query histories, comprising 397 histories and 1,528 procedure cells. The original 7,068 controlled cells were preserved. Each procedure now has 999 reference statistics, 1,000 null queries, and 150 alternative queries, with no unresolved cells. The earlier shorthand of 383 null and three alternative histories is superseded by the bound input map.
 
-| Background nuisance fitted | Rejection | Nonrejection | Unknown |
-|---|---:|---:|---:|
-| Neither | 150 | 0 | 0 |
-| Level | 122 | 28 | 0 |
-| Trend | 150 | 0 | 0 |
-| Level and trend | 65 | 82 | 3 |
+| Background nuisance fitted | Null rejections / 1,000 | Alternative rejections / 150 |
+|---|---:|---:|
+| Neither (`I00`) | 49 | 150 |
+| Level (`I10`) | 47 | 122 |
+| Trend (`I01`) | 52 | 150 |
+| Level and trend (`I11`) | 44 | 68 |
 
-All 2,149 identities remain registered; 7,068 of 8,596 method outcomes have controlled statistics and 1,528 remain unknown. Null-query rejection accounting bounds range from roughly .03 to .41 by procedure, using all 1,000 planned queries. These are missing-decision bounds, not confidence intervals. Cost and traversal make missingness nonrandom. The continuation does not establish empirical null size or a size-matched power ranking. Full-pair interaction point means and MCSEs remain unavailable.
+Completed paired interaction means are -0.006 for null queries (query-unit Monte Carlo SE 0.00949) and -0.360 for alternatives (SE 0.04564). All eleven profile meshes and the saved 2,000 resamples in each role and resampling mode are resolved. The chapter supplies the complete tables and display bindings.
 
-All 2,000 descriptive resampling replicates completed. Independent audits checked the base calibration, all 2,000 reference plans through 80 chunk hashes, eight declared query-replicate witnesses across both roles/modes, and all 120 reported endpoint quantiles. This is not a claim that every resampled query statistic was independently recalculated, that historical generating RNG was replayed or that confidence coverage was certified.
+The recovery combines preserved results with an eight-start compiled procedure for missing cells. It does not claim uniform reoptimization of every bank member. Validation includes declared compatibility controls, independent kernel fixtures, a three-history raw saved-point pilot, and complete saved-custody/aggregate checks; it does not independently replay every fit or mesh.
 
-A separate posthoc accounting traced the original 25-query continuation pilot: unchanged level-only query fits/statistics changed from 6/11/8 to 19/6/0 when the reference calibration changed. That comparison does not isolate bank size from composition, resolution or missingness. It is distinct from the paper's earlier 25-pair eta-planning comparison, whose original 6/25 and 11/25 counts remain unchanged.
+## What remains limited
 
-The [addendum](../paper/supplements/f_nuisance_addendum.pdf) gives methods, results, partial geometry and limitations. Its [source and saved-output guide](../paper/supplements/f_nuisance_addendum/README.md) explains the compact tables and figure replay. Raw banks, catalogue rows, full bootstrap chunks, provider transcripts and internal reviews are omitted from this compact manuscript companion. Recreating saved displays is distinct from recalibrating or refitting the historical study.
+Calibration remains an oracle calibration for the specified synthetic law. The proposed fitted-null nested bootstrap was outside the authorized study scope. Observed null rejection rates are simulation frequencies for that law, not proof of universal nominal size. Resampling summaries describe reference-bank and paired-query sensitivity rather than certified confidence coverage. The finite-mode approximation and predictable pre-event clock convention remain those of the preserved implementation.
 
-The manuscript now distinguishes historical and continuation results in the abstract, design, synthetic-results chapter, discussion and conclusion. It retains the original scientific records and does not infer a physical mechanism, universal nuisance effect or validated power advantage. The F extension remains inconclusive; further numerical recovery is proposed rather than automatically scheduled.
+The historical 123/150 and 68/150 detection results belong to earlier recipes. In the F continuation all alternatives estimate eta, including the supplied/supplied nuisance cell; it is not the historical fixed-eta oracle. Identical headline counts across recipes do not make the procedures interchangeable or establish a physical inhibition mechanism.
 
-Existing collaborator credits and licence scopes are unchanged. The pre-commit evaluation and its wording/navigation corrections are complete; the compact validation records describe their scope. No push, merge or publication is implied.
+## Reading the older addendum
+
+The October checkpoint retained 2,149 identities but controlled only 7,068 of 8,596 procedure outcomes. Its joint-nuisance alternative counts were 65 rejection, 82 nonrejection, and three unknown; missing-decision bounds and unavailable paired interactions applied to that date. Those statements must not be used as the current coverage summary.
+
+The addendum PDF remains useful for its dated methods and partial-geometry discussion. Its standalone editable source and saved-output replay directory are not shipped. Current editable presentation is in `paper/source/`, and scientific evidence is routed through the current claim ledger and [authority index](../validation/authority_manifest.json). Raw banks, full bootstrap chunks, catalogue rows, and private execution histories remain outside this publication package.

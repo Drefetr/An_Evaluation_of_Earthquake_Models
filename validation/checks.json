@@ -1,0 +1,86 @@
+{
+  "schema": "bounded_repository_checks_v1",
+  "status": "passed",
+  "baseline_commit": "5fdd135d788c2350bf27fda7b817d2b7c324d7c6",
+  "snapshot": "Current payload is bound by MANIFEST.json; this record is part of that payload.",
+  "environment": {
+    "python": "3.13.4",
+    "node": "22.17.0",
+    "native": "Windows x64/MSVC",
+    "dependency_install": "Fresh isolated venv from requirements.txt succeeded"
+  },
+  "checks": {
+    "main_unit_and_workflow_suite": {
+      "passed": true,
+      "tests": 61,
+      "command": "python -B -m unittest discover -s tests -v"
+    },
+    "stage2_portable": {
+      "passed": true,
+      "tests_passed": 5,
+      "optional_native_skipped": 3,
+      "command": "python -B -m unittest discover -s engine/stage2_followup/tests -v"
+    },
+    "stage2_with_native_fixtures": {
+      "passed": true,
+      "tests": 8,
+      "native_groups": [
+        "LI",
+        "temporal",
+        "S06"
+      ]
+    },
+    "native_builds": {
+      "passed": true,
+      "groups": [
+        "LI",
+        "radial",
+        "temporal",
+        "S06",
+        "EP"
+      ],
+      "compiler": "MSVC",
+      "scope": "Compilation, version load, and small declared fixtures; no campaign"
+    },
+    "claim_reconciliation": {
+      "passed": true,
+      "records": 27033,
+      "manuscript_bindings": 11293,
+      "direct_authorities": 132,
+      "receipt": "validation/numeric_reconciliation_receipt.json"
+    },
+    "mathematics": {
+      "passed": true,
+      "output": "validation/mathematics.json"
+    },
+    "site_interactions": {
+      "passed": true,
+      "selector_combinations": 70
+    },
+    "isolated_builds": {
+      "passed": true,
+      "companion_pages": 8,
+      "baseline_figures": 9,
+      "later_review_figure_files": 16,
+      "site_study_values_unchanged": true
+    },
+    "monograph_build": {
+      "passed": true,
+      "compiler": "Tectonic 0.17.0",
+      "pages": 231,
+      "production_checks_passed": true,
+      "underfull_boxes": 21,
+      "accepted_document_installed": false,
+      "new_visual_review_claimed": false
+    },
+    "source_migration_review": {
+      "passed": true,
+      "retired_process_inventory_records": 36,
+      "canonical_authority_aliases": 17,
+      "sanitized_retained_authorities": 22,
+      "indexed_historical_files": 52,
+      "semantic_values_unchanged": true
+    }
+  },
+  "scope": "Bounded source/workflow checks only; scientific acceptance, theorem proof, raw-data replay and external peer review are separate."
+}

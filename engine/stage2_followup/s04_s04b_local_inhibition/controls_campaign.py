@@ -1,11 +1,17 @@
 """Fixed-backbone LI+ observed/control execution; private arrays stay local."""
-import argparse,ctypes as C,json,time,os
+import argparse,ctypes as C,json,time,os,sys
 from pathlib import Path
 import numpy as np
 from scipy.optimize import minimize
-import spatial as S
-from geometry_plan import _adaptive_area_space
-import generator as G
+if __package__:
+ from ..s03_s06_spatial_benchmarks import spatial as S
+ from .geometry_plan import _adaptive_area_space
+ from . import generator as G
+else:
+ sys.path.insert(0,str(Path(__file__).resolve().parents[3]))
+ from engine.stage2_followup.s03_s06_spatial_benchmarks import spatial as S
+ from engine.stage2_followup.s04_s04b_local_inhibition.geometry_plan import _adaptive_area_space
+ from engine.stage2_followup.s04_s04b_local_inhibition import generator as G
 LIVE_NATIVE_BYTES=0
 def time_plan(t,start,end,c,order):
  z,w=np.polynomial.legendre.leggauss(order);edges=np.unique(np.r_[start,t[(t>start)&(t<end)],end]);nodes=[];weights=[]

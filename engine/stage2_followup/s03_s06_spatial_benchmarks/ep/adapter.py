@@ -14,8 +14,14 @@ from pathlib import Path
 import platform
 import shutil
 import subprocess
+import sys
 import time
 import numpy as np
+if __package__:
+    from ...native_build import discover_vcvars, quote_batch
+else:
+    sys.path.insert(0, str(Path(__file__).resolve().parents[4]))
+    from engine.stage2_followup.native_build import discover_vcvars, quote_batch
 
 PARAM_KEYS = ('a','d','n','c','p','scale','bandwidth','beta','T0','start','end','spatial_q')
 SCALAR_KEYS = ('count','exposure','immigrant_exposure','trigger_exposure',
@@ -135,25 +141,29 @@ class State:
         if status:raise RuntimeError(self.engine.error())
         return decode_stats(stats),detail
 
-def build(output,compiler='auto'):
-    """Only conductor under its serial machine lease may call this function."""
+def build(output,compiler='auto',vcvars=None):
+    """Build a fresh EP library; no scientific state or campaign is executed."""
     src=Path(__file__).with_name('engine.cpp').resolve();output=Path(output).resolve();output.parent.mkdir(parents=True,exist_ok=True)
-    artifacts=[output,output.with_suffix(output.suffix+'.build.json'),output.with_suffix(output.suffix+'.failed-build.txt')]
+    artifacts=[output,output.with_suffix(output.suffix+'.build.json'),output.with_suffix(output.suffix+'.failed-build.txt'),output.with_suffix(output.suffix+'.build.cmd'),output.with_suffix(output.suffix+'.compiler.cmd')]
     artifacts += [output.with_suffix(ext) for ext in ('.obj','.lib','.exp','.pdb')]
     if any(path.exists() for path in artifacts):raise FileExistsError('BUILD_ARTIFACT_ALREADY_EXISTS_USE_NEW_PATH')
     if compiler=='auto':compiler=shutil.which('g++') or ('msvc' if os.name=='nt' else 'g++')
     if compiler=='msvc':
-        vcvars=Path('C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Auxiliary/Build/vcvars64.bat')
-        if not vcvars.is_file():raise FileNotFoundError('PINNED_MSVC_VCVARS_MISSING')
+        vcvars=discover_vcvars(vcvars)
         # cmd receives trusted absolute local paths only, without metacharacters.
         for path in (src,output):
-            if any(c in str(path) for c in '\r\n"&|<>^%'):raise ValueError('BUILD_PATH_METACHARACTER')
+            quote_batch(path)
         options=['cl.exe','/nologo','/std:c++17','/O2','/DNDEBUG','/EHsc','/fp:strict','/LD',str(src),'/Fo'+str(output.with_suffix('.obj')),'/link','/OUT:'+str(output),'/IMPLIB:'+str(output.with_suffix('.lib'))]
-        command='call "'+str(vcvars)+'" >nul && '+subprocess.list2cmdline(options)
-        cmd=['cmd.exe','/d','/s','/c',command]
+        setup=['call '+quote_batch(vcvars),'if errorlevel 1 exit /b %errorlevel%'] if vcvars else []
+        # Put commands in a batch file to avoid cmd's /c quote stripping when
+        # the discovered Visual Studio installation contains spaces.
+        batch=output.with_suffix(output.suffix+'.build.cmd')
+        batch.write_text('\n'.join(['@echo off','setlocal DisableDelayedExpansion',*setup,subprocess.list2cmdline(options),'exit /b %errorlevel%','']),encoding='utf-8')
+        cmd=['cmd.exe','/d','/c',str(batch)]
         result=subprocess.run(cmd,capture_output=True,text=True,cwd=output.parent)
-        version_command='call "'+str(vcvars)+'" >nul && cl.exe /Bv'
-        probe=subprocess.run(['cmd.exe','/d','/s','/c',version_command],capture_output=True,text=True,cwd=output.parent)
+        version_batch=output.with_suffix(output.suffix+'.compiler.cmd')
+        version_batch.write_text('\n'.join(['@echo off','setlocal DisableDelayedExpansion',*setup,'cl.exe /Bv','']),encoding='utf-8')
+        probe=subprocess.run(['cmd.exe','/d','/c',str(version_batch)],capture_output=True,text=True,cwd=output.parent)
         version=probe.stdout+probe.stderr
     else:
         cmd=[compiler,'-std=c++17','-O3','-DNDEBUG','-fno-fast-math','-ffp-contract=off','-shared',str(src),'-o',str(output)]
@@ -206,10 +216,10 @@ def run_job(job_path):
 
 def main():
     parser=argparse.ArgumentParser();sub=parser.add_subparsers(dest='action',required=True)
-    p=sub.add_parser('build');p.add_argument('--output',required=True);p.add_argument('--compiler',default='auto')
+    p=sub.add_parser('build');p.add_argument('--output',required=True);p.add_argument('--compiler',default='auto');p.add_argument('--vcvars',help='Optional MSVC setup script, otherwise discover developer shell/vswhere')
     p=sub.add_parser('job');p.add_argument('--job',required=True)
     args=parser.parse_args()
-    if args.action=='build':build(args.output,args.compiler)
+    if args.action=='build':build(args.output,args.compiler,args.vcvars)
     else:
         receipt=run_job(args.job)
         raise SystemExit(0 if receipt['status']=='complete' else 1)

@@ -1,6 +1,7 @@
 """Resumable 36-procedure / 330-slot JMA forecast orchestration.
 
-Run from the study directory with ``python -m source.research.jma_forecast_v1.runner``.
+From the repository root use
+``python -m engine.stage2_followup.s03_s06_spatial_benchmarks.s06.runner``.
 Only aggregate status is printed. Private event arrays and solver states stay local.
 """
 import os

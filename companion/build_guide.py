@@ -1,6 +1,6 @@
 """Build the plain-language PDF and HTML from editable JSON; no experiments."""
 from pathlib import Path
-import argparse, html, json, math
+import argparse, html, json, math, shutil
 import reportlab
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
@@ -58,8 +58,13 @@ def diagram(name):
     return d
 
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument('--output',type=Path,default=ROOT);a=parser.parse_args()
-    data=json.loads((ROOT/'guide_content.json').read_text(encoding='utf-8'));a.output.mkdir(parents=True,exist_ok=True);fonts()
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--output',type=Path,default=ROOT.parent/'build/companion',help='Fresh output directory (default: build/companion)')
+    parser.add_argument('--install',action='store_true',help='Also install the successfully built PDF/HTML in companion/. Requires review and manifest refresh.')
+    a=parser.parse_args();a.output=a.output.resolve()
+    if a.output.is_relative_to(ROOT) or ROOT.is_relative_to(a.output):
+        parser.error('output must be a fresh directory outside companion/')
+    data=json.loads((ROOT/'guide_content.json').read_text(encoding='utf-8'));a.output.mkdir(parents=True,exist_ok=False);fonts()
     styles={
       'body':ParagraphStyle('body',fontName='Guide',fontSize=10.5,leading=15,textColor=INK,spaceAfter=8),
       'lead':ParagraphStyle('lead',fontName='Guide',fontSize=12.2,leading=17.3,textColor=NAVY,spaceAfter=11),
@@ -101,6 +106,10 @@ def main():
     pdf=a.output/'lay_guide_to_the_research.pdf';doc=SimpleDocTemplate(str(pdf),pagesize=A4,leftMargin=54,rightMargin=54,topMargin=52,bottomMargin=62,title=data['title'],author='Research companion to the scientific-completion monograph');doc.build(story,onFirstPage=decoration,onLaterPages=decoration)
     css='''body{font:17px/1.65 system-ui,Arial,sans-serif;color:#26343d;background:#e8eff1;margin:0}main{max-width:850px;margin:auto}section{background:white;margin:25px 0;padding:45px 55px;box-shadow:0 2px 8px #18344912}h1{font-size:2.2rem;line-height:1.15;color:#183449}h2{font-size:1.8rem;line-height:1.3;color:#183449}h3{font-size:1.12rem;color:#166c72;margin-bottom:.3em}.lead{font-size:1.2rem;color:#183449}.edition,.source,.note,.status,figcaption{font-size:.86rem;color:#54636d}.edition{font-weight:bold;color:#166c72}.status,aside{background:#edf5f4;padding:15px 20px}aside p{margin-bottom:0}table{width:100%;border-collapse:collapse;font-size:.92rem}th,td{padding:10px 14px 10px 0;text-align:left;vertical-align:top;border-bottom:1px solid #cdd9de}th{width:28%}svg{width:100%;height:auto}figure{margin:20px 0}.source{border-top:1px solid #cdd9de;padding-top:12px}a{color:#166c72}@media(max-width:600px){section{padding:25px}h1{font-size:1.9rem}}@media print{body{background:white;font-size:11pt}section{box-shadow:none;margin:0;padding:0;break-after:page}main{max-width:none}}'''
     document='<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+html.escape(data['title'])+'</title><style>'+css+'</style></head><body><main>'+''.join(html_pages)+'</main></body></html>'
-    (a.output/'lay_guide_to_the_research.html').write_text(document,encoding='utf-8');print(pdf)
+    (a.output/'lay_guide_to_the_research.html').write_text(document,encoding='utf-8')
+    if a.install:
+        for filename in ['lay_guide_to_the_research.pdf','lay_guide_to_the_research.html']:
+            shutil.copyfile(a.output/filename,ROOT/filename)
+    print(pdf)
 
 if __name__=='__main__':main()

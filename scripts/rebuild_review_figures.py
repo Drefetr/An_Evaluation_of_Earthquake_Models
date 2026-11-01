@@ -1,6 +1,6 @@
 """Render saved aggregates and declared algebra only; never fit or simulate."""
 from pathlib import Path
-import hashlib,json,math
+import argparse,fnmatch,hashlib,json,math,shutil
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -9,9 +9,16 @@ ROOT=Path(__file__).resolve().parents[1]
 FIG=ROOT/'paper/figures';DATA=ROOT/'paper/data'
 plt.rcParams.update({'font.family':'DejaVu Sans','font.size':9.5,'axes.titlesize':10,'axes.labelsize':9.5,'xtick.labelsize':9.5,'ytick.labelsize':9.5,'legend.fontsize':9.5,'pdf.fonttype':42,'axes.spines.top':False,'axes.spines.right':False})
 outputs=[]
+def authority(pattern):
+ rows=json.loads((ROOT/'validation/authority_manifest.json').read_text(encoding='utf-8'))
+ found=[r for r in rows if fnmatch.fnmatch(Path(r.get('historical_bundled_path',r['bundled_path'])).name,pattern)]
+ if len(found)!=1:raise ValueError('ambiguous or missing authority: '+pattern)
+ row=found[0];path=ROOT/row['bundled_path']
+ if hashlib.sha256(path.read_bytes()).hexdigest()!=row['sha256']:raise ValueError('public authority hash mismatch: '+str(path))
+ return path
 def save(fig,name):
  for ext in ('pdf','png'):
-  p=FIG/(name+'.'+ext);fig.savefig(p,dpi=200,facecolor='white',metadata={'Creator':'Saved-evidence figure revision'});outputs.append({'path':p.relative_to(ROOT).as_posix(),'sha256':hashlib.sha256(p.read_bytes()).hexdigest()})
+  p=FIG/(name+'.'+ext);fig.savefig(p,dpi=200,facecolor='white',metadata={'Creator':'Saved-evidence figure revision'});outputs.append({'path':p.name,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()})
  plt.close(fig)
 def exact():
  t=np.r_[0,np.geomspace(.001,100,600)];w=np.array([.5,.35,.15]);r=np.array([.05,1,20]);parts=np.exp(-t[:,None]*r)*w
@@ -52,7 +59,7 @@ PANELS=[('timing_OC_minus_fixedML','Timing: OC - FC','timing_logscore'),('locati
 def regional():
  datasets=[]
  for prefix,sens in [('bf4d50b9ecefc531',False),('e93db40b7871acc7',True)]:
-  p=next((ROOT/'validation/authorities').glob(prefix+'*.json'));assert hashlib.sha256(p.read_bytes()).hexdigest().startswith(prefix);x=json.loads(p.read_text(encoding='utf-8'));data={}
+  p=authority(prefix+'*.json');x=json.loads(p.read_text(encoding='utf-8'));data={}
   for cid,title,comp in PANELS:
    annual=sorted((r for r in (x['annual']['contrast_blocks'] if sens else x['annual_contrasts']) if r['contrast_id']==cid),key=lambda r:r['start_utc']);win=sorted((r for r in (x['contrasts'] if sens else x['fold_contrasts']) if r['contrast_id']==cid),key=lambda r:r['fold_id']);pool=next(r for r in x['pooled_contrasts'] if r['contrast_id']==cid)
    vals=[r['components'][comp] if sens else r['primary_value'] for r in annual];means=[r['nats_per_target'][comp] if sens else r['per_target_mean'] for r in win]+[pool['nats_per_target'][comp] if sens else pool['per_target_mean']];total=pool['components'][comp] if sens else pool['primary_value'];assert len(vals)==15 and math.isclose(sum(vals),total,abs_tol=1e-4)
@@ -72,7 +79,7 @@ def regional():
     ax.axvline(0,color='#333333',lw=.7);ax.grid(axis='x',alpha=.2);ax.set_title(title+'\n'+('M >= 4.5' if j else 'M >= 4.0'),loc='left',pad=7)
   save(fig,stem)
 def planned_bounds():
- p=next((ROOT/'validation/authorities').glob('37a8da3e0df262d4*.json'))
+ p=authority('37a8da3e0df262d4*.json')
  rows=json.loads(p.read_text(encoding='utf-8'))['matrix_accounting']
  fig,axes=plt.subplots(2,1,figsize=(5.8,5.9),layout='constrained')
  for ax,role,title in zip(axes,['null_query','alternative_query'],['Null queries (planned N = 1000)','Alternative queries (planned N = 150)']):
@@ -87,9 +94,20 @@ def planned_bounds():
  save(fig,'a1_planned_denominator_bounds')
 
 def main():
+ global FIG
+ parser=argparse.ArgumentParser(description=__doc__)
+ parser.add_argument('--output',type=Path,default=ROOT/'build/review_figures',help='Fresh output directory (default: build/review_figures)')
+ parser.add_argument('--install',action='store_true',help='Also install successful figures in paper/figures/. Requires visual review and manifest refresh.')
+ args=parser.parse_args();FIG=args.output.resolve()
+ protected=(ROOT/'paper').resolve()
+ if FIG.is_relative_to(protected) or protected.is_relative_to(FIG):parser.error('output must be a fresh directory outside paper/')
+ FIG.mkdir(parents=True,exist_ok=False)
+ outputs.clear()
  exact();details=geometry();regional();planned_bounds()
- inputs=[DATA/'geometry_summary.json',next((ROOT/'validation/authorities').glob('bf4d50b9ecefc531*.json')),next((ROOT/'validation/authorities').glob('e93db40b7871acc7*.json')),next((ROOT/'validation/authorities').glob('37a8da3e0df262d4*.json'))]
+ inputs=[DATA/'geometry_summary.json',authority('bf4d50b9ecefc531*.json'),authority('e93db40b7871acc7*.json'),authority('37a8da3e0df262d4*.json')]
  receipt={'scope':'Saved data and illustrative algebra only; no scientific fits or simulations','nominal_minimum_font_pt':8.4,'figure_width_inches':5.8,'final_pdf_font_sizes_require_check':True,'inputs':[{'path':p.relative_to(ROOT).as_posix(),'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in inputs],'outputs':outputs,'geometry':details,'script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
- (ROOT/'validation/figure_revision.json').write_text(json.dumps(receipt,indent=2)+'\n',encoding='utf-8')
+ (FIG/'figure_revision.json').write_text(json.dumps(receipt,indent=2)+'\n',encoding='utf-8')
+ if args.install:
+  for row in outputs:shutil.copyfile(FIG/row['path'],ROOT/'paper/figures'/row['path'])
  print(json.dumps({'outputs':len(outputs),'geometry':details}))
 if __name__=='__main__':main()

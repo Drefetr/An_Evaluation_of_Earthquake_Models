@@ -1,9 +1,15 @@
 """Saved-result-only hybrid provenance/calibration, no fitting on import/run."""
-from campaign import HOME,save,sha
+if __package__:
+ from .campaign import HOME,save,sha
+else:
+ from campaign import HOME,save,sha
 from pathlib import Path
 import json,copy,random,hashlib,collections,time,argparse
 import numpy as np
-import calibration_arithmetic as arithmetic
+if __package__:
+ from . import calibration_arithmetic as arithmetic
+else:
+ import calibration_arithmetic as arithmetic
 
 def main():
  p=argparse.ArgumentParser();p.add_argument('--bootstrap',type=int,default=2000);a=p.parse_args()

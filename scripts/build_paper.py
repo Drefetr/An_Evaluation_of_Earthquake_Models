@@ -11,10 +11,6 @@ def main():
  p.add_argument('--install',action='store_true',help='Explicitly install this successful build as paper/manuscript_unified.pdf. Omit for isolated verification.')
  a=p.parse_args()
  engine=a.engine or os.environ.get('TECTONIC') or shutil.which('tectonic')
- if not engine:
-  candidates=[ROOT/'tools/tectonic/tectonic.exe']
-  candidates.extend(parent/'thesis_writeup/2026-10-18/tools/tectonic/tectonic.exe' for parent in ROOT.parents)
-  engine=next((str(x) for x in candidates if x.exists()),None)
  if not engine:raise SystemExit('Tectonic 0.17.0 is required. Set TECTONIC or pass --engine PATH.')
  engine=Path(engine).resolve()
  version=subprocess.check_output([str(engine),'--version'],text=True).strip()

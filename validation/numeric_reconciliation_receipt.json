@@ -1,25 +1,25 @@
 {
-  "schema": "typed_claim_reconciliation_v2",
-  "scope": "Saved authority identity, explicit transformations, full documentary tokens and declared numeric representation; no scientific execution or exhaustive semantic review.",
+  "schema": "typed_claim_reconciliation_v3",
+  "scope": "Manuscript bindings and separately identified scientific source inventory; both are verified by default. Historical process-control inventory is indexed in provenance/historical_archive.json.",
   "authority_only": false,
   "passed": true,
   "release_ready": true,
   "counts": {
-    "json_numeric_verified": 23686,
-    "json_pointer_verified": 23960,
-    "json_nonnumeric_verified": 274,
+    "json_numeric_verified": 23657,
+    "json_pointer_verified": 23924,
     "documentary_numeric_verified": 2430,
     "documentary_metadata_verified": 679,
-    "claims": 26390,
+    "claims": 26354,
     "documentary_metadata": 679,
-    "total_records": 27069,
-    "distinct_authorities": 140,
+    "total_records": 27033,
     "literal_manuscript_display_records": 11293,
-    "missing_declared_manuscript_displays": 0
+    "missing_declared_manuscript_displays": 0,
+    "json_nonnumeric_verified": 267,
+    "distinct_authorities": 132
   },
   "failures": [],
-  "ledger_sha256": "9ddcceb8165d5018eef6f508293c8ad22c2e438cca2d3109ed982897a004dd01",
-  "verifier_sha256": "dffa4a1a82bac53df0c9258b9a715be5b911707df3fb1d7970ea718cb135d1e4",
+  "ledger_sha256": "aec5bca4071ac32060dd49f37fe81b9f79b605e9df26996dd9a87fbf92248a41",
+  "verifier_sha256": "931616d410059d7dfecbcc34601eadf90a04409b6c0f76f343cc488994fbeb77",
   "source_hashes": {
     "paper/source/chapters/07_synthetic.tex": "7c9c3cd74610a5facc390357c5c70b3e2142299faac1070bff98f7d2719baedc",
     "paper/source/appendix_tables/ch07_historical_endpoints.tex": "c2417b4ae8d9713df7402285912e63bdbc382c717ff824924a447b5f713c34ff",
@@ -50,5 +50,41 @@
     "paper/source/chapters/13_s04_observed_completed.tex": "99afa181baa400760ec86da26fe62dcd3bb46285fa372b90144fb2a5e946050b",
     "paper/source/chapters/12_s05_completed.tex": "10245443479c53bd63fea89cb2a0b71bb980971411334c58bf34d8b566e10280"
   },
-  "completeness_limit": "Only enumerated claims are checked. Typed metadata is excluded from numerical claims. Missing manuscript claims are never automatically demoted."
+  "ledgers": [
+    {
+      "path": "validation/MASTER_CLAIM_LEDGER.json",
+      "sha256": "aec5bca4071ac32060dd49f37fe81b9f79b605e9df26996dd9a87fbf92248a41",
+      "counts": {
+        "json_numeric_verified": 8887,
+        "json_pointer_verified": 8887,
+        "documentary_numeric_verified": 2406,
+        "documentary_metadata_verified": 679,
+        "claims": 11293,
+        "documentary_metadata": 679,
+        "total_records": 11972,
+        "distinct_authorities": 125,
+        "literal_manuscript_display_records": 11293,
+        "missing_declared_manuscript_displays": 0
+      },
+      "passed": true
+    },
+    {
+      "path": "validation/SOURCE_INVENTORY.json",
+      "sha256": "023e73aeba3c5c59439515d8cc8b361c32d1fe971979e85bc7927aa40fd571af",
+      "counts": {
+        "json_numeric_verified": 14770,
+        "json_pointer_verified": 15037,
+        "json_nonnumeric_verified": 267,
+        "documentary_numeric_verified": 24,
+        "claims": 15061,
+        "documentary_metadata": 0,
+        "total_records": 15061,
+        "distinct_authorities": 41,
+        "literal_manuscript_display_records": 0,
+        "missing_declared_manuscript_displays": 0
+      },
+      "passed": true
+    }
+  ],
+  "completeness_limit": "Only enumerated claims are checked. Source inventory and documentary metadata are separate from literal manuscript bindings. Identity checks do not certify semantic completeness."
 }

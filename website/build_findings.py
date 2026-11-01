@@ -1,5 +1,6 @@
 """Export only accepted aggregate results; no fit or live-run access."""
 import hashlib
+import fnmatch
 import json
 from pathlib import Path
 
@@ -9,8 +10,12 @@ AUTH = ROOT/'validation/authorities'
 def build(out):
     studies=[];sources=[]
     def read(pattern):
-        paths=list(AUTH.glob(pattern));assert len(paths)==1,pattern
-        p=paths[0];sources.append({'file':p.name,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()})
+        manifest=json.loads((ROOT/'validation/authority_manifest.json').read_text(encoding='utf-8'))
+        matches=[r for r in manifest if fnmatch.fnmatch(Path(r.get('historical_bundled_path',r['bundled_path'])).name,pattern)]
+        if len(matches)!=1:raise ValueError('ambiguous or missing authority: '+pattern)
+        row=matches[0];p=ROOT/row['bundled_path'];actual=hashlib.sha256(p.read_bytes()).hexdigest()
+        if actual!=row['sha256']:raise ValueError('public authority hash mismatch: '+row['bundled_path'])
+        sources.append({'file':p.name,'path':row['bundled_path'],'sha256':actual})
         return json.loads(p.read_text(encoding='utf-8'))
     assert read('*_s03_saved_checks.json')['passed']
     for region,label in [('ca','California'),('nz','New Zealand')]:

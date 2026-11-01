@@ -219,8 +219,8 @@ def count_over_total(value,claim,data):
  if not m or type(value) is not int or type(denominator) is not int or not 0<=value<=denominator: raise ValueError('invalid_count_over_total')
  if (int(m[1]),int(m[2]))!=(value,denominator): raise ValueError('count_over_total_source_mismatch')
 
-def verify(root=ROOT,*,authority_only=False,refresh_presence=False):
- root=Path(root).resolve(); path=root/'validation/MASTER_CLAIM_LEDGER.json'
+def verify(root=ROOT,*,authority_only=False,refresh_presence=False,ledger_path='validation/MASTER_CLAIM_LEDGER.json'):
+ root=Path(root).resolve(); path=safe_path(root,str(ledger_path))
  failures,display_checks,source_hashes=[],[],{}; counts,cache=Counter(),{}
  try:
   raw_ledger=path.read_bytes(); ledger=strict_json(raw_ledger.decode('utf-8-sig'))
@@ -322,20 +322,60 @@ def format_ledger(ledger):
   else: parts.append(f'  {json.dumps(k)}: {json.dumps(v,ensure_ascii=False)}{comma}')
  parts.append('}\n'); return '\n'.join(parts).encode('utf-8')
 
+def verify_ledgers(root=ROOT,*,authority_only=False,refresh_presence=False):
+ """Check the manuscript ledger and its explicitly declared source inventory.
+
+ The inventories have disjoint record IDs. Splitting them cannot hide failed
+ source bindings or turn inventory records into manuscript claims.
+ """
+ root=Path(root).resolve(); paths=['validation/MASTER_CLAIM_LEDGER.json'];declaration_errors=[]
+ try:
+  primary=strict_json(safe_path(root,paths[0]).read_text(encoding='utf-8-sig'))
+  if primary.get('source_inventory'): paths.append(primary['source_inventory'])
+  elif (root/'validation/SOURCE_INVENTORY.json').exists() or primary.get('edition')=='repository_cleanup_20261102':
+   declaration_errors.append({'error':'source_inventory_declaration_missing'})
+   paths.append('validation/SOURCE_INVENTORY.json')
+ except (OSError,ValueError,KeyError): pass  # verify() reports the precise failure.
+ receipts=[];ledgers=[];checks=[];ids=set();failures=list(declaration_errors);counts=Counter();sources={};authorities=set()
+ for relative in paths:
+  try: receipt,ledger,display=verify(root,authority_only=authority_only,refresh_presence=refresh_presence,ledger_path=relative)
+  except (OSError,ValueError) as exc:
+   receipt={'passed':False,'release_ready':False,'failures':[{'error':str(exc)}],'counts':{}};ledger=None;display=[]
+  receipts.append({'path':relative,**receipt});checks.extend(display)
+  failures.extend(dict(f,ledger=relative) for f in receipt.get('failures',[]))
+  counts.update({k:v for k,v in receipt.get('counts',{}).items() if k!='distinct_authorities'})
+  sources.update(receipt.get('source_hashes',{}))
+  if ledger is not None:
+   for c in ledger['claims']+ledger.get('documentary_metadata',[]):
+    if c['id'] in ids: failures.append({'id':c['id'],'error':'duplicate_claim_id_across_ledgers','ledger':relative})
+    ids.add(c['id']);authorities.add(c['bundled_source'])
+   ledgers.append((relative,ledger))
+ counts['distinct_authorities']=len(authorities)
+ combined={'schema':'typed_claim_reconciliation_v3','scope':'Manuscript bindings and separately identified scientific source inventory; both are verified by default. Historical process-control inventory is indexed in provenance/historical_archive.json.',
+  'authority_only':authority_only,'passed':not failures,'release_ready':not failures and not authority_only,
+  'counts':dict(counts),'failures':failures,'ledger_sha256':receipts[0].get('ledger_sha256'),
+  'verifier_sha256':digest(Path(__file__).read_bytes()),'source_hashes':sources,
+  'ledgers':[{'path':r['path'],'sha256':r.get('ledger_sha256'),'counts':r['counts'],'passed':r['passed']} for r in receipts],
+  'completeness_limit':'Only enumerated claims are checked. Source inventory and documentary metadata are separate from literal manuscript bindings. Identity checks do not certify semantic completeness.'}
+ return combined,ledgers,checks
+
 def main(argv=None):
  p=argparse.ArgumentParser(description=__doc__); p.add_argument('--root',type=Path,default=ROOT)
  p.add_argument('--authority-only',action='store_true',help='Incomplete pre-freeze verification, not release-ready')
  p.add_argument('--write-receipts',action='store_true',help='After source freeze refresh ledger and ledger-specific receipts')
  args=p.parse_args(argv)
  if args.authority_only and args.write_receipts: p.error('authority-only cannot write final receipts')
- receipt,ledger,checks=verify(args.root,authority_only=args.authority_only,refresh_presence=args.write_receipts)
+ receipt,ledgers,checks=verify_ledgers(args.root,authority_only=args.authority_only,refresh_presence=args.write_receipts)
  if args.write_receipts and receipt['release_ready']:
   dest=args.root/'validation'
-  if 'revision' in ledger: ledger['revision']['source_freeze_status']='verified_current_source'
-  raw=format_ledger(ledger)
-  (dest/'MASTER_CLAIM_LEDGER.json').write_bytes(raw); receipt['ledger_sha256']=digest(raw)
+  for relative,ledger in ledgers:
+   if 'revision' in ledger: ledger['revision']['source_freeze_status']='verified_current_source'
+   raw=format_ledger(ledger);safe_path(args.root,relative).write_bytes(raw)
+   for row in receipt['ledgers']:
+    if row['path']==relative:row['sha256']=digest(raw)
+  receipt['ledger_sha256']=receipt['ledgers'][0]['sha256']
   payload=json.dumps(receipt,indent=2,ensure_ascii=False)+'\n'
-  for name in ['numeric_reconciliation_receipt.json','portable_reconciliation_receipt.json']: (dest/name).write_text(payload,encoding='utf-8')
+  (dest/'numeric_reconciliation_receipt.json').write_text(payload,encoding='utf-8')
   (dest/'manuscript_display_regression.json').write_text(json.dumps({'schema':'complete_signed_literal_regression_v2','ledger_sha256':receipt['ledger_sha256'],'verifier_sha256':receipt['verifier_sha256'],'source_hashes':receipt['source_hashes'],'checks':checks,'passed':True,'scope':receipt['completeness_limit']},indent=2)+'\n',encoding='utf-8')
  print(json.dumps(receipt,indent=2,ensure_ascii=False)); return 0 if receipt['passed'] else 1
 

@@ -10,7 +10,7 @@ import pymupdf
 from build_findings import build as build_findings
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / 'website' / 'site'
+OUT = ROOT / 'build' / 'site'
 def document_contract(config):
     state=config['status']
     if state not in ['final_pending','accepted_final']:raise ValueError('explicit document status required')
@@ -29,15 +29,20 @@ def document_contract(config):
 
 def main():
     global OUT
-    parser=argparse.ArgumentParser();parser.add_argument('--metadata',type=Path,default=ROOT/'website/document_metadata.json');parser.add_argument('--output',type=Path,default=OUT);a=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--metadata',type=Path,default=ROOT/'website/document_metadata.json')
+    parser.add_argument('--output',type=Path,default=OUT,help='Fresh output directory (default: build/site)')
+    parser.add_argument('--companion',type=Path,default=ROOT/'companion',help='Guide PDF/HTML/content directory; defaults to the accepted companion/')
+    parser.add_argument('--install',action='store_true',help='Also install the completed bundle in website/site/. Requires review and manifest refresh.')
+    a=parser.parse_args()
     config=json.loads(a.metadata.read_text(encoding='utf-8'));baseline,filename,label=document_contract(config)
     target=a.output.resolve()
     if target==ROOT.resolve() or target==baseline.parent:raise ValueError('unsafe output directory')
-    if target.exists() and target!= (ROOT/'website/site').resolve():raise FileExistsError('custom output must be fresh')
+    if target.exists():raise FileExistsError('output must be fresh')
     target.parent.mkdir(parents=True,exist_ok=True)
     OUT=Path(tempfile.mkdtemp(prefix='site-build-',dir=target.parent))
-    companion = ROOT / 'companion' 
-    data = json.loads((companion / 'guide_content.json').read_text(encoding='utf-8'))
+    companion = a.companion.resolve()
+    data = json.loads((ROOT/'companion/guide_content.json').read_text(encoding='utf-8'))
     OUT.mkdir(parents=True, exist_ok=True)
     downloads = OUT / 'downloads'
     downloads.mkdir(exist_ok=True)
@@ -57,17 +62,26 @@ def main():
     records = [{'path':p.relative_to(OUT).as_posix(),'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'bytes':p.stat().st_size} for p in sorted(downloads.glob('*.pdf'))]
     (OUT / 'documents.json').write_text(json.dumps({'edition':data['edition'],'status':config['status'],'baseline_is_revised_release':False,'document_kind':('final' if config['status']=='accepted_final' else 'candidate'),'manuscript_pages':config['document']['pages'],'documents':records},indent=2)+'\n',encoding='utf-8')
     build_findings(OUT)
-    # Replace generated output only after successful complete build; no stale downloads survive.
-    if target.exists():
-        old=target.with_name(target.name+'.previous-build')
-        if old.exists():raise FileExistsError('previous generated build must be reviewed/removed first: '+str(old))
-        target.rename(old)
-    try:OUT.rename(target)
-    except BaseException:
-        if 'old' in locals() and old.exists():old.rename(target)
-        raise
-    if 'old' in locals():shutil.rmtree(old) # generated prior site only; source PDFs untouched
+    OUT.rename(target)
+    if a.install:
+        install_bundle(target)
     print(target)
+
+def install_bundle(source):
+    """Promote a completed bundle, replacing only the known generated site tree."""
+    website=(ROOT/'website').resolve();destination=website/'site'
+    old=website/'site.previous-build';new=website/'site.next-build'
+    if old.exists() or new.exists():raise FileExistsError('previous site promotion directories must be reviewed before installing')
+    # All removal/rename targets are fixed children of website/, never user output.
+    for path in [destination,old,new]:
+        if path.resolve().parent!=website:raise ValueError('unsafe site promotion path')
+    shutil.copytree(source,new)
+    if destination.exists():destination.rename(old)
+    try:new.rename(destination)
+    except BaseException:
+        if old.exists():old.rename(destination)
+        raise
+    if old.exists():shutil.rmtree(old)
 
 if __name__ == '__main__':
     main()

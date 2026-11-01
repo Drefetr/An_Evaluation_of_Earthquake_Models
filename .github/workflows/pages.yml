@@ -16,10 +16,20 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: pip
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: python -m pip install -r requirements.txt
+      - run: python -B website/build_site.py --output build/site
+      - run: node website/check_interactions.cjs build/site
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: website/site
+          path: build/site
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4

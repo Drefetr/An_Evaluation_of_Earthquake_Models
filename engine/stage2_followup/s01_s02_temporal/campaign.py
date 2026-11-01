@@ -1,4 +1,7 @@
-"""Stage2 local-only drivers. No work on import; all numerical entrypoints leased."""
+"""Historical S01 campaign recipe; requires original unshipped run plans/banks.
+
+Importing does no numerical work. This is not an end-to-end public replay route.
+"""
 import os
 for k in ('OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS','NUMEXPR_NUM_THREADS'):os.environ[k]='1'
 import argparse,hashlib,json,math,time,sys,random,subprocess
@@ -7,7 +10,10 @@ from pathlib import Path
 from concurrent.futures import ProcessPoolExecutor,as_completed
 import numpy as np
 from scipy.optimize import minimize,brentq
-from stage2_history import CachedHistory
+if __package__:
+ from .stage2_history import CachedHistory
+else:
+ from stage2_history import CachedHistory
 
 HERE=Path(__file__).resolve().parent;HOME=HERE.parent
 CELLS={'I00':([], [3]),'I10':([0],[0,3]),'I01':([1],[1,3]),'I11':([0,1],[0,1,3])}
@@ -24,7 +30,7 @@ def history(root,binding):
  f=Path(root)/binding['files']['catalogue.npz']['path']
  if sha(f)!=binding['files']['catalogue.npz']['sha256']:raise ValueError('history pin changed')
  with np.load(f,allow_pickle=False) as z:return {k:z[k].copy() for k in z.files}
-def make(arrays,law,old,clock,order,deadline):return CachedHistory(HERE/'temporal_stage2.dll',arrays,law,old.cpu,clock_mode=clock,order=order,deadline=deadline,cache_bytes=512*2**20)
+def make(arrays,law,old,clock,order,deadline):return CachedHistory(os.environ.get('INHIBITORY_TEMPORAL_LIBRARY',HERE/'temporal_stage2.dll'),arrays,law,old.cpu,clock_mode=clock,order=order,deadline=deadline,cache_bytes=512*2**20)
 
 def solve_method(h,higher,law,cell,deadline,starts=8):
  nf,af=CELLS[cell];base=np.array([law.a,law.d,law.n,0.]);records=[]

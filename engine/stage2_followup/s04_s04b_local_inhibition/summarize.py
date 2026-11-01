@@ -1,8 +1,12 @@
 """Complete-case ledger and scalar tables; missing outputs remain unknown."""
-import argparse,json,math
+import argparse,json,math,sys
 from pathlib import Path
 import numpy as np
-from spatial import read,write,sha
+if __package__:
+ from ..s03_s06_spatial_benchmarks.spatial import read,write,sha
+else:
+ sys.path.insert(0,str(Path(__file__).resolve().parents[3]))
+ from engine.stage2_followup.s03_s06_spatial_benchmarks.spatial import read,write,sha
 def wilson(k,n):
  if not n:return None
  z=1.959963984540054;p=k/n;den=1+z*z/n;mid=(p+z*z/(2*n))/den;half=z*math.sqrt(p*(1-p)/n+z*z/(4*n*n))/den

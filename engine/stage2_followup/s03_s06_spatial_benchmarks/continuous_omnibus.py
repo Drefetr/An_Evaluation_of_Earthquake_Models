@@ -2,13 +2,16 @@
 No chi-square/Fisher independence/asymptotic calibration is used.
 """
 from pathlib import Path
-import argparse,json,hashlib,importlib.util
+import argparse,json,hashlib
 import numpy as np
-HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[2]
+HERE=Path(__file__).resolve().parent
 COORDS=('exposure','time_event_logsum','gap_ks','gap_serial','spatial_rosenblatt_ks_max','spatial_rosenblatt_cross_abs','location_dimensionless_log_mean','location_dimensionless_log_variance')
 RIDGE=1e-8
-RANK_SOURCE=ROOT/'research_runs/scientific_remediation_20261029T233400Z/M03/rank_envelope.py'
-_spec=importlib.util.spec_from_file_location('_stage1_accepted_rank',RANK_SOURCE);RANK=importlib.util.module_from_spec(_spec);_spec.loader.exec_module(RANK)
+if __package__:
+ from . import rank_envelope as RANK
+else:
+ import rank_envelope as RANK
+RANK_SOURCE=Path(RANK.__file__)
 
 def read(p):return json.loads(Path(p).read_text(encoding='utf-8-sig'))
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
@@ -26,14 +29,17 @@ def pooled_tests(x):
  return dict(quadratic=report(quadratic),fisher=report(fisher),coordinate_duplicate_counts=ties,observed_coordinate_two_sided_inclusive_p=coordinate_p[0].tolist(),covariance_condition_number=float(np.linalg.cond(regularized)),calibration='each statistic computed symmetrically on observed+999simulated rows; inclusive pooled upper rank; conservative under ties',ridge=RIDGE)
 
 def main():
- p=argparse.ArgumentParser();p.add_argument('--output',required=True);a=p.parse_args();out=Path(a.output);assert not out.exists()
+ p=argparse.ArgumentParser(description=__doc__)
+ p.add_argument('--oc-results',type=Path,required=True,help='Historical OC results root containing observed_producer_cost_v1 and production_v1')
+ p.add_argument('--ep-results',type=Path,required=True,help='EP results root containing one folder per california_fold_N')
+ p.add_argument('--output',required=True);a=p.parse_args();out=Path(a.output);assert not out.exists()
  records=[];pins={}
  for model in ('OC','EP'):
   for fold in range(3):
    case=f'california_fold_{fold}'
    if model=='OC':
-    base=ROOT/'research_runs/conditional_calibration_20261025T085151Z/results';observed=base/'observed_producer_cost_v1'/case/'scalars.json';future=base/'production_v1'/case
-   else:observed=HERE/'results'/case/'observed/scalars.json';future=HERE/'results'/case
+    base=a.oc_results;observed=base/'observed_producer_cost_v1'/case/'scalars.json';future=base/'production_v1'/case
+   else:observed=a.ep_results/case/'observed/scalars.json';future=a.ep_results/case
    paths=[observed]+[future/str(i)/'scalars.json' for i in range(999)]
    values=[];counts=[];full_vectors=[];full_names=None
    for q in paths:

@@ -1,32 +1,60 @@
 # Reproduction scope
 
-Run commands from the repository root. Python 3.13 and pinned requirements describe the tested public CPU preparation route, not the original scientific host.
+Run commands from the repository root. Python 3.13 and `requirements.txt` describe the public CPU check/build environment. Optional CUDA and native research engines have separate requirements. A document rebuild, a fixed-history numerical check, and a scientific experiment are different operations.
 
-| Task | Inputs | Command/status |
+Install Node.js 22 for the complete unit suite and website interaction checks.
+
+## Checks and supported entry points
+
+| Task | Inputs and command | Scope |
 |---|---|---|
-| Deterministic source/likelihood checks | Included fixed examples | `python -m unittest discover -s tests -v` |
-| Compensator/product/paired arithmetic | Included equations/fixed parameters | `python scripts/check_mathematics.py --output build/mathematics.json` |
-| Public payload/source pins | Included manifest | `python scripts/verify_repository.py` |
-| Regenerate nine figures | Included aggregate/saved inputs | `python scripts/make_figures.py --output build/figures` |
-| Recreate F tables and three addendum figures | Included F aggregate summaries and reviewed display tools | Follow the [F companion guide](../paper/supplements/f_nuisance_addendum/README.md); no fitting or resampling |
-| Compile manuscript and both supplements | Shipped figures, Tectonic 0.17.0 | `python scripts/build_paper.py --output build/paper` |
-| Observed five-family fitting | Exact external historical CSV | Install per data guide; `python scripts/run_observed.py --output build/observed.json` |
-| Every historical synthetic campaign | Unshipped banks, run plans and execution states | Not a supported single-command replay in this compact release |
+| Deterministic unit checks | `python -B -m unittest discover -s tests -v` | Fixed examples, source-verifier controls, and supported workflow checks; no full research campaign |
+| Algebra, quadrature, and paired arithmetic | `python -B scripts/check_mathematics.py --output build/mathematics.json` | Declared deterministic identities and examples |
+| Manuscript/source reconciliation | `python -B scripts/verify_claims.py` | Typed manuscript claims and separate source inventory against bundled authorities |
+| Public payload/source pins | `python -B scripts/verify_repository.py` | Current manifest membership, hashes, extraction pins, and declared exclusions |
+| Website interactions | `node website/check_interactions.cjs` | Generated site selectors and exported aggregate values; requires Node.js |
+| Numerical APIs | [Code guide](code.md) | Reusable preserved modules; importing a module does not run its historical campaign |
+| Stage 2 engines and runners | [Support matrix](../engine/stage2_followup/README.md) | Per-study source, build, input, and replay status |
+| Frozen observed fitting | Install exact historical CSV per [data guide](data.md), then `python -B scripts/run_observed.py --output build/observed.json` | Explicit research workload; not part of routine checks |
 
-Observed fitting is an explicit research workload with the frozen 1,800-second cooperative wall budget, one native numerical thread and mandatory solver/control checks. It can return incomplete on different hardware. It was **not executed** during public preparation. The wrapper calls the original hash-bound recipe with its original nuisance/search/failure rules. Its output contains per-family training/test controls. Historical bounded execution receipts and publication postprocessing are not recreated by this wrapper; a new run is not a byte-exact archival replay.
+The observed wrapper checks its frozen source bindings and exact external CSV. Its protocol retains a cooperative 1,800-second wall budget, one native numerical thread, all prescribed starts, and mandatory numerical controls. It can return incomplete on different hardware. It does not recreate every historical bounded-execution receipt or publication postprocessing step. A new run is not a byte-exact archival replay.
 
-Included numerical APIs permit independent use of kernels, precise-clock simulation, likelihood, nuisance fitting, amplitude profiling and heterogeneity decomposition. Historical synthetic/reference banks can be large. Saved summaries and generating-law settings do not encode every historical path, reference rank, RNG state or recovery lineage. A new simulation is not regeneration of the retained bank. See the code guide and `paper/supplements/methods_settings.json`.
+## Monograph and PDF checks
 
-For PDF production checks and complete rendering:
+Install Tectonic 0.17.0 and the pinned Python dependencies. The builder compiles only the current unified `paper/source/main.tex`; it does not rebuild every historical supplement.
 
 ```sh
-python scripts/validate_pdf.py --source-root paper --pdf build/paper/manuscript.pdf --log build/paper/main/main.log --output build/pdf-qa
+python -B scripts/build_paper.py --output build/paper
+python -B scripts/validate_pdf.py --source-root paper --pdf build/paper/main.pdf --log build/paper/main.log --output build/pdf-qa
 ```
 
-Output directories must be new. Automated production checks do not replace visual inspection. All supplied public-edition pages were rendered and visually reviewed; see validation/. TeX resources can change pagination. Regenerated figures are separate from shipped inputs; compare numeric summaries and inspect appearance rather than assuming cross-version byte identity.
+Use `--engine /path/to/tectonic`, `TECTONIC`, or `PATH` to select the compiler. Output directories must be new. `main.pdf` and `main.log` are written directly beneath `build/paper`. Production checks render pages and inspect references, figures, glyphs, and layout diagnostics; page images still require visual review. TeX resources and tool versions can change pagination and byte output.
 
-No fitting, simulation, bootstrap, catalogue download or historical research-history scoring ran during the original public preparation or the 22 October manuscript/addendum integration. The F research continuation ran separately on 19 October UTC; its saved findings are now reported in a dated addendum. Tests use hand-constructed examples. Historical v4 records and new preparation checks are distinguished.
+## Figures, companion, and website
 
-The public observed protocol retains the historical scientific design but binds portable interpreter-discovery variants of two optional launchers. `provenance/historical_observed_protocol.json` retains the original byte-sealed protocol. No numerical Python authority or scientific setting was changed for publication privacy.
+```sh
+python -B scripts/make_figures.py --output build/figures
+python -B scripts/rebuild_review_figures.py --output build/review_figures
+python -B companion/build_guide.py --output build/companion
+python -B website/build_site.py --output build/site --companion build/companion
+```
 
-For manuscript navigation, public summary targets and explicit archival omissions, see the [public source and availability guide](public_readability.md). E04 remains a separate linked explanatory supplement. The [F nuisance addendum](../paper/supplements/f_nuisance_addendum.pdf) and its [source/replay guide](../paper/supplements/f_nuisance_addendum/README.md) are separate new material; saved table/figure reproduction does not refit histories or rerun the 2,000 resamples. The historical synthetic/reference banks and full historical M16 authority are not supplied by the aggregate summaries.
+The two figure tools have different retained scopes. `make_figures.py` regenerates the baseline figures from shipped aggregate inputs and declared algebra. `rebuild_review_figures.py` regenerates the subset revised during the later manuscript review. Neither is a complete regeneration route for all current Stage 2 figures. Compare their output with the shipped assets and inspect the documented inputs; the filename "review" identifies its historical purpose rather than a scientific experiment.
+
+Companion and site builds use saved content and aggregate authorities. They do not rerun fitting, simulation, bootstrap, or catalogue acquisition. See [companion instructions](../companion/README.txt) and [website instructions](../website/README.md) for output layouts and preview commands.
+
+## Generated artifacts
+
+Builds use fresh output directories by default. `build_paper.py`, `rebuild_review_figures.py`, the companion builder, and the site builder provide explicit `--install` promotion. Installing changes tracked publication assets; inspect the result before updating the affected source bindings, check receipts, and current payload manifest. When revising figure inputs, generate and deliberately install the required figures before compiling the document that should include them.
+
+After the accepted content and source bindings are consistent, refresh the current payload manifest explicitly with `python -B scripts/verify_repository.py --write-manifest`, then run ordinary verification again. This updates current membership; it must not replace preserved historical source identities.
+
+The Pages workflow generates and checks a fresh site bundle before deployment. The committed `website/site/` bundle remains an offline publication snapshot. Its PDF downloads intentionally copy the current monograph and guide; retain those copies while that snapshot is maintained. The site template `website/findings.html` and generated `website/site/findings.html` have different roles. Regeneration should keep deployment copies and authority-derived values consistent. A local build does not trigger publication; the deployment workflow has its own explicit trigger.
+
+## Historical evidence and unavailable replay inputs
+
+The [historical archive index](../provenance/historical_archive.json) records removed preparation/control artifacts and their pinned baseline identities. Current check coverage is recorded in [validation documentation](../validation/README.md). Historical receipts describe their original source/PDF snapshot; they are not evidence that a later tree was checked.
+
+The [F addendum](../paper/supplements/f_nuisance_addendum.pdf) is the October checkpoint. The later [S01 completion](F_followup.md) resolves the missing procedure cells and paired summaries. A standalone editable F addendum/replay directory is not included. Use the current monograph source and bundled authorities to inspect the completed presentation; do not infer that every saved F table or figure has a shipped standalone replay command.
+
+Full historical synthetic/reference banks, catalogue records, private fitted vectors, caches, RNG/recovery lineage, and some original processing scripts are not distributed. Saved summaries and generating-law settings do not encode all of those inputs. New simulations or provider downloads require separately identified inputs and protocols. They must not be described as recovery of the retained historical bank or as untouched holdouts.

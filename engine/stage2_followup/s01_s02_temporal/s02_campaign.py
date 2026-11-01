@@ -1,7 +1,11 @@
-"""r0 paired forest campaign. Private paths/rows never printed."""
-import campaign as core
-from campaign import HOME,HERE,save,sha,make,solve_method,pool_run
-import json,math,argparse,subprocess,time
+"""Historical r0 paired forest campaign; requires original unshipped run plans."""
+if __package__:
+ from . import campaign as core
+ from .campaign import HOME,HERE,save,sha,make,solve_method,pool_run
+else:
+ import campaign as core
+ from campaign import HOME,HERE,save,sha,make,solve_method,pool_run
+import json,math,argparse,subprocess,time,os
 from pathlib import Path
 from dataclasses import replace
 import numpy as np
@@ -19,7 +23,7 @@ def generate(root):
    case=f's{i:03d}_h{str(h).replace(".","p")}';target=output/(case+'.csv');config=output/(case+'.cfg');seed=2033000000+100*i
    mapping=dict(horizon=24394.,mu=.01557468447327252,reproduction=.5,beta=.5,c=1.,persistence=h,magnitude_rate=2.849401764894274,m0=5.,cutoff=.5,max_events=5000,productivity_ratio=0.)
    config.write_text(''.join(k+'='+format(v,'.17g')+'\n' for k,v in mapping.items()))
-   proc=subprocess.run([str(HERE/'r_matched/mdfhp_cli.exe'),'simulate',str(config),str(target),str(seed),str(seed+10000000)],capture_output=True,text=True,timeout=30)
+   proc=subprocess.run([str(os.environ.get('INHIBITORY_MATCHED_CLI',HERE/'r_matched/mdfhp_cli.exe')),'simulate',str(config),str(target),str(seed),str(seed+10000000)],capture_output=True,text=True,timeout=30)
    status=json.loads(proc.stdout) if proc.stdout.strip() else dict(status='unknown_cli',error=proc.stderr)
    row=dict(id=case,forest=i,h=h,time_seed=seed,mark_seed=seed+10000000,path=str(target),history_sha256=sha(target) if target.exists() else None,generation=status,returncode=proc.returncode)
    if proc.returncode==0 and status.get('status')=='ok':
