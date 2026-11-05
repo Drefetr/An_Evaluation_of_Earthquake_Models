@@ -59,7 +59,7 @@ The recovered projection is spherical cylindrical equal-area with radius 6371.00
 
 ## Synthetic histories and fitted states
 
-The [synthetic bundle](../reproduction/synthetic/README.md) supplies the matched-generator S04B histories, generating settings, retained fitted states and CPU score-replay code. It also supplies the exact S01 history bank with its role, seed and clock mapping and the available later recovery fits. Original F restricted-fit state files that remain missing are identified separately; earlier fit files are not substituted for them. Rebuildable numerical caches are generated from these inputs instead of being prerequisites supplied through a private path.
+The [synthetic bundle](../reproduction/synthetic/README.md) supplies the matched-generator S04B histories, generating settings, retained fitted states and CPU score-replay code. It also supplies the exact S01 history bank with its role, seed and clock mapping and the available later recovery fits. The F continuation is withdrawn because its original restricted-fit states could not be recovered. The separate original nuisance-fit evidence is supplied in [historical_fits](../reproduction/historical_fits/README.md). Rebuildable numerical caches are generated from these inputs instead of being prerequisites supplied through a private path.
 
 ## New inputs are new snapshots
 

@@ -11,7 +11,7 @@ The bundle contains:
 
 `input_manifest.json` binds every data/source file by SHA-256 and records its original archive-relative path and hash. `exact_bytes` entries preserve original bytes. `portable_projection` entries remove obsolete machine paths and preserve the listed scientific content; their original file hashes remain available. The supplied data are generated synthetic records, not third-party earthquake catalogue records.
 
-S01's earlier F restricted-fit vectors and original final-bank manifest have not been recovered. The included older history bank and 397 available fits do not establish a complete saved-state replay of those original F fits. `s01/bank.json` marks this explicitly per case. The original oracle-bank design is retained; this bundle does not turn it into fitted-null calibration.
+The [F/S01 continuation is withdrawn from the current paper](../../docs/F_followup.md): its original restricted-fit vectors and final-bank manifest have not been recovered. The included older history bank and 397 available fits do not establish a complete saved-state replay of those original F fits. `s01/bank.json` marks this explicitly per case. The original oracle-bank design is retained; this bundle does not turn it into fitted-null calibration.
 
 ## Run
 

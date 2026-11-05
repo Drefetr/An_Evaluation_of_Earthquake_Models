@@ -1,6 +1,6 @@
 # Reviewer guide
 
-Start with the [current unified monograph](paper/manuscript_unified.pdf), its [limitations](docs/limitations.md), and the study map below. This edition distinguishes completed Stage 2 results, the S04B matched-law controls, and earlier historical checkpoints. Earlier PDFs remain available for comparison; their production receipts and unresolved counts do not describe the current edition by implication.
+Start with the [current unified monograph](paper/manuscript_unified.pdf), its [limitations](docs/limitations.md), and the study map below. This edition reports supported completed studies, including S04B controls; F and unexecuted prospective/horizon material have been withdrawn. Earlier PDFs remain available for comparison; their production receipts and unresolved counts do not describe the current edition by implication.
 
 The [plain-language guide](companion/lay_guide_to_the_research.pdf) introduces the studies without equations. The [findings explorer files](website/site/findings.html) use accepted aggregates and retain separate study populations; use the [website instructions](website/README.md) to preview the site.
 
@@ -19,11 +19,11 @@ Use a fresh output directory for each command. The study guides describe optiona
 
 ## Historical follow-up study map
 
-"Scientific completion" in release metadata means execution of the declared bounded `S01`-`S06` and `S04B` follow-up programme, not closure of the scientific questions, joint nuisance estimation, external peer review, or prospective forecasting.
+Current metadata identifies an open research edition and completed production checks. Historical internal reviews retain their original names and artifact hashes.
 
 | Stream | Evidence in this edition | Interpretation and validation boundary |
 |---|---|---|
-| S01 | Missing-only fit recovery, all profile meshes, paired interaction and bootstrap summaries; [acceptance](validation/acceptances/S01_ACCEPTANCE.json) | Oracle calibration is retained. Recovery does not uniformly refit every bank member or provide a fitted-null nested bootstrap. See the [F checkpoint/completion note](docs/F_followup.md). |
+| S01 / F | **Withdrawn from the current paper**; [historical internal review](validation/acceptances/S01_ACCEPTANCE.json) retained | Required original restricted-fit states could not be recovered. See the [withdrawal and archived sources](docs/F_followup.md). Earlier non-F results remain a separate supported study. |
 | S02 | Matched and misspecified candidates on the paired forest bank; [acceptance](validation/acceptances/S02_ACCEPTANCE.json) | Same-bank threshold exceedances do not establish independent size control. |
 | S03 | Four spatial arms across California and New Zealand; [acceptance](validation/acceptances/S03_ACCEPTANCE.json), [frozen-contract review](validation/acceptances/S03_FROZEN_CONTRACT_REVIEW.json) | Fitted-procedure contrasts are not a causal decomposition. New Zealand remains adaptively reused; training-only EP preparation is separately disclosed. |
 | S04 | Expanded synthetic matrix and three observed California folds; [synthetic acceptance](validation/acceptances/S04_SYNTHETIC_ACCEPTANCE.json), [observed review](validation/acceptances/S04_OBSERVED_REVIEW.json) | Fixed-backbone comparisons; original unit-mark control law. Sampled numerical checks do not establish global optimization. Negative outcomes remain part of the evidence. |
@@ -31,7 +31,7 @@ Use a fresh output directory for each command. The study guides describe optiona
 | S05 | All 2,997 EP futures; point-score reconstruction on all 5,994 OC/EP paths; fifteen full 84-coordinate EP replays; [closure review](validation/acceptances/S05_CLOSURE_REVIEW.json), [point review](validation/acceptances/S05_ALL_PATH_POINT_REVIEW.json) | Fixed-state conditional inference. Full PIT coverage is fifteen EP paths, not every future; no inferred CSEP L/M/S results. |
 | S06 | California episode backtests and Japanese stationary/trend ablation; [acceptance](validation/acceptances/S06_ACCEPTANCE.json) | Retrospective roster, overlapping training, and saved-row validation do not establish prospective independent replication. |
 
-The historical S04B integration and editorial-remediation reviews certify their original document bytes. The [current production review](validation/reviews/COMPLETED_REPLAY_EDITION_20261105.json) identifies the delivered manuscript, companion and site. It records internal artifact checks; the separately linked reproduction records describe numerical executions. None of these records represents external academic acceptance.
+The historical S04B integration and editorial-remediation reviews certify their original document bytes. The [current production review](validation/reviews/EVIDENCE_CLOSURE_EDITION_20261105.json) identifies the delivered manuscript, companion and site. It records internal artifact checks; the separately linked reproduction records describe numerical executions. None of these records represents external academic acceptance.
 
 Read each acceptance receipt for its actual roster, source identities, checks, and limits. Some historical references identify original research inputs outside this publication package. Accepted aggregate evidence is distinct from an independently reproducible raw experiment. Computational-agent review is distinct from independent external academic peer review.
 
@@ -49,6 +49,11 @@ After installing `requirements.txt`, run:
 
 ```sh
 python -B -m unittest discover -s tests -v
+python -B -m unittest discover -s reproduction/regional/tests -v
+python -B reproduction/regional/inputs.py verify
+python -B -m unittest discover -s reproduction/s02 -p test_inputs.py -v
+python -B reproduction/s02/inputs.py verify
+python -B reproduction/historical_fits/verify.py
 python -B -m unittest discover -s engine/stage2_followup/tests -v
 python -B -m unittest discover -s engine/iteration_27/tests -v
 python -B scripts/check_mathematics.py --output build/mathematics.json
@@ -66,4 +71,4 @@ python -B scripts/build_paper.py --output build/reviewer_paper
 python -B scripts/validate_pdf.py --source-root paper --pdf build/reviewer_paper/main.pdf --log build/reviewer_paper/main.log --output build/reviewer_pdf_qa
 ```
 
-Use fresh output directories. The build does not install its PDF by default, and automated production checks do not replace visual inspection. The [reproduction guide](docs/reproducibility.md) explains builds, promotion, and explicit research workloads. The [data guide](docs/data.md) and [Stage 2 support matrix](engine/stage2_followup/README.md) describe external inputs and execution limits. The recovered-input packages supply the regional source records, stated synthetic banks and available fitted states. Their guides identify remaining missing historical states and distinguish score replay from refitting. Document rebuilding alone does not execute those scientific calculations.
+Use fresh output directories. The build does not install its PDF by default, and automated production checks do not replace visual inspection. The [reproduction guide](docs/reproducibility.md) explains builds, promotion, and explicit research workloads. The [data guide](docs/data.md) and [Stage 2 support matrix](engine/stage2_followup/README.md) describe external inputs and execution limits. The recovered-input packages supply the regional source records, stated synthetic banks and available fitted states. Their guides distinguish original completed fits, later score replays and the explicitly withdrawn F continuation. Document rebuilding alone does not execute those scientific calculations.

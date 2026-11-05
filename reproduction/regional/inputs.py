@@ -87,13 +87,45 @@ def extract(output,root=HERE):
   for name in z.namelist():
    target=output/Path(*safe_name(name).parts);target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(z.read(name))
  (output/'input_verification.json').write_text(json.dumps(result,indent=2)+'\n');return result
-def materialized_receipt(original,state_sha256,path_sha256,scalars_sha256,job_sha256=None):
+def full84_inputs(root=HERE):
+ """Load exact original inputs for the fifteen completed checks; no scoring."""
+ root=Path(root);manifest=json.loads((root/'original_completion_20261101.manifest.json').read_text())
+ archive=root/Path(*safe_name(manifest['archive']['path']).parts)
+ need(sha(archive.read_bytes())==manifest['archive']['sha256'],'Original-completion archive hash mismatch')
+ with zipfile.ZipFile(archive) as z:
+  names=z.namelist();expected={m['path']:m for m in manifest['members']}
+  need(len(names)==len(set(names))==len(expected) and set(names)==set(expected),'Original-completion member roster')
+  for name in names:
+   safe_name(name);data=z.read(name);record=expected[name]
+   need(len(data)==record['bytes'] and sha(data)==record['sha256'],'Original-completion member mismatch: '+name)
+  rows=json.loads(z.read('full84_inputs/index.json'))['rows'];roster={('EP',origin,i) for origin in ORIGINS for i in (0,249,499,749,998)}
+  need(len(rows)==15 and {(r['model'],r['origin'],r['index']) for r in rows}==roster,'Original full84 input roster')
+  result={}
+  for row in rows:
+   need(set(row['artifact_members'])=={'receipt.json','scalars.json','private_path.npz','private_detail.npz'},'Full84 input artifact coverage')
+   result[(row['model'],row['origin'],row['index'])]=dict(state=z.read(row['state_member']),artifacts={name:z.read(member) for name,member in row['artifact_members'].items()},source=dict(archive_sha256=manifest['archive']['sha256'],detail_member=row['artifact_members']['private_detail.npz'],historical_receipt_sha256=row['historical_receipt_sha256']))
+ return result
+
+def checked_full84_detail(row,state_bytes,path_bytes,restored):
+ """Cross-check recovered detail against exact original state/path/receipt."""
+ a=restored['artifacts'];receipt=json.loads(a['receipt.json']);scalars=json.loads(a['scalars.json'])
+ need(restored['state']==state_bytes and a['private_path.npz']==path_bytes,'Full84 state/path does not match base package')
+ need(receipt==row['receipt'] and scalars==row['scalars'],'Full84 original receipt/scalars differ from base package')
+ need(sha(a['receipt.json'])==restored['source']['historical_receipt_sha256'],'Full84 historical receipt hash')
+ need(sha(a['private_detail.npz'])==receipt['detail_sha256'],'Full84 original detail hash')
+ detail=npz(a['private_detail.npz']);need(set(detail)=={'detail'},'Full84 detail array schema')
+ need(detail['detail'].shape==(int(row['scalars']['stats']['count']),11) and np.isfinite(detail['detail']).all(),'Full84 detail count/eleven-column/finite schema')
+ return a['private_detail.npz']
+
+def materialized_receipt(original,state_sha256,path_sha256,scalars_sha256,job_sha256=None,detail_sha256=None):
  result=dict(original);fields=('input_state_sha256','path_sha256','scalars_sha256','detail_sha256','job_sha256')
  result['materialization_provenance']=dict(scope='Current extracted inputs; original receipt retained in S05/records.jsonl',historical_hash_fields={k:result.pop(k) for k in fields if k in result})
  result.update(input_state_sha256=state_sha256,path_sha256=path_sha256,scalars_sha256=scalars_sha256)
  if job_sha256 is not None:result['job_sha256']=job_sha256
+ if detail_sha256 is not None:result['detail_sha256']=detail_sha256
  return result
-def materialize(output,root=HERE):
+def materialize(output,root=HERE,full84=False,completion_root=None):
+ details=full84_inputs(completion_root or root) if full84 else {}
  output=Path(output).resolve();result=extract(output,root);rows=[json.loads(x) for x in (output/'S05/records.jsonl').read_text().splitlines()];terminal=json.loads((output/'S05/contracts/saved_manifest.json').read_text());roster=[]
  for row in rows:
   folder=output/'S05/replay'/row['model']/row['origin']/str(row['index']);folder.mkdir(parents=True)
@@ -103,12 +135,19 @@ def materialize(output,root=HERE):
   job_sha256=None
   if 'job' in row:
    p=folder/'historical_job.json';p.write_bytes(encode(row['job']));job_sha256=sha(p.read_bytes());paths[str(p)]=job_sha256
-  p=folder/'receipt.json';p.write_bytes(encode(materialized_receipt(row['receipt'],state_sha256,path_sha256,scalars_sha256,job_sha256)));paths[str(p)]=sha(p.read_bytes())
+  detail_sha256=None;identity=(row['model'],row['origin'],row['index'])
+  if identity in details:
+   data=checked_full84_detail(row,state.read_bytes(),(output/row['path']).read_bytes(),details[identity]);p=folder/'private_detail.npz';p.write_bytes(data);detail_sha256=sha(data);paths[str(p)]=detail_sha256
+  receipt=materialized_receipt(row['receipt'],state_sha256,path_sha256,scalars_sha256,job_sha256,detail_sha256)
+  if identity in details:receipt['materialization_provenance']['full84_detail_source']=details[identity]['source']
+  p=folder/'receipt.json';p.write_bytes(encode(receipt));paths[str(p)]=sha(p.read_bytes())
   roster.append(dict(model=row['model'],origin=row['origin'],index=row['index'],state=str(state),state_sha256=sha(state.read_bytes()),scalars=str(folder/'scalars.json'),artifacts=paths))
- adapted=dict(passed=True,simulated_paths=5994,observed_vectors=6,vectors=6000,schema84=terminal['schema84'],rows=roster,scope='Portable input materialization only; passed refers to input checks, not likelihood replay; per-event detail files intentionally excluded')
- (output/'S05/replay_manifest.json').write_text(json.dumps(adapted,indent=2)+'\n');return dict(**result,replay_manifest=str(output/'S05/replay_manifest.json'))
+ adapted=dict(passed=True,simulated_paths=5994,observed_vectors=6,vectors=6000,schema84=terminal['schema84'],rows=roster,full84_detail_paths=len(details),scope='Portable input materialization only; passed refers to input checks, not a new likelihood replay. Original detail files installed for the fifteen predeclared EP full-vector checks.' if full84 else 'Portable input materialization only; passed refers to input checks, not likelihood replay; per-event detail files intentionally excluded')
+ (output/'S05/replay_manifest.json').write_text(json.dumps(adapted,indent=2)+'\n');return dict(**result,replay_manifest=str(output/'S05/replay_manifest.json'),full84_detail_paths=len(details))
 def main():
  p=argparse.ArgumentParser(description=__doc__);s=p.add_subparsers(dest='command',required=True);s.add_parser('verify')
- for mode in ('extract','materialize-s05'):s.add_parser(mode).add_argument('--output',type=Path,required=True)
- a=p.parse_args();result=verify() if a.command=='verify' else extract(a.output) if a.command=='extract' else materialize(a.output);print(json.dumps(result,indent=2));return 0
+ for mode in ('extract','materialize-s05'):
+  command=s.add_parser(mode);command.add_argument('--output',type=Path,required=True)
+  if mode=='materialize-s05':command.add_argument('--full84',action='store_true',help='Install the exact fifteen original EP event-detail inputs from the recovered completion archive')
+ a=p.parse_args();result=verify() if a.command=='verify' else extract(a.output) if a.command=='extract' else materialize(a.output,full84=a.full84);print(json.dumps(result,indent=2));return 0
 if __name__=='__main__':raise SystemExit(main())

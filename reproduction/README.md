@@ -23,13 +23,19 @@ The executed NZ refit reproduced every scientific numerical field exactly, inclu
 | [Japan](jma/README.md) | Original ZIPs, recovered projection/parser/adjudication, expected arrays and saved fitted-state/score records |
 | [California S03/S05/S06](regional/README.md) | All 5,994 conditional paths, seed records and fitted/nuisance states; guarded point replay with actual controls and eight pilot/probe rows. Full replay was not launched after its runtime gate failed. |
 | [Observed NZ](observed/README.md) | Complete historical and new fit outputs, explicit identity checks, strict full-result comparator and fitting wrapper |
-| [Synthetic S04B/S01](synthetic/README.md) | Exact histories, generating settings, seed/role/clock mappings, retained states and CPU geometry/likelihood implementation |
+| [Synthetic S04B and historical S01 inputs](synthetic/README.md) | Exact histories, generating settings, seed/role/clock mappings, retained states and CPU geometry/likelihood implementation |
 | [Known-law oracle](oracle/README.md) | Original likelihood and rank-calibration functions, exact per-case score targets and a portable process runner |
 
-Original provider bytes remain identifiable after compression. Public variants remove operational machine paths while preserving numerical fields and recording original/public hash mappings. Rebuildable feature caches are outputs of these routes. The source inventories identify the older F restricted-fit states that remain missing; the supplied earlier fits are not substitutes for those states.
+Original provider bytes remain identifiable after compression. Public variants remove operational machine paths while preserving numerical fields and recording original/public hash mappings. Rebuildable feature caches are outputs of these routes. The [F continuation has been withdrawn](../docs/F_followup.md) because original restricted-fit states could not be recovered. The earlier nuisance fits have separate identities and remain supported.
 
 The scientific results retain their original populations and interpretation. Re-executing an inspected-data procedure does not create an untouched holdout, and known-law calibration does not become fitted-null composite calibration. These are different investigations from the reproducibility gap closed here. The earlier third-party manuscript's original dataset remains distinct from the recovered project reconstruction.
 
 Provider credit and data terms are documented in each package and the [third-party notices](../THIRD_PARTY_NOTICES.md). The software and project-authored summaries retain the repository's existing licences.
 
 A separate [autonomous-model comparison](../experiments/autonomous/README.md) implements a newly specified statistical subfamily that matches the finite-mode theorem. It is separate from reproducing historical results. Its fixed pilot and complete three-fold fit have now passed independent output review. The early and late folds lose held-out score; the middle fold selects zero inhibition. Complete fitted states and numerical outputs are supplied with the experiment.
+
+The [original nuisance-fit evidence](historical_fits/README.md) supplies recovered selected states, paired histories, exact diagnostic outputs and documentary source reports. These are original completed non-F studies. Verify the archives with:
+
+    python -B reproduction/historical_fits/verify.py
+
+The [completed S02 input package](s02/README.md) supplies all original histories, fitted states and traces. The [original primary California evidence](regional/PRIMARY_CA_EVIDENCE.md) supplies original primary, benchmark and higher-threshold fits and score records. These are recovered completed runs, with no duplicate fitting during packaging.

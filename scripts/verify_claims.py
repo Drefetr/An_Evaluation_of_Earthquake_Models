@@ -6,7 +6,7 @@ from decimal import Decimal, InvalidOperation
 from collections import Counter
 from dataclasses import dataclass
 from functools import lru_cache
-import argparse, copy, hashlib, json, math, re
+import argparse, copy, hashlib, json, math, re, zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 NUMBER_BODY = r"(?:\d{1,3}(?:(?:,|\{,\})\d{3})+|\d+)(?:\.\d+)?|\.\d+"
@@ -21,7 +21,7 @@ DOC_TRANSFORMS = {
  'identity of displayed source text; source rounding retained','identity: retained source display',
  'identity of retained source text','identity of exact displayed source text; source precision retained, singleton JSON scalar unresolved',
  'identity of complete documentary numeric token'}
-ROLES = {'manuscript_binding','source_inventory_only','source_inventory_not_literal_final_display'}
+ROLES = {'manuscript_binding','source_inventory_only','source_inventory_not_literal_final_display','withdrawn_historical_result'}
 DISPLAY_CUSTODY_SCHEMA = 'compact_display_custody_v1'
 DISPLAY_PRESENCE_METHOD = 'Complete signed numeric literals; representation and source identity, not semantic completeness.'
 
@@ -213,6 +213,21 @@ def manuscript_numbers(text):
    elif t.kind=='numeric_sequence': values.update(numeric_value(m[0]) for m in NUMBER.finditer(t.text))
  return values
 
+def compiled_tex_sources(root):
+ """Resolve this manuscript's literal input/include tree, excluding comments."""
+ main=root/'paper/source/main.tex'
+ if not main.is_file(): return None  # Standalone ledgers can describe one source.
+ visited=set()
+ def visit(path):
+  if path in visited: return
+  visited.add(path)
+  body=re.sub(r'(?<!\\)%[^\n]*','',path.read_text(encoding='utf-8-sig'))
+  for name in re.findall(r'\\(?:input|include)\s*\{([^{}]+)\}',body):
+   if '\\' in name: raise ValueError('dynamic_manuscript_input_not_supported')
+   visit(safe_tex_path(root,name if name.endswith('.tex') else name+'.tex'))
+ visit(main.resolve())
+ return visited
+
 def count_over_total(value,claim,data):
  fmt=claim['display_format']
  if fmt.get('kind')!='count_over_total': raise ValueError('unsupported_display_format')
@@ -251,6 +266,31 @@ def persist_compact_custody(ledger,source_hashes):
   if key!='display_custody': result[key]=value
  return result
 
+def withdrawal_archive(root, relative):
+ """An explicit withdrawal preserves the exact former record, never hides it.
+
+ The archive is the pre-edit source/ledger snapshot. Withdrawn results continue
+ to undergo authority and arithmetic checks but do not count as current displays.
+ """
+ record=strict_json(safe_path(root,relative).read_bytes())
+ if record.get('schema')!='claim_withdrawals_v1': raise ValueError('invalid_withdrawal_record')
+ entries=record.get('withdrawals',[])
+ ids=[row['id'] for row in entries]
+ if len(ids)!=len(set(ids)) or any(not row.get('reason') for row in entries):
+  raise ValueError('invalid_withdrawal_roster')
+ archive=safe_path(root,record['archive']['path'])
+ if digest(archive.read_bytes())!=record['archive']['sha256']: raise ValueError('withdrawal_archive_hash_mismatch')
+ with zipfile.ZipFile(archive) as z:
+  members=record['archive']['members']
+  if set(z.namelist())!=set(members) or len(z.namelist())!=len(members):
+   raise ValueError('withdrawal_archive_roster_mismatch')
+  for name,sha in members.items():
+   if digest(z.read(name))!=sha: raise ValueError('withdrawal_archive_member_hash_mismatch')
+  baseline=strict_json(z.read('validation/MASTER_CLAIM_LEDGER.json'))
+ originals={c['id']:c for c in baseline['claims']}
+ if not set(ids)<=set(originals): raise ValueError('withdrawal_claim_not_in_baseline')
+ return set(ids),originals
+
 def verify(root=ROOT,*,authority_only=False,refresh_presence=False,ledger_path='validation/MASTER_CLAIM_LEDGER.json'):
  root=Path(root).resolve(); path=safe_path(root,str(ledger_path))
  failures,display_checks,source_hashes=[],[],{}; counts,cache=Counter(),{}
@@ -264,7 +304,16 @@ def verify(root=ROOT,*,authority_only=False,refresh_presence=False,ledger_path='
   if len(ids)!=len(set(ids)): raise ValueError('duplicate_claim_id')
   custody=display_custody(ledger)
  except Exception as exc: return {'passed':False,'release_ready':False,'failures':[{'error':str(exc)}],'counts':{}},None,[]
- result=copy.deepcopy(ledger); tex_cache={}
+ result=copy.deepcopy(ledger); tex_cache={}; withdrawal_cache={}; withdrawn=Counter()
+ try: compiled=compiled_tex_sources(root)
+ except Exception as exc:
+  return {'passed':False,'release_ready':False,'failures':[{'error':str(exc)}],'counts':{}},None,[]
+ try:
+  declared_withdrawals=ledger.get('withdrawal_records',[])
+  if not isinstance(declared_withdrawals,list) or len(declared_withdrawals)!=len(set(declared_withdrawals)):
+   raise ValueError('invalid_withdrawal_declaration')
+  for relative in declared_withdrawals: withdrawal_cache[relative]=withdrawal_archive(root,relative)
+ except Exception as exc: failures.append({'error':str(exc)})
  def source(c):
   p=safe_path(root,c['bundled_source'])
   if p not in cache:
@@ -283,6 +332,16 @@ def verify(root=ROOT,*,authority_only=False,refresh_presence=False,ledger_path='
      if 'value' in c or 'display' in c: raise ValueError('metadata_must_not_claim_numeric_value')
      counts['documentary_metadata_verified']+=1; c['reconciliation_status']='verified_documentary_metadata'; continue
     if c.get('ledger_role') not in ROLES: raise ValueError('invalid_ledger_role')
+    if c.get('ledger_role')=='withdrawn_historical_result':
+     relative=c.get('withdrawal_record')
+     if relative not in withdrawal_cache: raise ValueError('undeclared_withdrawal_record')
+     roster,originals=withdrawal_cache[relative]
+     if c['id'] not in roster: raise ValueError('withdrawal_not_explicitly_listed')
+     previous=copy.deepcopy(c); previous.pop('withdrawal_record')
+     previous['ledger_role']='manuscript_binding'
+     if previous!=originals[c['id']]: raise ValueError('withdrawn_claim_changed_from_baseline')
+     withdrawn[relative]+=1; counts['withdrawn_historical_records']+=1
+    elif 'withdrawal_record' in c: raise ValueError('withdrawal_requires_historical_role')
     if not isinstance(c.get('display'),(str,int,float,bool)): raise ValueError('missing_or_invalid_display')
     if 'json_pointer' in c:
      raw_value=resolve(src['json'],c['json_pointer'])
@@ -315,6 +374,8 @@ def verify(root=ROOT,*,authority_only=False,refresh_presence=False,ledger_path='
     if c.get('ledger_role')=='manuscript_binding' and not declared_files: raise ValueError('missing_manuscript_location')
     paths=[safe_tex_path(root,f) for f in declared_files] if c.get('ledger_role')=='manuscript_binding' else []
     if any(not p.is_file() for p in paths): raise ValueError('missing_declared_tex_file')
+    if compiled is not None and any(p not in compiled for p in paths):
+     raise ValueError('declared_manuscript_source_not_compiled')
     if c.get('ledger_role')=='manuscript_binding' and not authority_only:
      wanted=None if c.get('display_format') else numeric_value(c['display']); locations=[]
      for p in paths:
@@ -352,6 +413,8 @@ def verify(root=ROOT,*,authority_only=False,refresh_presence=False,ledger_path='
     elif authority_only: c.pop('final_display_presence',None)
    except Exception as exc:
     c['reconciliation_status']='failed'; failures.append({'id':c.get('id'),'error':str(exc),'display':c.get('display'),'bundled_source':c.get('bundled_source')})
+ for relative,(roster,_) in withdrawal_cache.items():
+  if withdrawn[relative]!=len(roster): failures.append({'error':'withdrawal_roster_incomplete','record':relative})
  if not authority_only and not refresh_presence and custody is not None and custody['source_hashes']!=source_hashes:
   failures.append({'error':'stale_persisted_source_hashes'})
  if refresh_presence and not authority_only: result=persist_compact_custody(result,source_hashes)

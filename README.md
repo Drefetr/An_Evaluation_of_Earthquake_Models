@@ -4,14 +4,14 @@ Research code, a unified monograph, a plain-language guide, and an interactive f
 
 The research studies restricted stability and identification, nuisance sensitivity, spatial and temporal extensions, competitive benchmarks (`OC`, `FC`, `MC`, `EP`), conditional calibration, and continuous local inhibition (`LI`, `LI+ immigrant`, `LI+ total`). The studies use synthetic controls and regional earthquake catalogues from New Zealand, Southern California, and Japan. Results depend on the specified model, observation law, and evaluation population. Predictive preference does not establish a physical inhibition mechanism; this repository does not provide an operational forecasting service.
 
-This open research edition supplies recovered catalogue and simulation inputs, executable cohort reconstructions, and model replay tools. The unchanged New Zealand fitting recipe has been rerun from the recovered input and reproduces every scientific numerical field exactly. Complete known-law and matched-generator score replays have also passed, and a new autonomous finite-mode comparison supplies fitted states and held-out results for a subfamily covered by the stability theorem. The earlier "scientific completion" release label referred to the bounded `S01`-`S06` and `S04B` follow-up roster; the research remains open to review and revision.
+This open research edition supplies recovered catalogue and simulation inputs, executable cohort reconstructions, and model replay tools. The unchanged New Zealand fitting recipe has been rerun from the recovered input and reproduces every scientific numerical field exactly. Complete known-law and matched-generator score replays have also passed, and a new autonomous finite-mode comparison supplies fitted states and held-out results for a subfamily covered by the stability theorem. Original California completion and nuisance-fit records are also supplied. The F continuation and unexecuted prospective/horizon material have been removed from the current paper, with an explicit historical archive.
 
 ## Read the research
 
-- [Unified monograph](paper/manuscript_unified.pdf): the 235-page edition consolidating the mathematical foundations, Addenda I-V, completed Stage 2 studies (`S01`-`S06`), and matched-law synthetic controls (`S04B`).
+- [Unified monograph](paper/manuscript_unified.pdf): the current edition of the mathematical analysis, completed regional comparisons and supported synthetic controls.
 - [Plain-language guide](companion/lay_guide_to_the_research.pdf): an eight-page introduction, also available as [HTML](companion/lay_guide_to_the_research.html).
 - [Research website and findings explorer](https://drefetr.github.io/An_Evaluation_of_Earthquake_Models/): the published site, served from the generated `gh-pages` bundle. See [local preview and deployment instructions](website/README.md).
-- [Reviewer guide](REVIEWER_START_HERE.md): evidence, accepted scope, and verification entry points.
+- [Reviewer guide](REVIEWER_START_HERE.md): evidence, study scope, and verification entry points.
 
 ## Install and check
 
@@ -24,12 +24,15 @@ python -m pip install -r requirements.txt
 python -B -m unittest discover -s tests -v
 python -B -m unittest discover -s reproduction/regional/tests -v
 python -B reproduction/regional/inputs.py verify
+python -B -m unittest discover -s reproduction/s02 -p test_inputs.py -v
+python -B reproduction/s02/inputs.py verify
+python -B reproduction/historical_fits/verify.py
 python -B scripts/check_mathematics.py --output build/mathematics.json
 python -B scripts/verify_claims.py
 python -B scripts/verify_repository.py
 ```
 
-The complete check record combines the main suite, regional input controls, Stage 2 native fixtures, and historical iteration-27 tests; [current check results](validation/checks.json) give each count separately. To run every suite without skips, first build the LI, temporal and S06 libraries using the [Windows x64/MSVC native-build instructions](engine/stage2_followup/README.md#native-builds). The iteration-27 suite also requires a separate CUDA-enabled PyTorch installation and a usable CUDA device; its small CUDA/CPU fit comparison has no CPU fallback. These optional GPU dependencies are not included in `requirements.txt`.
+The complete check record combines the main suite, regional input controls, S02 input controls, Stage 2 native fixtures, and historical iteration-27 tests; [current check results](validation/checks.json) give each count separately. To run every suite without skips, first build the LI, temporal and S06 libraries using the [Windows x64/MSVC native-build instructions](engine/stage2_followup/README.md#native-builds). The iteration-27 suite also requires a separate CUDA-enabled PyTorch installation and a usable CUDA device; its small CUDA/CPU fit comparison has no CPU fallback. These optional GPU dependencies are not included in `requirements.txt`.
 
 After building the native groups into `build/native/{li,temporal,s06}`, run the two additional suites from the repository root in PowerShell:
 
@@ -101,7 +104,7 @@ Builds write isolated outputs by default. Their explicit `--install` options pro
 
 Exact regional source records and selected simulation banks are now supplied under provider/project terms. Live downloads are hash-checked and cannot silently replace historical bytes. Some older fitted states and the earlier third-party 40-page manuscript remain unavailable; the [data guide](docs/data.md) and [replay guide](reproduction/README.md) identify what can actually be rebuilt.
 
-Earlier documents remain available for historical comparison: the [restricted manuscript](paper/manuscript.pdf), [explanatory supplement](paper/supplements/explanatory_supplement.pdf), and [F nuisance addendum](paper/supplements/f_nuisance_addendum.pdf). The F addendum records an earlier incomplete checkpoint; [completed S01 recovery](docs/F_followup.md) supersedes its coverage statement.
+Earlier documents remain available for historical comparison: the [restricted manuscript](paper/manuscript.pdf), [explanatory supplement](paper/supplements/explanatory_supplement.pdf), and [F nuisance addendum](paper/supplements/f_nuisance_addendum.pdf). The F addendum and S01 recovery are historical records of the [withdrawn continuation](docs/F_followup.md).
 
 ## Attribution, citation, and licences
 

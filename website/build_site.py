@@ -13,18 +13,18 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'build' / 'site'
 def document_contract(config):
     state=config['status']
-    if state not in ['final_pending','accepted_final']:raise ValueError('explicit document status required')
+    if state not in ['draft','published_research']:raise ValueError('explicit document status required')
     d=config['document'];source=(ROOT/d['source']).resolve()
     source.relative_to(ROOT.resolve())
     if not isinstance(d['pages'],int) or d['pages']<=0:raise ValueError('positive actual page count required')
     if hashlib.sha256(source.read_bytes()).hexdigest()!=d['sha256']:raise ValueError('document hash mismatch')
     with pymupdf.open(source) as pdf:
         if len(pdf)!=d['pages']:raise ValueError('document page count mismatch')
-    if state=='accepted_final':
+    if state=='published_research':
         if d['sha256']=='a84d3030497459b0b442b1dfa328294e4066089f49a62e2cb49981742a0184e6':raise ValueError('baseline cannot be labelled final')
-        if config.get('completion_accepted') is not True:raise ValueError('final acceptance required')
+        if config.get('production_checked') is not True:raise ValueError('production checks required')
         filename='final-monograph.pdf';label='Current research monograph'
-    else:filename='candidate-monograph.pdf';label='Candidate manuscript awaiting release acceptance'
+    else:filename='candidate-monograph.pdf';label='Research manuscript draft'
     return source,filename,label
 
 def main():
@@ -65,7 +65,7 @@ def main():
         source=inputs[p.name].resolve()
         repository_source=source.relative_to(ROOT).as_posix() if source.is_relative_to(ROOT) else None
         records.append({'path':p.relative_to(OUT).as_posix(),'repository_source':repository_source,'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'bytes':p.stat().st_size})
-    (OUT / 'documents.json').write_text(json.dumps({'edition':data['edition'],'status':config['status'],'bundle_kind':'self_contained_deployment','baseline_is_revised_release':False,'document_kind':('final' if config['status']=='accepted_final' else 'candidate'),'manuscript_pages':config['document']['pages'],'documents':records},indent=2)+'\n',encoding='utf-8')
+    (OUT / 'documents.json').write_text(json.dumps({'edition':data['edition'],'status':config['status'],'bundle_kind':'self_contained_deployment','baseline_is_revised_release':False,'document_kind':('research_edition' if config['status']=='published_research' else 'draft'),'manuscript_pages':config['document']['pages'],'documents':records},indent=2)+'\n',encoding='utf-8')
     build_findings(OUT)
     OUT.rename(target)
     if a.install:

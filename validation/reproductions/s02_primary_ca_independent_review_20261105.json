@@ -1,0 +1,210 @@
+{
+  "schema": "s02_primary_ca_internal_evidence_review_v1",
+  "reviewed_utc": "2026-11-05T17:17:26.656899+00:00",
+  "passed": true,
+  "review_type": "Internal independent source and package review by a separate agent; not external academic peer review or a new scientific replication.",
+  "scope": "Original/public archive correspondence, original historical pins, required selected fit states, complete scoped rosters, existing score arithmetic, cohort linkage and bounded custody tests.",
+  "scientific_model_executions": 0,
+  "repository_edits_by_reviewer": 0,
+  "s02": {
+    "members": 1615,
+    "histories": 300,
+    "paired_forests": 100,
+    "events": 226764,
+    "methods": 600,
+    "null_alternative_states": 1200,
+    "attempt_trace_rows": 9606,
+    "archive_sha256": "c5fac59ddb457765428250197f9cfe981e8a6702f6705bb4f85d819e4561e798"
+  },
+  "california": {
+    "archives": [
+      {
+        "path": "reproduction/regional/original_california_benchmarks_20261025.zip",
+        "sha256": "bd7eca0269131683b0f7c1a6f3181c85974b52ebbe4880e5a7b34adb9740bb5c",
+        "bytes": 1597255,
+        "members": 209
+      },
+      {
+        "path": "reproduction/regional/original_california_m45_20261025.zip",
+        "sha256": "0292661f9070d6948920e2f8c2e0992ef9a239e1b0212633da9000006f26f7c4",
+        "bytes": 32191561,
+        "members": 274
+      },
+      {
+        "path": "reproduction/regional/original_primary_california_20261025.zip",
+        "sha256": "3d7cd4dfbadc29ade905b5f99e6cabdb6747b27ebcec1dff6c44f5122e7e0b85",
+        "bytes": 94628254,
+        "members": 181
+      }
+    ],
+    "members": 664,
+    "fit_counts": {
+      "benchmark": 6,
+      "m45": 30,
+      "primary": 30
+    },
+    "score_counts": {
+      "benchmark": 6,
+      "m45": 30,
+      "primary": 30
+    },
+    "historically_pinned_fit_score_records": {
+      "benchmark": 12,
+      "m45": 60,
+      "primary": 60
+    },
+    "primary_targets": 315,
+    "cohorts_match_primary_benchmark": true,
+    "candidate_table_original_sha256": "8ba55b42dae764c005e30bb3fe4200dbc7206d4a6f018aee2bc0760c5c50bb30",
+    "score_arithmetic_checked": 66
+  },
+  "checked_counts": {
+    "s02_historical_pins": 1200,
+    "s02_original_files": 1614,
+    "s02_changed_strings": 1719,
+    "s02_numeric": 370658,
+    "s02_boolean_null": 43642,
+    "s02_inspection_pins": 1208,
+    "s02_acceptance_pins": 2,
+    "ca_changed_strings": 1368,
+    "ca_original_files": 664,
+    "ca_historical_pins": 244,
+    "ca_numeric": 14514782,
+    "ca_boolean_null": 11501,
+    "ca_frozen_source_pins": 401
+  },
+  "s02_custody_tests": {
+    "run": 6,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "command": "python -B -m unittest discover -s reproduction/s02 -p test_inputs.py -v"
+  },
+  "s02_input_verifier": {
+    "exit_code": 0,
+    "passed": true,
+    "command": "python -B reproduction/s02/inputs.py verify"
+  },
+  "cohort_linkage": {
+    "passed": true,
+    "source_events": 1272,
+    "source_event_sha256": "da07f2853671b330fa3d93157d5d84f8713392fd6071b549df46a293c6e7b14e",
+    "cases": [
+      {
+        "family": "primary",
+        "fold": 0,
+        "threshold": 4.0,
+        "train": 851,
+        "test": 79,
+        "window_identity": true
+      },
+      {
+        "family": "m45",
+        "fold": 0,
+        "threshold": 4.5,
+        "train": 271,
+        "test": 16,
+        "window_identity": true
+      },
+      {
+        "family": "primary",
+        "fold": 1,
+        "threshold": 4.0,
+        "train": 930,
+        "test": 167,
+        "window_identity": true
+      },
+      {
+        "family": "m45",
+        "fold": 1,
+        "threshold": 4.5,
+        "train": 287,
+        "test": 53,
+        "window_identity": true
+      },
+      {
+        "family": "primary",
+        "fold": 2,
+        "threshold": 4.0,
+        "train": 1097,
+        "test": 69,
+        "window_identity": true
+      },
+      {
+        "family": "m45",
+        "fold": 2,
+        "threshold": 4.5,
+        "train": 340,
+        "test": 18,
+        "window_identity": true
+      }
+    ],
+    "scientific_model_calls": 0
+  },
+  "public_case_index": {
+    "passed": true,
+    "rows_checked": 300,
+    "fields_per_row": [
+      "id",
+      "forest",
+      "h",
+      "time_seed",
+      "mark_seed",
+      "generation",
+      "history_sha256"
+    ],
+    "original_manifest_source_member": "reports/manifest.json"
+  },
+  "original_results_directory_coverage": {
+    "primary": {
+      "original_json_files": 103,
+      "missing": []
+    },
+    "benchmark": {
+      "original_json_files": 23,
+      "missing": []
+    },
+    "m45": {
+      "original_json_files": 104,
+      "missing": []
+    }
+  },
+  "npz_account_path_scan": {
+    "npz_files": 6,
+    "arrays_scanned": 78,
+    "account_path_hits": []
+  },
+  "resolved_findings": [
+    "Primary California documentation now distinguishes case windows/cohort/nuisance records from event histories supplied by reproduction/nzca."
+  ],
+  "remaining_findings": [],
+  "artifact_sha256": {
+    "reproduction/s02/completed_inputs_20261031.zip": "c5fac59ddb457765428250197f9cfe981e8a6702f6705bb4f85d819e4561e798",
+    "reproduction/s02/manifest.json": "f775fb2907466c3046db5d2db0d6d1678eb3ce11e873b1f822f7098e785113e2",
+    "reproduction/s02/inputs.py": "66bc5fc0c0805fb3212897e93da00e734310fdd4633f325f2fbb45e18ae7e444",
+    "reproduction/s02/test_inputs.py": "e1b4daa264e3522927703acdb0468908296922d1e8b29aa3bcfe71ebcc6ccce5",
+    "reproduction/s02/README.md": "64311c42a7102cd2dcb4f0d814ef41f7a2d0a4acf86f51a4dbf6e32036efb381",
+    "reproduction/regional/original_primary_california_20261025.zip": "3d7cd4dfbadc29ade905b5f99e6cabdb6747b27ebcec1dff6c44f5122e7e0b85",
+    "reproduction/regional/original_california_benchmarks_20261025.zip": "bd7eca0269131683b0f7c1a6f3181c85974b52ebbe4880e5a7b34adb9740bb5c",
+    "reproduction/regional/original_california_m45_20261025.zip": "0292661f9070d6948920e2f8c2e0992ef9a239e1b0212633da9000006f26f7c4",
+    "reproduction/regional/original_primary_california_20261025.manifest.json": "9aba99bc62a9d78250a35b6ac0207073f3092480accab8d0d4d2f21e9c699c6a",
+    "reproduction/regional/PRIMARY_CA_EVIDENCE.md": "5efcdaa716984c16f9f7a6a14ee56871cf4ca8c7572c4f0b9dbba93e914dce24",
+    "reproduction/nzca/input_manifest.json": "6578d98a860d8fbd969a2a2edba466593c9bb09c3b3d40f91b20e18cc95272c8",
+    "reproduction/nzca/expected/california_events.json": "da07f2853671b330fa3d93157d5d84f8713392fd6071b549df46a293c6e7b14e",
+    "reproduction/nzca/cohort_contract_california.json": "dbddca525d1287f249a050e0381ec39961547b3586a7c954ca5ec234d24bcceb"
+  },
+  "private_independent_evidence_sha256": {
+    "data_audit.json": "cb049f4cc888740288e8154781dae372ef851f364b268c9aca1b411a49f96eec",
+    "cli_checks.json": "e480901ad130b00a64e192411203a145356a5c0814bd1dbe9be7f25b9bac8b4c",
+    "coverage.json": "6418eedf185a0125b697e938d116fbb9475b364b311e98c1c742f11deafb66b6",
+    "cohort_linkage.json": "b3e73a134a0035df7dc0401dfa48c14e5f6de6b32d61a87662fee1e2492ae58d",
+    "index_crosscheck.json": "929de120fe399e3a3403df7d14bf9ea26cc2e23796e3d987b2d50110e4a77333",
+    "npz_privacy_scan.json": "36c127c0a54efd156fd993209a33b4b188b3f5c25189211d20775c941b2a8f33",
+    "audit.py": "c163a035decdd91c3433ecc5bae0bade8e423bf92cc7fdde7fd0719b7b3244d6"
+  },
+  "limits": [
+    "This review does not rerun fitted likelihoods, optimization, simulation, calibration or the historical numerical audit.",
+    "S02 preserves the originally recorded best-visited attempts and does not assert that every raw optimizer-terminal vector was recorded.",
+    "Primary California, EP/N0 and M4.5 families are checked separately; this receipt does not expand the distinct S03/S05/S06 replay scopes."
+  ]
+}
