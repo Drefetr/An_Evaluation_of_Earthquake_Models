@@ -204,4 +204,69 @@ A separate horizon-feasibility pilot was restricted and incomplete: 27 of 30 dec
 
 The observed evidence in this chapter is therefore selective and conditional. The held-out scores are unfavourable to the implemented shared-inhibition recipes, the source-magnitude audit does not reverse that pattern, and the strongest loss is temporally localized. These findings constrain the current diagnostic families. They do not establish the absence of physical shared memory in the Earth system.
 
-The \href{https://github.com/Drefetr/InhibitoryEarthquakeModels/blob/3e76a174cf4f58ce601c6c9640c4d0c11168813f/paper/data/prediction.json}{public predictive summary} and the \hyperref[sec:source-supplements]{availability guide} provide public entry points. Saved summaries do not replace the omitted full authorities or historical history banks.
+The \href{https://github.com/Drefetr/InhibitoryEarthquakeModels/blob/3e76a174cf4f58ce601c6c9640c4d0c11168813f/paper/data/prediction.json}{public predictive summary} and the \hyperref[sec:source-supplements]{availability guide} provide public entry points. The exact selected catalogue and complete historical and newly executed fitting outputs are supplied in \path{reproduction/nzca/} and \path{reproduction/observed/}. The command \path{scripts/reproduce_observed.py} rebuilds the fitted results from the catalogue and compares their scientific fields.
+
+
+\section{Fitting an autonomous finite-mode subfamily}
+\label{sec:autonomous-nz-comparison}
+
+The autonomous model can be fitted directly on these same chronological folds.
+Set constant loading $\rho=0$, link $\Psi(X)=\exp(a+X)$, and initial modes
+$Z_j(0)=U_j(0)=0$. Retain the diagnostic recipe's fixed finite mixture and mark
+scalings. With physical stress release $\eta g_d$ and productivity $n\kappa_d$,
+the mode equations give
+\[
+ \begin{gathered}
+ G(t)=\sum_{T_i<t}g_d(Q_i)\Phi(t-T_i),\qquad
+ H(t)=\sum_{T_i<t}\kappa_d(Q_i)h(t-T_i),\\
+ \lambda(t)=\exp\{a-\eta G(t)\}+nH(t),\quad h=-\Phi'.
+ \end{gathered}
+\]
+Here $g_d(Q)=\exp\{\gamma(Q-1)\}$ and
+$\kappa_d(Q)=(1-r)\exp(\beta rQ)$ use the existing fixed diagnostic scalings.
+Under the posited independent exponential mark law,
+$\mathbb E[\eta g_d]=\eta e^{-\gamma}\beta/(\beta-\gamma)$ when
+$\eta>0$ and $\beta>\gamma$, while $\mathbb E[n\kappa_d]=n<1$.
+At $\eta=0$ stress release is identically zero. Since $X\leq0$, the link is
+bounded and Lipschitz on the reached half-line. These are the relevant
+first-moment conditions of Theorem~\ref{thm:finite_mode}; zero initialization
+is not a stationary draw.
+
+Each training prefix fixes the common estimate
+$\hat\beta=N_{\mathrm{train}}/\sum Q_i$. The null fits $(a,n)$ at $\eta=0$;
+the inhibited arm fits $(a,n,\eta)$ and retains the exact fitted null as a
+candidate. Selection uses training likelihood only. All prescribed starts
+completed, every returned vector and solver diagnostic is retained, and the
+training and held-out quadrature checks and mark-moment gates passed.
+Earlier parents and the final event-free tail are included. The frozen
+protocol, executable fit and complete outputs are supplied under
+\path{experiments/autonomous/} and \path{validation/live_results/}.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{lrrr}
+\toprule
+Fold & Null score & Inhibited score & Gain\\
+\midrule
+Early & -291.5675 & -301.5859 & -10.0184 \\
+Middle & -170.2334 & -170.2334 & 0.0000 \\
+Late & -523.5999 & -526.5270 & -2.9272 \\
+Pooled & --- & --- & -12.9456 \\
+\bottomrule
+\end{tabular}
+\caption{Held-out marked log scores and inhibited-minus-null gains for the
+autonomous finite-mode subfamily, in nats. The common mark contribution
+cancels from each gain; this is an occurrence-score comparison. The middle
+fold selects $\hat\eta=0$: its displayed tie contains only a small
+shared-coordinate optimization difference.}
+\label{tab:autonomous-nz}
+\end{table}
+
+The early and late fits select positive inhibition and lose held-out score;
+the middle fit selects zero inhibition. The pooled gain is -12.9456 nats.
+This supplies an actual fitted comparison within the autonomous finite-mode
+theorem's model class. The stability conclusion does not imply predictive
+advantage. The comparison is exploratory because it reuses the existing
+chronological observations, and its fixed mark and kernel settings do not
+constitute joint estimation of every nuisance parameter.

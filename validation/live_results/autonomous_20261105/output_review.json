@@ -1,0 +1,242 @@
+{
+  "schema": "independent_autonomous_output_review_v1",
+  "created_utc": "2026-11-05T11:25:05.376651+00:00",
+  "passed": true,
+  "stage": "full",
+  "complete_three_fold_result": true,
+  "folds": [
+    {
+      "fold_id": "fold_50",
+      "n_train": 301,
+      "n_test": 203,
+      "beta_train": 3.1016219112585786,
+      "solver_returns": 12,
+      "failed_returns_retained": 0,
+      "all_starts_complete": true,
+      "training_max_order16_32_delta": 2.2737367544323206e-13,
+      "heldout_gate": {
+        "passed": true,
+        "max_score_delta": 0.0,
+        "gain_delta": 0.0
+      },
+      "heldout_gain": -10.018403133332754,
+      "arms": {
+        "null": {
+          "selected": {
+            "pars": [
+              -4.284038229483579,
+              0.40399870659628057
+            ],
+            "nll": 1076.3420337263235,
+            "origin": "optimizer",
+            "start_index": 1
+          },
+          "retained_states": 5,
+          "required_starts": 4
+        },
+        "inhibited": {
+          "selected": {
+            "pars": [
+              -4.012563327434224,
+              0.4129172424825541,
+              0.3671373165156498
+            ],
+            "nll": 1074.988844368451,
+            "origin": "optimizer",
+            "start_index": 3
+          },
+          "retained_states": 9,
+          "required_starts": 8
+        }
+      }
+    },
+    {
+      "fold_id": "fold_65",
+      "n_train": 504,
+      "n_test": 155,
+      "beta_train": 3.1494882081661726,
+      "solver_returns": 12,
+      "failed_returns_retained": 0,
+      "all_starts_complete": true,
+      "training_max_order16_32_delta": 2.2737367544323206e-13,
+      "heldout_gate": {
+        "passed": true,
+        "max_score_delta": 5.684341886080802e-14,
+        "gain_delta": 5.684341886080802e-14
+      },
+      "heldout_gain": -2.9768964395771036e-06,
+      "arms": {
+        "null": {
+          "selected": {
+            "pars": [
+              -4.241458384697289,
+              0.49905999775593113
+            ],
+            "nll": 1395.8202061862203,
+            "origin": "optimizer",
+            "start_index": 1
+          },
+          "retained_states": 5,
+          "required_starts": 4
+        },
+        "inhibited": {
+          "selected": {
+            "pars": [
+              -4.241458374035178,
+              0.49906001755001006,
+              0.0
+            ],
+            "nll": 1395.8202061862198,
+            "origin": "optimizer",
+            "start_index": 3
+          },
+          "retained_states": 9,
+          "required_starts": 8
+        }
+      }
+    },
+    {
+      "fold_id": "fold_80",
+      "n_train": 659,
+      "n_test": 254,
+      "beta_train": 3.021907322176272,
+      "solver_returns": 12,
+      "failed_returns_retained": 0,
+      "all_starts_complete": true,
+      "training_max_order16_32_delta": 2.2737367544323206e-13,
+      "heldout_gate": {
+        "passed": true,
+        "max_score_delta": 0.0,
+        "gain_delta": 0.0
+      },
+      "heldout_gain": -2.9271517016724147,
+      "arms": {
+        "null": {
+          "selected": {
+            "pars": [
+              -4.269349639572681,
+              0.4697758046987419
+            ],
+            "nll": 1549.0947483926711,
+            "origin": "optimizer",
+            "start_index": 2
+          },
+          "retained_states": 5,
+          "required_starts": 4
+        },
+        "inhibited": {
+          "selected": {
+            "pars": [
+              -4.213450162573592,
+              0.4716687758278123,
+              0.043212721357552136
+            ],
+            "nll": 1548.9326661456985,
+            "origin": "optimizer",
+            "start_index": 3
+          },
+          "retained_states": 9,
+          "required_starts": 8
+        }
+      }
+    }
+  ],
+  "execution": {
+    "schema": "bounded_scientific_execution_v1",
+    "started_utc": "2026-11-05T11:24:04.953409+00:00",
+    "completed_utc": "2026-11-05T11:24:36.284778+00:00",
+    "elapsed_seconds": 31.33138330001384,
+    "exit_code": 0,
+    "external_termination": null,
+    "sampled_peak_process_tree_rss_bytes": 124887040,
+    "sampling_interval_seconds": 1,
+    "wall_limit_seconds": 1800,
+    "memory_limit_bytes": 2147483648,
+    "command": [
+      "experiments/autonomous/fit.py",
+      "--output",
+      "build/hy4_autonomous_full"
+    ],
+    "request_sha256": "d8358bc92c49a6cc50c3efd04c50bd9a3aaeeecabf1ebb94ccce9bc918877ed8",
+    "config_sha256": "927519b6d6b60d32f69c3ceaac71dbeb56b4e7952b2e85c0e5cc4e8a729725b4",
+    "request_final_sha256": "d8358bc92c49a6cc50c3efd04c50bd9a3aaeeecabf1ebb94ccce9bc918877ed8",
+    "config_final_sha256": "927519b6d6b60d32f69c3ceaac71dbeb56b4e7952b2e85c0e5cc4e8a729725b4",
+    "request_changed_during_execution": false,
+    "config_changed_during_execution": false,
+    "tracked_processes": [
+      {
+        "pid": 4040,
+        "create_time": 1793877844.9545193
+      }
+    ],
+    "owned_processes_still_alive": [],
+    "result_sha256": "a8c590950f0b7296059538d22438c5c1c3130ff392b868982f95bc0570d6f47c",
+    "result_passed": true
+  },
+  "scope": "Retained optimizer/component and raw-count/mark-mean arithmetic audit only; no likelihood/optimizer calls. Exploratory reused data; the finite-mode first-moment model theorem is conditional on its posited mark law.",
+  "pooled_gain": -12.945557811901608,
+  "pilot_first_fold_scientific_outputs_match": true,
+  "review_task_complete": true,
+  "reviewers": [
+    "Codex independent autonomous-output reviewer",
+    "Codex conductor"
+  ],
+  "historical_private_review_sha256": "8f7f6b471c454d54c624cbeb12feb9acb58261f255db9bf640ba33523f11afbc",
+  "independence": "Output reviewer did not author the implementation or execute the fits; audited saved components, cohorts, selection rules and arithmetic.",
+  "evidence": [
+    {
+      "path": "validation/live_results/autonomous_20261105/result.json",
+      "sha256": "a8c590950f0b7296059538d22438c5c1c3130ff392b868982f95bc0570d6f47c"
+    },
+    {
+      "path": "validation/live_results/autonomous_20261105/pilot_result.json",
+      "sha256": "ae81334cdab599f92d17cfbf5adce38d69efc88dfa55903a1bcab8f2e35947b8"
+    },
+    {
+      "path": "validation/live_results/autonomous_20261105/execution.json",
+      "sha256": "bee93d0529c50865034b2e86288b99c39060321c694c37a3d5b2c70b0ff6d65e"
+    },
+    {
+      "path": "validation/live_results/autonomous_20261105/pilot_execution.json",
+      "sha256": "96f2bddc063e9ade1937b5b5e9faba4d3489e24855675401d219f320209b70ff"
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "experiments/autonomous/DERIVATION.md",
+      "sha256": "7cb50d6ff4e0b65db0ee59ba803d058b16f4823c8b0c8a11ffa2477c7b1464a6"
+    },
+    {
+      "path": "experiments/autonomous/fit.py",
+      "sha256": "56d8ccda6b82974602d16a154ec7d7681fcda631070aaccadfa05843685b277e"
+    },
+    {
+      "path": "experiments/autonomous/model.py",
+      "sha256": "ddff28c9375660f72000455813bb6d8963f9227716c166dd644ab76765f47fb3"
+    },
+    {
+      "path": "experiments/autonomous/protocol.json",
+      "sha256": "ee30fac9d16b97d9f03425a95192b4d195d610f0126b8f0173e8878b97120754"
+    },
+    {
+      "path": "tests/test_autonomous_bridge.py",
+      "sha256": "c97c2b73a613abe3dc825d1fd4e1dbd2b5981fbd3b51ab5aead14b7f3d38fd6d"
+    },
+    {
+      "path": "engine/iteration_27/code/adequacy.py",
+      "sha256": "9662c90f9ff7e120fe26c1dfc0bd969071f16774feec686b9e97731337e0ff90"
+    },
+    {
+      "path": "engine/iteration_5/code/kernels.py",
+      "sha256": "3561ef3471adf349caebebc6c2ca12881f2a3d9c7c7415d15453b5be20b978ae"
+    },
+    {
+      "path": "reproduction/nzca/expected/geonet_M5_shallow_1960_2026.csv",
+      "sha256": "feacccb7581d1c4c33f88874cd6b198c41639da6930a7fc35e46f910a594fb3e"
+    },
+    {
+      "path": "build/hy4_autonomous_pilot/result.json",
+      "sha256": "ae81334cdab599f92d17cfbf5adce38d69efc88dfa55903a1bcab8f2e35947b8"
+    }
+  ]
+}

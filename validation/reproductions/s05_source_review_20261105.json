@@ -1,0 +1,234 @@
+{
+  "schema": "s05_protocol_controls_guard_source_review_summary_v1",
+  "created_utc": "2026-11-05T11:49:21.439744+00:00",
+  "review_type": "Internal independent native-agent source and fake-process reviews, summarized from their retained actual records. This summary is not numerical acceptance or external peer review.",
+  "source_review_passed": true,
+  "actual_numerical_execution_certified": false,
+  "historical_review_sha256": {
+    "review_s05_replay_protocol": "ca4d00bcf8538d671c6c68419b4c69c9c5ffa7a2d9ee252f35eae475f36b89f5",
+    "review_s05_point_controls": "5f5c5476b2deb6476284f665942c3ef1908245e1fa308c4ab8711cf858ff2baa",
+    "review_s05_replay_guard": "03f3d94e54c897e40c2525cbe42656e831b135264dacc6a9b0d42549598fd9ae"
+  },
+  "reviewed_source_pins": {
+    "reproduction/regional/scoring_sources/replay.py": "53919c6055bd295d3db137543b26e923939c06637bf710daadffde9739e48bda",
+    "reproduction/regional/scoring_sources/native_wrapper.py": "8f1a6f5a9d84cb8d5b195f233fcc2ff0af1f1f92a5d16777c0569ddc49d07940",
+    "reproduction/regional/scoring_sources/original_full84.py": "b1b63a1730140acf57bd09967456c14dcaceaec9c48123076241b9a1a293ecd8",
+    "reproduction/regional/scoring_sources/independent.cpp": "fde2a01adeccd78b41668d01af5c9d1ebd5883735e96792aae18b4eefef71ec1",
+    "reproduction/regional/scoring_sources/temporal_extension.cpp": "00e4f68241b5229d705fd30f02271616171d1a2ef5b4ce19578a000ee2208805",
+    "reproduction/regional/scoring_sources/build.sh": "26913905bdf0f78ca3e2a469c5f735a46ece605ee5e7fcdf9981060409a60638",
+    "reproduction/regional/scoring_sources/build.cmd": "893406bcd7d15800895ecbdc01b0bd2624b592b4cbbc268dc6a58ee0a962bc9c",
+    "reproduction/regional/scoring_sources/PROTOCOL.md": "4f0622b4d57bfc489c4efa1cb151a1f43a70b4c5a8cecbd1e2bc265ed67830c1",
+    "reproduction/regional/POINT_CONTROLS.md": "7e65730f4aa1a5f1a50b5492ac2824f292b9cd03dffccb35563ac893924800f5",
+    "reproduction/regional/point_controls.py": "a11c1d4c24e84bb08a8d6884d1ce57bea870648ec9d00d341c80c452dca7412f",
+    "reproduction/regional/tests/test_point_controls_static.py": "0016143f15371aa88df39316c1af7a8a9ffcaddc6a0f3f1df3bbb86b912b4fa4",
+    "reproduction/regional/run_replay.py": "c15a6ee54c21c02088030b3d030545ea6d04c305a04ef8a99700e27f4d7c66bb",
+    "reproduction/regional/REPLAY_GUARD.md": "576956eea919809d994efd19b8a4fb88347a2d45d3e5d80c4f9cb631129089c8",
+    "reproduction/regional/tests/test_replay_guard.py": "3fb9fa1836a90fd08dbcce230c053304b14ec34886e23a8f7c57357072258d10"
+  },
+  "original_findings": [
+    {
+      "id": "S05-R1",
+      "scope": "point",
+      "issue": "Archived controls never call the native point evaluator.",
+      "disposition": "Separate Cartesian-reference point-controls wrapper assigned; must receive independent source review and actual passing controls before point pilot."
+    },
+    {
+      "id": "S05-R2",
+      "scope": "all full replay",
+      "issue": "Fixed pilot underrepresents extreme input sizes; no built-in watchdog.",
+      "disposition": "Keep original six pilot and fixed largest-OC/largest-EP probes; require measured workload admission and external process-tree caps."
+    },
+    {
+      "id": "S05-R3",
+      "scope": "outer orchestration",
+      "issue": "Archived run can exit zero with passed:false; wrapper must validate exact report roster and success.",
+      "disposition": "Specify explicit report checks and separately pinned probe execution; no archive edits."
+    },
+    {
+      "id": "S05-R4",
+      "issue": "Standalone native_wrapper.py CLI references absent independent_point_oracle_v2.cpp; its Native API and replay.py entry point remain usable."
+    },
+    {
+      "id": "S05-R5",
+      "issue": "Full84 requires omitted detail arrays and covers only 15 fixed EP paths, not the full 5994 roster."
+    },
+    {
+      "id": "S05-R6",
+      "issue": "Row exceptions preserve failures but not necessarily raw numerical residual vectors; any diagnostic follow-up must retain the original failure."
+    }
+  ],
+  "point_control_remediation": {
+    "source_review_passed": true,
+    "reviewed_features": [
+      "Independent Cartesian nested quadrature, no native/polar reference mass reuse",
+      "OC rho-weighted offspring normalization versus EP unweighted normalization",
+      "Shared unweighted KDE normalization and nonuniform pi/unequal cell areas",
+      "All eight native point ABI outputs directly compared",
+      "Independent one-dimensional temporal exposure integration through the end",
+      "Strict-past comparison excludes current/equal-time events",
+      "Empty future retains prehistory compensator; single-at-start event adds exposure but not its own intensity",
+      "Warnings/nonfinite/error-estimate gates, exact count and fixed component tolerances",
+      "Twenty-five fixed point cases and ten mass cases; source/DLL drift detection",
+      "Failure rows and later cases retained, with new external output and atomic checkpoints"
+    ],
+    "tests": {
+      "author_static_suite_independently_executed": 8,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "independent_mocked_pipeline_scenarios": 2,
+      "mocked_pipeline_summary": {
+        "passed": true,
+        "scope": "All native and reference calculations mocked. No DLL load, quadrature, real scientific input or model evaluation.",
+        "cases": [
+          {
+            "mode": "wrong_point_component",
+            "mock_calls": {
+              "point": 25,
+              "close": 25,
+              "mass": 10
+            },
+            "point_failures_retained": 25,
+            "report_failed": true,
+            "later_cases_retained": true
+          },
+          {
+            "mode": "one_exception",
+            "mock_calls": {
+              "point": 25,
+              "close": 25,
+              "mass": 10
+            },
+            "point_failures_retained": 1,
+            "report_failed": true,
+            "later_cases_retained": true
+          }
+        ],
+        "actual_dll_loads": 0,
+        "actual_integrations": 0,
+        "actual_native_point_calls": 0
+      },
+      "actual_Dll_loads": 0,
+      "actual_reference_integrations": 0,
+      "actual_native_point_calls": 0,
+      "historical_model_evaluations": 0
+    },
+    "limitations": [
+      "Quadrature error estimates are numerical diagnostics, not proofs of uniform accuracy.",
+      "Fixed smooth fixtures do not certify pathological scales or all historical score outputs.",
+      "Static/fake tests do not count as native numerical-control execution."
+    ]
+  },
+  "guard_remediation": {
+    "status": "source_gate_passed_actual_execution_gates_pending",
+    "checks": [
+      {
+        "name": "source_and_binary_binding",
+        "passed": true,
+        "detail": "Eight immutable archived sources, reviewed point wrapper, current guard, DLL, materialized manifest and build-receipt hashes bind every phase; matching final bindings rechecked."
+      },
+      {
+        "name": "active_lease",
+        "passed": true,
+        "detail": "Immutable lease snapshot and mutable active owner record, actual environment token hash and expiry are checked throughout supervision. Root must issue a real exclusive numerical lease, not a synthetic token."
+      },
+      {
+        "name": "exact_rosters",
+        "passed": true,
+        "detail": "Original six index-zero pilot; predetermined maximum OC/fold0/index74 and EP/fold2/index573 probes; full all 5994 rows from scratch; all 6000 materialized receipts checked."
+      },
+      {
+        "name": "false_exit_and_partial_failure",
+        "passed": true,
+        "detail": "A zero child exit does not suffice. Actual report passed flag, failed count, completeness, unique exact identities, receipt hashes, scope, finite duration/error, exact component fields and report/journal equality are validated."
+      },
+      {
+        "name": "point_controls",
+        "passed": true,
+        "detail": "Both actual archived controls and the independent 25 native point cases/10 Cartesian mass checks are mandatory; exact fixtures, eight component outputs, finite reference errors and source bindings checked."
+      },
+      {
+        "name": "resource_v2",
+        "passed": true,
+        "detail": "No N-squared matrix allocation found in reviewed native path. Fixed one-worker pilot/probes provide actual tree RSS and workload-rate inputs; full uses 1.5*w*peak plus controller allowance, 4 GiB OS headroom and hard 8 GiB tree cap."
+      },
+      {
+        "name": "time_projection",
+        "passed": true,
+        "detail": "Conservative max observed work-unit rate from six pilot and two fixed large probes; factor three, serial maximum and duplicated full-roster cost included. Publication reserve 1800 seconds enforced."
+      },
+      {
+        "name": "watchdog_amendment",
+        "passed": true,
+        "detail": "Original AccessDenied failure reproduced independently; amended finally cleanup fails closed, retains primary/cleanup errors and discovery uncertainty, respects PID creation time and uses the owned Popen handle fallback."
+      },
+      {
+        "name": "read_only_scope",
+        "passed": true,
+        "detail": "Only private review files changed; no DLL build/loading, native controls, reference quadrature or historical likelihood calls during review."
+      }
+    ],
+    "independent_tests": {
+      "tests_run": 15,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": true,
+      "test_source_sha256": "3fb9fa1836a90fd08dbcce230c053304b14ec34886e23a8f7c57357072258d10"
+    },
+    "original_failure": "Process.children AccessDenied escaped supervise, left owned sleeper alive and wrote no supervision receipt; reviewer terminated only captured fake-process identity.",
+    "original_source_sha256": "1ffb57948c5703f9226d2bab5c4273131ea1f765ad4cf162d1167a8489963d7e",
+    "amended_source_sha256": "c15a6ee54c21c02088030b3d030545ea6d04c305a04ef8a99700e27f4d7c66bb",
+    "resolved": true,
+    "change_boundary": "Only live_identity/supervise code changed; prefix and all code from bindings onward byte-identical as text.",
+    "amended_recheck": {
+      "scope": "Owned sleeping subprocess with the original injected AccessDenied only",
+      "source_sha256": "c15a6ee54c21c02088030b3d030545ea6d04c305a04ef8a99700e27f4d7c66bb",
+      "escaped_exception": false,
+      "survivors_before_reviewer_cleanup": [],
+      "reviewer_cleanup": [],
+      "receipt_exists": true,
+      "passed": true
+    },
+    "amended_fake_supervision": {
+      "exit_code": 15,
+      "termination": "supervision_exception",
+      "primary_error": {
+        "phase": "descendant_discovery",
+        "error_type": "AccessDenied",
+        "error": "(pid=123)"
+      },
+      "cleanup_errors": [
+        {
+          "phase": "cleanup_discovery",
+          "error_type": "AccessDenied",
+          "error": "(pid=123)"
+        }
+      ],
+      "descendant_discovery_uncertain": true,
+      "elapsed_seconds": 0.03881659987382591,
+      "wall_limit_seconds": 3,
+      "memory_limit_bytes": 1073741824,
+      "survivors": [],
+      "passed": false
+    }
+  },
+  "memory_protocol_revision": {
+    "v1_unchanged_sha256": "811c079e34e798567125ffae5ce1a60c216e203887a673bafc1c138f57271d09",
+    "v2_path": "review_s05_replay_protocol/proposed_protocol_v2.json",
+    "v2_sha256": "4765d1a7f2054c3c1a6cfad9f39c0eecd548505aab6e37cdd2b4d1b6369e88ff",
+    "scientific_gate_blocks_unchanged": true,
+    "memory_order": "O(N+Npre+Ntrain) per worker plus cached states and O(roster) controller; quadratic time, no quadratic native allocation",
+    "available_12GiB_prerequisite_removed": true,
+    "new_gate": "Source-informed one-worker startup reserve, then measured peak projection plus explicit 4 GiB OS/other-work headroom; original 8 GiB ceiling and all time/scientific gates retained."
+  },
+  "conditions_before_scientific_execution": [
+    "Root verifies integration hashes and owns active exclusive numerical lease.",
+    "Fresh external build must have actual compiler/source/DLL provenance; wrapper only hashes this receipt and does not establish provenance itself.",
+    "Actual archived and new point controls must pass before pilot/probes.",
+    "Full admission requires actual passing six pilot/two fixed probes and exact conservative resource projection fitting remaining time and memory.",
+    "A discovery/identity uncertainty always fails the phase; verify no surviving owned process before granting another lease.",
+    "Point replay is not full84, fitted-null calibration or full historical optimizer replay."
+  ],
+  "scope_limit": "Point scope checks its declared temporal/point/joint components on saved paths; it is not full84, generator reproduction, a refit, or fitted-null calibration. The fixed controls and all actual campaign outcomes require separate terminal evidence."
+}

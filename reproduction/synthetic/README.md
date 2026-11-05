@@ -65,3 +65,32 @@ python -B -m unittest discover -s tests -p test_reproduction_synthetic.py -v
 ```
 
 These tests check exact input coverage, changed-file/path rejection, original training selection, and tiny compiled likelihood fixtures against the separately written direct-sum oracle. The fixtures cover exact floor, strict-past event ties, mark scaling, empty history, invalid parameters and chunk additivity. They do not run the scientific campaign.
+
+### Completed eighty-history saved-state replay
+
+The [completed replay records](completed_20261105.zip) retain all eighty accepted
+case reports, the four interrupted first-attempt records, both execution/build
+records, and the independent terminal audit. The first attempt stopped at its
+wall limit after fifty accepted cases; its original `passed: false` header is
+preserved. A separately recorded continuation completed the thirty missing
+cases. Only the combined roster is labelled complete.
+
+The combined evidence contains 400 score rows and twenty summary rows. Its
+independent audit checked 960 saved-state likelihood comparisons, with maximum
+absolute difference `3.956301952712238e-11`. Negative gains, floor choices, win
+counts and active-fit classifications are retained. The score and summary files
+are also available under `validation/reproductions/`.
+
+[The archive manifest](completed_20261105.manifest.json) pins every member to its
+original source hash and current public hash. All eighty accepted reports and
+four interrupted reports are byte-exact. Operational account/project paths in
+other records are normalized, with every changed string identified and numeric
+equivalence checked. `archive:/` and `user-home:/` identify historical locations;
+use the manifest's member mapping to locate the public record.
+
+This is an executed likelihood/score replay at saved fitted states. It does not
+claim fresh optimization, new simulation, original geometry-cache byte identity,
+prospective confirmation or external peer review. Rebuilt geometry digests and
+their original counterparts remain visible in the case reports. Derived
+geometry payloads and native binaries are excluded; build/source/binary hashes
+are retained.

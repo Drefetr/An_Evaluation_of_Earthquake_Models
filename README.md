@@ -4,11 +4,11 @@ Research code, a unified monograph, a plain-language guide, and an interactive f
 
 The research studies restricted stability and identification, nuisance sensitivity, spatial and temporal extensions, competitive benchmarks (`OC`, `FC`, `MC`, `EP`), conditional calibration, and continuous local inhibition (`LI`, `LI+ immigrant`, `LI+ total`). The studies use synthetic controls and regional earthquake catalogues from New Zealand, Southern California, and Japan. Results depend on the specified model, observation law, and evaluation population. Predictive preference does not establish a physical inhibition mechanism; this repository does not provide an operational forecasting service.
 
-This open research edition supplies recovered catalogue and simulation inputs, executable cohort reconstructions, and model replay tools. The unchanged New Zealand fitting recipe has been rerun from the recovered input and reproduces every scientific numerical field exactly. The earlier "scientific completion" release label referred to the bounded `S01`-`S06` and `S04B` follow-up roster; the research remains open to review and revision.
+This open research edition supplies recovered catalogue and simulation inputs, executable cohort reconstructions, and model replay tools. The unchanged New Zealand fitting recipe has been rerun from the recovered input and reproduces every scientific numerical field exactly. Complete known-law and matched-generator score replays have also passed, and a new autonomous finite-mode comparison supplies fitted states and held-out results for a subfamily covered by the stability theorem. The earlier "scientific completion" release label referred to the bounded `S01`-`S06` and `S04B` follow-up roster; the research remains open to review and revision.
 
 ## Read the research
 
-- [Unified monograph](paper/manuscript_unified.pdf): the 233-page edition consolidating the mathematical foundations, Addenda I-V, completed Stage 2 studies (`S01`-`S06`), and matched-law synthetic controls (`S04B`).
+- [Unified monograph](paper/manuscript_unified.pdf): the 235-page edition consolidating the mathematical foundations, Addenda I-V, completed Stage 2 studies (`S01`-`S06`), and matched-law synthetic controls (`S04B`).
 - [Plain-language guide](companion/lay_guide_to_the_research.pdf): an eight-page introduction, also available as [HTML](companion/lay_guide_to_the_research.html).
 - [Research website and findings explorer](https://drefetr.github.io/An_Evaluation_of_Earthquake_Models/): the published site, served from the generated `gh-pages` bundle. See [local preview and deployment instructions](website/README.md).
 - [Reviewer guide](REVIEWER_START_HERE.md): evidence, accepted scope, and verification entry points.
@@ -22,12 +22,14 @@ python -m venv .venv
 # Activate .venv using your shell's usual command.
 python -m pip install -r requirements.txt
 python -B -m unittest discover -s tests -v
+python -B -m unittest discover -s reproduction/regional/tests -v
+python -B reproduction/regional/inputs.py verify
 python -B scripts/check_mathematics.py --output build/mathematics.json
 python -B scripts/verify_claims.py
 python -B scripts/verify_repository.py
 ```
 
-The complete check record combines the main suite, Stage 2 native fixtures, and historical iteration-27 tests; [current check results](validation/checks.json) give each count separately. To run every suite without skips, first build the LI, temporal and S06 libraries using the [Windows x64/MSVC native-build instructions](engine/stage2_followup/README.md#native-builds). The iteration-27 suite also requires a separate CUDA-enabled PyTorch installation and a usable CUDA device; its small CUDA/CPU fit comparison has no CPU fallback. These optional GPU dependencies are not included in `requirements.txt`.
+The complete check record combines the main suite, regional input controls, Stage 2 native fixtures, and historical iteration-27 tests; [current check results](validation/checks.json) give each count separately. To run every suite without skips, first build the LI, temporal and S06 libraries using the [Windows x64/MSVC native-build instructions](engine/stage2_followup/README.md#native-builds). The iteration-27 suite also requires a separate CUDA-enabled PyTorch installation and a usable CUDA device; its small CUDA/CPU fit comparison has no CPU fallback. These optional GPU dependencies are not included in `requirements.txt`.
 
 After building the native groups into `build/native/{li,temporal,s06}`, run the two additional suites from the repository root in PowerShell:
 

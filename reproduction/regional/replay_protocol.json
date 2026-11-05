@@ -1,0 +1,193 @@
+{
+  "schema": "public_s05_point_replay_protocol_summary_v1",
+  "created_utc": "2026-11-05T11:56:43.174027+00:00",
+  "scope": "Portable description of the reviewed saved-path point replay protocol; actual build/control/pilot/probe/full execution is established separately, never by this file.",
+  "original_protocol_sha256": "4765d1a7f2054c3c1a6cfad9f39c0eecd548505aab6e37cdd2b4d1b6369e88ff",
+  "reviewed_source_pins": {
+    "reproduction/regional/scoring_sources/replay.py": "53919c6055bd295d3db137543b26e923939c06637bf710daadffde9739e48bda",
+    "reproduction/regional/scoring_sources/native_wrapper.py": "8f1a6f5a9d84cb8d5b195f233fcc2ff0af1f1f92a5d16777c0569ddc49d07940",
+    "reproduction/regional/scoring_sources/original_full84.py": "b1b63a1730140acf57bd09967456c14dcaceaec9c48123076241b9a1a293ecd8",
+    "reproduction/regional/scoring_sources/independent.cpp": "fde2a01adeccd78b41668d01af5c9d1ebd5883735e96792aae18b4eefef71ec1",
+    "reproduction/regional/scoring_sources/temporal_extension.cpp": "00e4f68241b5229d705fd30f02271616171d1a2ef5b4ce19578a000ee2208805",
+    "reproduction/regional/scoring_sources/build.sh": "26913905bdf0f78ca3e2a469c5f735a46ece605ee5e7fcdf9981060409a60638",
+    "reproduction/regional/scoring_sources/build.cmd": "893406bcd7d15800895ecbdc01b0bd2624b592b4cbbc268dc6a58ee0a962bc9c",
+    "reproduction/regional/scoring_sources/PROTOCOL.md": "4f0622b4d57bfc489c4efa1cb151a1f43a70b4c5a8cecbd1e2bc265ed67830c1",
+    "reproduction/regional/POINT_CONTROLS.md": "7e65730f4aa1a5f1a50b5492ac2824f292b9cd03dffccb35563ac893924800f5",
+    "reproduction/regional/point_controls.py": "a11c1d4c24e84bb08a8d6884d1ce57bea870648ec9d00d341c80c452dca7412f",
+    "reproduction/regional/tests/test_point_controls_static.py": "0016143f15371aa88df39316c1af7a8a9ffcaddc6a0f3f1df3bbb86b912b4fa4",
+    "reproduction/regional/run_replay.py": "590a0cb432e1b6edb17793d28c476f185b427993beb74f489d5521c91a149ca9",
+    "reproduction/regional/REPLAY_GUARD.md": "3a76bd7828d837fb562912b155a88a1a3ead0c5eb4e0b9eee483f630201327e9",
+    "reproduction/regional/tests/test_replay_guard.py": "647750ebbd77eab26d3fe5a0dc279b27c45ed9d7883434fd8febeeb5e3885f01"
+  },
+  "input_package_pins": {
+    "manifest.json": "3fb0d8aa7c0c6ab0787f6acc111c746a10f5588bd3fadf60a94061fcd692dc52",
+    "payload.zip": "fc292cd2252aaead313e40dd80356a3234fc1ad3898651faa6258433399c9ebd",
+    "inputs.py": "6ef8b1b9bdceece0401b4bdce4fc48051f8cdee2e7dd887ab86dbc97dc6f7f77"
+  },
+  "workload": {
+    "path": "reproduction/regional/workload.json",
+    "sha256": "fbd1e76c38ba390bbf0b73d287f27f00fec2b5b34b1ebe84df5534db72e1b551",
+    "copy": "Byte-exact original input-count workload; no path normalization required.",
+    "paths": 5994,
+    "groups": 6,
+    "total_temporal_parent_pairs": 2351440748
+  },
+  "scope_definition": {
+    "primary_candidate": "point, conditional on added direct point controls and resources",
+    "permitted_narrower_campaign": "temporal, separately identified and completed under its own same-scope pilot/probes; never relabel as point",
+    "excluded": [
+      "full84",
+      "magnitude-model comparison",
+      "rejection-threshold recalibration",
+      "new fitted-null bootstrap",
+      "model fitting",
+      "generator/RNG reproduction",
+      "prospective validation"
+    ]
+  },
+  "fixed_rosters": {
+    "full": "OC and EP x california_fold_0, california_fold_1, california_fold_2 x indices 0..998",
+    "full_count": 5994,
+    "pilot": [
+      {
+        "model": "OC",
+        "origin": "california_fold_0",
+        "index": 0
+      },
+      {
+        "model": "OC",
+        "origin": "california_fold_1",
+        "index": 0
+      },
+      {
+        "model": "OC",
+        "origin": "california_fold_2",
+        "index": 0
+      },
+      {
+        "model": "EP",
+        "origin": "california_fold_0",
+        "index": 0
+      },
+      {
+        "model": "EP",
+        "origin": "california_fold_1",
+        "index": 0
+      },
+      {
+        "model": "EP",
+        "origin": "california_fold_2",
+        "index": 0
+      }
+    ],
+    "resource_probes": [
+      {
+        "model": "OC",
+        "origin": "california_fold_0",
+        "index": 74,
+        "events": 37700
+      },
+      {
+        "model": "EP",
+        "origin": "california_fold_2",
+        "index": 573,
+        "events": 11329
+      }
+    ],
+    "observed_count_excluded": 6,
+    "guard_full_from_scratch": true,
+    "total_scored_row_calls_if_all_phases_pass": 6002
+  },
+  "controls": {
+    "archived_required": true,
+    "point_wrapper_path": "reproduction/regional/point_controls.py",
+    "point_wrapper_sha256": "a11c1d4c24e84bb08a8d6884d1ce57bea870648ec9d00d341c80c452dca7412f",
+    "native_point_cases": 25,
+    "cartesian_mass_cases": 10,
+    "component_absolute_tolerance": 1e-07,
+    "count": "exact",
+    "marksum_absolute_tolerance": 1e-12,
+    "failure_retention": "Warnings, nonfinite values and unresolved numerical disagreement fail; all actual outcomes retained."
+  },
+  "score_gate": {
+    "fields_point": [
+      "count",
+      "immigrant_exposure",
+      "trigger_exposure",
+      "exposure",
+      "time_event_logsum",
+      "timing_logscore",
+      "location_logscore",
+      "mark_logscore",
+      "joint_logscore"
+    ],
+    "fields_temporal": [
+      "count",
+      "immigrant_exposure",
+      "trigger_exposure",
+      "exposure",
+      "time_event_logsum",
+      "mark_logscore",
+      "timing_logscore"
+    ],
+    "all_values_finite": true,
+    "count_exact": true,
+    "maximum_absolute_error_per_named_field": 0.0001,
+    "marksum": "absolute difference <= 1e-10 * max(1, abs(native_sumQ)); unchanged archived gate",
+    "outcome": "A score disagreement is a failed replay row, not a reason to relax tolerances or alter seeds."
+  },
+  "resources": {
+    "phase_hard_caps_seconds": {
+      "build": 90,
+      "controls": 180,
+      "six_case_pilot": 180,
+      "each_resource_probe": 180,
+      "full_point": 1800,
+      "full_temporal": 900
+    },
+    "full_workers_max": 4,
+    "blas_openmp_threads_each": 1,
+    "whole_process_tree_rss_cap_bytes": 8589934592,
+    "publication_reserve_seconds": 1800,
+    "memory_admission_v2": {
+      "applies_only_to": [
+        "point",
+        "temporal"
+      ],
+      "source_allocation_model": "Native future arrays and parent vectors are O(N+Npre+Ntrain); pairwise likelihood loops consume O(N*(Npre+N)) time but allocate no N-by-N matrix. Six states may be cached in each worker. The controller retains O(roster) parsed manifest, Future objects and result rows.",
+      "largest_declared_input_events": 37700,
+      "per_worker_scientific_payload_planning_allowance_bytes": 16777216,
+      "payload_allowance_status": "Conservative allocation planning estimate for the fixed roster, not a certified allocator/RSS bound; interpreter, SciPy, controller, ZIP, process and quadrature-report memory is separate.",
+      "before_measured_pilot": "For a one-worker build/control/pilot/probe phase, reserve a 2 GiB whole-tree startup allowance plus 4 GiB operating-system/other-work headroom. Require currently available memory to exceed their sum and keep the existing 8 GiB absolute process-tree ceiling. No fixed 12 GiB available-memory prerequisite remains.",
+      "initial_tree_reserve_bytes": 2147483648,
+      "os_and_other_work_headroom_bytes": 4294967296,
+      "measurement": "Record current available memory, peak resident memory of the complete owned process tree, sampling method/interval and process identities for controls, the original one-worker six-case pilot, and both one-worker largest-input probes. No simulated/stale memory measurement may satisfy admission.",
+      "full_projection": "Let P1 be the maximum actual whole-tree peak over the one-worker pilot and both one-worker probes. For proposed workers w<=4, project Pfull=ceil(1.5*w*P1)+max(128 MiB,16*materialized_manifest_file_bytes). Multiplying the whole single-worker tree intentionally overcounts shared controller memory; the additional term reserves full-roster Future/journal/report bookkeeping. Use the actual largest-input probes, including OC index74; do not project from only index-zero histories.",
+      "projection_multiplier": 1.5,
+      "controller_queue_allowance_min_bytes": 134217728,
+      "controller_queue_allowance_manifest_multiplier": 16,
+      "full_gate": "Admit only if projected Pfull <= 8 GiB and current available memory >= Pfull + 4 GiB headroom. The conductor may select fewer workers within the existing 1..4 range before launch. Time and CPU gates remain unchanged and must also pass.",
+      "during_run": "Monitor actual complete-tree RSS and available-memory headroom. At the absolute RSS ceiling, exhausted headroom, deadline or phase cap, stop the owned tree and retain incomplete results. Do not change scientific tolerances or omit large histories.",
+      "excluded": "This allocation model does not cover real-data full84 arrays; full84 remains outside the supplied-input campaign."
+    },
+    "estimate": "For the admitted scope, calculate W_temporal=N*Npre+N*(N-1)/2+N; W_point=W_temporal+N*Ntrain+9*N. Use r=max(seconds/W) across the six original pilot and both model-specific maximum-size probes. Estimate remaining wall time as 3*max(r*sum(W_remaining)/workers, r*max(W_remaining)); include source/DLL startup, materialization/build/control costs and all duplicated probe work separately. This is a conservative planning proxy, not a runtime guarantee; the external hard cap remains binding.",
+    "full_admission": "Every pilot/probe row passed; all resource measurements recorded; projected remaining work <= scope hard cap and <= actual deadline remainder minus publication reserve; peak memory safely fits the tree cap. Otherwise retain bounded outputs and hold full execution."
+  },
+  "command_and_admission_schema": "reproduction/regional/REPLAY_GUARD.md",
+  "completion_gate": "Exactly 5994 unique successful simulated identities under one frozen scope and source/input/binary binding, complete report and journal, zero unresolved rows, independent output review before publication. Controls, pilot/probes and partial coverage are not full completion.",
+  "historical_execution_window": {
+    "run_deadline_utc": "2026-11-05T13:04:07+00:00",
+    "numerical_expiry_utc": "2026-11-05T12:34:07+00:00",
+    "meaning": "Historical bounded execution window, not reusable authorization; a new replay requires its own explicit resources/deadline and admission records."
+  },
+  "source_review_summary": "validation/reproductions/s05_source_review_20261105.json",
+  "operational_amendment": {
+    "prior_public_summary_sha256": "eeae859549d3c748a796aa6e7ae2e885505fafe96fbc27831a1f7dc094b62131",
+    "prior_guard_sha256": "c15a6ee54c21c02088030b3d030545ea6d04c305a04ef8a99700e27f4d7c66bb",
+    "current_guard_sha256": "590a0cb432e1b6edb17793d28c476f185b427993beb74f489d5521c91a149ca9",
+    "review": "validation/reproductions/s05_guard_grace_review_20261105.json",
+    "review_sha256": "0d87304150edba116d2d0b05be7892cc10e92c3383db76f1fac405a5d4324003",
+    "change": "Bounded normal-exit process quiescence grace only; original scientific/resource constants, rosters and tolerances unchanged.",
+    "original_protocol_identity_retained": true
+  }
+}

@@ -1,6 +1,6 @@
-# Proposed autonomous finite-mode comparison
+# Completed autonomous finite-mode comparison
 
-This directory implements a new, unexecuted exploratory comparison. Its
+This directory supplies the executed exploratory comparison and its reproducible implementation. Its
 constant-background likelihood is exactly an autonomous finite-mode model,
 conditional on the mark and first-moment assumptions in [DERIVATION.md](DERIVATION.md).
 It reuses unchanged hash-pinned likelihood and kernel sources. Existing
@@ -13,8 +13,8 @@ positive-inhibition moment gate, incomplete optimizer roster, numerical
 disagreement or timeout produces a retained failed result rather than a
 substitute model. No p-values or significance claim are produced.
 
-After independent source, mapping and protocol review and admission by the
-conductor, the following commands run the first-fold pilot and then the full
+After the recorded independent source, mapping and protocol review, the
+following commands reproduce the first-fold pilot and then the full
 three-fold experiment. Each output directory must be new and outside sources.
 
 ```powershell
@@ -48,3 +48,7 @@ Tiny deterministic controls, without data fitting or simulation:
 ```powershell
 python -B -m unittest discover -s tests -p test_autonomous_bridge.py -v
 ```
+
+## Executed comparison
+
+The fixed first-fold pilot and full three-fold fit have completed and passed independent output review. The early and late held-out gains are negative; the middle fold selects zero inhibition and has only a numerical shared-coordinate difference. The pooled inhibited-minus-null gain is -12.9456 nats. Complete returned states, event logs, compensators, numerical controls, the pilot and execution records are in [the live result](../../validation/live_results/autonomous_20261105/result.json) and [output review](../../validation/live_results/autonomous_20261105/output_review.json). The original protocol retains its pre-execution status as historical intent; these dated records establish actual execution.

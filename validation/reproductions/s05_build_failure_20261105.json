@@ -1,0 +1,47 @@
+{
+  "schema": "independent_s05_first_build_failure_audit_v1",
+  "created_utc": "2026-11-05T11:50:52.307620+00:00",
+  "review_passed": true,
+  "scientific_execution_passed": false,
+  "full_campaign": false,
+  "actual_controls": 0,
+  "actual_pilot_rows": 0,
+  "actual_probe_rows": 0,
+  "actual_full_rows": 0,
+  "execution_sha256": "350d27a2e791b2568cbc4312a2820d8d17516c726b7c7b7c4867710351af023c",
+  "build_supervision_sha256": "f3fa22e2d6b35b4927cb96e6c48b49033165751d12b2101b366d39ab9c052450",
+  "dll_sha256": "e4c1e3faf191dba8f3d585b347de148f8d285f91530685733a13a4b9dcc6ea8c",
+  "interpretation": "Compiler returned zero and emitted a DLL, but the unchanged process guard detected one lingering owned descendant, terminated it and marked the build phase failed. The orchestrator correctly stopped before any actual numerical controls or replay rows. This DLL has no passed build receipt and is not accepted for scoring.",
+  "source_copies_match_all_eight_archived_sources": true,
+  "all_execution_artifact_hashes_match": true,
+  "lease_released": true,
+  "retained_preflight_rejection": {
+    "execute_sha256": "35f44bcd70c6134bbd4629f4e7530ba8820de374e91e7ef14e806d377b151628",
+    "assignment_sha256": "074259eb9198be2b83bc93d12958d988713094aab77e5142c7a6bf4507d4c416",
+    "scope": "Earlier task schema rejection, before numerical reservation or scientific calls."
+  },
+  "retry_scope": "Any separately admitted follow-up must preserve this failure and use new output/build records; no current full-replay claim.",
+  "owned_process_identity_count": 13,
+  "owned_processes_still_alive": [],
+  "build_execution": {
+    "started_utc": "2026-11-05T11:49:17.499452+00:00",
+    "finished_utc": "2026-11-05T11:49:20.272672+00:00",
+    "exit_code": 0,
+    "termination": "lingering_owned_descendants",
+    "elapsed_seconds": 2.7732472999487072,
+    "peak_process_tree_rss_bytes": 136224768,
+    "passed": false,
+    "descendant_discovery_uncertain": false,
+    "termination_actions": [
+      {
+        "pid": 32620,
+        "create_time": 1793879359.8382993,
+        "operation": "kill",
+        "requested": true
+      }
+    ],
+    "survivors": []
+  },
+  "internal_review_sha256": "b19e5fcfbc6485060c6c9db81789e7ad416360b9fdac642881e56e4fbc83790b",
+  "review_type": "Internal saved-output and actual process-identity audit; no numerical evaluation by reviewer."
+}

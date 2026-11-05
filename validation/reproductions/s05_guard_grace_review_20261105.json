@@ -1,0 +1,73 @@
+{
+  "schema": "independent_s05_normal_exit_grace_review_v1",
+  "created_utc": "2026-11-05T12:04:58.663382+00:00",
+  "source_review_passed": true,
+  "actual_scientific_execution": false,
+  "review_type": "Internal independent source and sleeping-process-control review; no DLL, likelihood, simulation or fitting calls.",
+  "author_result_sha256": "1c47be6ae7d3bc7be31099f3e65e79a422b724b3a04dc7c98d494153c4c4895b",
+  "previous_source_sha256": "c15a6ee54c21c02088030b3d030545ea6d04c305a04ef8a99700e27f4d7c66bb",
+  "current_source_sha256": "590a0cb432e1b6edb17793d28c476f185b427993beb74f489d5521c91a149ca9",
+  "reviewed_pins": [
+    {
+      "path": "run_replay.py",
+      "sha256": "590a0cb432e1b6edb17793d28c476f185b427993beb74f489d5521c91a149ca9",
+      "bytes": 26527
+    },
+    {
+      "path": "tests/test_replay_guard.py",
+      "sha256": "647750ebbd77eab26d3fe5a0dc279b27c45ed9d7883434fd8febeeb5e3885f01",
+      "bytes": 12209
+    },
+    {
+      "path": "REPLAY_GUARD.md",
+      "sha256": "3a76bd7828d837fb562912b155a88a1a3ead0c5eb4e0b9eee483f630201327e9",
+      "bytes": 7799
+    }
+  ],
+  "change_boundary": {
+    "changed_function": "supervise",
+    "all_other_22_functions_text_identical": true,
+    "prefix_constants_and_all_bindings_scientific_gates_text_identical": true
+  },
+  "independent_tests": {
+    "count": 22,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "seconds": 9.705,
+    "type": "Fake report and owned sleeping subprocess controls; no native scientific evaluation."
+  },
+  "reviewed_gates": [
+    "Only root exit code zero enters nominal three-second quiescence grace; nonzero exits receive none.",
+    "Original wall cap, lease, complete-tree RSS, headroom, creation-time identity and discovery checks remain active on every grace sample.",
+    "A complete observed quiescence exits immediately; persistent descendants, uncertainty or a breached gate fail and retain cleanup evidence.",
+    "Sleep duration is bounded by both remaining original wall time and remaining grace; process inspection/cleanup latency remains visible in measured receipts.",
+    "All prior failure-cleanup logic remains intact."
+  ],
+  "author_retained_process_controls": [
+    {
+      "case": "delayed_helper_success",
+      "passed": true,
+      "termination": null,
+      "grace_seconds": 0.5161371999420226,
+      "actual_survivors_independently_checked": []
+    },
+    {
+      "case": "persistent_helper_failure",
+      "passed": false,
+      "termination": "lingering_owned_descendants",
+      "grace_seconds": 3.031853900058195,
+      "actual_survivors_independently_checked": []
+    },
+    {
+      "case": "original_wall_cap",
+      "passed": false,
+      "termination": "wall_limit",
+      "grace_seconds": 0.14589880011044443,
+      "actual_survivors_independently_checked": []
+    }
+  ],
+  "admission": "Operational amended guard may be integrated and used for a fresh admitted build/controls/pilot/probes. Full execution still requires its unchanged measured resource and exact-roster gates; this review is not numerical acceptance.",
+  "history": "Original c15a source, two failed compiler attempts and their quiescence records remain historical failures. The earlier build-helper wrapper source review does not assert that its unlaunched attempt02 executed.",
+  "original_internal_review_sha256": "29d94ba5c9fde16df57e9936b676ed5e2d4ff9bab4c412bac2ababbe283f4ba5"
+}

@@ -224,3 +224,11 @@ Active counts record off-floor selection ($\hat\eta > 0$), including the effect 
 \begin{figure}[p]\centering\includegraphics[width=\linewidth]{s04_expanded_mean_gains.pdf}
 
 \caption{S04B matched-generator controls. Each panel keeps its own full linear range. Points show row means; bars show descriptive MC SE, not calibrated confidence intervals. Each procedure uses the same complete history denominator within its generating regime. The dashed zero line denotes the uninhibited floor; regimes are not pooled.}\label{fig:s04b-matched}\end{figure}
+
+
+The complete saved-state score replay is now supplied in
+\path{reproduction/synthetic/}. It rebuilds quadrature from the raw matched
+histories and reproduces the selected/floor likelihoods, score contrasts and
+summary rows. The interrupted first execution and the separately completed
+missing-case execution are both retained. This computation re-evaluates saved
+fits; it does not rerun their optimizer searches.

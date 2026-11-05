@@ -1,0 +1,197 @@
+{
+  "schema": "bounded_repository_checks_v2",
+  "status": "passed",
+  "baseline_commit": "0b7bc45329dcf5856d2a2d79c03d3c81f3339b0d",
+  "checked_at_utc": "2026-11-05T09:43:20.934246+00:00",
+  "snapshot": "Current payload is bound by MANIFEST.json. Historical check coverage is retained in the linked exact preceding record.",
+  "environment": {
+    "python": "3.13.4",
+    "native": "Windows x64/MSVC",
+    "cuda": "Iteration-27 suite executed on the available CUDA device; CI portable subset is different.",
+    "dependency_install": "Existing host environment matches requirements.txt; a fresh dependency installation is not claimed."
+  },
+  "checks": {
+    "main_unit_and_workflow_suite": {
+      "passed": true,
+      "tests": 165,
+      "elapsed_seconds": 162.429,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "command": "python -B -m unittest discover -s tests -v",
+      "execution_log_sha256": "8a551c85d77be77e9e9521a2f90d7615637e0d9e85907ece7c048978a7b07b95"
+    },
+    "stage2_with_native_fixtures": {
+      "passed": true,
+      "tests": 8,
+      "elapsed_seconds": 10.686,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "command": "python -B -m unittest discover -s engine/stage2_followup/tests -v",
+      "execution_log_sha256": "c8e78175abf08d50ac1761728babf1a2f0bbb6e0f5d6fd2c035e2d6d6b427fb5",
+      "environment": {
+        "INHIBITORY_TEST_NATIVE_ROOT": "build/hy4_native"
+      }
+    },
+    "historical_iteration27_suite": {
+      "passed": true,
+      "tests": 20,
+      "elapsed_seconds": 10.258,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "command": "python -B -m unittest discover -s engine/iteration_27/tests -v",
+      "execution_log_sha256": "5ec165562837c224dc9e2c7cb8459cbd7c5d838d252e41ca49f917dfd9243b86"
+    },
+    "claim_reconciliation": {
+      "passed": true,
+      "records": 27033,
+      "manuscript_bindings": 11293,
+      "direct_authorities": 132,
+      "receipt": "validation/numeric_reconciliation_receipt.json"
+    },
+    "mathematics": {
+      "passed": true,
+      "command": "python -B scripts/check_mathematics.py --output build/hy4_mathematics.json",
+      "output": "validation/mathematics.json"
+    },
+    "site_interactions": {
+      "passed": true,
+      "selector_combinations": 70,
+      "simulation_selector_cases": 10,
+      "simulation_summary_rows": 20,
+      "independent_histories_per_row": 20,
+      "no_simulation_pooling": true,
+      "no_simulation_target_conversion": true,
+      "observed_S04_targets": 315
+    },
+    "monograph_build": {
+      "pdf_sha256": "aef989b4926a3a1de7412434477fec4cda9ea270413dd1b42342a95b0d80bc6c",
+      "pages": 233,
+      "duplicate_labels": [],
+      "undefined_cross_references": [],
+      "missing_bibliography_keys": [],
+      "missing_figures": [],
+      "overfull_boxes": 0,
+      "undefined_warnings": 0,
+      "missing_glyph_warnings": 0,
+      "underfull_boxes": 21,
+      "replacement_characters": 0,
+      "edge_text_blocks": [],
+      "render_scale": 1.7,
+      "scope": "production checks; page images require visual review",
+      "overfull_vertical_boxes": 0,
+      "passed": true
+    },
+    "current_production_review": {
+      "passed": true,
+      "path": "validation/reviews/RECOVERED_INPUT_EDITION_20261105.json",
+      "sha256": "b2aa155a9703dffcf09a7ee2226eda86d1b5cc727ebb280b9e75074928c47d01"
+    },
+    "custody_guardrails": {
+      "protected_files": 233,
+      "protected_by_family": {
+        "engine": 92,
+        "provenance": 15,
+        "validation/authorities": 126
+      },
+      "protected_errors": [],
+      "claims_exact_equal": true,
+      "claim_records": 11293,
+      "ledger_changes": "Only eight display_custody source hashes changed; every claim record is byte-value-equivalent as parsed JSON.",
+      "tex_files": 31,
+      "baseline_numeric_tokens": 14889,
+      "removed_numeric_tokens": 0,
+      "additional_identity_checks": [
+        {
+          "path": "validation/SOURCE_INVENTORY.json",
+          "equal": true,
+          "sha256": "8b75061c0a30e6f4988410f58bfbc6049aa16bf07b0a9d5f069e686f4951d6cc"
+        },
+        {
+          "path": "validation/authority_manifest.json",
+          "equal": true,
+          "sha256": "61c71c4719485cf96cd6da0d5d556049067d719ec72f671f05eef99f45002ea9"
+        },
+        {
+          "path": "provenance/extraction_manifest.json",
+          "equal": true,
+          "sha256": "e8fc852a9d7086bef5a093c7dc4aa210eb30d22df7ac1bb4c6697df932f89c96"
+        }
+      ]
+    },
+    "raw_input_and_fitting_reproductions": {
+      "scope": "Actual regional cohort reconstructions and complete frozen NZ refit. Later numerical runs have separate execution records.",
+      "records": {
+        "jma_replay_20261105.json": "f03a4e00016c13c66b968038f1b0095d44fd442797f9f299ba19a89470d0bcc3",
+        "nzca_replay_20261105.json": "17f20018761b2a3448b3ab74ed7269299dcb93f78a14cb384483aed7d34cc3bb",
+        "observed_refit_comparison_20261105.json": "35e806dbc866e5c9b716260b905b610005e69be6bdf8896f5d07ff2c30fb306a",
+        "oracle_calibration_20261105.json": "8d86134a161776737fac2ed00f7c7e4383864c3e0739ce31c9cc96e2677121f9",
+        "oracle_full_execution_20261105.json": "e6e6f7167a019ccb8b1fcace833ad92f8a2501835d73ad0933af09ece53fc3f6",
+        "oracle_full_result_20261105.json": "6812a98886e3070ba217e25d4f3f2570cf148811800fbab197d0241619ffb1d5",
+        "oracle_full_review_20261105.json": "dbdb07e0b9a3a70d2e283dd75120f0c957d996417cf83fdda05bbdfa6ef4f986",
+        "payload_audit_20261105.json": "26519e5afbc3111ab6ad8c5dcbd4ef4912d9bd6807a66b9ee42fa737e518bfab",
+        "s04b_sequential_pilot_execution.json": "7fb43c44c04a7806230ae4f8123dc8775be55be5bbf0b1b3ee9a6c15df5ad542",
+        "s04b_sequential_pilot_result.json": "2e62fba7e36f346b8b78fd1baff4d3e62aee55ecc072eb36ae424be3edf716d5",
+        "S4_narrow_short_imm_seed410401.json": "86e5ba2faa6c8feff1b5c8851574dd5fc69820fc9bed007b31d6e3b99052def4",
+        "S5_broad_long_imm_seed410501.json": "28a99fbe09a90c524664a9690b40052b2f0675181f99b912d394e240aa136f26",
+        "S6_narrow_short_total_seed410601.json": "f2a0003b057defcf7dfb3c1072715fe2746758f72b7df50e1860f56aea21c1ae",
+        "S7_broad_long_total_seed410701.json": "7cbe6bf61952c8c272e28e6cec812d7fed56c64fb3047c18500a4e2a5e7f1057"
+      }
+    },
+    "diff_whitespace": {
+      "passed": true,
+      "command": "git -c core.whitespace=cr-at-eol diff --check",
+      "archival_exceptions": "Two exact recovered source files retain a trailing empty line under narrow .gitattributes blank-at-eof exceptions. Their input-manifest hashes are unchanged."
+    },
+    "native_builds": {
+      "passed": true,
+      "groups": [
+        "LI and shared radial",
+        "temporal",
+        "S06"
+      ],
+      "compiler": "MSVC",
+      "receipts": {
+        "li": "82f2febe413cc649036187cc5fd07be6dcb7fd74607ba9a2d5bedf4a3e218856",
+        "temporal": "ba932620f8f68b8a831ee2b0289841a71ab16356b1abeb04cc397f486196a77f",
+        "s06": "5e2652c38ed9d0d4474e269904f9d75f8e2bd8ac2503f1c71e645acb6cc2347d"
+      },
+      "scope": "Fresh compilation and bounded native fixtures, no campaign."
+    },
+    "test_total": 193,
+    "initial_main_suite_failure": {
+      "tests": 153,
+      "failures": 1,
+      "cause": "Documentation link to the current production review before that record was written.",
+      "resolution": "Record published; targeted workflow suite and complete final main suite passed.",
+      "execution_log_sha256": "e9ee56a08749de4e8130969b7cb90b63e3251f0ea1faa4a653f601d276201e13"
+    },
+    "followup_workflow_check": {
+      "passed": true,
+      "tests": 9,
+      "command": "python -B -m unittest discover -s tests -p test_workflows.py -v",
+      "scope": "Rechecked direct replay-navigation link and final site build; these nine are already included in the main test count, not additional tests.",
+      "execution_log_sha256": "6e113c94902234b4544ca5d02a422d36ac39e4f627022c5c38556ccdf20fe0a2"
+    },
+    "repository_payload": {
+      "passed": true,
+      "checked_files": 8390,
+      "errors": 0,
+      "commands": [
+        "python -B scripts/verify_repository.py --write-manifest",
+        "python -B scripts/verify_repository.py"
+      ],
+      "scope": "This record is finalized only if the immediately following manifest refresh and ordinary verification both pass."
+    }
+  },
+  "scope": "Internal software, production and enumerated custody checks. Actual data reconstructions/refits/score replays are separately labelled; external peer review and confirmatory inference are not conferred by these checks.",
+  "historical_checks": {
+    "path": "validation/checks_before_data_recovery_20261105.json",
+    "sha256": "e9e17d0457f8603dd7b17f165a3d52b4f687d9ed4c2c881e6030579cfc3f772e",
+    "source_commit": "0b7bc45329dcf5856d2a2d79c03d3c81f3339b0d",
+    "source_path": "validation/checks.json",
+    "scope": "Exact previous current-check record, including its own pointer to the pre-remediation checks."
+  }
+}

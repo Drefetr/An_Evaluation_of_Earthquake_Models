@@ -1,0 +1,91 @@
+{
+  "schema": "s05_actual_partial_execution_public_summary_v1",
+  "scope": "S05 actual saved-path point replay: native controls and eight original pilot/probe rows passed. Full 5,994-row execution was not launched because the frozen runtime gate failed. Both prior failed builds remain failures. No full84, generation, refitting or recalibration claim.",
+  "review_passed": true,
+  "execution_passed": false,
+  "full_campaign": false,
+  "full_launched": false,
+  "input_simulated_paths_supplied": 5994,
+  "actual_pilot_rows": 6,
+  "actual_fixed_probe_rows": 2,
+  "actual_full_rows": 0,
+  "native_point_control_cases": 25,
+  "cartesian_geometry_control_cases": 10,
+  "reference_integrals": 5482,
+  "maximum_point_control_error": 2.9267468448779255e-09,
+  "maximum_geometry_control_error": 9.89248905014506e-10,
+  "maximum_saved_path_declared_field_error": 1.1714291758835316e-09,
+  "score_fields": [
+    "count",
+    "exposure",
+    "immigrant_exposure",
+    "joint_logscore",
+    "location_logscore",
+    "mark_logscore",
+    "time_event_logsum",
+    "timing_logscore",
+    "trigger_exposure"
+  ],
+  "resource_gate": {
+    "passed": false,
+    "full_cap_seconds": 1800,
+    "remaining_seconds": 1567.079463,
+    "best_projected_seconds": 14022.206702844063,
+    "all_worker_options_rejected": true,
+    "reason": "Frozen runtime projection exceeded both the full-run cap and remaining numerical window; memory projections fit."
+  },
+  "archive": "reproduction/regional/s05_execution_20261105.zip",
+  "archive_sha256": "2fad105888b8ccdbf7a43b960e80ab9cf134002bd68d841dec89495479097a32",
+  "manifest": "reproduction/regional/s05_execution_20261105.manifest.json",
+  "manifest_sha256": "8e13a775215897873167f449ed4def35f04a09b6578fa2eb0640aa71805a7eea",
+  "result": {
+    "archive_member": "attempts/point_03/result.json",
+    "original_sha256": "fa41db12a08c0eccd976343685941411a218ce5b40bc570e0cf1c7eadfa9ae90",
+    "public_sha256": "5872d39e7b573b08bec83bf844b54449b17ab5c8a736569ad499ad7e7e85bdea"
+  },
+  "independent_review": {
+    "archive_member": "reviews/attempt02_output_review.json",
+    "original_sha256": "dc875e3016cb91ed2f83403fd32c7ea01285ff11e83c0f5d130c02be5c7884d4",
+    "public_sha256": "9f2d71738c97adaef200c291f6db08d5c3daf8d98dec6481a71f40593f7bf685",
+    "kind": "Internal independent saved-output/source/control-arithmetic review, not a second likelihood execution or external peer review."
+  },
+  "build": {
+    "compiler_version": "19.42.34436.0",
+    "compiler_sha256": "81d78888f7720c7d69a19a9d8a73264367f6a9b0946b14cd882b222166c8bf24",
+    "dll_sha256": "388693a63dd2c50bbdd8845a8beb4aabb1a5a13013a1085fa32c0f84f0a7226f",
+    "sources": {
+      "replay.py": "53919c6055bd295d3db137543b26e923939c06637bf710daadffde9739e48bda",
+      "native_wrapper.py": "8f1a6f5a9d84cb8d5b195f233fcc2ff0af1f1f92a5d16777c0569ddc49d07940",
+      "original_full84.py": "b1b63a1730140acf57bd09967456c14dcaceaec9c48123076241b9a1a293ecd8",
+      "independent.cpp": "fde2a01adeccd78b41668d01af5c9d1ebd5883735e96792aae18b4eefef71ec1",
+      "temporal_extension.cpp": "00e4f68241b5229d705fd30f02271616171d1a2ef5b4ce19578a000ee2208805",
+      "build.sh": "26913905bdf0f78ca3e2a469c5f735a46ece605ee5e7fcdf9981060409a60638",
+      "build.cmd": "893406bcd7d15800895ecbdc01b0bd2624b592b4cbbc268dc6a58ee0a962bc9c",
+      "PROTOCOL.md": "4f0622b4d57bfc489c4efa1cb151a1f43a70b4c5a8cecbd1e2bc265ed67830c1"
+    }
+  },
+  "guard": {
+    "original_sha256": "c15a6ee54c21c02088030b3d030545ea6d04c305a04ef8a99700e27f4d7c66bb",
+    "current_sha256": "590a0cb432e1b6edb17793d28c476f185b427993beb74f489d5521c91a149ca9",
+    "original_source_member": "history/run_replay_c15a.py",
+    "amendment_review": "validation/reproductions/s05_guard_grace_review_20261105.json"
+  },
+  "retained_failed_builds": [
+    {
+      "archive_member": "attempts/build_01/result.json",
+      "passed": false,
+      "scientific_rows": 0,
+      "original_sha256": "350d27a2e791b2568cbc4312a2820d8d17516c726b7c7b7c4867710351af023c",
+      "public_sha256": "189851e3fd8e43844779718b62e6e0736d67178d4ca9b687eff2883c43e4a4bf"
+    },
+    {
+      "archive_member": "attempts/build_02/result.json",
+      "passed": false,
+      "scientific_rows": 0,
+      "original_sha256": "9c28302910d125c8bdf66bc6d51542000507c47dae5b2d16a142e92f817d3df3",
+      "public_sha256": "0224ec389269edb63e6e853f090e6bc5ab26d25f8c877a0e9d4d651312b681fe"
+    }
+  ],
+  "all_37_final_owned_process_identities_quiescent": true,
+  "reporting_limit": "Original score rows retain their maximum declared-field residual and source/receipt bindings, not every raw recomputed component value. All actual control component values and references are retained. This partial run does not reproduce all historical S05 rows or any omnibus rank decisions."
+}
