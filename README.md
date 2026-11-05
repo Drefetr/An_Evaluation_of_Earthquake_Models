@@ -4,6 +4,8 @@ Research code, a unified monograph, a plain-language guide, and an interactive f
 
 The research studies restricted stability and identification, nuisance sensitivity, spatial and temporal extensions, competitive benchmarks (`OC`, `FC`, `MC`, `EP`), conditional calibration, and continuous local inhibition (`LI`, `LI+ immigrant`, `LI+ total`). The studies use synthetic controls and regional earthquake catalogues from New Zealand, Southern California, and Japan. Results depend on the specified model, observation law, and evaluation population. Predictive preference does not establish a physical inhibition mechanism; this repository does not provide an operational forecasting service.
 
+The release label "scientific completion" refers to execution of the declared bounded `S01`-`S06` and `S04B` follow-up programme. It does not claim closure of the scientific questions, joint nuisance estimation, external peer review, or prospective forecasting.
+
 ## Read the research
 
 - [Unified monograph](paper/manuscript_unified.pdf): the 231-page edition consolidating the mathematical foundations, Addenda I-V, completed Stage 2 studies (`S01`-`S06`), and matched-law synthetic controls (`S04B`).
@@ -24,6 +26,18 @@ python -B scripts/check_mathematics.py --output build/mathematics.json
 python -B scripts/verify_claims.py
 python -B scripts/verify_repository.py
 ```
+
+The recorded **120-test total** combines 92 main tests, eight Stage 2 tests (five portable and three native fixtures), and 20 historical iteration-27 tests. It is not the count of the first command alone. To reproduce all 120 without skips, first build the LI, temporal and S06 libraries using the [Windows x64/MSVC native-build instructions](engine/stage2_followup/README.md#native-builds). The iteration-27 suite also requires a separate CUDA-enabled PyTorch installation and a usable CUDA device; its small CUDA/CPU fit comparison has no CPU fallback. These optional GPU dependencies are not included in `requirements.txt`.
+
+After building the native groups into `build/native/{li,temporal,s06}`, run the two additional suites from the repository root in PowerShell:
+
+```powershell
+$env:INHIBITORY_TEST_NATIVE_ROOT = (Resolve-Path build/native).Path
+python -B -m unittest discover -s engine/stage2_followup/tests -v
+python -B -m unittest discover -s engine/iteration_27/tests -v
+```
+
+Without `INHIBITORY_TEST_NATIVE_ROOT`, the Stage 2 command runs its five portable tests and skips its three native fixtures. That portable result does not establish the full 120-test coverage.
 
 These commands check fixed numerical examples, claim/source bindings, and current payload hashes. They do not run the research campaigns, acquire external data, or establish exhaustive mathematical or scientific correctness. Claim verification covers both the manuscript ledger and the separate source inventory; [validation documentation](validation/README.md) explains their roles and current check records.
 

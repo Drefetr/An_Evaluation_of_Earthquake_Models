@@ -1,5 +1,11 @@
 # Change history
 
+## 5 November 2026 hostile-review editorial remediation
+
+Addressed C1-C3, M1-M3 and m1-m3: reconciled the abstract with matched-generator controls, qualified primary-fold benchmark claims, discussed the 2010 EP reversal, distinguished the two 2019 partitions, corrected supplement availability and commit-hash typography, and clarified off-floor reporting and bounded programme completion. Rebuilt the 231-page monograph, eight-page companion and website, refreshed display/source bindings and publication identities, and retained all protected authority/provenance bytes and prior numeric tokens. The initial 107-test remediation suite passed; integration with the newer Pages publication checks expands the current total to 120 (92 main, eight native Stage 2, and 20 iteration-27). See the [remediation receipt](../validation/editorial_remediation_20261105.json) and [current checks](../validation/checks.json).
+
+Follow-up acceptance bookkeeping pins the current artifact bytes in a new [current-edition review](../validation/acceptances/REMEDIATION_VISUAL_REVIEW_20261105.json), labels the older S04B reviews historical, and preserves the [earlier complete check record](../validation/checks_before_remediation_20261105.json). The abstract typography choice is disclosed, the S06 discussion is split into complete paragraphs around its table, and all three test suites and prerequisites are documented.
+
 ## 2 November 2026 repository maintenance
 
 Reworked the README and current code, data, reproduction, provenance, privacy, and reviewer guides around verified public workflows. Corrected PDF-validation commands and F source-link promises, separated the older incomplete F checkpoint from completed S01 recovery, and documented Southern California/Japan provider access and historical-input limits. Artifact builds use isolated outputs and explicit promotion; current manuscript bindings, additional source inventory, and historical preparation records have separate roles. Original scientific results, negative controls, attribution, and licence scopes are retained. See the current validation guide for actual checks and the historical archive index for removed preparation/control records.

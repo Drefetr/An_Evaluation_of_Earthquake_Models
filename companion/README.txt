@@ -1,6 +1,6 @@
 Understanding the earthquake research
 
-Read the eight-page PDF or the standalone HTML. The scientific completion edition includes accepted observed LI+ and comparative conditional calibration findings.
+Read the eight-page PDF or the standalone HTML. This programme-completion edition includes accepted observed LI+ and comparative conditional calibration findings. The release term "scientific completion" refers to completion of the declared bounded S01-S06 and S04B follow-up programme, not closure of the scientific questions, joint nuisance estimation, external peer review or prospective forecasting.
 
 Editable content: guide_content.json. Build an isolated copy from the repository root:
   python -B companion/build_guide.py --output build/companion
@@ -13,4 +13,4 @@ revision explicitly, choose another fresh output and add --install:
   python -B companion/build_guide.py --output build/companion-to-install --install
 Then rebuild/review the website and refresh source receipts and payload hashes.
 
-Review and refresh validation after any edit. Sources and checks are in guide_sources.json and guide_validation.json. The website provides section navigation and an interactive findings explorer.
+Review and refresh validation after any edit. Source bindings are in guide_sources.json; current bounded checks are recorded in ../validation/checks.json. The website provides section navigation and an interactive findings explorer.

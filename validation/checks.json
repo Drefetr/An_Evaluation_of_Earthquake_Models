@@ -1,34 +1,47 @@
 {
   "schema": "bounded_repository_checks_v1",
   "status": "passed",
-  "baseline_commit": "5fdd135d788c2350bf27fda7b817d2b7c324d7c6",
-  "snapshot": "Current payload is bound by MANIFEST.json; this record is part of that payload.",
+  "baseline_commit": "1226fc3b42209afa629ff94063d9c3c5f74e1098",
+  "checked_at_utc": "2026-11-05T05:26:57.022615+00:00",
+  "snapshot": "Current payload is bound by MANIFEST.json; this record is part of that payload. Replaces prior bounded-check results with this remediation run.",
   "environment": {
     "python": "3.13.4",
-    "node": "22.17.0",
+    "node": "v22.17.0",
     "native": "Windows x64/MSVC",
-    "dependency_install": "Pinned requirements were verified in a fresh baseline-cleanup environment; this follow-up uses the same installed host dependency versions."
+    "dependency_install": "Existing host dependencies; no fresh environment claim."
   },
   "checks": {
     "main_unit_and_workflow_suite": {
       "passed": true,
       "tests": 92,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
       "command": "python -B -m unittest discover -s tests -v"
-    },
-    "stage2_portable": {
-      "passed": true,
-      "tests_passed": 5,
-      "optional_native_skipped": 3,
-      "command": "python -B -m unittest discover -s engine/stage2_followup/tests -v"
     },
     "stage2_with_native_fixtures": {
       "passed": true,
       "tests": 8,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "command": "python -B -m unittest discover -s engine/stage2_followup/tests -v",
+      "environment": {
+        "INHIBITORY_TEST_NATIVE_ROOT": "build/review_20261105_tests/native"
+      },
       "native_groups": [
         "LI",
         "temporal",
         "S06"
       ]
+    },
+    "historical_iteration27_suite": {
+      "passed": true,
+      "tests": 20,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "command": "python -B -m unittest discover -s engine/iteration_27/tests -v"
     },
     "native_builds": {
       "passed": true,
@@ -40,7 +53,7 @@
         "EP"
       ],
       "compiler": "MSVC",
-      "scope": "Compilation, version load, and small declared fixtures; no campaign"
+      "scope": "Compilation, version load and bounded fixtures; no campaign."
     },
     "claim_reconciliation": {
       "passed": true,
@@ -51,18 +64,18 @@
     },
     "mathematics": {
       "passed": true,
+      "command": "python -B scripts/check_mathematics.py --output build/review_20261105_residual/mathematics.json",
       "output": "validation/mathematics.json"
     },
     "site_interactions": {
       "passed": true,
-      "selector_combinations": 70
-    },
-    "isolated_builds": {
-      "passed": true,
-      "companion_pages": 8,
-      "baseline_figures": 9,
-      "later_review_figure_files": 16,
-      "site_study_values_unchanged": true
+      "selector_combinations": 70,
+      "simulation_selector_cases": 10,
+      "simulation_summary_rows": 20,
+      "independent_histories_per_row": 20,
+      "no_simulation_pooling": true,
+      "no_simulation_target_conversion": true,
+      "observed_S04_targets": 315
     },
     "monograph_build": {
       "passed": true,
@@ -70,39 +83,51 @@
       "pages": 231,
       "production_checks_passed": true,
       "underfull_boxes": 21,
-      "accepted_document_installed": false,
-      "new_visual_review_claimed": false,
-      "asset_pruned_build_passed": true
+      "accepted_document_installed": true,
+      "visual_review_pages": 231,
+      "pdf_sha256": "0a403b72b176c6397e43267590ca8a739dc684a26daf57598f4152958b4ee813",
+      "bibliography_hash_copy_paste_verified": true,
+      "visual_review_method": "230 pages pixel-identical to prior all-page review; changed page143 independently inspected at full size."
     },
-    "source_migration_review": {
+    "companion_build": {
       "passed": true,
-      "retired_process_inventory_records": 36,
-      "canonical_authority_aliases": 17,
-      "sanitized_retained_authorities": 22,
-      "indexed_historical_files": 72,
-      "semantic_values_unchanged": true
+      "pages": 8,
+      "accepted_document_installed": true,
+      "visual_review_pages": 8,
+      "source_bindings_match": true
     },
-    "compact_metadata": {
+    "site_build": {
       "passed": true,
-      "schema": "compact_display_custody_v1",
-      "all_record_json_types_preserved": true,
-      "total_records": 27033,
-      "full_legacy_presence_objects_reconstructable": 11293,
-      "shared_source_files": 28,
-      "regression_receipt_has_no_arrays": true,
-      "shared_method_once": true,
-      "net_metadata_bytes_saved": 7725205
+      "repository_preview_installed": true,
+      "self_contained_deployment_built": true,
+      "study_values_unchanged": true,
+      "preview_and_deployment_links_valid": true
     },
-    "asset_payload": {
+    "custody_guardrails": {
       "passed": true,
-      "removed_files": 20,
-      "removed_bytes": 4457494,
-      "retained_images": 36,
-      "remaining_byte_identical_file_groups": 0,
-      "three_historical_pdfs_retained": true,
-      "canonical_document_bytes_unchanged": true,
-      "preview_and_generated_deployment_links_valid": true,
-      "automatic_install_reintroduces_no_removed_assets": true
+      "protected_files_checked": 141,
+      "protected_files_changed": 0,
+      "existing_numeric_tokens_removed": 0,
+      "claim_semantic_fields_unchanged": true
+    },
+    "repository_payload": {
+      "passed": true,
+      "checked_files": 422,
+      "errors": 0,
+      "commands": [
+        "python -B scripts/verify_repository.py --write-manifest",
+        "python -B scripts/verify_repository.py"
+      ]
+    },
+    "diff_whitespace": {
+      "passed": true,
+      "command": "git -c core.whitespace=cr-at-eol diff --check"
+    },
+    "current_edition_acceptance": {
+      "passed": true,
+      "path": "validation/acceptances/REMEDIATION_VISUAL_REVIEW_20261105.json",
+      "sha256": "41c9b9b25ff40ae3f5a8e876025371443e8a70ddb0697ae77de298902ae36033",
+      "scope": "Current-edition editorial artifact and PDF visual/production acceptance. Website coverage is rebuilt-file identity, links and bounded interactions; this does not claim a fresh browser viewport audit, scientific campaign replay, or external academic peer review."
     },
     "pages_publication": {
       "passed": true,
@@ -120,5 +145,16 @@
       "automatic_main_publication_with_explicit_pages_deployment": true
     }
   },
-  "scope": "Bounded source/workflow checks only; scientific acceptance, theorem proof, raw-data replay and external peer review are separate."
+  "scope": "Bounded source/workflow and publication checks only; scientific acceptance, theorem proof, raw-data replay and external peer review are separate.",
+  "historical_checks": {
+    "path": "validation/checks_before_remediation_20261105.json",
+    "sha256": "c233144da619ff9819a5add0a4298361fdca9fe47c7b0dd7e4d6dd2749884740",
+    "source_commit": "1226fc3b42209afa629ff94063d9c3c5f74e1098",
+    "source_path": "validation/checks.json",
+    "scope": "Exact pre-remediation record, including isolated_builds, source_migration_review, compact_metadata and asset_payload. Historical coverage is retained, not reasserted as current."
+  },
+  "upstream_integration": {
+    "commit": "cede9d6d335ecc8287d74e45aaaff8aff5c3bd11",
+    "scope": "Preserved upstream repository rename and Pages publication workflow, including 13 additional main-suite tests. Native and iteration-27 source code is unchanged."
+  }
 }

@@ -4,7 +4,9 @@ Start with the [current unified monograph](paper/manuscript_unified.pdf), its [l
 
 The [plain-language guide](companion/lay_guide_to_the_research.pdf) introduces the studies without equations. The [findings explorer files](website/site/findings.html) use accepted aggregates and retain separate study populations; use the [website instructions](website/README.md) to preview the site.
 
-## Scientific completion map
+## Bounded programme completion map
+
+"Scientific completion" in release metadata means execution of the declared bounded `S01`-`S06` and `S04B` follow-up programme, not closure of the scientific questions, joint nuisance estimation, external peer review, or prospective forecasting.
 
 | Stream | Evidence in this edition | Interpretation and validation boundary |
 |---|---|---|
@@ -12,9 +14,11 @@ The [plain-language guide](companion/lay_guide_to_the_research.pdf) introduces t
 | S02 | Matched and misspecified candidates on the paired forest bank; [acceptance](validation/acceptances/S02_ACCEPTANCE.json) | Same-bank threshold exceedances do not establish independent size control. |
 | S03 | Four spatial arms across California and New Zealand; [acceptance](validation/acceptances/S03_ACCEPTANCE.json), [frozen-contract review](validation/acceptances/S03_FROZEN_CONTRACT_REVIEW.json) | Fitted-procedure contrasts are not a causal decomposition. New Zealand remains adaptively reused; training-only EP preparation is separately disclosed. |
 | S04 | Expanded synthetic matrix and three observed California folds; [synthetic acceptance](validation/acceptances/S04_SYNTHETIC_ACCEPTANCE.json), [observed review](validation/acceptances/S04_OBSERVED_REVIEW.json) | Fixed-backbone comparisons; original unit-mark control law. Sampled numerical checks do not establish global optimization. Negative outcomes remain part of the evidence. |
-| S04B | Matched LI+ immigrant and total generating controls; [acceptance](validation/acceptances/S04B_MATCHED_ACCEPTANCE.json), [publication review](validation/acceptances/S04B_PUBLICATION_REVIEW.json), [visual review](validation/acceptances/S04B_VISUAL_REVIEW.json) | Per-regime history denominators and descriptive Monte Carlo SE, with fixed nuisance backbone. No general recovery, nominal-size, prospective, or physical-identification claim. |
+| S04B | Matched LI+ immigrant and total generating controls; [acceptance](validation/acceptances/S04B_MATCHED_ACCEPTANCE.json), [historical integration publication review](validation/acceptances/S04B_PUBLICATION_REVIEW.json), [historical integration visual review](validation/acceptances/S04B_VISUAL_REVIEW.json); [current-edition artifact acceptance](validation/acceptances/REMEDIATION_VISUAL_REVIEW_20261105.json) | Per-regime history denominators and descriptive Monte Carlo SE, with fixed nuisance backbone. No general recovery, nominal-size, prospective, or physical-identification claim. |
 | S05 | All 2,997 EP futures; point-score reconstruction on all 5,994 OC/EP paths; fifteen full 84-coordinate EP replays; [closure review](validation/acceptances/S05_CLOSURE_REVIEW.json), [point review](validation/acceptances/S05_ALL_PATH_POINT_REVIEW.json) | Fixed-state conditional inference. Full PIT coverage is fifteen EP paths, not every future; no inferred CSEP L/M/S results. |
 | S06 | California episode backtests and Japanese stationary/trend ablation; [acceptance](validation/acceptances/S06_ACCEPTANCE.json) | Retrospective roster, overlapping training, and saved-row validation do not establish prospective independent replication. |
+
+The historical S04B integration reviews certify the earlier document bytes. The [current-edition review](validation/acceptances/REMEDIATION_VISUAL_REVIEW_20261105.json) binds the delivered manuscript, companion and repository site to the editorial remediation and its declared visual/production checks. It does not repeat the original scientific campaigns or claim external peer review.
 
 Read each acceptance receipt for its actual roster, source identities, checks, and limits. Some historical references identify original research inputs outside this publication package. Accepted aggregate evidence is distinct from an independently reproducible raw experiment. Computational-agent review is distinct from independent external academic peer review.
 
@@ -32,11 +36,15 @@ After installing `requirements.txt`, run:
 
 ```sh
 python -B -m unittest discover -s tests -v
+python -B -m unittest discover -s engine/stage2_followup/tests -v
+python -B -m unittest discover -s engine/iteration_27/tests -v
 python -B scripts/check_mathematics.py --output build/mathematics.json
 python -B scripts/verify_claims.py
 python -B scripts/verify_repository.py
 node website/check_interactions.cjs
 ```
+
+The full total is 92 main tests, 8 Stage 2 tests with native fixtures, and 20 iteration-27 tests. See the [test prerequisites and native setup](validation/README.md#check-a-checkout), including the separate CUDA requirement. Without native fixtures, Stage 2 passes five tests and skips three.
 
 The website check needs Node.js; CI uses Node 22. To compile and inspect the current monograph with Tectonic 0.17.0:
 
