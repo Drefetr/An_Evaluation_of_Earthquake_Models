@@ -1,0 +1,92 @@
+{
+  "reviewed_utc": "2026-11-05T08:54:13.946638+00:00",
+  "baseline": "0b7bc45329dcf5856d2a2d79c03d3c81f3339b0d",
+  "passed": true,
+  "status": "passed_bounded_payload_audit",
+  "blocking_findings": [],
+  "nonblocking_notes": [],
+  "custody_summary": {
+    "protected_files": 233,
+    "protected_by_family": {
+      "engine": 92,
+      "provenance": 15,
+      "validation/authorities": 126
+    },
+    "protected_errors": [],
+    "claims_exact_equal": true,
+    "claim_records": 11293,
+    "ledger_changes": "Only eight display_custody source hashes changed; every claim record is byte-value-equivalent as parsed JSON.",
+    "tex_files": 31,
+    "baseline_numeric_tokens": 14889,
+    "removed_numeric_tokens": 0,
+    "additional_identity_checks": [
+      {
+        "path": "validation/SOURCE_INVENTORY.json",
+        "equal": true,
+        "sha256": "8b75061c0a30e6f4988410f58bfbc6049aa16bf07b0a9d5f069e686f4951d6cc"
+      },
+      {
+        "path": "validation/authority_manifest.json",
+        "equal": true,
+        "sha256": "61c71c4719485cf96cd6da0d5d556049067d719ec72f671f05eef99f45002ea9"
+      },
+      {
+        "path": "provenance/extraction_manifest.json",
+        "equal": true,
+        "sha256": "e8fc852a9d7086bef5a093c7dc4aa210eb30d22df7ac1bb4c6697df932f89c96"
+      }
+    ]
+  },
+  "manifest_summary": {
+    "checked_hash_references": 10056,
+    "distinct_files_hashed": 7906,
+    "errors": [],
+    "raw_validation": "NZ/CA gzip decompressed hashes and all JMA ZIP members independently verified; observed original/replayed result decompressed identities verified."
+  },
+  "privacy_summary": {
+    "counts": {
+      "files": 7950,
+      "file_bytes": 228182509,
+      "text_members": 6474,
+      "text_bytes": 531207473,
+      "npz_members": 2746
+    },
+    "npz_array_dtype_kinds": {
+      "f": 7783,
+      "U": 152,
+      "i": 11,
+      "S": 1,
+      "b": 3
+    },
+    "candidate_classifications": [
+      {
+        "path": "reproduction/synthetic/native.py",
+        "line": 36,
+        "classification": "Standard Windows compiler discovery fallback",
+        "finding": false
+      },
+      {
+        "path": "tests/test_reproduction_jma.py",
+        "line": 64,
+        "classification": "Deliberate absolute-path rejection fixture; fabricated example, not a private host path",
+        "finding": false
+      },
+      {
+        "path": "tests/test_reproduction_nzca.py",
+        "line": 120,
+        "classification": "Deliberate absolute-path rejection fixture; fabricated example, not a private host path",
+        "finding": false
+      }
+    ],
+    "unresolved_candidates": [],
+    "skipped": [],
+    "archive_path_traversal": [],
+    "qualification": "Heuristic scan, not a guarantee of absence of every secret. Raw scientific numerical arrays inspected by dtype rather than treated as text.",
+    "additional_files_scanned": 4,
+    "additional_text_bytes": 21986
+  },
+  "schema": "recovered_input_payload_audit_v1",
+  "scope": "Bounded independent checks of the recovered-input packages and preserved source/claim custody. Later numerical result archives are recorded separately. No new model calculation was executed by this audit.",
+  "reviewer": "Codex payload-audit worker",
+  "private_execution_record_sha256": "815362d58e6be65341c985cac0e13bab79e8fa4cd0af7fe7e205b0aa416f3626"
+}

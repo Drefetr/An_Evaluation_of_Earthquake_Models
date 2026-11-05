@@ -1,6 +1,6 @@
 # Third-party notices
 
-Project-owned software, prose, figures, and derived result summaries have the separate licence scopes described in [LICENSES/README.md](LICENSES/README.md). Those licences do not relicense third-party data, publications, or dependencies. Event-level catalogue records are not distributed.
+Project-owned software, prose, figures, and derived result summaries have the separate licence scopes described in [LICENSES/README.md](LICENSES/README.md). Those licences do not relicense third-party data, publications, or dependencies. The recovered catalogue inputs in `reproduction/` retain their providers' terms and citations; selected cohorts and projected coordinates are project processing.
 
 ## New Zealand: GeoNet
 
@@ -18,7 +18,7 @@ The project-derived cohort selection, parser repair, fitted-procedure comparison
 
 The regional studies use annual hypocentre records from the [JMA Seismological Bulletin](https://www.data.jma.go.jp/eqev/data/bulletin/index_e.html), with [archives and format documentation](https://www.data.jma.go.jp/eqev/data/bulletin/hypo_e.html). Consult the [JMA legal notice](https://www.jma.go.jp/jma/en/copyright.html) and any specific rights notices. Retain source citation and identify edited/derived material as project processing rather than an official JMA product.
 
-The study's complete-case selection, source-JST boundaries, and derived scores are project-specific. They do not establish physical catalogue completeness or provider endorsement. The [data guide](docs/data.md) states the supplied metadata and unavailable replay inputs.
+JMA's legal notice applies [Public Data License 1.0](https://www.digital.go.jp/en/resources/open_data/public_data_license_v1.0), subject to specific rights notices. The original annual hypocentre archives retain their source identity. The study's complete-case selection, source-JST boundaries, projection and derived scores are project processing, not official JMA products. The [data guide](docs/data.md) links the executable selection and recovered inputs.
 
 ## Publications and dependencies
 

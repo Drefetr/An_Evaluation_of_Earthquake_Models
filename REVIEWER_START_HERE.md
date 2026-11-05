@@ -4,7 +4,20 @@ Start with the [current unified monograph](paper/manuscript_unified.pdf), its [l
 
 The [plain-language guide](companion/lay_guide_to_the_research.pdf) introduces the studies without equations. The [findings explorer files](website/site/findings.html) use accepted aggregates and retain separate study populations; use the [website instructions](website/README.md) to preview the site.
 
-## Bounded programme completion map
+## Reproduce results from supplied inputs
+
+The [recovered-input guide](reproduction/README.md) provides the original New Zealand catalogue, California annual files, Japanese source archives and projected-region predicate, plus the recovered simulation histories and available fitted states. Cohort reconstruction has been executed for all three regions. The complete frozen New Zealand fit has also rerun: all scientific values match the archived result. These executions are separate from the claim ledger's display checks.
+
+```sh
+python -B scripts/reproduce.py --study nz --output build/replay_nz
+python -B scripts/reproduce.py --study california --output build/replay_california
+python -B scripts/reproduce.py --study jma --output build/replay_jma
+python -B scripts/reproduce_observed.py --output build/replay_observed
+```
+
+Use a fresh output directory for each command. The study guides describe optional provider downloads and the synthetic likelihood replays. A revised provider file fails the exact historical hash check; it is never silently substituted. Read each execution record for whether it reconstructs a cohort, refits a model, or recomputes a score.
+
+## Historical follow-up study map
 
 "Scientific completion" in release metadata means execution of the declared bounded `S01`-`S06` and `S04B` follow-up programme, not closure of the scientific questions, joint nuisance estimation, external peer review, or prospective forecasting.
 
@@ -14,11 +27,11 @@ The [plain-language guide](companion/lay_guide_to_the_research.pdf) introduces t
 | S02 | Matched and misspecified candidates on the paired forest bank; [acceptance](validation/acceptances/S02_ACCEPTANCE.json) | Same-bank threshold exceedances do not establish independent size control. |
 | S03 | Four spatial arms across California and New Zealand; [acceptance](validation/acceptances/S03_ACCEPTANCE.json), [frozen-contract review](validation/acceptances/S03_FROZEN_CONTRACT_REVIEW.json) | Fitted-procedure contrasts are not a causal decomposition. New Zealand remains adaptively reused; training-only EP preparation is separately disclosed. |
 | S04 | Expanded synthetic matrix and three observed California folds; [synthetic acceptance](validation/acceptances/S04_SYNTHETIC_ACCEPTANCE.json), [observed review](validation/acceptances/S04_OBSERVED_REVIEW.json) | Fixed-backbone comparisons; original unit-mark control law. Sampled numerical checks do not establish global optimization. Negative outcomes remain part of the evidence. |
-| S04B | Matched LI+ immigrant and total generating controls; [acceptance](validation/acceptances/S04B_MATCHED_ACCEPTANCE.json), [historical integration publication review](validation/acceptances/S04B_PUBLICATION_REVIEW.json), [historical integration visual review](validation/acceptances/S04B_VISUAL_REVIEW.json); [current-edition artifact acceptance](validation/acceptances/REMEDIATION_VISUAL_REVIEW_20261105.json) | Per-regime history denominators and descriptive Monte Carlo SE, with fixed nuisance backbone. No general recovery, nominal-size, prospective, or physical-identification claim. |
+| S04B | Matched LI+ immigrant and total generating controls; [acceptance](validation/acceptances/S04B_MATCHED_ACCEPTANCE.json), [historical integration publication review](validation/acceptances/S04B_PUBLICATION_REVIEW.json), [historical integration visual review](validation/acceptances/S04B_VISUAL_REVIEW.json); [earlier editorial artifact review](validation/acceptances/REMEDIATION_VISUAL_REVIEW_20261105.json) | Per-regime history denominators and descriptive Monte Carlo SE, with fixed nuisance backbone. No general recovery, nominal-size, prospective, or physical-identification claim. |
 | S05 | All 2,997 EP futures; point-score reconstruction on all 5,994 OC/EP paths; fifteen full 84-coordinate EP replays; [closure review](validation/acceptances/S05_CLOSURE_REVIEW.json), [point review](validation/acceptances/S05_ALL_PATH_POINT_REVIEW.json) | Fixed-state conditional inference. Full PIT coverage is fifteen EP paths, not every future; no inferred CSEP L/M/S results. |
 | S06 | California episode backtests and Japanese stationary/trend ablation; [acceptance](validation/acceptances/S06_ACCEPTANCE.json) | Retrospective roster, overlapping training, and saved-row validation do not establish prospective independent replication. |
 
-The historical S04B integration reviews certify the earlier document bytes. The [current-edition review](validation/acceptances/REMEDIATION_VISUAL_REVIEW_20261105.json) binds the delivered manuscript, companion and repository site to the editorial remediation and its declared visual/production checks. It does not repeat the original scientific campaigns or claim external peer review.
+The historical S04B integration and editorial-remediation reviews certify their original document bytes. The [current production review](validation/reviews/RECOVERED_INPUT_EDITION_20261105.json) identifies the delivered manuscript, companion and site. It records internal artifact checks; the separately linked reproduction records describe numerical executions. None of these records represents external academic acceptance.
 
 Read each acceptance receipt for its actual roster, source identities, checks, and limits. Some historical references identify original research inputs outside this publication package. Accepted aggregate evidence is distinct from an independently reproducible raw experiment. Computational-agent review is distinct from independent external academic peer review.
 
@@ -44,7 +57,7 @@ python -B scripts/verify_repository.py
 node website/check_interactions.cjs
 ```
 
-The full total is 92 main tests, 8 Stage 2 tests with native fixtures, and 20 iteration-27 tests. See the [test prerequisites and native setup](validation/README.md#check-a-checkout), including the separate CUDA requirement. Without native fixtures, Stage 2 passes five tests and skips three.
+The main suite now includes recovered-input reconstruction, corruption rejection and replay checks. The [current check record](validation/checks.json) records the executed count separately for the main suite, the eight Stage 2 tests and the twenty iteration-27 tests. See the [test prerequisites and native setup](validation/README.md#check-a-checkout), including the separate CUDA requirement. Without native fixtures, Stage 2 passes five tests and skips three.
 
 The website check needs Node.js; CI uses Node 22. To compile and inspect the current monograph with Tectonic 0.17.0:
 
@@ -53,4 +66,4 @@ python -B scripts/build_paper.py --output build/reviewer_paper
 python -B scripts/validate_pdf.py --source-root paper --pdf build/reviewer_paper/main.pdf --log build/reviewer_paper/main.log --output build/reviewer_pdf_qa
 ```
 
-Use fresh output directories. The build does not install its PDF by default, and automated production checks do not replace visual inspection. The [reproduction guide](docs/reproducibility.md) explains builds, promotion, and explicit research workloads. The [data guide](docs/data.md) and [Stage 2 support matrix](engine/stage2_followup/README.md) describe external inputs and execution limits. Catalogue rows, complete histories, fitted vectors, and caches are not supplied; document rebuilding is not numerical study replay.
+Use fresh output directories. The build does not install its PDF by default, and automated production checks do not replace visual inspection. The [reproduction guide](docs/reproducibility.md) explains builds, promotion, and explicit research workloads. The [data guide](docs/data.md) and [Stage 2 support matrix](engine/stage2_followup/README.md) describe external inputs and execution limits. The recovered-input packages supply the regional source records, stated synthetic banks and available fitted states. Their guides identify remaining missing historical states and distinguish score replay from refitting. Document rebuilding alone does not execute those scientific calculations.

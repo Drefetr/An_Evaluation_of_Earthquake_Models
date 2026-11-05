@@ -1,0 +1,93 @@
+{
+  "schema": "autonomous_constant_background_exploratory_v1",
+  "status": "proposed_unexecuted_requires_independent_review",
+  "objective": "Compare a theorem-compatible autonomous finite-mode subfamily with its matched uninhibited floor on previously inspected NZ history.",
+  "data": {
+    "path": "reproduction/nzca/expected/geonet_M5_shallow_1960_2026.csv",
+    "sha256": "feacccb7581d1c4c33f88874cd6b198c41639da6930a7fc35e46f910a594fb3e",
+    "events": 913
+  },
+  "T0": 24394.0,
+  "folds": [
+    {
+      "id": "fold_50",
+      "train_fraction": 0.5,
+      "test_end_fraction": 0.65
+    },
+    {
+      "id": "fold_65",
+      "train_fraction": 0.65,
+      "test_end_fraction": 0.8
+    },
+    {
+      "id": "fold_80",
+      "train_fraction": 0.8,
+      "test_end_fraction": 1.0
+    }
+  ],
+  "law": {
+    "rho": 0,
+    "Z0": 0,
+    "U0": 0,
+    "link": "exp(a+X)",
+    "shared_kernel": {
+      "kind": "ml",
+      "alpha": 0.5,
+      "tau": 1.0,
+      "spectral_step": 0.4,
+      "spectral_tail_bound": 1e-08
+    },
+    "stress_mark": "exp(0.75*log(10)*(Q-1))",
+    "productivity_mark": "(1-r)*exp(beta*r*Q)",
+    "ratio": 0.7,
+    "beta": "N_train/sum(Q_train), common between arms, frozen before heldout score",
+    "theorem_gate": "beta>0.75*log(10) required for positive-eta arm; fail and retain ineligible comparison rather than alter marks",
+    "invoked_theorem": "Chapter 3 finite-mode stability: first moments only. No second or cross moment is assumed. No stronger inferential or exact-memory theorem is invoked."
+  },
+  "arms": {
+    "null": "a,n fitted; eta=0; d=0",
+    "inhibited": "a,n,eta fitted; d=0; exact fitted null floor included"
+  },
+  "bounds": {
+    "a": [
+      -12,
+      0
+    ],
+    "n": [
+      0,
+      0.98
+    ],
+    "eta": [
+      0,
+      3
+    ]
+  },
+  "starts": {
+    "null": "Four (a0+offset,n) combinations: offset=-0.5,0.5 and n=0.2,0.7; clip a to its bounds; a0=clip(log(0.6*N_train/train_end),-11.5,-0.1).",
+    "null_floor": "Analytic constant Poisson a=clip(log(N_train/train_end),-12,0), n=0.",
+    "inhibited": "Eight eta starts 0,.02,.05,.1,.2,.5,1,2 at fitted null a,n, plus the exact null floor."
+  },
+  "solver": {
+    "first": "L-BFGS-B: maxiter=250, maxls=40, ftol=1e-12, gtol=1e-7.",
+    "failure_recovery": "From the same original start: L-BFGS-B with maxls=200, then Powell with maxiter=500, maxfev=5000, xtol=1e-7, ftol=1e-10.",
+    "eligibility": "Solver success, finite bounded vector, fresh objective within 1e-7 of solver return, and nonworsening within 1e-8 of original start. Every required start completes; failed returns are retained but cannot be selected.",
+    "selection": "Minimum order-16 training NLL, with deterministic floor-first tie handling; no held-out selection."
+  },
+  "numerical_gates": {
+    "training": "All finite feasible returned states and floors checked at orders 16/32: absolute NLL discrepancy <=1e-4. Selected order-32 gap to eligible retained minimum <=1e-4.",
+    "heldout": "Selected null and inhibited states: order-16/32 scores and gain agree within 1e-4 absolute. Retain all earlier parents and final no-event tail; update history predictably.",
+    "spectral_kernel": "Exact fixed 195-mode mixture; no exact infinite-memory claim."
+  },
+  "reporting": "Retain every returned fit state, solver return, training criterion, mark-moment gate, held-out ground/common-mark/full score and per-fold paired gain. No p-values or significance boundary. Negative gains and unresolved folds remain visible. Pool only after all three folds complete.",
+  "resources": {
+    "cpu_threads": 1,
+    "pilot_fold": "fold_50",
+    "pilot_seconds": 600,
+    "total_seconds": 1800,
+    "per_fold_seconds": 600,
+    "memory_limit_mb_per_history": 512,
+    "numerical_launch": "Independent source, theorem and protocol review plus conductor admission required. Must not delay oracle/S04B replays.",
+    "deadline_semantics": "Checked between calls and phases; a running call can overrun. Conductor enforces any strict external wall limit."
+  },
+  "interpretation": "New exploratory comparison on already inspected data. Canonical rho=0 and b=1 remove redundant parameters. This fits an autonomous statistical law but does not identify physical loading, causality, prospective performance or joint mark-law parameters. Zero initial modes are not a stationary draw."
+}

@@ -1,0 +1,29 @@
+{
+  "schema": "jma_recovered_state_scoring_recipe_v1",
+  "status": "recipe_and_inputs_available; numerical_scoring_not_executed_by_raw_replay",
+  "cohort": "Use catalogue_arrays.npz produced by replay.py after result.json passed=true.",
+  "state_archive": "inputs/saved_states.zip",
+  "state_manifest": "saved_states_manifest.json",
+  "engine_module": "engine.stage2_followup.s03_s06_spatial_benchmarks.s06.engine",
+  "native_sources": [
+    "engine/stage2_followup/s03_s06_spatial_benchmarks/s06/core.cpp",
+    "engine/stage2_followup/s03_s06_spatial_benchmarks/s06/competitive.cpp"
+  ],
+  "native_binding": "Build the native core/competitive libraries in an output directory using the repository Stage-2 build instructions; set INHIBITORY_S06_NATIVE_DIR. Source/ABI/toolchain checks are separate from raw data replay.",
+  "primary_steps": [
+    "Load the regenerated NPZ with allow_pickle=False into a mapping of all arrays.",
+    "For fold 0,1,2 load primary/nuisance/f{fold}.json and primary/selected/f{fold}.json from the bundle. The selected state for each arm stores sigma and selected.x.",
+    "Use start=3652/4748/5844 and end=4748/5844/6940. Choose family=competitive for N0/EP, lift for FL/OL, continuous for FC/MC/OC.",
+    "Call engine.features(cohort,nuisance,start,end,selected_sigma,family), then engine.save_cache into a fresh output path. Caches are recomputed from event records; do not substitute saved score totals.",
+    "Use engine.Objective(cache).evaluate(arm,selected_vector,fine=False,detailed=True). Compare every event log, integrated-intensity component, mark score and joint/timing/location summary with the corresponding primary/scores/f{fold}_{arm}_full.json/.npz.",
+    "Repeat the nine annual blocks with their exact source-JST boundaries if reproducing the annual tables. Candidate_forecasts retains all finite candidate returns and permits independent selection/stability inspection.",
+    "Recomputing scores at saved parameters is a frozen-vector replay. Full refitting additionally requires the complete preserved 36-procedure/330-slot roster, eight starts, exact floors, failed-return lineage, training-only selection and original recovery rules."
+  ],
+  "s06_steps": [
+    "The primary dfree states are the original selected FC/OC/EP states. S06 d0 fitted vectors are in s06/JMA_fold_{fold}/fits/d0_{arm}.json; nuisances and case configuration are in the same case directory.",
+    "Use the same catalogue/fold bounds and explicitly zero the trend coordinate according to the preserved S06 protocol; compare the bundled d0 and dfree event-score files and receipt rows.",
+    "The saved protocols use sanitized historical artifact identifiers. Create current runtime/file bindings rather than treating those archive identifiers as paths or rewriting the historical hashes."
+  ],
+  "historical_runtime": {"python": "3.13.4", "numpy": "2.2.6", "scipy": "1.15.3", "numerical_threads": 1},
+  "limits": "Raw replay does not call this numerical recipe, estimate nuisance parameters, refit or certify forecasting scores. Full numerical replay must state its actual checks and tolerances."
+}

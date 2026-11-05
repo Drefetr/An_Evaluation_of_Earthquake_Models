@@ -1,0 +1,1107 @@
+{
+  "schema": "hy4_catalogue_reproduction_v1",
+  "date": "2026-11-05",
+  "scope": "Raw-source cohort replay and public retrieval, no model fitting",
+  "offline_replay_passed": true,
+  "input_manifest_sha256": "6578d98a860d8fbd969a2a2edba466593c9bb09c3b3d40f91b20e18cc95272c8",
+  "replay_source_sha256": "6c7cd303d658b3c620a87dd1de05193efcaf39ebfd7ce55880d20f280e329929",
+  "results": {
+    "nz": {
+      "input_manifest_sha256": "6578d98a860d8fbd969a2a2edba466593c9bb09c3b3d40f91b20e18cc95272c8",
+      "passed": true,
+      "region": "nz",
+      "regions": {
+        "nz": {
+          "cohorts": {
+            "main": {
+              "conflicting_duplicate_rows": 0,
+              "exact_duplicate_rows": 0,
+              "exact_expected_bytes": true,
+              "output": "nz/geonet_M5_shallow_1960_2026.csv",
+              "primary_reasons": {
+                "depth_over_40_km": 690,
+                "event_type_not_earthquake": 81,
+                "included": 913
+              },
+              "raw_rows": 1684,
+              "selected_rows": 913,
+              "sha256": "feacccb7581d1c4c33f88874cd6b198c41639da6930a7fc35e46f910a594fb3e",
+              "unique_event_ids": 1684
+            },
+            "prehistory": {
+              "conflicting_duplicate_rows": 0,
+              "exact_duplicate_rows": 0,
+              "exact_expected_bytes": true,
+              "output": "nz/geonet_M5_shallow_1950_1959.csv",
+              "primary_reasons": {
+                "depth_over_40_km": 97,
+                "event_type_not_earthquake": 16,
+                "included": 102
+              },
+              "raw_rows": 215,
+              "selected_rows": 102,
+              "sha256": "90e97922677c056e5d3dd9990cf7724a34cbde271fd567aef847167a147a69e8",
+              "unique_event_ids": 215
+            }
+          },
+          "status": "passed",
+          "verified_raw": [
+            {
+              "file": "wfs_1960.csv",
+              "rows": 195,
+              "sha256": "12497b19f93884b9e4800d28be325219e449c8c3abff5247bb83df4dedda7e8d"
+            },
+            {
+              "file": "wfs_1970.csv",
+              "rows": 216,
+              "sha256": "c258ce43d5e5913bc6141f57b0f20ed99aae2e81c4839d5b417cf675af46652e"
+            },
+            {
+              "file": "wfs_1980.csv",
+              "rows": 255,
+              "sha256": "14e551df41267d68423377dcbe29f1e8e02ec623aa06c3e7522232866bbe9000"
+            },
+            {
+              "file": "wfs_1990.csv",
+              "rows": 388,
+              "sha256": "1c5d605e1df320d65b8e18a56a17898ad7f8fe421a23d5461b2627d36998f541"
+            },
+            {
+              "file": "wfs_2000.csv",
+              "rows": 218,
+              "sha256": "85c1fa661963a51606824a2c23fae7ab404aac1ff0b63313e58394741b52ed30"
+            },
+            {
+              "file": "wfs_2010.csv",
+              "rows": 283,
+              "sha256": "ae925e9af2cb6b35f73885223c11b4f12006a7aad6766086ff773d7487716f0e"
+            },
+            {
+              "file": "wfs_2020.csv",
+              "rows": 129,
+              "sha256": "50145a4445c418318af20def709db41f77ec411e34c948f1dd49d51f2924ce75"
+            },
+            {
+              "file": "wfs_1950.csv",
+              "rows": 215,
+              "sha256": "b8a4c5e185049cdfe2dc238fb8b879094b14285cd4fbc1d73098ae4c7cd93986"
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "scope": "Raw-to-cohort reconstruction only; no model fitting, simulation or score replay.",
+      "status": "passed"
+    },
+    "california": {
+      "input_manifest_sha256": "6578d98a860d8fbd969a2a2edba466593c9bb09c3b3d40f91b20e18cc95272c8",
+      "passed": true,
+      "region": "california",
+      "regions": {
+        "california": {
+          "counts": {
+            "events": 1272,
+            "folds": [
+              79,
+              167,
+              69
+            ],
+            "m4p5_folds": [
+              16,
+              53,
+              18
+            ],
+            "unique_ids": 1272,
+            "warmup": 106
+          },
+          "event_objects_sha256": "da07f2853671b330fa3d93157d5d84f8713392fd6071b549df46a293c6e7b14e",
+          "exact_event_objects": true,
+          "exact_expected_bytes": true,
+          "lanes": {
+            "protected": {
+              "diagnostic_events": 25672,
+              "events": 315,
+              "exact_parse_audit": true,
+              "parse_audit": {
+                "diagnostic_clock_unavailable_count": 0,
+                "diagnostic_event_count": 25672,
+                "duplicate_crosswalk": [],
+                "model_event_count": 315,
+                "raw_clock_status_counts": {
+                  "valid": 325824
+                },
+                "raw_reason_counts": {
+                  "eligible_geometry": 314746,
+                  "excluded_geography": 681,
+                  "excluded_type": 10397
+                },
+                "serialized_precision_counts": {
+                  "depth": {
+                    "1": 325824
+                  },
+                  "latitude": {
+                    "3": 325824
+                  },
+                  "longitude": {
+                    "3": 325824
+                  },
+                  "magnitude": {
+                    "2": 325824
+                  },
+                  "time": {
+                    "2": 325824
+                  }
+                },
+                "unique_raw_ids": 325824
+              }
+            },
+            "train": {
+              "diagnostic_events": 102561,
+              "events": 957,
+              "exact_parse_audit": true,
+              "parse_audit": {
+                "diagnostic_clock_unavailable_count": 6,
+                "diagnostic_event_count": 102561,
+                "duplicate_crosswalk": [],
+                "model_event_count": 957,
+                "raw_clock_status_counts": {
+                  "unsupported_second_60": 30,
+                  "valid": 530094
+                },
+                "raw_reason_counts": {
+                  "eligible_geometry": 459091,
+                  "excluded_depth": 1,
+                  "excluded_geography": 1538,
+                  "excluded_magnitude_missing": 37280,
+                  "excluded_type": 32214
+                },
+                "serialized_precision_counts": {
+                  "depth": {
+                    "1": 530124
+                  },
+                  "latitude": {
+                    "3": 530124
+                  },
+                  "longitude": {
+                    "3": 530124
+                  },
+                  "magnitude": {
+                    "2": 530124
+                  },
+                  "time": {
+                    "2": 530124
+                  }
+                },
+                "unique_raw_ids": 530124
+              },
+              "training_admission": {
+                "diagnostic_18_admit_boolean": [
+                  true,
+                  true,
+                  true,
+                  true,
+                  true,
+                  true,
+                  true,
+                  true,
+                  true,
+                  true,
+                  true,
+                  true,
+                  true,
+                  true,
+                  true,
+                  true,
+                  true,
+                  true
+                ],
+                "diagnostic_18_corrected_modal_value": [
+                  "2.55",
+                  "2.55",
+                  "2.55",
+                  "2.75",
+                  "2.55",
+                  "2.55",
+                  "2.55",
+                  "2.55",
+                  "2.55",
+                  "2.55",
+                  "2.55",
+                  "2.55",
+                  "2.55",
+                  "2.55",
+                  "2.55",
+                  "2.55",
+                  "2.55",
+                  "2.55"
+                ],
+                "diagnostic_18_stratum_count": [
+                  3967,
+                  3948,
+                  4297,
+                  9950,
+                  7657,
+                  2055,
+                  3011,
+                  23025,
+                  3695,
+                  4007,
+                  8933,
+                  2985,
+                  3570,
+                  3037,
+                  2187,
+                  12799,
+                  1776,
+                  1662
+                ],
+                "diagnostic_overflow_total": 0,
+                "documented_missing_magnitude_total": 37280,
+                "eligible_training_count_by_three_zones": [
+                  288,
+                  443,
+                  120
+                ],
+                "eligible_training_total": 851,
+                "training_admit_boolean": true
+              }
+            }
+          },
+          "output": "california/events.json",
+          "status": "passed",
+          "verified_raw": [
+            {
+              "bytes": 876911,
+              "file": "1981.catalog",
+              "sha256": "1ada55766b7b22af55dff2660c7b259f9c1b29eff1504b2683acb50bad4787c0"
+            },
+            {
+              "bytes": 1151037,
+              "file": "1982.catalog",
+              "sha256": "8c8ff154dc2f8620237374186d67bdf12c4b3d43a5c9d40ebb635308363dca92"
+            },
+            {
+              "bytes": 1186871,
+              "file": "1983.catalog",
+              "sha256": "052d216312bbac72f1c6fa463d9ff912b87537314e9b1e2b864c98c7eaef3eec"
+            },
+            {
+              "bytes": 1467721,
+              "file": "1984.catalog",
+              "sha256": "b36a10ee83a6166ba43023e68204751670a83e1e5f8f8b209b8e44f964eeb715"
+            },
+            {
+              "bytes": 1546277,
+              "file": "1985.catalog",
+              "sha256": "8f024ea9b346a71d83d3c2a042b3bccb03d9ee15a736f21e7f81231483c37e62"
+            },
+            {
+              "bytes": 1400727,
+              "file": "1986.catalog",
+              "sha256": "f5d6e40ed8e9af1f1a5f3147cb8e6026fa87097e0878b89ba12fa97629cc5802"
+            },
+            {
+              "bytes": 1114055,
+              "file": "1987.catalog",
+              "sha256": "0288e460d825efa18fbca478ad562fcc4091d20c49cf639185a2b4c8c8656fa3"
+            },
+            {
+              "bytes": 908481,
+              "file": "1988.catalog",
+              "sha256": "54f3654fa1c658b57510cd9afff1cc6f9afa654503261a6aa22d80a6547af23d"
+            },
+            {
+              "bytes": 949317,
+              "file": "1989.catalog",
+              "sha256": "ac2c0f4ae8147af806b3130c546a1a15f5c3249c526d45ccb061872493cc8a74"
+            },
+            {
+              "bytes": 922339,
+              "file": "1990.catalog",
+              "sha256": "200dddac31b35c0e3dabf76ef483a83f275c2a10affde3f08a05be5ae9fe37d2"
+            },
+            {
+              "bytes": 828367,
+              "file": "1991.catalog",
+              "sha256": "db4d3b5dfbc089583d81c65555b076a5285ee6fde1c04b582c2d4fb21b2879b5"
+            },
+            {
+              "bytes": 4218329,
+              "file": "1992.catalog",
+              "sha256": "5a55e462415cb59fd0f2aca71a6fdb9a63ac2046d71f93d459c57760b7d98c43"
+            },
+            {
+              "bytes": 1805889,
+              "file": "1993.catalog",
+              "sha256": "11362c5e1b66082e48e863bfde25d2ba4efc26785874c317d56ae45f24969d12"
+            },
+            {
+              "bytes": 2317651,
+              "file": "1994.catalog",
+              "sha256": "f48db4aaa1e653a04a5bd342c7301e84f31d146855d64f95bb259c215c31650e"
+            },
+            {
+              "bytes": 2049921,
+              "file": "1995.catalog",
+              "sha256": "993059e624bf09a697cc50bbc588a4c123bf6c4919fd771b322b183fbdc97c7a"
+            },
+            {
+              "bytes": 1630491,
+              "file": "1996.catalog",
+              "sha256": "0f18caea4ff65fe436b4ddba3f51c6ad82a01f235135bfa48b00bd6c9b0cf8c7"
+            },
+            {
+              "bytes": 1257063,
+              "file": "1997.catalog",
+              "sha256": "cf2d96a5d9b133911d94c186dfcfb31996d5d832114e01973ec5c5362d25cf57"
+            },
+            {
+              "bytes": 1112333,
+              "file": "1998.catalog",
+              "sha256": "12bba1161943159ac2dce86416cb03083ca500097d6f9e9321e95caebc2e5c3f"
+            },
+            {
+              "bytes": 1753901,
+              "file": "1999.catalog",
+              "sha256": "4afa9859861ae0e75ad100e436c22e6c446f61bb46e54a040f85f8395fbc6fbb"
+            },
+            {
+              "bytes": 1671491,
+              "file": "2000.catalog",
+              "sha256": "99ab84d084709d5dcf2bde8dca944f4465ca8705e37e06de4789d114c978a9c6"
+            },
+            {
+              "bytes": 1486253,
+              "file": "2001.catalog",
+              "sha256": "9744f85516699b6dcceb3fca602351c561f30f9754166ee99625ba6944409d41"
+            },
+            {
+              "bytes": 973097,
+              "file": "2002.catalog",
+              "sha256": "8ef6ad232d5e2a85da4d4f5d8dfd362765c822e359a926cc8eae5f29cecc8d5f"
+            },
+            {
+              "bytes": 947595,
+              "file": "2003.catalog",
+              "sha256": "3be78cab1fb0d7b7238d7f84608aa54eda6c3a2f114a96bb33f12abc1b8462e9"
+            },
+            {
+              "bytes": 1005979,
+              "file": "2004.catalog",
+              "sha256": "7fd9b0279c73db7fc22b84449a9a65af36f0f4434f1a0d857028bae778c3715c"
+            },
+            {
+              "bytes": 1083633,
+              "file": "2005.catalog",
+              "sha256": "9adbe6b701b44b58c7323c96ce23d59300c6d7ee1edd6bae3aa3848105877ebf"
+            },
+            {
+              "bytes": 918813,
+              "file": "2006.catalog",
+              "sha256": "aeb75fbd95c20176736062744a60d97487f15d4b07114c58db84b663faba5dba"
+            },
+            {
+              "bytes": 942511,
+              "file": "2007.catalog",
+              "sha256": "2c49a282b24e7ee3d5b35d377f54f72675e8185e98bc5e7b23ccb52a933ba04f"
+            },
+            {
+              "bytes": 1153579,
+              "file": "2008.catalog",
+              "sha256": "252665a2dd75c50a7619d163043518b53a80c01f21c659ccd8c3a58e5f449626"
+            },
+            {
+              "bytes": 1372765,
+              "file": "2009.catalog",
+              "sha256": "5fdf2f1971060f3582b2636069bf8a3833b59b021a2ecb60dffd5408708669b7"
+            },
+            {
+              "bytes": 3441461,
+              "file": "2010.catalog",
+              "sha256": "dca7369f16ed3763ae1eb0c6f430963c5d2c820e4e44813193e0d4dc0d6f9603"
+            },
+            {
+              "bytes": 1277153,
+              "file": "2011.catalog",
+              "sha256": "e42ae7df64c3aad68ae1850d63210e021110c2fc1f248d1ec58686891907cb35"
+            },
+            {
+              "bytes": 1408107,
+              "file": "2012.catalog",
+              "sha256": "189018e8f874b1a515cccfd37f4c36d35d47ea79dffb9c8e833afa6218e08485"
+            },
+            {
+              "bytes": 1521431,
+              "file": "2013.catalog",
+              "sha256": "d7f75d1a83f0c6ae8bee42f22514e515769d20ad8e8ebd1e1408a1ee5918dcd3"
+            },
+            {
+              "bytes": 1184001,
+              "file": "2014.catalog",
+              "sha256": "d706bc1fc1368914b3401d1723aaf26c6d5d4443b109bded4dfded795642e96e"
+            },
+            {
+              "bytes": 1278957,
+              "file": "2015.catalog",
+              "sha256": "93b2d811143ca75c87a1e96b6aaf778cfde50248edb9b957c2cdd4d2b8589288"
+            },
+            {
+              "bytes": 1315204,
+              "file": "2016.catalog",
+              "sha256": "cbd6fbbec5265d3885c010110bdf76e54118d9f599e34801df7c64c6e63c3d4b"
+            },
+            {
+              "bytes": 1341031,
+              "file": "2017.catalog",
+              "sha256": "912c84f31fd062450fc5269293b751edbfbeded15419dcfa5e0359808dfe000d"
+            },
+            {
+              "bytes": 1700683,
+              "file": "2018.catalog",
+              "sha256": "c5165bfc0e712985c0cbec4176740113380ca2b7f27be07edc69c72102efdbb9"
+            },
+            {
+              "bytes": 5435645,
+              "file": "2019.catalog",
+              "sha256": "7ab1bda4dc4780fe737d9a35efe25aad3e90040c70ed24bba4fd552a9ab90786"
+            },
+            {
+              "bytes": 3058194,
+              "file": "2020.catalog",
+              "sha256": "b8630b0daf90cb5b8e33efbe57e28ac7f9342a53f0dc2a5a7e3dfb85ae1557ef"
+            },
+            {
+              "bytes": 1903305,
+              "file": "2021.catalog",
+              "sha256": "eccadce24356a87d2834b55f4ffb39502ffbd028fbfd24bfbffd497fc21c398f"
+            },
+            {
+              "bytes": 1385311,
+              "file": "2022.catalog",
+              "sha256": "f64063c5bfbfc59a82a8a011dc6b6c163fe72d17818dd0c5887bb530b6254501"
+            },
+            {
+              "bytes": 1122586,
+              "file": "2023.catalog",
+              "sha256": "26848025ae638a92c39662d66c2ad304a8ac9af1560774e5ce407d2ae357d9f9"
+            },
+            {
+              "bytes": 1416635,
+              "file": "2024.catalog",
+              "sha256": "f683a19150354f43e28535659ec15e20e4189561d34843b1befa3f0456fb33c4"
+            },
+            {
+              "bytes": 1382076,
+              "file": "2025.catalog",
+              "sha256": "22d8184462ffc4f9daadf23fc4163e1ab6903ce23162ff1d35b1e9a72c541bab"
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "scope": "Raw-to-cohort reconstruction only; no model fitting, simulation or score replay.",
+      "status": "passed"
+    },
+    "california_public_retrieval": {
+      "files": [
+        {
+          "bytes": 876911,
+          "expected_sha256": "1ada55766b7b22af55dff2660c7b259f9c1b29eff1504b2683acb50bad4787c0",
+          "file": "1981.catalog",
+          "git_blob_sha1": "2bc6892259b9161d6baba6f415c9e0381e1e860f",
+          "region": "california",
+          "sha256": "1ada55766b7b22af55dff2660c7b259f9c1b29eff1504b2683acb50bad4787c0",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1981.catalog"
+        },
+        {
+          "bytes": 1151037,
+          "expected_sha256": "8c8ff154dc2f8620237374186d67bdf12c4b3d43a5c9d40ebb635308363dca92",
+          "file": "1982.catalog",
+          "git_blob_sha1": "81d2b6530c00d928ec265e7a67ad8876474059d1",
+          "region": "california",
+          "sha256": "8c8ff154dc2f8620237374186d67bdf12c4b3d43a5c9d40ebb635308363dca92",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1982.catalog"
+        },
+        {
+          "bytes": 1186871,
+          "expected_sha256": "052d216312bbac72f1c6fa463d9ff912b87537314e9b1e2b864c98c7eaef3eec",
+          "file": "1983.catalog",
+          "git_blob_sha1": "0be238681c1338aab47672f1353e6dcfec4944a7",
+          "region": "california",
+          "sha256": "052d216312bbac72f1c6fa463d9ff912b87537314e9b1e2b864c98c7eaef3eec",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1983.catalog"
+        },
+        {
+          "bytes": 1467721,
+          "expected_sha256": "b36a10ee83a6166ba43023e68204751670a83e1e5f8f8b209b8e44f964eeb715",
+          "file": "1984.catalog",
+          "git_blob_sha1": "249c3d83c3d732f1ee6533e20f0e162fe82dc151",
+          "region": "california",
+          "sha256": "b36a10ee83a6166ba43023e68204751670a83e1e5f8f8b209b8e44f964eeb715",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1984.catalog"
+        },
+        {
+          "bytes": 1546277,
+          "expected_sha256": "8f024ea9b346a71d83d3c2a042b3bccb03d9ee15a736f21e7f81231483c37e62",
+          "file": "1985.catalog",
+          "git_blob_sha1": "fb59988613e6f67b527f52f4b28bb320fbbb3ed9",
+          "region": "california",
+          "sha256": "8f024ea9b346a71d83d3c2a042b3bccb03d9ee15a736f21e7f81231483c37e62",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1985.catalog"
+        },
+        {
+          "bytes": 1400727,
+          "expected_sha256": "f5d6e40ed8e9af1f1a5f3147cb8e6026fa87097e0878b89ba12fa97629cc5802",
+          "file": "1986.catalog",
+          "git_blob_sha1": "4cc505f586274061319197724d6bb65624a81b06",
+          "region": "california",
+          "sha256": "f5d6e40ed8e9af1f1a5f3147cb8e6026fa87097e0878b89ba12fa97629cc5802",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1986.catalog"
+        },
+        {
+          "bytes": 1114055,
+          "expected_sha256": "0288e460d825efa18fbca478ad562fcc4091d20c49cf639185a2b4c8c8656fa3",
+          "file": "1987.catalog",
+          "git_blob_sha1": "ee9c9dd213e261bc7489ae185ae01cc290c80a80",
+          "region": "california",
+          "sha256": "0288e460d825efa18fbca478ad562fcc4091d20c49cf639185a2b4c8c8656fa3",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1987.catalog"
+        },
+        {
+          "bytes": 908481,
+          "expected_sha256": "54f3654fa1c658b57510cd9afff1cc6f9afa654503261a6aa22d80a6547af23d",
+          "file": "1988.catalog",
+          "git_blob_sha1": "b09fa83fcde93cc478f1e45d1977edec8455628a",
+          "region": "california",
+          "sha256": "54f3654fa1c658b57510cd9afff1cc6f9afa654503261a6aa22d80a6547af23d",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1988.catalog"
+        },
+        {
+          "bytes": 949317,
+          "expected_sha256": "ac2c0f4ae8147af806b3130c546a1a15f5c3249c526d45ccb061872493cc8a74",
+          "file": "1989.catalog",
+          "git_blob_sha1": "0346e796a4334eeda7d8dc715f4c4c5f471673a4",
+          "region": "california",
+          "sha256": "ac2c0f4ae8147af806b3130c546a1a15f5c3249c526d45ccb061872493cc8a74",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1989.catalog"
+        },
+        {
+          "bytes": 922339,
+          "expected_sha256": "200dddac31b35c0e3dabf76ef483a83f275c2a10affde3f08a05be5ae9fe37d2",
+          "file": "1990.catalog",
+          "git_blob_sha1": "35511e1a1b27309ffc8dd25bb3b5ac304ca937d5",
+          "region": "california",
+          "sha256": "200dddac31b35c0e3dabf76ef483a83f275c2a10affde3f08a05be5ae9fe37d2",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1990.catalog"
+        },
+        {
+          "bytes": 828367,
+          "expected_sha256": "db4d3b5dfbc089583d81c65555b076a5285ee6fde1c04b582c2d4fb21b2879b5",
+          "file": "1991.catalog",
+          "git_blob_sha1": "d38db44b2e0947d8723627a5cd70b02ec04d4b15",
+          "region": "california",
+          "sha256": "db4d3b5dfbc089583d81c65555b076a5285ee6fde1c04b582c2d4fb21b2879b5",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1991.catalog"
+        },
+        {
+          "bytes": 4218329,
+          "expected_sha256": "5a55e462415cb59fd0f2aca71a6fdb9a63ac2046d71f93d459c57760b7d98c43",
+          "file": "1992.catalog",
+          "git_blob_sha1": "160abe6c76f3c3b87ee8a2a4fb318b03323b7d69",
+          "region": "california",
+          "sha256": "5a55e462415cb59fd0f2aca71a6fdb9a63ac2046d71f93d459c57760b7d98c43",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1992.catalog"
+        },
+        {
+          "bytes": 1805889,
+          "expected_sha256": "11362c5e1b66082e48e863bfde25d2ba4efc26785874c317d56ae45f24969d12",
+          "file": "1993.catalog",
+          "git_blob_sha1": "41a14694c0a4d63bd8ec2d10c6fe117be2686f18",
+          "region": "california",
+          "sha256": "11362c5e1b66082e48e863bfde25d2ba4efc26785874c317d56ae45f24969d12",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1993.catalog"
+        },
+        {
+          "bytes": 2317651,
+          "expected_sha256": "f48db4aaa1e653a04a5bd342c7301e84f31d146855d64f95bb259c215c31650e",
+          "file": "1994.catalog",
+          "git_blob_sha1": "359aae8a9222a2de2829e276a8a9c47e656031cd",
+          "region": "california",
+          "sha256": "f48db4aaa1e653a04a5bd342c7301e84f31d146855d64f95bb259c215c31650e",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1994.catalog"
+        },
+        {
+          "bytes": 2049921,
+          "expected_sha256": "993059e624bf09a697cc50bbc588a4c123bf6c4919fd771b322b183fbdc97c7a",
+          "file": "1995.catalog",
+          "git_blob_sha1": "4db1628861d7b847832a06eaa69f7ca5a510d5a0",
+          "region": "california",
+          "sha256": "993059e624bf09a697cc50bbc588a4c123bf6c4919fd771b322b183fbdc97c7a",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1995.catalog"
+        },
+        {
+          "bytes": 1630491,
+          "expected_sha256": "0f18caea4ff65fe436b4ddba3f51c6ad82a01f235135bfa48b00bd6c9b0cf8c7",
+          "file": "1996.catalog",
+          "git_blob_sha1": "c6cc17c198e566f45a0e035576592e60407ea498",
+          "region": "california",
+          "sha256": "0f18caea4ff65fe436b4ddba3f51c6ad82a01f235135bfa48b00bd6c9b0cf8c7",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1996.catalog"
+        },
+        {
+          "bytes": 1257063,
+          "expected_sha256": "cf2d96a5d9b133911d94c186dfcfb31996d5d832114e01973ec5c5362d25cf57",
+          "file": "1997.catalog",
+          "git_blob_sha1": "863aeebe96528cc008dac92bf982cf009f060d23",
+          "region": "california",
+          "sha256": "cf2d96a5d9b133911d94c186dfcfb31996d5d832114e01973ec5c5362d25cf57",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1997.catalog"
+        },
+        {
+          "bytes": 1112333,
+          "expected_sha256": "12bba1161943159ac2dce86416cb03083ca500097d6f9e9321e95caebc2e5c3f",
+          "file": "1998.catalog",
+          "git_blob_sha1": "26b8eaaa75957b7ccbd4114e600dab30b0864ecd",
+          "region": "california",
+          "sha256": "12bba1161943159ac2dce86416cb03083ca500097d6f9e9321e95caebc2e5c3f",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1998.catalog"
+        },
+        {
+          "bytes": 1753901,
+          "expected_sha256": "4afa9859861ae0e75ad100e436c22e6c446f61bb46e54a040f85f8395fbc6fbb",
+          "file": "1999.catalog",
+          "git_blob_sha1": "e42dfa656ea1f7c34555becd74b374f889fc342d",
+          "region": "california",
+          "sha256": "4afa9859861ae0e75ad100e436c22e6c446f61bb46e54a040f85f8395fbc6fbb",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1999.catalog"
+        },
+        {
+          "bytes": 1671491,
+          "expected_sha256": "99ab84d084709d5dcf2bde8dca944f4465ca8705e37e06de4789d114c978a9c6",
+          "file": "2000.catalog",
+          "git_blob_sha1": "5c36a01988ab5867d13b11d1a631680970ad3363",
+          "region": "california",
+          "sha256": "99ab84d084709d5dcf2bde8dca944f4465ca8705e37e06de4789d114c978a9c6",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2000.catalog"
+        },
+        {
+          "bytes": 1486253,
+          "expected_sha256": "9744f85516699b6dcceb3fca602351c561f30f9754166ee99625ba6944409d41",
+          "file": "2001.catalog",
+          "git_blob_sha1": "abebdce23e93ba1d8049013f4592b90c911552d4",
+          "region": "california",
+          "sha256": "9744f85516699b6dcceb3fca602351c561f30f9754166ee99625ba6944409d41",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2001.catalog"
+        },
+        {
+          "bytes": 973097,
+          "expected_sha256": "8ef6ad232d5e2a85da4d4f5d8dfd362765c822e359a926cc8eae5f29cecc8d5f",
+          "file": "2002.catalog",
+          "git_blob_sha1": "d2bd241844f044c25684cfe7aa57f8455598d46e",
+          "region": "california",
+          "sha256": "8ef6ad232d5e2a85da4d4f5d8dfd362765c822e359a926cc8eae5f29cecc8d5f",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2002.catalog"
+        },
+        {
+          "bytes": 947595,
+          "expected_sha256": "3be78cab1fb0d7b7238d7f84608aa54eda6c3a2f114a96bb33f12abc1b8462e9",
+          "file": "2003.catalog",
+          "git_blob_sha1": "7259d9c64bba878271f5d7a6c1f4dee20de860a7",
+          "region": "california",
+          "sha256": "3be78cab1fb0d7b7238d7f84608aa54eda6c3a2f114a96bb33f12abc1b8462e9",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2003.catalog"
+        },
+        {
+          "bytes": 1005979,
+          "expected_sha256": "7fd9b0279c73db7fc22b84449a9a65af36f0f4434f1a0d857028bae778c3715c",
+          "file": "2004.catalog",
+          "git_blob_sha1": "582fbf43e581a19d6ff62f3ee31bce06e9a85b35",
+          "region": "california",
+          "sha256": "7fd9b0279c73db7fc22b84449a9a65af36f0f4434f1a0d857028bae778c3715c",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2004.catalog"
+        },
+        {
+          "bytes": 1083633,
+          "expected_sha256": "9adbe6b701b44b58c7323c96ce23d59300c6d7ee1edd6bae3aa3848105877ebf",
+          "file": "2005.catalog",
+          "git_blob_sha1": "8c32af0fbb4df79b4448593874fe1bd5e2b61b23",
+          "region": "california",
+          "sha256": "9adbe6b701b44b58c7323c96ce23d59300c6d7ee1edd6bae3aa3848105877ebf",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2005.catalog"
+        },
+        {
+          "bytes": 918813,
+          "expected_sha256": "aeb75fbd95c20176736062744a60d97487f15d4b07114c58db84b663faba5dba",
+          "file": "2006.catalog",
+          "git_blob_sha1": "c2dd7a8de76bc093c1bd22e0f048748dc38b90f3",
+          "region": "california",
+          "sha256": "aeb75fbd95c20176736062744a60d97487f15d4b07114c58db84b663faba5dba",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2006.catalog"
+        },
+        {
+          "bytes": 942511,
+          "expected_sha256": "2c49a282b24e7ee3d5b35d377f54f72675e8185e98bc5e7b23ccb52a933ba04f",
+          "file": "2007.catalog",
+          "git_blob_sha1": "656231e50afd38bcbe7e25cc341ce1ff8fdd4333",
+          "region": "california",
+          "sha256": "2c49a282b24e7ee3d5b35d377f54f72675e8185e98bc5e7b23ccb52a933ba04f",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2007.catalog"
+        },
+        {
+          "bytes": 1153579,
+          "expected_sha256": "252665a2dd75c50a7619d163043518b53a80c01f21c659ccd8c3a58e5f449626",
+          "file": "2008.catalog",
+          "git_blob_sha1": "cbc8d2e7d11ae02a9dd1346555b0bffbded12658",
+          "region": "california",
+          "sha256": "252665a2dd75c50a7619d163043518b53a80c01f21c659ccd8c3a58e5f449626",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2008.catalog"
+        },
+        {
+          "bytes": 1372765,
+          "expected_sha256": "5fdf2f1971060f3582b2636069bf8a3833b59b021a2ecb60dffd5408708669b7",
+          "file": "2009.catalog",
+          "git_blob_sha1": "96dfae9feee1263526a62e1f200e09cab2a29f29",
+          "region": "california",
+          "sha256": "5fdf2f1971060f3582b2636069bf8a3833b59b021a2ecb60dffd5408708669b7",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2009.catalog"
+        },
+        {
+          "bytes": 3441461,
+          "expected_sha256": "dca7369f16ed3763ae1eb0c6f430963c5d2c820e4e44813193e0d4dc0d6f9603",
+          "file": "2010.catalog",
+          "git_blob_sha1": "b0b50d00631ebf6166a362e464826a1b1b6648fb",
+          "region": "california",
+          "sha256": "dca7369f16ed3763ae1eb0c6f430963c5d2c820e4e44813193e0d4dc0d6f9603",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2010.catalog"
+        },
+        {
+          "bytes": 1277153,
+          "expected_sha256": "e42ae7df64c3aad68ae1850d63210e021110c2fc1f248d1ec58686891907cb35",
+          "file": "2011.catalog",
+          "git_blob_sha1": "6452d222f4d4b2a22ea0b8357cc7ab39bb8a0f05",
+          "region": "california",
+          "sha256": "e42ae7df64c3aad68ae1850d63210e021110c2fc1f248d1ec58686891907cb35",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2011.catalog"
+        },
+        {
+          "bytes": 1408107,
+          "expected_sha256": "189018e8f874b1a515cccfd37f4c36d35d47ea79dffb9c8e833afa6218e08485",
+          "file": "2012.catalog",
+          "git_blob_sha1": "c759f8502432063941a00f9fe0f57ca606eb2817",
+          "region": "california",
+          "sha256": "189018e8f874b1a515cccfd37f4c36d35d47ea79dffb9c8e833afa6218e08485",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2012.catalog"
+        },
+        {
+          "bytes": 1521431,
+          "expected_sha256": "d7f75d1a83f0c6ae8bee42f22514e515769d20ad8e8ebd1e1408a1ee5918dcd3",
+          "file": "2013.catalog",
+          "git_blob_sha1": "2ec2a4387bf6294f4585586ad21d454cabecbacc",
+          "region": "california",
+          "sha256": "d7f75d1a83f0c6ae8bee42f22514e515769d20ad8e8ebd1e1408a1ee5918dcd3",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2013.catalog"
+        },
+        {
+          "bytes": 1184001,
+          "expected_sha256": "d706bc1fc1368914b3401d1723aaf26c6d5d4443b109bded4dfded795642e96e",
+          "file": "2014.catalog",
+          "git_blob_sha1": "b6182bd3769a9d1ba0aa2b0da7bb3d59a5a6ce1c",
+          "region": "california",
+          "sha256": "d706bc1fc1368914b3401d1723aaf26c6d5d4443b109bded4dfded795642e96e",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2014.catalog"
+        },
+        {
+          "bytes": 1278957,
+          "expected_sha256": "93b2d811143ca75c87a1e96b6aaf778cfde50248edb9b957c2cdd4d2b8589288",
+          "file": "2015.catalog",
+          "git_blob_sha1": "aec19426c57233b2c0494955748dacfb54c59c94",
+          "region": "california",
+          "sha256": "93b2d811143ca75c87a1e96b6aaf778cfde50248edb9b957c2cdd4d2b8589288",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2015.catalog"
+        },
+        {
+          "bytes": 1315204,
+          "expected_sha256": "cbd6fbbec5265d3885c010110bdf76e54118d9f599e34801df7c64c6e63c3d4b",
+          "file": "2016.catalog",
+          "git_blob_sha1": "b225022dafedb52df05ab868efce5bbe3e7f4320",
+          "region": "california",
+          "sha256": "cbd6fbbec5265d3885c010110bdf76e54118d9f599e34801df7c64c6e63c3d4b",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2016.catalog"
+        },
+        {
+          "bytes": 1341031,
+          "expected_sha256": "912c84f31fd062450fc5269293b751edbfbeded15419dcfa5e0359808dfe000d",
+          "file": "2017.catalog",
+          "git_blob_sha1": "b160563ebef7ff320a339b3f606dd4f3169f4080",
+          "region": "california",
+          "sha256": "912c84f31fd062450fc5269293b751edbfbeded15419dcfa5e0359808dfe000d",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2017.catalog"
+        },
+        {
+          "bytes": 1700683,
+          "expected_sha256": "c5165bfc0e712985c0cbec4176740113380ca2b7f27be07edc69c72102efdbb9",
+          "file": "2018.catalog",
+          "git_blob_sha1": "58b7a84abfbe59b4cd132ff23cb1b1241b28d609",
+          "region": "california",
+          "sha256": "c5165bfc0e712985c0cbec4176740113380ca2b7f27be07edc69c72102efdbb9",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2018.catalog"
+        },
+        {
+          "bytes": 5435645,
+          "expected_sha256": "7ab1bda4dc4780fe737d9a35efe25aad3e90040c70ed24bba4fd552a9ab90786",
+          "file": "2019.catalog",
+          "git_blob_sha1": "1ba81f9fce81c2da3db3c70231300337d44cfa91",
+          "region": "california",
+          "sha256": "7ab1bda4dc4780fe737d9a35efe25aad3e90040c70ed24bba4fd552a9ab90786",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2019.catalog"
+        },
+        {
+          "bytes": 3058194,
+          "expected_sha256": "b8630b0daf90cb5b8e33efbe57e28ac7f9342a53f0dc2a5a7e3dfb85ae1557ef",
+          "file": "2020.catalog",
+          "git_blob_sha1": "5d5341fc9beda0813fa33050a36e63dd2b0306da",
+          "region": "california",
+          "sha256": "b8630b0daf90cb5b8e33efbe57e28ac7f9342a53f0dc2a5a7e3dfb85ae1557ef",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2020.catalog"
+        },
+        {
+          "bytes": 1903305,
+          "expected_sha256": "eccadce24356a87d2834b55f4ffb39502ffbd028fbfd24bfbffd497fc21c398f",
+          "file": "2021.catalog",
+          "git_blob_sha1": "3c8bc8d7f225c5444c69c0941428b2d8f550943b",
+          "region": "california",
+          "sha256": "eccadce24356a87d2834b55f4ffb39502ffbd028fbfd24bfbffd497fc21c398f",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2021.catalog"
+        },
+        {
+          "bytes": 1385311,
+          "expected_sha256": "f64063c5bfbfc59a82a8a011dc6b6c163fe72d17818dd0c5887bb530b6254501",
+          "file": "2022.catalog",
+          "git_blob_sha1": "6299968264a401d7a19f16569ed4e56907a25d09",
+          "region": "california",
+          "sha256": "f64063c5bfbfc59a82a8a011dc6b6c163fe72d17818dd0c5887bb530b6254501",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2022.catalog"
+        },
+        {
+          "bytes": 1122586,
+          "expected_sha256": "26848025ae638a92c39662d66c2ad304a8ac9af1560774e5ce407d2ae357d9f9",
+          "file": "2023.catalog",
+          "git_blob_sha1": "a67df7db7e3fd336ec567afc2f4ac1cbce32f398",
+          "region": "california",
+          "sha256": "26848025ae638a92c39662d66c2ad304a8ac9af1560774e5ce407d2ae357d9f9",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2023.catalog"
+        },
+        {
+          "bytes": 1416635,
+          "expected_sha256": "f683a19150354f43e28535659ec15e20e4189561d34843b1befa3f0456fb33c4",
+          "file": "2024.catalog",
+          "git_blob_sha1": "52f62a0606a7ec9dc22bd0304989129236016c72",
+          "region": "california",
+          "sha256": "f683a19150354f43e28535659ec15e20e4189561d34843b1befa3f0456fb33c4",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2024.catalog"
+        },
+        {
+          "bytes": 1382076,
+          "expected_sha256": "22d8184462ffc4f9daadf23fc4163e1ab6903ce23162ff1d35b1e9a72c541bab",
+          "file": "2025.catalog",
+          "git_blob_sha1": "01ac1b741e3a0c9f6e83e1ae90ef610c35b0ed9d",
+          "region": "california",
+          "sha256": "22d8184462ffc4f9daadf23fc4163e1ab6903ce23162ff1d35b1e9a72c541bab",
+          "status": "verified_historical_bytes",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2025.catalog"
+        }
+      ],
+      "input_manifest_sha256": "6578d98a860d8fbd969a2a2edba466593c9bb09c3b3d40f91b20e18cc95272c8",
+      "passed": true,
+      "schema_version": 1,
+      "scope": "Provider input retrieval; no statistical or model validation.",
+      "status": "passed"
+    },
+    "nz_public_retrieval": {
+      "error": "historical_source_changed",
+      "error_type": "ReplayError",
+      "files": [
+        {
+          "bytes": 41030,
+          "expected_sha256": "12497b19f93884b9e4800d28be325219e449c8c3abff5247bb83df4dedda7e8d",
+          "file": "wfs_1960.csv",
+          "region": "nz",
+          "sha256": "12497b19f93884b9e4800d28be325219e449c8c3abff5247bb83df4dedda7e8d",
+          "status": "verified_historical_bytes",
+          "url": "https://wfs.geonet.org.nz/geonet/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=geonet%3Aquake_search_v1&outputFormat=csv&maxFeatures=100000&cql_filter=origintime%3E%3D%271960-01-01T00%3A00%3A00.000Z%27+AND+origintime%3C%271970-01-01T00%3A00%3A00.000Z%27+AND+magnitude%3E%3D5+AND+BBOX%28origin_geom%2C165%2C-48.5%2C180%2C-33.5%29"
+        },
+        {
+          "bytes": 45493,
+          "expected_sha256": "c258ce43d5e5913bc6141f57b0f20ed99aae2e81c4839d5b417cf675af46652e",
+          "file": "wfs_1970.csv",
+          "region": "nz",
+          "sha256": "c258ce43d5e5913bc6141f57b0f20ed99aae2e81c4839d5b417cf675af46652e",
+          "status": "verified_historical_bytes",
+          "url": "https://wfs.geonet.org.nz/geonet/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=geonet%3Aquake_search_v1&outputFormat=csv&maxFeatures=100000&cql_filter=origintime%3E%3D%271970-01-01T00%3A00%3A00.000Z%27+AND+origintime%3C%271980-01-01T00%3A00%3A00.000Z%27+AND+magnitude%3E%3D5+AND+BBOX%28origin_geom%2C165%2C-48.5%2C180%2C-33.5%29"
+        },
+        {
+          "bytes": 53535,
+          "expected_sha256": "14e551df41267d68423377dcbe29f1e8e02ec623aa06c3e7522232866bbe9000",
+          "file": "wfs_1980.csv",
+          "region": "nz",
+          "sha256": "14e551df41267d68423377dcbe29f1e8e02ec623aa06c3e7522232866bbe9000",
+          "status": "verified_historical_bytes",
+          "url": "https://wfs.geonet.org.nz/geonet/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=geonet%3Aquake_search_v1&outputFormat=csv&maxFeatures=100000&cql_filter=origintime%3E%3D%271980-01-01T00%3A00%3A00.000Z%27+AND+origintime%3C%271990-01-01T00%3A00%3A00.000Z%27+AND+magnitude%3E%3D5+AND+BBOX%28origin_geom%2C165%2C-48.5%2C180%2C-33.5%29"
+        },
+        {
+          "bytes": 82287,
+          "expected_sha256": "1c5d605e1df320d65b8e18a56a17898ad7f8fe421a23d5461b2627d36998f541",
+          "file": "wfs_1990.csv",
+          "region": "nz",
+          "sha256": "1c5d605e1df320d65b8e18a56a17898ad7f8fe421a23d5461b2627d36998f541",
+          "status": "verified_historical_bytes",
+          "url": "https://wfs.geonet.org.nz/geonet/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=geonet%3Aquake_search_v1&outputFormat=csv&maxFeatures=100000&cql_filter=origintime%3E%3D%271990-01-01T00%3A00%3A00.000Z%27+AND+origintime%3C%272000-01-01T00%3A00%3A00.000Z%27+AND+magnitude%3E%3D5+AND+BBOX%28origin_geom%2C165%2C-48.5%2C180%2C-33.5%29"
+        },
+        {
+          "bytes": 46308,
+          "expected_sha256": "85c1fa661963a51606824a2c23fae7ab404aac1ff0b63313e58394741b52ed30",
+          "file": "wfs_2000.csv",
+          "region": "nz",
+          "sha256": "85c1fa661963a51606824a2c23fae7ab404aac1ff0b63313e58394741b52ed30",
+          "status": "verified_historical_bytes",
+          "url": "https://wfs.geonet.org.nz/geonet/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=geonet%3Aquake_search_v1&outputFormat=csv&maxFeatures=100000&cql_filter=origintime%3E%3D%272000-01-01T00%3A00%3A00.000Z%27+AND+origintime%3C%272010-01-01T00%3A00%3A00.000Z%27+AND+magnitude%3E%3D5+AND+BBOX%28origin_geom%2C165%2C-48.5%2C180%2C-33.5%29"
+        },
+        {
+          "bytes": 61069,
+          "expected_sha256": "ae925e9af2cb6b35f73885223c11b4f12006a7aad6766086ff773d7487716f0e",
+          "file": "wfs_2010.csv",
+          "region": "nz",
+          "sha256": "ae925e9af2cb6b35f73885223c11b4f12006a7aad6766086ff773d7487716f0e",
+          "status": "verified_historical_bytes",
+          "url": "https://wfs.geonet.org.nz/geonet/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=geonet%3Aquake_search_v1&outputFormat=csv&maxFeatures=100000&cql_filter=origintime%3E%3D%272010-01-01T00%3A00%3A00.000Z%27+AND+origintime%3C%272020-01-01T00%3A00%3A00.000Z%27+AND+magnitude%3E%3D5+AND+BBOX%28origin_geom%2C165%2C-48.5%2C180%2C-33.5%29"
+        },
+        {
+          "bytes": 28750,
+          "expected_sha256": "50145a4445c418318af20def709db41f77ec411e34c948f1dd49d51f2924ce75",
+          "file": "wfs_2020.csv",
+          "region": "nz",
+          "retained_response_prefix": false,
+          "sha256": "f7c6e9eb9865d06bde239bb67db6b38e7ea3fc3468495efaa3b99a0035489385",
+          "status": "rejected_changed_or_oversized_response",
+          "url": "https://wfs.geonet.org.nz/geonet/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=geonet%3Aquake_search_v1&outputFormat=csv&maxFeatures=100000&cql_filter=origintime%3E%3D%272020-01-01T00%3A00%3A00.000Z%27+AND+origintime%3C%272026-10-15T00%3A00%3A00.000Z%27+AND+magnitude%3E%3D5+AND+BBOX%28origin_geom%2C165%2C-48.5%2C180%2C-33.5%29"
+        }
+      ],
+      "input_manifest_sha256": "6578d98a860d8fbd969a2a2edba466593c9bb09c3b3d40f91b20e18cc95272c8",
+      "passed": false,
+      "schema_version": 1,
+      "scope": "Provider input retrieval; no statistical or model validation.",
+      "status": "failed"
+    }
+  },
+  "fresh_geonet_difference": {
+    "scope": "Difference in rejected live WFS response, not a replacement for historical study inputs",
+    "historical_records": 129,
+    "current_records": 129,
+    "added_ids": [],
+    "removed_ids": [],
+    "changed_records": [
+      {
+        "publicid": "2026p711315",
+        "fields": {
+          "azimuthalgap": {
+            "historical": "231.80828857",
+            "current": "231.83291626"
+          },
+          "depth": {
+            "historical": "195.04687500",
+            "current": "195.37937927"
+          },
+          "latitude": {
+            "historical": "-36.26086807",
+            "current": "-36.26013947"
+          },
+          "longitude": {
+            "historical": "177.83963013",
+            "current": "177.83967590"
+          },
+          "magnitude": {
+            "historical": "5.14563766",
+            "current": "5.08488042"
+          },
+          "magnitudestationcount": {
+            "historical": "67",
+            "current": "60"
+          },
+          "magnitudetype": {
+            "historical": "MLv",
+            "current": "M"
+          },
+          "magnitudeuncertainty": {
+            "historical": "0.33292203",
+            "current": "0.00000000"
+          },
+          "minimumdistance": {
+            "historical": "1.35177779",
+            "current": "1.35246682"
+          },
+          "modificationtime": {
+            "historical": "2026-09-21T04:37:05.970Z",
+            "current": "2026-10-19T21:55:59.723Z"
+          },
+          "originerror": {
+            "historical": "0.65374525",
+            "current": "0.64082098"
+          },
+          "origintime": {
+            "historical": "2026-09-21T04:28:42.826Z",
+            "current": "2026-09-21T04:28:42.784Z"
+          },
+          "usedphasecount": {
+            "historical": "42",
+            "current": "43"
+          }
+        }
+      }
+    ]
+  },
+  "public_retrieval_interpretation": "All45 official pinned SCEDC files matched. LiveGeoNet2020 response changed one deep event already excluded by the study; download correctly rejected different bytes and did not replace bundled historical inputs. Six preceding WFS responses matched. This is a retained retrieval mismatch, not an offline-replay failure."
+}

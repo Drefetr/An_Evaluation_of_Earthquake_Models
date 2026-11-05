@@ -367,11 +367,13 @@ The earlier continuation stopped incomplete and called for a cheaper, numericall
 
 \section{Availability and bounded interpretation}
 The 2,149 reused bank byte/clock identities were reverified; the historical
-RNG and generating process were not replayed. The private NPZ bank is not
-included in source-only material. Exact excluded inputs, settings and receipts
-are required for historical reproduction; constructed fixtures are separate.
+RNG and generating process were not replayed at that checkpoint. The original
+source-only delivery omitted the NPZ bank; the recovered-input edition now
+supplies its exact histories and role, seed and clock mapping under
+\path{reproduction/synthetic/}. Some original F restricted-fit states remain
+missing and are not replaced by unrelated earlier fit records.
 The accompanying saved summary, accounting tables and figures document the
-reported numerical checkpoint; they do not replace the omitted raw inputs.
+reported numerical checkpoint; they do not replace the raw-history replay.
 The saved \texttt{F\_RESULT\_TABLES.json} records an input
 \texttt{summary.json} SHA-256 beginning \texttt{456a3c1f}, whereas
 the bundled summary has SHA-256 beginning \texttt{32115580}.

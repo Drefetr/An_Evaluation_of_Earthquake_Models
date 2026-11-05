@@ -1,0 +1,110 @@
+{
+  "population": {
+    "region": "Fixed broad Southern California rectangle enclosing major SCSN onshore belts and adjacent offshore region; chosen from network geography, not event locations or outcomes.",
+    "longitude_min": -121,
+    "longitude_max": -114,
+    "latitude_min": 32,
+    "latitude_max": 37,
+    "depth_min_km": -5,
+    "depth_max_km": 40,
+    "depth_datum": "current routine catalogue WGS84 reference ellipsoid",
+    "minimum_magnitude": 4.0,
+    "magnitude_policy": "Agency preferred magnitude, mixed types retained as recorded; no homogenization and no type-based substitution; model excess q=M-4.",
+    "magnitude_type_policy": "Allowed documented preferred SCEDC codes e,w,b,s,l,lr,c,h,d only, finite M; retain recorded code, no homogenization/substitution. Unknown nonempty code failsclosed for native schema adjudication before protected release; no outcome-driven eligibilitychange.",
+    "event_type": "eq only; no geographic-type restriction",
+    "review_status": "Routine preferred solutions, not guaranteed individually reviewed; no review-status filter.",
+    "coordinates": "Routine SCEDC coordinates, not separately relocated product. Retain serialized precision; precision is not location accuracy.",
+    "boundary": "Closed latitude, longitude and depth support; event magnitude >=4; time windows [start,end). On internal edges use northern/eastern cell; uppermost edges included in final cell."
+  },
+  "source": {
+    "agency": "SCEDC/SCSN",
+    "product": "Routine preferred catalogue; source adapter/acquisition manifest owned by catalogue manager",
+    "historical_asof": "Not reconstructed. All predictor and target origin times, coordinates, magnitudes, IDs and merges use one pinned revised snapshot; future revisions may have informed them. Every result labeled revised-catalogue hindsight external retrospective validation.",
+    "no_asissued_claim": true
+  },
+  "era": {
+    "history_start_utc": "1981-01-01T00:00:00Z",
+    "warmup_end_utc": "1986-01-01T00:00:00Z",
+    "development_end_utc": "2011-01-01T00:00:00Z",
+    "protected_end_utc": "2026-01-01T00:00:00Z",
+    "rationale": "1981 marks modern digital/CUSP-era archive and primary source regional-average completeness evidence; five-year unscored warmup then 25 years scored development. Three predeclared nonoverlapping five-year tests provide separate calendar exposures. End 2026-01-01 leaves substantial catalogue revision latency without inspecting recent rows.",
+    "time_coordinate": "UTC timestamps parsed as Python datetime, civil/POSIX elapsed seconds excluding leap-second insertions, divided by86400 since1981-01-01; x=2*t/T0-1; no leap-second table. Reject serialized second60 for explicit schema handling, never silently clamp.",
+    "T0_days": 16436.0
+  },
+  "cases": [
+    {
+      "id": "california_fold_0",
+      "fold": 0,
+      "train_start_utc": "1986-01-01T00:00:00Z",
+      "train_end_utc": "2011-01-01T00:00:00Z",
+      "test_start_utc": "2011-01-01T00:00:00Z",
+      "test_end_utc": "2016-01-01T00:00:00Z",
+      "history_start_utc": "1981-01-01T00:00:00Z"
+    },
+    {
+      "id": "california_fold_1",
+      "fold": 1,
+      "train_start_utc": "1986-01-01T00:00:00Z",
+      "train_end_utc": "2016-01-01T00:00:00Z",
+      "test_start_utc": "2016-01-01T00:00:00Z",
+      "test_end_utc": "2021-01-01T00:00:00Z",
+      "history_start_utc": "1981-01-01T00:00:00Z"
+    },
+    {
+      "id": "california_fold_2",
+      "fold": 2,
+      "train_start_utc": "1986-01-01T00:00:00Z",
+      "train_end_utc": "2021-01-01T00:00:00Z",
+      "test_start_utc": "2021-01-01T00:00:00Z",
+      "test_end_utc": "2026-01-01T00:00:00Z",
+      "history_start_utc": "1981-01-01T00:00:00Z"
+    }
+  ],
+  "history": {
+    "target_and_parent_population": "Same fixed region/depth/type/M>=4 population. No outside-domain or subthreshold parent imports.",
+    "outside_domain_limitation": "Forecasts condition on recorded within-domain M>=4 history. Missing boundary/subthreshold triggering is absorbed imperfectly by background; no complete physical triggering interpretation.",
+    "warmup": "1981..1986 parents retained but no targets scored in warmup. Earliest available history truncated at1981; no equilibrium/pre1981 correction.",
+    "within_test": "Strictly earlier targets may become predictable parents within same window; no parameter/background updates until next declared origin. Revised-vintage hindsight applies to all rows.",
+    "rolling": "At2016 and2021, former test rows may enter expanding scored training under frozen rules; developers must not inspect them before G5. Firstfold feasibility only uses pre2011 data.",
+    "ties": "DistinctIDs at same exact source timestamp retained; strict origin_time_parent<origin_time_target, no ordering/jitter inside tiedbatch; IDsort reproducibility only. Preserve actual serialized precision; optional integer origin_time_us enables exact timestamp audit. Engine accepts nondecreasing times and excludes lag<=0."
+  },
+  "completeness": {
+    "threshold_selection": "Fixed M>=4 before rows: conservative margin over regional-average source evidence, plus a computational/sample compromise versus M3.5/M5. No threshold adaptation.",
+    "source_evidence": "Hutton, Woessner & Hauksson2010 reports average ML completeness ~1.8 since1981; this is not uniform completeness in this rectangle or for every sequence/magnitude convention.",
+    "diagnostic_population": "Separate local training-only diagnostic extraction preferred M>=2 with same time/region/depth/type filters; never model parents or targets.",
+    "diagnostic_rule": {
+      "strata": "Six fixed five-year bins [1981,1986),...,[2006,2011) crossed three latitude zones; earliest G2 only. For later expanding folds repeat same five-year strata through origin inside frozen evaluator.",
+      "bins": "Edges2.0,2.1,...,8.5; [left,right), final8.5 value included in last bin. Values>8.5 recorded overflow and cause fail-closed review; below2 excluded; nonfinite/missing magnitude excluded and counted.",
+      "minimum_events_each_stratum": 100,
+      "mode": "Choose largest-magnitude bin among all tied maximum-count bins; corrected modal diagnostic = bin midpoint +0.5.",
+      "admit_if": "Every stratum has >=100 events, no overflow/schema error, and corrected modal diagnostic<=4.0; otherwise ineligible; no redesign of threshold, dates, region or strata within this registration."
+    },
+    "limitation": "Histogram screen is a diagnostic, not a completeness estimator with guaranteed coverage. It can miss short post-mainshock losses, magnitude heterogeneity and spatial network weaknesses. Preserve this uncertainty even after passing."
+  },
+  "spatial": {
+    "latitude_edges": [
+      32,
+      33.666666666666664,
+      35.333333333333336,
+      37
+    ],
+    "longitude_edges": [
+      -121,
+      -118.66666666666667,
+      -116.33333333333333,
+      -114
+    ],
+    "all_nine_cells": true,
+    "earth_radius_km": 6371.0088,
+    "phi0_degrees": 34.5,
+    "lambda0_degrees": -117.5,
+    "projection": "x=R*cos(phi0)*(lambda-lambda0), y=R*(sin(phi)-sin(phi0))/cos(phi0); angular arguments radians",
+    "measure": "dxdy=spherical surface area km^2; Euclidean isotropy in this projection only",
+    "parent_coordinates": "actual projected event positions in BOTH families; never snap parents to centers",
+    "cell_centers": "midpoints of projected rectangular cell bounds",
+    "background": "pi_zone=Nzone/Ntrain; q_cell|zone=(Ncell+.5)/(Nzone+1.5); pi_cell=pi_zone*q; b_cell=pi_cell/A_cell",
+    "eligibility": "Earliest scored training >=180 targets total and >=30 per latitude zone; later folds apply same fixed check only inside frozen harness. No cell minimum, no geometry adaptation.",
+    "D": "(1+distance_projected_squared/sigma^2)^(-2)",
+    "normalization_checks": "F>0, Z>0, sum nine F equals whole rectangle F, F_domain<pi*sigma^2; no clipping negative/invalid integrals"
+  }
+}

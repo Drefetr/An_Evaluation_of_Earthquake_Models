@@ -4,11 +4,11 @@ Research code, a unified monograph, a plain-language guide, and an interactive f
 
 The research studies restricted stability and identification, nuisance sensitivity, spatial and temporal extensions, competitive benchmarks (`OC`, `FC`, `MC`, `EP`), conditional calibration, and continuous local inhibition (`LI`, `LI+ immigrant`, `LI+ total`). The studies use synthetic controls and regional earthquake catalogues from New Zealand, Southern California, and Japan. Results depend on the specified model, observation law, and evaluation population. Predictive preference does not establish a physical inhibition mechanism; this repository does not provide an operational forecasting service.
 
-The release label "scientific completion" refers to execution of the declared bounded `S01`-`S06` and `S04B` follow-up programme. It does not claim closure of the scientific questions, joint nuisance estimation, external peer review, or prospective forecasting.
+This open research edition supplies recovered catalogue and simulation inputs, executable cohort reconstructions, and model replay tools. The unchanged New Zealand fitting recipe has been rerun from the recovered input and reproduces every scientific numerical field exactly. The earlier "scientific completion" release label referred to the bounded `S01`-`S06` and `S04B` follow-up roster; the research remains open to review and revision.
 
 ## Read the research
 
-- [Unified monograph](paper/manuscript_unified.pdf): the 231-page edition consolidating the mathematical foundations, Addenda I-V, completed Stage 2 studies (`S01`-`S06`), and matched-law synthetic controls (`S04B`).
+- [Unified monograph](paper/manuscript_unified.pdf): the 233-page edition consolidating the mathematical foundations, Addenda I-V, completed Stage 2 studies (`S01`-`S06`), and matched-law synthetic controls (`S04B`).
 - [Plain-language guide](companion/lay_guide_to_the_research.pdf): an eight-page introduction, also available as [HTML](companion/lay_guide_to_the_research.html).
 - [Research website and findings explorer](https://drefetr.github.io/An_Evaluation_of_Earthquake_Models/): the published site, served from the generated `gh-pages` bundle. See [local preview and deployment instructions](website/README.md).
 - [Reviewer guide](REVIEWER_START_HERE.md): evidence, accepted scope, and verification entry points.
@@ -27,7 +27,7 @@ python -B scripts/verify_claims.py
 python -B scripts/verify_repository.py
 ```
 
-The recorded **120-test total** combines 92 main tests, eight Stage 2 tests (five portable and three native fixtures), and 20 historical iteration-27 tests. It is not the count of the first command alone. To reproduce all 120 without skips, first build the LI, temporal and S06 libraries using the [Windows x64/MSVC native-build instructions](engine/stage2_followup/README.md#native-builds). The iteration-27 suite also requires a separate CUDA-enabled PyTorch installation and a usable CUDA device; its small CUDA/CPU fit comparison has no CPU fallback. These optional GPU dependencies are not included in `requirements.txt`.
+The complete check record combines the main suite, Stage 2 native fixtures, and historical iteration-27 tests; [current check results](validation/checks.json) give each count separately. To run every suite without skips, first build the LI, temporal and S06 libraries using the [Windows x64/MSVC native-build instructions](engine/stage2_followup/README.md#native-builds). The iteration-27 suite also requires a separate CUDA-enabled PyTorch installation and a usable CUDA device; its small CUDA/CPU fit comparison has no CPU fallback. These optional GPU dependencies are not included in `requirements.txt`.
 
 After building the native groups into `build/native/{li,temporal,s06}`, run the two additional suites from the repository root in PowerShell:
 
@@ -37,7 +37,7 @@ python -B -m unittest discover -s engine/stage2_followup/tests -v
 python -B -m unittest discover -s engine/iteration_27/tests -v
 ```
 
-Without `INHIBITORY_TEST_NATIVE_ROOT`, the Stage 2 command runs its five portable tests and skips its three native fixtures. That portable result does not establish the full 120-test coverage.
+Without `INHIBITORY_TEST_NATIVE_ROOT`, the Stage 2 command runs its five portable tests and skips its three native fixtures. The CPU CI configuration is therefore distinguished from the complete native/CUDA check record.
 
 These commands check fixed numerical examples, claim/source bindings, and current payload hashes. They do not run the research campaigns, acquire external data, or establish exhaustive mathematical or scientific correctness. Claim verification covers both the manuscript ledger and the separate source inventory; [validation documentation](validation/README.md) explains their roles and current check records.
 
@@ -48,6 +48,13 @@ node website/check_interactions.cjs
 ```
 
 ## Use the numerical code
+
+The [replay guide](reproduction/README.md) provides commands that reconstruct all three regional cohorts from bundled raw records, refit the frozen NZ procedure, and recompute synthetic likelihoods. For example:
+
+```sh
+python -B scripts/reproduce.py --study nz --output build/replay_nz
+python -B scripts/reproduce_observed.py --output build/replay_observed
+```
 
 The public loader exposes preserved numerical modules without launching campaign entry points. For example:
 
@@ -82,6 +89,7 @@ Builds write isolated outputs by default. Their explicit `--install` options pro
 | Location | Purpose |
 |---|---|
 | `engine/` | Preserved historical modules, Stage 2 implementations, independent verification oracles, and support guidance |
+| `reproduction/` | Recovered raw catalogues and simulation histories, parsers, fitted states and executable replays |
 | `paper/` | Current monograph, LaTeX sources, figure assets, aggregate inputs, and historical supplements |
 | `companion/`, `website/` | Editable guide/site sources and generated publication bundles |
 | `scripts/`, `tests/` | Public build tools and bounded verification checks |
@@ -89,7 +97,7 @@ Builds write isolated outputs by default. Their explicit `--install` options pro
 | `provenance/` | Original source identities, public adaptations, and the historical archive index |
 | `docs/` | Code, data, reproduction, provenance, review, and limitation guides |
 
-Third-party event records, complete historical simulation/reference banks, and the earlier third-party 40-page manuscript PDF are excluded. Obtain external inputs under their providers' terms; a fresh catalogue download may not match historical bytes. Start with the [data guide](docs/data.md), [reproduction scope](docs/reproducibility.md), and [limitations](docs/limitations.md).
+Exact regional source records and selected simulation banks are now supplied under provider/project terms. Live downloads are hash-checked and cannot silently replace historical bytes. Some older fitted states and the earlier third-party 40-page manuscript remain unavailable; the [data guide](docs/data.md) and [replay guide](reproduction/README.md) identify what can actually be rebuilt.
 
 Earlier documents remain available for historical comparison: the [restricted manuscript](paper/manuscript.pdf), [explanatory supplement](paper/supplements/explanatory_supplement.pdf), and [F nuisance addendum](paper/supplements/f_nuisance_addendum.pdf). The F addendum records an earlier incomplete checkpoint; [completed S01 recovery](docs/F_followup.md) supersedes its coverage statement.
 

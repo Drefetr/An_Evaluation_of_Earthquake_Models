@@ -1,6 +1,6 @@
 # External data and snapshot identity
 
-Third-party event records are not distributed. Routine tests, aggregate figure generation, and document/site builds do not download catalogues. Scientific replay needs separately obtained inputs and the exact processing, observation, and fitting contracts for that study.
+The exact reconstructed New Zealand, California and Japan catalogue inputs are bundled under `reproduction/`, with provider attribution, source hashes, parsers and selection rules. The replay commands rebuild the selected cohorts from raw records and compare full records and observation arrays. Document builds remain separate from these data and numerical replays; see the [replay guide](../reproduction/README.md).
 
 ## Provider access and attribution
 
@@ -24,11 +24,12 @@ Selection is 1960-01-01 inclusive to 2026-10-15 exclusive (UTC), event type `ear
 
 [WFS snapshot metadata](../provenance/catalogue_snapshot_metadata.json) records selection, columns, and input identity. [FDSN metadata](../provenance/fdsn_snapshot_metadata.json) describes a separate interface/sensitivity input; the two services are not independent physical catalogues.
 
-If you possess the exact selected historical CSV, check it before installing:
+The exact selected CSV is bundled at `reproduction/nzca/expected/geonet_M5_shallow_1960_2026.csv`. Reconstruct it from the original WFS responses, then check and install the bundled copy for the frozen fitting entry point:
 
 ```sh
-python -B scripts/install_catalogue.py /path/to/historical.csv --check-only
-python -B scripts/install_catalogue.py /path/to/historical.csv
+python -B scripts/reproduce.py --study nz --output build/replay_nz
+python -B scripts/install_catalogue.py --check-only
+python -B scripts/install_catalogue.py
 python -B scripts/run_observed.py --check-inputs-only
 ```
 
@@ -42,7 +43,7 @@ The current regional results use preferred SCEDC/SCSN records. The archived sour
 
 The source parser repair retained unused location-quality tokens as opaque metadata. It reused cached official files rather than dropping rejected model candidates or issuing a new source query. The separate M >=4.5 sensitivity changes the observation population and refits its procedures; its 87 targets are not additional independent records to add to 315. Exact source and selection discussion is in the [regional chapter](../paper/source/chapters/11_external_transfer_benchmarks.tex).
 
-Obtain raw annual data through the official SCEDC catalogue page, retaining provider format and snapshot identities. The complete historical acquisition/processing archive, all original file bytes, and every fitted-state/cache input are not bundled here. A current annual download or alternate FDSN representation must not silently substitute for those inputs. The provider access links identify where data are available; they are not a one-command replay of the archived study.
+The [NZ/California bundle](../reproduction/nzca/README.md) includes all original annual files, losslessly compressed, and the historical parser and selection functions. `python -B scripts/reproduce.py --study california --output build/replay_california` reconstructs every canonical event object, original source token and source-line reference, as well as exclusion audits and chronological counts. The optional downloader uses the official SCEDC repository at commit `7105f6c1b861db46c3a8454984588f5b6a4a56e4` and rejects any hash mismatch. Catalogue reconstruction and refitting/scoring the regional models are separate stages.
 
 ## Japan: JMA reported-primary complete-case cohort
 
@@ -50,7 +51,13 @@ The JMA study processed 19 local annual archives for source-JST years 2006 to 20
 
 The 496 records from 2006 to 2010 provide warmup only. Scored training begins in 2011; source-JST test windows 2016 to 2018, 2019 to 2021, and 2022 to 2024 contain 469, 348, and 460 records, totalling 1,277. Retain source-JST boundaries rather than silently replacing them with UTC calendar years. The [regional chapter](../paper/source/chapters/11_external_transfer_benchmarks.tex) explains the inspection-informed complete-case restriction and its limits.
 
-Obtain the annual hypocentre ZIP files and their fixed-width format specification from JMA. Historical raw archive bytes, the complete parser/observation adjudication package, and all projection/cache-construction inputs are not supplied as a standalone replay route. Exact archived identities and the projected-region predicate must be recovered from the study's original protocols before claiming historical reproduction; neither a plotted map nor this selection summary defines a substitute processing contract. Consult the [Stage 2 support matrix](../engine/stage2_followup/README.md) for the supplied numerical components.
+The [JMA bundle](../reproduction/jma/README.md) contains all 19 original ZIPs, the fixed-width parser, the observed-primary adjudication, the projection and expected observation arrays. `python -B scripts/reproduce.py --study jma --output build/replay_jma` reconstructs the selected population from the raw archives. Missing or disallowed observed primary magnitude fields are retained in the diagnostic accounting; secondary magnitudes are not substituted.
+
+The recovered projection is spherical cylindrical equal-area with radius 6371.0088 km, centred at latitude 37 degrees and longitude 138 degrees. With angles in radians, `x = R*cos(phi0)*(lambda-lambda0)` and `y = R*(sin(phi)-sin(phi0))/cos(phi0)`. The closed study rectangle is `x in [-600,600]` and `y in [-800,800]` km. Its three-by-three grid assigns internal boundaries to the north/east cell. Exact source-JST centisecond clocks, source-record identities, strict-past prefixes and fold masks are included in the replay checks. The predicate is now executable and inspectable rather than an unresolved archive reference.
+
+## Synthetic histories and fitted states
+
+The [synthetic bundle](../reproduction/synthetic/README.md) supplies the matched-generator S04B histories, generating settings, retained fitted states and CPU score-replay code. It also supplies the exact S01 history bank with its role, seed and clock mapping and the available later recovery fits. Original F restricted-fit state files that remain missing are identified separately; earlier fit files are not substituted for them. Rebuildable numerical caches are generated from these inputs instead of being prerequisites supplied through a private path.
 
 ## New inputs are new snapshots
 

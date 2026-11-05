@@ -1,0 +1,95 @@
+{
+  "schema": "autonomous_protocol_independent_review_v1",
+  "created_utc": "2026-11-05T09:03:42.250208+00:00",
+  "passed": true,
+  "decision": "admit_fixed_fold50_pilot_only_after_original_replays_and_resource_slot_release",
+  "scope": "Read-only exact mapping, first-moment theorem, bounded optimizer protocol, seven tiny controls and fake-solver counterexample; no data fits, likelihood campaign or simulations.",
+  "mathematical_review": {
+    "exact_identity": "With rho=0, zero initial modes, b=1, g_phys=eta exp(gamma(Q-1)), kappa_phys=n(1-r)exp(beta r Q), physical intensity is exp(a-eta G)+nH for the shared finite kernel.",
+    "finite_kernel": "195 positive rates and positive normalized weights; h=-Phi prime. No infinite-mode limit is invoked.",
+    "state_and_link": "Z<=0, U>=0, Psi(X)=exp(a+X) is positive, nondecreasing, bounded and Lipschitz by exp(a) on X<=0. Initialization is admissible, not stationary.",
+    "first_moments": "For eta>0, E[g]=eta exp(-gamma) beta/(beta-gamma) requires beta>gamma. For eta=0, g is identically zero regardless of unscaled stress moment. E[kappa]=n with r=.7<1 and n<=.98.",
+    "higher_moments": "For positive eta,n, E[g squared] requires beta>2 gamma, E[kappa squared] requires r<.5, and E[g kappa] requires beta(1-r)>gamma. All three fail at beta=2.8494,r=.7 while first moments exist. The invoked theorem explicitly needs no second moments and allows correlated transforms of the same fresh mark.",
+    "units": "Time in days, stress in dimensionless log-intensity units, rates/intensity inverse days, rho stress/day and kappa dimensionless.",
+    "no_extra_guarantees": "No physical loading identification, stationary initialization, useful finite-sample mixing rate, Fisher/Wilks theorem, or exact-memory invariant-law assertion is licensed.",
+    "actual_training_beta_gate_evaluated": false
+  },
+  "numerical_protocol_review": {
+    "training_only": "Beta from each training prefix only; no held-out choice. PredictiveHistory truncates parents at window end and retains every earlier parent. Test events update state only after occurrence.",
+    "nesting": "The null a,n fit with d=eta=0 is included as the exact inhibited floor. Both arms use the same integration route at eta=0.",
+    "optimizer": "Four deterministic null starts plus analytic Poisson floor; eight inhibited eta starts plus exact fitted null floor. Fixed L-BFGS-B and failure-only same-start recovery. Required-start failure remains unresolved.",
+    "controls": "All finite feasible returned vectors and floors receive order16/32 training checks; selected fine-grid gap <=1e-4. Held-out two-arm scores and paired gain must agree at absolute1e-4; final event-free tail and common mark score retained.",
+    "interpretation": "New fixed three-fold exploratory reused-data comparison; no significance claim or magnitude-forecast comparison."
+  },
+  "tests": {
+    "exit_code": 0,
+    "count": 12,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "elapsed_seconds": 5.307381399907172,
+    "command": "python -B -m unittest discover -s tests -p test_autonomous_bridge.py -v",
+    "scope": "Seven model/gradient/moment controls and five fake optimizer-return controls only"
+  },
+  "findings": [
+    {
+      "id": "AB1",
+      "severity": "moderate",
+      "blocking_for_pilot": false,
+      "finding": "solve_slot omits the solver-reported objective, writes pars=None for infeasible returned vectors, and can lose all returned optimizer metadata if the fresh-objective call raises before row.update. This prevents reconstruction of its declared fresh-versus-reported acceptance gate and contradicts all-return retention.",
+      "required_fix": "Checkpoint raw x, reported fun, status/message/counters immediately after return, using explicit JSON-safe nonfinite representation, before fresh/control evaluation. Preserve that record on subsequent exceptions and add bounded fake-solver tests.",
+      "status": "resolved_before_any_fit",
+      "resolution": "Immediately checkpointed raw x/fun/status/message/counters now survive nonfinite/infeasible returns and fresh-evaluation exceptions. Explicit JSON nonfinite tags preserve strict JSON. Fresh objective, discrepancy, 1e-7 gate and 1e-8 nonworsening gate are recorded. Original fake counterexample now passes; five new controls verify edge cases."
+    }
+  ],
+  "prospective_bounds_after_fix": {
+    "pilot_fold": "fold_50",
+    "pilot_seconds": 600,
+    "full_three_fold_seconds": 1800,
+    "per_fold_seconds": 600,
+    "cpu_threads": 1,
+    "memory_limit_mb_per_history": 512,
+    "external_process_tree_monitor_required": true,
+    "production_condition": "Only after amended source review and passed fixed pilot with resource gates; only if original oracle/S04B numerical work is finished and sufficient shared run budget remains. Positive/negative gain does not decide admission."
+  },
+  "pilot_admission": {
+    "fold": "fold_50",
+    "command": "python -B experiments/autonomous/fit.py --pilot --output NEW_DIRECTORY",
+    "protocol_sha256": "ee30fac9d16b97d9f03425a95192b4d195d610f0126b8f0173e8878b97120754",
+    "model_sha256": "ddff28c9375660f72000455813bb6d8963f9227716c166dd644ab76765f47fb3",
+    "fit_sha256": "56d8ccda6b82974602d16a154ec7d7681fcda631070aaccadfa05843685b277e",
+    "fresh_output": true,
+    "cpu_threads": 1,
+    "pilot_wall_limit_seconds": 600,
+    "memory_limit_mb_per_history": 512,
+    "external_process_tree_memory_limit_gib": 2,
+    "external_monitor_required": true,
+    "one_numerical_job": true,
+    "priority": "Do not run concurrently with or delay admitted oracle/S04B numerical work.",
+    "required_pre_execution": "Root verifies the pinned source/protocol/data hash and available run time; actual training beta>gamma gate remains unevaluated until the fixed pilot.",
+    "failure_policy": "Preserve any ineligible mark law, failed start, negative gain, numerical discrepancy or timeout. No outcome-dependent law/solver/bound/start/tolerance change."
+  },
+  "full_run_admission": {
+    "admitted_now": false,
+    "bounds": {
+      "folds": [
+        "fold_50",
+        "fold_65",
+        "fold_80"
+      ],
+      "total_seconds": 1800,
+      "per_fold_seconds": 600,
+      "cpu_threads": 1
+    },
+    "gate": "A passed fixed pilot and observed resource cost may admit the original full three-fold roster only when sufficient global budget remains. Do not select continuation based on gain sign; pool only after all folds complete."
+  },
+  "review_type": "Internal source/protocol review by a separate computational agent; no external peer review or empirical execution.",
+  "source_sha256": {
+    "experiments/autonomous/DERIVATION.md": "7cb50d6ff4e0b65db0ee59ba803d058b16f4823c8b0c8a11ffa2477c7b1464a6",
+    "experiments/autonomous/fit.py": "56d8ccda6b82974602d16a154ec7d7681fcda631070aaccadfa05843685b277e",
+    "experiments/autonomous/model.py": "ddff28c9375660f72000455813bb6d8963f9227716c166dd644ab76765f47fb3",
+    "experiments/autonomous/protocol.json": "ee30fac9d16b97d9f03425a95192b4d195d610f0126b8f0173e8878b97120754",
+    "experiments/autonomous/README.md": "3465fb540ee7c18a98ffe07e99c1fc5a8c27ef9136465e7ab300baf89ee09a48"
+  },
+  "private_execution_record_sha256": "977b98eeff895e84b4798e1b57a52cf07836702f33bbbebeb5f14e615533f530"
+}

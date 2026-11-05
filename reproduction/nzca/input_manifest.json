@@ -1,0 +1,912 @@
+{
+  "schema_version": 1,
+  "purpose": "Exact offline raw-to-cohort reconstruction; no fitting or simulation.",
+  "source_code": [
+    {
+      "path": "sources/nz_selection.py",
+      "bytes": 4587,
+      "sha256": "cd0055b47e074f63aab3a1f401a70fa8e564b28907655d8141a42b889a7adb83",
+      "original_source_sha256": "60431d02fd433412fa76130f82452f8ca2ed804bef846f27b7c20eabde08a610",
+      "verbatim_functions": {
+        "sha256": "6092690d8aea7259afd2a791915347bb21667f43b800a3e95820d8dd3c177a2d",
+        "parse_time": "6a8508c0d2574f79b63a73f2fee0bda5c25cb47f51069798e8cd630eb78b8b5a",
+        "finite": "e51048f690533d0ca9453ce6f92a5253674df1aad70a71ff5f513185a4e39ec2",
+        "select_rows": "1130f788bb3f7ff509fcb570f8da16ba8d825bd933cf6c0f149d5cf2ac9c0b6d",
+        "csv_bytes": "05eb6fd51519a43c9b3fccb43e32ee5f6b99383db8fef18a09a9895716da6500"
+      }
+    },
+    {
+      "path": "sources/geonet_fetch_primary_as_used.py",
+      "bytes": 10030,
+      "sha256": "aba29a453dd1fd33dec56bc2914a29ea115dee35ad618e08ae4ddccffe0a9450",
+      "role": "Historical acquisition source, retained for inspection; use acquisition.py for the portable hash-checked downloader."
+    },
+    {
+      "path": "sources/ca_parser.py",
+      "bytes": 16295,
+      "sha256": "fae2ff10c02210027b667772d2a9e52156f95c2dd56ad885bd52e82da5dd97d4"
+    },
+    {
+      "path": "sources/ca_selection.py",
+      "bytes": 12801,
+      "sha256": "57f46ef49d1d5b56eff052a96a27abbcce1290c278cfe2963cca59474ce1948d",
+      "original_source_sha256": "1596c6a4162c28c7880a9d02cacc2eecfdab784e919021bf3baaa2ad8525041a",
+      "verbatim_functions": {
+        "CustodyError": "d75fe108dce2061e06ef0647cf70df3f52257e340b75c8a092106d3a0f4ee4dd",
+        "utcnow": "e0367363ce206eb5dcb84b0d54d513e886ae1274e1b081abc650fe3d6d056294",
+        "json_bytes": "f275eb94c6f8b7f80ca8b36ac6d89e355b82bed4fd87b1015553f924d8ca3014",
+        "atomic_json": "e93322da5704247308b1286a5da58f9436768d20aea58a66a26115e018e5ee28",
+        "append_json": "b9387802a316a354459c6c9ceefab067bd7d7cbb7d9924d9d1b9c2fa44c403c3",
+        "read_json": "e950a01db7a936055acd1ba78eba4600cbc76e75e1f3cfca50442569776e9d89",
+        "source_time": "c2de3bd6e135b1a02cb3dfb3e96f90831616a28ad9485e6f206db0dd99c874e2",
+        "in_population": "20df0440e606a5078f7bba78d16ca74f88eae2bd14ec1401d685cc3bcbcc965f",
+        "exact_axis_index": "5fa9a1913ea1b1a617d4719444094e95d052237728febed7e53a586045e3a2f2",
+        "float_axis_index": "2db9f10bb62df3e062918d162833e77aebf864e9028d37ff0bd8ce84ffd0099e",
+        "validate_boundary_assignment": "34dd72387d027d57e86443bfd13c6a800a009b32e5fea34dd1b1f67146d9f6ee",
+        "zone_index": "6a790b525a7afb51e4f741e000e5c40ede114840d931b1039390a0a44c30b588",
+        "canonical": "c88918c9313a508fa1a5564eb71166a0536d425a78de221dee58866c346b8cb2",
+        "diagnostic_record": "a0edbf810aad9bc8a3e75a2fabecdaca0cb1a45a617968bff52a83ac8f52f4c2",
+        "parse_lane": "d07b86428d43e7e883f0add3a3af25afdf116c99543915cd2295f2d1ee56bd3d"
+      }
+    }
+  ],
+  "datasets": {
+    "nz": {
+      "provider": "GeoNet",
+      "doi": "https://doi.org/10.21420/0S8P-TZ38",
+      "policy_url": "https://www.geonet.org.nz/policy",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/nz/",
+      "attribution": "We acknowledge GeoNet and its sponsors for providing earthquake catalogue data. Selection is project processing; GeoNet does not endorse the resulting model analysis.",
+      "snapshot_started_utc": "2026-10-15T08:29:36.410998Z",
+      "raw_manifest_original_sha256": "d826f93e15f57e01be2916d5893dfdcd13da89f038aeb8cdae83c0edb7482d7d",
+      "raw_files": [
+        {
+          "filename": "wfs_1960.csv",
+          "role": "main",
+          "rows": 195,
+          "start_inclusive": "1960-01-01T00:00:00.000Z",
+          "end_exclusive": "1970-01-01T00:00:00.000Z",
+          "url": "https://wfs.geonet.org.nz/geonet/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=geonet%3Aquake_search_v1&outputFormat=csv&maxFeatures=100000&cql_filter=origintime%3E%3D%271960-01-01T00%3A00%3A00.000Z%27+AND+origintime%3C%271970-01-01T00%3A00%3A00.000Z%27+AND+magnitude%3E%3D5+AND+BBOX%28origin_geom%2C165%2C-48.5%2C180%2C-33.5%29",
+          "retrieved_utc": "2026-10-15T08:29:36.771340Z",
+          "bytes": 41030,
+          "sha256": "12497b19f93884b9e4800d28be325219e449c8c3abff5247bb83df4dedda7e8d",
+          "compressed": {
+            "path": "raw/nz/wfs_1960.csv.gz",
+            "bytes": 8129,
+            "sha256": "d8718ab735f15c22189215921cc7fcf5f78e67d8f73c243d03b3de9aac89ebd8"
+          }
+        },
+        {
+          "filename": "wfs_1970.csv",
+          "role": "main",
+          "rows": 216,
+          "start_inclusive": "1970-01-01T00:00:00.000Z",
+          "end_exclusive": "1980-01-01T00:00:00.000Z",
+          "url": "https://wfs.geonet.org.nz/geonet/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=geonet%3Aquake_search_v1&outputFormat=csv&maxFeatures=100000&cql_filter=origintime%3E%3D%271970-01-01T00%3A00%3A00.000Z%27+AND+origintime%3C%271980-01-01T00%3A00%3A00.000Z%27+AND+magnitude%3E%3D5+AND+BBOX%28origin_geom%2C165%2C-48.5%2C180%2C-33.5%29",
+          "retrieved_utc": "2026-10-15T08:29:36.849031Z",
+          "bytes": 45493,
+          "sha256": "c258ce43d5e5913bc6141f57b0f20ed99aae2e81c4839d5b417cf675af46652e",
+          "compressed": {
+            "path": "raw/nz/wfs_1970.csv.gz",
+            "bytes": 9199,
+            "sha256": "5aab2882d20cbed41e03577b12aae1336b8d55d6ecf2691086de8bb30d5bed1b"
+          }
+        },
+        {
+          "filename": "wfs_1980.csv",
+          "role": "main",
+          "rows": 255,
+          "start_inclusive": "1980-01-01T00:00:00.000Z",
+          "end_exclusive": "1990-01-01T00:00:00.000Z",
+          "url": "https://wfs.geonet.org.nz/geonet/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=geonet%3Aquake_search_v1&outputFormat=csv&maxFeatures=100000&cql_filter=origintime%3E%3D%271980-01-01T00%3A00%3A00.000Z%27+AND+origintime%3C%271990-01-01T00%3A00%3A00.000Z%27+AND+magnitude%3E%3D5+AND+BBOX%28origin_geom%2C165%2C-48.5%2C180%2C-33.5%29",
+          "retrieved_utc": "2026-10-15T08:29:36.955776Z",
+          "bytes": 53535,
+          "sha256": "14e551df41267d68423377dcbe29f1e8e02ec623aa06c3e7522232866bbe9000",
+          "compressed": {
+            "path": "raw/nz/wfs_1980.csv.gz",
+            "bytes": 11708,
+            "sha256": "b3dc3e69329f83f84f1c5336330ec3dcb7dc04a130582d5fc9389613e3615212"
+          }
+        },
+        {
+          "filename": "wfs_1990.csv",
+          "role": "main",
+          "rows": 388,
+          "start_inclusive": "1990-01-01T00:00:00.000Z",
+          "end_exclusive": "2000-01-01T00:00:00.000Z",
+          "url": "https://wfs.geonet.org.nz/geonet/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=geonet%3Aquake_search_v1&outputFormat=csv&maxFeatures=100000&cql_filter=origintime%3E%3D%271990-01-01T00%3A00%3A00.000Z%27+AND+origintime%3C%272000-01-01T00%3A00%3A00.000Z%27+AND+magnitude%3E%3D5+AND+BBOX%28origin_geom%2C165%2C-48.5%2C180%2C-33.5%29",
+          "retrieved_utc": "2026-10-15T08:29:37.085166Z",
+          "bytes": 82287,
+          "sha256": "1c5d605e1df320d65b8e18a56a17898ad7f8fe421a23d5461b2627d36998f541",
+          "compressed": {
+            "path": "raw/nz/wfs_1990.csv.gz",
+            "bytes": 19410,
+            "sha256": "64a8c9496dae381f472bcf95a69990c7d04f6d3b83afd616e7fab636baa23bdd"
+          }
+        },
+        {
+          "filename": "wfs_2000.csv",
+          "role": "main",
+          "rows": 218,
+          "start_inclusive": "2000-01-01T00:00:00.000Z",
+          "end_exclusive": "2010-01-01T00:00:00.000Z",
+          "url": "https://wfs.geonet.org.nz/geonet/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=geonet%3Aquake_search_v1&outputFormat=csv&maxFeatures=100000&cql_filter=origintime%3E%3D%272000-01-01T00%3A00%3A00.000Z%27+AND+origintime%3C%272010-01-01T00%3A00%3A00.000Z%27+AND+magnitude%3E%3D5+AND+BBOX%28origin_geom%2C165%2C-48.5%2C180%2C-33.5%29",
+          "retrieved_utc": "2026-10-15T08:29:37.149914Z",
+          "bytes": 46308,
+          "sha256": "85c1fa661963a51606824a2c23fae7ab404aac1ff0b63313e58394741b52ed30",
+          "compressed": {
+            "path": "raw/nz/wfs_2000.csv.gz",
+            "bytes": 11372,
+            "sha256": "c6e2442098476be228dc93407b796cf493c267e6735f10b58fdd5c76d8be4579"
+          }
+        },
+        {
+          "filename": "wfs_2010.csv",
+          "role": "main",
+          "rows": 283,
+          "start_inclusive": "2010-01-01T00:00:00.000Z",
+          "end_exclusive": "2020-01-01T00:00:00.000Z",
+          "url": "https://wfs.geonet.org.nz/geonet/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=geonet%3Aquake_search_v1&outputFormat=csv&maxFeatures=100000&cql_filter=origintime%3E%3D%272010-01-01T00%3A00%3A00.000Z%27+AND+origintime%3C%272020-01-01T00%3A00%3A00.000Z%27+AND+magnitude%3E%3D5+AND+BBOX%28origin_geom%2C165%2C-48.5%2C180%2C-33.5%29",
+          "retrieved_utc": "2026-10-15T08:29:37.219118Z",
+          "bytes": 61069,
+          "sha256": "ae925e9af2cb6b35f73885223c11b4f12006a7aad6766086ff773d7487716f0e",
+          "compressed": {
+            "path": "raw/nz/wfs_2010.csv.gz",
+            "bytes": 19834,
+            "sha256": "a0285844888b5187068fab7cb0780ccfd4a58cbfeb0f29852f750d0046247beb"
+          }
+        },
+        {
+          "filename": "wfs_2020.csv",
+          "role": "main",
+          "rows": 129,
+          "start_inclusive": "2020-01-01T00:00:00.000Z",
+          "end_exclusive": "2026-10-15T00:00:00.000Z",
+          "url": "https://wfs.geonet.org.nz/geonet/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=geonet%3Aquake_search_v1&outputFormat=csv&maxFeatures=100000&cql_filter=origintime%3E%3D%272020-01-01T00%3A00%3A00.000Z%27+AND+origintime%3C%272026-10-15T00%3A00%3A00.000Z%27+AND+magnitude%3E%3D5+AND+BBOX%28origin_geom%2C165%2C-48.5%2C180%2C-33.5%29",
+          "retrieved_utc": "2026-10-15T08:29:37.275382Z",
+          "bytes": 28752,
+          "sha256": "50145a4445c418318af20def709db41f77ec411e34c948f1dd49d51f2924ce75",
+          "compressed": {
+            "path": "raw/nz/wfs_2020.csv.gz",
+            "bytes": 10206,
+            "sha256": "2e6451b2800e9638c30af93a587a66614241227f83e97df0e6471d9e12491538"
+          }
+        },
+        {
+          "filename": "wfs_1950.csv",
+          "role": "prehistory",
+          "rows": 215,
+          "start_inclusive": "1950-01-01T00:00:00.000Z",
+          "end_exclusive": "1960-01-01T00:00:00.000Z",
+          "url": "https://wfs.geonet.org.nz/geonet/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=geonet%3Aquake_search_v1&outputFormat=csv&maxFeatures=100000&cql_filter=origintime%3E%3D%271950-01-01T00%3A00%3A00.000Z%27+AND+origintime%3C%271960-01-01T00%3A00%3A00.000Z%27+AND+magnitude%3E%3D5+AND+BBOX%28origin_geom%2C165%2C-48.5%2C180%2C-33.5%29",
+          "retrieved_utc": "2026-10-15T08:29:37.337814Z",
+          "bytes": 45439,
+          "sha256": "b8a4c5e185049cdfe2dc238fb8b879094b14285cd4fbc1d73098ae4c7cd93986",
+          "compressed": {
+            "path": "raw/nz/wfs_1950.csv.gz",
+            "bytes": 8559,
+            "sha256": "1c7065289a7644e357fda7b169d5c85234d3db308b6078c77b525782fc8941f4"
+          }
+        }
+      ],
+      "expected": {
+        "main": {
+          "path": "expected/geonet_M5_shallow_1960_2026.csv",
+          "bytes": 109747,
+          "sha256": "feacccb7581d1c4c33f88874cd6b198c41639da6930a7fc35e46f910a594fb3e"
+        },
+        "prehistory": {
+          "path": "expected/geonet_M5_shallow_1950_1959.csv",
+          "bytes": 11471,
+          "sha256": "90e97922677c056e5d3dd9990cf7724a34cbde271fd567aef847167a147a69e8"
+        }
+      },
+      "selection": {
+        "event_type": "exactly earthquake",
+        "magnitude": "finite >=5.0",
+        "longitude": "165 <= lon <= 180",
+        "latitude": "-48.5 <= lat <= -33.5",
+        "depth": "finite <=40 km, excluding unknown sentinel -9 km; other negative depths retained",
+        "time": "1960-01-01T00:00:00Z <= time < 2026-10-15T00:00:00Z"
+      },
+      "units": {
+        "t_days": "86400 SI seconds per UTC calendar day since 1960-01-01T00:00:00Z, using Python datetime (leap seconds not modelled)",
+        "magnitude": "GeoNet preferred magnitude in original magnitude_type; no homogenisation",
+        "excess": "magnitude - 5",
+        "depth": "km",
+        "latitude": "degrees north",
+        "longitude": "degrees east"
+      },
+      "expected_counts": {
+        "main_rows": 913,
+        "prehistory_rows": 102,
+        "main_raw_rows": 1684,
+        "main_primary_reasons": {
+          "depth_over_40_km": 690,
+          "event_type_not_earthquake": 81,
+          "included": 913
+        }
+      },
+      "snapshot_scope": "Reconstruction acquired 15 October 2026, not the unavailable earlier original-manuscript catalogue. New GeoNet responses can differ; hashes must match to claim this snapshot."
+    },
+    "california": {
+      "provider": "Southern California Earthquake Data Center (SCEDC), Southern California Seismic Network (SCSN)",
+      "doi": "https://doi.org/10.7909/C3WD3xH1",
+      "policy_url": "https://scedc.caltech.edu/about/citation.html",
+      "attribution": "SCEDC (2013), Southern California Earthquake Data Center. Caltech. Dataset. doi:10.7909/C3WD3xH1. Data are from the SCSN routine catalogue. Project selection and derived files do not imply provider endorsement or relicensing.",
+      "source_commit": "7105f6c1b861db46c3a8454984588f5b6a4a56e4",
+      "snapshot_scope": "Revised catalogue snapshot through 24 October 2026; not an as-issued historical forecast archive.",
+      "raw_files": [
+        {
+          "filename": "1981.catalog",
+          "year": 1981,
+          "lane": "train",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1981.catalog",
+          "bytes": 876911,
+          "sha256": "1ada55766b7b22af55dff2660c7b259f9c1b29eff1504b2683acb50bad4787c0",
+          "git_blob_sha1": "2bc6892259b9161d6baba6f415c9e0381e1e860f",
+          "compressed": {
+            "path": "raw/california/1981.catalog.gz",
+            "bytes": 227808,
+            "sha256": "fe5c0f333866568a0de1c8c4dcd2bc52ec04b28644a1dae21f7d47051f0c3638"
+          }
+        },
+        {
+          "filename": "1982.catalog",
+          "year": 1982,
+          "lane": "train",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1982.catalog",
+          "bytes": 1151037,
+          "sha256": "8c8ff154dc2f8620237374186d67bdf12c4b3d43a5c9d40ebb635308363dca92",
+          "git_blob_sha1": "81d2b6530c00d928ec265e7a67ad8876474059d1",
+          "compressed": {
+            "path": "raw/california/1982.catalog.gz",
+            "bytes": 294492,
+            "sha256": "e382a9927257ead967c43fcce4eb9bf0134c42fb1753355373a3c26308baf315"
+          }
+        },
+        {
+          "filename": "1983.catalog",
+          "year": 1983,
+          "lane": "train",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1983.catalog",
+          "bytes": 1186871,
+          "sha256": "052d216312bbac72f1c6fa463d9ff912b87537314e9b1e2b864c98c7eaef3eec",
+          "git_blob_sha1": "0be238681c1338aab47672f1353e6dcfec4944a7",
+          "compressed": {
+            "path": "raw/california/1983.catalog.gz",
+            "bytes": 302878,
+            "sha256": "094316decd0f9b95a53d6eab34d2dff6e61654065a402c89f4ab95c606e3063c"
+          }
+        },
+        {
+          "filename": "1984.catalog",
+          "year": 1984,
+          "lane": "train",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1984.catalog",
+          "bytes": 1467721,
+          "sha256": "b36a10ee83a6166ba43023e68204751670a83e1e5f8f8b209b8e44f964eeb715",
+          "git_blob_sha1": "249c3d83c3d732f1ee6533e20f0e162fe82dc151",
+          "compressed": {
+            "path": "raw/california/1984.catalog.gz",
+            "bytes": 374609,
+            "sha256": "edf6d05c2439a86409bb7b035444e90516ff95ec109d330c983854caefd7cd24"
+          }
+        },
+        {
+          "filename": "1985.catalog",
+          "year": 1985,
+          "lane": "train",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1985.catalog",
+          "bytes": 1546277,
+          "sha256": "8f024ea9b346a71d83d3c2a042b3bccb03d9ee15a736f21e7f81231483c37e62",
+          "git_blob_sha1": "fb59988613e6f67b527f52f4b28bb320fbbb3ed9",
+          "compressed": {
+            "path": "raw/california/1985.catalog.gz",
+            "bytes": 398420,
+            "sha256": "9c73ed927b1ebcdeb303f1d748b9c9d96b681d8f3366d0eded924bc131d64484"
+          }
+        },
+        {
+          "filename": "1986.catalog",
+          "year": 1986,
+          "lane": "train",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1986.catalog",
+          "bytes": 1400727,
+          "sha256": "f5d6e40ed8e9af1f1a5f3147cb8e6026fa87097e0878b89ba12fa97629cc5802",
+          "git_blob_sha1": "4cc505f586274061319197724d6bb65624a81b06",
+          "compressed": {
+            "path": "raw/california/1986.catalog.gz",
+            "bytes": 361253,
+            "sha256": "48c6eb76539546eb63e8a6c1f9f5eaffe8662fb0da80234eea8bbbc87e63de0e"
+          }
+        },
+        {
+          "filename": "1987.catalog",
+          "year": 1987,
+          "lane": "train",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1987.catalog",
+          "bytes": 1114055,
+          "sha256": "0288e460d825efa18fbca478ad562fcc4091d20c49cf639185a2b4c8c8656fa3",
+          "git_blob_sha1": "ee9c9dd213e261bc7489ae185ae01cc290c80a80",
+          "compressed": {
+            "path": "raw/california/1987.catalog.gz",
+            "bytes": 285916,
+            "sha256": "7cc10f602f85d11d60c4bbbbb83a0c9c2f80efa53de60b6392b4e4419a24bbc8"
+          }
+        },
+        {
+          "filename": "1988.catalog",
+          "year": 1988,
+          "lane": "train",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1988.catalog",
+          "bytes": 908481,
+          "sha256": "54f3654fa1c658b57510cd9afff1cc6f9afa654503261a6aa22d80a6547af23d",
+          "git_blob_sha1": "b09fa83fcde93cc478f1e45d1977edec8455628a",
+          "compressed": {
+            "path": "raw/california/1988.catalog.gz",
+            "bytes": 237339,
+            "sha256": "d995062cd4fd4ff54809c0c0cdc6bf92745606ef6aae81c0cc0f088b73231697"
+          }
+        },
+        {
+          "filename": "1989.catalog",
+          "year": 1989,
+          "lane": "train",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1989.catalog",
+          "bytes": 949317,
+          "sha256": "ac2c0f4ae8147af806b3130c546a1a15f5c3249c526d45ccb061872493cc8a74",
+          "git_blob_sha1": "0346e796a4334eeda7d8dc715f4c4c5f471673a4",
+          "compressed": {
+            "path": "raw/california/1989.catalog.gz",
+            "bytes": 246163,
+            "sha256": "744cde0627ca7d3f6370b98017e91ad16fd8333875099b2d2e1fc1fd5d0a8262"
+          }
+        },
+        {
+          "filename": "1990.catalog",
+          "year": 1990,
+          "lane": "train",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1990.catalog",
+          "bytes": 922339,
+          "sha256": "200dddac31b35c0e3dabf76ef483a83f275c2a10affde3f08a05be5ae9fe37d2",
+          "git_blob_sha1": "35511e1a1b27309ffc8dd25bb3b5ac304ca937d5",
+          "compressed": {
+            "path": "raw/california/1990.catalog.gz",
+            "bytes": 238334,
+            "sha256": "fe14d9456405399b2895dd0e541e8b506f9f11b6c2d557b49ba7407dd815cded"
+          }
+        },
+        {
+          "filename": "1991.catalog",
+          "year": 1991,
+          "lane": "train",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1991.catalog",
+          "bytes": 828367,
+          "sha256": "db4d3b5dfbc089583d81c65555b076a5285ee6fde1c04b582c2d4fb21b2879b5",
+          "git_blob_sha1": "d38db44b2e0947d8723627a5cd70b02ec04d4b15",
+          "compressed": {
+            "path": "raw/california/1991.catalog.gz",
+            "bytes": 218264,
+            "sha256": "13f982ca4b2c2aa60c92f1cad627eb826ba566e0a4e6bb31c5b8e54f5c013ac4"
+          }
+        },
+        {
+          "filename": "1992.catalog",
+          "year": 1992,
+          "lane": "train",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1992.catalog",
+          "bytes": 4218329,
+          "sha256": "5a55e462415cb59fd0f2aca71a6fdb9a63ac2046d71f93d459c57760b7d98c43",
+          "git_blob_sha1": "160abe6c76f3c3b87ee8a2a4fb318b03323b7d69",
+          "compressed": {
+            "path": "raw/california/1992.catalog.gz",
+            "bytes": 1083730,
+            "sha256": "724d00f47e7a321c258142fce57ae71f76f6d426c93aef9108da6a691d9150f0"
+          }
+        },
+        {
+          "filename": "1993.catalog",
+          "year": 1993,
+          "lane": "train",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1993.catalog",
+          "bytes": 1805889,
+          "sha256": "11362c5e1b66082e48e863bfde25d2ba4efc26785874c317d56ae45f24969d12",
+          "git_blob_sha1": "41a14694c0a4d63bd8ec2d10c6fe117be2686f18",
+          "compressed": {
+            "path": "raw/california/1993.catalog.gz",
+            "bytes": 478963,
+            "sha256": "c709f536b9328fc8632eeb8f25d3e397e97a76a1d1d39321e32acf85783631f9"
+          }
+        },
+        {
+          "filename": "1994.catalog",
+          "year": 1994,
+          "lane": "train",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1994.catalog",
+          "bytes": 2317651,
+          "sha256": "f48db4aaa1e653a04a5bd342c7301e84f31d146855d64f95bb259c215c31650e",
+          "git_blob_sha1": "359aae8a9222a2de2829e276a8a9c47e656031cd",
+          "compressed": {
+            "path": "raw/california/1994.catalog.gz",
+            "bytes": 613898,
+            "sha256": "3699c17611b300f6ed718637520c8c04095bb9688f5369fcf03809a731a9c82c"
+          }
+        },
+        {
+          "filename": "1995.catalog",
+          "year": 1995,
+          "lane": "train",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1995.catalog",
+          "bytes": 2049921,
+          "sha256": "993059e624bf09a697cc50bbc588a4c123bf6c4919fd771b322b183fbdc97c7a",
+          "git_blob_sha1": "4db1628861d7b847832a06eaa69f7ca5a510d5a0",
+          "compressed": {
+            "path": "raw/california/1995.catalog.gz",
+            "bytes": 529940,
+            "sha256": "15b26d4711e0c0a609d9ebda684d21e19463a105298a173b7a29f2c3fdc1ad6b"
+          }
+        },
+        {
+          "filename": "1996.catalog",
+          "year": 1996,
+          "lane": "train",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1996.catalog",
+          "bytes": 1630491,
+          "sha256": "0f18caea4ff65fe436b4ddba3f51c6ad82a01f235135bfa48b00bd6c9b0cf8c7",
+          "git_blob_sha1": "c6cc17c198e566f45a0e035576592e60407ea498",
+          "compressed": {
+            "path": "raw/california/1996.catalog.gz",
+            "bytes": 428696,
+            "sha256": "e9b3dde80577a3ba426e42909cec4bdf07595f89ee7e7b55f4372b2a1570f1b1"
+          }
+        },
+        {
+          "filename": "1997.catalog",
+          "year": 1997,
+          "lane": "train",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1997.catalog",
+          "bytes": 1257063,
+          "sha256": "cf2d96a5d9b133911d94c186dfcfb31996d5d832114e01973ec5c5362d25cf57",
+          "git_blob_sha1": "863aeebe96528cc008dac92bf982cf009f060d23",
+          "compressed": {
+            "path": "raw/california/1997.catalog.gz",
+            "bytes": 336663,
+            "sha256": "d766532a79a4b2544aa7dbfca9a541ce1a2c5af531337bc153963b96f4e6576c"
+          }
+        },
+        {
+          "filename": "1998.catalog",
+          "year": 1998,
+          "lane": "train",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1998.catalog",
+          "bytes": 1112333,
+          "sha256": "12bba1161943159ac2dce86416cb03083ca500097d6f9e9321e95caebc2e5c3f",
+          "git_blob_sha1": "26b8eaaa75957b7ccbd4114e600dab30b0864ecd",
+          "compressed": {
+            "path": "raw/california/1998.catalog.gz",
+            "bytes": 296201,
+            "sha256": "49e105d76149990803dc22b3b9e1e84611f8c1ecf76589d9910d0b9699cd4b43"
+          }
+        },
+        {
+          "filename": "1999.catalog",
+          "year": 1999,
+          "lane": "train",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/1999.catalog",
+          "bytes": 1753901,
+          "sha256": "4afa9859861ae0e75ad100e436c22e6c446f61bb46e54a040f85f8395fbc6fbb",
+          "git_blob_sha1": "e42dfa656ea1f7c34555becd74b374f889fc342d",
+          "compressed": {
+            "path": "raw/california/1999.catalog.gz",
+            "bytes": 458962,
+            "sha256": "9df422d307fea77250609b72396de3cd32b00d07e83628bb50fec255ca259986"
+          }
+        },
+        {
+          "filename": "2000.catalog",
+          "year": 2000,
+          "lane": "train",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2000.catalog",
+          "bytes": 1671491,
+          "sha256": "99ab84d084709d5dcf2bde8dca944f4465ca8705e37e06de4789d114c978a9c6",
+          "git_blob_sha1": "5c36a01988ab5867d13b11d1a631680970ad3363",
+          "compressed": {
+            "path": "raw/california/2000.catalog.gz",
+            "bytes": 444835,
+            "sha256": "86388e7c96ecd460632225983144e0e210ede31f8a37e44aef4d666ea52a02ed"
+          }
+        },
+        {
+          "filename": "2001.catalog",
+          "year": 2001,
+          "lane": "train",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2001.catalog",
+          "bytes": 1486253,
+          "sha256": "9744f85516699b6dcceb3fca602351c561f30f9754166ee99625ba6944409d41",
+          "git_blob_sha1": "abebdce23e93ba1d8049013f4592b90c911552d4",
+          "compressed": {
+            "path": "raw/california/2001.catalog.gz",
+            "bytes": 393744,
+            "sha256": "60d3a6bf16a83acd86c330337acf6332420de0f5abc0249e1a22e1f8910f8b88"
+          }
+        },
+        {
+          "filename": "2002.catalog",
+          "year": 2002,
+          "lane": "train",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2002.catalog",
+          "bytes": 973097,
+          "sha256": "8ef6ad232d5e2a85da4d4f5d8dfd362765c822e359a926cc8eae5f29cecc8d5f",
+          "git_blob_sha1": "d2bd241844f044c25684cfe7aa57f8455598d46e",
+          "compressed": {
+            "path": "raw/california/2002.catalog.gz",
+            "bytes": 270251,
+            "sha256": "ac8c13f79173685fa2336b04b24c3177341b701f03a20292d6048963767c3f3d"
+          }
+        },
+        {
+          "filename": "2003.catalog",
+          "year": 2003,
+          "lane": "train",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2003.catalog",
+          "bytes": 947595,
+          "sha256": "3be78cab1fb0d7b7238d7f84608aa54eda6c3a2f114a96bb33f12abc1b8462e9",
+          "git_blob_sha1": "7259d9c64bba878271f5d7a6c1f4dee20de860a7",
+          "compressed": {
+            "path": "raw/california/2003.catalog.gz",
+            "bytes": 261848,
+            "sha256": "e8eb8f70473feab8e79c8c89821ddb835f64b7a35e654ff9083bae23607a1ec3"
+          }
+        },
+        {
+          "filename": "2004.catalog",
+          "year": 2004,
+          "lane": "train",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2004.catalog",
+          "bytes": 1005979,
+          "sha256": "7fd9b0279c73db7fc22b84449a9a65af36f0f4434f1a0d857028bae778c3715c",
+          "git_blob_sha1": "582fbf43e581a19d6ff62f3ee31bce06e9a85b35",
+          "compressed": {
+            "path": "raw/california/2004.catalog.gz",
+            "bytes": 279596,
+            "sha256": "338d25439c234ded0d8f163f0ad1213927f87774bb4c3ac9f0d11703d005c46d"
+          }
+        },
+        {
+          "filename": "2005.catalog",
+          "year": 2005,
+          "lane": "train",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2005.catalog",
+          "bytes": 1083633,
+          "sha256": "9adbe6b701b44b58c7323c96ce23d59300c6d7ee1edd6bae3aa3848105877ebf",
+          "git_blob_sha1": "8c32af0fbb4df79b4448593874fe1bd5e2b61b23",
+          "compressed": {
+            "path": "raw/california/2005.catalog.gz",
+            "bytes": 295587,
+            "sha256": "59b25c658fd033993ea778fea584f5ae9c228a35317c7d8fd045f063d6151359"
+          }
+        },
+        {
+          "filename": "2006.catalog",
+          "year": 2006,
+          "lane": "train",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2006.catalog",
+          "bytes": 918813,
+          "sha256": "aeb75fbd95c20176736062744a60d97487f15d4b07114c58db84b663faba5dba",
+          "git_blob_sha1": "c2dd7a8de76bc093c1bd22e0f048748dc38b90f3",
+          "compressed": {
+            "path": "raw/california/2006.catalog.gz",
+            "bytes": 255526,
+            "sha256": "41c29262209a111c159d62dfc49803a98198b02e690c93beb7ac3199f51372ab"
+          }
+        },
+        {
+          "filename": "2007.catalog",
+          "year": 2007,
+          "lane": "train",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2007.catalog",
+          "bytes": 942511,
+          "sha256": "2c49a282b24e7ee3d5b35d377f54f72675e8185e98bc5e7b23ccb52a933ba04f",
+          "git_blob_sha1": "656231e50afd38bcbe7e25cc341ce1ff8fdd4333",
+          "compressed": {
+            "path": "raw/california/2007.catalog.gz",
+            "bytes": 266374,
+            "sha256": "f7f5ccfe6bedf65c4f5e969cf99e7d68f0f5d9563726770b86b121be17c3c81b"
+          }
+        },
+        {
+          "filename": "2008.catalog",
+          "year": 2008,
+          "lane": "train",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2008.catalog",
+          "bytes": 1153579,
+          "sha256": "252665a2dd75c50a7619d163043518b53a80c01f21c659ccd8c3a58e5f449626",
+          "git_blob_sha1": "cbc8d2e7d11ae02a9dd1346555b0bffbded12658",
+          "compressed": {
+            "path": "raw/california/2008.catalog.gz",
+            "bytes": 319671,
+            "sha256": "03ab08216c2c9e74f88d351b1d45876745c224820cdb2384ec5e0002784306e0"
+          }
+        },
+        {
+          "filename": "2009.catalog",
+          "year": 2009,
+          "lane": "train",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2009.catalog",
+          "bytes": 1372765,
+          "sha256": "5fdf2f1971060f3582b2636069bf8a3833b59b021a2ecb60dffd5408708669b7",
+          "git_blob_sha1": "96dfae9feee1263526a62e1f200e09cab2a29f29",
+          "compressed": {
+            "path": "raw/california/2009.catalog.gz",
+            "bytes": 382528,
+            "sha256": "a89c4ff3c6c5fe6f61b4707fbf9ba02d700b36ccc5e47a5c667ae27db5e26d83"
+          }
+        },
+        {
+          "filename": "2010.catalog",
+          "year": 2010,
+          "lane": "train",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2010.catalog",
+          "bytes": 3441461,
+          "sha256": "dca7369f16ed3763ae1eb0c6f430963c5d2c820e4e44813193e0d4dc0d6f9603",
+          "git_blob_sha1": "b0b50d00631ebf6166a362e464826a1b1b6648fb",
+          "compressed": {
+            "path": "raw/california/2010.catalog.gz",
+            "bytes": 931509,
+            "sha256": "19ae2ed728433defce7530a99eb760f5803b93032e30127c9ff33cfe784bccc4"
+          }
+        },
+        {
+          "filename": "2011.catalog",
+          "year": 2011,
+          "lane": "protected",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2011.catalog",
+          "bytes": 1277153,
+          "sha256": "e42ae7df64c3aad68ae1850d63210e021110c2fc1f248d1ec58686891907cb35",
+          "git_blob_sha1": "6452d222f4d4b2a22ea0b8357cc7ab39bb8a0f05",
+          "compressed": {
+            "path": "raw/california/2011.catalog.gz",
+            "bytes": 363431,
+            "sha256": "3264f38272724d490a2888a0a8b744a763368e5138eb98d00bf671301a3467da"
+          }
+        },
+        {
+          "filename": "2012.catalog",
+          "year": 2012,
+          "lane": "protected",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2012.catalog",
+          "bytes": 1408107,
+          "sha256": "189018e8f874b1a515cccfd37f4c36d35d47ea79dffb9c8e833afa6218e08485",
+          "git_blob_sha1": "c759f8502432063941a00f9fe0f57ca606eb2817",
+          "compressed": {
+            "path": "raw/california/2012.catalog.gz",
+            "bytes": 395521,
+            "sha256": "5d74b5003d358001ac1a92a46887a36841660f043a5b7287f96ee831cd4cddff"
+          }
+        },
+        {
+          "filename": "2013.catalog",
+          "year": 2013,
+          "lane": "protected",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2013.catalog",
+          "bytes": 1521431,
+          "sha256": "d7f75d1a83f0c6ae8bee42f22514e515769d20ad8e8ebd1e1408a1ee5918dcd3",
+          "git_blob_sha1": "2ec2a4387bf6294f4585586ad21d454cabecbacc",
+          "compressed": {
+            "path": "raw/california/2013.catalog.gz",
+            "bytes": 423722,
+            "sha256": "45146a37038806519a441e64a1c7b11229b5c3773e3e311a325183e803d33615"
+          }
+        },
+        {
+          "filename": "2014.catalog",
+          "year": 2014,
+          "lane": "protected",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2014.catalog",
+          "bytes": 1184001,
+          "sha256": "d706bc1fc1368914b3401d1723aaf26c6d5d4443b109bded4dfded795642e96e",
+          "git_blob_sha1": "b6182bd3769a9d1ba0aa2b0da7bb3d59a5a6ce1c",
+          "compressed": {
+            "path": "raw/california/2014.catalog.gz",
+            "bytes": 334771,
+            "sha256": "ffc62c650527e4c4be0f0d06a8db2f9342a70d16c0efc91a2e93e66e231c52fe"
+          }
+        },
+        {
+          "filename": "2015.catalog",
+          "year": 2015,
+          "lane": "protected",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2015.catalog",
+          "bytes": 1278957,
+          "sha256": "93b2d811143ca75c87a1e96b6aaf778cfde50248edb9b957c2cdd4d2b8589288",
+          "git_blob_sha1": "aec19426c57233b2c0494955748dacfb54c59c94",
+          "compressed": {
+            "path": "raw/california/2015.catalog.gz",
+            "bytes": 360629,
+            "sha256": "3575695041dd306a804699299031b917dc216f0416b5bb144d36968957157e9c"
+          }
+        },
+        {
+          "filename": "2016.catalog",
+          "year": 2016,
+          "lane": "protected",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2016.catalog",
+          "bytes": 1315204,
+          "sha256": "cbd6fbbec5265d3885c010110bdf76e54118d9f599e34801df7c64c6e63c3d4b",
+          "git_blob_sha1": "b225022dafedb52df05ab868efce5bbe3e7f4320",
+          "compressed": {
+            "path": "raw/california/2016.catalog.gz",
+            "bytes": 368241,
+            "sha256": "7c9568e5ae04aa9b01a6b488ed5f71a9713d96cb5057064107df2ba3cd8cc152"
+          }
+        },
+        {
+          "filename": "2017.catalog",
+          "year": 2017,
+          "lane": "protected",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2017.catalog",
+          "bytes": 1341031,
+          "sha256": "912c84f31fd062450fc5269293b751edbfbeded15419dcfa5e0359808dfe000d",
+          "git_blob_sha1": "b160563ebef7ff320a339b3f606dd4f3169f4080",
+          "compressed": {
+            "path": "raw/california/2017.catalog.gz",
+            "bytes": 374447,
+            "sha256": "f7845e5cfa86c58f9087f608dd1500c9313bd74fab1e3a68cc2adb5c7295bf46"
+          }
+        },
+        {
+          "filename": "2018.catalog",
+          "year": 2018,
+          "lane": "protected",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2018.catalog",
+          "bytes": 1700683,
+          "sha256": "c5165bfc0e712985c0cbec4176740113380ca2b7f27be07edc69c72102efdbb9",
+          "git_blob_sha1": "58b7a84abfbe59b4cd132ff23cb1b1241b28d609",
+          "compressed": {
+            "path": "raw/california/2018.catalog.gz",
+            "bytes": 463936,
+            "sha256": "1781fd09dcba0679f1249f530b0d9af300d9327a54d64a53297227868c2190d2"
+          }
+        },
+        {
+          "filename": "2019.catalog",
+          "year": 2019,
+          "lane": "protected",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2019.catalog",
+          "bytes": 5435645,
+          "sha256": "7ab1bda4dc4780fe737d9a35efe25aad3e90040c70ed24bba4fd552a9ab90786",
+          "git_blob_sha1": "1ba81f9fce81c2da3db3c70231300337d44cfa91",
+          "compressed": {
+            "path": "raw/california/2019.catalog.gz",
+            "bytes": 1442781,
+            "sha256": "e8efeac5e4d8ae3f698f8723afe0eba308a4b1a252a67132484108f1902687c7"
+          }
+        },
+        {
+          "filename": "2020.catalog",
+          "year": 2020,
+          "lane": "protected",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2020.catalog",
+          "bytes": 3058194,
+          "sha256": "b8630b0daf90cb5b8e33efbe57e28ac7f9342a53f0dc2a5a7e3dfb85ae1557ef",
+          "git_blob_sha1": "5d5341fc9beda0813fa33050a36e63dd2b0306da",
+          "compressed": {
+            "path": "raw/california/2020.catalog.gz",
+            "bytes": 834918,
+            "sha256": "dcf6616c107bfa750cc4be8bf6617be37f3af8afb057302a36cbf3f08f8b3061"
+          }
+        },
+        {
+          "filename": "2021.catalog",
+          "year": 2021,
+          "lane": "protected",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2021.catalog",
+          "bytes": 1903305,
+          "sha256": "eccadce24356a87d2834b55f4ffb39502ffbd028fbfd24bfbffd497fc21c398f",
+          "git_blob_sha1": "3c8bc8d7f225c5444c69c0941428b2d8f550943b",
+          "compressed": {
+            "path": "raw/california/2021.catalog.gz",
+            "bytes": 530524,
+            "sha256": "69e85b877b0950e8d0875b55bdd833517c7064f45d1556cf73505bc989386c92"
+          }
+        },
+        {
+          "filename": "2022.catalog",
+          "year": 2022,
+          "lane": "protected",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2022.catalog",
+          "bytes": 1385311,
+          "sha256": "f64063c5bfbfc59a82a8a011dc6b6c163fe72d17818dd0c5887bb530b6254501",
+          "git_blob_sha1": "6299968264a401d7a19f16569ed4e56907a25d09",
+          "compressed": {
+            "path": "raw/california/2022.catalog.gz",
+            "bytes": 393097,
+            "sha256": "55071ed80ac77641023251c09250d76cb4815170ceb76c02af98a14927c19111"
+          }
+        },
+        {
+          "filename": "2023.catalog",
+          "year": 2023,
+          "lane": "protected",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2023.catalog",
+          "bytes": 1122586,
+          "sha256": "26848025ae638a92c39662d66c2ad304a8ac9af1560774e5ce407d2ae357d9f9",
+          "git_blob_sha1": "a67df7db7e3fd336ec567afc2f4ac1cbce32f398",
+          "compressed": {
+            "path": "raw/california/2023.catalog.gz",
+            "bytes": 321480,
+            "sha256": "c0887d5f5a5c2f2c86a1f175b9c9fc4b899a0802c0018d47aa9016668c76ea36"
+          }
+        },
+        {
+          "filename": "2024.catalog",
+          "year": 2024,
+          "lane": "protected",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2024.catalog",
+          "bytes": 1416635,
+          "sha256": "f683a19150354f43e28535659ec15e20e4189561d34843b1befa3f0456fb33c4",
+          "git_blob_sha1": "52f62a0606a7ec9dc22bd0304989129236016c72",
+          "compressed": {
+            "path": "raw/california/2024.catalog.gz",
+            "bytes": 403198,
+            "sha256": "2b6cca3a6d6b97f4a7be492d3eaaac5fbbac203e174edd666fd1a42674670a7c"
+          }
+        },
+        {
+          "filename": "2025.catalog",
+          "year": 2025,
+          "lane": "protected",
+          "url": "https://raw.githubusercontent.com/SCEDC/SCEDC-catalogs/7105f6c1b861db46c3a8454984588f5b6a4a56e4/SCEC_DC/2025.catalog",
+          "bytes": 1382076,
+          "sha256": "22d8184462ffc4f9daadf23fc4163e1ab6903ce23162ff1d35b1e9a72c541bab",
+          "git_blob_sha1": "01ac1b741e3a0c9f6e83e1ae90ef610c35b0ed9d",
+          "compressed": {
+            "path": "raw/california/2025.catalog.gz",
+            "bytes": 393633,
+            "sha256": "ec578dd52bbf7589c4d196babe4b480f2d24802f426a583b3b39878770aebfc4"
+          }
+        }
+      ],
+      "expected_events": {
+        "path": "expected/california_events.json",
+        "bytes": 746443,
+        "sha256": "da07f2853671b330fa3d93157d5d84f8713392fd6071b549df46a293c6e7b14e"
+      },
+      "expected_parse_audits": {
+        "train": {
+          "path": "expected/california_train_parse_audit.json",
+          "bytes": 514,
+          "sha256": "51687cfe4839f0eff1ee1455d2b00d2260a4332509be69dddc9620c935e9352c"
+        },
+        "protected": {
+          "path": "expected/california_protected_parse_audit.json",
+          "bytes": 431,
+          "sha256": "95a883e3e323b8ba7f530e48c44ef551a663f5b4a390f2c2c76d691d26ad3705"
+        }
+      },
+      "original_canonical_sha256": "46656c01b309b0c546618148f099aa59a8854584c51a7fc1fc0edbe1382dbbf4",
+      "comparison_policy": "Exact ordered event-object equality, including source tokens/line numbers. Original wrapper held machine paths; these are omitted from the expected public event array.",
+      "cohort_contract": {
+        "path": "cohort_contract_california.json",
+        "bytes": 7921,
+        "sha256": "dbddca525d1287f249a050e0381ec39961547b3586a7c954ca5ec234d24bcceb"
+      },
+      "expected_counts": {
+        "events": 1272,
+        "unique_ids": 1272,
+        "warmup": 106,
+        "folds": [
+          79,
+          167,
+          69
+        ],
+        "m4p5_folds": [
+          16,
+          53,
+          18
+        ]
+      }
+    }
+  }
+}

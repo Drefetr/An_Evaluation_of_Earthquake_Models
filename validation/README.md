@@ -1,6 +1,6 @@
 # Validation and evidence
 
-This directory separates current manuscript bindings, additional numerical source inventory, scientific acceptance evidence, and bounded check results. Historical preparation/release receipts are indexed in [provenance/historical_archive.json](../provenance/historical_archive.json); their original hashes and baseline locations remain available without presenting them as current validation.
+This directory separates current manuscript bindings, additional numerical source inventory, dated internal scientific and artifact review records, and bounded check results. Historical preparation/release receipts are indexed in [provenance/historical_archive.json](../provenance/historical_archive.json); their original hashes and baseline locations remain available without presenting them as current validation.
 
 ## What each record establishes
 
@@ -9,7 +9,8 @@ This directory separates current manuscript bindings, additional numerical sourc
 | `MASTER_CLAIM_LEDGER.json` | Enumerated manuscript bindings and typed documentary metadata, with explicit source hashes, locators, and transformations |
 | `SOURCE_INVENTORY.json` | Additional numerical source inventory, kept separate from claims of manuscript support |
 | `authorities/`, `authority_manifest.json` | Bundled scientific sources and their historical/public identities |
-| `acceptances/` | Study-specific scientific and artifact reviews; read each receipt's validation coverage and limitations |
+| `acceptances/` | Historical internal reviews; their filenames do not represent journal acceptance |
+| `reviews/`, `reproductions/` | Current artifact checks and actual recovered-input execution records, with separate scope and identities |
 | `numeric_reconciliation_receipt.json` | Canonical claim/source reconciliation receipt; default verification checks bindings without rewriting it |
 | `checks.json` | Actual current bounded check coverage and results, with the recorded snapshot and execution scope |
 | `checks_before_remediation_20261105.json` | Exact historical `checks.json` bytes from commit `1226fc3`; retained prior coverage, not current-edition validation |
@@ -30,7 +31,7 @@ python -B scripts/verify_repository.py
 node website/check_interactions.cjs
 ```
 
-The recorded **120-test total** combines 92 main tests, eight Stage 2 tests (five portable and three native fixtures), and 20 historical iteration-27 tests. It is not the count of the first command alone. To reproduce all 120 without skips, first build the LI, temporal and S06 libraries using the [Windows x64/MSVC native-build instructions](../engine/stage2_followup/README.md#native-builds). The iteration-27 suite also requires a separate CUDA-enabled PyTorch installation and a usable CUDA device; its small CUDA/CPU fit comparison has no CPU fallback. These optional GPU dependencies are not included in `requirements.txt`.
+The [current check record](checks.json) gives separate executed counts for the main suite, eight Stage 2 tests (five portable and three native fixtures), and twenty historical iteration-27 tests. The main suite includes the newly supplied replay packages. The total is not the count of the first command alone. To reproduce all three suites without skips, first build the LI, temporal and S06 libraries using the [Windows x64/MSVC native-build instructions](../engine/stage2_followup/README.md#native-builds). The iteration-27 suite also requires a separate CUDA-enabled PyTorch installation and a usable CUDA device; its small CUDA/CPU fit comparison has no CPU fallback. These optional GPU dependencies are not included in `requirements.txt`.
 
 After building the native groups into `build/native/{li,temporal,s06}`, run the two additional suites from the repository root in PowerShell:
 
@@ -40,11 +41,11 @@ python -B -m unittest discover -s engine/stage2_followup/tests -v
 python -B -m unittest discover -s engine/iteration_27/tests -v
 ```
 
-Without `INHIBITORY_TEST_NATIVE_ROOT`, the Stage 2 command runs its five portable tests and skips its three native fixtures. That portable result does not establish the full 120-test coverage.
+Without `INHIBITORY_TEST_NATIVE_ROOT`, the Stage 2 command runs its five portable tests and skips its three native fixtures. That portable result does not establish the full native test coverage. CI runs the portable subset; the recorded local execution separately identifies native and CUDA prerequisites.
 
 Node.js is required for the website interaction check. [Reproduction instructions](../docs/reproducibility.md) distinguish these checks from document builds and scientific workloads. Generated PDF production checks still need visual inspection. Stage 2 import/build fixtures cover only the supported components identified in the [support matrix](../engine/stage2_followup/README.md).
 
-The [current-edition artifact acceptance](acceptances/REMEDIATION_VISUAL_REVIEW_20261105.json) pins the delivered manuscript, companion and complete repository site. `website/document_metadata.json` pins that review record. Historical S04B publication and visual reviews retain their original artifact identities and are labelled historical in the reviewer guide and metadata.
+The [current production review](reviews/RECOVERED_INPUT_EDITION_20261105.json) pins the delivered manuscript, companion and repository site. `website/document_metadata.json` pins that review record. Earlier editorial and S04B reviews retain their original artifact identities and are labelled historical. These are internal production records, not external peer review.
 
 ## Historical receipts and source changes
 
@@ -54,4 +55,4 @@ October baseline receipts described earlier manuscript/supplement editions and a
 
 Publication variants, path migration, or deduplication can change public source bytes without changing scientific values. Preserve original identities and record the transformed bytes, then update dependent ledger hashes, documentary locators, authority mappings, site/companion bindings, and receipts together. Current repository membership is authoritative in `MANIFEST.json`; historical archive indexes and source inventories have different scopes.
 
-Event records, full simulation/reference banks, private fitted vectors, and execution caches remain external inputs. Scientific acceptance, source reconciliation, document production, and external academic peer review are separate forms of evidence.
+The recovered-input packages now supply the original regional event records, declared synthetic/reference banks and available fitted vectors. See [the reproduction index](../reproduction/README.md) for executed routes, original states still missing and caches rebuilt from raw inputs. Scientific acceptance, source reconciliation, document production, and external academic peer review are separate forms of evidence.
