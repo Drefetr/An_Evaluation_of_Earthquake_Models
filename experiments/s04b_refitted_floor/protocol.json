@@ -1,0 +1,74 @@
+{
+  "schema": "s04b_train_only_intercept_sensitivity_protocol_v1",
+  "status": "proposed_before_execution",
+  "scope": "One new bounded background-intercept fit on each of the 80 existing S04B training histories; all saved inhibited fits and gates remain unchanged.",
+  "scientific_calls_at_protocol_creation": 0,
+  "input_manifest": "reproduction/synthetic/input_manifest.json",
+  "eligibility": "Every case in the existing exact 80-case S04B roster, four regimes and 20 fixed seeds per regime; no replacements or exclusions based on outcomes.",
+  "pilot_seeds": [410401, 410501, 410601, 410701],
+  "history": {
+    "prehistory": "All saved rows with time < phase start are retained as conditioning parents.",
+    "train": [30, 395],
+    "test": [395, 760],
+    "target_interval_convention": "Left closed, right open.",
+    "parent_interval_convention": "All rows with time < phase end; an event receives triggering only from parents with strictly smaller time. Equal-time events do not trigger each other.",
+    "held_out_conditioning": "Sequential observed-history score: realized earlier test events enter the history; future or equal-time events do not. No free-running forecast simulation."
+  },
+  "fixed_coordinates": ["d", "n", "c", "p", "beta", "sigma", "reference spatial weights", "background spatial density and KDE", "mark law", "realized history", "all inhibited selected parameters", "all original raw/BIC selection decisions"],
+  "variable": {
+    "parameter": "b = exp(a)",
+    "a_bounds": [-12, 0],
+    "bounds_scope": "The existing backbone intercept box is a chosen bounded sensitivity, not an unconstrained MLE or a joint nuisance refit.",
+    "initial_historical_value": "Read from the frozen generator Law; include its training objective in diagnostics and the train non-worsening check."
+  },
+  "precomputation": {
+    "u_i": "exp(d*x_i) * event_background_density_i",
+    "v_i": "n * strictly_prior_triggering_spatial_intensity_i",
+    "A": "(end-start) * exp(d*((start+end)/T0-1)) * sinh(d*(end-start)/T0)/(d*(end-start)/T0), using its continuous limit at zero",
+    "H": "n * integrated_triggering_exposure",
+    "M": "N*log(beta) - beta*sum(excess_magnitudes)",
+    "constraint": "Compute these once per phase; reuse normalized parent kernels. Do not construct inhibitory area-time quadrature plans and do not invoke historical fit(), Integrated(), construct(), generator.run(), or m02 likelihood calls."
+  },
+  "objective": {
+    "log_likelihood": "L(b)=sum_i log(b*u_i+v_i)-b*A-H+M",
+    "derivative": "L'(b)=sum_i u_i/(b*u_i+v_i)-A",
+    "second_derivative": "L''(b)=-sum_i u_i^2/(b*u_i+v_i)^2 <= 0",
+    "selection": "Evaluate endpoint derivative signs; select the lower endpoint if derivative there is nonpositive, upper endpoint if derivative there is nonnegative, otherwise solve the unique derivative root by a bracketed scalar method. Train-selected b is frozen before accessing test objectives.",
+    "root_xtol": 1e-14,
+    "root_rtol": 1e-12,
+    "root_maxiter": 200,
+    "interior_relative_derivative_tolerance": 1e-9,
+    "relative_derivative_scale": "max(1,A,sum_i u_i/(b*u_i+v_i))",
+    "train_non_worsening_nats_tolerance": 1e-9,
+    "counts": "A single mathematical fit per case. Pilot case results may be reused by exact input/source/protocol hash, so the complete campaign contains 80 distinct fits."
+  },
+  "controls": {
+    "saved_floor_validation": "For every case, evaluate the uninhibited floor at the historical intercept on both train and test. Compare with all three model floor states at order16_train and order32_test in the saved expected files.",
+    "saved_floor_absolute_nll_tolerance": 0.0001,
+    "implementation_crosscheck": "Compare the precomputed score components at historical a and the fitted a with the archived spatial.evaluate formula using the same fixed features; all score components must agree within 1e-9 nats.",
+    "synthetic_unit_fixtures": ["No excitation: clipped N/A optimum", "Interior positive-excitation root", "Lower and upper boundary optima", "Zero targets", "Nonfinite input rejection", "Exact equal-time exclusion", "Missing/duplicate case and tampered source rejection"],
+    "reference_scope": "These controls validate the new scalar procedure and its frozen baseline correspondence. They do not certify global optimization of the existing inhibited fits."
+  },
+  "reporting": {
+    "per_case_required": ["case, regime, seed and input/source hashes", "train/test event and parent counts", "all fixed coordinates", "historical and fitted a/b", "bound selection and root bracket, residual, iterations", "historical and fitted train/test point sum P, nonnegative exposure E, signed exposure C=-E, mark M, timing, location and joint score", "held-out deltaP, deltaE, deltaC=-deltaE, deltaM=0, deltaJoint=deltaP+deltaC+deltaM", "all six original train/test floor validation differences", "all five original raw/gated procedure scores and unchanged gate identities", "each procedure original gain and gain versus new refitted floor", "runtime and peak process-tree memory", "failures without replacement"],
+    "component_convention": "E is the nonnegative compensator/exposure, C=-E is the manuscript signed exposure term. Joint=P+C+M. Deltas always mean refitted floor minus historical floor. Never subtract signed C.",
+    "score_identity": "new_gain = original_gain - (refitted_floor_test_joint - original_floor_test_joint)",
+    "gates": "Preserve the original LI raw, LIplus_immigrant raw/BIC and LIplus_inclusive raw/BIC choices. Do not re-gate using the refitted floor and do not refit the inhibited alternatives.",
+    "aggregate": "For each regime and existing procedure, report mean new gain and strict-positive win count alongside the unchanged original result, plus the distribution and mean of floor score changes. Publish all 80 per-case diagnostics, including boundary selections.",
+    "interpretation": "A sensitivity to a train-fitted uninhibited background intercept. It can reveal a fixed-background comparator handicap. It is not joint nuisance estimation, parameter recovery, or a prospective validation claim."
+  },
+  "execution_admission": {
+    "implementation_review": "Independent source review and small deterministic tests must pass before any actual case is scored or fitted.",
+    "pilot": "The first fixed seed in each regime, in listed order; stop on any mismatch or failure.",
+    "pilot_wall_cap_seconds": 600,
+    "campaign_total_wall_cap_seconds": 7200,
+    "maximum_simultaneous_cases": 1,
+    "numeric_threads": 1,
+    "process_tree_memory_admission_bytes": 2147483648,
+    "available_memory_headroom_bytes": 2147483648,
+    "admission_projection": "After four pilot cases, retain measured per-case wall times and input workloads W=(Ntrain+Ntest)*Nparents+Nparents*Ncells+Nbackground_centres*Ncells. Use 3*max(t_i/W_i)*sum(W_remaining) plus observed setup time as the remaining-time projection; proceed only inside the unchanged campaign cap and conductor deadline. No change to tolerances or case roster after outcomes.",
+    "source_memory_argument": "Null precomputation uses O(Nparents*Nevents) temporary pair arrays and O(Nparents*Ncells) normalization, released phase by phase, with no inhibitory space-time grid. Record maximum actual roster sizes and pilot process-tree memory before full admission.",
+    "lease": "One genuinely reserved numerical task and exclusive numerical lease for compilation/controls/pilot/full; conductor monitors process identity, wall time, process-tree memory and quiescence. The memory number is an admission limit unless an actual external supervisor enforces it; report the implemented enforcement and sampling method rather than claiming a hard OS limit."
+  },
+  "completion": "Complete only if all 80 unique cases, all historical-floor checks, all scalar solver checks, unchanged gate checks and all required output identities pass; otherwise retain partial outputs with passed=false and no completed aggregate claim."
+}

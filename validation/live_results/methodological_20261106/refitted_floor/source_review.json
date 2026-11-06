@@ -1,0 +1,60 @@
+{
+  "task_id": "review_floor_code",
+  "attempt_id": "749012d9-7b0f-47c6-b4a7-5e703fe0cc87",
+  "status": "completed",
+  "verdict": "PASS_SOURCE_REVIEW",
+  "reviewer": "native Codex subagent handoff_scientific_scope; computational source review",
+  "reviewed_at_utc": "2026-11-06T11:32:51.544976+00:00",
+  "reviewed_sha256": {
+    "experiments/s04b_refitted_floor/run.py": "a91c6e9d8337e5b5856bd21e13e73da33e3f538718117f81bd53e91be8d4207a",
+    "experiments/s04b_refitted_floor/protocol.json": "a1794b96655812cc83291f56f6f3fe58a51baca98d96aa2de089ebcc8c9d7a29",
+    "experiments/s04b_refitted_floor/source_pins.json": "f2254f8f645ec564ebc26e4535d60ab815039e3b8f56567231a3bc213e8c1cac",
+    "experiments/s04b_refitted_floor/README.md": "2876ddab3d293175de06a8ca69ece55720a9ab52ca56421fcb4e76e0c78579f9",
+    "tests/test_s04b_refitted_floor.py": "53ea006189dac2e04cd1bf8ba4db80767708e9cdd7cf47d5f5a57c5dc5a0d469"
+  },
+  "dependent_source_sha256": {
+    "reproduction/synthetic/input_manifest.json": "bf7bc6dabf94b15f74f63f22676b72b68286bf1dbde1cab874ec720328d7ece2",
+    "reproduction/synthetic/replay.py": "553d1e4ec047b825b5d1a415bf19ae8d1453c94acbc3401468744c23be441140",
+    "reproduction/synthetic/native.py": "a35d7864e32ca5d4acb87a4a603fc3e30cf2011d331281a1b8dd0d359ee559ba",
+    "reproduction/synthetic/source/generator.py": "b8bae982735b4fba26d450d93578c4d0b78ac33f7e33c691557b2bd8d4afcf43",
+    "reproduction/synthetic/source/controls_campaign.py": "cf6b14b7f8e7a5172b5ae8557d36ba6c3c1b263464443652b8d3ae1cd3480012",
+    "reproduction/synthetic/source/spatial.py": "764a006cc06967840839bdab9122039431c72603e2156470ae1d433549d2feaf",
+    "reproduction/synthetic/source/radial.cpp": "781381aa9f5b513ad3dd4ca0015c438513a6371ea9819a24ef1842b5edc665b9",
+    "reproduction/synthetic/source/cpu_reference.cpp": "904bb746838fa2b740f8db8008a761b150cdfaae35d7fb90021ea7ebb063020b",
+    "reproduction/synthetic/source/architecture.hpp": "17f98ac752337e6d3ed8c794eb2467a62d62ed6e9fd340d661645f86c9d806b2",
+    "reproduction/synthetic/source/geometry_plan.py": "96adbadb202c57953730aab5c4afeae05d0e3b8586034c4a60d639cb7d4cc92c"
+  },
+  "author_terminal_hash_confirmed": true,
+  "checks_performed": {
+    "python_sources_parsed": 2,
+    "source_pins_matched": 10,
+    "test_methods_read": 19,
+    "test_methods_executed": 0,
+    "native_builds": 0,
+    "original_history_scores": 0,
+    "fits": 0
+  },
+  "blockers": [],
+  "resolved_during_review": [
+    "Projection bookkeeping was corrected before the frozen hash; measured setup and pilot wall are now separate, and pilot wall is counted once in total admission."
+  ],
+  "source_findings": [
+    "Correct nonnegative E and signed C=-E convention and contrast identities.",
+    "Strict clocks, normalized baseline, prehistory and sequential held-out history match protocol.",
+    "Bounded concave scalar optimum uses training only; original inhibited fits and gates stay unchanged.",
+    "Exact pilot identity/hash checks support four reused plus seventy-six remaining fits.",
+    "Protocol/source/input/native pins and failed/partial output handling match stated custody scope."
+  ],
+  "execution_conditions": [
+    "Deterministic tests must actually pass before original-history scoring.",
+    "Conductor must enforce numerical lease, process-tree memory/time limits, pilot resource admission and final quiescence.",
+    "Source review is not empirical completion; all eighty case outputs and controls require subsequent independent result review."
+  ],
+  "limitations": [
+    "Per-case source/input custody uses the top-level run package; standalone case files do not carry every source hash.",
+    "Dependency versions are recorded, not a frozen environment lock.",
+    "RSS sampling and cooperative deadline checks are not a hard OS resource boundary.",
+    "No claim of global optimization of saved inhibited alternatives."
+  ],
+  "report_sha256": "8a5b60b4c156d9a8f350751001b566fa5dbf89fda3bcbf378757bf20bc789f3e"
+}

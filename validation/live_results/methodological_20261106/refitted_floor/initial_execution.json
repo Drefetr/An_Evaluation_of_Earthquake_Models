@@ -1,0 +1,81 @@
+{
+  "schema": "bounded_scalar_execution_v1",
+  "started_at_utc": "2026-11-06T11:33:20.464164+00:00",
+  "passed": false,
+  "limits": {
+    "total_wall_seconds": 7200,
+    "pilot_wall_seconds": 600,
+    "sampled_process_tree_rss_bytes": 2147483648,
+    "poll_seconds": 0.1
+  },
+  "memory_scope": "RSS sampled across owned process tree every0.1s; threshold triggers termination. Sampling does not certify an instantaneous hard OS limit.",
+  "phases": [
+    {
+      "name": "fixtures",
+      "command": [
+        "C:\\Users\\Drefetr\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_s04b_refitted_floor.py",
+        "-v"
+      ],
+      "pid": 24312,
+      "returncode": 0,
+      "wall_seconds": 0.994854100048542,
+      "sampled_peak_tree_rss": 71729152,
+      "owned_process_identities": {
+        "24312": 1793964800.470077
+      },
+      "live_owned_processes_at_return": [],
+      "stop_reason": null,
+      "log_sha256": "359e0ecde3ca5ae77b9b6b04c1947cd101dad0d3d27cc81444227d595c368936"
+    },
+    {
+      "name": "native_build",
+      "command": [
+        "C:\\Users\\Drefetr\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\methodological_review_20261106T111000Z\\build_floor_native.py"
+      ],
+      "pid": 31192,
+      "returncode": 0,
+      "wall_seconds": 4.3012555001769215,
+      "sampled_peak_tree_rss": 150933504,
+      "owned_process_identities": {
+        "31192": 1793964801.477412,
+        "29012": 1793964801.6274855,
+        "17864": 1793964801.7658606,
+        "9080": 1793964802.0133145,
+        "19012": 1793964802.0262537,
+        "34800": 1793964802.1349933,
+        "7072": 1793964802.2332137,
+        "31088": 1793964802.2476685,
+        "3708": 1793964802.4624617,
+        "31968": 1793964802.7840564,
+        "31256": 1793964803.0617232,
+        "23620": 1793964803.675717,
+        "11640": 1793964803.7843463,
+        "35492": 1793964804.270686,
+        "5520": 1793964804.805822,
+        "8024": 1793964805.0611477,
+        "14380": 1793964805.5857964
+      },
+      "live_owned_processes_at_return": [
+        35492
+      ],
+      "stop_reason": null,
+      "log_sha256": "45d6f9dba0872f3d38e12229c1cbadeedaaee6d11529c6504c1c3c6ae3b371a3"
+    }
+  ],
+  "source_review_sha256": "24b930999c0780cf2912c13bbe2538cc04225d39bc01b482378d5e0a5c426cb9",
+  "protocol_sha256": "a1794b96655812cc83291f56f6f3fe58a51baca98d96aa2de089ebcc8c9d7a29",
+  "error_type": "RuntimeError",
+  "error": "Phase failed: native_build",
+  "wall_seconds": 5.3191939000971615,
+  "finished_at_utc": "2026-11-06T11:33:25.783358+00:00"
+}

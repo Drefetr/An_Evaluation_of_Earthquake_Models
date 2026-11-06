@@ -17,6 +17,23 @@ Here $Q_j$ is excess magnitude, so the reference excess is zero. Original LI use
  \lambda_{\rm imm}=B e^{-\eta G_+}+nH,
  \qquad \lambda_{\rm total}=(B+nH)e^{-\eta G_+}.
 \]
+\paragraph{Score regularity of these laws.}
+For the ideal continuous exponential marks used to define the LI+ controls,
+$\beta=2$ and $r=0.7$ give $\beta(1+r)=3.4<2\gamma$.
+Thus $\E[g_+^2/\kappa]=\infty$; the finite weighted-moment example in
+Chapter~\ref{ch:inference} does not cover this parameter setting.
+Proposition~\ref{prop:null-score-obstruction} supplies a separate null-law
+divergence argument under the stated fresh-mark and bounded-kernel assumptions.
+For total attenuation, $\partial_\eta\log\lambda_{\rm total}=-G_+$, so the
+null expected bracket is $\E_0\int(B+nH)G_+^2$, without the immigrant-only
+denominator damping. Its diagonal moment obstructions also fail here.
+At fixed positive generating strength, however, the exponential attenuation
+gives the finite-bracket bounds proved in Chapter~\ref{ch:inference}.
+These are distinct statements about ideal null and positive generating laws,
+not a proof of the cause of particular held-out losses. Unit-mark immigrant LI
+has a different mark bound. The finite numerical histories, stopping rules and
+selected fitted procedures remain distinct from the ideal-law moment calculation.
+
 The gate retains an active fit only when its training log-likelihood improvement exceeds $\tfrac32\log N_{\rm train}$.
 
 The BIC-style gate is a training-only complexity penalty, not a Davies-calibrated test or a nominal-size guarantee. The gate can select the exact uninhibited floor. A held-out win and an active training fit are distinct outcomes. No seed was redrawn and no negative score was removed.
@@ -99,6 +116,8 @@ The completed extension contains 80 independent seeded histories and 400 paired 
 
 Generation uses the smooth background and the same day-based split as the original controls: warmup $[0, 30)$, training $[30, 395)$ and test $[395, 760)$, with horizon $760$ days. For each generating law, narrow/short inhibition has $(\eta,\ell,\psi)=(0.5,5\ {\rm km},1/24\ {\rm day})$ and broad/long inhibition has $(2.0,50\ {\rm km},30\ {\rm days})$. The magnitude scaling and the two intensity definitions are those displayed above. Seeds are predeclared and retained without replacement: immigrant narrow/short $410401$ through $410420$, immigrant broad/long $410501$ through $410520$, total narrow/short $410601$ through $410620$, and total broad/long $410701$ through $410720$. Training uses all $8$ prescribed starts plus the exact uninhibited floor at quadrature order $16$; every retained finite state is checked at order $32$ on training and test windows. The first seed in each regime is the predeclared independent CPU anchor. These settings and source identities are retained in the bundled frozen-method projection and protocol.
 
+The realized generator counters are essential to interpretation. In the narrow/short immigrant regime, 19 of 20 histories reject no proposals; the entire bank rejects only one immigrant. In broad/long total generation, 98.2\% of proposed offspring are rejected and 17 histories contain no accepted offspring. Table~\ref{tab:s04b-thinning} gives the complete counters and phase counts. Narrow/short immigrant losses therefore do not demonstrate failed recovery of a strongly realized inhibitory signal.
+
 All fits hold the shared background and excitation backbone fixed. Training-only selection and the complexity gate retain the exact uninhibited floor. Full saved-row arithmetic and numerical gates are audited; the original independent CPU objective and gradient replays cover 48 predeclared phase--model contexts from the anchor histories, rather than every history.
 
 The recovered-input edition completed the full saved-state likelihood and score
@@ -110,8 +129,9 @@ computation re-evaluates saved fits; it does not rerun their optimizer searches.
 
 Under immigrant: narrow/short generation, the matched raw procedure has a negative mean gain and a negative median; its gated version has a negative mean. Under immigrant: broad/long generation, the matched raw procedure has a positive mean gain and a positive median; its gated version has a positive mean. Under total: narrow/short generation, the matched raw procedure has a negative mean gain and a negative median; its gated version has a positive mean. Under total: broad/long generation, the matched raw procedure has a positive mean gain and a positive median; its gated version has a positive mean. Both matched raw procedures lose on average in their narrow/short settings. The positive gated mean under narrow/short total generation comes from a single winning active history and otherwise exact-floor ties; it does not demonstrate reliable recovery. Under narrow/short immigrant generation, the matched gate instead retains a single active loss and otherwise floor ties. In both broad/long generating settings, matched raw and gated procedures win on every history in this declared bank. These outcomes remain conditional on the fixed nuisance backbone and chosen regimes.
 
-Mean and median gains below are total held-out log-score differences per simulated history, not per earthquake. MC SE is the within-regime sample standard deviation divided by the square root of the history denominator. It is descriptive: these heavy-tailed marked laws do not supply an automatic finite-variance or Gaussian guarantee. Wilson intervals describe bounded held-out-win indicators under the declared seeded simulation design; they are not intervals for the mean gain or calibrated detection power. A positive held-out gain, an active fit and an identified physical mechanism are different statements.
+Mean and median gains below are total held-out log-score differences per simulated history against the fixed-backbone floor, not against a nuisance-refitted null and not per earthquake. MC SE is the within-regime sample standard deviation divided by the square root of the history denominator. It is descriptive: these heavy-tailed marked laws do not supply an automatic finite-variance or Gaussian guarantee. Wilson intervals describe bounded held-out-win indicators under the declared seeded simulation design; they are not intervals for the mean gain or calibrated detection power. A positive held-out gain, an active fit and an identified physical mechanism are different statements.
 
+\clearpage
 \begingroup\footnotesize\setlength{\tabcolsep}{3pt}
 
 \begin{longtable}{@{}lrrrrrrr@{}}
@@ -226,8 +246,12 @@ LI+ total gated & 20 & 53.2332 & 2.1250 & 51.2906 & 20 & [0.839, 1.000] & 20 \\
 
 \end{longtable}\endgroup
 
-Active counts record off-floor selection ($\hat\eta > 0$), including the effect of the training-only gate. The bundled public audit exports score contrasts and off-floor indicators rather than empirical distributions of selected $(\hat\eta,\hat\ell,\hat\psi)$: S04B evaluates held-out predictive log-score gain rather than parameter recovery. An active fit can still overfit or adjust shared coordinates without recovering the generating $(\eta,\ell,\psi)$. Zero gains remain ties, not wins. No negative gain is trimmed and no seed is substituted. The completed matched generation resolves the prior generating-law gap for these bounded settings; it does not resolve joint nuisance estimation, nominal test size, general recovery or prospective observational evidence.
+Active counts record off-floor selection ($\hat\eta > 0$), including the effect of the training-only gate. Only strength, spatial range and memory are fitted here; the shared background and excitation coordinates remain fixed. The historical compact audit exports score summaries and off-floor counts, while the current public package also supplies the fitted parameter vectors and solver traces in \path{reproduction/synthetic/s04b/fits/}. Zero gains remain ties, no negative gain is trimmed, and no seed is substituted. The following saved-record diagnostics distinguish realized inhibition and selected parameters from the generating-law labels.
+
+\input{chapters/13_s04_diagnostics}
+
+\input{chapters/13_s04_refitted_floor}
 
 \begin{figure}[p]\centering\includegraphics[width=\linewidth]{s04_expanded_mean_gains.pdf}
 
-\caption{S04B matched-generator controls. Each panel keeps its own full linear range. Points show row means; bars show descriptive MC SE, not calibrated confidence intervals. Each procedure uses the same complete history denominator within its generating regime. The dashed zero line denotes the uninhibited floor; regimes are not pooled.}\label{fig:s04b-matched}\end{figure}
+\caption{S04B matched-generator controls. Each panel keeps its own full linear range. Points show row means; bars show descriptive MC SE, not calibrated confidence intervals. Each procedure uses the same complete history denominator within its generating regime. The dashed zero line denotes the original fixed-backbone floor; regimes are not pooled. Table~\ref{tab:s04b-refitted-floor} gives the separate training-fitted-intercept comparison.}\label{fig:s04b-matched}\end{figure}

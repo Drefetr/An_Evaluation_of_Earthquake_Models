@@ -15,9 +15,11 @@ for(let i=0;i<DATA.studies.length;i++){
   elements.comparison.value=c;elements.metric.value=m;elements.units.value=unit;vm.runInContext('render()',context);
   if(s.kind==='simulation'){
    const expected=s.summary.filter(r=>r.model+'_'+r.gate===c);assert.equal(expected.length,4);assert.equal(elements.rows.children.length,4);assert.equal(elements.units.disabled,true);assert.equal(elements.units.value,'total');assert.equal(elements.chart.children.length,0);assert.notEqual(elements.source.hidden,true,'simulation provenance must stay visible');assert(!elements.number.textContent.includes('Pooled'));
-   for(let j=0;j<4;j++){const r=expected[j],values=elements.rows.children[j].children.map(x=>x.textContent);assert.equal(r.n,20);assert.deepEqual(values,[s.regime_names[r.regime],20,r.mean_gain.toFixed(4),r.mean_standard_error.toFixed(4),r.median_gain.toFixed(4),r.wins+' / 20','['+r.win_wilson95.map(x=>x.toFixed(3)).join(', ')+']',r.off_floor]);}simulationCases++;
+   for(let j=0;j<4;j++){const r=expected[j],values=elements.rows.children[j].children.map(x=>x.textContent);assert.equal(r.n,20);assert.deepEqual(values,[s.regime_names[r.regime],20,r.mean_gain.toFixed(4),r.mean_standard_error.toFixed(4),r.median_gain.toFixed(4),r.wins+' / 20','['+r.win_wilson95.map(x=>x.toFixed(3)).join(', ')+']',r.off_floor]);}
+   assert.equal(elements['refitted-floor'].hidden,false);const sensitivity=s.refitted_floor.filter(r=>r.model+'_'+r.gate===c);assert.equal(sensitivity.length,4);assert.equal(elements['floor-rows'].children.length,4);
+   for(let j=0;j<4;j++){const r=sensitivity[j];assert.deepEqual(elements['floor-rows'].children[j].children.map(x=>x.textContent),[s.regime_names[r.regime],r.original_mean_gain.toFixed(4),r.mean_gain.toFixed(4),r.wins+' / '+r.N]);}simulationCases++;
   }else{
-   assert.equal(elements.units.disabled,false);assert.equal(elements.rows.children.length,s.windows.length+1);const n=s.windows.reduce((a,w)=>a+w.n,0),sum=s.windows.reduce((a,w)=>a+w.values[c][m],0),v=unit==='per'?sum/n:sum;assert.equal(elements.rows.children.at(-1).children[2].textContent,(v>0?'+':'')+v.toFixed(unit==='per'?4:3));
+   assert.equal(elements['refitted-floor'].hidden,true);assert.equal(elements.units.disabled,false);assert.equal(elements.rows.children.length,s.windows.length+1);const n=s.windows.reduce((a,w)=>a+w.n,0),sum=s.windows.reduce((a,w)=>a+w.values[c][m],0),v=unit==='per'?sum/n:sum;assert.equal(elements.rows.children.at(-1).children[2].textContent,(v>0?'+':'')+v.toFixed(unit==='per'?4:3));
   }
   assert(!elements.number.textContent.includes('NaN'));cases++;
  }

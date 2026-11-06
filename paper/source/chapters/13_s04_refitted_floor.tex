@@ -1,0 +1,46 @@
+\subsubsection{A training-fitted uninhibited background}\label{sec:s04b-refitted}
+The fixed comparator cannot lower its immigrant rate when broad/long inhibition reduces the event count. A separate sensitivity now fits its background intercept on each of the 80 existing training histories, holding the trend, excitation, spatial law, mark law and realized history fixed. The saved inhibited fits and original gates are unchanged. This is an executed comparator control, not a joint nuisance refit of both arms.
+
+Writing $b=e^a$, precomputed event features $u_i,v_i$, background time integral $A$, fixed triggering exposure $H$ and common mark score $M$ give
+\[ L(b)=\sum_i\log(bu_i+v_i)-bA-H+M. \]
+This objective is concave in $b$. Endpoint derivatives or a bracketed derivative root select the global training optimum on the declared intercept box; that value is then frozen for test. The inherited box is $a\in[-12,0]$. All 480 phase--model checks against the historical floor scores pass. The protocol, executable scalar fit, per-history components and independent output review are supplied under \path{experiments/s04b_refitted_floor/} and \path{validation/live_results/methodological_20261106/}.
+
+\begin{table}[H]\centering\small
+\caption{S04B comparator sensitivity. Mean held-out gains in nats per history against the original fixed floor and the new training-fitted-intercept floor. Wins in the last column use the latter comparator, out of 20 histories per row. Original gates are not recomputed: a gated procedure returning the old fixed floor can win against the new floor without selecting inhibition.}\label{tab:s04b-refitted-floor}
+\begin{tabular}{@{}llrrr@{}}
+\toprule Regime & Saved procedure & Fixed floor & Fitted intercept & Wins\\\midrule
+S4 & LI & -3.9493 & -3.2102 & 6\\
+ & LI+ immigrant & -4.5674 & -3.8283 & 5\\
+ & LI+ immigrant gated & -1.3440 & -0.6049 & 13\\
+ & LI+ total & -21.5766 & -20.8374 & 5\\
+ & LI+ total gated & -1.0043 & -0.2651 & 13\\
+\addlinespace
+S5 & LI & 44.3122 & 1.0885 & 12\\
+ & LI+ immigrant & 48.3868 & 5.1631 & 19\\
+ & LI+ immigrant gated & 48.3868 & 5.1631 & 19\\
+ & LI+ total & 19.4993 & -23.7244 & 4\\
+ & LI+ total gated & 19.3802 & -23.8435 & 4\\
+\addlinespace
+S6 & LI & -1.7818 & -1.4757 & 7\\
+ & LI+ immigrant & -3.2420 & -2.9359 & 9\\
+ & LI+ immigrant gated & 0.0000 & 0.3061 & 15\\
+ & LI+ total & -14.5947 & -14.2887 & 10\\
+ & LI+ total gated & 0.0686 & 0.3747 & 15\\
+\addlinespace
+S7 & LI & 42.5503 & -0.9462 & 10\\
+ & LI+ immigrant & 49.2902 & 5.7937 & 18\\
+ & LI+ immigrant gated & 49.2902 & 5.7937 & 18\\
+ & LI+ total & 53.2332 & 9.7367 & 18\\
+ & LI+ total gated & 53.2332 & 9.7367 & 18\\
+\bottomrule\end{tabular}\end{table}
+
+\begin{table}[htbp]\centering\small
+\caption{Held-out change from the fixed to the training-fitted uninhibited floor. Means use the same histories as Table~\ref{tab:s04b-refitted-floor}; $C=-E$ is signed exposure and the mark contrast is zero.}\label{tab:s04b-floor-components}
+\begin{tabular}{@{}lrrr@{}}\toprule Regime & $\Delta P$ & $\Delta C$ & $\Delta$ joint\\\midrule
+S4 & -5.6558 & 4.9167 & -0.7392\\
+S5 & -24.4963 & 67.7200 & 43.2237\\
+S6 & 0.5534 & -0.8595 & -0.3061\\
+S7 & -21.8424 & 65.3389 & 43.4965\\
+\bottomrule\end{tabular}\end{table}
+
+The matched broad/long immigrant procedure retains a mean gain of 5.1631 nats and 19/20 wins; the matched broad/long total procedure retains 9.7367 nats and 18/20 wins. Thus most of the original large advantage was comparator-dependent, although a smaller mean advantage remains. The signed-exposure improvement and opposing point-logsum change in Table~\ref{tab:s04b-floor-components} quantify that effect. The narrow/short results retain negative raw means for the matched procedures. No observed-catalogue fit or inhibition search was repeated.

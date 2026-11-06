@@ -1,8 +1,8 @@
 {
   "title": "Understanding the earthquake research",
   "subtitle": "A plain language guide to the questions, findings and limits",
-  "edition": "Open research companion - provenance clarification, 6 November 2026",
-  "status": "This open research edition supplies original inputs and fitted states, completed numerical comparisons and their reproduction records. Study-level provenance distinguishes recovered original results from later recomputations. Unsupported F-continuation results and unexecuted prospective/horizon material remain withdrawn.",
+  "edition": "Open research companion - methodological revision, 6 November 2026",
+  "status": "This edition adds an executed background-rate control and audits the saved simulation histories, fitted parameters and mathematical assumptions. Original inputs, calculations and reproduction records remain available; unsupported historical results remain withdrawn.",
   "pages": [
     {
       "title": "The research in five minutes",
@@ -92,7 +92,7 @@
         },
         {
           "type": "note",
-          "text": "The manuscript now also fits a constant-background subfamily of its autonomous stability model. In the existing New Zealand folds, inhibition worsens prediction in the early and late periods and is switched off in the middle period. This directly connects the mathematical model to a fitted comparison."
+          "text": "A separately executed constant-background fit links the stability model to the data. It uses the same intensity family as an earlier sensitivity comparison, with a different fitting recipe. Inhibition loses in the early and late periods and is switched off in the middle. The theorem does not establish practical equilibration over the catalogue period."
         }
       ]
     },
@@ -192,11 +192,11 @@
     {
       "title": "What the controlled studies show",
       "kicker": "05  Experiments with known rules",
-      "source": "Completed controlled studies in chapters 7, 9 and 13, including the distinct matched-generator S04B extension.",
+      "source": "Chapters 5, 7, 9 and 13; S04B generation/parameter diagnostics and completed train-only intercept sensitivity.",
       "blocks": [
         {
           "type": "p",
-          "text": "A simulation creates a catalogue from specified rules. Researchers can then ask whether a fitting procedure notices an effect that was put there, or invents one when it was absent. The results below are historical experiments; their recovered histories and code support further numerical replay."
+          "text": "Simulations create catalogues from specified rules. The studies below include recovered historical experiments and a new comparison on their saved histories."
         },
         {
           "type": "h2",
@@ -204,7 +204,7 @@
         },
         {
           "type": "p",
-          "text": "The historical study compares supplied laws and estimated nuisance parameters on the same 1,000 no-inhibition histories and 150 alternative histories. Detection falls when background parameters are estimated in these procedures. Each procedure uses its own reference scores from the known generating law. The original fitted states and analysis records are now supplied."
+          "text": "The historical study compares supplied laws and estimated background parameters on 1,000 no-inhibition histories and 150 alternatives. Detection falls when the background must be estimated. Each procedure uses its own reference bank from the known generating law; this is not calibration for an unknown real-world law."
         },
         {
           "type": "h2",
@@ -212,7 +212,7 @@
         },
         {
           "type": "p",
-          "text": "The magnitude-history study uses 100 paired simulation units, each used at three levels of magnitude dependence. Correcting a mismatch in how magnitude affects triggering reduces the average apparent evidence relative to the mismatched candidate, but small positive fitted effects remain common. Thresholds estimated from the same control bank are descriptive checks, not an independent demonstration of a real-world false-alarm rate. Making that relationship match does not remove every difference between the simulator and fitted model."
+          "text": "The magnitude-history study uses 100 paired simulation units at three levels of magnitude dependence. Matching how magnitude affects triggering reduces apparent evidence for inhibition, but small positive fitted effects remain common. Same-bank thresholds are descriptive checks, not independent false-alarm validation."
         },
         {
           "type": "h2",
@@ -220,16 +220,20 @@
         },
         {
           "type": "p",
-          "text": "The larger local-inhibition study uses 80 histories across four settings. Original inhibition and magnitude-weighted background inhibition gain, on average, in the setting with broad, long-lasting inhibition. Suppressing both background and triggered activity has a negative mean gain there. Other settings retain substantial losses. In those original controls, penalties choose no inhibition throughout both null settings and the narrow, short-lived setting."
+          "text": "In the original 80-history local controls, background-only inhibition gains on average under broad, long-lasting generation; total attenuation loses. Penalties choose no inhibition throughout both null settings and the narrow/short setting. The shared background rate is fixed."
         },
         {
           "type": "callout",
           "title": "Which law generated those histories matters",
-          "text": "The original controls use equal suppressing weights. The separate matched-generator extension generates histories directly from the magnitude-weighted background-only and total-intensity laws. These remain fixed-backbone simulations, with separate results for each generating setting."
+          "text": "The matched extension generates magnitude-weighted background-only and total inhibition. In its narrow/short immigrant setting, 19 of 20 histories reject no events. A positive generating strength did not create an informative realized signal."
         },
         {
           "type": "p",
-          "text": "In the separate matched-law study, both matching procedures gain on every broad, long-lasting history. Narrow, short-lived inhibition remains difficult: both matching unpenalized procedures lose on average. Their penalties usually select no inhibition. A small positive gated mean under the narrow total-intensity law comes from a single winning history, with all other histories tied at no inhibition; it is not reliable recovery. Losses remain included. Histories are paired across procedures; sample error bars are descriptive and win intervals do not establish real-world detection power."
+          "text": "A new control fits the uninhibited background rate on training data for all 80 matched-law histories. Matched broad/long mean gains fall from 48.39 to 5.16 nats for background-only inhibition and from 53.23 to 9.74 for total inhibition. Wins fall from 20/20 to 19/20 and 18/20. The original inhibited fits and gates stay unchanged. Gains survive this intercept-only check but depend strongly on the comparator."
+        },
+        {
+          "type": "note",
+          "text": "Parameter summaries now expose boundary selections. Narrow/short raw losses remain. These controls do not establish parameter recovery or compare jointly fitted nuisance parameters; ideal null score moments can diverge."
         }
       ]
     },

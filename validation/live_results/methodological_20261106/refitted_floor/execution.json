@@ -1,0 +1,86 @@
+{
+  "schema": "bounded_scalar_execution_v1",
+  "started_at_utc": "2026-11-06T11:34:02.604733+00:00",
+  "passed": true,
+  "limits": {
+    "total_wall_seconds": 7200,
+    "pilot_wall_seconds": 600,
+    "sampled_process_tree_rss_bytes": 2147483648,
+    "poll_seconds": 0.1
+  },
+  "memory_scope": "RSS sampled across owned process tree every0.1s; threshold triggers termination. Sampling does not certify an instantaneous hard OS limit.",
+  "phases": [
+    {
+      "name": "pilot",
+      "command": [
+        "C:\\Users\\Drefetr\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "experiments/s04b_refitted_floor/run.py",
+        "--radial",
+        "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\methodological_review_20261106T111000Z\\checkout\\build\\refitted_floor_native\\radial.dll",
+        "--build-receipt",
+        "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\methodological_review_20261106T111000Z\\checkout\\build\\refitted_floor_native\\build_receipt.json",
+        "--acknowledge-reviewed-numerical-admission",
+        "TRAIN_ONLY_FIXED_ROSTER",
+        "--phase",
+        "pilot",
+        "--output",
+        "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\methodological_review_20261106T111000Z\\numerical_continuation\\pilot"
+      ],
+      "pid": 24432,
+      "returncode": 0,
+      "wall_seconds": 1.8557939999736845,
+      "sampled_peak_tree_rss": 78950400,
+      "owned_process_identities": {
+        "24432": 1793964842.611962
+      },
+      "live_owned_processes_at_return": [],
+      "stop_reason": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "full",
+      "command": [
+        "C:\\Users\\Drefetr\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "experiments/s04b_refitted_floor/run.py",
+        "--radial",
+        "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\methodological_review_20261106T111000Z\\checkout\\build\\refitted_floor_native\\radial.dll",
+        "--build-receipt",
+        "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\methodological_review_20261106T111000Z\\checkout\\build\\refitted_floor_native\\build_receipt.json",
+        "--acknowledge-reviewed-numerical-admission",
+        "TRAIN_ONLY_FIXED_ROSTER",
+        "--phase",
+        "full",
+        "--pilot",
+        "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\methodological_review_20261106T111000Z\\numerical_continuation\\pilot",
+        "--output",
+        "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\methodological_review_20261106T111000Z\\numerical_continuation\\full"
+      ],
+      "pid": 1240,
+      "returncode": 0,
+      "wall_seconds": 6.8861282002180815,
+      "sampled_peak_tree_rss": 80457728,
+      "owned_process_identities": {
+        "1240": 1793964844.479922
+      },
+      "live_owned_processes_at_return": [],
+      "stop_reason": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "source_review_sha256": "24b930999c0780cf2912c13bbe2538cc04225d39bc01b482378d5e0a5c426cb9",
+  "protocol_sha256": "a1794b96655812cc83291f56f6f3fe58a51baca98d96aa2de089ebcc8c9d7a29",
+  "retained_controls_and_build": {
+    "execution_sha256": "7af485f6d7536646a10df7e308b8346a411a5f68f19abf3202696694bb07c73e",
+    "recovery_sha256": "ef1b30759d8af28d8f364e3942ef425ca36e41b523fe420d5e9765bf2209f439",
+    "fixtures": 19,
+    "native_compile_exit_code": 0,
+    "scope": "Prior attempt stopped only for owned compiler-helper quiescence; no history scored."
+  },
+  "full_result_sha256": "127e281a63279e1cdaed94f7d96f1f320991f08cb690e1f3ce1b9c6e03593bd0",
+  "pilot_result_sha256": "93ee3e17b7c5ef3d7c86a9c0febd691e5704e228cd9feb1ba9124bbee2b69968",
+  "completed_unique_scalar_fits": 80,
+  "wall_seconds": 8.768431300064549,
+  "finished_at_utc": "2026-11-06T11:34:11.373163+00:00"
+}

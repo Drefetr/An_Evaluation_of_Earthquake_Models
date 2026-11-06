@@ -76,6 +76,18 @@ For the finite mixture \(h_e(u)=\sum_j w_j(c_j\tau_e)^{-1}\exp\{-u/(c_j\tau_e)\}
 
 Several limitations are part of the result. If \(\eta=0\), the stress kernel is unidentified; if \(n=0\), the triggering scales are unidentified, even though the background may be known. The proof uses arbitrarily large marks across the full probability law. Bounded marks do not inherit this positive-identification proof: the limiting operation \(q\to\infty\) is unavailable, so a separate argument would be needed. Shared triggering may identify a trigger scale when \(\eta=0\), but it does not validate equality of the latent physical loading laws; the exact nonidentification argument remains applicable to the latent target. Unknown state-dependent mark laws, unmatched histories, random prehistory, and kernel behavior beyond the observation window are outside this restricted statement. Near-zero \(\eta\), structural identification can coexist with very weak finite-horizon separation.
 
+\paragraph{Frequency of the identifying histories.}
+The positive support used in the proof does not imply that a finite catalogue contains useful instances of these histories. For a first event at \(s\) with mark \(q\), the conditional probability of no further event before \(s+u\) is
+\[
+S_q(s,u)=
+\exp\!\left\{-\int_0^u B(s+v)e^{-\eta g(q)\Phi_s(v)}\,\dif v
+             -n\kappa(q)\int_0^u h_e(v)\,\dif v\right\}.
+\]
+It is positive for every finite \(q\), but for \(n>0\) and fixed \(u>0\),
+\(S_q(s,u)\leq \exp\{-a_u\kappa(q)\}\), where
+\(a_u=n\int_0^u h_e(v)\,\dif v>0\).
+With exponential productivity this is exponential decay in an exponentially growing function of the mark. The full-law argument remains valid because each finite-mark history has positive support before taking the limit. It supplies no lower bound on the frequency of informative histories, estimation rate, or finite-catalogue uncertainty. Constant productivity, including the productivity-matched candidate in Section~\ref{sec:s02-completed}, does not satisfy the unbounded-productivity assumption; this proof does not settle its identification.
+
 \section{Instantaneous and finite-horizon visibility}
 
 To quantify separation without invoking asymptotics, compare the diagnostic intensity \(\lambda_\eta\) with the noninhibited intensity \(\lambda_0=B+nH_e\) on the same realized history. Define

@@ -1,9 +1,13 @@
 # Exact autonomous subfamily and theorem gate
 
-This is a proposed new comparison, not a reinterpretation of previous fitted
-results. The relevant source is the **finite-mode stability theorem** in
-`paper/source/chapters/03_stability.tex`, using the physical model in Chapter 2.
-No empirical fit or score is supplied by this note.
+This note maps the executed comparison to the **finite-mode stability theorem**
+in `paper/source/chapters/03_stability.tex`, using the physical model in Chapter 2.
+The conditional intensity is the same raw constant-background family used in
+Chapter 9's sensitivity study. The new execution uses a different training
+magnitude estimator and optimizer recipe; it is not a new intensity family or
+a replay of the earlier fitted procedure. The [README](README.md) links the
+completed outputs and both protocols. This explanatory note is current; the
+executed `protocol.json` retains its unchanged pre-execution bytes.
 
 Let positive weights sum to one and let all finitely many rates be positive.
 Write `Phi(t)=sum_j w_j exp(-theta_j t)` and `h=-Phi'`. Set constant loading
@@ -29,14 +33,16 @@ Thus the diagnostic law with **constant** background is exactly this
 autonomous law: physical `g=eta*g_diag`, physical `kappa=n*kappa_diag`.
 The current event never enters its own intensity. The implemented mixture is
 the existing, pinned 195-mode shared kernel, not the exact infinite mixture.
-For general constant rho, equilibrium stress initialization
+For general constant rho, event-free equilibrium stress initialization
 `Z_j(0)=rho/theta_j` instead yields background `exp(a+bar_x)`, where
 `bar_x=sum_j w_j rho/theta_j`. That parameterization cannot identify rho and a
 separately. Canonical rho=0 removes this redundancy. Stress ODE equilibrium and
 zero excitation are **not a draw from the stationary law** of the event process.
 
-Arbitrary finite initial stress modes yield a log baseline equal to a constant
-plus decaying exponentials. They do not license the earlier unrestricted
+Equal non-equilibrium initial stress modes `Z_j(0)=X0` instead give the
+deterministic stress `X0*Phi(t)+rho*integral_0^t Phi(u)du`. Arbitrary finite
+initial stress modes yield a log baseline equal to a constant plus decaying
+exponentials. They do not license the earlier unrestricted
 affine time trend. For nonzero affine slope its infinite-time baseline limit
 is zero or infinity, whereas an admissible finite autonomous initialization
 has a finite positive limit.
@@ -47,7 +53,7 @@ have inverse-day units; kappa is dimensionless; rho has stress/day units.
 
 ## Assumptions of the invoked theorem
 
-| Requirement | Check for the proposed subfamily |
+| Requirement | Check for the executed subfamily |
 |---|---|
 | Finitely many positive rates and normalized positive weights | Exact pinned finite mixture; tiny tests check these properties |
 | Constant rho>=0, finite admissible initial modes | rho=0, Z=U=0; afterwards Z<=0 and U>=0 |
@@ -67,7 +73,7 @@ E[kappa] = n.
 If beta<=gamma and eta>0, the first stress moment is infinite. This is a real
 failure of the theorem assumptions, despite finite values at every finite
 observed mark. For example beta=gamma/2, eta=1, n=.5 fails this gate while
-remaining subcritical in excitation. The proposed comparison must retain an
+remaining subcritical in excitation. The declared procedure must retain an
 ineligible outcome rather than change the mark law to obtain a theorem.
 For eta=0 the release is identically zero even when the unscaled stress mark
 has infinite mean; there is no multiplication of zero by infinity.
@@ -85,10 +91,18 @@ Under the model assumptions the finite-mode theorem provides construction,
 an invariant law with its stated first Lyapunov moment, uniqueness, and weighted
 Wasserstein convergence. It does not verify the mark law in a catalogue,
 identify physical stress, supply a useful numerical mixing time, establish a
-Wilks law, or extend to the nonlinear exact-memory limit. Constants can
-deteriorate with the very small minimum finite-mode rate.
+Wilks law, or extend to the nonlinear exact-memory limit. For the implemented mixture theta_min=exp(-38.8) per day, so the proof's
+requirement t0>=log(4)/theta_min already exceeds 9.8e16 days. Its drift/coupling
+certificate therefore gives no useful mixing guarantee on the catalogue
+horizon. Exactly 61 of the 195 modes decay less than 1% over 24,394 days;
+their normalized survival-kernel weight sums to only 0.00042934294645.
+That small weight concerns Phi, not arbitrary initialized states or total
+observed stress. Neither the mode count nor the worst-case proof bound is an
+estimate of actual process mixing. The [portable scalar diagnostic](../methodological_audit/stability.py)
+reproduces these quantities and the saved-procedure comparison without model
+evaluations.
 
-## Proposed empirical question
+## Executed empirical question
 
 Does this deliberately restricted autonomous statistical law improve held-out
 occurrence log score over its matched eta=0 floor on the previously inspected
@@ -98,4 +112,7 @@ is a common training-only plug-in estimate, not a joint mark-intensity fit.
 The comparison concerns these fitted procedures, retains negative gains, and
 does not test physical loading, causality, prospective validity or a separate
 memory alternative. The exact starts, bounds, solver recovery and numerical
-gates are frozen in `protocol.json`; execution requires independent review.
+gates are frozen in `protocol.json`; the README links the completed execution
+and its internal output review. The earlier conditional-bin beta, different
+starts and solver settings are retained alongside this protocol. No
+beta-only attribution of the difference between their scores is established.

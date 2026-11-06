@@ -1,0 +1,209 @@
+{
+  "schema": "bounded_repository_checks_v2",
+  "status": "passed",
+  "baseline_commit": "8b42ad4c20da2c4401a57fd5c49b2dcf91bcc5c4",
+  "checked_at_utc": "2026-11-06T08:45:43.653868+00:00",
+  "snapshot": "Current payload bound by MANIFEST.json; preceding complete checks retained exactly.",
+  "environment": {
+    "python": "3.13.4",
+    "native": "Windows x64/MSVC",
+    "cuda": "Iteration-27 tests executed on installed CUDA device; portable CPU CI has a distinct scope and three native skips.",
+    "dependency_install": "Existing host environment; fresh dependency installation not claimed."
+  },
+  "checks": {
+    "main_unit_and_workflow_suite": {
+      "passed": true,
+      "tests": 176,
+      "elapsed_seconds": 118.622,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "command": "python -B -m unittest discover -s tests -v",
+      "execution_log_sha256": "93df00276864052e3f3c8c1be25413b9f2f868827fccf23aa9f16fee96cb2ba9"
+    },
+    "regional_input_controls_and_guard_suite": {
+      "passed": true,
+      "tests": 44,
+      "elapsed_seconds": 11.032,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "command": "python -B -m unittest discover -s reproduction/regional/tests -v",
+      "execution_log_sha256": "9071251954a7f86da8b1cdf19d6ce192c2764d566df3d5465df2f90550dbede3"
+    },
+    "s02_input_control_suite": {
+      "passed": true,
+      "tests": 6,
+      "elapsed_seconds": 0.017,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "command": "python -B -m unittest discover -s reproduction/s02 -p test_inputs.py -v",
+      "execution_log_sha256": "95871a5c11c291c1147ba42afc1a1222bb5978d331f56dd95f092e14b5f5c406"
+    },
+    "stage2_with_native_fixtures": {
+      "passed": true,
+      "tests": 8,
+      "elapsed_seconds": 6.444,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "command": "python -B -m unittest discover -s engine/stage2_followup/tests -v",
+      "execution_log_sha256": "8fd4de3e7340484f9b81d05fff98b2d615eb9bb3be00b7f6c4c1938fc32f8688",
+      "environment": {
+        "INHIBITORY_TEST_NATIVE_ROOT": "Existing three-group native build identified by native_builds receipts."
+      }
+    },
+    "historical_iteration27_suite": {
+      "passed": true,
+      "tests": 20,
+      "elapsed_seconds": 22.554,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "command": "python -B -m unittest discover -s engine/iteration_27/tests -v",
+      "execution_log_sha256": "9139f29180d4155ef64aa9eaa12d5dc5d44181b597ebac5907b61a98539e38c7"
+    },
+    "claim_reconciliation": {
+      "passed": true,
+      "counts": {
+        "withdrawn_historical_records": 503,
+        "json_numeric_verified": 23667,
+        "json_pointer_verified": 23934,
+        "documentary_numeric_verified": 2430,
+        "documentary_metadata_verified": 679,
+        "claims": 26364,
+        "documentary_metadata": 679,
+        "total_records": 27043,
+        "literal_manuscript_display_records": 10800,
+        "missing_declared_manuscript_displays": 0,
+        "json_nonnumeric_verified": 267,
+        "distinct_authorities": 133
+      },
+      "receipt": "validation/numeric_reconciliation_receipt.json",
+      "read_only_execution_log_sha256": "71b58fefa2ac7e9b5e519ba680ee90b6d2c95c906f4b998a4afa32c10c7afebb"
+    },
+    "mathematics": {
+      "passed": true,
+      "command": "python -B scripts/check_mathematics.py --output build/mathematics.json",
+      "output": "validation/mathematics.json",
+      "execution_log_sha256": "0257db75bcb53fd54f08f3db810239d42e180e590afc61c1e48d3491fab6adeb"
+    },
+    "site_interactions": {
+      "passed": true,
+      "selector_combinations": 70,
+      "simulation_selector_cases": 10,
+      "simulation_summary_rows": 20,
+      "independent_histories_per_row": 20,
+      "no_simulation_pooling": true,
+      "no_simulation_target_conversion": true,
+      "observed_S04_targets": 315
+    },
+    "monograph_build": {
+      "pdf_sha256": "263ed37fa9d8a9486ffb741fcbac6e38c62745ced55767d43c62f633427df8a0",
+      "pages": 220,
+      "duplicate_labels": [],
+      "undefined_cross_references": [],
+      "missing_bibliography_keys": [],
+      "missing_figures": [],
+      "overfull_boxes": 0,
+      "undefined_warnings": 0,
+      "missing_glyph_warnings": 0,
+      "underfull_boxes": 21,
+      "replacement_characters": 0,
+      "edge_text_blocks": [],
+      "render_scale": 1.7,
+      "scope": "production checks; page images require visual review",
+      "overfull_vertical_boxes": 0,
+      "passed": true
+    },
+    "current_production_review": {
+      "passed": true,
+      "path": "validation/reviews/REASSESSMENT_CLARIFICATIONS_20261106.json",
+      "sha256": "981b0c6c879ae9bb1dfe9aaadaa510b7684283d97e9ddb256bbacd4f719622d8"
+    },
+    "reassessment_custody": {
+      "passed": true,
+      "path": "validation/reproductions/reassessment_clarifications_20261106.json",
+      "sha256": "2b44a6f56a430029adc89e8d20fcddcc6a0dc19aa4794102b6884abd6e4348f5"
+    },
+    "scientific_execution_and_input_records": {
+      "scope": "Historical records retain their own original execution, replay or input-review scope. No research fitting, simulation or score campaign ran in this editorial follow-up.",
+      "records": {
+        "autonomous_completed_20261105.json": "8945962dfa28e4a916b9e1c105f1fb821ea24667ac70dadb7a8c923e73498d12",
+        "completion_custody_20261105.json": "a83030d9f1ff4e759c68a69028558f0010e23ee71a706427e158ebdbe041db6a",
+        "evidence_closure_20261105.json": "46fcf2cb4c0a5cbf9031325a4963c5929b7d3f7633c4c0958eb4f017088e1df5",
+        "full84_input_materialization_20261105.json": "1541d989fa2432b54545ffa5d2965f956f2a71c0dfcf27126eb6896141716917",
+        "jma_replay_20261105.json": "f03a4e00016c13c66b968038f1b0095d44fd442797f9f299ba19a89470d0bcc3",
+        "nzca_replay_20261105.json": "17f20018761b2a3448b3ab74ed7269299dcb93f78a14cb384483aed7d34cc3bb",
+        "observed_refit_comparison_20261105.json": "35e806dbc866e5c9b716260b905b610005e69be6bdf8896f5d07ff2c30fb306a",
+        "oracle_calibration_20261105.json": "8d86134a161776737fac2ed00f7c7e4383864c3e0739ce31c9cc96e2677121f9",
+        "oracle_full_execution_20261105.json": "e6e6f7167a019ccb8b1fcace833ad92f8a2501835d73ad0933af09ece53fc3f6",
+        "oracle_full_result_20261105.json": "6812a98886e3070ba217e25d4f3f2570cf148811800fbab197d0241619ffb1d5",
+        "oracle_full_review_20261105.json": "dbdb07e0b9a3a70d2e283dd75120f0c957d996417cf83fdda05bbdfa6ef4f986",
+        "original_regional_completion_audit_20261105.json": "f9f2bb104445cbfe9ece067f3f0af481e5173097d29b3a7600553dae8f83689e",
+        "payload_audit_20261105.json": "26519e5afbc3111ab6ad8c5dcbd4ef4912d9bd6807a66b9ee42fa737e518bfab",
+        "reassessment_clarifications_20261106.json": "2b44a6f56a430029adc89e8d20fcddcc6a0dc19aa4794102b6884abd6e4348f5",
+        "regional_inputs_20261105.json": "dad586ed91935d2253bd486bfaf0bd1da5cb8e46e02c87ef053079a3df4976de",
+        "s02_primary_ca_independent_review_20261105.json": "ae525f0eaaeddf241859f15420012868c75b108e3e5e040751042140ebb15377",
+        "s04b_completed_independent_review_20261105.json": "ea334096cee1e61411144253aa17bf7e6fe785fb432c527131a9c560e7f34d2c",
+        "s04b_completed_replay_20261105.json": "15d8884988ae84fd4f7a671778f10bed83390de3626fe634ea189d50eb9292a9",
+        "s04b_completed_scores_20261105.json": "e12a982530e3449100087951a6e9b29f96538e58983bcd2415e981007156a3a3",
+        "s04b_completed_summary_20261105.json": "bb01209821a14ba332f6a630d7a080d16e88cf4f2bf511488c7c81cc8dc9aae5",
+        "s04b_sequential_pilot_execution.json": "7fb43c44c04a7806230ae4f8123dc8775be55be5bbf0b1b3ee9a6c15df5ad542",
+        "s04b_sequential_pilot_result.json": "2e62fba7e36f346b8b78fd1baff4d3e62aee55ecc072eb36ae424be3edf716d5",
+        "s05_build_failure_20261105.json": "ba4de8031103cd3ba80d09230dc7ab38419e2a8b17559e93d9452c23881915b2",
+        "s05_execution_20261105.json": "e367037b7c01e51bd3cf63364a9cade0604c94840308f6cd86af86743a514bd8",
+        "s05_guard_grace_review_20261105.json": "0d87304150edba116d2d0b05be7892cc10e92c3383db76f1fac405a5d4324003",
+        "s05_source_review_20261105.json": "4da0cd34ab648b56399221707d8ff863d21cf4d2e74f0dce6f6ed2d2806497fc",
+        "s06_saved_score_recovery_20261105.json": "81e0f8e902a8038479603d0f0a418efecd9fe8eee67672e84843eb141871c8df",
+        "S4_narrow_short_imm_seed410401.json": "86e5ba2faa6c8feff1b5c8851574dd5fc69820fc9bed007b31d6e3b99052def4",
+        "S5_broad_long_imm_seed410501.json": "28a99fbe09a90c524664a9690b40052b2f0675181f99b912d394e240aa136f26",
+        "S6_narrow_short_total_seed410601.json": "f2a0003b057defcf7dfb3c1072715fe2746758f72b7df50e1860f56aea21c1ae",
+        "S7_broad_long_total_seed410701.json": "7cbe6bf61952c8c272e28e6cec812d7fed56c64fb3047c18500a4e2a5e7f1057",
+        "scientific_integration_review_20261105.json": "b32211bbea326f9b2d391ae63448f3ed6cf6b5dfd6910857423ca07f232dc57d"
+      }
+    },
+    "diff_whitespace": {
+      "passed": true,
+      "command": "git -c core.whitespace=cr-at-eol diff --cached --check",
+      "scope": "Required final staged gate before publication."
+    },
+    "test_total": 254,
+    "native_builds": {
+      "passed": true,
+      "compiler": "MSVC",
+      "receipts": {
+        "li": "82f2febe413cc649036187cc5fd07be6dcb7fd74607ba9a2d5bedf4a3e218856",
+        "temporal": "ba932620f8f68b8a831ee2b0289841a71ab16356b1abeb04cc397f486196a77f",
+        "s06": "5e2652c38ed9d0d4474e269904f9d75f8e2bd8ac2503f1c71e645acb6cc2347d"
+      },
+      "scope": "Existing byte-pinned builds from unchanged engine sources used by current fixtures; no recompilation claimed."
+    },
+    "repository_payload": {
+      "passed": true,
+      "checked_files": 8471,
+      "errors": 0,
+      "commands": [
+        "python -B scripts/verify_repository.py --write-manifest",
+        "python -B scripts/verify_repository.py"
+      ],
+      "scope": "Immediately following manifest refresh and ordinary verification are required publication gates."
+    },
+    "final_review_link_binding": {
+      "passed": true,
+      "path": "validation/README.md",
+      "sha256": "69b0de74f0b8a5f4526e7b3482d81d80f279639db3fe0dbfef1235bf65ec89fd",
+      "independent_review_sha256": "bb11b847a4d2aa241eacbf5d261fe54ab85423fb98cf6fbdeb6096d41e11b9a5",
+      "scope": "Only publication metadata/review bindings changed after the full test run; manuscript, guide, site, scientific sources and tests are byte-identical."
+    }
+  },
+  "scope": "Bounded tests, document production and enumerated custody. The 254 tests do not constitute 254 scientific model experiments.",
+  "historical_checks": {
+    "path": "validation/checks_before_reassessment_20261106.json",
+    "sha256": "194c6d7f678574e6fbbbcfaaffcceef086c8ae1db177ebb159f7c9c43e575c12",
+    "source_commit": "8b42ad4c20da2c4401a57fd5c49b2dcf91bcc5c4",
+    "source_path": "validation/checks.json",
+    "scope": "Exact preceding edition check record, retaining its historical chain."
+  }
+}

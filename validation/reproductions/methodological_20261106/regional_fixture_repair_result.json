@@ -1,0 +1,62 @@
+{
+  "schema": "regional_grace_fixture_repair_v1",
+  "task_id": "regional_fixture_repair",
+  "attempt_id": "a695a762-8830-4447-90f6-25cbd00e64f5",
+  "passed": true,
+  "status": "completed",
+  "changed_repository_files": {
+    "reproduction/regional/tests/test_replay_guard.py": {
+      "before_sha256": "5052290b06e53be0327689a8574f05ff9c82f701fcb4b99f94c488a5a0b8f343",
+      "after_sha256": "90efba40d362b30d8728ad2b9b6e6ff3d53b4c6c6af6558dfdf262b86a8ccbac"
+    }
+  },
+  "unchanged_production_guard_sha256": "590a0cb432e1b6edb17793d28c476f185b427993beb74f489d5521c91a149ca9",
+  "failure_diagnosis": [
+    "Identity and lease fault injectors repolled the actual root after the supervisor had observed it alive; injections could occur before grace began.",
+    "Host scheduling could consume the .65-second wall budget before normal root exit or the five-second budget before the intended three-second grace ended."
+  ],
+  "repair": [
+    "Seven grace tests now use explicit simulated PID/create-time identities, root/helper lifetimes and a virtual monotonic clock.",
+    "All termination, grace, cap, sampling, identity and cleanup decisions still run through unchanged production supervise().",
+    "Fault injection keys off the last supervisor-observed root poll, retaining the existing memory-fix semantics.",
+    "Existing real-process tests and all22 test names/count are unchanged; no wall cap or scientific tolerance increased."
+  ],
+  "verification": {
+    "focused_grace_tests": 7,
+    "guard_file_tests": 22,
+    "failures": 0,
+    "skips": 0,
+    "guard_file_exit_code": 0,
+    "guard_file_elapsed_seconds": 2.155749399913475,
+    "other_test_classes_byte_unchanged": true,
+    "full_regional_suite_rerun_by_this_task": false,
+    "scientific_calls": 0
+  },
+  "evidence": {
+    "original_test_replay_guard.py": {
+      "sha256": "5052290b06e53be0327689a8574f05ff9c82f701fcb4b99f94c488a5a0b8f343",
+      "bytes": 12469
+    },
+    "before_pins.json": {
+      "sha256": "7cae2cf8f75a580872bebd44f9940fe1d6a6aae8126c3cc581676d0994c347d6",
+      "bytes": 238
+    },
+    "fixture.diff": {
+      "sha256": "6ddd9b9eaa011007a3245981e821b879f0a4a46122b305ca5e6671a59dc79f1b",
+      "bytes": 10572
+    },
+    "grace_focused.log": {
+      "sha256": "01c542a41eb5ac91061c69dea48228f2775df5f81f272b257ac94d433f88ae00",
+      "bytes": 2946
+    },
+    "guard_focused.log": {
+      "sha256": "6e03dec65ae2c0066f97583a5677c7a879a0fd3cda1a6dea258eea1a1e425c03",
+      "bytes": 3378
+    },
+    "focused_execution.json": {
+      "sha256": "4dc9de98109e3c84d1805cd6358ba780cf3b89323ebfa22c8eaf07d565bf8c5c",
+      "bytes": 390
+    }
+  },
+  "process_scope": "Focused test runner exited0; all real-process fixture checks reported cleanup success. Deterministic grace fixtures launch no processes. No asynchronous task launched."
+}

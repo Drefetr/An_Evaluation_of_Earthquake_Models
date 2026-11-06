@@ -74,7 +74,7 @@ Evidence: results/\allowbreak{}\allowbreak{}analysis/summary.json; methods/\allo
 
 \subsection{C1: complete audited comparisons}
 
-All three folds, four models (12 case fits), and 96 prescribed starts are complete. The same 612 held-out targets are scored once per model. The score contrasts are descriptive, without confidence intervals.
+All three folds, four models (12 case fits), and 96 prescribed starts are complete. The same 612 held-out targets are scored once per model. The interpretation in Section~\ref{sec:empirical-interpretation} applies.
 
 \begingroup\scriptsize\setlength{\tabcolsep}{2pt}\renewcommand{\arraystretch}{1.18}
 \begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.1251\textwidth}>{\raggedright\arraybackslash}p{0.1251\textwidth}>{\raggedright\arraybackslash}p{0.1251\textwidth}>{\raggedright\arraybackslash}p{0.1251\textwidth}>{\raggedright\arraybackslash}p{0.1251\textwidth}>{\raggedright\arraybackslash}p{0.1251\textwidth}>{\raggedright\arraybackslash}p{0.1251\textwidth}@{}}
@@ -103,7 +103,7 @@ K=3 fixed latitude zones, raw local stress, fixed ML excitation and r=.7, omega=
 
 The C1 model does not define within-zone cell probabilities, so cell event crosswalks have no invented cell compensators. Full compensator differences are reported per zone. Historical Iteration28 cell event penalties and recipe differences are retained separately in historical\_\allowbreak{}reconciliation.json.
 
-All comparisons are retrospective on previously examined chronological windows. No physical causality, event-iid confidence interval, Wilks boundary test, or global optimum guarantee is claimed. No follow-up model/kernel/productivity search or other stage was run.
+All comparisons are retrospective on previously examined chronological windows. The common inferential and optimization boundaries in Section~\ref{sec:empirical-interpretation} apply. No follow-up model/kernel/productivity search or other stage was run.
 
 \section{W: conserved cross-zone redistribution}
 
@@ -155,7 +155,7 @@ Evidence: results/\allowbreak{}\allowbreak{}W/analysis/\allowbreak{}\allowbreak{
 
 \subsection{W: complete audited comparisons}
 
-All declared procedures and starts resolved. Source and audit bind this report to the frozen protocol. The score contrasts are descriptive, without confidence intervals.
+All declared procedures and starts resolved. Source and audit bind this report to the frozen protocol. The interpretation in Section~\ref{sec:empirical-interpretation} applies.
 
 \begingroup\scriptsize\setlength{\tabcolsep}{2pt}\renewcommand{\arraystretch}{1.18}
 \begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.1251\textwidth}>{\raggedright\arraybackslash}p{0.1251\textwidth}>{\raggedright\arraybackslash}p{0.1251\textwidth}>{\raggedright\arraybackslash}p{0.1251\textwidth}>{\raggedright\arraybackslash}p{0.1251\textwidth}>{\raggedright\arraybackslash}p{0.1251\textwidth}>{\raggedright\arraybackslash}p{0.1251\textwidth}@{}}
@@ -207,7 +207,7 @@ Scope: fixed ML/r=.7, nine categorical cells, the predeclared four-scale grid an
 
 \subsection{D: complete audited comparisons}
 
-All declared procedures and starts resolved. Source and audit bind this report to the frozen protocol. The score contrasts are descriptive, without confidence intervals.
+All declared procedures and starts resolved. Source and audit bind this report to the frozen protocol. The interpretation in Section~\ref{sec:empirical-interpretation} applies.
 
 \begingroup\scriptsize\setlength{\tabcolsep}{2pt}\renewcommand{\arraystretch}{1.18}
 \begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.1251\textwidth}>{\raggedright\arraybackslash}p{0.1251\textwidth}>{\raggedright\arraybackslash}p{0.1251\textwidth}>{\raggedright\arraybackslash}p{0.1251\textwidth}>{\raggedright\arraybackslash}p{0.1251\textwidth}>{\raggedright\arraybackslash}p{0.1251\textwidth}>{\raggedright\arraybackslash}p{0.1251\textwidth}@{}}
@@ -353,11 +353,11 @@ Exact score and boundary tables are in summary.json, with the terminal independe
 
 A matched comparison of twelve earthquake forecasting models finds positive predictive evidence from continuous event locations and, within that representation, Omori temporal decay. The experiment reuses 612 historical targets across three chronological windows. A training-only kernel-density background reduces but does not remove the continuous-location advantage over a cell approximation: gains remain 2.326-2.369 nats per event across three temporal families. With that stronger background and continuous locations, Omori improves on fixed-scale Mittag-Leffler (ML) triggering by 15.474 joint-score nats, including 10.368 timing nats, with both components positive in every window. The fully combined procedure improves aggregate timing and location scores over its current matched coarse comparator; location prediction accounts for most of the gain. Negative temporal contrasts and losing 1-2 km sensitivity fits limit the interpretation. These are retrospective fitted-procedure comparisons, not independent confirmation, identification of physical triggering, or evidence for inhibition.
 
-\section{What this update changes}
+\section{Relation to the temporal and mark comparisons}
 
-Addendum II reported negative exploratory results from shared-kernel magnitude-class history and free productivity estimation. The present chapter concerns a different question: whether temporal decay and finer spatial representation improve forecasts after a more flexible background geography is supplied. It does not reverse Addendum II's matched results or the original manuscript's restricted theoretical and inhibition conclusions. The withdrawn background-nuisance continuation remains a separate historical study.
+Chapter~\ref{ch:temporal-extensions} reports negative exploratory results from shared-kernel magnitude-class history and free productivity estimation. This chapter asks whether temporal decay and finer spatial representation improve forecasts after a more flexible background geography is supplied. These comparisons retain the earlier matched results and restricted theoretical conclusions. The withdrawn background-nuisance continuation remains a separate historical study.
 
-The original discussion proposed that a spatial conditional intensity should be examined with common observations, proper compensators and serious temporal benchmarks. Subsequent research explored those directions. This update reports the latest jointly fitted temporal-spatial/background experiment, rather than attempting to concatenate gains from separate historical runs. Its key contribution is a controlled comparison showing that the location improvement persists under a stronger background, while the temporal benefit depends on the spatial representation and comparator.
+The original discussion proposed that a spatial conditional intensity should be examined with common observations, proper compensators and serious temporal benchmarks. Subsequent research explored those directions. This chapter reports the jointly fitted temporal-spatial/background experiment, rather than attempting to concatenate gains from separate historical runs. Its key contribution is a controlled comparison showing that the location improvement persists under a stronger background, while the temporal benefit depends on the spatial representation and comparator.
 
 The Hawkes/ETAS and fractional-triggering literature already cited in the manuscript bibliography supplies the modelling context. No novelty or reproduction claim for those model families is made here.
 

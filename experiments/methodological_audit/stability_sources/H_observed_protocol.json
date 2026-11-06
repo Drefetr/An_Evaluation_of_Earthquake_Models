@@ -1,0 +1,448 @@
+{
+  "schema_version": 1,
+  "status": "frozen",
+  "question": "Does a fitted history-dependent excitatory extension improve matched retrospective prediction compared with the existing excitatory and inhibitory candidate equations?",
+  "scientific_scope": "One low-dimensional two-class multitype excitatory family with shared finite Mittag-Leffler mixture kernel and retained continuous magnitude productivity. Not the full authors MDFHP fit and not a combined inhibitory model.",
+  "data": {
+    "catalogue": "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\magnitude_prediction_20261023T222049Z\\inputs\\catalogue.csv",
+    "sha256": "feacccb7581d1c4c33f88874cd6b198c41639da6930a7fc35e46f910a594fb3e",
+    "bytes": 109747,
+    "events": 913,
+    "minimum_magnitude": 5.0,
+    "excess": "M-5",
+    "horizon_days": 24394.0,
+    "time_coordinate": "days since1960-01-01UTC; x=2t/24394-1",
+    "raw_bytes_immutable": true,
+    "raw_data_and_caches_external_delegation": false,
+    "history": "all observed parents before predictiontime retained, including pretraininghistory",
+    "test_prior_use": "All historical catalogue/windows previously inspected. This is retrospective exploratory comparison, no untouched confirmatory/prospective claim."
+  },
+  "windows": {
+    "origins_fraction": [
+      0.5,
+      0.65,
+      0.8
+    ],
+    "training_end": "origin*T",
+    "test_end_fraction": [
+      0.65,
+      0.8,
+      1.0
+    ],
+    "training_start_primary": 0.0,
+    "test_interval": "[origin*T,next_end*T)",
+    "rolling_history": "parameters frozen pertestwindow; actual observed past events updatehistory, never futureevents",
+    "minimum_training_events_per_bin": 30,
+    "prefit_counts": "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\magnitude_prediction_20261023T222049Z\\design\\eligibility_counts.json"
+  },
+  "variants": [
+    {
+      "id": "primary",
+      "background": "loglinear",
+      "training_start_days": 0.0,
+      "d_estimated": true
+    },
+    {
+      "id": "constant_background",
+      "background": "constant",
+      "training_start_days": 0.0,
+      "d_estimated": false
+    },
+    {
+      "id": "post1980_training",
+      "background": "loglinear",
+      "training_start_days": 7305.0,
+      "d_estimated": true,
+      "note": "Early catalogue training sensitivity, not a complete detection/incompleteness model. Retain pre1980parents."
+    }
+  ],
+  "common_nuisance": {
+    "excess_cut": 0.5,
+    "magnitude_rate": "training-only conditional-within-bin MLE common toallcandidates",
+    "conditional_loglik": "N*log(b)-b*(sumQ-Nhigh*c)-Nlow*log(1-exp(-b*c))",
+    "conditional_score": "N/b-(sumQ-Nhigh*c)-Nlow*c/expm1(b*c)",
+    "difference_from_historical": "New matched nuisance/optimization protocol; do not claim unchanged historicalestimationrecipe. Existing oldcandidate equations and independent fixedparameterreference retained.",
+    "productivity_ratio": 0.7,
+    "productivity": "kappa(q)=(1-r)*exp(b*r*q)",
+    "trigger": {
+      "kind": "ml",
+      "tau": 1.0,
+      "alpha": 0.5,
+      "p": 1.3,
+      "spectral_step": 0.4,
+      "spectral_tail_bound": 1e-08
+    },
+    "stress": "Same finite mixture; g(q)=exp((.75*log(10))*(q-1)), preeventstrictleftlimits",
+    "hyperparameter_selection": "No cataloguetest tuning, no alternativebins/kernels/cutoffs searched inthisrun."
+  },
+  "models": {
+    "E0": {
+      "name": "matched existing excitatory candidate",
+      "parameters": [
+        "a",
+        "d",
+        "n"
+      ],
+      "timing": "exp(a+d*x)+n*(H0+H1)",
+      "mark_density": "b*exp(-b*q)"
+    },
+    "I0": {
+      "name": "matched existing inhibitory candidate",
+      "parameters": [
+        "a",
+        "d",
+        "n",
+        "eta"
+      ],
+      "timing": "exp(a+d*x-eta*G)+n*(H0+H1)",
+      "mark_density": "b*exp(-b*q)"
+    },
+    "E1": {
+      "name": "history-dependent multitype excitatory candidate",
+      "parameters": [
+        "a",
+        "d",
+        "n",
+        "h",
+        "delta"
+      ],
+      "p": "[1-exp(-b*c),exp(-b*c)]",
+      "m": "[(1-exp(-b*(1-r)*c))/(1-exp(-b*c)),exp(b*r*c)]",
+      "R": "[exp(-delta/2),exp(delta/2)]",
+      "P": "P_ij=(1-h)*p_i+h*I(i=j), receivingrows/sourcecolumns",
+      "rho": "Perronroot(P*diag(R*m))",
+      "B": "n*P*diag(R)/rho",
+      "intensity": "lambda_i=p_i*exp(a+d*x)+sum_j B_ij*Hj",
+      "joint_density": "lambda_class*(b*exp(-b*q)/p_class)",
+      "nesting": "h=0,delta=0 recovers E0 exactly; n=0 leaves h/deltaunidentified",
+      "stability": "Expected offspringmatrix B*diag(m) hasradiusn<1 for the stated linear markedlaw. No transfer to I0/nonlinear/general exactmemorytheorem.",
+      "marginals": "p definesimmigrant/within-bin law; overall event-class/magnitude marginals and timing generallychange. Previous gamma0matchedmarginal proofdoesnotapply.",
+      "signed_h": "Negativeh permits class anti-persistence while allP/Bentriesremainpositive; no negativeHawkesweights."
+    },
+    "E1_h0": {
+      "name": "prespecifiedprimaryhistoryablation withinE1family",
+      "parameters": [
+        "a",
+        "d",
+        "n",
+        "delta"
+      ],
+      "fitted_windows": "primary3folds only, alwaysrun",
+      "constraint": "h fixed0; reoptimize all remaining params,8 mandatory starts,60-second primary cap; exact E0 floor",
+      "interpretation": "Fertilitytimingextension withindependentmarks; separates historygain fromresidualfertilitygain."
+    }
+  },
+  "parameter_bounds": {
+    "a": [
+      -12,
+      0
+    ],
+    "d": [
+      -2,
+      2
+    ],
+    "n": [
+      0,
+      0.98
+    ],
+    "eta": [
+      0,
+      3
+    ],
+    "h": "[-.95*min(p0/p1,p1/p0),.95], computed once from trainingb/p; declared interior of positiveP domain",
+    "delta": [
+      -1,
+      1
+    ]
+  },
+  "fit_policy": {
+    "state": "Frozen reviewed bounded local fitting procedure",
+    "starts_per_model": 8,
+    "matched_wall_seconds_per_model": 120,
+    "primary_solver": {
+      "method": "L-BFGS-B",
+      "maxiter": 200,
+      "maxls": 40,
+      "ftol": 1e-10,
+      "gtol": 2e-06
+    },
+    "failure_only_recovery": [
+      "same originalstart L-BFGS-B maxls200",
+      "same originalstart bounded Powell maxiter400 maxfev5000"
+    ],
+    "every_prescribed_start_required": true,
+    "candidate_rules": "Only converged finite feasible independentlyrecomputed nonworsening returns eligible; retainallfailures. Explicit E0 fittingcandidate retained inI0/E1; no trainingimprovementalone interpretedasbenefit.",
+    "boundaries": "Explicit n=0/background candidates; exact eta=0 and h=delta=0 nesting; report boundary/gradient diagnostics",
+    "optimality": "Localmultistart procedure only, no globalcertificate.",
+    "dependent_failure": "If E0prescribedsearch incomplete, I0/E1/E1_h0unknown_dependency; no defaultstartsubstitution.",
+    "starts": {
+      "a0": "clip(log(.6*Ntrain/(train_end-train_start)),-11.5,-.1)",
+      "E0_free_d": "a in[a0,a0-.5] x d in[-.2,.2] x n in[.2,.6]",
+      "E0_fixed_d": "a in[a0,a0-.5] x n in[.1,.35,.65,.85], d=0",
+      "I0_eta": [
+        0,
+        0.1,
+        0.2,
+        0.4,
+        0.7,
+        1,
+        2,
+        3
+      ],
+      "E1_h_delta": [
+        [
+          "0",
+          0
+        ],
+        [
+          ".4",
+          0
+        ],
+        [
+          ".85",
+          0.6
+        ],
+        [
+          ".85",
+          -0.6
+        ],
+        [
+          ".5*h_lower",
+          0.6
+        ],
+        [
+          ".5*h_lower",
+          -0.6
+        ],
+        [
+          ".9*h_lower",
+          0.9
+        ],
+        [
+          ".9*h_lower",
+          -0.9
+        ]
+      ],
+      "E1_h0_delta": [
+        -1,
+        -0.7,
+        -0.4,
+        -0.1,
+        0.1,
+        0.4,
+        0.7,
+        1
+      ],
+      "higher_models_background_n": "Completed selectedE0parameters",
+      "clip": "Allstartcoordinatesclipped tofrozenbounds; no targetadjustment."
+    },
+    "fitter_recipe": "Exact code-emitted fit_recipe.json copiedinto protocol beforefreeze",
+    "primary_family_budget": {
+      "E0": 120,
+      "I0": 120,
+      "E1_full_search": 60,
+      "E1_h0_search": 60,
+      "family_total": 120,
+      "reason": "Same total family fit-time ceiling as each baseline; primary full E1 search gets60s vs120s for sensitivity E1."
+    },
+    "ablation_floor": "When both primary E1 and E1_h0 mandatory searches complete, admit the accepted h0 optimum as an exact training-only full-E1 candidate, without further optimization; preserve raw full-E1 selection and floor lineage. Select final E1 forecast only afterwards; include floor in near-optimum forecast spread. If either component incomplete, primary full-family status unknown; preserve diagnostic full-search outputs."
+  },
+  "synthetic_controls": {
+    "status": "frozen_before_generation",
+    "histories": 6,
+    "scenarios": [
+      {
+        "id": "E0_control",
+        "count": 3,
+        "h": 0.0,
+        "delta": 0.0
+      },
+      {
+        "id": "E1_active",
+        "count": 3,
+        "h": 0.65,
+        "delta": 0.5
+      }
+    ],
+    "common_true_parameters": {
+      "a": -3.2188758248682006,
+      "d": 0.0,
+      "n": 0.35,
+      "magnitude_rate": 2.85,
+      "horizon": 24394.0,
+      "productivity_ratio": 0.7,
+      "cutoff": 0.5
+    },
+    "time_seeds": [
+      202610240800,
+      202610240900,
+      202610241000,
+      202610241100,
+      202610241200,
+      202610241300
+    ],
+    "mark_seed_offset": 10000000,
+    "training_fraction": 0.7,
+    "engineering_beta": "knowntrueb for fittingcorrectness; conditionalMLEtestedseparately",
+    "event_cap": 10000,
+    "generator": "Poisson immigration, source markdependent Poi(n*Rj*kappa/rho) offspring, childclass Pcol; delay sampledexactlyfromsame finiteExponentialmixture asallfitters",
+    "clock": "Preserve DD provenance; unsupported binary64 projectionties explicitfailure, no jitter/merge/redraw",
+    "recovery_checks": [
+      "Finite gradients/compensators and exactnesting",
+      "Best fittedobjective no worse than E0 nested witness and generatingparameterwitness within1e-4 (truthneverinsertedasoptimizercandidate)",
+      "Truth/fit parameters, boundary/profiles diagnostics reported; no tight3replicatebias/coverage/identificationcertificate"
+    ],
+    "planned_method_outcomes": 18,
+    "no_outcome_replacement": true,
+    "rng": "NumPyPCG64,twoindependentnamedstreams; exactPython/NumPyversions andgeneratorcodepinned; notsameRNGaspriorC++pilot.",
+    "projection_gate": {
+      "module_path": "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\magnitude_prediction_20261023T222049Z\\study\\research\\magnitude_prediction_validation\\projection_gate.py",
+      "threshold": 0.0001,
+      "scope": "Known generating parameters train and forecast E0/E1; no DD-fitting uniform guarantee.",
+      "cache_binding": "Independent projected truth E1 train/test scores compared to actual scalar DLL/cache scores for all six controls; E0 likewise for null controls; absolute1e-4. No new fits, parameters, scenarios or tolerance."
+    },
+    "generation_max_seconds": 60.0
+  },
+  "numerical_gates": {
+    "fixed_parameter_reference": "E0/I0 C++ against preserved observedobjective/score to1e-4; E1 independentoracle/gradient/integral checks",
+    "quadrature": "order16 fitting and separateorder32 selectedtraining/test objectivechecks; absolute1e-4gate, no silenttolerancechange",
+    "gradient": "Central/onesided finite differences atfixed interior/boundary fixtures, withstatedsteps/tolerance beforetesting",
+    "joint_score_identity": "time+conditionalmark=joint; same continuousmark measure acrossallcandidates",
+    "failed_generation_or_required_fit": "Unknown, retain every plannedidentity; no replacement orsuccess-onlyprimaryanalysis"
+  },
+  "scoring": {
+    "primary": "test joint conditional logscore includingintegratedintensity andallquietexposure",
+    "decomposition": [
+      "timinglogscore",
+      "conditionalmarklogdensity",
+      "jointlogscore"
+    ],
+    "aggregation": "Sumtestlogscore differences dividedbyactualheldoutevents ofsamevariant; alsoall3windowvalues",
+    "uncertainty": "Only3correlated historicalwindows; descriptive robustness andperwindowresults, no eventiid ormanufacturedblock95%CI.",
+    "model_cost": "Same heldouttarget/exposure/commontrainingnuisance, matchedfitwallceiling; parametersfitontrainingonly.",
+    "ablation": "E1_h0 is a fourth fittedprocedure inside samefamily, primary3windows only; time/mark/joint allreported.",
+    "forecast_stability": {
+      "training_nll_band": 0.0004,
+      "meaning": "Empiricalnumerical-resolutionband, notrigorouserrorbound",
+      "candidates": "Accepted finalsolverreturns andeligibleboundarypoints includingselected, exactparamsdeduplicated; include primary completed h0 training floor",
+      "heldout_joint_spread_material_nats_per_event": 0.01,
+      "selection": "Alwaysselectbytrainingonly, neverbyheldoutscore",
+      "failure": "Ambiguityorunverifieddiagnosticcandidate preventsrobustadvance; selected-score stillreported.",
+      "parameter_recovery": "No tight six-path parametererror/bias/coveragegate"
+    },
+    "forecast_ambiguity": {
+      "training_band": 0.0004,
+      "range_per_event_threshold": 0.01,
+      "selection": "Training-only selected candidate; forecast spread diagnostic never selects by heldout score."
+    }
+  },
+  "decision": {
+    "minimum_aggregate_gain_nats_per_event": 0.01,
+    "joint_gain": "Primary E1jointgain>=.01nats/event overE0andI0; SAMEatleast2of3windows positiveagainstbothcomparators. Bothprespecifiedsensitivities require aggregategain>0againstboth and SAMEatleast2of3windows positiveagainstboth.",
+    "mark_led": "Jointgainwithouttimingbenefit reportedasbettermarkedpredictiononly, not explanationofinhibition",
+    "potential_timing_replacement": "Amongrobustjointwins, E1-I0timinggain>=-.01nats/event acrossvariants labelleddescriptivecomparability, notformalnoninferiority",
+    "stop": "No meaningfuljointgain/background or earlycatalogueinstability => archiveboundednegative. Numerical/witnessfailures => inconclusive. Weak parameter estimatesalone limitinterpretation, not predictive comparison. Empiricaltrainingequivalentforecasts instability separatelyclassified.",
+    "history_specific_gain": "Secondaryprimary-onlyablation: E1-E1_h0jointgain>=.01nats/event andpositivein>=2of3primarywindows. Otherwiseanoverallfamilygaincannotbeattributed specificallytomarkhistory."
+  },
+  "resources": {
+    "numerical_threads": 1,
+    "max_numerical_jobs": 1,
+    "run_numerical_wall_seconds": 7200,
+    "per_model_fit_seconds": 120,
+    "control_stage_max_seconds": 2400,
+    "deadline_utc": "2026-10-24T02:20:50.297448+00:00",
+    "memory_target_bytes": 17179869184,
+    "memory_note": "Boundedcachelimits andmeasurements; not anOS-enforcedlimit.",
+    "prior_numerical_wall_seconds": 1278.6017110000003,
+    "bookkeeping_reserve_seconds": 1260.0,
+    "independent_analysis_reserve_seconds": 1200.0,
+    "reserve_note": "1260 seconds excluded from fitting stage: 1200 for independent saved-result audit/analysis/figures, plus60 for bookkeeping. Actual closed numerical lease durations charged once."
+  },
+  "excluded": [
+    "Newhypothesistestcalibration",
+    "Size-matchedpower",
+    "Prospectiveclaim",
+    "Hybridinhibitorymultitypemodel",
+    "Exhaustiveparameter/kernel/binsearch",
+    "Newcataloguedownload",
+    "Publication",
+    "Authorcontact"
+  ],
+  "artifact_pins": {
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\magnitude_prediction_20261023T222049Z\\study\\engine\\api.py": "8ccaf3ec588e4c52fe497f46307c67a20dcf23a831ce1c3907173f3810ed1064",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\magnitude_prediction_20261023T222049Z\\study\\engine\\iteration_27\\code\\adequacy.py": "9662c90f9ff7e120fe26c1dfc0bd969071f16774feec686b9e97731337e0ff90",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\magnitude_prediction_20261023T222049Z\\study\\engine\\iteration_5\\code\\kernels.py": "3561ef3471adf349caebebc6c2ca12881f2a3d9c7c7415d15453b5be20b978ae",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\magnitude_prediction_20261023T222049Z\\design\\eligibility_counts.json": "f9d9b9e70f1e9955578a67192972fdcc890cdaec732fede17388ab16c6c36a12",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\magnitude_prediction_20261023T222049Z\\reports\\runtime.json": "c179cf5e2f09ff5573c7297df0b939cd9cd15ad72f83e86c3a5a589fbd41bfe8",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\magnitude_prediction_20261023T222049Z\\reports\\observed_prior_numerical_charges.json": "76b2e803f2162c10c73311906754b400d4241587f70995d53cc6bb4b3b169f5e",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\magnitude_prediction_20261023T222049Z\\methods\\control_gate_review.json": "ba87920cf1749d8a97af3d39c772ba737a9820a736b0a53372f40f46018f79e8",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\magnitude_prediction_20261023T222049Z\\study\\research\\magnitude_prediction\\workflow.py": "7aec030fe1031b55e5ea9172fd2d5ce9765f4ad7f8a821f754ca6f75d90588a5",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\magnitude_prediction_20261023T222049Z\\study\\research\\magnitude_prediction\\data_features.py": "705689169c8ac60f7502ea17871ba7a9f1bf305e910d430b43104f61b96962b2",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\magnitude_prediction_20261023T222049Z\\study\\research\\magnitude_prediction\\observed_reference.py": "79d463ff0a9af3267fb91efa02d2ed69aa99fa518b08702910abac06e082773b",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\magnitude_prediction_20261023T222049Z\\study\\research\\magnitude_prediction\\compiled_objective.py": "3d2db32fdfee144213773961b1cffb28b5f50c195374f214865c78c7460b182f",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\magnitude_prediction_20261023T222049Z\\study\\research\\magnitude_prediction\\fit_models.py": "8b4341ab3fd6b017852d1e6d538b830a316969e296b57ef4fe0ea73185d7c009",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\magnitude_prediction_20261023T222049Z\\study\\research\\magnitude_prediction\\fit_recipe.json": "c736f9c16cff012cbe6bfe8c760fae6ed2028f078503329ebea214ac3268f283",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\magnitude_prediction_20261023T222049Z\\study\\research\\magnitude_prediction\\simulate_recovery.py": "0ab07651f15ac03e1635ec1c608cf797e6b073bc922cc5e9c9ac6741a29955b1",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\magnitude_prediction_20261023T222049Z\\study\\research\\magnitude_prediction\\objective.cpp": "1cd01c51a90579f59b9695745665b797416d081838f5a504f46662b3b0893d21",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\magnitude_prediction_20261023T222049Z\\study\\research\\magnitude_prediction\\objective.dll": "9bcef871bd2608a8a91419f66606c8e5cf8d7fbf4e04f9fe5e02b89489869752",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\magnitude_prediction_20261023T222049Z\\study\\research\\magnitude_prediction\\build_objective.cmd": "4ce8c3e3aeb5e9018a7dba31993877fbe8210b7cb991eaa2e2fda4890f789369",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\magnitude_prediction_20261023T222049Z\\study\\research\\magnitude_prediction_validation\\projection_gate.py": "454ced999386689e8a6d5a042684f099fad65365fe44082910fc561ba36afbf2",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\magnitude_prediction_20261023T222049Z\\study\\research\\magnitude_prediction_validation\\likelihood_oracle.py": "438ecbe273fc052798af23b2dd12c354c022f98d01a645baa66b161cde8339df",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\magnitude_prediction_20261023T222049Z\\study\\research\\magnitude_prediction\\analysis.py": "e1b5bfe4ba11d27f829362541d7a329134e3651b945ce218a73e74aff9d92e94",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\magnitude_prediction_20261023T222049Z\\study\\research\\magnitude_prediction\\plot_results.py": "c14995bd276b578c98ec4a9d3e1f277e1fa7f63a8d77b9e31d04d862f46fb2c2",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\magnitude_prediction_20261023T222049Z\\study\\research\\magnitude_prediction_validation\\audit_saved_predictions.py": "d055983b19da5ca21381cc153c950a4cea86bfe09c866a87b246aab1c951d24c",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\magnitude_prediction_20261023T222049Z\\inputs\\catalogue.csv": "feacccb7581d1c4c33f88874cd6b198c41639da6930a7fc35e46f910a594fb3e",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\magnitude_prediction_20261023T222049Z\\controls_protocol_v2.json": "b43b6620afab54bc5d12e359b5a38c585c351b7132a787570eaccdc6f908c3ec",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\magnitude_prediction_20261023T222049Z\\results\\controls\\outcomes.json": "7db8c1355479ff8281666223bc2348d5df44cea63fea37e725af0c1650192a3b",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\magnitude_prediction_20261023T222049Z\\implementation\\control_audit.py": "f584c8eb63e2f171592a17b45c66dc6e492e1c7731bafe1cccf1b1209d791293",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\magnitude_prediction_20261023T222049Z\\implementation\\control_audit_receipt.json": "72074adddaa2fcbbf55dd2aa7b7bd93238b90458e550347a8558ca7bec3edda8",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\magnitude_prediction_20261023T222049Z\\reports\\fresh_control_saved_audit_process.json": "82c2d96e22c6f980e649dda9882e82fbabd6aa64cdb88a193d52f99fc7f493ee",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\magnitude_prediction_20261023T222049Z\\implementation\\control_audit_complete_receipt.json": "79ff230b4bd55c6d293a4d22e744cffc98b5198491a6af4e112b8738bd92d244",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\magnitude_prediction_20261023T222049Z\\reports\\fresh_control_saved_audit_complete_process.json": "f38544cdea1599e21e177139950fae849d03d17b6ce0431f1105b223fa92cef8",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\magnitude_prediction_20261023T222049Z\\implementation\\primary_floor_control.py": "21e889aeb66ef96d7e3866176f46b7b2da36d11d8006e1c98880661478aae1da",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\magnitude_prediction_20261023T222049Z\\implementation\\primary_floor_control_receipt.json": "252f15f77bd54c70693bce37b8b036d7c0cacd089efea3d16a1c3054fc73ec9f"
+  },
+  "fitter_recipe": {
+    "schema_version": 1,
+    "model_order": [
+      "E0",
+      "I0",
+      "E1"
+    ],
+    "starts_per_model": 8,
+    "seconds_per_model": 120.0,
+    "seconds_by_model": {},
+    "fixed_d": null,
+    "optimizer": {
+      "maxiter": 200,
+      "maxfun": 20000,
+      "ftol": 1e-10,
+      "gtol": 2e-06,
+      "maxls": 40
+    },
+    "recovery_maxls": 200,
+    "powell": {
+      "maxiter": 400,
+      "maxfev": 5000,
+      "xtol": 1e-06,
+      "ftol": 1e-10
+    },
+    "coarse_fine_nll_tolerance": 0.0001,
+    "fresh_nll_tolerance": 1e-07,
+    "nonworsening_tolerance": 1e-08,
+    "near_optimal_nll_gap": 0.0004,
+    "completion": "Every prescribed start must have an accepted solver return; finite explicit boundary points remain separately recorded."
+  },
+  "stage_revision_note": "Unused first controls freeze c27b678c retained. Version2 adds explicit DD/projected-oracle-to-DLL cache truth-score binding before any generation or fitting.",
+  "stage": "observed",
+  "frozen_utc": "2026-10-23T23:28:51.648180+00:00",
+  "source_base_commit": "ae934318c1acf914da341f09072b1e59b0b1cc9c",
+  "control_gate": {
+    "passed": true,
+    "review_artifact": "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\magnitude_prediction_20261023T222049Z\\methods\\control_gate_review.json"
+  },
+  "executed_controls_protocol": {
+    "path": "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\magnitude_prediction_20261023T222049Z\\controls_protocol_v2.json",
+    "sha256": "b43b6620afab54bc5d12e359b5a38c585c351b7132a787570eaccdc6f908c3ec"
+  }
+}

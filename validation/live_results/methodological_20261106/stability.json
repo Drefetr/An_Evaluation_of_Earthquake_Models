@@ -1,0 +1,454 @@
+{
+  "schema": "methodological_stability_diagnostic_v1",
+  "passed": true,
+  "scope": "Scalar proof-certificate calculations and saved-record comparison only; no model imports, likelihoods, simulations or optimizers.",
+  "source_sha256": {
+    "engine/iteration_5/code/kernels.py": "3561ef3471adf349caebebc6c2ca12881f2a3d9c7c7415d15453b5be20b978ae",
+    "engine/iteration_27/code/adequacy.py": "9662c90f9ff7e120fe26c1dfc0bd969071f16774feec686b9e97731337e0ff90",
+    "experiments/autonomous/model.py": "ddff28c9375660f72000455813bb6d8963f9227716c166dd644ab76765f47fb3",
+    "experiments/autonomous/fit.py": "56d8ccda6b82974602d16a154ec7d7681fcda631070aaccadfa05843685b277e",
+    "experiments/autonomous/protocol.json": "ee30fac9d16b97d9f03425a95192b4d195d610f0126b8f0173e8878b97120754",
+    "validation/live_results/autonomous_20261105/result.json": "a8c590950f0b7296059538d22438c5c1c3130ff392b868982f95bc0570d6f47c",
+    "validation/authorities/cf8397fb41830b31_summary.json": "cf8397fb41830b31d93b73784d47be320f05f826b92a1a28b953e10e221a111e",
+    "experiments/methodological_audit/stability_sources/H_observed_protocol.json": "81838dd3125548edfe37b846abc93bed2b771ce2bc2052e7839daf904b476683",
+    "experiments/methodological_audit/stability_sources/stage_A_observed_protocol.json": "355facda79967efa0831ae3a3440e840fa6a9c7dd12e2367a5fe5993dc8ef483"
+  },
+  "diagnostic_sha256": "12a4f977f38c904c680151bf3987b24f3721bf9e58962c1f6b2e217134e4e460",
+  "kernel": {
+    "modes": 195,
+    "half_count": 97,
+    "log_rate_min": -38.800000000000004,
+    "log_rate_max": 38.800000000000004,
+    "min_rate_per_day": 1.4105032856773367e-17,
+    "inverse_min_rate_days": 7.089667994071994e+16,
+    "inverse_min_rate_years_365_25": 194104530980752.72,
+    "minimum_coupling_time_days": 9.828366762394171e+16,
+    "minimum_coupling_time_days_mantissa": 9.828366762394172,
+    "minimum_coupling_time_days_exponent": 16,
+    "minimum_coupling_time_years_365_25": 269086016766438.62,
+    "epsilon_upper_if_L_at_least_one": 3.526258214193342e-18,
+    "horizon_days": 24394.0,
+    "decay_threshold": 0.01,
+    "decay_threshold_percent": 1.0,
+    "slow_mode_count": 61,
+    "slow_indices": [
+      -97,
+      -96,
+      -95,
+      -94,
+      -93,
+      -92,
+      -91,
+      -90,
+      -89,
+      -88,
+      -87,
+      -86,
+      -85,
+      -84,
+      -83,
+      -82,
+      -81,
+      -80,
+      -79,
+      -78,
+      -77,
+      -76,
+      -75,
+      -74,
+      -73,
+      -72,
+      -71,
+      -70,
+      -69,
+      -68,
+      -67,
+      -66,
+      -65,
+      -64,
+      -63,
+      -62,
+      -61,
+      -60,
+      -59,
+      -58,
+      -57,
+      -56,
+      -55,
+      -54,
+      -53,
+      -52,
+      -51,
+      -50,
+      -49,
+      -48,
+      -47,
+      -46,
+      -45,
+      -44,
+      -43,
+      -42,
+      -41,
+      -40,
+      -39,
+      -38,
+      -37
+    ],
+    "slow_mode_normalized_weight": 0.00042934294645172454,
+    "decay_at_index": {
+      "-37": 0.009072919115771733,
+      "-36": 0.013504959269522035,
+      "-26": 0.5240155010475867
+    },
+    "equilibrium_loading_coefficient_days": 170073774.91867647
+  },
+  "certificate_examples": [
+    {
+      "fold": "fold_50",
+      "arm": "null",
+      "c": 1.0,
+      "delta": 0.5960012934037194,
+      "kappa_V_per_day": 8.406617826138887e-18,
+      "invariant_V_upper": 662558922710667.5,
+      "R": 2650235690842670.0,
+      "epsilon": 3.526258214193342e-18,
+      "diameter_upper": 3.75785823082291e+32,
+      "sufficient_t0_days": 8.215933622408031e+18,
+      "Lambda_R": 1.8789291154114555e+32,
+      "log_guaranteed_smallness_gap": -1.5437156893430358e+51,
+      "optimistic_log_certificate_gap_upper": -1355024635820899.2
+    },
+    {
+      "fold": "fold_50",
+      "arm": "inhibited",
+      "c": 0.5018171095852112,
+      "delta": 0.14730408623236005,
+      "kappa_V_per_day": 4.1404107922143426e-18,
+      "invariant_V_upper": 1548654898918937.0,
+      "R": 6194619595675748.0,
+      "epsilon": 3.526258214193342e-18,
+      "diameter_upper": 1.75035069327209e+33,
+      "sufficient_t0_days": 8.325011856892575e+18,
+      "Lambda_R": 8.751753466360451e+32,
+      "log_guaranteed_smallness_gap": -7.285845137605145e+51,
+      "optimistic_log_certificate_gap_upper": -1777654035826390.2
+    },
+    {
+      "fold": "fold_65",
+      "arm": "null",
+      "c": 1.0,
+      "delta": 0.5009400022440689,
+      "kappa_V_per_day": 7.065775190924715e-18,
+      "invariant_V_upper": 1016133976387641.1,
+      "R": 4064535905550564.5,
+      "epsilon": 3.526258214193342e-18,
+      "diameter_upper": 5.763242024067652e+32,
+      "sufficient_t0_days": 8.246252657922835e+18,
+      "Lambda_R": 2.8816210120338266e+32,
+      "log_guaranteed_smallness_gap": -2.3762574929610233e+51,
+      "optimistic_log_certificate_gap_upper": -1413967355211684.2
+    },
+    {
+      "fold": "fold_65",
+      "arm": "inhibited",
+      "c": 1.0,
+      "delta": 0.5009399824499899,
+      "kappa_V_per_day": 7.065774911728581e-18,
+      "invariant_V_upper": 1016134067675807.5,
+      "R": 4064536270703230.0,
+      "epsilon": 3.526258214193342e-18,
+      "diameter_upper": 5.7632425418298845e+32,
+      "sufficient_t0_days": 8.246252664292101e+18,
+      "Lambda_R": 2.881621270914943e+32,
+      "log_guaranteed_smallness_gap": -2.376257708276314e+51,
+      "optimistic_log_certificate_gap_upper": -1413967370287561.5
+    },
+    {
+      "fold": "fold_80",
+      "arm": "null",
+      "c": 1.0,
+      "delta": 0.5302241953012581,
+      "kappa_V_per_day": 7.478829696180464e-18,
+      "invariant_V_upper": 878824208199423.0,
+      "R": 3515296832797692.0,
+      "epsilon": 3.526258214193342e-18,
+      "diameter_upper": 4.9844574890296876e+32,
+      "sufficient_t0_days": 8.23596018994848e+18,
+      "Lambda_R": 2.4922287445148445e+32,
+      "log_guaranteed_smallness_gap": -2.052589672406954e+51,
+      "optimistic_log_certificate_gap_upper": -1375074931809191.8
+    },
+    {
+      "fold": "fold_80",
+      "arm": "inhibited",
+      "c": 0.06788241283264042,
+      "delta": 0.01793219913581537,
+      "kappa_V_per_day": 3.7260646381040014e-18,
+      "invariant_V_upper": 198339315741622.62,
+      "R": 793357262966490.5,
+      "epsilon": 3.526258214193342e-18,
+      "diameter_upper": 1.6571713822209752e+33,
+      "sufficient_t0_days": 8.321133524792841e+18,
+      "Lambda_R": 8.285856911104886e+32,
+      "log_guaranteed_smallness_gap": -6.894772172463132e+51,
+      "optimistic_log_certificate_gap_upper": -1454129881999081.8
+    }
+  ],
+  "comparisons": [
+    {
+      "fold": "fold_50",
+      "old_case_id": "constant_background_fold_0",
+      "old_beta": 3.053780173208927,
+      "new_beta": 3.1016219112585786,
+      "old_gain": -10.010951711546568,
+      "new_gain": -10.018403133332754,
+      "old_null_parameters": {
+        "a_or_atilde": -4.286296981701771,
+        "d_or_dtilde": 0.0,
+        "n": 0.41972731357999865
+      },
+      "old_inhibited_parameters": {
+        "a_or_atilde": -4.013607748039115,
+        "d_or_dtilde": 0.0,
+        "n": 0.4289347815556042,
+        "eta": 0.36872375484458675
+      },
+      "new_null_parameters": [
+        -4.284038229483579,
+        0.40399870659628057
+      ],
+      "new_inhibited_parameters": [
+        -4.012563327434224,
+        0.4129172424825541,
+        0.3671373165156498
+      ]
+    },
+    {
+      "fold": "fold_65",
+      "old_case_id": "constant_background_fold_1",
+      "old_beta": 2.997652889101673,
+      "new_beta": 3.1494882081661726,
+      "old_gain": 6.485573919690069e-06,
+      "new_gain": -2.9768964395771036e-06,
+      "old_null_parameters": {
+        "a_or_atilde": -4.249583500044476,
+        "d_or_dtilde": 0.0,
+        "n": 0.5602137424886284
+      },
+      "old_inhibited_parameters": {
+        "a_or_atilde": -4.249583585722975,
+        "d_or_dtilde": 0.0,
+        "n": 0.5602136894934805,
+        "eta": 0.0
+      },
+      "new_null_parameters": [
+        -4.241458384697289,
+        0.49905999775593113
+      ],
+      "new_inhibited_parameters": [
+        -4.241458374035178,
+        0.49906001755001006,
+        0.0
+      ]
+    },
+    {
+      "fold": "fold_80",
+      "old_case_id": "constant_background_fold_2",
+      "old_beta": 2.9359340507306295,
+      "new_beta": 3.021907322176272,
+      "old_gain": -3.0257284583281034,
+      "new_gain": -2.9271517016724147,
+      "old_null_parameters": {
+        "a_or_atilde": -4.276100432896944,
+        "d_or_dtilde": 0.0,
+        "n": 0.5099136386839335
+      },
+      "old_inhibited_parameters": {
+        "a_or_atilde": -4.218216306656704,
+        "d_or_dtilde": 0.0,
+        "n": 0.5120039308048528,
+        "eta": 0.04474568116169676
+      },
+      "new_null_parameters": [
+        -4.269349639572681,
+        0.4697758046987419
+      ],
+      "new_inhibited_parameters": [
+        -4.213450162573592,
+        0.4716687758278123,
+        0.043212721357552136
+      ]
+    }
+  ],
+  "old_pooled_gain": -13.036673684300752,
+  "new_pooled_gain": -12.945557811901608,
+  "old_fit_policy": {
+    "model_order": [
+      "E0_ml",
+      "I0_raw_ml",
+      "I0_orth_ml",
+      "E0_omori",
+      "I0_orth_omori"
+    ],
+    "starts_per_model": 8,
+    "optimizer": {
+      "method": "L-BFGS-B",
+      "maxiter": 200,
+      "maxfun": 20000,
+      "maxls": 40,
+      "ftol": 1e-10,
+      "gtol": 2e-06
+    },
+    "failure_only_recovery": [
+      {
+        "method": "L-BFGS-B",
+        "same_original_start": true,
+        "maxls": 200
+      },
+      {
+        "method": "Powell",
+        "same_original_start": true,
+        "maxiter": 400,
+        "maxfev": 5000,
+        "xtol": 1e-06,
+        "ftol": 1e-10
+      }
+    ],
+    "starts": {
+      "a0": "clip(log(.6*Ntrain/duration),-11.5,-.1)",
+      "E_free_d": [
+        {
+          "a_offset": 0.0,
+          "d": -0.2,
+          "n": 0.2
+        },
+        {
+          "a_offset": 0.0,
+          "d": -0.2,
+          "n": 0.6
+        },
+        {
+          "a_offset": 0.0,
+          "d": 0.2,
+          "n": 0.2
+        },
+        {
+          "a_offset": 0.0,
+          "d": 0.2,
+          "n": 0.6
+        },
+        {
+          "a_offset": -0.5,
+          "d": -0.2,
+          "n": 0.2
+        },
+        {
+          "a_offset": -0.5,
+          "d": -0.2,
+          "n": 0.6
+        },
+        {
+          "a_offset": -0.5,
+          "d": 0.2,
+          "n": 0.2
+        },
+        {
+          "a_offset": -0.5,
+          "d": 0.2,
+          "n": 0.6
+        }
+      ],
+      "E_d0": [
+        {
+          "a_offset": 0.0,
+          "d": 0.0,
+          "n": 0.1
+        },
+        {
+          "a_offset": 0.0,
+          "d": 0.0,
+          "n": 0.35
+        },
+        {
+          "a_offset": 0.0,
+          "d": 0.0,
+          "n": 0.65
+        },
+        {
+          "a_offset": 0.0,
+          "d": 0.0,
+          "n": 0.85
+        },
+        {
+          "a_offset": -0.5,
+          "d": 0.0,
+          "n": 0.1
+        },
+        {
+          "a_offset": -0.5,
+          "d": 0.0,
+          "n": 0.35
+        },
+        {
+          "a_offset": -0.5,
+          "d": 0.0,
+          "n": 0.65
+        },
+        {
+          "a_offset": -0.5,
+          "d": 0.0,
+          "n": 0.85
+        }
+      ],
+      "I_eta": [
+        0.0,
+        0.1,
+        0.2,
+        0.4,
+        0.7,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "I_base": "completed matched E selected a,d,n; direct coordinates copied at eta starts; eta0 exact; starts clipped once to bounds"
+    },
+    "exact_floors": {
+      "every_E": "constant Poisson n0,d0,a=clip(log(Ntrain/duration),-12,0)",
+      "every_I": "matched E at eta0,plus Poisson eta0 floor",
+      "E0_omori": "selected grid candidate retained",
+      "raw_orth_mapping": "admit mapped same-family candidates only if all destination bounds/fixed constraints feasible; no clipping an exact mapped floor"
+    },
+    "success": "converged finite feasible solver return; fresh NLL nonworse than original start within1e-8; order16/32<=1e-4; all8 slots required; floors do not repair failed slots",
+    "selection": "training joint NLL only; stable candidate ID exact tie break; save raw and floor-selected winner lineage",
+    "fresh_nll_tolerance": 1e-07,
+    "nonworsening_tolerance": 1e-08,
+    "near_optimal_nll_gap": 0.0004,
+    "forecast_spread_threshold_nats_per_event": 0.01,
+    "forecast_spread_rule": "score every eligible candidate within gap of selected training minimum; test max-minus-min divided Ntest must be strictly <.01; missing score or excess produces inconclusive",
+    "failure_statuses": [
+      "unknown_start_incomplete",
+      "unknown_dependency",
+      "unknown_budget",
+      "unknown_audit",
+      "unknown_forecast_ambiguity"
+    ]
+  },
+  "new_starts": {
+    "null": "Four (a0+offset,n) combinations: offset=-0.5,0.5 and n=0.2,0.7; clip a to its bounds; a0=clip(log(0.6*N_train/train_end),-11.5,-0.1).",
+    "null_floor": "Analytic constant Poisson a=clip(log(N_train/train_end),-12,0), n=0.",
+    "inhibited": "Eight eta starts 0,.02,.05,.1,.2,.5,1,2 at fitted null a,n, plus the exact null floor."
+  },
+  "new_solver": {
+    "first": "L-BFGS-B: maxiter=250, maxls=40, ftol=1e-12, gtol=1e-7.",
+    "failure_recovery": "From the same original start: L-BFGS-B with maxls=200, then Powell with maxiter=500, maxfev=5000, xtol=1e-7, ftol=1e-10.",
+    "eligibility": "Solver success, finite bounded vector, fresh objective within 1e-7 of solver return, and nonworsening within 1e-8 of original start. Every required start completes; failed returns are retained but cannot be selected.",
+    "selection": "Minimum order-16 training NLL, with deterministic floor-first tie handling; no held-out selection."
+  },
+  "interpretation": {
+    "rate": "Sufficient proof certificates do not estimate or lower-bound the actual process mixing time.",
+    "weight": "Normalized Phi weight is not a bound for arbitrary initial states or total observed stress.",
+    "family": "Same raw constant-background conditional intensity family, different nuisance and optimizer procedures.",
+    "attribution": "No controlled beta-only comparison is present; the score change cannot be assigned solely to beta.",
+    "loading": "Equilibrium initialization confounds rho with the exponential-link intercept; it is not stationary event-process initialization."
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "task_id": "stability_audit",
+  "attempt_id": "1a438d5f-8e9e-4bd1-910c-325d51d882f5",
+  "status": "complete",
+  "passed": true,
+  "completed_utc": "2026-11-06T11:20:02.417219+00:00",
+  "baseline": "61aa599",
+  "scope": "Read-only C5 audit: source inspection, scalar algebra and saved-score arithmetic; no model evaluation or fit.",
+  "findings": {
+    "practical_proof_bound_warning": "valid",
+    "reviewer_slow_mode_count": "incorrect:61 not72",
+    "same_raw_constant_background_family": "confirmed",
+    "beta_only_attribution": "not established; nuisance and optimizer protocols differ",
+    "equilibrium_loading_intercept_confounding": "confirmed for specified initialization and link"
+  },
+  "required_changes": [
+    "Quantify proof certificate without equating it to actual mixing",
+    "Correct61-mode count and record normalized weight",
+    "Cross-reference old/new raw constant-background family and distinguish procedures",
+    "Correct provenance/README new-model wording",
+    "Make loading/intercept mapping explicit"
+  ],
+  "repository_edits": false,
+  "likelihood_calls": 0,
+  "optimizer_calls": 0,
+  "simulations": 0,
+  "artifacts": [
+    {
+      "path": "report.md",
+      "sha256": "aee0bb290f2ad1ce6eba8bf90b7c056fe42153104dd601d7aed6bf97c06444f1",
+      "bytes": 10734
+    },
+    {
+      "path": "calculations.json",
+      "sha256": "f96ff4da0cc107326be22f64d19cc853ca70e5e8dfd7a114826b1677f079fd18",
+      "bytes": 15927
+    },
+    {
+      "path": "audit_calculations.py",
+      "sha256": "f5288f4db4863a9338a0469a3311d0574b1aa961e129b5c6a24445e644870ae7",
+      "bytes": 5679
+    }
+  ]
+}

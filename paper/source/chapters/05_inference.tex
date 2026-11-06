@@ -63,7 +63,7 @@ The score is therefore an \(L^2\) compensated-counting martingale with the state
 
 Raw \(\E  g^2\) or \(\E \kappa^2\) may be infinite while the intensity-weighted ratio has finite moment. Positive \(n\) and matched triggering parents supply the required comparison history; the bound is not uniform as \(n\downarrow0\) or as the kernel-ratio integral grows.
 
-\paragraph{Example at the synthetic mark parameters.}
+\paragraph{Example for the declared temporal, positive-productivity mark law.}
 For \(Q\sim\operatorname{Exp}(\beta)\),
 \(g(Q)=e^{\gamma(Q-1)}\) and \(\kappa(Q)=(1-r)e^{r\beta Q}\),
 where \(\gamma=\tfrac34\log 10\) is the local stress-mark exponent,
@@ -87,6 +87,27 @@ matched-parent, finite-horizon and kernel-ratio conditions remain essential to t
 the bound is not uniform near the simultaneous zero boundary, and
 no joint Fisher-information, central-limit or Wilks conclusion follows.
 
+\paragraph{Which fitted directions inherit the mark bound.}
+The preceding calculation is specific to its declared productivity ratio. In S02, the matched M2 candidate sets \(r=0\) but retains \(g(Q)=e^{\gamma(Q-1)}\); hence its ratio moment is \(\E g^2=\infty\) at the declared mark rate. In the spatial LI+ controls of Section~\ref{sec:s04-expanded}, the transform is instead \(g_+(Q)=e^{\gamma Q}\), with \(\beta=2\) and \(r=0.7\). Its ratio moment is infinite because \(\beta(1+r)<2\gamma\). Original unit-mark LI does not share this stress-mark obstruction. These statements concern ideal exponential mark laws. The executable calculation at \path{experiments/methodological_audit/moments.py} records the transforms, moment inequalities and source identities.
+
+Failure of a sufficient upper bound is not by itself a divergence proof. The following argument supplies one for the relevant unstopped null laws with bounded kernels.
+
+\begin{proposition}[A positive-triggering null obstruction]
+\label{prop:null-score-obstruction}
+Under the uninhibited temporal law, suppose the history starts empty, \(B\) is positive continuous and bounded on the finite horizon, \(0<n<1\), marks are fresh and independent with \(\E\kappa=1\) and \(\E g<\infty\), the normalized trigger kernel is bounded, and the nonnegative stress kernel is continuous with \(\Phi_s(0)=1\). If \(\E[g^2/(1+\kappa)]=\infty\), the immigrant-only null score has infinite second moment.
+\end{proposition}
+\begin{proof}
+Condition on the first event time \(S=s\) in an early interval of positive probability and its mark \(Q=q\), allowing all later immigrants and descendants. On a later interval of positive length, the first parent's contribution gives \(G_s(t)^2\ge c\,g(q)^2\). The branching construction and fresh marks bound the expected total productivity of that parent's cluster by \(\kappa(q)/(1-n)\); future immigrant clusters contribute a finite bound independent of \(q\). Boundedness of the trigger kernel therefore gives \(\E[H_e(t)\mid S=s,Q=q]\le C(1+\kappa(q))\). Positivity of \(B\) and Jensen's inequality yield, on this interval,
+\[
+\E\!\left[\left.\frac{B(t)^2G_s(t)^2}{B(t)+nH_e(t)}
+        \right|S=s,Q=q\right]
+\ge c'\frac{g(q)^2}{1+\kappa(q)}.
+\]
+Integration over the first mark and that interval makes the expected bracket infinite. Meanwhile, \(\E g<\infty\), the finite mean count and bounded stress kernel imply \(\E\int_0^T B G_s\,\dif t<\infty\), so the compensated score is an integrable martingale. A square-integrable terminal score would imply finite expected bracket, a contradiction.
+\end{proof}
+
+The same argument applies on a finite spatial domain when the trigger density is bounded and the background and first-parent stress kernel have positive lower bounds on a time--space region of positive measure. The ideal spatial Omori null with positive temporal offset satisfies these conditions, as does the finite-mixture M2 candidate under its own fresh-mark null. For the exponential productivity above, \(1+\kappa\) and \(\kappa\) have equivalent tails, so the spatial LI+ ratio divergence gives the claimed null obstruction. For M2, \(\kappa=1\). This proof does not condition on absence of descendants: at positive triggering that condition would tilt the first mark's law. Nor does it identify the exact Mittag--Leffler or persistent-mark S02 generators with the finite-mixture candidate.
+
 At the simultaneous boundary \(n=\eta=0\), the conclusion can fail. Take a constant Poisson background \(B>0\), marks \(Q\sim\operatorname{Exp}(\beta)\), and \(g(Q)=e^{\gamma(Q-1)}\) with \(\gamma<\beta\le2\gamma\). The first stress-mark moment is finite while the second is infinite. For one exponential relaxation mode of rate \(k>0\), the resulting positive shot noise has a stationary version of mean \(B\E g/k\); copies with the same future points and marks have differences that decay exactly as \(e^{-kt}\). Thus a first-moment stable state process is compatible with the following score irregularity. On the positive-probability event of exactly one event at \(S<T\), the pre-event stress is zero and the score contribution has the form
 \[
 U_0=g(Q)\int_S^T B(t)\Phi_s(t-S)\,\dif t.
@@ -98,6 +119,27 @@ The fresh mark is independent of that event configuration, and the integral is s
 \le\frac{4B}{e^2\eta^2},
 \]
 so integrable \(B\) controls the score bracket without a raw second mark moment. This regularization is not uniform as \(\eta\downarrow0\) and does not establish null-boundary asymptotic theory.
+
+\paragraph{Total attenuation and positive generating inhibition.}
+For the separate family \(\lambda_\eta=(B+nH_e)e^{-\eta G_s}\), the fixed-nuisance score and its null expected predictable bracket are
+\[
+U_{\eta,\mathrm{total}}
+=-\int_0^T G_s\,(\dif N-\lambda_\eta\,\dif t),
+\qquad
+I_{\mathrm{total}}(0)=
+\E_0\int_0^T G_s^2(B+nH_e)\,\dif t.
+\]
+The immigrant-only ratio bound does not apply. A first parent's background contribution requires \(\E g^2<\infty\), and its same-parent stress--trigger contribution, where the kernels overlap and \(n>0\), requires \(\E[g^2\kappa]<\infty\). For \(g(Q)=C e^{\gamma Q}\) and the exponential productivity above, these conditions respectively require \(2\gamma<\beta\) and \(2\gamma+r\beta<\beta\). Both fail for the spatial LI+ law. Thus its expected null bracket diverges. These diagonal conditions are necessary obstructions, not a sufficient theorem for the cross-parent terms. Even absolute first-moment control involves \(\E[g\kappa]\), requiring \(\gamma+r\beta<\beta\); without an integrability argument, an infinite expected bracket should not be equated with an ordinary terminal-score variance.
+
+Positive generating inhibition is different. The immigrant-only positive-\(\eta\) bound above holds regardless of the raw second mark moment. For total attenuation,
+\[
+G_s^2\lambda_\eta
+\leq \frac{4}{e^2\eta^2}(B+nH_e),
+\qquad \eta>0.
+\]
+The fresh-mark subcritical Hawkes envelope gives a finite expectation of the integrated right-hand side. Both families therefore have finite score brackets at each fixed positive generating \(\eta\) under these assumptions; the bounds are not uniform at the null.
+
+A finite horizon alone does not truncate the ideal marks or counts. The implemented generators additionally use finite uniform grids, representable marks and explicit resource/numerical stopping rules. Their finite saved histories and any law conditioned on successful completion are distinct from the ideal unstopped law used above. Null moment irregularity neither proves that a positive-inhibition generating score is irregular nor establishes the cause of held-out losses, selected parameter values or optimizer behavior.
 
 Finite score variance alone is not a central limit theorem. It also does not establish differentiability in quadratic mean for the full searched model or a regular information matrix at the boundary. This distinction is visible in the pathwise negative Hessian at the null:
 \[

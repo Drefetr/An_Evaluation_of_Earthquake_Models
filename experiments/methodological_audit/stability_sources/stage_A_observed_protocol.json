@@ -1,0 +1,674 @@
+{
+  "schema_version": 1,
+  "status": "frozen",
+  "created_utc": "2026-10-24T08:32:56.348643+00:00",
+  "question": "Does exposure-orthogonalized bounded stress inhibition improve held-out conditional timing relative to matched excitation, and does the contrast change under training-tuned Omori excitation?",
+  "scope": "Stage A only; retrospective exploratory; no Stage B/C, new productivity families, ridge, publication, or physical causality claim.",
+  "data": {
+    "catalogue": "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\productivity_slope_20261024T023501Z\\inputs\\catalogue.csv",
+    "sha256": "feacccb7581d1c4c33f88874cd6b198c41639da6930a7fc35e46f910a594fb3e",
+    "bytes": 109747,
+    "events": 913,
+    "minimum_magnitude": 5.0,
+    "excess": "M-5",
+    "horizon_days": 24394.0,
+    "time_coordinate": "days since1960-01-01UTC; x=2t/24394-1",
+    "raw_bytes_immutable": true,
+    "raw_data_and_caches_external_delegation": false,
+    "history": "all observed parents before predictiontime retained, including pretraininghistory",
+    "test_prior_use": "All historical catalogue/windows previously inspected. This is retrospective exploratory comparison, no untouched confirmatory/prospective claim."
+  },
+  "cases": [
+    {
+      "id": "primary_fold_0",
+      "variant": "primary",
+      "fold": 0,
+      "train_start": 0.0,
+      "train_end": 12197.0,
+      "test_start": 12197.0,
+      "test_end": 15856.1,
+      "T0": 24394.0,
+      "d_fixed": null
+    },
+    {
+      "id": "primary_fold_1",
+      "variant": "primary",
+      "fold": 1,
+      "train_start": 0.0,
+      "train_end": 15856.1,
+      "test_start": 15856.1,
+      "test_end": 19515.2,
+      "T0": 24394.0,
+      "d_fixed": null
+    },
+    {
+      "id": "primary_fold_2",
+      "variant": "primary",
+      "fold": 2,
+      "train_start": 0.0,
+      "train_end": 19515.2,
+      "test_start": 19515.2,
+      "test_end": 24394.0,
+      "T0": 24394.0,
+      "d_fixed": null
+    },
+    {
+      "id": "constant_background_fold_0",
+      "variant": "constant_background",
+      "fold": 0,
+      "train_start": 0.0,
+      "train_end": 12197.0,
+      "test_start": 12197.0,
+      "test_end": 15856.1,
+      "T0": 24394.0,
+      "d_fixed": 0.0
+    },
+    {
+      "id": "constant_background_fold_1",
+      "variant": "constant_background",
+      "fold": 1,
+      "train_start": 0.0,
+      "train_end": 15856.1,
+      "test_start": 15856.1,
+      "test_end": 19515.2,
+      "T0": 24394.0,
+      "d_fixed": 0.0
+    },
+    {
+      "id": "constant_background_fold_2",
+      "variant": "constant_background",
+      "fold": 2,
+      "train_start": 0.0,
+      "train_end": 19515.2,
+      "test_start": 19515.2,
+      "test_end": 24394.0,
+      "T0": 24394.0,
+      "d_fixed": 0.0
+    },
+    {
+      "id": "post1980_training_fold_0",
+      "variant": "post1980_training",
+      "fold": 0,
+      "train_start": 7305.0,
+      "train_end": 12197.0,
+      "test_start": 12197.0,
+      "test_end": 15856.1,
+      "T0": 24394.0,
+      "d_fixed": null
+    },
+    {
+      "id": "post1980_training_fold_1",
+      "variant": "post1980_training",
+      "fold": 1,
+      "train_start": 7305.0,
+      "train_end": 15856.1,
+      "test_start": 15856.1,
+      "test_end": 19515.2,
+      "T0": 24394.0,
+      "d_fixed": null
+    },
+    {
+      "id": "post1980_training_fold_2",
+      "variant": "post1980_training",
+      "fold": 2,
+      "train_start": 7305.0,
+      "train_end": 19515.2,
+      "test_start": 19515.2,
+      "test_end": 24394.0,
+      "T0": 24394.0,
+      "d_fixed": null
+    }
+  ],
+  "variants": [
+    {
+      "id": "primary",
+      "training_start_days": 0.0,
+      "d_estimated": true
+    },
+    {
+      "id": "constant_background",
+      "training_start_days": 0.0,
+      "d_estimated": false
+    },
+    {
+      "id": "post1980_training",
+      "training_start_days": 7305.0,
+      "d_estimated": true
+    }
+  ],
+  "models": [
+    "E0_ml",
+    "I0_raw_ml",
+    "I0_orth_ml",
+    "E0_omori",
+    "I0_orth_omori"
+  ],
+  "common_nuisance": {
+    "excess_cut": 0.5,
+    "magnitude_rate": "training-only conditional-within-bin MLE common toallcandidates",
+    "conditional_loglik": "N*log(b)-b*(sumQ-Nhigh*c)-Nlow*log(1-exp(-b*c))",
+    "conditional_score": "N/b-(sumQ-Nhigh*c)-Nlow*c/expm1(b*c)",
+    "difference_from_historical": "New matched nuisance/optimization protocol; do not claim unchanged historicalestimationrecipe. Existing oldcandidate equations and independent fixedparameterreference retained.",
+    "trigger": {
+      "kind": "ml",
+      "tau": 1.0,
+      "alpha": 0.5,
+      "p": 1.3,
+      "spectral_step": 0.4,
+      "spectral_tail_bound": 1e-08
+    },
+    "stress": "Same finite mixture; g(q)=exp((.75*log(10))*(q-1)), preeventstrictleftlimits",
+    "hyperparameter_selection": "Only frozen E0 training Omori grid selects excitation; stress always original ML; r fixed.7"
+  },
+  "parameter_bounds": {
+    "a": [
+      -12.0,
+      0.0
+    ],
+    "d": [
+      -2.0,
+      2.0
+    ],
+    "n": [
+      0.0,
+      0.98
+    ],
+    "eta": [
+      0.0,
+      3.0
+    ]
+  },
+  "fixed": {
+    "r": 0.7,
+    "E_models_eta": 0.0,
+    "constant_background_d": 0.0
+  },
+  "projection": {
+    "basis": [
+      "1",
+      "x=2t/T0-1"
+    ],
+    "estimation": "training-only weighted ordinary least squares on exact frozen order16 quad_x,quad_w; normalized weights",
+    "gamma1": "sum(w*(x-mx)*(G-mG))/sum(w*(x-mx)^2)",
+    "gamma0": "mG-gamma1*mx",
+    "freeze": "same coefficients for all models, train/test and16/32; never test-refit",
+    "singularity_gate": "Vx>1e-14 and finite; zero Gperp variance flagged redundant not invalid projection",
+    "residual_moment_tolerance": "abs(sum(w*residual))<=1e-10*max(1,rms(G)); abs(sum(w*x*residual))<=1e-10*max(1,rms(x)*rms(G))",
+    "interpretation": "exposure orthogonality; not likelihood-score orthogonality",
+    "gram_diagnostics": [
+      "weighted raw Gram [1,x,G] and [1,x,Gperp]",
+      "eigenvalues",
+      "2-norm condition raw and unit-column-scaled",
+      "residual variance",
+      "zero-variance/singular flags"
+    ]
+  },
+  "kernel_selection": {
+    "method": "training E0 nine-point grid only; no continuous refinement",
+    "c_days": [
+      0.1,
+      1.0,
+      10.0
+    ],
+    "p": [
+      1.1,
+      1.3,
+      1.7
+    ],
+    "grid_order": "p outer ascending,c inner ascending",
+    "starts_per_point": 8,
+    "selection": "minimum eligible completed E0 training NLL; exact ties smallest stable candidate ID; never use held-out",
+    "freeze": "selected c,p identical for final E0_omori and I0_orth_omori",
+    "stress": "ML stress survival unchanged from ml models; only excitation changes",
+    "all_grid_required": true,
+    "historical_bridge": "New fixed r=.7 grid procedure is not exact reproduction of historical continuous Omori/productivity-selection recipe"
+  },
+  "fit_policy": {
+    "model_order": [
+      "E0_ml",
+      "I0_raw_ml",
+      "I0_orth_ml",
+      "E0_omori",
+      "I0_orth_omori"
+    ],
+    "starts_per_model": 8,
+    "optimizer": {
+      "method": "L-BFGS-B",
+      "maxiter": 200,
+      "maxfun": 20000,
+      "maxls": 40,
+      "ftol": 1e-10,
+      "gtol": 2e-06
+    },
+    "failure_only_recovery": [
+      {
+        "method": "L-BFGS-B",
+        "same_original_start": true,
+        "maxls": 200
+      },
+      {
+        "method": "Powell",
+        "same_original_start": true,
+        "maxiter": 400,
+        "maxfev": 5000,
+        "xtol": 1e-06,
+        "ftol": 1e-10
+      }
+    ],
+    "starts": {
+      "a0": "clip(log(.6*Ntrain/duration),-11.5,-.1)",
+      "E_free_d": [
+        {
+          "a_offset": 0.0,
+          "d": -0.2,
+          "n": 0.2
+        },
+        {
+          "a_offset": 0.0,
+          "d": -0.2,
+          "n": 0.6
+        },
+        {
+          "a_offset": 0.0,
+          "d": 0.2,
+          "n": 0.2
+        },
+        {
+          "a_offset": 0.0,
+          "d": 0.2,
+          "n": 0.6
+        },
+        {
+          "a_offset": -0.5,
+          "d": -0.2,
+          "n": 0.2
+        },
+        {
+          "a_offset": -0.5,
+          "d": -0.2,
+          "n": 0.6
+        },
+        {
+          "a_offset": -0.5,
+          "d": 0.2,
+          "n": 0.2
+        },
+        {
+          "a_offset": -0.5,
+          "d": 0.2,
+          "n": 0.6
+        }
+      ],
+      "E_d0": [
+        {
+          "a_offset": 0.0,
+          "d": 0.0,
+          "n": 0.1
+        },
+        {
+          "a_offset": 0.0,
+          "d": 0.0,
+          "n": 0.35
+        },
+        {
+          "a_offset": 0.0,
+          "d": 0.0,
+          "n": 0.65
+        },
+        {
+          "a_offset": 0.0,
+          "d": 0.0,
+          "n": 0.85
+        },
+        {
+          "a_offset": -0.5,
+          "d": 0.0,
+          "n": 0.1
+        },
+        {
+          "a_offset": -0.5,
+          "d": 0.0,
+          "n": 0.35
+        },
+        {
+          "a_offset": -0.5,
+          "d": 0.0,
+          "n": 0.65
+        },
+        {
+          "a_offset": -0.5,
+          "d": 0.0,
+          "n": 0.85
+        }
+      ],
+      "I_eta": [
+        0.0,
+        0.1,
+        0.2,
+        0.4,
+        0.7,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "I_base": "completed matched E selected a,d,n; direct coordinates copied at eta starts; eta0 exact; starts clipped once to bounds"
+    },
+    "exact_floors": {
+      "every_E": "constant Poisson n0,d0,a=clip(log(Ntrain/duration),-12,0)",
+      "every_I": "matched E at eta0,plus Poisson eta0 floor",
+      "E0_omori": "selected grid candidate retained",
+      "raw_orth_mapping": "admit mapped same-family candidates only if all destination bounds/fixed constraints feasible; no clipping an exact mapped floor"
+    },
+    "success": "converged finite feasible solver return; fresh NLL nonworse than original start within1e-8; order16/32<=1e-4; all8 slots required; floors do not repair failed slots",
+    "selection": "training joint NLL only; stable candidate ID exact tie break; save raw and floor-selected winner lineage",
+    "fresh_nll_tolerance": 1e-07,
+    "nonworsening_tolerance": 1e-08,
+    "near_optimal_nll_gap": 0.0004,
+    "forecast_spread_threshold_nats_per_event": 0.01,
+    "forecast_spread_rule": "score every eligible candidate within gap of selected training minimum; test max-minus-min divided Ntest must be strictly <.01; missing score or excess produces inconclusive",
+    "failure_statuses": [
+      "unknown_start_incomplete",
+      "unknown_dependency",
+      "unknown_budget",
+      "unknown_audit",
+      "unknown_forecast_ambiguity"
+    ]
+  },
+  "denominators": {
+    "cases": 9,
+    "main_procedures": 45,
+    "main_starts": 360,
+    "selector_procedures": 81,
+    "selector_starts": 648,
+    "total_observed_procedures": 126,
+    "total_observed_starts": 1008,
+    "floor_evaluations": "additional, outside mandatory-start denominators",
+    "recoveries": "additional per failed slot, never substitutes/redraws"
+  },
+  "machine_controls": {
+    "orders": [
+      16,
+      32
+    ],
+    "nll_absolute_tolerance": 0.0001,
+    "oracle_absolute_nll_tolerance": 0.0001,
+    "gradient_relative_tolerance": 5e-05,
+    "gradient_absolute_tolerance": 5e-05,
+    "gradient_rule": "abs(error)<=5e-5*max(1,abs(analytic),abs(reference)); central interior,feasible one-sided at boundaries; retain steps/results; evaluate all three fixed steps and require at least two adjacent passing stencils at unchanged tolerance",
+    "nesting_tolerance": 1e-08,
+    "mark_identity_tolerance": 1e-08,
+    "decomposition_tolerance": 1e-08,
+    "fixtures": [
+      "no-history",
+      "constant and affine G",
+      "signed negative Gperp",
+      "n0",
+      "eta0",
+      "d0",
+      "strict left-limit/future exclusion",
+      "pretraining history",
+      "boundary feasible points",
+      "unrestricted mapped raw/orth equality",
+      "stale hash/grid/cache mutation rejection",
+      "ML and Omori exact excitation exposure",
+      "frozen training gamma replay and16/32 same gamma"
+    ],
+    "finite_difference_steps": [
+      1e-05,
+      1e-06,
+      1e-07
+    ]
+  },
+  "synthetic_controls": {
+    "histories": [
+      {
+        "id": "E0_ml_truth",
+        "time_seed": 20261024083101,
+        "mark_seed": 20261034083101,
+        "eta": 0.0
+      },
+      {
+        "id": "I0_raw_ml_truth",
+        "time_seed": 20261024083102,
+        "mark_seed": 20261034083102,
+        "eta": 1.0
+      }
+    ],
+    "generating_law": "lambda=exp(a+d*x-eta*G_raw)+n*H_ml; exponential independent marks Q with rate beta; empty initial history; original pinned finite ML mixture for H and G survival",
+    "parameters": {
+      "a": -3.2188758248682006,
+      "d": 0.0,
+      "n": 0.2,
+      "r": 0.7,
+      "beta": 2.85,
+      "T0": 5000.0,
+      "horizon": 5000.0
+    },
+    "rng": "NumPy PCG64 separate time and mark streams; time stream supplies integrated-hazard and acceptance uniforms; mark draw only after accepted event",
+    "training_start": 0.0,
+    "training_fraction": 0.7,
+    "beta_fitting": "known beta2.85; independent observed nuisance controls separate",
+    "d_estimated": true,
+    "event_cap": 2000,
+    "proposal_cap": 100000,
+    "generation_seconds_per_history": 30.0,
+    "minimum_training_events": 30,
+    "minimum_test_events": 10,
+    "no_replacement": true,
+    "no_jitter_merge_clip": true,
+    "thinning": {
+      "envelope": "M(t)=mu_max+n*H_ml(t) between accepted events; mu_max=max_{t in[0,T]}exp(a+d*x(t))=exp(a+abs(d)); raw G>=0 and eta>=0 prove lambda<=M",
+      "sampling": "Draw Z=-log(U). For current time s solve mu_max*u+n*sum_j kappa_j*(S(s-tj)-S(s+u-tj))=Z by deterministic safeguarded root. If Z exceeds integrated envelope to horizon terminate. Evaluate strict-left actual lambda at candidate, accept if independent uniform <=lambda/M. Rejected proposals advance clock but do not enter history.",
+      "numerics": "Positive finite mixture ensures continuous strictly increasing integrated hazard since mu_max>0. Uniform draws strictly in(0,1). Record root residual and bracket extrema; require absolute hazard residual<=1e-10 AND time bracket width<=1e-10*max(1,proposal_time); otherwise explicit numerical failure. Never truncate/suppress any finite-mixture mode."
+    },
+    "fit_schedule": "All9 E0 Omori grid procedures then all5 main procedures/eight starts on each history",
+    "fit_procedures": 28,
+    "mandatory_starts": 224,
+    "eligibility": "complete generation,strict finite times,cap not hit,counts satisfied,finite scores; otherwise gate fails without replacement",
+    "checks": [
+      "independent raw-history truth train/test value reconstruction",
+      "all procedures/starts complete and exact floors retained",
+      "truth NLL witness only for E0_ml on eta0 and I0_raw_ml on both histories; I0_orth_ml mapped witness only if feasible; no Omori truth-recovery requirement",
+      "generating E0 d0eta0 acceptance probability1 within roundoff",
+      "no recovery/positive held-out gain requirement; engineering not statistical calibration"
+    ],
+    "generator_path": "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\source\\research\\orthogonal_stress_validation\\synthetic.py"
+  },
+  "resources": {
+    "numerical_concurrency": 1,
+    "threads_per_job": 1,
+    "memory_target_bytes": 17179869184,
+    "elapsed_ceiling_seconds": 14400,
+    "numerical_ceiling_seconds": 7200,
+    "stage_allocations_seconds": {
+      "machine_build": 600,
+      "synthetic": 900,
+      "selectors": 1800,
+      "main": 1800,
+      "audit": 1500,
+      "reconciliation": 600
+    },
+    "minimum_audit_reserve_seconds": 1200,
+    "main_seconds_per_procedure": 40,
+    "selector_seconds_per_procedure": 20,
+    "admission": "Measured synthetic runtime must project all prescribed observed starts including recovery allowance within allocations and deadline while retaining audit/reconciliation. No budget-driven start trimming.",
+    "deadline_utc": "2026-10-24T12:29:52.196243+00:00",
+    "accounting": "Complete closed conductor numerical leases including overhead; held unknown process retains slot; deadline/lease controls cooperative not process-killing.",
+    "stage_wall_seconds": 3600
+  },
+  "saved_audit": {
+    "independent_raw_reconstruction": true,
+    "every_candidate": true,
+    "nll_absolute_tolerance": 0.0001,
+    "checks": [
+      "raw CSV identity/windows/nuisance independently",
+      "every start,recovery,floor,lineage/hash",
+      "projection and frozen test application",
+      "all kernel-grid procedures and training-only selector",
+      "candidate training/test E,C,total,marks",
+      "feasibility and exact nesting",
+      "selected minimum and near-optimal spread",
+      "126procedures1008starts denominator plus failures",
+      "all aggregate entries from candidate records"
+    ],
+    "prohibited": [
+      "import production DLL",
+      "trust NPZ without raw reconstruction",
+      "omit unsuccessful records"
+    ]
+  },
+  "reporting": {
+    "comparisons": [
+      "I0_raw_ml-E0_ml",
+      "I0_orth_ml-E0_ml",
+      "I0_orth_ml-I0_raw_ml",
+      "E0_omori-E0_ml",
+      "I0_orth_omori-E0_omori",
+      "(I0_orth_omori-E0_omori)-(I0_orth_ml-E0_ml)"
+    ],
+    "score_definition": "E=sum(log lambda_candidate-log lambda_baseline); C=int(lambda_baseline-lambda_candidate); Delta=E+C",
+    "aggregation": "sum Delta/sum Ntest separately per variant; same612 targets reused; never independent1836",
+    "historical_fold0": "Source-reported -16.99 context; quantify rescue using recomputed matched raw baseline and reconcile differences",
+    "limits": [
+      "retrospective inspected windows",
+      "constrained procedures not unconstrained model-space distinction",
+      "exposure orthogonality not score orthogonality",
+      "no event-iid confidence interval",
+      "no Wilks boundary inference",
+      "no physical causality",
+      "no global optimum guarantee"
+    ]
+  },
+  "freeze_requirements": [
+    "independent methods/protocol and control coverage accepted",
+    "source/DLL/Python runtime/generator/oracle/all executed inputs pinned in separate manifest",
+    "absolute deadline and benchmark-based admission recorded before observed fitting",
+    "append-only repair epochs and renewed relevant controls; no unlogged refits/redraws"
+  ],
+  "source_pins": [],
+  "observed_eligibility": {
+    "catalogue_rows": 913,
+    "minimum_training_events_per_bin": 30,
+    "excess_cut": 0.5,
+    "bins": [
+      "Q<.5",
+      "Q>=.5"
+    ],
+    "minimum_test_events": 1,
+    "failure_rule": "Fail prefit eligibility without refitting or deleting cases; raw catalogue hash and strict ordering retained."
+  },
+  "stage_wall_seconds": 3600,
+  "source_epoch_note": "v5 updates synthetic root enclosure margin and strict audit width; no generator RNG/seed/law changes. Machinev4 evaluator/oracle/runner identities retained.",
+  "artifact_pins": {
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\source\\research\\orthogonal_stress\\build_objective.cmd": "4ce8c3e3aeb5e9018a7dba31993877fbe8210b7cb991eaa2e2fda4890f789369",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\source\\research\\orthogonal_stress\\compiled_objective.py": "34caaa5febbcbe6331bfab40e14c4776af1067fd4fe4607f22e7baf1dd89c475",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\source\\research\\orthogonal_stress\\fitting.py": "3b34bb6f3151f6fe554d6cdd6c5b00a3c912742a1d6fa8827c64021baac3cef8",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\source\\research\\orthogonal_stress\\geometry.py": "07764f43d91cbde7624c8b8382927089f7ab4dedd0b92c4e4128b9b1f819d04e",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\source\\research\\orthogonal_stress\\objective.cpp": "de261350fee2e7eb1dfd57968ac59fdcd4c3a0c9393b2f383d52a6c6d46dc882",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\source\\research\\orthogonal_stress\\objective.dll": "38db98e9599b62030a926a03f3176cf7b104a61e2635f92689ef58f5f13910b3",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\source\\research\\orthogonal_stress\\workflow.py": "aa36a9aeff9787293ef529a21128b997fb8d0768b33377c6b0a5b4d16515b929",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\source\\research\\orthogonal_stress_validation\\audit_saved.py": "ed12905be4bc8ac3afc22e41368de59d647805ff2b67dc53e7906e9eb2e24e27",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\source\\research\\orthogonal_stress_validation\\cache_oracle.py": "9c5a5e82af35d95b11847c0abaf2864df11bde99847a7990a9c800b8f83a6220",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\source\\research\\orthogonal_stress_validation\\likelihood_oracle.py": "0f8546ddd12f982c87c1983516554efe2c9b0fb5236530d9916bb36f4c5274d7",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\source\\research\\orthogonal_stress_validation\\run_machine_controls.py": "83fe833a9c04b5cea6789df5de104d354fea4ffd56ff259e60320c1411b86ea2",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\source\\research\\orthogonal_stress_validation\\synthetic.py": "023eef2cc6e3db890aaa7d8900d17a12fe3928971b7676d21fa1662af9753825",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\research\\magnitude_prediction\\analysis.py": "e1b5bfe4ba11d27f829362541d7a329134e3651b945ce218a73e74aff9d92e94",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\research\\magnitude_prediction\\build_objective.cmd": "4ce8c3e3aeb5e9018a7dba31993877fbe8210b7cb991eaa2e2fda4890f789369",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\research\\magnitude_prediction\\compiled_objective.py": "3d2db32fdfee144213773961b1cffb28b5f50c195374f214865c78c7460b182f",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\research\\magnitude_prediction\\data_features.py": "705689169c8ac60f7502ea17871ba7a9f1bf305e910d430b43104f61b96962b2",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\research\\magnitude_prediction\\fit_models.py": "8b4341ab3fd6b017852d1e6d538b830a316969e296b57ef4fe0ea73185d7c009",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\research\\magnitude_prediction\\fit_recipe.json": "c736f9c16cff012cbe6bfe8c760fae6ed2028f078503329ebea214ac3268f283",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\research\\magnitude_prediction\\objective.cpp": "1cd01c51a90579f59b9695745665b797416d081838f5a504f46662b3b0893d21",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\research\\magnitude_prediction\\observed_reference.py": "79d463ff0a9af3267fb91efa02d2ed69aa99fa518b08702910abac06e082773b",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\research\\magnitude_prediction\\plot_results.py": "c14995bd276b578c98ec4a9d3e1f277e1fa7f63a8d77b9e31d04d862f46fb2c2",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\research\\magnitude_prediction\\simulate_recovery.py": "0ab07651f15ac03e1635ec1c608cf797e6b073bc922cc5e9c9ac6741a29955b1",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\research\\magnitude_prediction\\workflow.py": "7aec030fe1031b55e5ea9172fd2d5ce9765f4ad7f8a821f754ca6f75d90588a5",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\api.py": "8ccaf3ec588e4c52fe497f46307c67a20dcf23a831ce1c3907173f3810ed1064",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_9\\code\\numerical_fit.py": "ab9f517ab6065f952a22e5ad02e72dd8111f1ad18c405527f3a461f556ea6bc1",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_6\\code\\checkpoint_io.py": "7c9fd78238af507c4aaf511917601f6ef6350065815c0204ea9a14ded2a89158",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_5\\code\\empirical_process.py": "9d8bc923cc87eba586bd0dee721245be73f2bbf623c90e00e138a18198d45ea0",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_5\\code\\fetch_catalogue.py": "e2ae612d282eff409d24394d751a675ecb6e25326bb35ae9ba2064ff9406586d",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_5\\code\\kernels.py": "3561ef3471adf349caebebc6c2ca12881f2a3d9c7c7415d15453b5be20b978ae",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_5\\code\\prepare_catalogue.py": "60431d02fd433412fa76130f82452f8ca2ed804bef846f27b7c20eabde08a610",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_28\\code\\heterogeneity.py": "23dceac085a1b4fe8668327de56cfbef8b12f16073bb0ee8b71d5f24d0f84b77",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_28\\configs\\D_interface.json": "fe1555ba7569d676604b091e0c7df35cd28b86e63b92c7fe3a76c1887cd327d0",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_28\\configs\\numerical_frozen.json": "2636262990a11edb1f4b0ae6122370b26d7c0d49b590094af83644b7cbe5a6fd",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_28\\configs\\source_frozen.json": "e7659fec53fb5ef009c76505085c041debae52ce51e897b626b9483b43aa8280",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_27\\code\\adequacy.py": "9662c90f9ff7e120fe26c1dfc0bd969071f16774feec686b9e97731337e0ff90",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_27\\code\\analyze_adequacy.py": "d7e10af001ffd21cac7ca27e9a4624d9a326e779a02b09258051f0bdfe97a1c8",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_27\\code\\bounded_run.py": "6c0284f1a751bddc3550a1d941f1855ff4e346a2d4086e6844ad745d56bdbda0",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_27\\code\\freeze_protocols.py": "c6ff39913962638341161f0ac8b1d7a8fcee536751c20e4b6578ac893aa37202",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_27\\code\\horizon_pilot.py": "4a8f120690a9a506d28ec2393baeff161e7edf8307463fca986d5fbaade7982b",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_27\\code\\run_adequacy.py": "e3813f59385843c8dec0bdf48ce2070e7c8bc2f0a650fab629d8a22985892a36",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_27\\configs\\D_interface.json": "63599f361eac23e1115c5747e44579b17d3ccf25bc406a4fb9b4185499c5d3be",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_27\\configs\\observed_frozen.json": "f08ebeddf0a7c210dba42748f5e578d2d8d189476cb8c69e1da4e41dff5eb63c",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_27\\tests\\test_adequacy.py": "b3dbad53a9f79bd14bf061afc10d3a55d210c79123b25de5adde42e5fe2dfaa8",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_27\\tests\\test_analysis.py": "66180a59a563938bb1db84a1e970ef7a8512c30799fbe6909c141a218ff8bb09",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_27\\tests\\test_horizon_pilot.py": "a230b9d560f240b03693794f8eb3b1350444976585d4016834f8662d70558e5b",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_26\\code\\calibrate_level_only.py": "4fc458416d4d2698fccb9fac11aaba2defbd04ac5148cfd7d85007f280d9bf35",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_26\\code\\level_only_fit.py": "7d154a587fcc8b6f10d7d4814f0681109745dca525c4e6d0666231edddbe5d3f",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_26\\code\\review_benchmark.py": "0e6e855e6d610416256e91225665176261206e64125b81b351fb0cbaca460ce5",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_26\\code\\run_level_calibration.py": "bfc03c0024489fbfcf3b17f8c5957ab3d37ebb58fb991157ac263fe15e5b6e9e",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_24\\code\\profile_optimizer.py": "f0ab547015736eb9bfd6a3f3b8d08e60420516fda91a828149e5a5f087d9aff8",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_21\\code\\analyse_full_staged.py": "fe352e5516e97dd2f64dd76e1c9b8e050dded3369c41a54752552b560cd318ef",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_21\\code\\analyse_staged.py": "6ca14b20809ca282bf94c2eec362ab04f8f75701a0d72c1c9f9c7b125975e0c8",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_21\\code\\benchmark_staged.py": "6887cc4df36b4bf1cfa6f9cd8918e8cc6f25d50df7f24d447522e14eec04d79f",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_21\\code\\run_staged_full.py": "aa04b8c04f4f418c0c68976b8557e89a94cfafd72d0f07c13c205fa4edef2abd",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_21\\code\\staged_fit.py": "338145457dd54d90ac929fda32224adcb7c02870e884724341f6222a4fce6f44",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_20\\code\\restricted_fit.py": "29663cb80701a90332b0dfe0876f5b2a64a6d0841b6c9de66f80aade8beba418",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_20\\code\\restricted_history.py": "0d3e2b538a2757343424ab13cb891d605225451e5db728739d0723624b0691f5",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_19\\code\\run_full_cuda.py": "93f59620d6f7e9a0eccbf1ae3575429634080459b1ea38601b070a89ee906dbb",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_18\\code\\cuda_oracle.py": "be7ff7938596c0f5c3bc40962986e2ae511a0a9c1b05bc1d8d7b99008fa86505",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_17\\code\\oracle_likelihood.py": "6e8fa9ce82cb5c2d100adaf8065138172830618da49047e9c5aa73ccfaa3bb46",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_12\\code\\clock_simulator.py": "b12d998dc03565812e2dbbafce020b23d0ebeb684b96c93ba26ee69064b72e69",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_12\\code\\paired_history.py": "3950696b888b1a0d7c55a4448f9283c9376ef246296ad9181d273a53e7380e5a",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\productivity_slope_20261024T023501Z\\orthogonal_stress_stage_a\\engine\\iteration_12\\code\\stable_history.py": "f2ed43402c17203c900642b584db591638fbd27474c9669bffa4a43379bdaa30",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\orchestration\\extra_machine_controls.py": "98a1bc17cf6849ab8b1bdc790effb7d5b5a464a45f39113061455489d4279345",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\orchestration\\freeze.py": "28c644fc010f675adb38417cf4cf721a8b01336ba485f2a5c49e4ed72da1a41a",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\orchestration\\freeze_observed.py": "bc585ee1328ae3a3603add4e5b27604f6ef74c646151ecfe840f0f895edb9898",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\orchestration\\make_report.py": "12818de820c49b6c6541bb95bac6b99a34f167d794c83d563def5c5571da344f",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\orchestration\\prepare_job.py": "e7b1f618a2ffc88053ed11907725f0880de754677028fef6dc07505e37825888",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\orchestration\\resource_admission.py": "81c7cc7e0a42b68739daed99cb4a33fbef306e23e29881dabd1754f69eb66cbe",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\orchestration\\run_job.py": "a4d2bd569c0dab4166cb23f0cbf4e1cd5a06c70dfdf4d307b7b2cb543b9fa1d6",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\orchestration\\swarm_state.py": "1e4c92f66f9a24805fabe22dfb13f0cd5f687cadb60d39278b51a345b276ee79",
+    "C:\\Users\\Drefetr\\AppData\\Local\\Programs\\Python\\Python313\\python.exe": "5ef72c30ca3b82df7c7e186c9220bde665be9a335edbd4a371a4b19d0ac76644",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\productivity_slope_20261024T023501Z\\inputs\\catalogue.csv": "feacccb7581d1c4c33f88874cd6b198c41639da6930a7fc35e46f910a594fb3e",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\methods\\machine_controls_v4.json": "3611ebd56d551c890f8016119e44acbc6029d37a3b02c3222c43e4db5fcbf830",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\methods\\extra_machine_controls_v2.json": "62dae08b13c62bbbb8a764ce80d4f705585196a389925e7c47340d025cae384b",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\methods\\machine_epoch_identity.json": "1f97b8a440cd944bf51cdc9d5c6501730dc229ff5280147b894c1ba52cae2f94",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\methods\\synthetic_saved_audit_v1.json": "9d049c2f8bd64014e4b23ced5f67900964bc3a195e8b5b1d4aa043da0472917f",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\methods\\resource_admission.json": "f7b7998f7865ac6791b16d52b6ba1a03d304d795fdf14bdbcb64fb0617e471dc",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\methods\\observed_gate_review.json": "80d77e12f660905c200df3de53ef1401eaa45c0c7010186cc400cc0bf1357e33",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\methods\\protocol_source_review.json": "bb277cf439c53bc251e83f17cf9f978c3eb739ebba2aa9ba15696e0953caef2d",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\methods\\control_coverage_review.json": "a67952d01b1cf06dbf1dd3ef0a3d5275ec63634ac953c7fbc3b4d9db3fd2b3a3",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\methods\\orthogonal_stress_derivation.md": "8ec3d18a4e9258d18740bc4230fffdcd421fabfafe3aadee2c10d4e2b12daefe",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\protocol_controls_v6.json": "ff69f4a9c1e665ac3afb524c6f508bda68541f35f687316c3ff418c5d8a9235b",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\results\\controls\\summary.json": "060df660744423ec579b7b4a92217972404999718540f00469068fe291b5026b",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\inputs\\authority_inventory.json": "6849a35b8a2a45302f44db58d7adb0bf631c07d72a79a426212fecca32cadf0e",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\config.json": "544490a1475e14e658c1e05bd39b41fc9660662ca0771b84d09f79fb9d6bdcd7"
+  },
+  "freeze_epoch": "observed_v1",
+  "runtime": {
+    "python": "3.13.4 (tags/v3.13.4:8a526ec, Jun  3 2025, 17:46:04) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "executable": "C:\\Users\\Drefetr\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3"
+  },
+  "execution_stage": "observed Stage A; synthetic gates passed; all126procedures1008starts required",
+  "gate_artifacts": {
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\methods\\machine_controls_v4.json": "3611ebd56d551c890f8016119e44acbc6029d37a3b02c3222c43e4db5fcbf830",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\methods\\extra_machine_controls_v2.json": "62dae08b13c62bbbb8a764ce80d4f705585196a389925e7c47340d025cae384b",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\methods\\machine_epoch_identity.json": "1f97b8a440cd944bf51cdc9d5c6501730dc229ff5280147b894c1ba52cae2f94",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\methods\\synthetic_saved_audit_v1.json": "9d049c2f8bd64014e4b23ced5f67900964bc3a195e8b5b1d4aa043da0472917f",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\methods\\resource_admission.json": "f7b7998f7865ac6791b16d52b6ba1a03d304d795fdf14bdbcb64fb0617e471dc",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\methods\\observed_gate_review.json": "80d77e12f660905c200df3de53ef1401eaa45c0c7010186cc400cc0bf1357e33",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\methods\\protocol_source_review.json": "bb277cf439c53bc251e83f17cf9f978c3eb739ebba2aa9ba15696e0953caef2d",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\methods\\control_coverage_review.json": "a67952d01b1cf06dbf1dd3ef0a3d5275ec63634ac953c7fbc3b4d9db3fd2b3a3",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\methods\\orthogonal_stress_derivation.md": "8ec3d18a4e9258d18740bc4230fffdcd421fabfafe3aadee2c10d4e2b12daefe",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\protocol_controls_v6.json": "ff69f4a9c1e665ac3afb524c6f508bda68541f35f687316c3ff418c5d8a9235b",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\results\\controls\\summary.json": "060df660744423ec579b7b4a92217972404999718540f00469068fe291b5026b",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\inputs\\authority_inventory.json": "6849a35b8a2a45302f44db58d7adb0bf631c07d72a79a426212fecca32cadf0e",
+    "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\research_runs\\orthogonal_stress_and_kernel_20261024T082952Z\\config.json": "544490a1475e14e658c1e05bd39b41fc9660662ca0771b84d09f79fb9d6bdcd7"
+  }
+}

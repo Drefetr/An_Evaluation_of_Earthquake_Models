@@ -431,7 +431,7 @@
       "source": "Chapter 13, reported observed California inhibition comparisons (S04)."
     },
     {
-      "name": "Synthetic controls - S04B matched generators",
+      "name": "Synthetic controls - S04B fixed-floor and refitted-rate comparisons",
       "kind": "simulation",
       "comparisons": {
         "LI_raw": "LI",
@@ -771,8 +771,210 @@
         "6": "Total: narrow/short",
         "7": "Total: broad/long"
       },
-      "note": "Each row contains 20 independent seeded histories within one generating regime. Five procedures share those same histories; 400 scores are not 400 independent replicates. Mean gains are total held-out nats per history, never earthquake-normalized. MC SE is descriptive with no automatic finite-variance or Gaussian guarantee. Wilson 95% intervals describe bounded win indicators, not mean-gain uncertainty, calibrated test power or a physical mechanism. Ties are not wins. Active counts indicate positive selected strength. Training-only BIC can select the exact floor. The shared nuisance backbone is fixed. Regimes are never pooled.",
-      "source": "Chapter 13, S04B matched-generator extension."
+      "note": "Each row contains 20 independent seeded histories within one generating regime. Five procedures share those same histories; 400 scores are not 400 independent replicates. Mean gains are total held-out nats per history, never earthquake-normalized. MC SE is descriptive with no automatic finite-variance or Gaussian guarantee. Wilson 95% intervals describe bounded win indicators, not mean-gain uncertainty, calibrated test power or a physical mechanism. Ties are not wins. Active counts indicate positive selected strength. Training-only BIC can select the exact floor. The shared nuisance backbone is fixed. Regimes are never pooled. The narrow/short immigrant generator rejected no event in 19 of 20 histories. The lower table refits only the uninhibited background intercept on training data; all original inhibited fits and gates stay unchanged. This isolates comparator sensitivity without claiming joint nuisance fitting or parameter recovery.",
+      "source": "Chapter 13: original fixed-floor S04B summaries, source-backed generator/parameter diagnostics, and completed 80-history intercept sensitivity.",
+      "refitted_floor": [
+        {
+          "regime": 4,
+          "model": "LI",
+          "gate": "raw",
+          "N": 20,
+          "original_mean_gain": -3.94934454185821,
+          "refitted_floor_mean_delta_joint": -0.739162407644244,
+          "mean_gain": -3.210182134213966,
+          "wins": 6
+        },
+        {
+          "regime": 4,
+          "model": "LIplus_immigrant",
+          "gate": "raw",
+          "N": 20,
+          "original_mean_gain": -4.567438824713451,
+          "refitted_floor_mean_delta_joint": -0.739162407644244,
+          "mean_gain": -3.8282764170692074,
+          "wins": 5
+        },
+        {
+          "regime": 4,
+          "model": "LIplus_immigrant",
+          "gate": "BIC",
+          "N": 20,
+          "original_mean_gain": -1.344044064151626,
+          "refitted_floor_mean_delta_joint": -0.739162407644244,
+          "mean_gain": -0.6048816565073821,
+          "wins": 13
+        },
+        {
+          "regime": 4,
+          "model": "LIplus_inclusive",
+          "gate": "raw",
+          "N": 20,
+          "original_mean_gain": -21.576610291118453,
+          "refitted_floor_mean_delta_joint": -0.739162407644244,
+          "mean_gain": -20.83744788347421,
+          "wins": 5
+        },
+        {
+          "regime": 4,
+          "model": "LIplus_inclusive",
+          "gate": "BIC",
+          "N": 20,
+          "original_mean_gain": -1.004250124529142,
+          "refitted_floor_mean_delta_joint": -0.739162407644244,
+          "mean_gain": -0.26508771688489785,
+          "wins": 13
+        },
+        {
+          "regime": 5,
+          "model": "LI",
+          "gate": "raw",
+          "N": 20,
+          "original_mean_gain": 44.31222717724948,
+          "refitted_floor_mean_delta_joint": 43.22369945066097,
+          "mean_gain": 1.0885277265885152,
+          "wins": 12
+        },
+        {
+          "regime": 5,
+          "model": "LIplus_immigrant",
+          "gate": "raw",
+          "N": 20,
+          "original_mean_gain": 48.38675124400008,
+          "refitted_floor_mean_delta_joint": 43.22369945066097,
+          "mean_gain": 5.163051793339105,
+          "wins": 19
+        },
+        {
+          "regime": 5,
+          "model": "LIplus_immigrant",
+          "gate": "BIC",
+          "N": 20,
+          "original_mean_gain": 48.38675124400008,
+          "refitted_floor_mean_delta_joint": 43.22369945066097,
+          "mean_gain": 5.163051793339105,
+          "wins": 19
+        },
+        {
+          "regime": 5,
+          "model": "LIplus_inclusive",
+          "gate": "raw",
+          "N": 20,
+          "original_mean_gain": 19.499262631999454,
+          "refitted_floor_mean_delta_joint": 43.22369945066097,
+          "mean_gain": -23.72443681866152,
+          "wins": 4
+        },
+        {
+          "regime": 5,
+          "model": "LIplus_inclusive",
+          "gate": "BIC",
+          "N": 20,
+          "original_mean_gain": 19.380203666343032,
+          "refitted_floor_mean_delta_joint": 43.22369945066097,
+          "mean_gain": -23.84349578431794,
+          "wins": 4
+        },
+        {
+          "regime": 6,
+          "model": "LI",
+          "gate": "raw",
+          "N": 20,
+          "original_mean_gain": -1.7817603616355826,
+          "refitted_floor_mean_delta_joint": -0.30609682650928677,
+          "mean_gain": -1.4756635351262957,
+          "wins": 7
+        },
+        {
+          "regime": 6,
+          "model": "LIplus_immigrant",
+          "gate": "raw",
+          "N": 20,
+          "original_mean_gain": -3.2419724810839683,
+          "refitted_floor_mean_delta_joint": -0.30609682650928677,
+          "mean_gain": -2.9358756545746814,
+          "wins": 9
+        },
+        {
+          "regime": 6,
+          "model": "LIplus_immigrant",
+          "gate": "BIC",
+          "N": 20,
+          "original_mean_gain": 0.0,
+          "refitted_floor_mean_delta_joint": -0.30609682650928677,
+          "mean_gain": 0.30609682650928677,
+          "wins": 15
+        },
+        {
+          "regime": 6,
+          "model": "LIplus_inclusive",
+          "gate": "raw",
+          "N": 20,
+          "original_mean_gain": -14.594748130232768,
+          "refitted_floor_mean_delta_joint": -0.30609682650928677,
+          "mean_gain": -14.28865130372348,
+          "wins": 10
+        },
+        {
+          "regime": 6,
+          "model": "LIplus_inclusive",
+          "gate": "BIC",
+          "N": 20,
+          "original_mean_gain": 0.06862609705181058,
+          "refitted_floor_mean_delta_joint": -0.30609682650928677,
+          "mean_gain": 0.3747229235610973,
+          "wins": 15
+        },
+        {
+          "regime": 7,
+          "model": "LI",
+          "gate": "raw",
+          "N": 20,
+          "original_mean_gain": 42.550256585661785,
+          "refitted_floor_mean_delta_joint": 43.49649746665091,
+          "mean_gain": -0.9462408809891215,
+          "wins": 10
+        },
+        {
+          "regime": 7,
+          "model": "LIplus_immigrant",
+          "gate": "raw",
+          "N": 20,
+          "original_mean_gain": 49.290154342171576,
+          "refitted_floor_mean_delta_joint": 43.49649746665091,
+          "mean_gain": 5.793656875520672,
+          "wins": 18
+        },
+        {
+          "regime": 7,
+          "model": "LIplus_immigrant",
+          "gate": "BIC",
+          "N": 20,
+          "original_mean_gain": 49.290154342171576,
+          "refitted_floor_mean_delta_joint": 43.49649746665091,
+          "mean_gain": 5.793656875520672,
+          "wins": 18
+        },
+        {
+          "regime": 7,
+          "model": "LIplus_inclusive",
+          "gate": "raw",
+          "N": 20,
+          "original_mean_gain": 53.233233302568976,
+          "refitted_floor_mean_delta_joint": 43.49649746665091,
+          "mean_gain": 9.736735835918074,
+          "wins": 18
+        },
+        {
+          "regime": 7,
+          "model": "LIplus_inclusive",
+          "gate": "BIC",
+          "N": 20,
+          "original_mean_gain": 53.233233302568976,
+          "refitted_floor_mean_delta_joint": 43.49649746665091,
+          "mean_gain": 9.736735835918074,
+          "wins": 18
+        }
+      ]
     }
   ],
   "sources": [
@@ -835,7 +1037,17 @@
       "file": "c8a7863af9ffe6f6_S04B_MATCHED_ACCEPTANCE.json",
       "path": "validation/authorities/c8a7863af9ffe6f6_S04B_MATCHED_ACCEPTANCE.json",
       "sha256": "9e4260d1d4e2854e4e5fca5d2a9039b66bdb8d64d689e75685bf578e4a21f6f4"
+    },
+    {
+      "file": "refitted_floor_summary.json",
+      "path": "validation/live_results/methodological_20261106/refitted_floor_summary.json",
+      "sha256": "2751cff67e8cfe1a0a4920a27fd1507eeeb8f0c2d060327685e9910a8826433c"
+    },
+    {
+      "file": "synthetic_diagnostics.json",
+      "path": "validation/live_results/methodological_20261106/synthetic_diagnostics.json",
+      "sha256": "56b6923d645fb8d89db6dfc1a48b157c7467d6a76892799458d4cb5db42e21dc"
     }
   ],
-  "scope": "Reported saved aggregates only. No uncertainty intervals inferred from dependent windows. S06 acceptance covers saved rows and arithmetic, not independent likelihood replay."
+  "scope": "Reported aggregates, including the dated train-only intercept sensitivity. No uncertainty intervals inferred from dependent windows. S06 acceptance covers saved rows and arithmetic, not independent likelihood replay."
 }

@@ -57,6 +57,21 @@ Here \(W_c\) is the infimum of the expected cost \(c\) over couplings. The weigh
 
 The constants generally depend on the rates, weights, \(m_1\), \(n\), the Lipschitz constant of \(\Psi\) and \(\bar\Psi\). No uniformity is claimed as \(\vartheta_{\min}=\min_j\vartheta_j\) tends to zero; the contractive time and the selected radius may deteriorate in that limit.
 
+\paragraph{Numerical scale of the certificate.}\label{par:stability-certificate}
+For the implemented 195-mode mixture, the smallest rate is
+$\vartheta_{\min}=e^{-38.8}\,\mathrm{day}^{-1}$. The proof below requires
+$t_0\geq\log(4)/\vartheta_{\min}$, already about
+$9.8284\times10^{+16}$ days. Thus its sufficient drift and coupling bounds
+give no useful mixing-time guarantee on the observed horizon. Of these modes,
+61 decay by less than $1\%$ over 24,394 days, but their combined normalized
+relaxation weight is only 0.00042934. This weight describes their contribution
+to $\Phi$, not a bound on arbitrary initialized states or accumulated stress.
+Neither the mode count nor the conservative proof certificate estimates the
+actual process mixing rate. The scalar calculation and saved-fit protocol
+comparison are reproducible through
+\path{experiments/methodological_audit/stability.py}.
+
+
 \begin{proof}
 \emph{Construction and nonexplosion.} Use a marked Poisson embedding with thinning by the predictable intensity \(\Psi(X)+H\). The process is dominated by a marked Hawkes process with immigration \(\bar\Psi\), kernel
 \[

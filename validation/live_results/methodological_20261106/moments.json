@@ -1,0 +1,256 @@
+{
+  "schema_version": 1,
+  "scope": "Analytic exponential-mark moments only; not simulation, fitting or held-out loss attribution.",
+  "ideal_law": "Unstopped continuous exponential marks; S02 fresh-mark interpretation is h=0.",
+  "formula": "E[g^p*kappa^q]=C^p*(1-r)^q*beta/(beta-p*gamma-q*r*beta) for positive denominator; otherwise infinity.",
+  "source_sha256": {
+    "reproduction/s02/completed_inputs_20261031.zip": "c5fac59ddb457765428250197f9cfe981e8a6702f6705bb4f85d819e4561e798",
+    "reproduction/synthetic/source/generator.py": "b8bae982735b4fba26d450d93578c4d0b78ac33f7e33c691557b2bd8d4afcf43",
+    "reproduction/synthetic/source/cpu_reference.cpp": "904bb746838fa2b740f8db8008a761b150cdfaae35d7fb90021ea7ebb063020b",
+    "experiments/methodological_audit/moments.py": "e4381da3e4b8ae6d1bdedf315d88cc5a5803ed2a20ae2dc68d71be77454b937b"
+  },
+  "archive_member_sha256": {
+    "contracts/original/S02_STAGED_RECIPE.json": "5ec2a6f3bd55edcd781b0b826634b205971747a2bdb8fa1b8ceb31f1dc960ced",
+    "source/research_runs/scientific_stage2_resume_20261031T205913Z/temporal/source/s02_campaign.py": "7e1544b9d73e24d9fe3d41b906d379c5c14e9e1bf506b5589db81f37917a69bf",
+    "source/research_runs/scientific_stage2_resume_20261031T205913Z/temporal/source/cached_stage2.cpp": "88006e58324e9443ee505e295c2b5fd94d1c9246e24f9a17e78f6aa2ed61a531",
+    "source/research_f_continuation/engine/iteration_17/code/oracle_likelihood.py": "6e8fa9ce82cb5c2d100adaf8065138172830618da49047e9c5aa73ccfaa3bb46"
+  },
+  "two_gamma": 3.453877639491069,
+  "rows": {
+    "temporal_s02_m1": {
+      "beta": 2.849401764894274,
+      "productivity_ratio": 0.7,
+      "gamma": 1.7269388197455344,
+      "stress_scale": 0.17782794100389226,
+      "stress_transform": "exp(gamma*(Q-1))",
+      "moments": {
+        "stress_first": {
+          "stress_power": 1,
+          "productivity_power": 0,
+          "integrability_margin": 1.1224629451487396,
+          "finite": true,
+          "value": 0.45142091427959014,
+          "nonfinite_value": null
+        },
+        "stress_second": {
+          "stress_power": 2,
+          "productivity_power": 0,
+          "integrability_margin": -0.6044758745967949,
+          "finite": false,
+          "value": null,
+          "nonfinite_value": "positive_infinity"
+        },
+        "productivity_second": {
+          "stress_power": 0,
+          "productivity_power": 2,
+          "integrability_margin": -1.1397607059577095,
+          "finite": false,
+          "value": null,
+          "nonfinite_value": "positive_infinity"
+        },
+        "immigrant_ratio": {
+          "stress_power": 2,
+          "productivity_power": -1,
+          "integrability_margin": 1.390105360829197,
+          "finite": true,
+          "value": 0.2160651463280619,
+          "nonfinite_value": null
+        },
+        "total_diagonal_second": {
+          "stress_power": 2,
+          "productivity_power": 1,
+          "integrability_margin": -2.5990571100227866,
+          "finite": false,
+          "value": null,
+          "nonfinite_value": "positive_infinity"
+        },
+        "total_diagonal_first": {
+          "stress_power": 1,
+          "productivity_power": 1,
+          "integrability_margin": -0.8721182902772522,
+          "finite": false,
+          "value": null,
+          "nonfinite_value": "positive_infinity"
+        }
+      }
+    },
+    "temporal_s02_m2": {
+      "beta": 2.849401764894274,
+      "productivity_ratio": 0.0,
+      "gamma": 1.7269388197455344,
+      "stress_scale": 0.17782794100389226,
+      "stress_transform": "exp(gamma*(Q-1))",
+      "moments": {
+        "stress_first": {
+          "stress_power": 1,
+          "productivity_power": 0,
+          "integrability_margin": 1.1224629451487396,
+          "finite": true,
+          "value": 0.45142091427959014,
+          "nonfinite_value": null
+        },
+        "stress_second": {
+          "stress_power": 2,
+          "productivity_power": 0,
+          "integrability_margin": -0.6044758745967949,
+          "finite": false,
+          "value": null,
+          "nonfinite_value": "positive_infinity"
+        },
+        "productivity_second": {
+          "stress_power": 0,
+          "productivity_power": 2,
+          "integrability_margin": 2.849401764894274,
+          "finite": true,
+          "value": 1.0,
+          "nonfinite_value": null
+        },
+        "immigrant_ratio": {
+          "stress_power": 2,
+          "productivity_power": -1,
+          "integrability_margin": -0.6044758745967949,
+          "finite": false,
+          "value": null,
+          "nonfinite_value": "positive_infinity"
+        },
+        "total_diagonal_second": {
+          "stress_power": 2,
+          "productivity_power": 1,
+          "integrability_margin": -0.6044758745967949,
+          "finite": false,
+          "value": null,
+          "nonfinite_value": "positive_infinity"
+        },
+        "total_diagonal_first": {
+          "stress_power": 1,
+          "productivity_power": 1,
+          "integrability_margin": 1.1224629451487396,
+          "finite": true,
+          "value": 0.45142091427959014,
+          "nonfinite_value": null
+        }
+      }
+    },
+    "spatial_li_plus": {
+      "beta": 2.0,
+      "productivity_ratio": 0.7,
+      "gamma": 1.7269388197455344,
+      "stress_scale": 1.0,
+      "stress_transform": "exp(gamma*Q)",
+      "moments": {
+        "stress_first": {
+          "stress_power": 1,
+          "productivity_power": 0,
+          "integrability_margin": 0.2730611802544656,
+          "finite": true,
+          "value": 7.324365909999368,
+          "nonfinite_value": null
+        },
+        "stress_second": {
+          "stress_power": 2,
+          "productivity_power": 0,
+          "integrability_margin": -1.4538776394910689,
+          "finite": false,
+          "value": null,
+          "nonfinite_value": "positive_infinity"
+        },
+        "productivity_second": {
+          "stress_power": 0,
+          "productivity_power": 2,
+          "integrability_margin": -0.7999999999999998,
+          "finite": false,
+          "value": null,
+          "nonfinite_value": "positive_infinity"
+        },
+        "immigrant_ratio": {
+          "stress_power": 2,
+          "productivity_power": -1,
+          "integrability_margin": -0.05387763949106894,
+          "finite": false,
+          "value": null,
+          "nonfinite_value": "positive_infinity"
+        },
+        "total_diagonal_second": {
+          "stress_power": 2,
+          "productivity_power": 1,
+          "integrability_margin": -2.8538776394910688,
+          "finite": false,
+          "value": null,
+          "nonfinite_value": "positive_infinity"
+        },
+        "total_diagonal_first": {
+          "stress_power": 1,
+          "productivity_power": 1,
+          "integrability_margin": -1.1269388197455343,
+          "finite": false,
+          "value": null,
+          "nonfinite_value": "positive_infinity"
+        }
+      }
+    },
+    "spatial_unit_li": {
+      "beta": 2.0,
+      "productivity_ratio": 0.7,
+      "gamma": 0.0,
+      "stress_scale": 1.0,
+      "stress_transform": "1",
+      "moments": {
+        "stress_first": {
+          "stress_power": 1,
+          "productivity_power": 0,
+          "integrability_margin": 2.0,
+          "finite": true,
+          "value": 1.0,
+          "nonfinite_value": null
+        },
+        "stress_second": {
+          "stress_power": 2,
+          "productivity_power": 0,
+          "integrability_margin": 2.0,
+          "finite": true,
+          "value": 1.0,
+          "nonfinite_value": null
+        },
+        "productivity_second": {
+          "stress_power": 0,
+          "productivity_power": 2,
+          "integrability_margin": -0.7999999999999998,
+          "finite": false,
+          "value": null,
+          "nonfinite_value": "positive_infinity"
+        },
+        "immigrant_ratio": {
+          "stress_power": 2,
+          "productivity_power": -1,
+          "integrability_margin": 3.4,
+          "finite": true,
+          "value": 1.9607843137254901,
+          "nonfinite_value": null
+        },
+        "total_diagonal_second": {
+          "stress_power": 2,
+          "productivity_power": 1,
+          "integrability_margin": 0.6000000000000001,
+          "finite": true,
+          "value": 1.0,
+          "nonfinite_value": null
+        },
+        "total_diagonal_first": {
+          "stress_power": 1,
+          "productivity_power": 1,
+          "integrability_margin": 0.6000000000000001,
+          "finite": true,
+          "value": 1.0,
+          "nonfinite_value": null
+        }
+      }
+    }
+  },
+  "limits": [
+    "The immigrant ratio moment is a sufficient-condition input; divergence alone is not a score-variance proof.",
+    "The manuscript's first-parent argument supplies null divergence under its additional kernel and fresh-mark assumptions.",
+    "Total diagonal moments are necessary obstructions, not a sufficient cross-parent moment theorem.",
+    "Positive generating eta, persistent marks, misspecified scores and capped machine output distributions are separate.",
+    "No causal explanation of saved held-out losses or parameter selection is inferred."
+  ]
+}

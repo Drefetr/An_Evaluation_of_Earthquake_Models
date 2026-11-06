@@ -11,6 +11,7 @@ This directory separates current manuscript bindings, additional numerical sourc
 | `authorities/`, `authority_manifest.json` | Bundled scientific sources and their historical/public identities |
 | `acceptances/` | Historical internal reviews; their filenames do not represent journal acceptance |
 | `reviews/`, `reproductions/` | Current artifact checks and actual recovered-input execution records, with separate scope and identities |
+| `live_results/methodological_20261106/` | Current thinning/fit-vector and analytic diagnostics, plus all 80 newly executed train-only S04B intercept fits and their score decomposition |
 | `numeric_reconciliation_receipt.json` | Canonical claim/source reconciliation receipt; default verification checks bindings without rewriting it |
 | `checks.json` | Actual current bounded check coverage and results, with the recorded snapshot and execution scope |
 | `checks_before_remediation_20261105.json` | Exact historical `checks.json` bytes from commit `1226fc3`; retained prior coverage, not current-edition validation |
@@ -22,6 +23,8 @@ Explicit [withdrawals](withdrawals/CLAIM_WITHDRAWALS_20261105.json) preserve ret
 The manuscript ledger stores shared TeX source hashes and the fixed verification method once in `display_custody`. Each claim keeps its matching files and a digest binding its identity, displayed value, and declared locations. Ordinary verification recomputes every binding against current source bytes and rejects stale or missing custody. The display-regression receipt summarizes the verified ledger hashes, counts, and sources without copying the per-claim records. Explicit `scripts/verify_claims.py --write-receipts` migrates or refreshes this representation after deliberate source review.
 
 The ledger's `current_edition` identifies this revision and its withdrawal registry. The older `edition` and `closure_revision` fields retain their original ledger-migration meaning. The [result provenance map](../docs/result_provenance.md) records scientific execution separately.
+
+The [refitted-floor summary](live_results/methodological_20261106/refitted_floor_summary.json) derives from the [complete execution](live_results/methodological_20261106/refitted_floor/result.json), including 480 historical train/test floor checks and 80 retained case reports. Its new fit changes only the uninhibited background intercept; all original inhibited states and gates remain unchanged. [Source and run instructions](../experiments/s04b_refitted_floor/README.md) and the [methodological response](../docs/reviews/methodological_review_response.md) distinguish this executed sensitivity from saved-record diagnostics and analytic calculations. Neither a passed numerical comparison nor a finite fixed-strength bracket bound establishes general parameter recovery or a calibrated distribution for selected held-out losses.
 
 ## Check a checkout
 
@@ -54,7 +57,7 @@ Without `INHIBITORY_TEST_NATIVE_ROOT`, the Stage 2 command runs its five portabl
 
 Node.js is required for the website interaction check. [Reproduction instructions](../docs/reproducibility.md) distinguish these checks from document builds and scientific workloads. Generated PDF production checks still need visual inspection. Stage 2 import/build fixtures cover only the supported components identified in the [support matrix](../engine/stage2_followup/README.md).
 
-The [current production review](reviews/REASSESSMENT_CLARIFICATIONS_20261106.json) pins the delivered manuscript, companion and repository site. `website/document_metadata.json` pins that review record. Earlier editorial and S04B reviews retain their original artifact identities and are labelled historical. These are internal production records, not external peer review.
+The [current production review](reviews/METHODOLOGICAL_EDITION_20261106.json) pins the delivered manuscript, companion and repository site. `website/document_metadata.json` pins that review record. The [preceding reassessment](reviews/REASSESSMENT_CLARIFICATIONS_20261106.json), earlier editorial reviews and S04B reviews retain their original artifact identities. These are internal production records, not external peer review.
 
 ## Historical receipts and source changes
 
