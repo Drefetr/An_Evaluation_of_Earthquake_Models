@@ -495,8 +495,8 @@
     "promotion_condition": "Applies to the exact candidate PDF hashes above; installed PDF bytes must match. Any later artifact change needs renewed review."
   },
   "source_review": {
-    "schema": "independent_reassessment_source_review_final_v1",
-    "reviewed_at_utc": "2026-11-06T08:39:50.307039+00:00",
+    "schema": "independent_reassessment_source_review_promotion_v1",
+    "reviewed_at_utc": "2026-11-06T08:49:25.312548+00:00",
     "baseline_commit": "8b42ad4c20da2c4401a57fd5c49b2dcf91bcc5c4",
     "passed": true,
     "verdict": "PASS",
@@ -540,7 +540,7 @@
       "reproduction/README.md": "a2b9726bbd874e5bf3dc6ab6a6f166d33ee58889a45b77a06d46438a9b780060",
       "experiments/autonomous/execution_index.json": "9571118360a47c31618649fa11fc90e6a2a63f2efe08bf9d8b3fc7fd197cc1a5",
       "validation/MASTER_CLAIM_LEDGER.json": "c7bf5c36f6a61998cb2c42f95d00ea5017f6f273c439f6c97698aed52d4382d2",
-      "validation/README.md": "0104eab6162b0d0024c2278d3c0acbe272fa0163dc7fae012cd9ad4c7c6f8dc0",
+      "validation/README.md": "69b0de74f0b8a5f4526e7b3482d81d80f279639db3fe0dbfef1235bf65ec89fd",
       "companion/guide_content.json": "0255d354a1ab105228aa0e29cd61c3d9dbe1f58c2f683bb4d1703f4c02c80f1f",
       "paper/source/abstract.tex": "87e6e754052ea67e3aed97ef7d2eedd344e5880536a168b565f02e649b12e3e9",
       "paper/source/appendices.tex": "9adb8e9e1bd9dbb1738ca1c3e2ae903dd7d543cf00aead6ee96fc6781b07aa09",
@@ -601,8 +601,8 @@
       }
     },
     "previous_review": {
-      "path": "review_source/result.json",
-      "sha256": "073f995d04c2dc379d997056c2bdf190ec02e1a1e4e7bed9b39e98504527997b"
+      "path": "review_source/result_final.json",
+      "sha256": "031bd1c9b35c0147aaea9435970a9226ee86423685b14def972da7ee88368822"
     },
     "layout_delta": {
       "only_source_changes": [
@@ -622,6 +622,20 @@
       "active_bindings": 10800,
       "withdrawn_records": 503,
       "missing_displays": 0
+    },
+    "original_review": {
+      "path": "review_source/result.json",
+      "sha256": "073f995d04c2dc379d997056c2bdf190ec02e1a1e4e7bed9b39e98504527997b"
+    },
+    "promotion_amendment": {
+      "path": "validation/README.md",
+      "change": "Only the current-production-review link target changed from EVIDENCE_CLOSURE_EDITION_20261105.json to REASSESSMENT_CLARIFICATIONS_20261106.json.",
+      "previous_file_sha256": "0104eab6162b0d0024c2278d3c0acbe272fa0163dc7fae012cd9ad4c7c6f8dc0",
+      "current_file_sha256": "69b0de74f0b8a5f4526e7b3482d81d80f279639db3fe0dbfef1235bf65ec89fd",
+      "reverse_replacement_matches_previous_reviewed_bytes": true,
+      "baseline_comparison": "Compared with8b42ad4: the already-reviewed current_edition ledger paragraph and this single link replacement are the only text differences.",
+      "other_reviewed_hashes_unchanged": 39,
+      "link_target_exists": true
     }
   },
   "production_checks": {
@@ -675,11 +689,15 @@
   "site_review_scope": "Generated links, document identities, workflow tests and selector checks; no new browser viewport review claimed.",
   "private_review_sha256": {
     "visual": "f85d9f31bdb7b8f81f179dbab2ad9100cbc911cdc750681dcccb782c8163c6a8",
-    "source": "031bd1c9b35c0147aaea9435970a9226ee86423685b14def972da7ee88368822"
+    "source": "bb11b847a4d2aa241eacbf5d261fe54ab85423fb98cf6fbdeb6096d41e11b9a5"
   },
   "previous_review": {
     "path": "validation/reviews/EVIDENCE_CLOSURE_EDITION_20261105.json",
     "sha256": "21044b22f484fc536771cebe56afc842b9da352566d17fb84a6feaa4ef0b96d8",
     "scope": "Historical evidence-closure edition; certifies its original 219-page PDF, guide and site."
+  },
+  "final_document_link_review": {
+    "checked_at_utc": "2026-11-06T08:50:18.643064+00:00",
+    "scope": "Current-production-review hyperlink promotion in validation/README.md; source review pins refreshed after this final link change. Publication artifacts and scientific sources are unchanged."
   }
 }

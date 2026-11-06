@@ -120,12 +120,12 @@
     "current_production_review": {
       "passed": true,
       "path": "validation/reviews/REASSESSMENT_CLARIFICATIONS_20261106.json",
-      "sha256": "4ecf6e66194f6324ee29154cf0d23652d9fd4dceb58a5b62f6fe4ccd14801a74"
+      "sha256": "981b0c6c879ae9bb1dfe9aaadaa510b7684283d97e9ddb256bbacd4f719622d8"
     },
     "reassessment_custody": {
       "passed": true,
       "path": "validation/reproductions/reassessment_clarifications_20261106.json",
-      "sha256": "bf6d1059e0152c890106276c1783b004b3c0d33c5ebfe0c208899a8d562f568b"
+      "sha256": "2b44a6f56a430029adc89e8d20fcddcc6a0dc19aa4794102b6884abd6e4348f5"
     },
     "scientific_execution_and_input_records": {
       "scope": "Historical records retain their own original execution, replay or input-review scope. No research fitting, simulation or score campaign ran in this editorial follow-up.",
@@ -143,7 +143,7 @@
         "oracle_full_review_20261105.json": "dbdb07e0b9a3a70d2e283dd75120f0c957d996417cf83fdda05bbdfa6ef4f986",
         "original_regional_completion_audit_20261105.json": "f9f2bb104445cbfe9ece067f3f0af481e5173097d29b3a7600553dae8f83689e",
         "payload_audit_20261105.json": "26519e5afbc3111ab6ad8c5dcbd4ef4912d9bd6807a66b9ee42fa737e518bfab",
-        "reassessment_clarifications_20261106.json": "bf6d1059e0152c890106276c1783b004b3c0d33c5ebfe0c208899a8d562f568b",
+        "reassessment_clarifications_20261106.json": "2b44a6f56a430029adc89e8d20fcddcc6a0dc19aa4794102b6884abd6e4348f5",
         "regional_inputs_20261105.json": "dad586ed91935d2253bd486bfaf0bd1da5cb8e46e02c87ef053079a3df4976de",
         "s02_primary_ca_independent_review_20261105.json": "ae525f0eaaeddf241859f15420012868c75b108e3e5e040751042140ebb15377",
         "s04b_completed_independent_review_20261105.json": "ea334096cee1e61411144253aa17bf7e6fe785fb432c527131a9c560e7f34d2c",
@@ -189,6 +189,13 @@
         "python -B scripts/verify_repository.py"
       ],
       "scope": "Immediately following manifest refresh and ordinary verification are required publication gates."
+    },
+    "final_review_link_binding": {
+      "passed": true,
+      "path": "validation/README.md",
+      "sha256": "69b0de74f0b8a5f4526e7b3482d81d80f279639db3fe0dbfef1235bf65ec89fd",
+      "independent_review_sha256": "bb11b847a4d2aa241eacbf5d261fe54ab85423fb98cf6fbdeb6096d41e11b9a5",
+      "scope": "Only publication metadata/review bindings changed after the full test run; manuscript, guide, site, scientific sources and tests are byte-identical."
     }
   },
   "scope": "Bounded tests, document production and enumerated custody. The 254 tests do not constitute 254 scientific model experiments.",
