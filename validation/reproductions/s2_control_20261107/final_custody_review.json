@@ -1,0 +1,286 @@
+{
+  "schema": "internal_final_custody_review_v1",
+  "task_id": "final-custody",
+  "attempt_id": "8ab9e0dc-b88f-4519-ae32-d7f444c8cfad",
+  "reviewed_at_utc": "2026-11-06T18:36:59.729538+00:00",
+  "baseline_commit": "516e5fd4877c7c7c7b7e2bbac215bfa32275a311",
+  "passed": true,
+  "findings": [],
+  "scope": "Read-only byte/hash and retained-record/log review. No simulations, fits, likelihood calls, scientific replay, tests rerun, builds or delegation.",
+  "reviewer": "Codex recover_jma",
+  "independence": "This reviewer authored the S2 prose. This is a custody review, not independent scientific author review of that prose or external academic peer review. The separate source/output reviewer audited generator execution.",
+  "preservation": {
+    "protected_files_checked": 141,
+    "protected_files_changed": 0,
+    "protected_inventory_sha256": "4311dd5e78480ae3461dfb54288417c82e14e643f3d10ba96111bebe8c542a2d",
+    "original_claim_records_exact_and_ordered": 11567,
+    "original_documentary_metadata_exact_and_ordered": 679,
+    "withdrawal_files_unchanged": 1,
+    "withdrawal_records_unchanged": true,
+    "source_inventory_sha256": "8b75061c0a30e6f4988410f58bfbc6049aa16bf07b0a9d5f069e686f4951d6cc",
+    "source_inventory_byte_identical_to_baseline": true,
+    "original_authority_manifest_rows_preserved": 149,
+    "new_authority_manifest_rows": 1,
+    "manuscript_source_changes": [
+      "paper/source/abstract.tex",
+      "paper/source/chapters/13_continuous_local_inhibition.tex",
+      "paper/source/chapters/13_s04_expanded.tex",
+      "paper/source/chapters/14_discussion_conclusion.tex"
+    ]
+  },
+  "new_bindings": [
+    {
+      "id": "s2-control-20261107-001",
+      "display": "0/2951",
+      "numerator_pointer": "/rejected_immigrants",
+      "denominator_pointer": "/proposed_immigrants",
+      "authority_sha256": "ddaef244da2826b1e5f58f4b41b7b43a371dd15919941455a2080a1467ec98bb"
+    },
+    {
+      "id": "s2-control-20261107-002",
+      "display": "20/20",
+      "numerator_pointer": "/zero_rejection_histories",
+      "denominator_pointer": "/case_count",
+      "authority_sha256": "ddaef244da2826b1e5f58f4b41b7b43a371dd15919941455a2080a1467ec98bb"
+    }
+  ],
+  "claim_reconciliation": {
+    "receipt_sha256": "e5bc903bc52ea69bdd6ff58b9915250660f6f6d70822e9d3c62fa3842b96621e",
+    "ledger_sha256": "f00b0769ebd2877df7abae2a9e96e2ec7103c47bdc76214d7f46f1307cfb1009",
+    "literal_manuscript_displays": 11066,
+    "missing_displays": 0,
+    "release_ready": true,
+    "readonly_execution_log_sha256": "e5bc903bc52ea69bdd6ff58b9915250660f6f6d70822e9d3c62fa3842b96621e"
+  },
+  "publication": {
+    "metadata_sha256": "2b03bdb2ab93c463e74eb5b3aaa488624e3b03eb2f46daaa6651e2f33e5913f1",
+    "review": "validation/reviews/S2_CONTROL_EDITION_20261107.json",
+    "review_sha256": "e05c070ff26ea7b19e23f23f3f03b29453640f7655d4488383ea8f94b48fc2c9",
+    "artifact_sha256": {
+      "paper/manuscript_unified.pdf": "e860006548586e7917e66224642d837750ceccdafa0a3a7561b13bff0606178f",
+      "companion/lay_guide_to_the_research.pdf": "b56802b2be38f4ff8e45d1cf8b114a82a2ffc4e848d5006e331fa07ebe48cd8f",
+      "companion/lay_guide_to_the_research.html": "d0ac6aad40f15e16f205c662869dd67991540466759f081609cfe002887dece2"
+    },
+    "page_counts": {
+      "paper/manuscript_unified.pdf": 229,
+      "companion/lay_guide_to_the_research.pdf": 8
+    },
+    "site_files_checked": 7,
+    "all_site_file_pins_match": true,
+    "manuscript_source_files_checked": 31,
+    "all_manuscript_tex_and_bib_pins_match": true,
+    "all_companion_source_pins_match": true,
+    "visual_review_pin_matches": true,
+    "build_matches_installed_pdf": true,
+    "visual_scope": "Verified prior/current artifact identity and documented page coverage; did not repeat rendering or visual review in this custody task."
+  },
+  "tests": {
+    "total": 273,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "suites": [
+      {
+        "name": "main_suite",
+        "execution_record": "validation/reproductions/s2_control_20261107/logs/main_suite.json",
+        "execution_record_sha256": "db04ba8515c1e494bdf9fe0ae01de005ebf3ca4e188811161df0565f066a937f",
+        "log": "validation/reproductions/s2_control_20261107/logs/main_suite.log",
+        "log_sha256": "cac6313b96e13874387e4c50f3b334ceba1c5d2dcecaef10394e1f282d9ae3db",
+        "returncode": 0,
+        "tests": 195,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "regional_suite",
+        "execution_record": "validation/reproductions/s2_control_20261107/logs/regional_suite.json",
+        "execution_record_sha256": "d3f41146b90627596983b7bbb3eb9b8cf8eb228fe8d85bb1a87cc8f407787987",
+        "log": "validation/reproductions/s2_control_20261107/logs/regional_suite.log",
+        "log_sha256": "97c35e153ac8609a920e679aaf4808fd69b57c732b83ccf61b52082539d8c3c0",
+        "returncode": 0,
+        "tests": 44,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "s02_suite",
+        "execution_record": "validation/reproductions/s2_control_20261107/logs/s02_suite.json",
+        "execution_record_sha256": "184785d954c1f5fc0f8b3320a3f20e23f6f266737182436d294fbe5c9cc78e35",
+        "log": "validation/reproductions/s2_control_20261107/logs/s02_suite.log",
+        "log_sha256": "f37384b369ead0a338c50e7d2674487443f59dc295da12742bbd387c38e5d5e7",
+        "returncode": 0,
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "stage2_suite",
+        "execution_record": "validation/reproductions/s2_control_20261107/logs/stage2_suite.json",
+        "execution_record_sha256": "a39613ec00015f7a75620b35965638ca81339e53970e97a50c386c0be04f0bc3",
+        "log": "validation/reproductions/s2_control_20261107/logs/stage2_suite.log",
+        "log_sha256": "52d9dbfcdbd2b44b68e85e3e2f3eb8d0ba5a4e68bb0bb8dc1f10ec6248aef831",
+        "returncode": 0,
+        "tests": 8,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "iteration27_suite",
+        "execution_record": "validation/reproductions/s2_control_20261107/logs/iteration27_suite.json",
+        "execution_record_sha256": "52e8168672b1b578bd8722d7f84f8de80c7dcb6dcca874da6e596b09a4c3fe26",
+        "log": "validation/reproductions/s2_control_20261107/logs/iteration27_suite.log",
+        "log_sha256": "794fa39efaeeab2d7445548e41523804bda6edd701bd64d6b45767baf0c10448",
+        "returncode": 0,
+        "tests": 20,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    ],
+    "basis": "Terminal execution receipts, exact matching private/public logs, individual test outcomes (including three diagnostic-output-interleaved successes) and unittest summaries. Native/CUDA suites reflect this local environment, not portable CI coverage."
+  },
+  "other_execution_records_checked": [
+    {
+      "name": "main_suite",
+      "execution_record": "validation/reproductions/s2_control_20261107/logs/main_suite.json",
+      "execution_record_sha256": "db04ba8515c1e494bdf9fe0ae01de005ebf3ca4e188811161df0565f066a937f",
+      "log": "validation/reproductions/s2_control_20261107/logs/main_suite.log",
+      "log_sha256": "cac6313b96e13874387e4c50f3b334ceba1c5d2dcecaef10394e1f282d9ae3db",
+      "returncode": 0
+    },
+    {
+      "name": "regional_suite",
+      "execution_record": "validation/reproductions/s2_control_20261107/logs/regional_suite.json",
+      "execution_record_sha256": "d3f41146b90627596983b7bbb3eb9b8cf8eb228fe8d85bb1a87cc8f407787987",
+      "log": "validation/reproductions/s2_control_20261107/logs/regional_suite.log",
+      "log_sha256": "97c35e153ac8609a920e679aaf4808fd69b57c732b83ccf61b52082539d8c3c0",
+      "returncode": 0
+    },
+    {
+      "name": "s02_suite",
+      "execution_record": "validation/reproductions/s2_control_20261107/logs/s02_suite.json",
+      "execution_record_sha256": "184785d954c1f5fc0f8b3320a3f20e23f6f266737182436d294fbe5c9cc78e35",
+      "log": "validation/reproductions/s2_control_20261107/logs/s02_suite.log",
+      "log_sha256": "f37384b369ead0a338c50e7d2674487443f59dc295da12742bbd387c38e5d5e7",
+      "returncode": 0
+    },
+    {
+      "name": "stage2_suite",
+      "execution_record": "validation/reproductions/s2_control_20261107/logs/stage2_suite.json",
+      "execution_record_sha256": "a39613ec00015f7a75620b35965638ca81339e53970e97a50c386c0be04f0bc3",
+      "log": "validation/reproductions/s2_control_20261107/logs/stage2_suite.log",
+      "log_sha256": "52d9dbfcdbd2b44b68e85e3e2f3eb8d0ba5a4e68bb0bb8dc1f10ec6248aef831",
+      "returncode": 0
+    },
+    {
+      "name": "iteration27_suite",
+      "execution_record": "validation/reproductions/s2_control_20261107/logs/iteration27_suite.json",
+      "execution_record_sha256": "52e8168672b1b578bd8722d7f84f8de80c7dcb6dcca874da6e596b09a4c3fe26",
+      "log": "validation/reproductions/s2_control_20261107/logs/iteration27_suite.log",
+      "log_sha256": "794fa39efaeeab2d7445548e41523804bda6edd701bd64d6b45767baf0c10448",
+      "returncode": 0
+    },
+    {
+      "name": "regional_inputs",
+      "execution_record": "validation/reproductions/s2_control_20261107/logs/regional_inputs.json",
+      "execution_record_sha256": "92e53f3a103e9d2cf787f4b9139bbd895f48f0410d38d7ca07f1b96bd68d45e5",
+      "log": "validation/reproductions/s2_control_20261107/logs/regional_inputs.log",
+      "log_sha256": "11434661f79eb6537336dec093194fabaf53d2d3026b48b5d86ba6c3b747d93b",
+      "returncode": 0
+    },
+    {
+      "name": "s02_inputs",
+      "execution_record": "validation/reproductions/s2_control_20261107/logs/s02_inputs.json",
+      "execution_record_sha256": "165766f9f0d5c78887957bbfa8ffe97f904dd26e215b90cee1ce8ac8d14b52d8",
+      "log": "validation/reproductions/s2_control_20261107/logs/s02_inputs.log",
+      "log_sha256": "f39fa4297fbbe28b9a63bfd997d82cce276097f7c7280840fbb67a14c7d0bc16",
+      "returncode": 0
+    },
+    {
+      "name": "historical_inputs",
+      "execution_record": "validation/reproductions/s2_control_20261107/logs/historical_inputs.json",
+      "execution_record_sha256": "7e10223916e3a540622113a006f2c74c280cc7d23c474cc8533bdd02360d0ea6",
+      "log": "validation/reproductions/s2_control_20261107/logs/historical_inputs.log",
+      "log_sha256": "cf71a38bc2349cf4e22442dcf2943a5bb84ccf66493c70e7301a5707b5e85be7",
+      "returncode": 0
+    },
+    {
+      "name": "mathematics",
+      "execution_record": "validation/reproductions/s2_control_20261107/logs/mathematics.json",
+      "execution_record_sha256": "cb2aca9280ad6ae99adb7925d4a2c1b03c65e961c7350138f85a0af16f08aa39",
+      "log": "validation/reproductions/s2_control_20261107/logs/mathematics.log",
+      "log_sha256": "0257db75bcb53fd54f08f3db810239d42e180e590afc61c1e48d3491fab6adeb",
+      "returncode": 0
+    },
+    {
+      "name": "moments",
+      "execution_record": "validation/reproductions/s2_control_20261107/logs/moments.json",
+      "execution_record_sha256": "28afc2a11b052bfcf82e3123f7ab4db1ddb77bf135a1c3e0e2d68c2a4e7c7b31",
+      "log": "validation/reproductions/s2_control_20261107/logs/moments.log",
+      "log_sha256": "a0af0d6033c35429109b414f6a7e84f5cda112ac4ca1fc01ba0841c3295509ca",
+      "returncode": 0
+    },
+    {
+      "name": "stability",
+      "execution_record": "validation/reproductions/s2_control_20261107/logs/stability.json",
+      "execution_record_sha256": "3fc20b6d1bd3e77f83b60160b440c2ca23d72edb23dc7835f665dd5d71be8e0d",
+      "log": "validation/reproductions/s2_control_20261107/logs/stability.log",
+      "log_sha256": "cec0b2ed10229038c63bb4fd7150db5074560685498cbff4a746ec72e8573175",
+      "returncode": 0
+    },
+    {
+      "name": "floor_summary",
+      "execution_record": "validation/reproductions/s2_control_20261107/logs/floor_summary.json",
+      "execution_record_sha256": "4b15e0ed5c86631b54180e902946dc36c973d0de8e843c318cfddf5aeda75383",
+      "log": "validation/reproductions/s2_control_20261107/logs/floor_summary.log",
+      "log_sha256": "e0be546614433eb783b04dd10df0b7e395b8e1e9dfa7b5141d590711041e7db4",
+      "returncode": 0
+    },
+    {
+      "name": "s04b_census",
+      "execution_record": "validation/reproductions/s2_control_20261107/logs/s04b_census.json",
+      "execution_record_sha256": "bb8a747c88f9999ff2a03b98a04a9848b320a61734a3fe6ea2755eed2c026df7",
+      "log": "validation/reproductions/s2_control_20261107/logs/s04b_census.log",
+      "log_sha256": "61256e526dee15578567f04aebd9243025b53320fd4002eb3ae15b4d8a8b7cd5",
+      "returncode": 0
+    },
+    {
+      "name": "site_interactions",
+      "execution_record": "validation/reproductions/s2_control_20261107/logs/site_interactions.json",
+      "execution_record_sha256": "7a93195a8a8a9ab5a3a935da30668c5cd54092a5bb05dce53feabc7b334be43a",
+      "log": "validation/reproductions/s2_control_20261107/logs/site_interactions.log",
+      "log_sha256": "0b297d11c0f4370ff93f14bbaff652ba73f6b068d99c381be10617eed2f0f99b",
+      "returncode": 0
+    },
+    {
+      "name": "claims_refresh",
+      "execution_record": "validation/reproductions/s2_control_20261107/logs/claims_refresh.json",
+      "execution_record_sha256": "9e5457ee6f2c311c6f8e7a6111bbca74abec906f0d811791af93311788b47c61",
+      "log": "validation/reproductions/s2_control_20261107/logs/claims_refresh.log",
+      "log_sha256": "e5bc903bc52ea69bdd6ff58b9915250660f6f6d70822e9d3c62fa3842b96621e",
+      "returncode": 0
+    },
+    {
+      "name": "claims_readonly",
+      "execution_record": "validation/reproductions/s2_control_20261107/logs/claims_readonly.json",
+      "execution_record_sha256": "1d76478d804eae9221786b7f932872b55a7f31752324f2431e31029b9ea0a4a2",
+      "log": "validation/reproductions/s2_control_20261107/logs/claims_readonly.log",
+      "log_sha256": "e5bc903bc52ea69bdd6ff58b9915250660f6f6d70822e9d3c62fa3842b96621e",
+      "returncode": 0
+    }
+  ],
+  "current_checks_sha256_at_review": "2ca6a7928c3c2326368783d7da333e310f48d0647f0dca5f76a5c14941d3cbdc",
+  "revision_receipt_sha256": "2f2e0a8869753c7130a0b618a8c483f991db3601ae070f86e1ae8bea1d035be8",
+  "historical_checks_retained_exactly": true,
+  "pending_conductor_actions": [
+    "Install this review receipt",
+    "Refresh MANIFEST.json after receipt installation",
+    "Run final repository verification and tracked-payload check",
+    "Commit and push"
+  ],
+  "manifest_scope": "Final manifest verification follows this review because its public receipt is not yet part of the payload. No claim of completed final manifest or commit is made here. Later status/custody linkage updates to checks.json require a fresh manifest and do not alter the reviewed scientific source or execution records."
+}

@@ -61,7 +61,7 @@ def build(out):
     generation=read('synthetic_diagnostics.json')
     assert sensitivity['passed'] and sensitivity['cases']==80 and sensitivity['historical_floor_checks']==480
     studies[-1]['refitted_floor']=sensitivity['procedure_summary']
-    studies[-1]['note']+=' The narrow/short immigrant generator rejected no event in 19 of 20 histories. The lower table refits only the uninhibited background intercept on training data; all original inhibited fits and gates stay unchanged. This isolates comparator sensitivity without claiming joint nuisance fitting or parameter recovery.'
+    studies[-1]['note']+=' The narrow/short immigrant generator rejected no event in 19 of 20 histories. The lower table refits only the uninhibited background intercept on training data; all original inhibited fits and gates stay unchanged. This isolates comparator sensitivity without claiming joint nuisance fitting or parameter recovery. In the separate original unit-mark S04 controls, all 20 narrow/short histories had no rejected proposals; they are not additional S04B replicates.'
     studies[-1]['source']='Chapter 13: original fixed-floor S04B summaries, source-backed generator/parameter diagnostics, and completed 80-history intercept sensitivity.'
     payload={'studies':studies,'sources':sources,'scope':'Reported aggregates, including the dated train-only intercept sensitivity. No uncertainty intervals inferred from dependent windows. S06 acceptance covers saved rows and arithmetic, not independent likelihood replay.'}
     (out/'findings-data.json').write_text(json.dumps(payload,indent=2)+'\n',encoding='utf-8')

@@ -9,9 +9,11 @@ The bundle contains:
 | S04B | All 80 event histories, generator receipts, 240 model fits and solver traces, 2,005 retained state vectors, and expected scores. Four generating regimes have 20 fixed seeds each. |
 | S01 | All 2,149 event histories: 999 reference, 1,000 null queries and 150 alternative queries; original seed, law, clock and role mappings; 152 saved generator recovery states; all 397 available Stage2 missing-only fit records; final hybrid-bank statistics. |
 
-`input_manifest.json` binds every data/source file by SHA-256 and records its original archive-relative path and hash. `exact_bytes` entries preserve original bytes. `portable_projection` entries remove obsolete machine paths and preserve the listed scientific content; their original file hashes remain available. The supplied data are generated synthetic records, not third-party earthquake catalogue records.
+For the S04B and S01 packages above, `input_manifest.json` binds every listed data/source file by SHA-256 and records its original archive-relative path and hash. `exact_bytes` entries preserve original bytes. `portable_projection` entries remove obsolete machine paths and preserve the listed scientific content; their original file hashes remain available. The supplied data are generated synthetic records, not third-party earthquake catalogue records.
 
 The [F/S01 continuation is withdrawn from the current paper](../../docs/F_followup.md): its original restricted-fit vectors and final-bank manifest have not been recovered. The included older history bank and 397 available fits do not establish a complete saved-state replay of those original F fits. `s01/bank.json` marks this explicitly per case. The original oracle-bank design is retained; this bundle does not turn it into fitted-null calibration.
+
+The separate [unit-mark S2 reconstruction](s2_unitmark/README.md) supplies twenty original narrow/short histories and their paired positive/null generator check. Its own `manifest.json` and pilot/full commands cover that package; the S04B/S01 verification command below does not include it. No fitted procedure or score is recomputed by the S2 route.
 
 ## Run
 

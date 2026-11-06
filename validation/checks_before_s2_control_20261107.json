@@ -1,0 +1,348 @@
+{
+  "schema": "bounded_repository_checks_v2",
+  "status": "passed",
+  "baseline_commit": "61aa599cd023f2441a6a0c6af9aa4b6fe9eda3e5",
+  "checked_at_utc": "2026-11-06T12:03:30.781409+00:00",
+  "snapshot": "Current payload bound by MANIFEST.json after final internal review. Prior complete coverage retained exactly.",
+  "environment": {
+    "python": "3.13.4",
+    "native": "Windows x64/MSVC; exact existing Stage2 native builds reused",
+    "cuda": "Historical iteration27 suite executed with usable CUDA device; portable CI does not reproduce this native/CUDA coverage",
+    "dependency_install": "Existing host environment; no fresh dependency install claimed."
+  },
+  "checks": {
+    "main_unit_and_workflow_suite": {
+      "passed": true,
+      "tests": 195,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "started_at_utc": "2026-11-06T11:59:31.209779+00:00",
+      "elapsed_seconds": 56.78,
+      "returncode": 0,
+      "log_sha256": "d19e12b4b58b7e399406b06d1d4764fa5591d6f86f5c209086b5848d5b4da5de",
+      "execution_log": "validation/reproductions/methodological_20261106/logs/main_tests_final.log"
+    },
+    "regional_input_controls_and_guard_suite": {
+      "passed": true,
+      "tests": 44,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "reproduction/regional/tests",
+        "-v"
+      ],
+      "started_at_utc": "2026-11-06T11:56:53.577496+00:00",
+      "elapsed_seconds": 2.56,
+      "returncode": 0,
+      "log_sha256": "08db2aa6bfb7cbac46741428566fdbc2b51dc4c435777bf97f1de9d3343aca26",
+      "execution_log": "validation/reproductions/methodological_20261106/logs/regional_tests_final.log"
+    },
+    "s02_input_control_suite": {
+      "passed": true,
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "reproduction/s02",
+        "-p",
+        "test_inputs.py",
+        "-v"
+      ],
+      "started_at_utc": "2026-11-06T11:50:27.748180+00:00",
+      "elapsed_seconds": 0.346,
+      "returncode": 0,
+      "log_sha256": "14f31f974d6ff4b4dfc163cc77cd8c95f01b0c0265836190da7f8b147e7b2dc2",
+      "execution_log": "validation/reproductions/methodological_20261106/logs/s02_tests.log"
+    },
+    "stage2_with_native_fixtures": {
+      "passed": true,
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "engine/stage2_followup/tests",
+        "-v"
+      ],
+      "started_at_utc": "2026-11-06T11:53:55.463819+00:00",
+      "elapsed_seconds": 3.867,
+      "returncode": 0,
+      "log_sha256": "cfde162f3a9491110b7ec7d4d8f649f5f785ee8845c877664f86d909dfe9ce9e",
+      "execution_log": "validation/reproductions/methodological_20261106/logs/stage2_tests.log"
+    },
+    "historical_iteration27_suite": {
+      "passed": true,
+      "tests": 20,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "engine/iteration_27/tests",
+        "-v"
+      ],
+      "started_at_utc": "2026-11-06T11:53:59.652862+00:00",
+      "elapsed_seconds": 14.658,
+      "returncode": 0,
+      "log_sha256": "9464ce151875ce227e2cb7c869c4276d3c42531a9a334020f5c6d656b79085e1",
+      "execution_log": "validation/reproductions/methodological_20261106/logs/iteration27_tests.log"
+    },
+    "test_total": 273,
+    "claims_readonly_after_repair": {
+      "passed": true,
+      "command": [
+        "python",
+        "-B",
+        "scripts/verify_claims.py"
+      ],
+      "started_at_utc": "2026-11-06T12:01:31.316117+00:00",
+      "elapsed_seconds": 38.813,
+      "returncode": 0,
+      "log_sha256": "8e623f694b672d0b4750a8f595a821ca98074063d235c24829995cc37e7472b2",
+      "execution_log": "validation/reproductions/methodological_20261106/logs/claims_readonly_after_repair.log"
+    },
+    "moments_check": {
+      "passed": true,
+      "command": [
+        "python",
+        "-B",
+        "experiments/methodological_audit/moments.py",
+        "--check"
+      ],
+      "started_at_utc": "2026-11-06T11:55:17.269616+00:00",
+      "elapsed_seconds": 0.339,
+      "returncode": 0,
+      "log_sha256": "a0af0d6033c35429109b414f6a7e84f5cda112ac4ca1fc01ba0841c3295509ca",
+      "execution_log": "validation/reproductions/methodological_20261106/logs/moments_check.log"
+    },
+    "stability_check": {
+      "passed": true,
+      "command": [
+        "python",
+        "-B",
+        "experiments/methodological_audit/stability.py",
+        "--verify",
+        "validation/live_results/methodological_20261106/stability.json"
+      ],
+      "started_at_utc": "2026-11-06T11:55:17.279872+00:00",
+      "elapsed_seconds": 0.199,
+      "returncode": 0,
+      "log_sha256": "cec0b2ed10229038c63bb4fd7150db5074560685498cbff4a746ec72e8573175",
+      "execution_log": "validation/reproductions/methodological_20261106/logs/stability_check.log"
+    },
+    "floor_summary_check": {
+      "passed": true,
+      "command": [
+        "python",
+        "-B",
+        "experiments/s04b_refitted_floor/summarize.py",
+        "--input",
+        "validation/live_results/methodological_20261106/refitted_floor",
+        "--check",
+        "validation/live_results/methodological_20261106/refitted_floor_summary.json"
+      ],
+      "started_at_utc": "2026-11-06T11:55:17.304327+00:00",
+      "elapsed_seconds": 0.332,
+      "returncode": 0,
+      "log_sha256": "e0be546614433eb783b04dd10df0b7e395b8e1e9dfa7b5141d590711041e7db4",
+      "execution_log": "validation/reproductions/methodological_20261106/logs/floor_summary_check.log"
+    },
+    "census_check": {
+      "passed": true,
+      "command": [
+        "python",
+        "-B",
+        "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\work\\methodological_review_20261106T111000Z/check_census_refresh_guide.py"
+      ],
+      "started_at_utc": "2026-11-06T11:58:32.411212+00:00",
+      "elapsed_seconds": 0.711,
+      "returncode": 0,
+      "log_sha256": "2dd5afc377c874dd4c183e420f9c343d4eb842f7cb8ab7cd87f61f17977f5922",
+      "execution_log": "validation/reproductions/methodological_20261106/logs/census_check.log"
+    },
+    "regional_inputs": {
+      "passed": true,
+      "command": [
+        "python",
+        "-B",
+        "reproduction/regional/inputs.py",
+        "verify"
+      ],
+      "started_at_utc": "2026-11-06T11:55:17.337991+00:00",
+      "elapsed_seconds": 9.248,
+      "returncode": 0,
+      "log_sha256": "11434661f79eb6537336dec093194fabaf53d2d3026b48b5d86ba6c3b747d93b",
+      "execution_log": "validation/reproductions/methodological_20261106/logs/regional_inputs.log"
+    },
+    "s02_inputs": {
+      "passed": true,
+      "command": [
+        "python",
+        "-B",
+        "reproduction/s02/inputs.py",
+        "verify"
+      ],
+      "started_at_utc": "2026-11-06T11:55:17.334938+00:00",
+      "elapsed_seconds": 3.79,
+      "returncode": 0,
+      "log_sha256": "f39fa4297fbbe28b9a63bfd997d82cce276097f7c7280840fbb67a14c7d0bc16",
+      "execution_log": "validation/reproductions/methodological_20261106/logs/s02_inputs.log"
+    },
+    "historical_inputs": {
+      "passed": true,
+      "command": [
+        "python",
+        "-B",
+        "reproduction/historical_fits/verify.py"
+      ],
+      "started_at_utc": "2026-11-06T11:55:17.323614+00:00",
+      "elapsed_seconds": 4.091,
+      "returncode": 0,
+      "log_sha256": "cf71a38bc2349cf4e22442dcf2943a5bb84ccf66493c70e7301a5707b5e85be7",
+      "execution_log": "validation/reproductions/methodological_20261106/logs/historical_inputs.log"
+    },
+    "mathematics": {
+      "passed": true,
+      "command": [
+        "python",
+        "-B",
+        "scripts/check_mathematics.py",
+        "--output",
+        "build/methodological_math_check.json"
+      ],
+      "started_at_utc": "2026-11-06T11:55:17.328778+00:00",
+      "elapsed_seconds": 4.643,
+      "returncode": 0,
+      "log_sha256": "0257db75bcb53fd54f08f3db810239d42e180e590afc61c1e48d3491fab6adeb",
+      "execution_log": "validation/reproductions/methodological_20261106/logs/mathematics.log"
+    },
+    "site_interactions": {
+      "passed": true,
+      "command": [
+        "node",
+        "website/check_interactions.cjs"
+      ],
+      "started_at_utc": "2026-11-06T11:59:24.260901+00:00",
+      "elapsed_seconds": 0.091,
+      "returncode": 0,
+      "log_sha256": "0b297d11c0f4370ff93f14bbaff652ba73f6b068d99c381be10617eed2f0f99b",
+      "execution_log": "validation/reproductions/methodological_20261106/logs/site_interactions.log"
+    },
+    "claim_reconciliation": {
+      "passed": true,
+      "counts": {
+        "withdrawn_historical_records": 503,
+        "json_numeric_verified": 23931,
+        "json_pointer_verified": 24198,
+        "documentary_numeric_verified": 2430,
+        "documentary_metadata_verified": 679,
+        "claims": 26628,
+        "documentary_metadata": 679,
+        "total_records": 27307,
+        "literal_manuscript_display_records": 11064,
+        "missing_declared_manuscript_displays": 0,
+        "json_nonnumeric_verified": 267,
+        "distinct_authorities": 138
+      },
+      "receipt": "validation/numeric_reconciliation_receipt.json"
+    },
+    "paper_production": {
+      "pdf_sha256": "d5993d49e43ca9ed136eff474dcd4446c09488e49ed7f4f9f2fdbadf7c04d904",
+      "pages": 229,
+      "duplicate_labels": [],
+      "undefined_cross_references": [],
+      "missing_bibliography_keys": [],
+      "missing_figures": [],
+      "overfull_boxes": 0,
+      "undefined_warnings": 0,
+      "missing_glyph_warnings": 0,
+      "underfull_boxes": 21,
+      "replacement_characters": 0,
+      "edge_text_blocks": [],
+      "render_scale": 1.7,
+      "scope": "production checks; page images require visual review",
+      "overfull_vertical_boxes": 0,
+      "passed": true
+    },
+    "guide_production": {
+      "passed": true,
+      "pages": 8,
+      "sha256": "69ade2f0844cd97cf2b8c614636bf55bd897bb826ff8e9090aac82169bd224cf",
+      "review": "validation/reviews/METHODOLOGICAL_EDITION_20261106.json"
+    },
+    "repository_payload": {
+      "checked_files": 8692,
+      "passed": true,
+      "errors": [],
+      "commands": [
+        "python -B scripts/verify_repository.py --write-manifest",
+        "python -B scripts/verify_repository.py"
+      ],
+      "scope": "Final records included; manifest refreshed and ordinary verification required immediately below."
+    },
+    "diff_whitespace": {
+      "passed": true,
+      "command": "git -c core.whitespace=cr-at-eol diff --cached --check",
+      "scope": "Captured evidence retains exact whitespace through narrow .gitattributes exceptions."
+    },
+    "independent_custody_review": {
+      "path": "validation/reproductions/methodological_20261106/final_custody_result.json",
+      "sha256": "8c8c837a98c546603abfc76bb834a1c12695e9c958b8a0408dc733d2dd0dfc78"
+    }
+  },
+  "scientific_execution": {
+    "scope": "Separate 80-history training-only intercept sensitivity, not 273 research experiments",
+    "result": "validation/live_results/methodological_20261106/refitted_floor/result.json",
+    "review": "validation/live_results/methodological_20261106/refitted_floor/output_review.json"
+  },
+  "retained_preliminary_failures": {
+    "regional_tests": "Original real-time grace fixtures had race/scheduling assumptions. Deterministic grace process/clock fixtures now pass; production guard unchanged and other real-process tests retained.",
+    "main_tests": "First main run preceded site regeneration/current review record creation; two publication-link/consistency failures fixed by installation.",
+    "claim_refresh_final": "A receipt-helper default Windows decoding corrupted legacy ledger text. Original records restored exactly from UTF-8 baseline; refreshed/read-only verification now pass.",
+    "scope": "All preliminary execution records and logs are retained in the logs directory; successful later runs supersede their gate status, not their history."
+  },
+  "scope": "Bounded tests, source/payload custody and document production. The 273 tests do not constitute 273 scientific model experiments.",
+  "historical_checks": {
+    "path": "validation/checks_before_methodological_20261106.json",
+    "sha256": "18617f65263d87eb331be10b8b3f60f4718272ddd2b1725ac494cfc8a1c9c799",
+    "source_commit": "61aa599cd023f2441a6a0c6af9aa4b6fe9eda3e5",
+    "source_path": "validation/checks.json",
+    "scope": "Exact preceding record including its retained historical chain."
+  }
+}

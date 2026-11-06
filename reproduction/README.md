@@ -24,6 +24,7 @@ The executed NZ refit reproduced every scientific numerical field exactly, inclu
 | [California S03/S05/S06](regional/README.md) | Original fit/score records and the completed S05 reconstruction of all 5,994 point-score paths and fifteen full-vector EP paths; executable saved-state scoring is supplied. A separate later adapter check passed eight pilot/probe cases and declined another full campaign at its runtime gate. |
 | [Observed NZ](observed/README.md) | Complete historical and new fit outputs, explicit identity checks, strict full-result comparator and fitting wrapper |
 | [Synthetic S04B and historical S01 inputs](synthetic/README.md) | Exact histories, generating settings, seed/role/clock mappings, retained states and CPU geometry/likelihood implementation |
+| [Unit-mark S2 histories](synthetic/s2_unitmark/README.md) | Twenty original S04 narrow/short histories, original anchor records and an executed same-seed positive/null generator reconstruction; separate manifest and pilot/full commands, with no model fitting |
 | [Known-law oracle](oracle/README.md) | Original likelihood and rank-calibration functions, exact per-case score targets and a portable process runner |
 
 Original provider bytes remain identifiable after compression. Public variants remove operational machine paths while preserving numerical fields and recording original/public hash mappings. Rebuildable feature caches are outputs of these routes. The [F continuation has been withdrawn](../docs/F_followup.md) because original restricted-fit states could not be recovered. The earlier nuisance fits have separate identities and remain supported.
@@ -32,7 +33,7 @@ The [per-study result provenance](../docs/result_provenance.md) distinguishes re
 
 Provider credit and data terms are documented in each package and the [third-party notices](../THIRD_PARTY_NOTICES.md). The software and project-authored summaries retain the repository's existing licences.
 
-A separate [autonomous-model comparison](../experiments/autonomous/README.md) implements a newly specified statistical subfamily that matches the finite-mode theorem. It is separate from reproducing historical results. Its fixed pilot and complete three-fold fit have now passed independent output review. The early and late folds lose held-out score; the middle fold selects zero inhibition. Complete fitted states and numerical outputs are supplied with the experiment.
+A separate [autonomous-model comparison](../experiments/autonomous/README.md) executes a constant-background subfamily of the finite-mode model. It shares the earlier constant-background sensitivity's conditional intensity family, with a different training magnitude estimator and optimization recipe; it is not a replay of that earlier fitting procedure. Its fixed pilot and complete three-fold fit have now passed independent output review. The early and late folds lose held-out score; the middle fold selects zero inhibition. Complete fitted states and numerical outputs are supplied with the experiment.
 
 The [original nuisance-fit evidence](historical_fits/README.md) supplies recovered selected states, paired histories, exact diagnostic outputs and documentary source reports. These are original completed non-F studies. Verify the archives with:
 

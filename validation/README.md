@@ -26,6 +26,8 @@ The ledger's `current_edition` identifies this revision and its withdrawal regis
 
 The [refitted-floor summary](live_results/methodological_20261106/refitted_floor_summary.json) derives from the [complete execution](live_results/methodological_20261106/refitted_floor/result.json), including 480 historical train/test floor checks and 80 retained case reports. Its new fit changes only the uninhibited background intercept; all original inhibited states and gates remain unchanged. [Source and run instructions](../experiments/s04b_refitted_floor/README.md) and the [methodological response](../docs/reviews/methodological_review_response.md) distinguish this executed sensitivity from saved-record diagnostics and analytic calculations. Neither a passed numerical comparison nor a finite fixed-strength bracket bound establishes general parameter recovery or a calibrated distribution for selected held-out losses.
 
+The [unit-mark narrow/short audit](../reproduction/synthetic/s2_unitmark/README.md) binds the original histories and their realized-thinning check. It supplements the earlier S04B census without changing its records or repeating fitted procedures.
+
 ## Check a checkout
 
 From the repository root after installing `requirements.txt` and Node.js 22 (also used by the workflow tests):
@@ -57,7 +59,7 @@ Without `INHIBITORY_TEST_NATIVE_ROOT`, the Stage 2 command runs its five portabl
 
 Node.js is required for the website interaction check. [Reproduction instructions](../docs/reproducibility.md) distinguish these checks from document builds and scientific workloads. Generated PDF production checks still need visual inspection. Stage 2 import/build fixtures cover only the supported components identified in the [support matrix](../engine/stage2_followup/README.md).
 
-The [current production review](reviews/METHODOLOGICAL_EDITION_20261106.json) pins the delivered manuscript, companion and repository site. `website/document_metadata.json` pins that review record. The [preceding reassessment](reviews/REASSESSMENT_CLARIFICATIONS_20261106.json), earlier editorial reviews and S04B reviews retain their original artifact identities. These are internal production records, not external peer review.
+The [current production review](reviews/S2_CONTROL_EDITION_20261107.json) pins the delivered manuscript, companion and repository site. `website/document_metadata.json` pins that review record. The [preceding reassessment](reviews/REASSESSMENT_CLARIFICATIONS_20261106.json), earlier editorial reviews and S04B reviews retain their original artifact identities. These are internal production records, not external peer review.
 
 ## Historical receipts and source changes
 

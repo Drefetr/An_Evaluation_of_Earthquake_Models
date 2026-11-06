@@ -1,0 +1,10 @@
+def generate(seed,regime,out):
+ names=['S0_uniform_null','S1_smooth_null','S2_narrow_short','S3_broad_long'];_,bg,eta,ell,psi=G.ROSTER[names[regime]]
+ law=G.Law(names[regime],seed,bg,eta,ell,psi);limits=G.Limits(wall_seconds=600);budget=G.Budget(limits);streams=G.ScalarStreams(seed,limits,budget);sim=G._Simulator(law,limits,budget,streams)
+ try:sim.run()
+ except BaseException as exc:
+  rows=np.array([[e.time,e.x,e.y,e.Q] for e in sim.history],float).reshape(-1,4);np.savez_compressed(Path(out)/'generated_partial_private.npz',rows=rows)
+  S.write(Path(out)/'generator_failure_private.json',dict(seed=seed,regime=regime,error_type=type(exc).__name__,snapshot=G.private_failure_snapshot(sim,failure_code=getattr(exc,'code',type(exc).__name__))))
+  raise
+ rows=np.array([[e.time,e.x,e.y,e.Q] for e in sim.history],float).reshape(-1,4);np.savez_compressed(Path(out)/'generated_private.npz',rows=rows)
+ meta=G.fitting_metadata(law);return rows,meta,[law.a,law.d,law.n,np.log(law.c),law.p]

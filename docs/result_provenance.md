@@ -24,4 +24,6 @@ Regional score contrasts are descriptive comparisons on inspected observations; 
 
 The F continuation and its S01 recovery conclusions were [withdrawn](F_followup.md). Their historical sources do not count as current results. Documentary source keys S01-S27 are a different naming scheme and remain in the source-availability map.
 
-The [methodological response](reviews/methodological_review_response.md) records finding-by-finding dispositions. The [current edition review](../validation/reviews/METHODOLOGICAL_EDITION_20261106.json) identifies the publication artifacts and separates production checks from numerical execution and internal independent review.
+The [unit-mark control audit](../reproduction/synthetic/s2_unitmark/README.md) separately checks the realized thinning of the original narrow/short histories. Its scope is generator/history reconstruction, with no likelihood evaluation or optimizer refit. The [reassessment response](reviews/s2_control_reassessment_response.md) records the corrected interpretation.
+
+The [methodological response](reviews/methodological_review_response.md) records finding-by-finding dispositions. The [current edition review](../validation/reviews/S2_CONTROL_EDITION_20261107.json) identifies the publication artifacts and separates production checks from numerical execution and internal independent review.

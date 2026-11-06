@@ -1,0 +1,63 @@
+{
+  "scope": "Exact relevant tool input/output/state only; native thought signatures omitted; read-only recovery, no execution.",
+  "records": [
+    {
+      "session_id": "ses_e4f8b9f8dffeb3JWY39QeucmkP",
+      "message_id": "msg_1b1fb90f10010qi0pSiYdFQmnn",
+      "seq": 760,
+      "database_message_utf8_sha256": "f74a0df167de94c0de3d3bdbc600c3c35a824769a505cd552af050fd414c5c11",
+      "tool_id": "call_16290927805798931266",
+      "tool_state": {
+        "status": "completed",
+        "input": {
+          "command": "python -B -c \"\nimport sys\nsys.path.insert(0, r'C:\\Users\\Drefetr\\AppData\\Local\\Temp\\opencode\\eq-review-516e\\reproduction\\synthetic\\source')\nimport generator as g\nrej = []\nfor seed in range(410201, 410221):\n    law = g.Law('S2_narrow_short', seed, 'smooth', 0.5, 5.0, 1.0/24.0)\n    limits = g.Limits()\n    budget = g.Budget(limits)\n    streams = g.ScalarStreams(seed, limits, budget)\n    sim = g._Simulator(law, limits, budget, streams)\n    sim.run()\n    rej.append((seed, sim.counts.rejected_immigrants, sim.counts.accepted_immigrants, sim.counts.accepted_offspring))\nprint('S2_narrow_short 20 seeds rejected_immigrants:', [r[1] for r in rej])\nprint('Total rejected immigrants across all 20 S2_narrow_short seeds:', sum(r[1] for r in rej))\nprint('Total proposed immigrants across all 20 S2_narrow_short seeds:', sum(r[1]+r[2] for r in rej))\n\""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "S2_narrow_short 20 seeds rejected_immigrants: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\r\nTotal rejected immigrants across all 20 S2_narrow_short seeds: 0\r\nTotal proposed immigrants across all 20 S2_narrow_short seeds: 2951\r\n"
+          }
+        ],
+        "metadata": {
+          "status": "completed",
+          "truncated": false,
+          "exit": 0
+        }
+      },
+      "tool_time": {
+        "created": 1793987448772,
+        "ran": 1793987448774,
+        "completed": 1793987449827
+      }
+    },
+    {
+      "session_id": "ses_e4f8b9f8dffeb3JWY39QeucmkP",
+      "message_id": "msg_1b1fc13f9001LMDDOeBvixa9Ys",
+      "seq": 767,
+      "database_message_utf8_sha256": "656a43daddf5179960c7742e420e2af03a62e9ee774df930f1a2004b86dcb844",
+      "tool_id": "call_2632384599550702663",
+      "tool_state": {
+        "status": "completed",
+        "input": {
+          "command": "python -B -c \"\nimport sys\nsys.path.insert(0, r'C:\\Users\\Drefetr\\AppData\\Local\\Temp\\opencode\\eq-review-516e\\reproduction\\synthetic\\source')\nimport generator as g\nfor seed in (410201, 410202):\n    law = g.Law('S2_narrow_short', seed, 'smooth', 0.5, 5.0, 1.0/24.0)\n    sim = g._Simulator(law, g.Limits(), g.Budget(g.Limits()), g.ScalarStreams(seed, g.Limits(), g.Budget(g.Limits())))\n    sim.run()\n    n_tr = sum(1 for e in sim.history if 30 <= e.time < 395)\n    n_te = sum(1 for e in sim.history if 395 <= e.time < 760)\n    print(seed, 'n_train:', n_tr, 'n_test:', n_te, 'rejected_imm:', sim.counts.rejected_immigrants)\n\""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "410201 n_train: 99 n_test: 107 rejected_imm: 0\r\n410202 n_train: 90 n_test: 102 rejected_imm: 0\r\n"
+          }
+        ],
+        "metadata": {
+          "status": "completed",
+          "truncated": false,
+          "exit": 0
+        }
+      },
+      "tool_time": {
+        "created": 1793987482813,
+        "ran": 1793987482815,
+        "completed": 1793987483419
+      }
+    }
+  ]
+}
