@@ -5,6 +5,9 @@
 
 The three test windows contain 203, 155 and 254 events, totalling 612. These same targets are inspected again in the mark-history, productivity, orthogonalization, temporal-kernel and spatial studies of Chapters~\ref{ch:temporal-extensions} and~\ref{ch:nz-spatial}. Later choices were informed by earlier results. Training-only fitting within a frozen stage therefore coexists with sequential adaptive reuse of the evaluation archive; the programme does not provide independent confirmatory holdouts \citep{Dwork2015}.
 
+\paragraph{Execution provenance.}
+The recovered-input edition reran the frozen diagnostic fitting recipe from the exact reconstructed catalogue; Section~\ref{sec:autonomous-nz-comparison} reports a separately executed autonomous fit. Earlier restriction calibrations below retain their original records and were not recomputed during this edition.
+
 The empirical analysis begins with an archived catalogue rather than with the unavailable inputs to the original manuscript. The primary archive is a GeoNet WFS snapshot downloaded on 15 October 2026. Events were selected with magnitude \(M\geq 5\) and depth no greater than \(40\)~km, within latitude \([-48.5,-33.5]\) and longitude \([165,180]\). The depth sentinel value \(-9\) was excluded, while other negative depths were retained. The resulting file contains 913 selected events in a 24,394-day observation window, from 1960-01-01 inclusive to 2026-10-15 exclusive. The event count is recorded, together with the filter definition and catalogue metadata, in the archived research report and processed metadata (\hyperlink{S25}{archival \texttt{S25} (recovered archive)}; \href{https://github.com/Drefetr/InhibitoryEarthquakeModels/blob/3e76a174cf4f58ce601c6c9640c4d0c11168813f/provenance/catalogue_snapshot_metadata.json}{public metadata extract} (\texttt{S24})).
 
 The reappearance of the number 913 does not establish identity with the event list analysed in the original work. The original frozen data, source configuration, and executable code are absent, so neither event identity nor processing history can be recovered. A second archived FDSN interface from the same provider returned 914 selections, consisting of 913 events common to the primary snapshot and the additional event 2025p672513. These are interface selections from one national provider, not independent physical catalogues. The interfaces share the same provider and much of their processing history; agreement between them cannot serve as independent validation of completeness or magnitude accuracy.
@@ -108,7 +111,7 @@ Table~\ref{tab:observed-scores} reports score differences relative to the ML tri
 
 \begin{table}[!ht]
 \centering
-\caption{Held-out marked-process score differences relative to the ML triggering-only benchmark. Tests are disjoint chronological intervals in the declared archive protocol. Values are differences, not log-likelihoods for separate datasets.}
+\caption{Descriptive held-out marked-process score differences relative to the ML triggering-only benchmark. Tests are disjoint chronological intervals in the declared archive protocol. Values are differences, not log-likelihoods for separate datasets. Confidence intervals are not reported.}
 \label{tab:observed-scores}
 \small
 \setlength{\tabcolsep}{4pt}
@@ -161,7 +164,7 @@ Four equal-duration bins within the first test interval sharpen the accounting w
 
 \begin{table}[!ht]
 \centering
-\caption{Score accounting within four equal-duration subintervals of the first test block. Each row uses full preceding history and realized integration within that subinterval.}
+\caption{Descriptive score accounting within four equal-duration subintervals of the first test block. Each row uses full preceding history and realized integration within that subinterval. Confidence intervals are not reported.}
 \label{tab:first-block-accounting}
 \small
 \setlength{\tabcolsep}{4pt}
@@ -258,7 +261,8 @@ Pooled & --- & --- & -12.9456 \\
 autonomous finite-mode subfamily, in nats. The common mark contribution
 cancels from each gain; this is an occurrence-score comparison. The middle
 fold selects $\hat\eta=0$: its displayed tie contains only a small
-shared-coordinate optimization difference.}
+shared-coordinate optimization difference. These contrasts are descriptive;
+confidence intervals are not reported.}
 \label{tab:autonomous-nz}
 \end{table}
 

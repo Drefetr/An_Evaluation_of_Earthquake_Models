@@ -6,6 +6,8 @@ The research studies restricted stability and identification, nuisance sensitivi
 
 This open research edition supplies recovered catalogue and simulation inputs, executable cohort reconstructions, and model replay tools. The unchanged New Zealand fitting recipe has been rerun from the recovered input and reproduces every scientific numerical field exactly. Complete known-law and matched-generator score replays have also passed, and a new autonomous finite-mode comparison supplies fitted states and held-out results for a subfamily covered by the stability theorem. Original California completion and nuisance-fit records are also supplied. The F continuation and unexecuted prospective/horizon material have been removed from the current paper, with an explicit historical archive.
 
+The [per-study provenance map](docs/result_provenance.md) identifies recovered original results, later recomputations and available execution routes.
+
 ## Read the research
 
 - [Unified monograph](paper/manuscript_unified.pdf): the current edition of the mathematical analysis, completed regional comparisons and supported synthetic controls.

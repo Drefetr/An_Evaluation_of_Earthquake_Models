@@ -21,14 +21,14 @@ The executed NZ refit reproduced every scientific numerical field exactly, inclu
 |---|---|
 | [NZ/California](nzca/README.md) | Losslessly compressed original responses and annual files, original selection functions, exact expected cohorts and optional hash-checked official retrieval |
 | [Japan](jma/README.md) | Original ZIPs, recovered projection/parser/adjudication, expected arrays and saved fitted-state/score records |
-| [California S03/S05/S06](regional/README.md) | All 5,994 conditional paths, seed records and fitted/nuisance states; guarded point replay with actual controls and eight pilot/probe rows. Full replay was not launched after its runtime gate failed. |
+| [California S03/S05/S06](regional/README.md) | Original fit/score records and the completed S05 reconstruction of all 5,994 point-score paths and fifteen full-vector EP paths; executable saved-state scoring is supplied. A separate later adapter check passed eight pilot/probe cases and declined another full campaign at its runtime gate. |
 | [Observed NZ](observed/README.md) | Complete historical and new fit outputs, explicit identity checks, strict full-result comparator and fitting wrapper |
 | [Synthetic S04B and historical S01 inputs](synthetic/README.md) | Exact histories, generating settings, seed/role/clock mappings, retained states and CPU geometry/likelihood implementation |
 | [Known-law oracle](oracle/README.md) | Original likelihood and rank-calibration functions, exact per-case score targets and a portable process runner |
 
 Original provider bytes remain identifiable after compression. Public variants remove operational machine paths while preserving numerical fields and recording original/public hash mappings. Rebuildable feature caches are outputs of these routes. The [F continuation has been withdrawn](../docs/F_followup.md) because original restricted-fit states could not be recovered. The earlier nuisance fits have separate identities and remain supported.
 
-The scientific results retain their original populations and interpretation. Re-executing an inspected-data procedure does not create an untouched holdout, and known-law calibration does not become fitted-null composite calibration. These are different investigations from the reproducibility gap closed here. The earlier third-party manuscript's original dataset remains distinct from the recovered project reconstruction.
+The [per-study result provenance](../docs/result_provenance.md) distinguishes recovered original records, historical numerical audit coverage, later recomputation and currently supplied execution routes. The scientific results retain their original populations and interpretation. Re-executing an inspected-data procedure does not create an untouched holdout, and known-law calibration does not become fitted-null composite calibration. These are different investigations from the reproducibility gap closed here. The earlier third-party manuscript's original dataset remains distinct from the recovered project reconstruction.
 
 Provider credit and data terms are documented in each package and the [third-party notices](../THIRD_PARTY_NOTICES.md). The software and project-authored summaries retain the repository's existing licences.
 

@@ -15,6 +15,8 @@ python -B scripts/reproduce.py --study jma --output build/replay_jma
 python -B scripts/reproduce_observed.py --output build/replay_observed
 ```
 
+Read the [per-study provenance map](docs/result_provenance.md) before equating a supplied input or runner with a fresh score computation.
+
 Use a fresh output directory for each command. The study guides describe optional provider downloads and the synthetic likelihood replays. A revised provider file fails the exact historical hash check; it is never silently substituted. Read each execution record for whether it reconstructs a cohort, refits a model, or recomputes a score.
 
 ## Historical follow-up study map
@@ -31,7 +33,7 @@ Current metadata identifies an open research edition and completed production ch
 | S05 | All 2,997 EP futures; point-score reconstruction on all 5,994 OC/EP paths; fifteen full 84-coordinate EP replays; [closure review](validation/acceptances/S05_CLOSURE_REVIEW.json), [point review](validation/acceptances/S05_ALL_PATH_POINT_REVIEW.json) | Fixed-state conditional inference. Full PIT coverage is fifteen EP paths, not every future; no inferred CSEP L/M/S results. |
 | S06 | California episode backtests and Japanese stationary/trend ablation; [acceptance](validation/acceptances/S06_ACCEPTANCE.json) | Retrospective roster, overlapping training, and saved-row validation do not establish prospective independent replication. |
 
-The historical S04B integration and editorial-remediation reviews certify their original document bytes. The [current production review](validation/reviews/EVIDENCE_CLOSURE_EDITION_20261105.json) identifies the delivered manuscript, companion and site. It records internal artifact checks; the separately linked reproduction records describe numerical executions. None of these records represents external academic acceptance.
+The historical S04B integration and editorial-remediation reviews certify their original document bytes. The [current production review](validation/reviews/REASSESSMENT_CLARIFICATIONS_20261106.json) identifies the delivered manuscript, companion and site. It records internal artifact checks; the separately linked reproduction records describe numerical executions. None of these records represents external academic acceptance.
 
 Read each acceptance receipt for its actual roster, source identities, checks, and limits. Some historical references identify original research inputs outside this publication package. Accepted aggregate evidence is distinct from an independently reproducible raw experiment. Computational-agent review is distinct from independent external academic peer review.
 

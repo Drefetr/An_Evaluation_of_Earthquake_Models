@@ -1,5 +1,7 @@
 # Completed autonomous finite-mode comparison
 
+The [current execution index](execution_index.json) binds the unchanged frozen protocol to the completed full result, execution record and internal output review. The protocol's original `proposed_unexecuted_requires_independent_review` status records intent before execution; it is not the current experiment status. Its bytes remain unchanged because the completed result records their exact hash.
+
 This directory supplies the executed exploratory comparison and its reproducible implementation. Its
 constant-background likelihood is exactly an autonomous finite-mode model,
 conditional on the mark and first-moment assumptions in [DERIVATION.md](DERIVATION.md).

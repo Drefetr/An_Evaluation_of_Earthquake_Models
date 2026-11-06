@@ -1,0 +1,248 @@
+{
+  "schema": "bounded_repository_checks_v2",
+  "status": "passed",
+  "baseline_commit": "e270a595395ebc41c2c71872d65b8dba4674f030",
+  "checked_at_utc": "2026-11-05T17:27:40.963885+00:00",
+  "snapshot": "Current payload bound by MANIFEST.json; preceding check records retained exactly.",
+  "environment": {
+    "python": "3.13.4",
+    "native": "Windows x64/MSVC",
+    "cuda": "Iteration-27 tests executed on installed CUDA device. Portable CPU CI has a different scope and three native skips.",
+    "dependency_install": "Existing host environment; fresh dependency installation not claimed."
+  },
+  "checks": {
+    "main_unit_and_workflow_suite": {
+      "passed": true,
+      "tests": 176,
+      "elapsed_seconds": 57.806,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "command": "python -B -m unittest discover -s tests -v",
+      "execution_log_sha256": "b230585bfdaa85ff0ddbe352c4eb3097574cbb95f18997198b58c5ce266d7463"
+    },
+    "regional_input_controls_and_guard_suite": {
+      "passed": true,
+      "tests": 44,
+      "elapsed_seconds": 10.493,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "command": "python -B -m unittest discover -s reproduction/regional/tests -v",
+      "execution_log_sha256": "ee9c861c45f96236bdba4d648c0b9597f5ed8565d17a3d1ef4f1dfe75f10a6d3"
+    },
+    "s02_input_control_suite": {
+      "passed": true,
+      "tests": 6,
+      "elapsed_seconds": 0.013,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "command": "python -B -m unittest discover -s reproduction/s02 -p test_inputs.py -v",
+      "execution_log_sha256": "a230abca2a38afcb731d6ac6087f2e1ba016196b21856c73c12b2181674ec34a"
+    },
+    "stage2_with_native_fixtures": {
+      "passed": true,
+      "tests": 8,
+      "elapsed_seconds": 4.651,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "command": "python -B -m unittest discover -s engine/stage2_followup/tests -v",
+      "execution_log_sha256": "2a5b70cdbf767c8b5f7397582fa8bdb817f27dc5e17670cae4858b36ecae0dab",
+      "environment": {
+        "INHIBITORY_TEST_NATIVE_ROOT": "Existing three-group native build from unchanged engine sources, identified by native_builds receipts."
+      }
+    },
+    "historical_iteration27_suite": {
+      "passed": true,
+      "tests": 20,
+      "elapsed_seconds": 11.82,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "command": "python -B -m unittest discover -s engine/iteration_27/tests -v",
+      "execution_log_sha256": "08da7bcce35e0f1be2e10224bc89e788d3c7fd6e4a8dc404f7c35171add78344"
+    },
+    "claim_reconciliation": {
+      "passed": true,
+      "records": 27043,
+      "manuscript_bindings": 10800,
+      "withdrawn_historical_records": 503,
+      "missing_displays": 0,
+      "direct_authorities": 133,
+      "receipt": "validation/numeric_reconciliation_receipt.json",
+      "read_only_execution_log_sha256": "388d5070d20268fbb741822e5325ee92b3e69b4636c6e000ee410d15baf46f7e"
+    },
+    "mathematics": {
+      "passed": true,
+      "command": "python -B scripts/check_mathematics.py --output build/mathematics.json",
+      "output": "validation/mathematics.json",
+      "execution_log_sha256": "0257db75bcb53fd54f08f3db810239d42e180e590afc61c1e48d3491fab6adeb"
+    },
+    "site_interactions": {
+      "passed": true,
+      "selector_combinations": 70,
+      "simulation_selector_cases": 10,
+      "simulation_summary_rows": 20,
+      "independent_histories_per_row": 20,
+      "no_simulation_pooling": true,
+      "no_simulation_target_conversion": true,
+      "observed_S04_targets": 315
+    },
+    "monograph_build": {
+      "pdf_sha256": "64b0a6df91832f14c796ca230f76ce7cb59bdb1f0d021818ceec5c00a1535bb0",
+      "pages": 219,
+      "duplicate_labels": [],
+      "undefined_cross_references": [],
+      "missing_bibliography_keys": [],
+      "missing_figures": [],
+      "overfull_boxes": 0,
+      "undefined_warnings": 0,
+      "missing_glyph_warnings": 0,
+      "underfull_boxes": 19,
+      "replacement_characters": 0,
+      "edge_text_blocks": [],
+      "render_scale": 1.7,
+      "scope": "production checks; page images require visual review",
+      "overfull_vertical_boxes": 0,
+      "passed": true
+    },
+    "current_production_review": {
+      "passed": true,
+      "path": "validation/reviews/EVIDENCE_CLOSURE_EDITION_20261105.json",
+      "sha256": "21044b22f484fc536771cebe56afc842b9da352566d17fb84a6feaa4ef0b96d8"
+    },
+    "evidence_recovery_and_withdrawals": {
+      "passed": true,
+      "path": "validation/reproductions/evidence_closure_20261105.json",
+      "sha256": "46fcf2cb4c0a5cbf9031325a4963c5929b7d3f7633c4c0958eb4f017088e1df5"
+    },
+    "s02_archive_inputs": {
+      "passed": true,
+      "command": "python -B reproduction/s02/inputs.py verify",
+      "execution_log_sha256": "f39fa4297fbbe28b9a63bfd997d82cce276097f7c7280840fbb67a14c7d0bc16"
+    },
+    "historical_fit_archives": {
+      "passed": true,
+      "command": "python -B reproduction/historical_fits/verify.py",
+      "execution_log_sha256": "cf71a38bc2349cf4e22442dcf2943a5bb84ccf66493c70e7301a5707b5e85be7"
+    },
+    "scientific_execution_and_input_records": {
+      "scope": "Individual records distinguish original executions, later numerical replays, and input/custody review. No study fitting, scoring campaign or process simulation ran in this closure cycle. Historical operational failures retain their original status.",
+      "records": {
+        "autonomous_completed_20261105.json": "8945962dfa28e4a916b9e1c105f1fb821ea24667ac70dadb7a8c923e73498d12",
+        "completion_custody_20261105.json": "a83030d9f1ff4e759c68a69028558f0010e23ee71a706427e158ebdbe041db6a",
+        "evidence_closure_20261105.json": "46fcf2cb4c0a5cbf9031325a4963c5929b7d3f7633c4c0958eb4f017088e1df5",
+        "full84_input_materialization_20261105.json": "1541d989fa2432b54545ffa5d2965f956f2a71c0dfcf27126eb6896141716917",
+        "jma_replay_20261105.json": "f03a4e00016c13c66b968038f1b0095d44fd442797f9f299ba19a89470d0bcc3",
+        "nzca_replay_20261105.json": "17f20018761b2a3448b3ab74ed7269299dcb93f78a14cb384483aed7d34cc3bb",
+        "observed_refit_comparison_20261105.json": "35e806dbc866e5c9b716260b905b610005e69be6bdf8896f5d07ff2c30fb306a",
+        "oracle_calibration_20261105.json": "8d86134a161776737fac2ed00f7c7e4383864c3e0739ce31c9cc96e2677121f9",
+        "oracle_full_execution_20261105.json": "e6e6f7167a019ccb8b1fcace833ad92f8a2501835d73ad0933af09ece53fc3f6",
+        "oracle_full_result_20261105.json": "6812a98886e3070ba217e25d4f3f2570cf148811800fbab197d0241619ffb1d5",
+        "oracle_full_review_20261105.json": "dbdb07e0b9a3a70d2e283dd75120f0c957d996417cf83fdda05bbdfa6ef4f986",
+        "original_regional_completion_audit_20261105.json": "f9f2bb104445cbfe9ece067f3f0af481e5173097d29b3a7600553dae8f83689e",
+        "payload_audit_20261105.json": "26519e5afbc3111ab6ad8c5dcbd4ef4912d9bd6807a66b9ee42fa737e518bfab",
+        "regional_inputs_20261105.json": "dad586ed91935d2253bd486bfaf0bd1da5cb8e46e02c87ef053079a3df4976de",
+        "s02_primary_ca_independent_review_20261105.json": "ae525f0eaaeddf241859f15420012868c75b108e3e5e040751042140ebb15377",
+        "s04b_completed_independent_review_20261105.json": "ea334096cee1e61411144253aa17bf7e6fe785fb432c527131a9c560e7f34d2c",
+        "s04b_completed_replay_20261105.json": "15d8884988ae84fd4f7a671778f10bed83390de3626fe634ea189d50eb9292a9",
+        "s04b_completed_scores_20261105.json": "e12a982530e3449100087951a6e9b29f96538e58983bcd2415e981007156a3a3",
+        "s04b_completed_summary_20261105.json": "bb01209821a14ba332f6a630d7a080d16e88cf4f2bf511488c7c81cc8dc9aae5",
+        "s04b_sequential_pilot_execution.json": "7fb43c44c04a7806230ae4f8123dc8775be55be5bbf0b1b3ee9a6c15df5ad542",
+        "s04b_sequential_pilot_result.json": "2e62fba7e36f346b8b78fd1baff4d3e62aee55ecc072eb36ae424be3edf716d5",
+        "s05_build_failure_20261105.json": "ba4de8031103cd3ba80d09230dc7ab38419e2a8b17559e93d9452c23881915b2",
+        "s05_execution_20261105.json": "e367037b7c01e51bd3cf63364a9cade0604c94840308f6cd86af86743a514bd8",
+        "s05_guard_grace_review_20261105.json": "0d87304150edba116d2d0b05be7892cc10e92c3383db76f1fac405a5d4324003",
+        "s05_source_review_20261105.json": "4da0cd34ab648b56399221707d8ff863d21cf4d2e74f0dce6f6ed2d2806497fc",
+        "s06_saved_score_recovery_20261105.json": "81e0f8e902a8038479603d0f0a418efecd9fe8eee67672e84843eb141871c8df",
+        "S4_narrow_short_imm_seed410401.json": "86e5ba2faa6c8feff1b5c8851574dd5fc69820fc9bed007b31d6e3b99052def4",
+        "S5_broad_long_imm_seed410501.json": "28a99fbe09a90c524664a9690b40052b2f0675181f99b912d394e240aa136f26",
+        "S6_narrow_short_total_seed410601.json": "f2a0003b057defcf7dfb3c1072715fe2746758f72b7df50e1860f56aea21c1ae",
+        "S7_broad_long_total_seed410701.json": "7cbe6bf61952c8c272e28e6cec812d7fed56c64fb3047c18500a4e2a5e7f1057",
+        "scientific_integration_review_20261105.json": "b32211bbea326f9b2d391ae63448f3ed6cf6b5dfd6910857423ca07f232dc57d"
+      }
+    },
+    "diff_whitespace": {
+      "passed": true,
+      "command": "git -c core.whitespace=cr-at-eol diff --cached --check",
+      "scope": "Required final staging gate before commit."
+    },
+    "final_source_whitespace_cleanup": {
+      "checked_at_utc": "2026-11-05T17:25:49.686165+00:00",
+      "change": "Removed a trailing blank line in appendices.tex to pass the staged whitespace gate. All source text before terminal newlines is identical.",
+      "source": "paper/source/appendices.tex",
+      "reviewed_pdf_sha256": "3e0732d344d5bf914dddfedb8ff1d35f9ab67500cc54da5de37e6d1d0c9970ae",
+      "installed_pdf_sha256": "64b0a6df91832f14c796ca230f76ce7cb59bdb1f0d021818ceec5c00a1535bb0",
+      "byte_identical_page_PNGs": 219,
+      "extracted_text_identical": true,
+      "table_of_contents_identical": true,
+      "all_page_link_annotations_identical": true,
+      "metadata_changes": {
+        "creationDate": [
+          "D:20261105170910-00'00'",
+          "D:20261105172336-00'00'"
+        ]
+      },
+      "reviewer": "Codex conductor",
+      "scope": "Exact render/text/link equivalence carries the preceding all-page visual review to the rebuilt PDF. No scientific content changed."
+    },
+    "test_total": 254,
+    "final_workflow_subset": {
+      "passed": true,
+      "tests": 9,
+      "elapsed_seconds": 4.819,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "command": "python -B -m unittest discover -s tests -p test_workflows.py -v",
+      "execution_log_sha256": "65f4e279d09bf6946914ffb95aeac8d4d7de6334728e653ceb26cf718f8e09f8",
+      "counting_scope": "Nine tests already included in the main176; not added to the254 total. Rechecked after final documentation links."
+    },
+    "native_builds": {
+      "passed": true,
+      "groups": [
+        "LI and shared radial",
+        "temporal",
+        "S06"
+      ],
+      "compiler": "MSVC",
+      "receipts": {
+        "li": "82f2febe413cc649036187cc5fd07be6dcb7fd74607ba9a2d5bedf4a3e218856",
+        "temporal": "ba932620f8f68b8a831ee2b0289841a71ab16356b1abeb04cc397f486196a77f",
+        "s06": "5e2652c38ed9d0d4474e269904f9d75f8e2bd8ac2503f1c71e645acb6cc2347d"
+      },
+      "scope": "Existing byte-pinned native builds from unchanged source used by test fixtures. No recompilation claimed in this closure cycle."
+    },
+    "initial_main_check": {
+      "passed": false,
+      "tests": 176,
+      "failures": 2,
+      "execution_log_sha256": "8fcbfff2c9cfcaf6e8cb7c9dbf9995d28c5090e9db0b91816000aaec5842df02",
+      "findings": [
+        "Withdrawn F figures remained in current figure payload",
+        "Findings site had not yet been regenerated"
+      ],
+      "resolution": "Historical figures moved byte-exactly to paper/history and site rebuilt; complete main suite subsequently passed."
+    },
+    "repository_payload": {
+      "passed": true,
+      "checked_files": 8465,
+      "errors": 0,
+      "commands": [
+        "python -B scripts/verify_repository.py --write-manifest",
+        "python -B scripts/verify_repository.py"
+      ],
+      "scope": "Final publication gate: manifest refresh and ordinary verification immediately follow this record."
+    }
+  },
+  "scope": "Actual bounded tests, artifact checks and enumerated custody. The254 tests do not constitute254 scientific model experiments.",
+  "historical_checks": {
+    "path": "validation/checks_before_closure_20261105.json",
+    "sha256": "4d8692a7bb9550f5e87baf38f09bdca56546f7f21040d1db2ab97af7d53b03df",
+    "source_commit": "e270a595395ebc41c2c71872d65b8dba4674f030",
+    "source_path": "validation/checks.json",
+    "scope": "Exact preceding edition checks, retaining their historical chain."
+  }
+}

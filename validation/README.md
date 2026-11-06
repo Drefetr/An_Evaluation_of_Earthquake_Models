@@ -21,6 +21,8 @@ Explicit [withdrawals](withdrawals/CLAIM_WITHDRAWALS_20261105.json) preserve ret
 
 The manuscript ledger stores shared TeX source hashes and the fixed verification method once in `display_custody`. Each claim keeps its matching files and a digest binding its identity, displayed value, and declared locations. Ordinary verification recomputes every binding against current source bytes and rejects stale or missing custody. The display-regression receipt summarizes the verified ledger hashes, counts, and sources without copying the per-claim records. Explicit `scripts/verify_claims.py --write-receipts` migrates or refreshes this representation after deliberate source review.
 
+The ledger's `current_edition` identifies this revision and its withdrawal registry. The older `edition` and `closure_revision` fields retain their original ledger-migration meaning. The [result provenance map](../docs/result_provenance.md) records scientific execution separately.
+
 ## Check a checkout
 
 From the repository root after installing `requirements.txt` and Node.js 22 (also used by the workflow tests):
@@ -52,7 +54,7 @@ Without `INHIBITORY_TEST_NATIVE_ROOT`, the Stage 2 command runs its five portabl
 
 Node.js is required for the website interaction check. [Reproduction instructions](../docs/reproducibility.md) distinguish these checks from document builds and scientific workloads. Generated PDF production checks still need visual inspection. Stage 2 import/build fixtures cover only the supported components identified in the [support matrix](../engine/stage2_followup/README.md).
 
-The [current production review](reviews/EVIDENCE_CLOSURE_EDITION_20261105.json) pins the delivered manuscript, companion and repository site. `website/document_metadata.json` pins that review record. Earlier editorial and S04B reviews retain their original artifact identities and are labelled historical. These are internal production records, not external peer review.
+The [current production review](reviews/REASSESSMENT_CLARIFICATIONS_20261106.json) pins the delivered manuscript, companion and repository site. `website/document_metadata.json` pins that review record. Earlier editorial and S04B reviews retain their original artifact identities and are labelled historical. These are internal production records, not external peer review.
 
 ## Historical receipts and source changes
 

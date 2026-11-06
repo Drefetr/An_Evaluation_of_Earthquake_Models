@@ -81,7 +81,7 @@ Mean and median gains are total held-out log-score differences from the shared u
 
 In original S04, gating selects the uninhibited floor throughout both null regimes, but also throughout the narrow/short positive regime. This demonstrates the sensitivity--overfitting tradeoff of this procedure on these controls; it does not establish nominal Type I error or general detection power.
 
-The original S04 completed matrix combines accepted first-pass results with quadrature refinement and same-history finer-grid refits. Training-only selection preserves the prescribed starts, bounds and exact uninhibited floor. Finer-grid validation checks retained candidates, score decomposition and forecast spread. Independent compiled CPU replays cover predeclared anchors; the remaining cases have per-case numerical checks and sampled-audit coverage, not individual independent replay. All aggregate tables and their source identities are retained in the evidence bundle.
+The original S04 completed matrix combines accepted first-pass results with quadrature refinement and same-history finer-grid refits. Training-only selection preserves the prescribed starts, bounds and exact uninhibited floor. Finer-grid validation checks retained candidates, score decomposition and forecast spread. Independent compiled CPU replays cover predeclared anchors; the remaining cases have per-case numerical checks and sampled-audit coverage, not individual independent replay. All aggregate tables and their source identities are retained in the evidence bundle. These fits and audits belong to the original campaign; this edition did not recompute them.
 
 These results extend the synthetic evidence only. They do not replace the observed California comparison, for which the completed observed LI+ evaluation is reported in Section~\ref{sec:s04-observed-completed} below.
 
@@ -99,7 +99,14 @@ The completed extension contains 80 independent seeded histories and 400 paired 
 
 Generation uses the smooth background and the same day-based split as the original controls: warmup $[0, 30)$, training $[30, 395)$ and test $[395, 760)$, with horizon $760$ days. For each generating law, narrow/short inhibition has $(\eta,\ell,\psi)=(0.5,5\ {\rm km},1/24\ {\rm day})$ and broad/long inhibition has $(2.0,50\ {\rm km},30\ {\rm days})$. The magnitude scaling and the two intensity definitions are those displayed above. Seeds are predeclared and retained without replacement: immigrant narrow/short $410401$ through $410420$, immigrant broad/long $410501$ through $410520$, total narrow/short $410601$ through $410620$, and total broad/long $410701$ through $410720$. Training uses all $8$ prescribed starts plus the exact uninhibited floor at quadrature order $16$; every retained finite state is checked at order $32$ on training and test windows. The first seed in each regime is the predeclared independent CPU anchor. These settings and source identities are retained in the bundled frozen-method projection and protocol.
 
-All fits hold the shared background and excitation backbone fixed. Training-only selection and the complexity gate retain the exact uninhibited floor. Full saved-row arithmetic and numerical gates are audited; independent CPU objective and gradient replays cover 48 predeclared phase--model contexts from the anchor histories, rather than every history.
+All fits hold the shared background and excitation backbone fixed. Training-only selection and the complexity gate retain the exact uninhibited floor. Full saved-row arithmetic and numerical gates are audited; the original independent CPU objective and gradient replays cover 48 predeclared phase--model contexts from the anchor histories, rather than every history.
+
+The recovered-input edition completed the full saved-state likelihood and score
+replay supplied in \path{reproduction/synthetic/}. It rebuilds quadrature from
+the raw matched histories and reproduces the selected/floor likelihoods,
+score contrasts and summary rows. The interrupted first execution and the
+separately completed missing-case execution are both retained. This
+computation re-evaluates saved fits; it does not rerun their optimizer searches.
 
 Under immigrant: narrow/short generation, the matched raw procedure has a negative mean gain and a negative median; its gated version has a negative mean. Under immigrant: broad/long generation, the matched raw procedure has a positive mean gain and a positive median; its gated version has a positive mean. Under total: narrow/short generation, the matched raw procedure has a negative mean gain and a negative median; its gated version has a positive mean. Under total: broad/long generation, the matched raw procedure has a positive mean gain and a positive median; its gated version has a positive mean. Both matched raw procedures lose on average in their narrow/short settings. The positive gated mean under narrow/short total generation comes from a single winning active history and otherwise exact-floor ties; it does not demonstrate reliable recovery. Under narrow/short immigrant generation, the matched gate instead retains a single active loss and otherwise floor ties. In both broad/long generating settings, matched raw and gated procedures win on every history in this declared bank. These outcomes remain conditional on the fixed nuisance backbone and chosen regimes.
 
@@ -161,6 +168,8 @@ LI+ total gated & 20 & 19.3802 & 7.2159 & 35.3378 & 14 & [0.481, 0.855] & 18 \\
 
 \end{longtable}\endgroup
 
+\clearpage
+
 \begingroup\footnotesize\setlength{\tabcolsep}{3pt}
 
 \begin{longtable}{@{}lrrrrrrr@{}}
@@ -188,8 +197,6 @@ LI+ total & 20 & -14.5947 & 7.8248 & -0.1064 & 10 & [0.299, 0.701] & 20 \\
 LI+ total gated & 20 & 0.0686 & 0.0686 & 0.0000 & 1 & [0.009, 0.236] & 1 \\
 
 \end{longtable}\endgroup
-
-\clearpage
 
 \begingroup\footnotesize\setlength{\tabcolsep}{3pt}
 
@@ -224,11 +231,3 @@ Active counts record off-floor selection ($\hat\eta > 0$), including the effect 
 \begin{figure}[p]\centering\includegraphics[width=\linewidth]{s04_expanded_mean_gains.pdf}
 
 \caption{S04B matched-generator controls. Each panel keeps its own full linear range. Points show row means; bars show descriptive MC SE, not calibrated confidence intervals. Each procedure uses the same complete history denominator within its generating regime. The dashed zero line denotes the uninhibited floor; regimes are not pooled.}\label{fig:s04b-matched}\end{figure}
-
-
-The complete saved-state score replay is now supplied in
-\path{reproduction/synthetic/}. It rebuilds quadrature from the raw matched
-histories and reproduces the selected/floor likelihoods, score contrasts and
-summary rows. The interrupted first execution and the separately completed
-missing-case execution are both retained. This computation re-evaluates saved
-fits; it does not rerun their optimizer searches.

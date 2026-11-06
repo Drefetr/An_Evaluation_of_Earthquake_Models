@@ -1,5 +1,9 @@
 # Change history
 
+## 6 November 2026 reassessment clarifications
+
+Added current ledger-edition metadata, a hash-bound autonomous execution index and the bundled CSV location in the appendix. The original autonomous protocol remains unchanged because completed results pin its pre-execution bytes. Standardised the combined descriptive transfer rule, added study-level result provenance and adjacent descriptive-score notes, and clarified the existing S05 executable route and original completion in the reproduction index. Rebuilt the publication artifacts and refreshed their custody. No research fitting, simulation or score-replay campaign ran; scientific values and explicit withdrawals are unchanged. See the [reassessment response](reviews/hy4_reassessment_response.md).
+
 ## 5 November 2026 evidence closure and explicit withdrawals
 
 Recovered and supplied the original California completion, including all 5,994 point-field replays and fifteen full-vector EP checks, plus regional selected/candidate score records. No California fits were repeated. Supplied original nuisance-fit states, exact diagnostic outputs and all 27 documentary supplements. Removed the F continuation and derived conclusions because required original restricted-fit states could not be recovered; also removed unexecuted prospective and incomplete horizon material. Earlier source and ledger bytes remain in an explicit archive, and retired records no longer count as current manuscript displays. Corrected citation authorship, stale EP-calibration wording, occurrence-score scope and current publication status terminology. Restored normal-size abstract text. The paper, guide and site are rebuilt and checked for this edition.

@@ -2,11 +2,13 @@
 
 \label{sec:s06-completed}
 
+The California and JMA values in this section are recovered original fit and score outputs with checked hashes and source identities. The fitting and rescoring described below belong to the original study; this edition does not recompute them. The original audit coverage is retained.
+
 The completed California map contains five eligible episodes, in 1994, 1999, 2004, 2010 and 2019. The two 1992 episodes are excluded by the predeclared training-count or zone-adequacy rule, not silently replaced by a more favourable sequence. Training expands from 1986 up to, but not including, each episode origin; the parent history retains the 1981 warmup. Each scored block ends at the earlier of the next eligible origin, one year after its origin, or the coverage cutoff. Parameters, spatial scale and nuisance inputs are selected only on the preceding training prefix.
 
 The $M\geq6$ episode origins were identified retrospectively from the catalogue. The roster is retrospective and exploratory. Overlapping training histories and a common archive mean that the five episodes are not independent replications. The active partition is the union of declared episode time intervals, and its complement fills the rest of the scored block; it does not causally label individual earthquakes as aftershocks.
 
-\begin{table}[htbp]\centering\caption{Held-out joint scores (nats) on the five eligible California blocks. Higher is better.}\label{tab:s06-ca}
+\begin{table}[htbp]\centering\caption{Held-out joint scores (nats) on the five eligible California blocks. Higher is better. These descriptive scores have no confidence intervals.}\label{tab:s06-ca}
 
 \begin{tabular}{lrrrrr}\toprule Year & Targets & FC & MC & OC & EP\\\midrule
 
@@ -22,7 +24,7 @@ The $M\geq6$ episode origins were identified retrospectively from the catalogue.
 
 \bottomrule\end{tabular}\end{table}
 
-\begin{table}[htbp]\centering\caption{OC minus FC joint contrasts, partitioned without changing fitted parameters. Full equals active plus complement, subject to the saved numerical tolerance.}
+\begin{table}[htbp]\centering\caption{OC minus FC joint contrasts, partitioned without changing fitted parameters. Full equals active plus complement, subject to the saved numerical tolerance. These contrasts are descriptive; no confidence intervals are supplied.}
 
 \begin{tabular}{lrrrrr}\toprule Year & Active $N$ & Complement $N$ & Full & Active & Complement\\\midrule
 
@@ -46,7 +48,7 @@ The 2019 episode block contains 127 targets (111 active and 16 in the complement
 
 For JMA, the free-trend states are the preserved training-selected parameters, rescored without gratuitous refitting. The stationary alternative fixes $d=0$ and refits the prescribed starts and floors under the same training nuisance inputs. Both trends use identical target populations, the reported magnitude-lattice counting measure and all 1,277 targets across the three folds.
 
-\begin{table}[htbp]\centering\caption{JMA contrasts (nats) under free and stationary background trend. Positive values favour OC.}\label{tab:s06-jma}
+\begin{table}[htbp]\centering\caption{JMA contrasts (nats) under free and stationary background trend. Positive values favour OC. These contrasts are descriptive; no confidence intervals are supplied.}\label{tab:s06-jma}
 
 \begin{tabular}{llrrrr}\toprule Fold & Trend & Targets & OC--FC timing & OC--EP timing & OC--EP joint\\\midrule
 
