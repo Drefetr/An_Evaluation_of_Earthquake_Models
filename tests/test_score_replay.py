@@ -262,6 +262,25 @@ class TestScoreReplay(unittest.TestCase):
 
 
 class CaliforniaPartitionTests(unittest.TestCase):
+    def test_complete_saved_productivity_profile_roster_and_identity(self):
+        base=Path(__file__).resolve().parents[1]/'reproduction/score_replay/productivity_profiles'
+        registry=json.loads((base/'cached_registry.json').read_bytes());inputs=Inputs(base)
+        self.assertEqual(len(registry['rows']),84)
+        self.assertEqual(len(registry['profile_groups']),6)
+        byid={r['id']:r for r in registry['rows']}
+        for group in registry['profile_groups']:
+            original=inputs.json(group['profile'])
+            self.assertEqual(group['grid'],[0.,.2,.35,.5,.7,.85,.95])
+            self.assertEqual(group['descriptive_support_nll_gap'],2.)
+            for node in group['nodes']:
+                for phase,rowid in node['rows'].items():
+                    row=byid[rowid];state=inputs.json(row['state'])
+                    self.assertEqual(state['parameters'],original['nodes'][node['index']]['pars'])
+                    self.assertEqual(row['profile_r'],node['r'])
+                    self.assertEqual(state['parameters'][3 if group['model']=='E0_free' else 4],node['r'])
+                    self.assertEqual(state['original_source_sha256'],group['profile']['sha256'])
+                    self.assertEqual(row['phase'],phase)
+
     def test_block_finalizer_union_rejects_missing_duplicate_and_unexpected(self):
         from reproduction.score_replay.finalize_blocks import require_union, terminal_roster
         roster=[{'id':'a'},{'id':'b'},{'id':'c'}]
