@@ -24,6 +24,8 @@ class RecoveryHostControls(unittest.TestCase):
             shared_run=policy['shared_run'],predecessor=dict(case_id=old['sequence'][40],
                 index_sha256='failed-index',review_sha256='failed-review',original_index_charged_seconds=21663.863217721,
                 known_outer_charged_seconds=21714.885916780))
+        recovery['pre_execution_failure']=copy.deepcopy(batch.read(
+            batch.REPO/'experiments/s04b_joint_recovery/recovery_protocol.json')['pre_execution_failure'])
         return policy,recovery
 
     def prefix(self,host=1):
@@ -53,6 +55,24 @@ class RecoveryHostControls(unittest.TestCase):
         self.assertTrue(all(g['checker_reservations_seconds']+600+30<=1800 for g in p['actual_hosts']))
         self.assertLess(21714.885916780+71760+8*1800+1800,115200)
 
+    def test_startup_charge_is_once_and_never_changes_scientific_predecessor(self):
+        policy,recovery=batch.verify_policy()
+        self.assertEqual(batch.pre_execution_charge(policy,recovery),90)
+        self.assertEqual(recovery['predecessor']['original_index_charged_seconds'],21663.863217721)
+        self.assertEqual(recovery['predecessor']['index_sha256'],
+                         'a8dd94439fce7a72d0f6a69c2a095b2abdb06ba312e261f62e9e814229888430')
+        future=71760+8*1800+1800
+        margin=115200-recovery['predecessor']['known_outer_charged_seconds']-90-future
+        self.assertAlmostEqual(margin,5435.114083220,places=8)
+        for key,value in [('charge_seconds',0),('charge_seconds',90.665865991),
+                          ('status','passed'),('scientific_predecessor_unchanged',False),
+                          ('nested_supervised_seconds',91)]:
+            changed=copy.deepcopy(recovery);changed['pre_execution_failure'][key]=value
+            with self.subTest(key=key,value=value),self.assertRaises(ValueError):
+                batch.pre_execution_charge(policy,changed)
+        changed=copy.deepcopy(recovery);changed['pre_execution_failure']['workflow_log_sha256']='0'*64
+        with self.assertRaises(ValueError):batch.pre_execution_charge(policy,changed)
+
     def test_actual_frozen_recovery_protocol_integrates_without_scientific_calls(self):
         policy,recovery=batch.verify_policy()
         self.assertEqual(batch.sha(batch.REPO/'experiments/s04b_joint_recovery/recovery_protocol.json'),
@@ -66,11 +86,15 @@ class RecoveryHostControls(unittest.TestCase):
             with self.subTest(mutation=mutation),tempfile.TemporaryDirectory() as directory:
                 repo=Path(directory);here=repo/'experiments/s04b_joint_recovery_host';(here/'evidence').mkdir(parents=True)
                 policy,recovery=self.metadata()
+                for key in ('archive','review','resource_review','workflow_log'):
+                    relative=recovery['pre_execution_failure'][key];target=repo/relative
+                    target.parent.mkdir(parents=True,exist_ok=True)
+                    target.write_bytes((batch.REPO/relative).read_bytes())
                 (here/'evidence/resource_review.json').write_bytes((original_here/'evidence/resource_review.json').read_bytes())
                 helper=repo/'experiments/s04b_joint_host_batch/batch.py';helper.parent.mkdir(parents=True)
                 helper.write_text('invented historical source')
                 policy['historical_sources']={helper.relative_to(repo).as_posix():batch.sha(helper)}
-                path=repo/'experiments/s04b_joint_recovery/recovery_protocol.json';path.parent.mkdir(parents=True)
+                path=repo/'experiments/s04b_joint_recovery/recovery_protocol.json';path.parent.mkdir(parents=True,exist_ok=True)
                 if mutation=='cap':recovery['fixed_slots'][0]['wall_seconds']=1800
                 if mutation=='reservation':recovery['fixed_slots'][0]['scientific_reservation_seconds']=1200
                 if mutation=='roster':recovery['fixed_slots'].pop()

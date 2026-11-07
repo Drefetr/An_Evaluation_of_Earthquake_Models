@@ -1,0 +1,128 @@
+{
+  "schema": "joint_pre_science_startup_failure_resource_amendment_v1",
+  "passed": true,
+  "audit_scope": "Resource accounting only. Failed launch remains failed; implementation correctness and pilot admission require separate reviews.",
+  "task_id": "joint_recovery_startup_failure_resource",
+  "attempt_id": "5fee0155-5fdf-409d-9adf-b517ae5d25ce",
+  "reviewer": "/root/recover_jma",
+  "reviewed_at_utc": "2026-11-07T18:58:21.813874+00:00",
+  "inputs_sha256": {
+    "joint_recovery_host_01.zip": "b05e68bfb391826b66f73fa8d2c83505494d893c4572bfa61f32c95c70c10b89",
+    "joint_recovery_host_01_workflow.log": "9263bd937a75ac190edeac23a07967d5c797961f1684539eb0529280f6c1336f",
+    "joint_recovery_host_01/supervision/result.json": "a5e207144f576b4942f115e0c728ac53889d6b53258358b41d2879b0fe74bfa9",
+    "joint_recovery_host_01/host/result.json": "557abacc0fb7b35d3b8de372625fe261f3c457b75049f1b08daa9adbf62a6b24",
+    "joint_recovery_host_01/host/children/01_S5_broad_long_imm_seed410518/supervision/result.json": "489bb16d3fecdd17e9ed348d24ba43d3f9ffc320765639d58537edaaa5930e90",
+    "joint_recovery_host_01/host/children/01_S5_broad_long_imm_seed410518/science/result.json": "d8e17e8049d3649caefc82f9abf31839223a315e0c30c8df71f1f5b7a08cd5f6",
+    "joint_recovery_host_01/host/children/01_S5_broad_long_imm_seed410518/science/index.json": "a8ae30d4f1f79b4a0376f7e93431c639a5522c781c6a705bc3701140f579006d",
+    "joint_recovery_host_01/host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410518.json": "9b8b6ddec1dbfb332bba712be83b1d6fc347373fce4551d0786026cedfb061a6",
+    "joint_recovery_host_01/host/children/01_S5_broad_long_imm_seed410518/science/recovery_execution.json": "f0c62140f873746f1fa6262fbc74332e024c6aac1bbbb22f16e67f0f5b3d2dbb",
+    "joint_recovery_host_01/host/children/01_S5_broad_long_imm_seed410518/science/recovery_calls.jsonl": "94eae434aa7241d2642c02776b5c42c7702e3937777f624d51315980c2e4091c",
+    "joint_recovery_host_01/host/children/01_S5_broad_long_imm_seed410518/science/attempts/f0518dd2-74e4-4e79-81f5-697a4a186559-case-041.json": "f4cfa2dccc4c2900b1c1116c477cbd4ae7fa2ffdcb6654b41ea12b30e742ca11",
+    "config.json": "dea0efc08bdeffefaca55d4cffbce983a21d8e3799c9b4e79fba12e70b7ef41c",
+    "joint_recovery_resource_review/result.json": "7f770bacc67de61f096d8fcb8b2b80d69b5d9a093541f6bdbf38ec50f86d957b"
+  },
+  "failure": {
+    "workflow_run": 42403408065,
+    "source_commit": "0d477cc67c7a1661e22122ca9577de3ea615c652",
+    "archive_sha256": "b05e68bfb391826b66f73fa8d2c83505494d893c4572bfa61f32c95c70c10b89",
+    "status": "failed_requires_review",
+    "passed": false,
+    "case_id": "S5_broad_long_imm_seed410518",
+    "completed_cases": 40,
+    "primary_error": {
+      "type": "TypeError",
+      "message": "CountedPhase.evaluate() missing 1 required positional argument: 'order'"
+    },
+    "secondary_persistence_error": {
+      "type": "FileNotFoundError",
+      "message": "Missing new attempt-log file masked the primary TypeError."
+    },
+    "retained_execution_counters": {
+      "actual_evaluations": {},
+      "logical_optimizer_calls": [],
+      "new_fit_records": 0,
+      "new_outcomes": 0
+    },
+    "zero_scientific_calls_scope": "Retained counters plus separate C source-flow audit reported by conductor; this review ran no likelihood, optimizer or native calls.",
+    "supervisor_records_report_no_survivors_or_cleanup_errors": true,
+    "failed_attempt_id": "f0518dd2-74e4-4e79-81f5-697a4a186559-case-041",
+    "failed_attempt_receipt_sha256": "f4cfa2dccc4c2900b1c1116c477cbd4ae7fa2ffdcb6654b41ea12b30e742ca11",
+    "failed_index_sha256": "a8ae30d4f1f79b4a0376f7e93431c639a5522c781c6a705bc3701140f579006d"
+  },
+  "observed_timing": {
+    "first_workflow_log_timestamp": "2026-11-07T18:52:12.9733395Z",
+    "last_workflow_log_timestamp": "2026-11-07T18:53:40.8439488Z",
+    "logged_interval_seconds_decimal": "87.8706093",
+    "outer_supervised_seconds": 1.5289834670000033,
+    "child_supervised_seconds": 1.0217964889999962,
+    "child_scientific_seconds": 0.6658659909999898,
+    "interval_scope": "Logged runner setup through terminal upload/cleanup messages; queue/provisioning before the first log is not measured.",
+    "timings_nested": true
+  },
+  "amendment": {
+    "explicit_new_charge_bound_seconds": 90,
+    "bound_basis": "Conservative ceiling above the87.8706093-second logged workflow interval, covering its nested host/child/scientific durations once.",
+    "failed_attempt_is_not_success": true,
+    "automatic_retry": false,
+    "charge_from_existing_contingency_only": true,
+    "new_scientific_case_slots": 0,
+    "remaining_cases": 40,
+    "remaining_broad_cases": 22,
+    "remaining_dense_cases": 18,
+    "uniform_broad_wall_seconds": 1200,
+    "dense_wall_seconds": 2520,
+    "future_case_slots_seconds": 71760,
+    "future_actual_hosts": 8,
+    "future_host_overhead_reserve_seconds": 14400,
+    "global_finalization_reserve_seconds": 1800,
+    "shared_allowance_seconds": 115200,
+    "shared_deadline_utc": "2026-11-09T07:15:00+00:00",
+    "previous_contingency_seconds_decimal": "5525.114083220",
+    "revised_contingency_seconds_decimal": "5435.114083220",
+    "known_previous_outer_seconds_decimal": "21714.885916780",
+    "previous_outer_plus_startup_bound_seconds_decimal": "21804.885916780",
+    "conservative_total_with_all_future_reserves_seconds_decimal": "109764.885916780",
+    "conservative_bound_not_exact_measured_all_wall_total": true
+  },
+  "nonduplicating_representations": [
+    {
+      "basis": "Restart from exact original failed40-case/41-attempt index",
+      "scientific_base_seconds_decimal": "21663.863217721",
+      "additional_operational_charge_seconds": 90,
+      "accounting_total_before_new_work_seconds_decimal": "21753.863217721",
+      "retain": "Exact startup failed42-attempt index, attempt receipt, case/result/call counters and archive in explicit operational lineage; do not discard the failed launch."
+    },
+    {
+      "basis": "Import startup failed42-attempt index with its child charge already present",
+      "scientific_base_seconds": 21664.529083712,
+      "additional_overhead_bound_seconds_decimal": "89.3341340090000102",
+      "retain": "Preserve the existing0.665865991-second failed attempt and add only its complement to90. Do not add90 plus the nested child/outer times."
+    }
+  ],
+  "implementation_requirements": [
+    "Preserve both original scientific timeout and subsequent pre-science startup failure bytes/statuses with exact archive, index and attempt pins.",
+    "Use exactly one pinned90-second operational charge. The driver cumulative allocation gate, host conservative gate, saved checker and final accounting must all include it consistently.",
+    "Keep measured historical outer21714.885916780 separate from the conservative90-second bound; do not relabel their sum as exact measured wall time.",
+    "No completed case/fit/start is repeated; the original partial410518 remains the sole mandatory recovery pilot, and all later cases remain blocked until its independent actual output audit passes.",
+    "A corrected source requires independent review and full startup-path constructed control. This resource-only receipt neither authorizes an automatic retry nor marks the failed launch passed.",
+    "All prior caps, source scientific protocol, remaining40 IDs, eight future host reserves,32-hour allowance and shared deadline remain unchanged.",
+    "Unmeasured earlier setup/upload time remains explicitly unknown and must fit the reduced5435.114083220-second contingency before claiming an all-wall bound."
+  ],
+  "review_execution": {
+    "code_edits": 0,
+    "scientific_calls": 0,
+    "optimizer_calls": 0,
+    "source_builds": 0,
+    "saved_record_and_scalar_arithmetic_only": true
+  },
+  "report_sha256": "a7594d65047d868de8b45cfc9f1bd6ba469550c4b54be5d3f0b6a7e5c25837cb",
+  "independent_failure_audit": {
+    "path": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot01_startup_failure_review.json",
+    "sha256": "5ee4135103991a8568201b1ffa757168df70abd962377c5fcf039654f84353dc",
+    "audit_passed": true,
+    "passed": false,
+    "overall_scientific_passed": false,
+    "reviewer": "/root/continuation_cpu",
+    "scope": "Source-flow/output audit confirms no likelihood or optimizer calls;324 archive members and648 input pins checked."
+  }
+}

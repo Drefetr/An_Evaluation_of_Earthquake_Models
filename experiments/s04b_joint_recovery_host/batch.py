@@ -50,6 +50,33 @@ def repo_path(relative):
     return value
 
 
+def pre_execution_charge(policy, recovery):
+    """One retained workflow bound; nested child durations are not extra charges."""
+    failure = recovery['pre_execution_failure']
+    require(failure['charge_seconds'] == policy['pre_execution_failure_charge_seconds'] == 90 and
+            failure['status'] == 'failed_before_scientific_evaluation' and
+            failure['scientific_predecessor_unchanged'] is True,
+            'Explicit pre-science startup charge changed')
+    require(failure['resource_review_sha256'] == policy['pre_execution_failure_resource_review_sha256'],
+            'Startup accounting review differs')
+    for key in ('archive', 'review', 'resource_review', 'workflow_log'):
+        require(sha(repo_path(failure[key])) == failure[key+'_sha256'],
+                'Retained startup-failure evidence changed: '+key)
+    audit = read(repo_path(failure['review']))
+    resource = read(repo_path(failure['resource_review']))
+    require(audit.get('audit_passed') is True and audit.get('passed') is False and
+            audit.get('overall_scientific_passed') is False and
+            audit['archive_sha256'] == failure['archive_sha256'],
+            'Startup failure cannot be relabelled successful')
+    require(resource.get('passed') is True and
+            resource['amendment']['explicit_new_charge_bound_seconds'] == failure['charge_seconds'],
+            'Startup resource amendment is not accepted')
+    # The ninety-second workflow bound already contains both nested durations.
+    require(0 <= failure['nested_scientific_seconds'] <= failure['nested_supervised_seconds'] <= 90,
+            'Nested startup timing is outside its one workflow bound')
+    return failure['charge_seconds']
+
+
 def verify_policy():
     policy = read(HERE/'batch_policy.json')
     path = REPO/'experiments/s04b_joint_recovery/recovery_protocol.json'
@@ -94,7 +121,8 @@ def verify_policy():
                 group['remaining_preparation_margin_seconds'] == 1800-600-30-120*len(selected) >= 0,
                 'Host reserves no longer cover the full fixed group')
     require(sum(r['wall_seconds'] for r in slots) == 71760, 'Future case allocation differs')
-    require(recovery['predecessor']['known_outer_charged_seconds']+71760+8*1800+1800 <= 115200,
+    startup_charge = pre_execution_charge(policy, recovery)
+    require(recovery['predecessor']['known_outer_charged_seconds']+startup_charge+71760+8*1800+1800 <= 115200,
             'Known outer time and conservative reserves exceed unchanged allowance')
     for relative, pin in policy['historical_sources'].items():
         require(sha(repo_path(relative)) == pin, 'Historical helper source changed')
