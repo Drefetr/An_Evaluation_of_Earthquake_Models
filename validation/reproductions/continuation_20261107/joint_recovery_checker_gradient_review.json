@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "reviewer": "/root",
+  "author": "/root/continuation_cpu",
+  "review_kind": "independent_source_review",
+  "previous_review_sha256": "50abaff9a535991609333a538d5462a849f114efd5aa05d22d8fb1e02a05da09",
+  "reviewed_files_sha256": {
+    "experiments/s04b_joint_recovery_audit/check.py": "fe38205f53a24b36a0b3457d917e9cb98e657679500144e474d2bb528fc4da56",
+    "experiments/s04b_joint_audit/check.py": "839c67fd3dca65294b457cb6511a66c1800fa422712fc13e302e4f4495ddaa13",
+    "experiments/s04b_joint_nuisance_audit/audit.py": "47e38c68ff613f5dae1ac80da3713f03a673dc1a31553bf2a8ca3a27773231c3",
+    "tests/test_joint_recovery_output_audit.py": "7783dcae1c3268124c8fd13b0a7672eb5d098a901794cea5ac213bc4ce88476a"
+  },
+  "checks": [
+    "Read the complete checker delta and independently ran all38 constructed controls in the integration checkout.",
+    "The checker independently recomputes finite64eps bounds, gradient projections, derived discrepancy/KKT, and exact non-gradient fields without importing producer functions.",
+    "Original score components, parameters, success flags, selected states, fixed optimizer options and next-input trajectory anchors remain exact; only the three declared unused diagnostic-gradient scopes can be equivalent rather than bit-identical.",
+    "The actual saved five-evaluation diagnostic was checked arithmetically through the producer record builder and independent checker: six observed gradient differences accepted; a changed scalar score rejected. No scientific model evaluation was performed.",
+    "All12 failed-launch/diagnostic evidence files and their genuinely independent scope reviews are bound; failures210 and diagnostic80 seconds are counted once, with the original90-second object retained only as an alias.",
+    "Original scientific-attempt prefix, failed partial result, calls, physical restart and completion census remain independently checked. Existing scientific arithmetic and custody helpers remain byte-identical.",
+    "Actual standalone recovery pilot still requires live independent output acceptance before any later host."
+  ],
+  "tests": {
+    "command": "python -B -m unittest discover -s tests -p test_joint_recovery_output_audit.py -q",
+    "run": 38,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0
+  },
+  "actual_diagnostic_arithmetic_control": {
+    "passed": true,
+    "source_artifact_sha256": "5ac97f01050c5734d2a4efc3d6c91cf181f7be5c0141a8a335c6ed51eb83aca4",
+    "gradient_differences": 6,
+    "changed_score_rejected": true,
+    "model_evaluations": 0
+  },
+  "scientific_calls": 0,
+  "execution_admitted": false,
+  "scope": "Checker source approval only; no recovery fit or completed campaign accepted."
+}
