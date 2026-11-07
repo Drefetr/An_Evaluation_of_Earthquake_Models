@@ -1,0 +1,1644 @@
+{
+  "passed": true,
+  "index_sha256": "26c8bf4b520ee8e793bc9f792b35020f0ab488e0824bb9fba9bd0eca3301c278",
+  "reviewer": "/root/continuation_cpu",
+  "artifact_sha256": "16ed2e9f66d3ffc81c37568d316f1eaec9cd7293c4b9b2601844ab6ebc195448",
+  "source_commit": "89b8dca",
+  "source_sha256": {
+    "experiments/s04b_joint_budgeted/allocation_protocol.json": "75f3a55557a2c0d4dae4ad596ff0e92268adb3496d633867afc899f093db9fa5",
+    "experiments/s04b_joint_budgeted/driver.py": "dabc42274b777715ff75229e46d38ef8fbd656b0565fe6cdcef59e6f908e417c",
+    "experiments/s04b_joint_budgeted/evidence/allocation_analysis.json": "ac022e68b8cb8f9cd0eb746839f3fca6c574eaf6f3396fab873ba1f5e5822ae4",
+    "experiments/s04b_joint_budgeted/evidence/allocation_protocol_review.json": "6db576052b40963ef3bbd8eaffb8ce7c02aa71f5e1894dcf645a8022e31fa405",
+    "experiments/s04b_joint_budgeted/evidence/failed_projection.json": "26327c25140fbeedfba8a8df1b5fd1350bf65071d3f5fc67ca50ee8567fec114",
+    "experiments/s04b_joint_budgeted/evidence/failed_projection_review.json": "d88fce1342d4f5021881b083a05e823dc35ac8f744c235a2ac14217e49b73811",
+    "experiments/s04b_joint_execution/driver.py": "f188cc787c8c62a735e88e34a606dac8b992c6c42d8d1070676df885353aa012",
+    "experiments/s04b_joint_execution/operational_protocol.json": "6d48997cba7005037c959709f6f27a8ba447f72769bd5051302c5cf865e4409b",
+    "experiments/s04b_joint_execution/parallel_chunks.py": "94734c667745abf995a89cd386c642127a6dd4ef0029e6f97638c96b9a38db1f",
+    "experiments/s04b_joint_execution/proposal.json": "3c61eb930ff7b03906afbc5d6c1b0d634923597f67d74a331e67badbfe7e8efc",
+    "experiments/s04b_joint_nuisance/attenuation.cpp": "d47a85c5ed899a952b315977a700487c54bd79b90eddc88f62feef7001d2751e",
+    "experiments/s04b_joint_nuisance/checkpoint.py": "e0c4af19dca51a471188e86409a2a9533ba54a26922bfa7acff8ee5cd04275d7",
+    "experiments/s04b_joint_nuisance/checkpoint_repair.json": "25fff5174ab62efc1ebc71f5bb2b89e4ea2f4b975e10d3b53b613b095e29c5de",
+    "experiments/s04b_joint_nuisance/fit.py": "878dbf6a71bbc1b9e934f190d3ad0a1c3663097610edf5a42c8aab89b62775bb",
+    "experiments/s04b_joint_nuisance/input_pins.json": "636e2f6ebd1db404a04155acef1979f36931338cbfa0e4c24351a80378924dad",
+    "experiments/s04b_joint_nuisance/model.py": "cc891181e51251247b9668fb6213642f0884deb288050efb2586cf179c6e8898",
+    "experiments/s04b_joint_nuisance/protocol.json": "8f31b9f28d830eeffa30bdbf3e0fcf1295087411869fa301b91333c95fa445e9",
+    "experiments/s04b_joint_nuisance/run.py": "3f6d9cb3d14a45ea7752c3ab8b011ee1281f59c305c55eda35c36df7dd6ea243"
+  },
+  "allocation_protocol_sha256": "75f3a55557a2c0d4dae4ad596ff0e92268adb3496d633867afc899f093db9fa5",
+  "operational_run_config_sha256": "dea0efc08bdeffefaca55d4cffbce983a21d8e3799c9b4e79fba12e70b7ef41c",
+  "complete_cases": 6,
+  "outcomes": 30,
+  "historical_floor_checks": 36,
+  "historical_comparison_rows": 30,
+  "verified_input_pins": 648,
+  "counts": {
+    "completed_case_fit_arms": 24,
+    "completed_case_new_fit_arms": 20,
+    "completed_case_reused_fit_arms": 4,
+    "completed_outcomes": 30
+  },
+  "training_resume": {
+    "exact_preserved_training_fits": 4,
+    "old_attempt_starts": 32,
+    "new_first_case_fit_calls": 0,
+    "training_trace_unchanged": true
+  },
+  "budget": {
+    "total_seconds": 4188.459675696,
+    "pilot_seconds": 3321.086780193
+  },
+  "attempt_census": [
+    {
+      "regime": 4,
+      "model": "null",
+      "histories": 2,
+      "starts": 16,
+      "attempts": 16,
+      "failed_attempts": 0,
+      "exceptions": 0,
+      "capped_attempts": 0,
+      "rescue_attempts": 0,
+      "unresolved_starts": 0
+    },
+    {
+      "regime": 4,
+      "model": "LI",
+      "histories": 2,
+      "starts": 16,
+      "attempts": 16,
+      "failed_attempts": 0,
+      "exceptions": 0,
+      "capped_attempts": 0,
+      "rescue_attempts": 0,
+      "unresolved_starts": 0
+    },
+    {
+      "regime": 4,
+      "model": "LIplus_immigrant",
+      "histories": 2,
+      "starts": 16,
+      "attempts": 16,
+      "failed_attempts": 0,
+      "exceptions": 0,
+      "capped_attempts": 0,
+      "rescue_attempts": 0,
+      "unresolved_starts": 0
+    },
+    {
+      "regime": 4,
+      "model": "LIplus_inclusive",
+      "histories": 2,
+      "starts": 16,
+      "attempts": 16,
+      "failed_attempts": 0,
+      "exceptions": 0,
+      "capped_attempts": 0,
+      "rescue_attempts": 0,
+      "unresolved_starts": 0
+    },
+    {
+      "regime": 5,
+      "model": "null",
+      "histories": 1,
+      "starts": 8,
+      "attempts": 8,
+      "failed_attempts": 0,
+      "exceptions": 0,
+      "capped_attempts": 0,
+      "rescue_attempts": 0,
+      "unresolved_starts": 0
+    },
+    {
+      "regime": 5,
+      "model": "LI",
+      "histories": 1,
+      "starts": 8,
+      "attempts": 8,
+      "failed_attempts": 0,
+      "exceptions": 0,
+      "capped_attempts": 0,
+      "rescue_attempts": 0,
+      "unresolved_starts": 0
+    },
+    {
+      "regime": 5,
+      "model": "LIplus_immigrant",
+      "histories": 1,
+      "starts": 8,
+      "attempts": 8,
+      "failed_attempts": 0,
+      "exceptions": 0,
+      "capped_attempts": 0,
+      "rescue_attempts": 0,
+      "unresolved_starts": 0
+    },
+    {
+      "regime": 5,
+      "model": "LIplus_inclusive",
+      "histories": 1,
+      "starts": 8,
+      "attempts": 8,
+      "failed_attempts": 0,
+      "exceptions": 0,
+      "capped_attempts": 0,
+      "rescue_attempts": 0,
+      "unresolved_starts": 0
+    },
+    {
+      "regime": 6,
+      "model": "null",
+      "histories": 2,
+      "starts": 16,
+      "attempts": 16,
+      "failed_attempts": 0,
+      "exceptions": 0,
+      "capped_attempts": 0,
+      "rescue_attempts": 0,
+      "unresolved_starts": 0
+    },
+    {
+      "regime": 6,
+      "model": "LI",
+      "histories": 2,
+      "starts": 16,
+      "attempts": 16,
+      "failed_attempts": 0,
+      "exceptions": 0,
+      "capped_attempts": 0,
+      "rescue_attempts": 0,
+      "unresolved_starts": 0
+    },
+    {
+      "regime": 6,
+      "model": "LIplus_immigrant",
+      "histories": 2,
+      "starts": 16,
+      "attempts": 16,
+      "failed_attempts": 0,
+      "exceptions": 0,
+      "capped_attempts": 0,
+      "rescue_attempts": 0,
+      "unresolved_starts": 0
+    },
+    {
+      "regime": 6,
+      "model": "LIplus_inclusive",
+      "histories": 2,
+      "starts": 16,
+      "attempts": 16,
+      "failed_attempts": 0,
+      "exceptions": 0,
+      "capped_attempts": 0,
+      "rescue_attempts": 0,
+      "unresolved_starts": 0
+    },
+    {
+      "regime": 7,
+      "model": "null",
+      "histories": 1,
+      "starts": 8,
+      "attempts": 8,
+      "failed_attempts": 0,
+      "exceptions": 0,
+      "capped_attempts": 0,
+      "rescue_attempts": 0,
+      "unresolved_starts": 0
+    },
+    {
+      "regime": 7,
+      "model": "LI",
+      "histories": 1,
+      "starts": 8,
+      "attempts": 8,
+      "failed_attempts": 0,
+      "exceptions": 0,
+      "capped_attempts": 0,
+      "rescue_attempts": 0,
+      "unresolved_starts": 0
+    },
+    {
+      "regime": 7,
+      "model": "LIplus_immigrant",
+      "histories": 1,
+      "starts": 8,
+      "attempts": 8,
+      "failed_attempts": 0,
+      "exceptions": 0,
+      "capped_attempts": 0,
+      "rescue_attempts": 0,
+      "unresolved_starts": 0
+    },
+    {
+      "regime": 7,
+      "model": "LIplus_inclusive",
+      "histories": 1,
+      "starts": 8,
+      "attempts": 8,
+      "failed_attempts": 0,
+      "exceptions": 0,
+      "capped_attempts": 0,
+      "rescue_attempts": 0,
+      "unresolved_starts": 0
+    }
+  ],
+  "independent_summary": [
+    {
+      "regime": 4,
+      "model": "LI",
+      "gate": "raw",
+      "N": 2,
+      "mean_gain": -46.71242539238142,
+      "median_gain": -46.71242539238142,
+      "wins": 1,
+      "wilson95": [
+        0.09453120573423074,
+        0.9054687942657692
+      ],
+      "near_zero": 0,
+      "positive_near_zero": 0,
+      "robust_positive": 1,
+      "robust_negative": 1,
+      "off_floor": 2,
+      "floor_returns": 0,
+      "unknowns": 0,
+      "a_boundary": 1,
+      "eta_lower": 0,
+      "eta_upper": 1,
+      "null_search_gap_cases": 0,
+      "coarse_fine_gate_disagreements": 0,
+      "optimizer_failed_attempts": 0,
+      "coordinate_boundaries": {
+        "a": {
+          "lower": 0,
+          "upper": 1
+        },
+        "d": {
+          "lower": 0,
+          "upper": 1
+        },
+        "n": {
+          "lower": 0,
+          "upper": 1
+        },
+        "log_c": {
+          "lower": 0,
+          "upper": 0
+        },
+        "p": {
+          "lower": 0,
+          "upper": 0
+        },
+        "eta": {
+          "lower": 0,
+          "upper": 1
+        },
+        "log_ell": {
+          "lower": 0,
+          "upper": 1
+        },
+        "log_psi": {
+          "lower": 0,
+          "upper": 0
+        }
+      },
+      "realized_thinning": {
+        "accepted_immigrants": 291,
+        "rejected_immigrants": 0,
+        "accepted_offspring": 83,
+        "rejected_offspring": 0
+      },
+      "mean_training_events": 80.5,
+      "mean_test_events": 101.5,
+      "primary": false
+    },
+    {
+      "regime": 4,
+      "model": "LIplus_immigrant",
+      "gate": "raw",
+      "N": 2,
+      "mean_gain": -0.9829066772124406,
+      "median_gain": -0.9829066772124406,
+      "wins": 0,
+      "wilson95": [
+        0.0,
+        0.6576197724933468
+      ],
+      "near_zero": 0,
+      "positive_near_zero": 0,
+      "robust_positive": 0,
+      "robust_negative": 2,
+      "off_floor": 2,
+      "floor_returns": 0,
+      "unknowns": 0,
+      "a_boundary": 1,
+      "eta_lower": 0,
+      "eta_upper": 1,
+      "null_search_gap_cases": 0,
+      "coarse_fine_gate_disagreements": 0,
+      "optimizer_failed_attempts": 0,
+      "coordinate_boundaries": {
+        "a": {
+          "lower": 0,
+          "upper": 1
+        },
+        "d": {
+          "lower": 0,
+          "upper": 0
+        },
+        "n": {
+          "lower": 0,
+          "upper": 1
+        },
+        "log_c": {
+          "lower": 0,
+          "upper": 0
+        },
+        "p": {
+          "lower": 0,
+          "upper": 0
+        },
+        "eta": {
+          "lower": 0,
+          "upper": 1
+        },
+        "log_ell": {
+          "lower": 0,
+          "upper": 1
+        },
+        "log_psi": {
+          "lower": 1,
+          "upper": 0
+        }
+      },
+      "realized_thinning": {
+        "accepted_immigrants": 291,
+        "rejected_immigrants": 0,
+        "accepted_offspring": 83,
+        "rejected_offspring": 0
+      },
+      "mean_training_events": 80.5,
+      "mean_test_events": 101.5,
+      "primary": false
+    },
+    {
+      "regime": 4,
+      "model": "LIplus_immigrant",
+      "gate": "BIC",
+      "N": 2,
+      "mean_gain": 0.0,
+      "median_gain": 0.0,
+      "wins": 0,
+      "wilson95": [
+        0.0,
+        0.6576197724933468
+      ],
+      "near_zero": 2,
+      "positive_near_zero": 0,
+      "robust_positive": 0,
+      "robust_negative": 0,
+      "off_floor": 0,
+      "floor_returns": 2,
+      "unknowns": 0,
+      "a_boundary": 0,
+      "eta_lower": 2,
+      "eta_upper": 0,
+      "null_search_gap_cases": 0,
+      "coarse_fine_gate_disagreements": 0,
+      "optimizer_failed_attempts": 0,
+      "coordinate_boundaries": {
+        "a": {
+          "lower": 0,
+          "upper": 0
+        },
+        "d": {
+          "lower": 0,
+          "upper": 0
+        },
+        "n": {
+          "lower": 0,
+          "upper": 1
+        },
+        "log_c": {
+          "lower": 0,
+          "upper": 0
+        },
+        "p": {
+          "lower": 0,
+          "upper": 0
+        },
+        "eta": {
+          "lower": 2,
+          "upper": 0
+        },
+        "log_ell": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_psi": {
+          "lower": 0,
+          "upper": 0
+        }
+      },
+      "realized_thinning": {
+        "accepted_immigrants": 291,
+        "rejected_immigrants": 0,
+        "accepted_offspring": 83,
+        "rejected_offspring": 0
+      },
+      "mean_training_events": 80.5,
+      "mean_test_events": 101.5,
+      "primary": false
+    },
+    {
+      "regime": 4,
+      "model": "LIplus_inclusive",
+      "gate": "raw",
+      "N": 2,
+      "mean_gain": -8.943622953773115,
+      "median_gain": -8.943622953773115,
+      "wins": 1,
+      "wilson95": [
+        0.09453120573423074,
+        0.9054687942657692
+      ],
+      "near_zero": 0,
+      "positive_near_zero": 0,
+      "robust_positive": 1,
+      "robust_negative": 1,
+      "off_floor": 2,
+      "floor_returns": 0,
+      "unknowns": 0,
+      "a_boundary": 0,
+      "eta_lower": 0,
+      "eta_upper": 0,
+      "null_search_gap_cases": 0,
+      "coarse_fine_gate_disagreements": 0,
+      "optimizer_failed_attempts": 0,
+      "coordinate_boundaries": {
+        "a": {
+          "lower": 0,
+          "upper": 0
+        },
+        "d": {
+          "lower": 0,
+          "upper": 0
+        },
+        "n": {
+          "lower": 0,
+          "upper": 1
+        },
+        "log_c": {
+          "lower": 0,
+          "upper": 0
+        },
+        "p": {
+          "lower": 0,
+          "upper": 0
+        },
+        "eta": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_ell": {
+          "lower": 2,
+          "upper": 0
+        },
+        "log_psi": {
+          "lower": 1,
+          "upper": 0
+        }
+      },
+      "realized_thinning": {
+        "accepted_immigrants": 291,
+        "rejected_immigrants": 0,
+        "accepted_offspring": 83,
+        "rejected_offspring": 0
+      },
+      "mean_training_events": 80.5,
+      "mean_test_events": 101.5,
+      "primary": false
+    },
+    {
+      "regime": 4,
+      "model": "LIplus_inclusive",
+      "gate": "BIC",
+      "N": 2,
+      "mean_gain": 0.0,
+      "median_gain": 0.0,
+      "wins": 0,
+      "wilson95": [
+        0.0,
+        0.6576197724933468
+      ],
+      "near_zero": 2,
+      "positive_near_zero": 0,
+      "robust_positive": 0,
+      "robust_negative": 0,
+      "off_floor": 0,
+      "floor_returns": 2,
+      "unknowns": 0,
+      "a_boundary": 0,
+      "eta_lower": 2,
+      "eta_upper": 0,
+      "null_search_gap_cases": 0,
+      "coarse_fine_gate_disagreements": 0,
+      "optimizer_failed_attempts": 0,
+      "coordinate_boundaries": {
+        "a": {
+          "lower": 0,
+          "upper": 0
+        },
+        "d": {
+          "lower": 0,
+          "upper": 0
+        },
+        "n": {
+          "lower": 0,
+          "upper": 1
+        },
+        "log_c": {
+          "lower": 0,
+          "upper": 0
+        },
+        "p": {
+          "lower": 0,
+          "upper": 0
+        },
+        "eta": {
+          "lower": 2,
+          "upper": 0
+        },
+        "log_ell": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_psi": {
+          "lower": 0,
+          "upper": 0
+        }
+      },
+      "realized_thinning": {
+        "accepted_immigrants": 291,
+        "rejected_immigrants": 0,
+        "accepted_offspring": 83,
+        "rejected_offspring": 0
+      },
+      "mean_training_events": 80.5,
+      "mean_test_events": 101.5,
+      "primary": false
+    },
+    {
+      "regime": 5,
+      "model": "LI",
+      "gate": "raw",
+      "N": 1,
+      "mean_gain": -21.996997463507427,
+      "median_gain": -21.996997463507427,
+      "wins": 0,
+      "wilson95": [
+        0.0,
+        0.7934506856227626
+      ],
+      "near_zero": 0,
+      "positive_near_zero": 0,
+      "robust_positive": 0,
+      "robust_negative": 1,
+      "off_floor": 1,
+      "floor_returns": 0,
+      "unknowns": 0,
+      "a_boundary": 1,
+      "eta_lower": 0,
+      "eta_upper": 0,
+      "null_search_gap_cases": 0,
+      "coarse_fine_gate_disagreements": 0,
+      "optimizer_failed_attempts": 0,
+      "coordinate_boundaries": {
+        "a": {
+          "lower": 0,
+          "upper": 1
+        },
+        "d": {
+          "lower": 0,
+          "upper": 0
+        },
+        "n": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_c": {
+          "lower": 0,
+          "upper": 0
+        },
+        "p": {
+          "lower": 0,
+          "upper": 1
+        },
+        "eta": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_ell": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_psi": {
+          "lower": 0,
+          "upper": 0
+        }
+      },
+      "realized_thinning": {
+        "accepted_immigrants": 27,
+        "rejected_immigrants": 118,
+        "accepted_offspring": 6,
+        "rejected_offspring": 0
+      },
+      "mean_training_events": 14,
+      "mean_test_events": 16,
+      "primary": false
+    },
+    {
+      "regime": 5,
+      "model": "LIplus_immigrant",
+      "gate": "raw",
+      "N": 1,
+      "mean_gain": 15.476332707044037,
+      "median_gain": 15.476332707044037,
+      "wins": 1,
+      "wilson95": [
+        0.2065493143772375,
+        1.0
+      ],
+      "near_zero": 0,
+      "positive_near_zero": 0,
+      "robust_positive": 1,
+      "robust_negative": 0,
+      "off_floor": 1,
+      "floor_returns": 0,
+      "unknowns": 0,
+      "a_boundary": 1,
+      "eta_lower": 0,
+      "eta_upper": 0,
+      "null_search_gap_cases": 0,
+      "coarse_fine_gate_disagreements": 0,
+      "optimizer_failed_attempts": 0,
+      "coordinate_boundaries": {
+        "a": {
+          "lower": 0,
+          "upper": 1
+        },
+        "d": {
+          "lower": 0,
+          "upper": 0
+        },
+        "n": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_c": {
+          "lower": 0,
+          "upper": 0
+        },
+        "p": {
+          "lower": 0,
+          "upper": 1
+        },
+        "eta": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_ell": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_psi": {
+          "lower": 0,
+          "upper": 0
+        }
+      },
+      "realized_thinning": {
+        "accepted_immigrants": 27,
+        "rejected_immigrants": 118,
+        "accepted_offspring": 6,
+        "rejected_offspring": 0
+      },
+      "mean_training_events": 14,
+      "mean_test_events": 16,
+      "primary": true
+    },
+    {
+      "regime": 5,
+      "model": "LIplus_immigrant",
+      "gate": "BIC",
+      "N": 1,
+      "mean_gain": 15.476332707044037,
+      "median_gain": 15.476332707044037,
+      "wins": 1,
+      "wilson95": [
+        0.2065493143772375,
+        1.0
+      ],
+      "near_zero": 0,
+      "positive_near_zero": 0,
+      "robust_positive": 1,
+      "robust_negative": 0,
+      "off_floor": 1,
+      "floor_returns": 0,
+      "unknowns": 0,
+      "a_boundary": 1,
+      "eta_lower": 0,
+      "eta_upper": 0,
+      "null_search_gap_cases": 0,
+      "coarse_fine_gate_disagreements": 0,
+      "optimizer_failed_attempts": 0,
+      "coordinate_boundaries": {
+        "a": {
+          "lower": 0,
+          "upper": 1
+        },
+        "d": {
+          "lower": 0,
+          "upper": 0
+        },
+        "n": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_c": {
+          "lower": 0,
+          "upper": 0
+        },
+        "p": {
+          "lower": 0,
+          "upper": 1
+        },
+        "eta": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_ell": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_psi": {
+          "lower": 0,
+          "upper": 0
+        }
+      },
+      "realized_thinning": {
+        "accepted_immigrants": 27,
+        "rejected_immigrants": 118,
+        "accepted_offspring": 6,
+        "rejected_offspring": 0
+      },
+      "mean_training_events": 14,
+      "mean_test_events": 16,
+      "primary": false
+    },
+    {
+      "regime": 5,
+      "model": "LIplus_inclusive",
+      "gate": "raw",
+      "N": 1,
+      "mean_gain": -0.48310896475280174,
+      "median_gain": -0.48310896475280174,
+      "wins": 0,
+      "wilson95": [
+        0.0,
+        0.7934506856227626
+      ],
+      "near_zero": 0,
+      "positive_near_zero": 0,
+      "robust_positive": 0,
+      "robust_negative": 1,
+      "off_floor": 1,
+      "floor_returns": 0,
+      "unknowns": 0,
+      "a_boundary": 0,
+      "eta_lower": 0,
+      "eta_upper": 0,
+      "null_search_gap_cases": 0,
+      "coarse_fine_gate_disagreements": 0,
+      "optimizer_failed_attempts": 0,
+      "coordinate_boundaries": {
+        "a": {
+          "lower": 0,
+          "upper": 0
+        },
+        "d": {
+          "lower": 0,
+          "upper": 0
+        },
+        "n": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_c": {
+          "lower": 0,
+          "upper": 0
+        },
+        "p": {
+          "lower": 0,
+          "upper": 1
+        },
+        "eta": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_ell": {
+          "lower": 1,
+          "upper": 0
+        },
+        "log_psi": {
+          "lower": 1,
+          "upper": 0
+        }
+      },
+      "realized_thinning": {
+        "accepted_immigrants": 27,
+        "rejected_immigrants": 118,
+        "accepted_offspring": 6,
+        "rejected_offspring": 0
+      },
+      "mean_training_events": 14,
+      "mean_test_events": 16,
+      "primary": false
+    },
+    {
+      "regime": 5,
+      "model": "LIplus_inclusive",
+      "gate": "BIC",
+      "N": 1,
+      "mean_gain": 0.0,
+      "median_gain": 0.0,
+      "wins": 0,
+      "wilson95": [
+        0.0,
+        0.7934506856227626
+      ],
+      "near_zero": 1,
+      "positive_near_zero": 0,
+      "robust_positive": 0,
+      "robust_negative": 0,
+      "off_floor": 0,
+      "floor_returns": 1,
+      "unknowns": 0,
+      "a_boundary": 0,
+      "eta_lower": 1,
+      "eta_upper": 0,
+      "null_search_gap_cases": 0,
+      "coarse_fine_gate_disagreements": 0,
+      "optimizer_failed_attempts": 0,
+      "coordinate_boundaries": {
+        "a": {
+          "lower": 0,
+          "upper": 0
+        },
+        "d": {
+          "lower": 0,
+          "upper": 0
+        },
+        "n": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_c": {
+          "lower": 0,
+          "upper": 0
+        },
+        "p": {
+          "lower": 0,
+          "upper": 1
+        },
+        "eta": {
+          "lower": 1,
+          "upper": 0
+        },
+        "log_ell": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_psi": {
+          "lower": 0,
+          "upper": 0
+        }
+      },
+      "realized_thinning": {
+        "accepted_immigrants": 27,
+        "rejected_immigrants": 118,
+        "accepted_offspring": 6,
+        "rejected_offspring": 0
+      },
+      "mean_training_events": 14,
+      "mean_test_events": 16,
+      "primary": false
+    },
+    {
+      "regime": 6,
+      "model": "LI",
+      "gate": "raw",
+      "N": 2,
+      "mean_gain": -28.979053234295748,
+      "median_gain": -28.979053234295748,
+      "wins": 0,
+      "wilson95": [
+        0.0,
+        0.6576197724933468
+      ],
+      "near_zero": 0,
+      "positive_near_zero": 0,
+      "robust_positive": 0,
+      "robust_negative": 2,
+      "off_floor": 2,
+      "floor_returns": 0,
+      "unknowns": 0,
+      "a_boundary": 0,
+      "eta_lower": 0,
+      "eta_upper": 1,
+      "null_search_gap_cases": 0,
+      "coarse_fine_gate_disagreements": 0,
+      "optimizer_failed_attempts": 0,
+      "coordinate_boundaries": {
+        "a": {
+          "lower": 0,
+          "upper": 0
+        },
+        "d": {
+          "lower": 0,
+          "upper": 0
+        },
+        "n": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_c": {
+          "lower": 0,
+          "upper": 0
+        },
+        "p": {
+          "lower": 0,
+          "upper": 0
+        },
+        "eta": {
+          "lower": 0,
+          "upper": 1
+        },
+        "log_ell": {
+          "lower": 1,
+          "upper": 1
+        },
+        "log_psi": {
+          "lower": 0,
+          "upper": 0
+        }
+      },
+      "realized_thinning": {
+        "accepted_immigrants": 307,
+        "rejected_immigrants": 0,
+        "accepted_offspring": 172,
+        "rejected_offspring": 26
+      },
+      "mean_training_events": 124.5,
+      "mean_test_events": 107,
+      "primary": false
+    },
+    {
+      "regime": 6,
+      "model": "LIplus_immigrant",
+      "gate": "raw",
+      "N": 2,
+      "mean_gain": -13.835384888351996,
+      "median_gain": -13.835384888351996,
+      "wins": 0,
+      "wilson95": [
+        0.0,
+        0.6576197724933468
+      ],
+      "near_zero": 0,
+      "positive_near_zero": 0,
+      "robust_positive": 0,
+      "robust_negative": 2,
+      "off_floor": 2,
+      "floor_returns": 0,
+      "unknowns": 0,
+      "a_boundary": 0,
+      "eta_lower": 0,
+      "eta_upper": 0,
+      "null_search_gap_cases": 0,
+      "coarse_fine_gate_disagreements": 0,
+      "optimizer_failed_attempts": 0,
+      "coordinate_boundaries": {
+        "a": {
+          "lower": 0,
+          "upper": 0
+        },
+        "d": {
+          "lower": 0,
+          "upper": 0
+        },
+        "n": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_c": {
+          "lower": 0,
+          "upper": 0
+        },
+        "p": {
+          "lower": 0,
+          "upper": 0
+        },
+        "eta": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_ell": {
+          "lower": 1,
+          "upper": 0
+        },
+        "log_psi": {
+          "lower": 0,
+          "upper": 0
+        }
+      },
+      "realized_thinning": {
+        "accepted_immigrants": 307,
+        "rejected_immigrants": 0,
+        "accepted_offspring": 172,
+        "rejected_offspring": 26
+      },
+      "mean_training_events": 124.5,
+      "mean_test_events": 107,
+      "primary": false
+    },
+    {
+      "regime": 6,
+      "model": "LIplus_immigrant",
+      "gate": "BIC",
+      "N": 2,
+      "mean_gain": 0.0,
+      "median_gain": 0.0,
+      "wins": 0,
+      "wilson95": [
+        0.0,
+        0.6576197724933468
+      ],
+      "near_zero": 2,
+      "positive_near_zero": 0,
+      "robust_positive": 0,
+      "robust_negative": 0,
+      "off_floor": 0,
+      "floor_returns": 2,
+      "unknowns": 0,
+      "a_boundary": 0,
+      "eta_lower": 2,
+      "eta_upper": 0,
+      "null_search_gap_cases": 0,
+      "coarse_fine_gate_disagreements": 0,
+      "optimizer_failed_attempts": 0,
+      "coordinate_boundaries": {
+        "a": {
+          "lower": 0,
+          "upper": 0
+        },
+        "d": {
+          "lower": 0,
+          "upper": 0
+        },
+        "n": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_c": {
+          "lower": 0,
+          "upper": 0
+        },
+        "p": {
+          "lower": 0,
+          "upper": 0
+        },
+        "eta": {
+          "lower": 2,
+          "upper": 0
+        },
+        "log_ell": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_psi": {
+          "lower": 0,
+          "upper": 0
+        }
+      },
+      "realized_thinning": {
+        "accepted_immigrants": 307,
+        "rejected_immigrants": 0,
+        "accepted_offspring": 172,
+        "rejected_offspring": 26
+      },
+      "mean_training_events": 124.5,
+      "mean_test_events": 107,
+      "primary": false
+    },
+    {
+      "regime": 6,
+      "model": "LIplus_inclusive",
+      "gate": "raw",
+      "N": 2,
+      "mean_gain": 0.1503098824830431,
+      "median_gain": 0.1503098824830431,
+      "wins": 1,
+      "wilson95": [
+        0.09453120573423074,
+        0.9054687942657692
+      ],
+      "near_zero": 0,
+      "positive_near_zero": 0,
+      "robust_positive": 1,
+      "robust_negative": 1,
+      "off_floor": 2,
+      "floor_returns": 0,
+      "unknowns": 0,
+      "a_boundary": 0,
+      "eta_lower": 0,
+      "eta_upper": 0,
+      "null_search_gap_cases": 0,
+      "coarse_fine_gate_disagreements": 0,
+      "optimizer_failed_attempts": 0,
+      "coordinate_boundaries": {
+        "a": {
+          "lower": 0,
+          "upper": 0
+        },
+        "d": {
+          "lower": 0,
+          "upper": 0
+        },
+        "n": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_c": {
+          "lower": 0,
+          "upper": 0
+        },
+        "p": {
+          "lower": 0,
+          "upper": 0
+        },
+        "eta": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_ell": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_psi": {
+          "lower": 0,
+          "upper": 0
+        }
+      },
+      "realized_thinning": {
+        "accepted_immigrants": 307,
+        "rejected_immigrants": 0,
+        "accepted_offspring": 172,
+        "rejected_offspring": 26
+      },
+      "mean_training_events": 124.5,
+      "mean_test_events": 107,
+      "primary": false
+    },
+    {
+      "regime": 6,
+      "model": "LIplus_inclusive",
+      "gate": "BIC",
+      "N": 2,
+      "mean_gain": 0.827626376003991,
+      "median_gain": 0.827626376003991,
+      "wins": 1,
+      "wilson95": [
+        0.09453120573423074,
+        0.9054687942657692
+      ],
+      "near_zero": 1,
+      "positive_near_zero": 0,
+      "robust_positive": 1,
+      "robust_negative": 0,
+      "off_floor": 1,
+      "floor_returns": 1,
+      "unknowns": 0,
+      "a_boundary": 0,
+      "eta_lower": 1,
+      "eta_upper": 0,
+      "null_search_gap_cases": 0,
+      "coarse_fine_gate_disagreements": 0,
+      "optimizer_failed_attempts": 0,
+      "coordinate_boundaries": {
+        "a": {
+          "lower": 0,
+          "upper": 0
+        },
+        "d": {
+          "lower": 0,
+          "upper": 0
+        },
+        "n": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_c": {
+          "lower": 0,
+          "upper": 0
+        },
+        "p": {
+          "lower": 0,
+          "upper": 0
+        },
+        "eta": {
+          "lower": 1,
+          "upper": 0
+        },
+        "log_ell": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_psi": {
+          "lower": 0,
+          "upper": 0
+        }
+      },
+      "realized_thinning": {
+        "accepted_immigrants": 307,
+        "rejected_immigrants": 0,
+        "accepted_offspring": 172,
+        "rejected_offspring": 26
+      },
+      "mean_training_events": 124.5,
+      "mean_test_events": 107,
+      "primary": false
+    },
+    {
+      "regime": 7,
+      "model": "LI",
+      "gate": "raw",
+      "N": 1,
+      "mean_gain": 6.608564606973999,
+      "median_gain": 6.608564606973999,
+      "wins": 1,
+      "wilson95": [
+        0.2065493143772375,
+        1.0
+      ],
+      "near_zero": 0,
+      "positive_near_zero": 0,
+      "robust_positive": 1,
+      "robust_negative": 0,
+      "off_floor": 1,
+      "floor_returns": 0,
+      "unknowns": 0,
+      "a_boundary": 0,
+      "eta_lower": 0,
+      "eta_upper": 0,
+      "null_search_gap_cases": 0,
+      "coarse_fine_gate_disagreements": 0,
+      "optimizer_failed_attempts": 0,
+      "coordinate_boundaries": {
+        "a": {
+          "lower": 0,
+          "upper": 0
+        },
+        "d": {
+          "lower": 0,
+          "upper": 0
+        },
+        "n": {
+          "lower": 1,
+          "upper": 0
+        },
+        "log_c": {
+          "lower": 0,
+          "upper": 0
+        },
+        "p": {
+          "lower": 1,
+          "upper": 0
+        },
+        "eta": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_ell": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_psi": {
+          "lower": 0,
+          "upper": 0
+        }
+      },
+      "realized_thinning": {
+        "accepted_immigrants": 27,
+        "rejected_immigrants": 126,
+        "accepted_offspring": 0,
+        "rejected_offspring": 4
+      },
+      "mean_training_events": 11,
+      "mean_test_events": 15,
+      "primary": false
+    },
+    {
+      "regime": 7,
+      "model": "LIplus_immigrant",
+      "gate": "raw",
+      "N": 1,
+      "mean_gain": -8.059602572970903,
+      "median_gain": -8.059602572970903,
+      "wins": 0,
+      "wilson95": [
+        0.0,
+        0.7934506856227626
+      ],
+      "near_zero": 0,
+      "positive_near_zero": 0,
+      "robust_positive": 0,
+      "robust_negative": 1,
+      "off_floor": 1,
+      "floor_returns": 0,
+      "unknowns": 0,
+      "a_boundary": 1,
+      "eta_lower": 0,
+      "eta_upper": 0,
+      "null_search_gap_cases": 0,
+      "coarse_fine_gate_disagreements": 0,
+      "optimizer_failed_attempts": 0,
+      "coordinate_boundaries": {
+        "a": {
+          "lower": 0,
+          "upper": 1
+        },
+        "d": {
+          "lower": 0,
+          "upper": 0
+        },
+        "n": {
+          "lower": 1,
+          "upper": 0
+        },
+        "log_c": {
+          "lower": 0,
+          "upper": 0
+        },
+        "p": {
+          "lower": 0,
+          "upper": 0
+        },
+        "eta": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_ell": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_psi": {
+          "lower": 0,
+          "upper": 0
+        }
+      },
+      "realized_thinning": {
+        "accepted_immigrants": 27,
+        "rejected_immigrants": 126,
+        "accepted_offspring": 0,
+        "rejected_offspring": 4
+      },
+      "mean_training_events": 11,
+      "mean_test_events": 15,
+      "primary": false
+    },
+    {
+      "regime": 7,
+      "model": "LIplus_immigrant",
+      "gate": "BIC",
+      "N": 1,
+      "mean_gain": -8.059602572970903,
+      "median_gain": -8.059602572970903,
+      "wins": 0,
+      "wilson95": [
+        0.0,
+        0.7934506856227626
+      ],
+      "near_zero": 0,
+      "positive_near_zero": 0,
+      "robust_positive": 0,
+      "robust_negative": 1,
+      "off_floor": 1,
+      "floor_returns": 0,
+      "unknowns": 0,
+      "a_boundary": 1,
+      "eta_lower": 0,
+      "eta_upper": 0,
+      "null_search_gap_cases": 0,
+      "coarse_fine_gate_disagreements": 0,
+      "optimizer_failed_attempts": 0,
+      "coordinate_boundaries": {
+        "a": {
+          "lower": 0,
+          "upper": 1
+        },
+        "d": {
+          "lower": 0,
+          "upper": 0
+        },
+        "n": {
+          "lower": 1,
+          "upper": 0
+        },
+        "log_c": {
+          "lower": 0,
+          "upper": 0
+        },
+        "p": {
+          "lower": 0,
+          "upper": 0
+        },
+        "eta": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_ell": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_psi": {
+          "lower": 0,
+          "upper": 0
+        }
+      },
+      "realized_thinning": {
+        "accepted_immigrants": 27,
+        "rejected_immigrants": 126,
+        "accepted_offspring": 0,
+        "rejected_offspring": 4
+      },
+      "mean_training_events": 11,
+      "mean_test_events": 15,
+      "primary": false
+    },
+    {
+      "regime": 7,
+      "model": "LIplus_inclusive",
+      "gate": "raw",
+      "N": 1,
+      "mean_gain": -8.498142714927752,
+      "median_gain": -8.498142714927752,
+      "wins": 0,
+      "wilson95": [
+        0.0,
+        0.7934506856227626
+      ],
+      "near_zero": 0,
+      "positive_near_zero": 0,
+      "robust_positive": 0,
+      "robust_negative": 1,
+      "off_floor": 1,
+      "floor_returns": 0,
+      "unknowns": 0,
+      "a_boundary": 1,
+      "eta_lower": 0,
+      "eta_upper": 0,
+      "null_search_gap_cases": 0,
+      "coarse_fine_gate_disagreements": 0,
+      "optimizer_failed_attempts": 0,
+      "coordinate_boundaries": {
+        "a": {
+          "lower": 0,
+          "upper": 1
+        },
+        "d": {
+          "lower": 0,
+          "upper": 0
+        },
+        "n": {
+          "lower": 0,
+          "upper": 1
+        },
+        "log_c": {
+          "lower": 0,
+          "upper": 0
+        },
+        "p": {
+          "lower": 0,
+          "upper": 1
+        },
+        "eta": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_ell": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_psi": {
+          "lower": 0,
+          "upper": 0
+        }
+      },
+      "realized_thinning": {
+        "accepted_immigrants": 27,
+        "rejected_immigrants": 126,
+        "accepted_offspring": 0,
+        "rejected_offspring": 4
+      },
+      "mean_training_events": 11,
+      "mean_test_events": 15,
+      "primary": true
+    },
+    {
+      "regime": 7,
+      "model": "LIplus_inclusive",
+      "gate": "BIC",
+      "N": 1,
+      "mean_gain": -8.498142714927752,
+      "median_gain": -8.498142714927752,
+      "wins": 0,
+      "wilson95": [
+        0.0,
+        0.7934506856227626
+      ],
+      "near_zero": 0,
+      "positive_near_zero": 0,
+      "robust_positive": 0,
+      "robust_negative": 1,
+      "off_floor": 1,
+      "floor_returns": 0,
+      "unknowns": 0,
+      "a_boundary": 1,
+      "eta_lower": 0,
+      "eta_upper": 0,
+      "null_search_gap_cases": 0,
+      "coarse_fine_gate_disagreements": 0,
+      "optimizer_failed_attempts": 0,
+      "coordinate_boundaries": {
+        "a": {
+          "lower": 0,
+          "upper": 1
+        },
+        "d": {
+          "lower": 0,
+          "upper": 0
+        },
+        "n": {
+          "lower": 0,
+          "upper": 1
+        },
+        "log_c": {
+          "lower": 0,
+          "upper": 0
+        },
+        "p": {
+          "lower": 0,
+          "upper": 1
+        },
+        "eta": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_ell": {
+          "lower": 0,
+          "upper": 0
+        },
+        "log_psi": {
+          "lower": 0,
+          "upper": 0
+        }
+      },
+      "realized_thinning": {
+        "accepted_immigrants": 27,
+        "rejected_immigrants": 126,
+        "accepted_offspring": 0,
+        "rejected_offspring": 4
+      },
+      "mean_training_events": 11,
+      "mean_test_events": 15,
+      "primary": false
+    }
+  ],
+  "scientific_completion": false,
+  "scientific_execution_in_audit": false,
+  "allocation": {
+    "prior_charged_seconds": 3321.086780193,
+    "unspent_fixed_slot_seconds": 109200.0,
+    "maximum_future_charge": 112521.086780193,
+    "forecast_passed": false
+  },
+  "old_projection_status": "failed",
+  "transition_sha256": "769622ebc1d149abd158b0eef93c71201730812b09a2dde878a87e157be28b8a",
+  "scope": "Independent output arithmetic/gates/wins/boundaries/failure census and full retained source/input/runtime/native/prefix/resource custody. No experiment author aggregation imported, no likelihood/refit/generator calls. Resource values independently verified against retained supervisor record, not newly measured.",
+  "supervision": {
+    "passed": true,
+    "sampled_peak_tree_rss_bytes": 493539328,
+    "execution_wall_seconds": 867.510982444
+  },
+  "audit_script_sha256": "0799aee6424443d210b8c7150b1c19a2a8d78634db2565a84298d2c635a50610",
+  "independent_case_auditor_sha256": "47e38c68ff613f5dae1ac80da3713f03a673dc1a31553bf2a8ca3a27773231c3"
+}
