@@ -29,7 +29,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 from reproduction.score_replay.inventory import tables as parse_tables
 
-NUMBER = re.compile(r'(?<![A-Za-z])[-+]?\d+(?:,\d{3})*(?:\.\d+)?(?:[eE][-+]?\d+)?')
+NUMBER = re.compile(r'(?<![A-Za-z])[-+]?(?:\d{1,3}(?:,\d{3})+(?!\d)|\d+)(?:\.\d+)?(?:[eE][-+]?\d+)?')
 
 
 def require(value, message):

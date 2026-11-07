@@ -147,6 +147,14 @@ class CoverageControls(unittest.TestCase):
         self.assertEqual(c.checked_cell(table,exact,evidence,'fake','cached')['status'],'failed')
         self.assertEqual(c.source_number(table,0,1)[2],0.)
 
+    def test_grouped_counts_do_not_consume_partial_interval_endpoints(self):
+        table=dict(source_rows=['X & [2011,2016) & 2,829 & -2,829 & -0.25 & 1.25e-13 & 12,345,678'])
+        self.assertEqual(c.source_number(table,0,1,0)[:2],('2011',2011.))
+        self.assertEqual(c.source_number(table,0,1,1)[:2],('2016',2016.))
+        self.assertEqual([c.source_number(table,0,column)[1] for column in range(2,7)],
+                         [2829.,-2829.,-.25,1.25e-13,12345678.])
+        self.assertEqual(c.inventory_numeric_fields(table),{'0:1:0','0:1:1','0:2:0','0:3:0','0:4:0','0:5:0','0:6:0'})
+
     def test_comma_counts_and_calendar_labels(self):
         table=dict(source_rows=['Year & Count','2011-2016 (79) & 2,829'])
         self.assertEqual(c.inventory_numeric_fields(table),{'1:0:0','1:0:1','1:0:2','1:1:0'})
