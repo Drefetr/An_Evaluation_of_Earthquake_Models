@@ -1,0 +1,42 @@
+name: Bounded joint training support diagnostic
+on:
+  push:
+    branches: ['research/joint_replay_20261107T045457Z-integration']
+permissions:
+  contents: read
+concurrency:
+  group: reviewed-research-continuation
+  cancel-in-progress: false
+jobs:
+  diagnostic:
+    if: contains(github.event.head_commit.message, '[support-diagnostic]')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      OMP_NUM_THREADS: '2'
+      OPENBLAS_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+      NUMEXPR_NUM_THREADS: '2'
+      BLIS_NUM_THREADS: '2'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.18'
+          cache: pip
+      - run: python -m pip install -r requirements-cpu.txt
+      - name: Constructed diagnostic controls
+        run: python -B -m unittest discover -s tests -p test_joint_support_diagnostic.py -v
+      - name: Five training evaluations only
+        run: python -B scripts/run_joint_support_diagnostic.py --admission validation/reproductions/continuation_20261107/joint_support_diagnostic_admission.json --output "$RUNNER_TEMP/support-diagnostic"
+      - name: Preserve diagnostic values and resource evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: joint-support-diagnostic-${{ github.sha }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/support-diagnostic/*.json
+            ${{ runner.temp }}/support-diagnostic/science/**
+            ${{ runner.temp }}/support-diagnostic/supervision/**
+          if-no-files-found: warn
