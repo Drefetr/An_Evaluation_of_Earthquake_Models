@@ -146,13 +146,20 @@ class TestJointFindings(unittest.TestCase):
         output=self.root/'joint_missing_panel';output.mkdir();findings.write_findings(output,payload)
         path=output/'findings.html';original=path.read_text(encoding='utf-8')
         for missing in ('joint-diagnostics','joint-search-rows','joint-floor-rows'):
-            with self.subTest(missing=missing):
-                modified=original.replace('id="'+missing+'"','id="missing-'+missing+'"')
-                self.assertNotEqual(modified,original);path.write_text(modified,encoding='utf-8')
-                completed=subprocess.run([node,str(findings.ROOT/'website/check_interactions.cjs'),str(output)],
-                                         capture_output=True,text=True)
-                self.assertNotEqual(completed.returncode,0)
-                self.assertIn('Joint dataset requires one actual panel node: '+missing,completed.stderr)
+            for mutation in ('removed','data_id','comment','quoted_value'):
+                with self.subTest(missing=missing,mutation=mutation):
+                    replacement={'removed':'id="missing-'+missing+'"',
+                                 'data_id':'data-id="'+missing+'"',
+                                 'comment':'id="missing-'+missing+'"',
+                                 'quoted_value':"data-note=' id=\""+missing+"\"'"}[mutation]
+                    modified=original.replace('id="'+missing+'"',replacement)
+                    if mutation=='comment':
+                        modified=modified.replace('<body>','<body><!-- <div id="'+missing+'"></div> -->')
+                    self.assertNotEqual(modified,original);path.write_text(modified,encoding='utf-8')
+                    completed=subprocess.run([node,str(findings.ROOT/'website/check_interactions.cjs'),str(output)],
+                                             capture_output=True,text=True)
+                    self.assertNotEqual(completed.returncode,0)
+                    self.assertIn('Joint dataset requires one actual panel node: '+missing,completed.stderr)
 
     def test_invented_legacy_view_without_joint_nodes_keeps_seventy_combinations(self):
         node=shutil.which('node');self.assertIsNotNone(node)

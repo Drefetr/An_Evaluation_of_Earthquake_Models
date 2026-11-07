@@ -8,10 +8,20 @@ const joint=DATA.studies.filter(s=>s.kind==='joint_simulation');
 // The installed legacy site deliberately has no joint data or panel. Once data
 // exist, require real HTML nodes; the lightweight DOM stub must not invent them.
 if(joint.length){
- const markup=html.slice(0,html.indexOf('<script>'));
+ const markup=html.slice(0,html.indexOf('<script>')).replace(/<!--[\s\S]*?-->/g,'');
+ const ids=[];
+ // Tokenize attributes, including quoted values, so data-id and an id-looking
+ // string inside another attribute cannot impersonate the actual id attribute.
+ const tags=markup.match(/<[A-Za-z][^"'<>]*(?:(?:"[^"]*"|'[^']*')[^"'<>]*)*>/g)||[];
+ for(const tag of tags){
+  const attributes=tag.replace(/^<[A-Za-z][^\s/>]*/,'');
+  const attribute=/\s+([^\s"'<>/=]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+)))?/g;
+  for(const match of attributes.matchAll(attribute)){
+   if(match[1].toLowerCase()==='id')ids.push(match[2]??match[3]??match[4]??'');
+  }
+ }
  for(const id of ['joint-diagnostics','joint-search-rows','joint-floor-rows']){
-  const nodes=markup.match(new RegExp('<[^>]+\\bid=["\\\']'+id+'["\\\'][^>]*>','g'))||[];
-  assert.equal(nodes.length,1,'Joint dataset requires one actual panel node: '+id);
+  assert.equal(ids.filter(value=>value===id).length,1,'Joint dataset requires one actual panel node: '+id);
  }
 }
 class Element{constructor(){this.children=[];this.style={};this.value='';this.textContent='';this.innerHTML='';this.disabled=false;}replaceChildren(...c){this.children=c;if(c.length&&'value' in c[0])this.value=c[0].value;}append(...c){this.children.push(...c);}addEventListener(){}closest(){return table;}querySelector(){return head;}}
