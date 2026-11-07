@@ -37,7 +37,14 @@ jobs:
         with:
           python-version: '3.13'
           cache: pip
-      - run: python -m pip install -r requirements-cpu.txt
+      - name: Record clean checkout and install CPU dependencies
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/cpu-checkout"
+          git rev-parse HEAD | tee "$RUNNER_TEMP/cpu-checkout/commit.txt"
+          git status --porcelain | tee "$RUNNER_TEMP/cpu-checkout/status_before.txt"
+          test ! -s "$RUNNER_TEMP/cpu-checkout/status_before.txt"
+          python -m pip install -r requirements-cpu.txt 2>&1 | tee "$RUNNER_TEMP/cpu-checkout/dependencies.log"
       - name: Confirm clean CPU environment has no PyTorch dependency
         run: python -c "import importlib.util; assert importlib.util.find_spec('torch') is None"
       - name: Run actual CPU kernels and bounded assertions
@@ -52,17 +59,33 @@ jobs:
         run: python -B -m unittest discover -s scripts/tests -p test_supervise_research_linux.py -v
       - name: Verify supplied scientific inputs
         run: |
-          python -B reproduction/regional/inputs.py verify
-          python -B reproduction/s02/inputs.py verify
-          python -B reproduction/historical_fits/verify.py
+          set -euo pipefail
+          python -B reproduction/regional/inputs.py verify 2>&1 | tee "$RUNNER_TEMP/cpu-checkout/regional_inputs.log"
+          python -B reproduction/s02/inputs.py verify 2>&1 | tee "$RUNNER_TEMP/cpu-checkout/s02_inputs.log"
+          python -B reproduction/historical_fits/verify.py 2>&1 | tee "$RUNNER_TEMP/cpu-checkout/historical_fits.log"
+      - name: Check public CPU commands and constructed continuation controls
+        run: |
+          set -euo pipefail
+          python -B scripts/reproduce_cpu.py --help 2>&1 | tee "$RUNNER_TEMP/cpu-checkout/replay_help.log"
+          python -B scripts/fit_joint_cpu.py --help 2>&1 | tee "$RUNNER_TEMP/cpu-checkout/joint_help.log"
+          python -B -m unittest discover -s tests -p test_continuation_controller.py -v 2>&1 | tee "$RUNNER_TEMP/cpu-checkout/continuation_controls.log"
+          python -B -m unittest discover -s tests -p test_joint_cpu_reader.py -v 2>&1 | tee "$RUNNER_TEMP/cpu-checkout/joint_reader_controls.log"
       - name: Verify claim and repository custody
         run: |
-          python -B scripts/verify_claims.py
-          python -B scripts/verify_repository.py
+          set -euo pipefail
+          python -B scripts/verify_claims.py 2>&1 | tee "$RUNNER_TEMP/cpu-checkout/claims.log"
+          python -B scripts/verify_repository.py 2>&1 | tee "$RUNNER_TEMP/cpu-checkout/repository.log"
+      - name: Confirm verification left the checkout clean
+        run: |
+          set -euo pipefail
+          git status --porcelain | tee "$RUNNER_TEMP/cpu-checkout/status_after.txt"
+          test ! -s "$RUNNER_TEMP/cpu-checkout/status_after.txt"
       - name: Retain CPU execution receipt, source hashes, and compiler logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: cpu-core-${{ github.sha }}-${{ github.run_attempt }}
-          path: ${{ runner.temp }}/cpu-core
+          path: |
+            ${{ runner.temp }}/cpu-core
+            ${{ runner.temp }}/cpu-checkout
           if-no-files-found: error

@@ -1,0 +1,156 @@
+{
+  "schema": "cpu_checkout_workflow_source_review_v1",
+  "passed": true,
+  "review_kind": "independent_source_review",
+  "reviewer": "/root/recover_nzca",
+  "created_utc": "2026-11-07T12:46:09.619378+00:00",
+  "attempt_id": "821ef220-a6d8-419a-87ae-d4ea7eb511ad",
+  "head": "544a83b68a56bff17d97855cf60cdd4dbc649f4c",
+  "reviewed_files_sha256": {
+    ".github/workflows/cpu-reproduction.yml": "324c4cd13e014a7b928b7ae668c52ac0fc8452897a951afc9c6860550440966f"
+  },
+  "supporting_files_sha256": {
+    "scripts/reproduce_cpu.py": "eec8878e805276839b8ad9f43af5da70fd56145a034211d2aba8a27d1ac6bf09",
+    "scripts/fit_joint_cpu.py": "98b4365a514cd4cbe588cd40d60577d28ffa4cea98d08fa115b3a92778743f5e",
+    "scripts/run_continuation.py": "b60728503a51d09d1652c0386034c20fb8f81f5a4642f617f622d802eb31a3a0",
+    "tests/test_continuation_controller.py": "35bf0e843031d768c9b1c88b76dd5908dfc5c9b663596905742e8fcab6fadc72",
+    "tests/test_joint_cpu_reader.py": "0ac330ad21e94fb970c57c86cb2e3899cb984bc36891fe700eedcebafcfd9ed8",
+    "tests/test_joint_execution_driver.py": "be4c1c0dc3473c2cdc8586b1604f8243960fbc72448e31fd9209e653e2228e74",
+    "engine/cpu_reproduction.py": "35fcaca533a9ccb41568175ac23fc9530a9923535e9ed20c2165b08096701b53",
+    "requirements-cpu.txt": "bcf99640d0c87a8b8e6ce80547cd8e1efaeee60a940ab13ff631bfe475843327",
+    "requirements.txt": "043a7668bb5aaa416d5f751337036d0a0412c4a5408af0c3c7a516f7240e4372",
+    ".gitignore": "4434fc8efe00594c7ad96f0c50a10a983447aa9bff1b4420d4972d4b1974f06b"
+  },
+  "diff_sha256": "39cecc7298d7db69de33089aa39cada0064487e7eb45951e128d5d20e48b0bb5",
+  "report_sha256": "21454996dd33aee191fdf4d482b72abab00503618cfa15521aea5e0215804b96",
+  "checks": [
+    {
+      "id": "shell",
+      "passed": true,
+      "source_lines": [
+        42,
+        62,
+        68,
+        75,
+        80
+      ],
+      "finding": "Every block containing tee explicitly sets -euo pipefail; a failing upstream command or tee makes the pipeline nonzero and terminates the step."
+    },
+    {
+      "id": "checkout",
+      "passed": true,
+      "source_lines": [
+        35,
+        44,
+        45,
+        46,
+        78,
+        81,
+        82
+      ],
+      "finding": "Checkout HEAD and porcelain status are retained. Empty initial/final status is required on a successful run; status excludes ignored files."
+    },
+    {
+      "id": "retention",
+      "passed": true,
+      "source_lines": [
+        43,
+        47,
+        63,
+        64,
+        65,
+        69,
+        70,
+        71,
+        72,
+        76,
+        77,
+        83,
+        84,
+        88,
+        89,
+        90,
+        91
+      ],
+      "finding": "Dependency, input, CLI, constructed-control and custody logs use external cpu-checkout directory. Both external output trees are uploaded even after failure; missing artifacts are an error."
+    },
+    {
+      "id": "fresh_core_output",
+      "passed": true,
+      "source_lines": [
+        43,
+        53,
+        58
+      ],
+      "finding": "Only cpu-checkout is precreated. cpu-core remains fresh for engine.cpu_reproduction output.mkdir(exist_ok=False); supervisor subdirectory is created later."
+    },
+    {
+      "id": "cli_help",
+      "passed": true,
+      "source_lines": [
+        69,
+        70
+      ],
+      "finding": "Both CLI parsers process --help before branch dispatch, output creation, building or scientific execution."
+    },
+    {
+      "id": "constructed_scope",
+      "passed": true,
+      "source_lines": [
+        71,
+        72
+      ],
+      "finding": "Controller tests mock process dispatch using invented files. Reader tests use invented records and the existing tiny native full-case fixture with a fixed-return optimizer; actual roster metadata is read-only. No archived history fitting/replay is added."
+    },
+    {
+      "id": "existing_cpu_scope",
+      "passed": true,
+      "source_lines": [
+        50,
+        53,
+        55,
+        59
+      ],
+      "finding": "Existing CPU native/assertion and containment fixtures remain unchanged. They are actual numerical constructed controls, not historical scientific campaigns."
+    },
+    {
+      "id": "custody_readonly",
+      "passed": true,
+      "source_lines": [
+        76,
+        77
+      ],
+      "finding": "Claim/repository verifiers have no receipt/manifest write flag. No scientific source, protected authority or provenance edit is part of the workflow amendment."
+    },
+    {
+      "id": "bounded_job",
+      "passed": true,
+      "source_lines": [
+        26,
+        27,
+        29,
+        30,
+        31,
+        32
+      ],
+      "finding": "Ubuntu 24.04, original 30-minute host timeout and two-thread environment remain unchanged."
+    }
+  ],
+  "findings": [],
+  "limitations": [
+    "Source review only; no actual workflow or command execution.",
+    "Clean status means tracked and unignored changes; final status runs on prior success.",
+    "Existing native constructed controls are numerical but do not rerun historical scientific studies."
+  ],
+  "commands_executed_for_review": [
+    "git diff -- .github/workflows/cpu-reproduction.yml",
+    "git rev-parse HEAD",
+    "read-only source inspections",
+    "AST parsing only"
+  ],
+  "official_reference": "https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idstepsshell",
+  "scientific_calls": 0,
+  "builds": 0,
+  "tests_executed": 0,
+  "repository_edits": 0
+}
