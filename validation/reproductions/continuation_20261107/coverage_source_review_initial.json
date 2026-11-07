@@ -1,0 +1,49 @@
+{
+  "schema": "independent_coverage_source_review_v1",
+  "passed": false,
+  "status": "changes_requested",
+  "reviewer": "/root/continuation_cpu",
+  "source_commit": "ba2af0a1b77ef04caef421313811cda0966fcbd1",
+  "source_sha256": {
+    "reproduction/score_replay/coverage_report.py": "b8441a5bec836927c318a3715da0d8e825a42405bd11e4c8037639b4a91fdea3",
+    "tests/test_score_replay_coverage.py": "91e856a1e2e31dd4803c3274d3bef820256261a3688fc3bc26b6b60cb9823072"
+  },
+  "scope": "Source review and invented controls only; no actual coverage aggregation, likelihood, fitting or simulation.",
+  "author_constructed_tests": {
+    "run": 8,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0
+  },
+  "must_fix_findings": [
+    {
+      "id": "COV1",
+      "severity": "blocking",
+      "issue": "Generic pointer filter rejects supported actual regional aggregate and state-metadata operation forms before missing-output handling.",
+      "counterexample": "state /nuisance/N or select /absolute_rows rejected as reference pointer.",
+      "required": "Operation-specific guards preserving approved current aggregate/state semantics and rejecting expected/reference operands."
+    },
+    {
+      "id": "COV2",
+      "severity": "major",
+      "issue": "A top-level passed case completion with a failed individual case is accepted.",
+      "counterexample": "Invented exact60-case completion with cases[0].passed=false still reconciles all case fields.",
+      "required": "Require every terminal case success and unique exact protocol/completion rosters before admitting their aggregate cells."
+    },
+    {
+      "id": "COV3",
+      "severity": "major",
+      "issue": "Required fields are only supplied mappings, so a partial nonempty numeric table mapping can produce top-level passed with no gap.",
+      "counterexample": "Invented table has score columns -1.0 and999.0; mapping only the first still yields mapped_fields_reconciled and passed=true.",
+      "required": "Use an inventory-backed field census or explicit non-score/exclusion dispositions. Unmapped score fields must remain unresolved and prevent terminal completeness."
+    }
+  ],
+  "artifacts": {
+    "coverage_initial_counterexamples.json": "f1e9de7f02ebc375e7ce6c034e436a3d9478fa15f763897675d5840b707068e7",
+    "coverage_initial_controls.log": "d786be2b64b94aaf84ad3132508e8c4de194fddb3013defc4e3b697078bce035"
+  },
+  "prior_scope_review": "Prior reports are preserved under separate prior_replay_retained labels with exact declared resource hashes; no new likelihood implied.",
+  "case_crosswalk_review": "The method/persistence/source positions for initial-mark and S02 match frozen table contracts, including S02 interval tokens and non-null paired rows; individual-case success and coverage completeness still require fixes above.",
+  "scientific_calls": 0,
+  "repository_files_modified": []
+}
