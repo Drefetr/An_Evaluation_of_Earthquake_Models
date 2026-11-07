@@ -1,0 +1,141 @@
+{
+  "schema": "cached_replay_evidence_index_v1",
+  "passed": true,
+  "registry_path": "reproduction/score_replay/cached_registry.json",
+  "registry_sha256": "168243c53c22fd6e043d3b7a1cfc54b08f9ca20ded11b5270646ef2f32b8e671",
+  "input_manifest_path": "reproduction/score_replay/input_manifest.json",
+  "input_manifest_sha256": "b1da948964c578e83d6125d3fe4a1a8f5bd56bec61dfb78b662f7fa069d1561b",
+  "row_count": 510,
+  "component_comparisons": 3276,
+  "archives": [
+    {
+      "stage": "pilot",
+      "path": "pilot.zip",
+      "sha256": "ee9a0dfef60b6e16dd8b8652869e9b2719a3810f989d66d5d633cbb9c2ef97ef",
+      "bytes": 358089,
+      "github_artifact_id": 13561684052,
+      "github_run_id": 42343224995,
+      "commit": "cde4cd89afa255a999d7b497b292bdb6a05bcd48",
+      "result_member": "science/result.json",
+      "result_sha256": "e9925e07d13e068fcfd93cb47333830b0dc95c954de30559b3372de580af7f62",
+      "supervision_member": "supervision/result.json",
+      "supervision_sha256": "68d1eaec6880262360cda07a0f3fa1c41319432122b9187941fbc6bfe5d15776",
+      "row_count": 18,
+      "resources": {
+        "execution_wall_seconds": 1.5111792000000008,
+        "sampled_peak_tree_rss_bytes": 81330176,
+        "minimum_sampled_host_available_bytes": 15500075008,
+        "sample_interval_seconds": 0.5,
+        "memory_scope": "Sampled process-tree RSS with enforcement after observation, not a hard OS memory reservation or exact unsampled peak"
+      },
+      "runtime": {
+        "python": "3.13.18 (main, Oct 26 2026, 14:20:56) [GCC 13.3.0]",
+        "executable": "/opt/hostedtoolcache/Python/3.13.18/x64/bin/python",
+        "platform": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+        "numpy": "2.2.6",
+        "numeric_threads": 2,
+        "native_evaluator_threads": 1
+      }
+    },
+    {
+      "stage": "completion",
+      "path": "completion.zip",
+      "sha256": "e2e4de857607d1cca9123299693d1dc970b22f0d6ee520097406fe8378a0fe6a",
+      "bytes": 4226912,
+      "github_artifact_id": 13562393867,
+      "github_run_id": 42343704503,
+      "commit": "6aabed94b0e0dd500dfb16a509b847d9bbb1680c",
+      "result_member": "science/result.json",
+      "result_sha256": "dae217d16cd5f59c0355152f5e1c08c2b3d310c71c15b2fcefdb4a74f0292b0d",
+      "supervision_member": "supervision/result.json",
+      "supervision_sha256": "4b4839cfccbcd80b2516c2af1f3087ce0e1236b7ac278c736afec9cefe8d6871",
+      "row_count": 492,
+      "resources": {
+        "execution_wall_seconds": 19.107840302,
+        "sampled_peak_tree_rss_bytes": 92745728,
+        "minimum_sampled_host_available_bytes": 15427608576,
+        "sample_interval_seconds": 0.5,
+        "memory_scope": "Sampled process-tree RSS with enforcement after observation, not a hard OS memory reservation or exact unsampled peak"
+      },
+      "runtime": {
+        "python": "3.13.18 (main, Oct 26 2026, 14:20:56) [GCC 13.3.0]",
+        "executable": "/opt/hostedtoolcache/Python/3.13.18/x64/bin/python",
+        "platform": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+        "numpy": "2.2.6",
+        "numeric_threads": 2,
+        "native_evaluator_threads": 1
+      }
+    }
+  ],
+  "execution_source_pins": {
+    "pilot": {
+      "source_sha256": {
+        "__init__.py": "66dc04f1795b3ecf23d3a6dc7e3570d9c0592cd0cd214d981fdf179efe246f56",
+        "build.py": "fbb6233bf2aeb3a5d1e5cde0b209bb3752e77f75e97d4aa87950dfeb10888b57",
+        "cached_native.py": "8d9140bc8231f1df872d93fc83d244a2de5705c22a815347302e93c5978c25e5",
+        "core.py": "e40c3a4ab5e2b8017edec91c7eac60ee4c5d4b7dd7c1cc9817e9d293d7744108",
+        "inventory.py": "fd639c1c98aeb26d43ecca3db4f91b2e39b427eb952aff3fa1befd21ebc3b99d",
+        "replay.py": "be19f00553106fb8c82464680db42b3be9d86eeb3d398987e5b7763834eb7859"
+      },
+      "libraries_sha256": "a9177f32869ab5fb41f41b523f0e153605410e800566401e58301934195486c0",
+      "input_manifest_sha256": "b1da948964c578e83d6125d3fe4a1a8f5bd56bec61dfb78b662f7fa069d1561b",
+      "build_receipts_sha256": {
+        "0f8fdec68ad52473": "1a93176edc7767cdb6770cab54b9518dd993a98f6543ec92ab0cf860ce7a2b94",
+        "1b7c1f58b9dd8e70": "b94dc31ad108b56aa2356416abe6262d26d3d69640231322a3d2cfeed251d4f2",
+        "3058201e64b21a50": "916c8a9e4395c6123292af0bd2d578d07c080f1aebb9ccda4f6837a5a50cb0af",
+        "34caaa5febbcbe63": "0470d853f16d8b6a415024a53467f426d47dd7638cbab70d55b4a82ae2304bea",
+        "3d2db32fdfee1442": "41362e9154e480c2262bad25cf1c26286af8c4304b39ac20a8abd7bcf21f61a2",
+        "409db682bf965a4f": "a425eafc4f88c7e1ce407ea4c917eca73b1f8fbfd3762bd18a73fc67e1fbdb97",
+        "64a2e6bdcc5aa600": "7befd4768d4be7c457077e7fe29200afc0c3ac1ac42a29fd623215a718fadb38",
+        "d38734dc4bb8280a": "995fb38504dfa3f747240578674fac8171d521c0d18874956af86fbb6fd6c24e",
+        "fa7e0b51e50a0e3a": "43245e42fb2ec54e1d2b0496f6d4ab0f540c976c1e083f6f83c0094aea32cacf"
+      }
+    },
+    "completion": {
+      "source_sha256": {
+        "__init__.py": "66dc04f1795b3ecf23d3a6dc7e3570d9c0592cd0cd214d981fdf179efe246f56",
+        "build.py": "fbb6233bf2aeb3a5d1e5cde0b209bb3752e77f75e97d4aa87950dfeb10888b57",
+        "cached_native.py": "8d9140bc8231f1df872d93fc83d244a2de5705c22a815347302e93c5978c25e5",
+        "core.py": "e40c3a4ab5e2b8017edec91c7eac60ee4c5d4b7dd7c1cc9817e9d293d7744108",
+        "inventory.py": "fd639c1c98aeb26d43ecca3db4f91b2e39b427eb952aff3fa1befd21ebc3b99d",
+        "replay.py": "be19f00553106fb8c82464680db42b3be9d86eeb3d398987e5b7763834eb7859"
+      },
+      "libraries_sha256": "a9177f32869ab5fb41f41b523f0e153605410e800566401e58301934195486c0",
+      "input_manifest_sha256": "b1da948964c578e83d6125d3fe4a1a8f5bd56bec61dfb78b662f7fa069d1561b",
+      "build_receipts_sha256": {
+        "0f8fdec68ad52473": "1a93176edc7767cdb6770cab54b9518dd993a98f6543ec92ab0cf860ce7a2b94",
+        "1b7c1f58b9dd8e70": "b94dc31ad108b56aa2356416abe6262d26d3d69640231322a3d2cfeed251d4f2",
+        "3058201e64b21a50": "916c8a9e4395c6123292af0bd2d578d07c080f1aebb9ccda4f6837a5a50cb0af",
+        "34caaa5febbcbe63": "0470d853f16d8b6a415024a53467f426d47dd7638cbab70d55b4a82ae2304bea",
+        "3d2db32fdfee1442": "41362e9154e480c2262bad25cf1c26286af8c4304b39ac20a8abd7bcf21f61a2",
+        "409db682bf965a4f": "a425eafc4f88c7e1ce407ea4c917eca73b1f8fbfd3762bd18a73fc67e1fbdb97",
+        "64a2e6bdcc5aa600": "7befd4768d4be7c457077e7fe29200afc0c3ac1ac42a29fd623215a718fadb38",
+        "d38734dc4bb8280a": "995fb38504dfa3f747240578674fac8171d521c0d18874956af86fbb6fd6c24e",
+        "fa7e0b51e50a0e3a": "43245e42fb2ec54e1d2b0496f6d4ab0f540c976c1e083f6f83c0094aea32cacf"
+      }
+    }
+  },
+  "files": {
+    "completion.zip": {
+      "sha256": "e2e4de857607d1cca9123299693d1dc970b22f0d6ee520097406fe8378a0fe6a",
+      "bytes": 4226912
+    },
+    "deltas.json": {
+      "sha256": "e90592b360f768aa8fe5851a73fb73dae04d5d81c84f2d4f4e59ab57cac8f16e",
+      "bytes": 1393456
+    },
+    "independent_review.json": {
+      "sha256": "df8c375826f81fd5c1c132b4482c79757575fbf5a34766113a57f7c882e16128",
+      "bytes": 6961
+    },
+    "pilot.zip": {
+      "sha256": "ee9a0dfef60b6e16dd8b8652869e9b2719a3810f989d66d5d633cbb9c2ef97ef",
+      "bytes": 358089
+    },
+    "README.md": {
+      "sha256": "80abb732e8b49a004ca46240d37643ea47bab58a7169d6eb467d4f93451251bc",
+      "bytes": 1716
+    }
+  },
+  "scope": "Completed cached selected-state roster only; no historical optimizer rerun or broader table-coverage claim."
+}

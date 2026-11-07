@@ -1,0 +1,160 @@
+{
+  "schema": "independent_cached_replay_review_v1",
+  "status": "passed_bounded_cached_roster",
+  "passed": true,
+  "reviewer": "Independent Codex agent recover_nzca; not the Task2 implementation author",
+  "review_type": "Internal saved-output, source-mapping and arithmetic review, not external academic peer review",
+  "execution_by_reviewer": "No model evaluation, optimization, simulation or native library execution.",
+  "summary": {
+    "row_count": 510,
+    "pilot_rows": 18,
+    "completion_rows": 492,
+    "duplicates": 0,
+    "missing": 0,
+    "failed": 0,
+    "component_comparisons": 3276,
+    "nonzero_component_differences": 151,
+    "maximum_absolute_difference_nats": 1.8189894035458565e-12,
+    "maximum_joint_decomposition_error": 0.0,
+    "maximum_difference_by_field": {
+      "P": {
+        "id": "background/primary_fold_2/Omori_smooth_lift/train",
+        "delta": -1.8189894035458565e-12,
+        "absolute_delta": 1.8189894035458565e-12
+      },
+      "E": {
+        "id": "background/primary_fold_2/fixedML_smooth_lift/train",
+        "delta": -2.2737367544323206e-13,
+        "absolute_delta": 2.2737367544323206e-13
+      },
+      "C": {
+        "id": "background/primary_fold_2/fixedML_smooth_lift/train",
+        "delta": 2.2737367544323206e-13,
+        "absolute_delta": 2.2737367544323206e-13
+      },
+      "M": {
+        "id": "mark_prediction/primary_fold_2/E1_h0/train",
+        "delta": -4.547473508864641e-13,
+        "absolute_delta": 4.547473508864641e-13
+      },
+      "timing": {
+        "id": "continuous_location/primary_fold_2/E_lift/train",
+        "delta": -4.547473508864641e-13,
+        "absolute_delta": 4.547473508864641e-13
+      },
+      "joint": {
+        "id": "background/primary_fold_2/fixedML_smooth_lift/train",
+        "delta": 1.8189894035458565e-12,
+        "absolute_delta": 1.8189894035458565e-12
+      },
+      "location": {
+        "id": "background/primary_fold_2/fixedML_smooth_lift/train",
+        "delta": 1.8189894035458565e-12,
+        "absolute_delta": 1.8189894035458565e-12
+      }
+    },
+    "study_rows": {
+      "mark_prediction": 60,
+      "productivity": 36,
+      "orthogonal": 90,
+      "temporal_decay": 18,
+      "omori": 90,
+      "continuous_location": 24,
+      "local_zones": 24,
+      "weighted_zones": 54,
+      "distance": 42,
+      "background": 72
+    }
+  },
+  "deltas_sha256": "e90592b360f768aa8fe5851a73fb73dae04d5d81c84f2d4f4e59ab57cac8f16e",
+  "archives": [
+    {
+      "stage": "pilot",
+      "path": "pilot.zip",
+      "sha256": "ee9a0dfef60b6e16dd8b8652869e9b2719a3810f989d66d5d633cbb9c2ef97ef",
+      "bytes": 358089,
+      "github_artifact_id": 13561684052,
+      "github_run_id": 42343224995,
+      "commit": "cde4cd89afa255a999d7b497b292bdb6a05bcd48",
+      "result_member": "science/result.json",
+      "result_sha256": "e9925e07d13e068fcfd93cb47333830b0dc95c954de30559b3372de580af7f62",
+      "supervision_member": "supervision/result.json",
+      "supervision_sha256": "68d1eaec6880262360cda07a0f3fa1c41319432122b9187941fbc6bfe5d15776",
+      "row_count": 18,
+      "resources": {
+        "execution_wall_seconds": 1.5111792000000008,
+        "sampled_peak_tree_rss_bytes": 81330176,
+        "minimum_sampled_host_available_bytes": 15500075008,
+        "sample_interval_seconds": 0.5,
+        "memory_scope": "Sampled process-tree RSS with enforcement after observation, not a hard OS memory reservation or exact unsampled peak"
+      },
+      "runtime": {
+        "python": "3.13.18 (main, Oct 26 2026, 14:20:56) [GCC 13.3.0]",
+        "executable": "/opt/hostedtoolcache/Python/3.13.18/x64/bin/python",
+        "platform": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+        "numpy": "2.2.6",
+        "numeric_threads": 2,
+        "native_evaluator_threads": 1
+      }
+    },
+    {
+      "stage": "completion",
+      "path": "completion.zip",
+      "sha256": "e2e4de857607d1cca9123299693d1dc970b22f0d6ee520097406fe8378a0fe6a",
+      "bytes": 4226912,
+      "github_artifact_id": 13562393867,
+      "github_run_id": 42343704503,
+      "commit": "6aabed94b0e0dd500dfb16a509b847d9bbb1680c",
+      "result_member": "science/result.json",
+      "result_sha256": "dae217d16cd5f59c0355152f5e1c08c2b3d310c71c15b2fcefdb4a74f0292b0d",
+      "supervision_member": "supervision/result.json",
+      "supervision_sha256": "4b4839cfccbcd80b2516c2af1f3087ce0e1236b7ac278c736afec9cefe8d6871",
+      "row_count": 492,
+      "resources": {
+        "execution_wall_seconds": 19.107840302,
+        "sampled_peak_tree_rss_bytes": 92745728,
+        "minimum_sampled_host_available_bytes": 15427608576,
+        "sample_interval_seconds": 0.5,
+        "memory_scope": "Sampled process-tree RSS with enforcement after observation, not a hard OS memory reservation or exact unsampled peak"
+      },
+      "runtime": {
+        "python": "3.13.18 (main, Oct 26 2026, 14:20:56) [GCC 13.3.0]",
+        "executable": "/opt/hostedtoolcache/Python/3.13.18/x64/bin/python",
+        "platform": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+        "numpy": "2.2.6",
+        "numeric_threads": 2,
+        "native_evaluator_threads": 1
+      }
+    }
+  ],
+  "verified": {
+    "input_archives": 12,
+    "input_resources": 747,
+    "original_case_files": 54,
+    "selected_state_rows": 510,
+    "execution_artifact_members": 1116,
+    "native_arrays": 2766,
+    "build_receipts": 18,
+    "distinct_native_sources": 9,
+    "cleanup_errors": 0,
+    "remaining_owned_processes": 0
+  },
+  "checks": [
+    "Every original parameter vector/scalar projection and model-specific cache mapping checked against original files.",
+    "Both unchanged execution ZIPs, every extracted member, every row hash, ordered roster and progress journal checked.",
+    "Compiled source and binary hashes, build receipts, thread limits, target counts and finite retained arrays checked.",
+    "All component deltas independently recomputed against pinned full-precision references; fixed absolute tolerance1e-6.",
+    "Pilot/completion union contains exactly510 distinct registry rows, with no repeat or missing row."
+  ],
+  "normalization_note": "One original normalized reference joint differs by1.1368683772161603e-13 from its separately retained original joint due to component recombination; original scalar bytes are unchanged.",
+  "limits": [
+    "This completes the named cached registry only; other manuscript tables/routes remain outside this evidence.",
+    "Saved feature caches and selected states are replayed; no raw catalogue geometry or historical optimizer search is reconstructed.",
+    "Supervisor memory is sampled RSS, not a hard OS reservation or exact unsampled peak."
+  ],
+  "private_review_evidence_sha256": {
+    "input_audit": "f301bf756242447c0849d92da92aa3cbfae3181341ed819e5300f983940a4929",
+    "pilot_audit": "468d137e017ed2485f10b00ca7fc3c9166de4b9fa3dce5160bbde5bb57f8b3bc",
+    "completion_audit": "24645e0225b2ef727c4f99923348010fdf377e3d78955f0d412c7661834b07de"
+  }
+}
