@@ -99671,7 +99671,23 @@
           "display_value": 0.471908,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Outside completed510 cached score roster: simulation/engineering/profile/geometry or omitted saved-state route."
+          "expression": {
+            "op": "profile",
+            "group": "primary_fold_0/E0_free",
+            "field": "selected_r"
+          }
+        },
+        {
+          "id": "2:3",
+          "source_row_index": 2,
+          "column_index": 3,
+          "display": "0.35, 0.50",
+          "display_type": "profile_support_list",
+          "expression": {
+            "op": "profile",
+            "group": "primary_fold_0/E0_free",
+            "field": "support_display"
+          }
         },
         {
           "id": "3:2",
@@ -99681,7 +99697,23 @@
           "display_value": 0.472469,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Outside completed510 cached score roster: simulation/engineering/profile/geometry or omitted saved-state route."
+          "expression": {
+            "op": "profile",
+            "group": "primary_fold_0/I0_free",
+            "field": "selected_r"
+          }
+        },
+        {
+          "id": "3:3",
+          "source_row_index": 3,
+          "column_index": 3,
+          "display": "0.35, 0.50",
+          "display_type": "profile_support_list",
+          "expression": {
+            "op": "profile",
+            "group": "primary_fold_0/I0_free",
+            "field": "support_display"
+          }
         },
         {
           "id": "4:2",
@@ -99691,7 +99723,23 @@
           "display_value": 0.605853,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Outside completed510 cached score roster: simulation/engineering/profile/geometry or omitted saved-state route."
+          "expression": {
+            "op": "profile",
+            "group": "primary_fold_1/E0_free",
+            "field": "selected_r"
+          }
+        },
+        {
+          "id": "4:3",
+          "source_row_index": 4,
+          "column_index": 3,
+          "display": "none",
+          "display_type": "profile_support_list",
+          "expression": {
+            "op": "profile",
+            "group": "primary_fold_1/E0_free",
+            "field": "support_display"
+          }
         },
         {
           "id": "5:2",
@@ -99701,7 +99749,23 @@
           "display_value": 0.603756,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Outside completed510 cached score roster: simulation/engineering/profile/geometry or omitted saved-state route."
+          "expression": {
+            "op": "profile",
+            "group": "primary_fold_1/I0_free",
+            "field": "selected_r"
+          }
+        },
+        {
+          "id": "5:3",
+          "source_row_index": 5,
+          "column_index": 3,
+          "display": "none",
+          "display_type": "profile_support_list",
+          "expression": {
+            "op": "profile",
+            "group": "primary_fold_1/I0_free",
+            "field": "support_display"
+          }
         },
         {
           "id": "6:2",
@@ -99711,7 +99775,23 @@
           "display_value": 0.610446,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Outside completed510 cached score roster: simulation/engineering/profile/geometry or omitted saved-state route."
+          "expression": {
+            "op": "profile",
+            "group": "primary_fold_2/E0_free",
+            "field": "selected_r"
+          }
+        },
+        {
+          "id": "6:3",
+          "source_row_index": 6,
+          "column_index": 3,
+          "display": "none",
+          "display_type": "profile_support_list",
+          "expression": {
+            "op": "profile",
+            "group": "primary_fold_2/E0_free",
+            "field": "support_display"
+          }
         },
         {
           "id": "7:2",
@@ -99721,9 +99801,26 @@
           "display_value": 0.609725,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Outside completed510 cached score roster: simulation/engineering/profile/geometry or omitted saved-state route."
+          "expression": {
+            "op": "profile",
+            "group": "primary_fold_2/I0_free",
+            "field": "selected_r"
+          }
+        },
+        {
+          "id": "7:3",
+          "source_row_index": 7,
+          "column_index": 3,
+          "display": "none",
+          "display_type": "profile_support_list",
+          "expression": {
+            "op": "profile",
+            "group": "primary_fold_2/I0_free",
+            "field": "support_display"
+          }
         }
-      ]
+      ],
+      "semantic_scope": "All six selected-r cells and all six sparse-support strings, including none. Each row requires seven actual train/test profile pairs and the selected train/test states; only actual training joint NLL differences enter the <=2-nat support rule."
     },
     {
       "id": "ch09_audit:table:24",
@@ -186659,5 +186756,18 @@
         }
       ]
     }
-  ]
+  ],
+  "additional_registry_sha256": {
+    "cached_supplement/cached_registry.json": "07a4a27d0f8e607b7d32f6efdbb6976a8e572c8f561d8afe04688c91cee5bbac",
+    "productivity_profiles/cached_registry.json": "83ca48cb3b380c087bd9641abb71d251c97638ad145c4a79ae424959e294d496"
+  },
+  "profile_support": {
+    "registry": "productivity_profiles/cached_registry.json",
+    "profile_groups_pointer": "/profile_groups",
+    "support_rule": "node actual training NLL minus final selected actual training NLL <= 2.0",
+    "nll_from": "minus /actual/components/joint, checked against /actual/native_scalar_components/joint_nll",
+    "display_rule": "Format included grid coordinates in original order to two decimal places, comma-space separated; emit none only for an empty actual support set.",
+    "score_source": "Only passed actual replay rows; neither historical expected scores nor displayed support strings are arithmetic operands.",
+    "additional_evidence": "Optional JSON records map: row ID -> {path,sha256}, or {archive,archive_sha256,member,sha256}; paths are relative to that manifest. Missing mapped rows stay uncovered."
+  }
 }

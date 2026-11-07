@@ -261,6 +261,97 @@ class TestScoreReplay(unittest.TestCase):
                                        adapter, library, root/'bad_result')
 
 
+class CachedProfileTableTests(unittest.TestCase):
+    """Invented passed rows; profile selection never reads expected scores."""
+    def fixture(self):
+        group=dict(case='tiny',model='E0_free',selected_train_row='selected/train',selected_test_row='selected/test',
+                   grid=[.2,.35,.5],descriptive_support_nll_gap=2.,nodes=[])
+        def row(r,nll):
+            return dict(parameters=[-4.,.1,.3,r],components={'joint':-nll},
+                        native_scalar_components={'joint_nll':nll},expected={'joint':999999.,'in_sparse_support':False})
+        rows={'selected/train':row(.4,100.),'selected/test':row(.4,20.)}
+        for i,(r,nll)in enumerate(zip(group['grid'],[103.,102.,100.5])):
+            names={'train':str(i)+'/train','test':str(i)+'/test'}
+            group['nodes'].append(dict(index=i,r=r,rows=names));rows[names['train']]=row(r,nll);rows[names['test']]=row(r,500.+i)
+        return group,rows
+
+    def test_profile_support_uses_actual_training_nll_and_includes_exact_boundary(self):
+        from reproduction.score_replay.reconcile_cached_tables import profile_support
+        group,rows=self.fixture();result=profile_support(group,rows.__getitem__)
+        self.assertEqual(result['selected_r'],.4);self.assertEqual(result['support_r'],[.35,.5])
+        self.assertEqual(result['support_display'],'0.35, 0.50');self.assertEqual(result['nodes'][1]['training_nll_gap'],2.)
+        for node in group['nodes']:
+            actual=rows[node['rows']['test']];actual['components']['joint']=1e9;actual['native_scalar_components']['joint_nll']=-1e9
+        self.assertEqual(profile_support(group,rows.__getitem__)['support_display'],'0.35, 0.50')
+
+    def test_profile_none_is_derived_from_all_nodes_not_an_expected_empty_list(self):
+        from reproduction.score_replay.reconcile_cached_tables import profile_support
+        group,rows=self.fixture()
+        for node in group['nodes']:
+            actual=rows[node['rows']['train']];actual['components']['joint']=-103.;actual['native_scalar_components']['joint_nll']=103.
+            actual['expected']['in_sparse_support']=True
+        result=profile_support(group,rows.__getitem__)
+        self.assertEqual(result['support_r'],[]);self.assertEqual(result['support_display'],'none')
+        self.assertEqual(len(result['nodes']),3)
+
+    def test_profile_rejects_missing_nonfinite_or_mismatched_state(self):
+        import copy
+        from reproduction.score_replay.reconcile_cached_tables import profile_support,MissingEvidence
+        group,rows=self.fixture()
+        def missing(rid):
+            if rid=='2/test':raise MissingEvidence(rid)
+            return rows[rid]
+        with self.assertRaises(MissingEvidence):profile_support(group,missing)
+        for rowid,field,value in [('0/test','parameters',[-4.,.1,.3,.8]),('selected/test','parameters',[-4.,.1,.3,.9]),
+                                  ('0/train','native_scalar_components',{'joint_nll':float('nan')})]:
+            changed=copy.deepcopy(rows);changed[rowid][field]=value
+            with self.assertRaises(ValueError):profile_support(group,changed.__getitem__)
+        with self.assertRaisesRegex(ValueError,'two-nat'):profile_support(dict(group,descriptive_support_nll_gap=3.),rows.__getitem__)
+
+    def test_additional_actual_row_requires_hash_status_and_registry_input_pins(self):
+        from reproduction.score_replay.reconcile_cached_tables import Evidence
+        with tempfile.TemporaryDirectory()as directory:
+            root=Path(directory);package=root/'package';package.mkdir();evidence=root/'evidence';evidence.mkdir()
+            (package/'cached_registry.json').write_text(json.dumps({'rows':[],'adapters':{}}))
+            (evidence/'deltas.json').write_text(json.dumps({'rows':[]}));(evidence/'evidence_index.json').write_text(json.dumps({'files':{}}))
+            (package/'extra').mkdir();spec={'id':'tiny','adapter':'adapter','state':{'sha256':'state'},'cache':{'sha256':'cache'}}
+            registry=package/'extra/cached_registry.json';registry.write_text(json.dumps({'rows':[spec],'adapters':{'adapter':{'python':{'sha256':'python'},'native':{'sha256':'native'}}}}))
+            actual=dict(state_sha256='state',cache_sha256='cache',python_source_sha256='python',native_source_sha256='native',parameters=[.2],components={'joint':-3.})
+            row=root/'row.json';row.write_text(json.dumps({'id':'tiny','status':'replayed','passed':True,'actual':actual,'expected':{'joint':999.}}))
+            manifest=root/'extra.json';manifest.write_text(json.dumps({'records':{'tiny':{'path':'row.json','sha256':digest(row.read_bytes())}}}))
+            pins={'extra/cached_registry.json':digest(registry.read_bytes())}
+            data=Evidence(package,evidence,manifest,pins);self.assertEqual(data.row('tiny')['components']['joint'],-3.)
+            row.write_text(json.dumps({'id':'tiny','status':'replayed','passed':False,'actual':actual}))
+            with self.assertRaisesRegex(ValueError,'actual row changed'):Evidence(package,evidence,manifest,pins).row('tiny')
+            manifest.write_text(json.dumps({'records':{'tiny':{'path':'row.json','sha256':digest(row.read_bytes())}}}))
+            with self.assertRaisesRegex(ValueError,'failed row'):Evidence(package,evidence,manifest,pins).row('tiny')
+            row.write_text(json.dumps({'id':'tiny','status':'replayed','passed':True,'actual':dict(actual,state_sha256='wrong')}))
+            manifest.write_text(json.dumps({'records':{'tiny':{'path':'row.json','sha256':digest(row.read_bytes())}}}))
+            with self.assertRaisesRegex(ValueError,'input/source identity'):Evidence(package,evidence,manifest,pins).row('tiny')
+
+    def test_semantic_table_cell_mismatch_and_missing_evidence_are_not_successful_coverage(self):
+        from reproduction.score_replay.reconcile_cached_tables import reconcile,MissingEvidence
+        with tempfile.TemporaryDirectory()as directory:
+            root=Path(directory);package=root/'reproduction/score_replay';package.mkdir(parents=True)
+            (package/'cached_registry.json').write_text('{}');evidence=root/'evidence';evidence.mkdir();(evidence/'evidence_index.json').write_text('{}')
+            cell=dict(id='0:3',display='none',display_type='profile_support_list',expression={'op':'profile','group':'tiny','field':'support_display'})
+            table=dict(id='tiny',source_file='tiny.tex',source_rows=[],cells=[cell])
+            links=root/'links.json';links.write_text(json.dumps(dict(registry_sha256=digest(b'{}'),source_sha256={},tables=[table])))
+            with patch('reproduction.score_replay.reconcile_cached_tables.Evidence')as fake:
+                fake.return_value.profiles={};fake.return_value.evaluate.return_value='0.35'
+                result=reconcile(root,links,evidence,root/'mismatch.json');self.assertFalse(result['passed']);self.assertEqual(result['tables'][0]['cells'][0]['status'],'mismatch')
+                fake.return_value.evaluate.side_effect=MissingEvidence('not_run')
+                result=reconcile(root,links,evidence,root/'missing.json');self.assertFalse(result['all_chapter_tables_covered']);self.assertEqual(result['counts']['uncovered_cells'],1)
+
+    def test_table23_declares_every_support_list_including_none(self):
+        root=Path(__file__).resolve().parents[1]/'reproduction/score_replay'
+        links=json.loads((root/'table_links_cached.json').read_text());table=next(t for t in links['tables']if t['id']=='ch09_audit:table:23')
+        self.assertEqual(len(table['cells']),12)
+        support=[c for c in table['cells']if c['display_type']=='profile_support_list']
+        self.assertEqual([c['display']for c in support],['0.35, 0.50','0.35, 0.50','none','none','none','none'])
+        self.assertEqual(len({c['expression']['group']for c in support}),6)
+
+
 class CaliforniaPartitionTests(unittest.TestCase):
     def test_observed_blas_matches_scalar_strict_past_and_tiling_controls(self):
         from reproduction.score_replay.observed_replay import tiny_controls
