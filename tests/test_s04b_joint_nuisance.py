@@ -1,12 +1,13 @@
 """Constructed joint-likelihood controls; never reads scientific histories."""
-import json,math,tempfile,unittest
+import copy,hashlib,json,math,tempfile,unittest
 from pathlib import Path
 from types import SimpleNamespace
+from unittest.mock import patch
 import numpy as np
 from scipy.integrate import quad
 from threadpoolctl import threadpool_limits
 from engine.cpu_build import build_shared
-from experiments.s04b_joint_nuisance import model,fit,run
+from experiments.s04b_joint_nuisance import model,fit,run,checkpoint
 
 def fixture(native):
     t=np.array([.1,.4,.4,.9]);xy=np.array([[2.,3.],[8.,8.],[4.,8.],[6.,2.]])
@@ -140,6 +141,85 @@ class JointLikelihood(unittest.TestCase):
         self.assertEqual(len(checks),6);self.assertEqual(len(checks)*80,480)
         expected['phase_values']['order16_train']['LI'][0][0]+=2e-9
         with self.assertRaises(ValueError):run.historical_floor(self.phase,{},old,expected,states,fits,'train')
+
+    def test_constructed_full_case_json_roundtrip_and_no_training_resume(self):
+        """Real native fixture scores, fixed-return test optimizer; never study inputs."""
+        with tempfile.TemporaryDirectory() as temp:
+            repo=Path(temp);root=repo/'reproduction/synthetic';root.mkdir(parents=True)
+            olddir=repo/'validation/live_results/methodological_20261106/refitted_floor';olddir.mkdir(parents=True)
+            np.savez(root/'rows.npz',rows=np.zeros((4,4)))
+            for name,value in [('states.json',{}),('expected.json',{}),('receipt.json',{'counters':{}})]:checkpoint.write(root/name,value)
+            checkpoint.write(olddir/'constructed.json',{})
+            case=dict(case_id='constructed',regime=4,seed=1,history='rows.npz',fits={},states='states.json',expected='expected.json',generator_receipt='receipt.json',n_train=3,n_test=3)
+            protocol=run.read(model.HERE/'protocol.json')
+            theta=np.array([math.log(.2),.2,.35,math.log(.05),1.3,0.,math.log(30),math.log(7)])
+            generator=SimpleNamespace(MATCHED_NAMES=['fixture'],ROSTER={'fixture':(None,None,0.,30.,7.)},
+                Law=lambda *a:SimpleNamespace(a=theta[0],d=theta[1],n=theta[2],c=.05,p=theta[4],r=.7),
+                fitting_metadata=lambda law:{'beta':2.,'sigma_km':2.})
+            def historical(phase,case,old,expected,states,fits,label):
+                score,_=phase.evaluate(theta,'null')
+                return score,[dict(phase=label,model=m,actual_nll=score['nll'],expected_nll=score['nll'],absolute_delta=0.,tolerance=1e-9)for m in fit.MODELS]
+            oldscore=self.phase.evaluate(theta,'null')[0]
+            comparison=[dict(model=m,gate=g,saved_procedure_joint=oldscore['joint'])for m in fit.MODELS for g in(('raw',)if m=='LI'else('raw','BIC'))]
+            def fitted(phase,name,protocol,eligible,callback):
+                def fixed(fun,x,**kwargs):
+                    values=eligible[:len(x)];value=fun(values)
+                    return SimpleNamespace(x=np.array(values),fun=value[0]if isinstance(value,tuple)else value,success=True,status=0,message='constructed fixed-return optimizer',nfev=1,nit=0)
+                return fit.fit_arm(phase,name,protocol,eligible,callback,optimizer=fixed)
+            output=repo/'first';output.mkdir()
+            with patch.object(run,'REPO',repo),patch.object(run,'compare_historical',return_value=comparison),patch.object(run,'historical_floor',side_effect=historical),patch.object(model,'phase_from_rows',return_value=self.phase),patch.object(run,'fit_arm',side_effect=fitted):
+                actual=run.case_run(case,{'generator':generator},self.native,protocol,output,math.inf)
+            self.assertTrue(actual['passed'],actual.get('error'));self.assertEqual(len(actual['outcomes']),5)
+            self.assertEqual(run.read(output/'constructed.json'),json.loads(checkpoint.dumps(actual)))
+            self.assertTrue(any(isinstance(v,np.bool_)for row in actual['outcomes']for v in row.values()))
+            frozen=copy.deepcopy(actual);frozen.update(passed=False,status='running',outcomes=[])
+            frozen['floor_checks']=[v for v in frozen['floor_checks']if v['phase']=='train']
+            frozen['plan_dimensions']={'train':frozen['plan_dimensions']['train']}
+            keys=run.read(model.HERE/'checkpoint_repair.json')['training_payload_keys']
+            policy=dict(case_id='constructed',training_payload_keys=keys,attempts_sha256=run.sha(output/'constructed.attempts.jsonl'),
+                training_payload_canonical_sha256=hashlib.sha256(checkpoint.canonical_training(frozen,keys)).hexdigest())
+            checkpoint.validate_training(frozen,output/'constructed.attempts.jsonl',policy)
+            changed=copy.deepcopy(frozen);changed['n_train']+=1
+            with self.assertRaises(ValueError):checkpoint.validate_training(changed,output/'constructed.attempts.jsonl',policy)
+            badtrace=repo/'changed.attempts.jsonl';badtrace.write_bytes((output/'constructed.attempts.jsonl').read_bytes()+b'\n')
+            with self.assertRaises(ValueError):checkpoint.validate_training(frozen,badtrace,policy)
+            checkpoint.write(repo/'checkpoint_repair.json',policy);checkpoint.write(repo/'frozen.json',frozen)
+            resumed=repo/'resumed';resumed.mkdir();resume=dict(checkpoint=repo/'frozen.json',trace=output/'constructed.attempts.jsonl',prior_seconds=17.,provenance={'attempts_sha256':policy['attempts_sha256']})
+            phase_calls=[]
+            def test_only(rows,gm,start,end,*args):
+                phase_calls.append((start,end));self.assertEqual((start,end),(395,760));return self.phase
+            with patch.object(run,'REPO',repo),patch.object(run,'HERE',repo),patch.object(run,'compare_historical',return_value=comparison),patch.object(run,'historical_floor',side_effect=historical),patch.object(model,'phase_from_rows',side_effect=test_only),patch.object(run,'fit_arm',side_effect=AssertionError('Repeated training fit')):
+                second=run.case_run(case,{'generator':generator},self.native,protocol,resumed,math.inf,resume)
+            self.assertTrue(second['passed'],second.get('error'));self.assertEqual(phase_calls,[(395,760)])
+            self.assertEqual(second['fits'],actual['fits']);self.assertEqual(second['training_checks'],actual['training_checks'])
+            self.assertEqual(second['outcomes'],actual['outcomes']);self.assertEqual(run.sha(resumed/'constructed.attempts.jsonl'),policy['attempts_sha256'])
+            self.assertEqual(second['prior_training_attempt_seconds'],17.)
+
+class PersistenceControls(unittest.TestCase):
+    def test_numpy_scalars_arrays_and_nonfinite_rejection(self):
+        value={'flag':np.bool_(True),'count':np.int64(4),'score':np.float64(1.25),'array':np.array([True,False])}
+        self.assertEqual(json.loads(checkpoint.dumps(value)),{'flag':True,'count':4,'score':1.25,'array':[True,False]})
+        for value in (np.float64('nan'),np.float64('inf'),np.array([float('nan')]),object()):
+            with self.assertRaises((ValueError,TypeError)):checkpoint.dumps({'value':value})
+    def test_failed_serialization_preserves_last_checkpoint_and_no_temp(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path=Path(temp)/'case.json';checkpoint.write(path,{'passed':False,'fits':4});before=path.read_bytes()
+            with self.assertRaises(TypeError):checkpoint.write(path,{'bad':object()})
+            self.assertEqual(path.read_bytes(),before);self.assertEqual(list(Path(temp).glob('*.tmp')),[])
+    def test_failed_replace_preserves_checkpoint_and_cleans_own_temp(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path=Path(temp)/'case.json';checkpoint.write(path,{'value':1});before=path.read_bytes()
+            stale=Path(temp)/'unrelated.tmp';stale.write_text('preserve')
+            with patch.object(checkpoint.os,'replace',side_effect=OSError('constructed replacement failure')):
+                with self.assertRaises(OSError):checkpoint.write(path,{'value':2})
+            self.assertEqual(path.read_bytes(),before);self.assertEqual(list(Path(temp).glob('*.tmp')),[stale])
+            checkpoint.write(path,{'value':np.int64(3)});self.assertEqual(run.read(path),{'value':3})
+    def test_interrupt_cleans_own_temporary_and_keeps_last_good_bytes(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path=Path(temp)/'case.json';checkpoint.write(path,{'passed':False});before=path.read_bytes()
+            with patch.object(checkpoint.os,'replace',side_effect=KeyboardInterrupt):
+                with self.assertRaises(KeyboardInterrupt):checkpoint.write(path,{'passed':True})
+            self.assertEqual(path.read_bytes(),before);self.assertEqual(list(Path(temp).glob('*.tmp')),[])
 
 class PolicyControls(unittest.TestCase):
     def setUp(self):self.protocol=json.loads((model.HERE/'protocol.json').read_text())

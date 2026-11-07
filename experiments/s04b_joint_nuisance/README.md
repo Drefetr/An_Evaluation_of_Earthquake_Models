@@ -78,3 +78,32 @@ separate; small counts are not a structural nonidentification theorem. Wilson
 intervals concern bounded win indicators, not mean gains or simultaneous
 coverage. This is a conditional synthetic procedure comparison, not a test of
 physical inhibition, general model utility or prospective forecasting skill.
+
+The first pilot attempt completed four training fits and their checks for
+S4 seed 410401, then failed while serializing NumPy boolean fields. It did
+not retain a completed held-out case. [checkpoint_repair.json](checkpoint_repair.json)
+pins that failed archive, its independent partial-checkpoint audit, and the
+unchanged source archive [pre_repair_source.zip](pre_repair_source.zip).
+The executed protocol and input pins are retained byte for byte. This
+amendment changes persistence and controlled resume only; model, optimizer,
+starts, quadrature and gates are unchanged. JSON conversion preserves NumPy
+booleans, integers, float32/float64 values and arrays, rejects nonfinite or
+unsupported values, and atomically replaces a checkpoint only after a full
+successful serialization and flushed write.
+
+For an independently reviewed resume, add `--resume-training FAILED/science
+--resume-review PARTIAL_REVIEW.json --resume-archive FAILED.zip` to the
+pilot command. The admission must also contain `training_resume` with
+`independent_review_passed: true` and the five exact `failed_result_sha256`,
+`checkpoint_sha256`, `attempts_sha256`, `failed_archive_sha256`, and
+`audit_sha256` values from the repair record. Essential runtime, native
+library and build receipt must match the failed attempt. The runner retains
+the original evidence separately, skips every completed training evaluation,
+and executes only the missing test phase for that first history. It then
+fits the other four pilot histories under the unchanged recipe. A completed
+resumed pilot reports four reused and sixteen new fits, twenty distinct fits
+in all; the original failed scientific elapsed time is charged against the
+same pilot and campaign allowances. It cannot turn a resource-cap failure
+into a completed pilot. Full continuation also carries the original resume
+evidence forward and uses cumulative pilot time. No resumed scientific
+execution is established by these source changes or constructed tests.
