@@ -21,6 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 JOINT_CONTINUATION_STAGES = ('joint-continuation-pilot', 'joint-continuation-campaign')
 BUDGETED_STAGE = 'joint-budgeted-case'
 HOST_BATCH_STAGE = 'joint-budgeted-host'
+RECOVERY_HOST_STAGE = 'joint-recovery-host'
 LI_REPAIR_STAGE = 'li-constructor-repair'
 LI_ORIGINAL_PILOT = ['original_li/LI_CA_M4_F2/LI/train',
                      'original_li/S0_uniform_null_seed410002/LI/test',
@@ -196,6 +197,20 @@ def mandatory_sources(stage, review=None):
         paths.update(('scripts/reproduce_cpu.py',
                       'validation/reproductions/score_replay_20261107/accepted_execution_index.json'))
         paths.update(review.get('reader_execution_evidence_sha256', {}))
+    elif stage == RECOVERY_HOST_STAGE:
+        # Recovery is an explicit operational amendment, never an approval of
+        # the failed fixed-slot campaign. Retain its complete source lineage.
+        inherited = dict(review, stage=HOST_BATCH_STAGE)
+        paths.update(mandatory_sources(HOST_BATCH_STAGE, inherited))
+        for name in ('s04b_joint_recovery', 's04b_joint_recovery_host'):
+            package = ROOT/'experiments'/name
+            paths.update(p.relative_to(ROOT).as_posix() for p in package.rglob('*')
+                         if p.is_file() and p.suffix in ('.py','.json','.md'))
+        paths.update(('tests/test_joint_recovery_controller.py',
+                      'tests/test_joint_recovery_host.py'))
+        paths.update(review['recovery_evidence_sha256'])
+        paths.update(review['recovery_test_paths'])
+        paths.update(review['recovery_checker_source_paths'])
     elif stage in ('joint-pilot','joint-full',BUDGETED_STAGE,HOST_BATCH_STAGE) + JOINT_CONTINUATION_STAGES:
         paths.add('tests/test_s04b_joint_nuisance.py')
         package = ROOT/'experiments/s04b_joint_nuisance'
@@ -618,6 +633,83 @@ def host_batch_passed(output, review):
         raise ValueError('Host final accepted index changed')
 
 
+def joint_recovery_host(review, output, token, prior, batch=None, driver=None):
+    """Prepare the separately reviewed partial-fit recovery; no science here."""
+    if batch is None:
+        from experiments.s04b_joint_recovery_host import batch
+    if driver is None:
+        from experiments.s04b_joint_recovery import driver
+    if prior is None or review.get('stage') != RECOVERY_HOST_STAGE:
+        raise ValueError('Recovery requires its explicit predecessor artifact route')
+    if any(review.get(key) is not True for key in (
+            'driver_source_review_passed','scheduler_source_review_passed',
+            'recovery_protocol_review_passed','host_batch_source_review_passed',
+            'checker_source_review_passed')):
+        raise ValueError('Recovery protocol, source and checker reviews are required')
+    if 'pilot_projection_review_passed' in review:
+        raise ValueError('Recovery cannot approve the superseded runtime projection')
+    if os.environ.get('CONTINUATION_HOST_TIMEOUT_MINUTES') != '240':
+        raise ValueError('Recovery requires the explicit <=240-minute workflow route')
+    policy, recovery = batch.verify_policy()
+    groups = {row['host']: row for row in recovery['actual_hosts']}
+    group = groups.get(review['batch_id'])
+    if group is None:
+        raise ValueError('Recovery host is not in the fixed remaining schedule')
+    window = group['outer_maximum_seconds']-group['upload_reserve_seconds']
+    resources = recovery['resources']
+    if (review['wall_cap_seconds'] != window or not 0 < window <= 13800 or
+            review['rss_cap_bytes'] != resources['sampled_process_tree_rss_cap_bytes'] or
+            review['host_headroom_bytes'] < resources['minimum_host_free_bytes']):
+        raise ValueError('Recovery resource envelope differs from its fixed allocation')
+    index_path = inside(prior,review['prior_index_path'])
+    artifact = index_path.parent.parent
+    if index_path != artifact/'science/index.json':
+        raise ValueError('Recovery predecessor must retain its original artifact layout')
+    index_review = inside(ROOT,review['prior_index_review'])
+    if sha(index_path) != review['prior_index_sha256']:
+        raise ValueError('Recovery predecessor index changed')
+    # This verifies the exact failed first index or a later passed v2 index,
+    # including the mandatory independent pilot gate and fixed prefix.
+    batch.next_cases(policy,recovery,review,read(index_path),read(index_review))
+    config = inside(ROOT,review['operational_run_config_path'])
+    shared = recovery['shared_run']
+    if (sha(config) != shared['config_sha256'] or
+            review['operational_run_config_sha256'] != sha(config) or
+            review['operational_run_id'] != shared['run_id'] or
+            review['expires_utc'] != shared['expires_utc']):
+        raise ValueError('Recovery cannot extend the shared run or its deadline')
+    checker_review = inside(ROOT,review['checker_source_review'])
+    source_review = inside(ROOT,review['source_review_record'])
+    if (sha(checker_review) != review['checker_source_review_sha256'] or
+            sha(source_review) != review['source_review_sha256']):
+        raise ValueError('Recovery source-review identity differs')
+    for relative, expected in review['recovery_evidence_sha256'].items():
+        if sha(inside(ROOT,relative)) != expected:
+            raise ValueError('Recovery evidence changed: '+relative)
+    started = os.environ['CONTINUATION_HOST_STARTED_UTC']
+    shutil.copyfile(config,output/'run_config.json')
+    admission = dict(mode='recovery_host_batch',source_sha256=batch.source_identity(),
+        scientific_source_sha256=driver.source_identity(),
+        batch_policy_sha256=sha(ROOT/'experiments/s04b_joint_recovery_host/batch_policy.json'),
+        recovery_protocol_sha256=sha(ROOT/'experiments/s04b_joint_recovery/recovery_protocol.json'),
+        shared_run=shared,batch_id=review['batch_id'],case_ids=review['case_ids'],
+        child_attempt_ids=review['child_attempt_ids'],numerical_attempt_id=review['numerical_attempt_id'],
+        lease_token_sha256=hashlib.sha256(token.encode()).hexdigest(),
+        prior_index_sha256=sha(index_path),prior_review_sha256=sha(index_review),
+        expires_utc=review['expires_utc'],host_started_utc=started,execution_window_seconds=window,
+        rss_cap_bytes=review['rss_cap_bytes'],host_headroom_bytes=review['host_headroom_bytes'],
+        checker_source_review_sha256=sha(checker_review),host_batch_source_review_passed=True,
+        checker_source_review_passed=True,source_review_sha256=sha(source_review),
+        source_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
+        reviewed_files_sha256=review['reviewed_files_sha256'],conductor_review=review)
+    command = [sys.executable,'-B','-m','experiments.s04b_joint_recovery_host.batch',
+        '--admission',str(output/'admission.json'),'--prior',str(artifact),
+        '--prior-review',str(index_review),'--config',str(output/'run_config.json'),
+        '--checker-review',str(checker_review),'--failed-archive',str(inside(ROOT,review['failed_archive'])),
+        '--output',str(output/'host')]
+    return admission,command
+
+
 def reader_dispatch_plan(review, output):
     """Validate a nonduplicate public-reader request; no build/evaluation here."""
     from scripts import reproduce_cpu as reader
@@ -749,7 +841,7 @@ def main():
     environment['JOINT_NUMERICAL_LEASE_TOKEN'] = token
     environment['NUMERICAL_LEASE_TOKEN'] = token
     os.environ.update(environment)
-    if stage in JOINT_CONTINUATION_STAGES or stage in (BUDGETED_STAGE,HOST_BATCH_STAGE):
+    if stage in JOINT_CONTINUATION_STAGES or stage in (BUDGETED_STAGE,HOST_BATCH_STAGE,RECOVERY_HOST_STAGE):
         prior = prior_artifact(dict(pilot_artifact_id=review['prior_artifact_id'],
                                    pilot_archive_sha256=review['prior_archive_sha256']), output) if 'prior_artifact_id' in review else None
     else:
@@ -758,7 +850,9 @@ def main():
     os.environ.pop('GITHUB_TOKEN', None)
     if stage in READER_STAGES:
         return execute_reader_dispatch(review,output,expires)
-    if stage == HOST_BATCH_STAGE:
+    if stage == RECOVERY_HOST_STAGE:
+        admission,command = joint_recovery_host(review,output,token,prior)
+    elif stage == HOST_BATCH_STAGE:
         admission,command = joint_host_batch(review,output,token,prior)
     elif stage == BUDGETED_STAGE:
         admission,command = joint_budgeted(review,output,token,prior)
@@ -875,8 +969,9 @@ def main():
     write(output/'admission.json',admission)
     remaining = (expires-dt.datetime.now(dt.timezone.utc)).total_seconds()
     wall_cap = review['wall_cap_seconds']
-    if stage == HOST_BATCH_STAGE:
-        host_end = dt.datetime.fromisoformat(admission['host_started_utc'])+dt.timedelta(seconds=13800)
+    if stage in (HOST_BATCH_STAGE,RECOVERY_HOST_STAGE):
+        window = admission.get('execution_window_seconds',13800)
+        host_end = dt.datetime.fromisoformat(admission['host_started_utc'])+dt.timedelta(seconds=window)
         wall_cap = min(wall_cap,(host_end-dt.datetime.now(dt.timezone.utc)).total_seconds(),remaining)
         if wall_cap <= 0:
             raise ValueError('Host setup exhausted its reserved execution window')
@@ -892,7 +987,7 @@ def main():
         joint_batch_passed(output,review)
     if stage in ('observed-pilot','observed-completion') and result.returncode == 0:
         observed_batch_passed(output,review)
-    if stage == HOST_BATCH_STAGE and result.returncode == 0:
+    if stage in (HOST_BATCH_STAGE,RECOVERY_HOST_STAGE) and result.returncode == 0:
         host_batch_passed(output,review)
     return result.returncode
 
