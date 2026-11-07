@@ -3,7 +3,7 @@
 The expressions in table_links_cached.json are explicit arithmetic links, not
 value-matching guesses. Unmapped cells remain uncovered. Native arrays are read
 from the two immutable execution artifacts. Cache access is limited to already
-stored event labels, times, and training-count metadata.
+stored event labels, times, training-count and fixed spatial-scale metadata.
 
 Usage: python -B reproduction/score_replay/reconcile_cached_tables.py --output NEW.json
 Optional --additional-evidence supplies hash-bound actual rows for supplemental
@@ -185,9 +185,14 @@ class Evidence:
         if kind=='native_array':return float(self.array(rid,e['field'])[e['index']])
         if kind=='parameters':return self.row(rid)['parameters'][e['index']]
         if kind=='cache_count':return int(np.sum(self.cache(rid)[e['field']]==e['index']))
-        if kind=='cache_metadata':
+        if kind in ('cache_metadata','replayed_cache_metadata'):
+            # New coordinate links require a passed row with this cache hash;
+            # merely possessing a historical cache is not a completed replay.
+            if kind=='replayed_cache_metadata':self.row(rid)
             v=json.loads(str(self.cache(rid)['metadata_json'].item()))
             for key in e['field'].split('/'):v=v[key]
+            if kind=='replayed_cache_metadata' and (type(v)not in(int,float)or not math.isfinite(v)):
+                raise ValueError('nonfinite/non-numeric replayed cache metadata')
             return v
         raise ValueError('unknown expression '+repr(e))
 

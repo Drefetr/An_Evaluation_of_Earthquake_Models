@@ -386,6 +386,55 @@ class CachedProfileTableTests(unittest.TestCase):
         with self.assertRaises(MissingEvidence):data.evaluate(expr)
 
 
+class CachedSpatialMetadataTests(unittest.TestCase):
+    """Invented metadata/actual rows; no likelihood or historical replay."""
+    def fixture(self, metadata):
+        import numpy as np
+        from reproduction.score_replay.reconcile_cached_tables import Evidence
+        data=Evidence.__new__(Evidence);calls=[]
+        def actual(rid):
+            calls.append(('row',rid));return {'expected':{'sigma':999.},'parameters':[888.]}
+        def cache(rid):
+            calls.append(('cache',rid));return {'metadata_json':np.array(json.dumps(metadata))}
+        data.row=actual;data.cache=cache
+        return data,calls,{'op':'atom','kind':'replayed_cache_metadata','row':'invented','field':'sigma'}
+
+    def test_trigger_scale_uses_actual_bound_cache_not_kde_or_expected(self):
+        data,calls,expr=self.fixture({'sigma':8.5,'kde_bandwidth':15.})
+        self.assertEqual(data.evaluate(expr),8.5)
+        self.assertEqual(calls,[('row','invented'),('cache','invented')])
+
+    def test_missing_or_failed_actual_row_cannot_certify_metadata(self):
+        from reproduction.score_replay.reconcile_cached_tables import MissingEvidence
+        for error in (MissingEvidence('invented'),ValueError('failed row')):
+            data,calls,expr=self.fixture({'sigma':8.5})
+            def reject(rid):raise error
+            data.row=reject
+            with self.assertRaises(type(error)):data.evaluate(expr)
+            self.assertEqual(calls,[])
+
+    def test_nonfinite_boolean_null_or_missing_metadata_is_rejected(self):
+        for value in (None,True,'5',float('nan'),float('inf')):
+            data,_,expr=self.fixture({'sigma':value})
+            with self.assertRaises(ValueError):data.evaluate(expr)
+        data,_,expr=self.fixture({'kde_bandwidth':15.})
+        with self.assertRaises(KeyError):data.evaluate(expr)
+
+    def test_all24_scale_links_use_same_replayed_rows_as_score_contrasts(self):
+        package=Path(__file__).resolve().parents[1]/'reproduction/score_replay'
+        links=json.loads((package/'table_links_cached.json').read_text())
+        table=next(t for t in links['tables']if t['id']=='ch10_audit:table:9')
+        cells={c['id']:c for c in table['cells']};count=0
+        for row in range(2,14):
+            contrast=cells[f'{row}:4']['expression']['terms']
+            for col,rid in ((2,contrast[0]['row']),(3,contrast[1]['value']['row'])):
+                cell=cells[f'{row}:{col}'];count+=1
+                self.assertEqual(cell['expression'],dict(op='atom',row=rid,kind='replayed_cache_metadata',field='sigma'))
+                self.assertEqual(cell['coordinate_role'],'sensitivity_trigger_scale_km'if col==2 else'primary_trigger_scale_km')
+                self.assertNotIn('uncovered_reason',cell)
+        self.assertEqual(count,24)
+
+
 class CaliforniaPartitionTests(unittest.TestCase):
     def test_observed_blas_matches_scalar_strict_past_and_tiling_controls(self):
         from reproduction.score_replay.observed_replay import tiny_controls
