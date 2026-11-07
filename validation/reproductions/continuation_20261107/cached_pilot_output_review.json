@@ -1,0 +1,50 @@
+{
+  "schema": "independent_cached_replay_review_v1",
+  "task": "replay_output_audit",
+  "attempt_id": "9476f4c0-847f-4ef2-af74-9be0922aa7d0",
+  "reviewer": "recover_nzca (independent of Task2 implementation author)",
+  "status": "passed_for_remaining_492_admission",
+  "passed": true,
+  "counts": {
+    "archives": 12,
+    "resources": 747,
+    "rows": 510,
+    "original_case_files": 54,
+    "pilot_rows": 18,
+    "component_comparisons": 116,
+    "native_arrays": 102,
+    "verified_builds": 9,
+    "remaining_rows": 492
+  },
+  "maximum_component_absolute_difference_nats": 0.0,
+  "maximum_joint_decomposition_error": 0.0,
+  "all_116_component_deltas_exactly_zero": true,
+  "recommendation": "Admit the 492 disjoint remaining cached rows under unchanged source, tolerances, identities and resource supervisor; retain the 18 pilot rows without rescoring.",
+  "scope": "Saved-output arithmetic and identity review only; no likelihood evaluation, fit, simulation or code execution from numerical libraries.",
+  "artifact_sha256": "ee9a0dfef60b6e16dd8b8652869e9b2719a3810f989d66d5d633cbb9c2ef97ef",
+  "pilot_result_sha256": "e9925e07d13e068fcfd93cb47333830b0dc95c954de30559b3372de580af7f62",
+  "supervision_result_sha256": "68d1eaec6880262360cda07a0f3fa1c41319432122b9187941fbc6bfe5d15776",
+  "resources": {
+    "execution_wall_seconds": 1.5111792000000008,
+    "sampled_peak_tree_rss_bytes": 81330176,
+    "minimum_sampled_host_available_bytes": 15500075008,
+    "sample_interval_seconds": 0.5,
+    "memory_scope": "Sampled process-tree RSS with enforcement after observation, not a hard OS memory reservation or exact unsampled peak"
+  },
+  "evidence_sha256": {
+    "report.md": "e7a9184beacd236effe4ce99be90b32f55bfb595cc7291589ca02185dbeac9fb",
+    "input_audit.json": "f301bf756242447c0849d92da92aa3cbfae3181341ed819e5300f983940a4929",
+    "input_stage_result.json": "85a72c75e9a50b69042a8c1747dccb10fee4e0946e9be25e0528b64a5b5b6cd9",
+    "pilot_audit.json": "468d137e017ed2485f10b00ca7fc3c9166de4b9fa3dce5160bbde5bb57f8b3bc",
+    "remaining_rows.json": "1b8f75a59714537f5c13ee5fbecc467e7d4bac1039216def1c132820619f2ab4",
+    "audit_inputs.py": "8ed6f80185c50872fe40b947ff689fef2eddb68196afc216b48d7bd2dcc0a023",
+    "audit_pilot.py": "6fde564a085fff9f6985cc81905f4b0447ed59476bf549ae79119f6fddeafd59"
+  },
+  "limitations": [
+    "No optimizer rerun or raw-feature reconstruction.",
+    "Pilot covers18 rows; remaining492 have not been accepted as completed.",
+    "Broader table routes and empty table mappings remain outside this review.",
+    "RSS is sampled; no claim of exact unsampled maximum."
+  ],
+  "errors": []
+}

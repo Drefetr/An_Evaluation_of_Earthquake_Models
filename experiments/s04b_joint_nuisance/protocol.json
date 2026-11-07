@@ -3,7 +3,7 @@
   "status": "frozen_before_real_history_fits_independent_review_required",
   "scope": "Train-only joint background and temporal-excitation comparison on80 existing S04B histories, conditional on fixed spatial and mark laws; no new histories, physical claim, global optimum, asymptotic inference or prospective validity.",
   "baseline": "5374140404130421d878152a952024b43c1fbcc4",
-  "input_pins_sha256": "888f39b694cf026c848d562f0aa885077547106e085428a22ba051ef556b0f35",
+  "input_pins_sha256": "636e2f6ebd1db404a04155acef1979f36931338cbfa0e4c24351a80378924dad",
   "roster": [
     "S4_narrow_short_imm_seed410401",
     "S4_narrow_short_imm_seed410402",
@@ -358,5 +358,17 @@
   "remaining_contrasts": "Other18 regime/procedure comparisons descriptive; pointwise Wilson intervals are not simultaneous coverage.",
   "null_floor": "Exact feasible historical backbone is an eligible new-null candidate; selected new null cannot be worse beyond1e-9.",
   "null_search_gap": "Every eta0 optimized alternative that improves training NLL over the new-null candidate by>1e-9 is recorded as a null-search gap. Such a procedure contrast is not labelled an active-inhibition gain. Case-level existence of a gap is flagged on all outcomes of that alternative.",
-  "runtime_reuse": "Pilot/full require identical Python version/implementation/executable hash, NumPy/SciPy versions, architecture/byte order, NumPy core and SciPy L-BFGS-B extension hashes, new source/input hashes and the exact same compiled native library hash. Detailed platform/kernel/build metadata are retained separately and may differ across fresh CI runners; original pilot runtime is retained in full result. No numerical tolerance is relaxed. Loaded numerical-library binary hashes also match, independently of installation path."
+  "runtime_reuse": "Pilot/full require identical Python version/implementation/executable hash, NumPy/SciPy versions, architecture/byte order, NumPy core and SciPy L-BFGS-B extension hashes, new source/input hashes and the exact same compiled native library hash. Detailed platform/kernel/build metadata are retained separately and may differ across fresh CI runners; original pilot runtime is retained in full result. No numerical tolerance is relaxed. Loaded numerical-library binary hashes also match, independently of installation path.",
+  "pre_execution_integration_amendments": [
+    {
+      "reason": "Pin approved portable S06 library-loader source; adopted parameter bounds unchanged. No scientific score or fit executed.",
+      "changed_inputs": [
+        {
+          "path": "engine/stage2_followup/s03_s06_spatial_benchmarks/s06/engine.py",
+          "old": "2ba7f23d2fe356b2bcad88e0e78a5f185dfa65589436d11ab259d865dfe94ca7",
+          "new": "86c81d0fbaf8fc0dbddab4f9f085afe550c426002ba3f7bf77f740d78c00c82b"
+        }
+      ]
+    }
+  ]
 }
