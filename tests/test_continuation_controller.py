@@ -265,6 +265,56 @@ class LIConstructorRepairControls(unittest.TestCase):
             self.assertEqual(admission['original_partial_archive_sha256'],controller.sha(root/'partial.zip'))
 
 
+class HostBatchDispatchControls(unittest.TestCase):
+    def test_host_route_pins_checker_config_and_original_driver(self):
+        review=dict(prior_artifact_id=1,prior_index_review='validation/prior.json',failed_archive='validation/failed.zip',
+                    source_review_record='validation/host_source.json',checker_source_review='validation/checker_source.json',
+                    operational_run_config_path='validation/run_config.json')
+        pins=controller.mandatory_sources(controller.HOST_BATCH_STAGE,review)
+        self.assertTrue({'experiments/s04b_joint_host_batch/batch.py','experiments/s04b_joint_host_batch/batch_policy.json',
+            'experiments/s04b_joint_budgeted/driver.py','experiments/s04b_joint_audit/check.py',
+            'experiments/s04b_joint_nuisance_audit/audit.py','tests/test_joint_budgeted_batch.py',
+            'tests/test_joint_saved_output_audit.py',review['checker_source_review'],review['operational_run_config_path']}.issubset(pins))
+
+    def test_preparation_uses_local_predecessor_and_requires_host_timeout_marker(self):
+        from tests.test_joint_budgeted_batch import HostBatchControls
+        from experiments.s04b_joint_host_batch import batch
+        from experiments.s04b_joint_budgeted import driver
+        import shutil
+        with tempfile.TemporaryDirectory()as directory:
+            args,grant,policy,allocation,repo=HostBatchControls().fixture(Path(directory))
+            for source,name in [(args.prior_review,'prior.json'),(args.config,'config.json'),
+                                (args.checker_review,'checker.json'),(args.failed_archive,'failed.zip')]:
+                shutil.copyfile(source,repo/name)
+            host=repo/'experiments/s04b_joint_host_batch';host.mkdir()
+            shutil.copyfile(batch.HERE/'batch_policy.json',host/'batch_policy.json')
+            review=dict(grant,stage=controller.HOST_BATCH_STAGE,prior_artifact_id=1,
+                driver_source_review_passed=True,scheduler_source_review_passed=True,allocation_protocol_review_passed=True,
+                prior_index_path='science/index.json',prior_index_review='prior.json',wall_cap_seconds=13800,
+                operational_run_config_path='config.json',operational_run_config_sha256=policy['shared_run']['config_sha256'],
+                operational_run_id=policy['shared_run']['run_id'],checker_source_review='checker.json',failed_archive='failed.zip')
+            out=Path(directory)/'controller';out.mkdir()
+            with patch.object(controller,'ROOT',repo),patch.object(batch,'verify_policy',return_value=(policy,allocation)),\
+                    patch.object(batch,'source_identity',return_value={'host':'fixture'}),\
+                    patch.object(driver,'source_identity',return_value={'science':'frozen'}),\
+                    patch.object(controller.subprocess,'check_output',return_value='abcdef1\n'),\
+                    patch.object(controller.subprocess,'run')as run,\
+                    patch.dict(controller.os.environ,{'CONTINUATION_HOST_TIMEOUT_MINUTES':'240',
+                        'CONTINUATION_HOST_STARTED_UTC':grant['host_started_utc']}):
+                admission,command=controller.joint_host_batch(review,out,'fixture-token',args.prior)
+                run.assert_not_called();self.assertEqual(admission['case_ids'],grant['case_ids'])
+                self.assertEqual(command[command.index('--prior')+1],str(args.prior))
+                self.assertEqual(command[command.index('--output')+1],str(out/'host'))
+                with patch.dict(controller.os.environ,{'CONTINUATION_HOST_TIMEOUT_MINUTES':'290'}),self.assertRaises(ValueError):
+                    controller.joint_host_batch(review,out,'fixture-token',args.prior)
+
+    def test_workflow_is_host_specific_and_retains_every_child(self):
+        workflow=(ROOT/'.github/workflows/research-continuation.yml').read_text()
+        self.assertIn("contains(github.event.head_commit.message, '[joint-host]') && 240 || 290",workflow)
+        self.assertLess(workflow.index('Record host start'),workflow.index('actions/checkout'))
+        self.assertIn('continuation/host/**',workflow)
+
+
 class JointContinuationControls(unittest.TestCase):
     """Invented archives/indexes only; no library load, optimizer or score call."""
     def fixture(self, root):

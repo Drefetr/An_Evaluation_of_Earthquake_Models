@@ -20,6 +20,7 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 JOINT_CONTINUATION_STAGES = ('joint-continuation-pilot', 'joint-continuation-campaign')
 BUDGETED_STAGE = 'joint-budgeted-case'
+HOST_BATCH_STAGE = 'joint-budgeted-host'
 LI_REPAIR_STAGE = 'li-constructor-repair'
 LI_ORIGINAL_PILOT = ['original_li/LI_CA_M4_F2/LI/train',
                      'original_li/S0_uniform_null_seed410002/LI/test',
@@ -195,12 +196,12 @@ def mandatory_sources(stage, review=None):
         paths.update(('scripts/reproduce_cpu.py',
                       'validation/reproductions/score_replay_20261107/accepted_execution_index.json'))
         paths.update(review.get('reader_execution_evidence_sha256', {}))
-    elif stage in ('joint-pilot','joint-full',BUDGETED_STAGE) + JOINT_CONTINUATION_STAGES:
+    elif stage in ('joint-pilot','joint-full',BUDGETED_STAGE,HOST_BATCH_STAGE) + JOINT_CONTINUATION_STAGES:
         paths.add('tests/test_s04b_joint_nuisance.py')
         package = ROOT/'experiments/s04b_joint_nuisance'
         paths.update(p.relative_to(ROOT).as_posix() for p in package.iterdir()
                      if p.is_file() and p.suffix in ('.py','.cpp','.json'))
-        if stage in JOINT_CONTINUATION_STAGES or stage == BUDGETED_STAGE:
+        if stage in JOINT_CONTINUATION_STAGES or stage in (BUDGETED_STAGE,HOST_BATCH_STAGE):
             execution = ROOT/'experiments/s04b_joint_execution'
             paths.update(p.relative_to(ROOT).as_posix() for p in execution.iterdir()
                          if p.is_file() and p.suffix in ('.py','.json'))
@@ -208,11 +209,18 @@ def mandatory_sources(stage, review=None):
                           'experiments/s04b_joint_nuisance/pre_repair_source.zip'))
             paths.add(review['failed_archive'])
             paths.add(review['prior_index_review'] if 'prior_artifact_id' in review else review['training_review'])
-            if stage == BUDGETED_STAGE:
+            if stage in (BUDGETED_STAGE,HOST_BATCH_STAGE):
                 budgeted = ROOT/'experiments/s04b_joint_budgeted'
                 paths.update(p.relative_to(ROOT).as_posix() for p in budgeted.rglob('*')
                              if p.is_file() and p.suffix in ('.py','.json','.md'))
                 paths.update(('tests/test_joint_budgeted_driver.py',review['source_review_record']))
+            if stage == HOST_BATCH_STAGE:
+                host = ROOT/'experiments/s04b_joint_host_batch'
+                paths.update(p.relative_to(ROOT).as_posix() for p in host.iterdir()
+                             if p.is_file() and p.suffix in ('.py','.json'))
+                paths.update(('tests/test_joint_budgeted_batch.py','experiments/s04b_joint_audit/check.py',
+                              'experiments/s04b_joint_nuisance_audit/audit.py','tests/test_joint_saved_output_audit.py',
+                              review['checker_source_review'],review['operational_run_config_path']))
     elif stage in ('s02-pilot','s02-completion','initialmark-pilot','initialmark-completion'):
         paths.update(('reproduction/score_replay/s02_replay.py','tests/test_s02_score_replay.py'))
         package = ROOT/'reproduction/score_replay/s02'
@@ -551,6 +559,65 @@ def joint_batch_passed(output, review):
         raise ValueError('Completed joint index identity differs')
 
 
+def joint_host_batch(review, output, token, prior):
+    """Prepare local-prefix orchestration; no fitting or automated acceptance here."""
+    from experiments.s04b_joint_host_batch import batch
+    from experiments.s04b_joint_budgeted import driver
+    if prior is None or review['stage'] != HOST_BATCH_STAGE:
+        raise ValueError('Host batch requires its exact accepted predecessor artifact')
+    if any(review.get(key) is not True for key in ('driver_source_review_passed','scheduler_source_review_passed',
+            'allocation_protocol_review_passed','host_batch_source_review_passed','checker_source_review_passed')):
+        raise ValueError('Host/science/checker source reviews are required')
+    if os.environ.get('CONTINUATION_HOST_TIMEOUT_MINUTES') != '240':
+        raise ValueError('Host batch requires the explicit <=240-minute workflow route')
+    policy, allocation = batch.verify_policy()
+    if review['wall_cap_seconds'] != 13800 or review['rss_cap_bytes'] != 6442450944 or review['host_headroom_bytes'] < 2147483648:
+        raise ValueError('Host resource envelope differs')
+    started = os.environ['CONTINUATION_HOST_STARTED_UTC']
+    batch.timing(policy,started,0,0)
+    index_path = inside(prior,review['prior_index_path'])
+    artifact = index_path.parent.parent
+    if index_path != artifact/'science/index.json':
+        raise ValueError('Host predecessor must retain its original artifact layout')
+    index_review = inside(ROOT,review['prior_index_review'])
+    checked = read(index_review)
+    if checked.get('passed') is not True or checked.get('index_sha256') != sha(index_path) or sha(index_path) != review['prior_index_sha256']:
+        raise ValueError('Host predecessor lacks exact acceptance')
+    batch.next_cases(policy,allocation,review,read(index_path))
+    config = inside(ROOT,review['operational_run_config_path'])
+    if sha(config) != policy['shared_run']['config_sha256'] or review['operational_run_config_sha256'] != sha(config) or review['operational_run_id'] != policy['shared_run']['run_id']:
+        raise ValueError('Host config/run identity differs')
+    checker_review = inside(ROOT,review['checker_source_review'])
+    if sha(checker_review) != review['checker_source_review_sha256']:
+        raise ValueError('Checker source-review identity differs')
+    shutil.copyfile(config,output/'run_config.json')
+    admission = dict(mode='fixed_host_batch',source_sha256=batch.source_identity(),
+        scientific_source_sha256=driver.source_identity(),batch_policy_sha256=sha(ROOT/'experiments/s04b_joint_host_batch/batch_policy.json'),
+        shared_run=policy['shared_run'],batch_id=review['batch_id'],case_ids=review['case_ids'],child_attempt_ids=review['child_attempt_ids'],
+        numerical_attempt_id=review['numerical_attempt_id'],lease_token_sha256=hashlib.sha256(token.encode()).hexdigest(),
+        prior_index_sha256=sha(index_path),prior_review_sha256=sha(index_review),expires_utc=review['expires_utc'],
+        host_started_utc=started,rss_cap_bytes=review['rss_cap_bytes'],host_headroom_bytes=review['host_headroom_bytes'],
+        checker_source_review_sha256=sha(checker_review),host_batch_source_review_passed=True,checker_source_review_passed=True,
+        source_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
+        reviewed_files_sha256=review['reviewed_files_sha256'],conductor_review=review)
+    command = [sys.executable,'-B',str(ROOT/'experiments/s04b_joint_host_batch/batch.py'),
+        '--admission',str(output/'admission.json'),'--prior',str(artifact),'--prior-review',str(index_review),
+        '--config',str(output/'run_config.json'),'--checker-review',str(checker_review),
+        '--failed-archive',str(inside(ROOT,review['failed_archive'])),'--output',str(output/'host')]
+    return admission,command
+
+
+def host_batch_passed(output, review):
+    result = read(output/'host/result.json')
+    if (result.get('passed') is not True or result.get('status') != 'host_batch_complete' or
+            [row['case_id'] for row in result.get('children',[])] != review['case_ids'] or
+            result.get('live_agent_review') is not False or result.get('final_batch_agent_review_required') is not True):
+        raise ValueError('Host batch did not complete its exact reviewed suffix')
+    last = result['children'][-1]
+    if sha(inside(output/'host',result['latest_index'])) != last['index_sha256']:
+        raise ValueError('Host final accepted index changed')
+
+
 def reader_dispatch_plan(review, output):
     """Validate a nonduplicate public-reader request; no build/evaluation here."""
     from scripts import reproduce_cpu as reader
@@ -682,7 +749,7 @@ def main():
     environment['JOINT_NUMERICAL_LEASE_TOKEN'] = token
     environment['NUMERICAL_LEASE_TOKEN'] = token
     os.environ.update(environment)
-    if stage in JOINT_CONTINUATION_STAGES or stage == BUDGETED_STAGE:
+    if stage in JOINT_CONTINUATION_STAGES or stage in (BUDGETED_STAGE,HOST_BATCH_STAGE):
         prior = prior_artifact(dict(pilot_artifact_id=review['prior_artifact_id'],
                                    pilot_archive_sha256=review['prior_archive_sha256']), output) if 'prior_artifact_id' in review else None
     else:
@@ -691,7 +758,9 @@ def main():
     os.environ.pop('GITHUB_TOKEN', None)
     if stage in READER_STAGES:
         return execute_reader_dispatch(review,output,expires)
-    if stage == BUDGETED_STAGE:
+    if stage == HOST_BATCH_STAGE:
+        admission,command = joint_host_batch(review,output,token,prior)
+    elif stage == BUDGETED_STAGE:
         admission,command = joint_budgeted(review,output,token,prior)
     elif stage in JOINT_CONTINUATION_STAGES:
         admission,command = joint_continuation(review,output,token,prior)
@@ -805,10 +874,16 @@ def main():
         raise ValueError('Unknown bounded continuation stage')
     write(output/'admission.json',admission)
     remaining = (expires-dt.datetime.now(dt.timezone.utc)).total_seconds()
-    if remaining < review['wall_cap_seconds']:
+    wall_cap = review['wall_cap_seconds']
+    if stage == HOST_BATCH_STAGE:
+        host_end = dt.datetime.fromisoformat(admission['host_started_utc'])+dt.timedelta(seconds=13800)
+        wall_cap = min(wall_cap,(host_end-dt.datetime.now(dt.timezone.utc)).total_seconds(),remaining)
+        if wall_cap <= 0:
+            raise ValueError('Host setup exhausted its reserved execution window')
+    elif remaining < wall_cap:
         raise ValueError('Lease expires before entire approved stage allowance')
     spec = dict(command=command,cwd=str(ROOT),output=str(output/'supervision'),env=environment,
-                wall_cap_seconds=review['wall_cap_seconds'],rss_cap_bytes=review['rss_cap_bytes'],
+                wall_cap_seconds=wall_cap,rss_cap_bytes=review['rss_cap_bytes'],
                 host_headroom_bytes=review['host_headroom_bytes'],sample_seconds=.5)
     write(output/'supervisor_spec.json',spec)
     result = subprocess.run([sys.executable,'-B',str(ROOT/'scripts/supervise_research.py'),
@@ -817,6 +892,8 @@ def main():
         joint_batch_passed(output,review)
     if stage in ('observed-pilot','observed-completion') and result.returncode == 0:
         observed_batch_passed(output,review)
+    if stage == HOST_BATCH_STAGE and result.returncode == 0:
+        host_batch_passed(output,review)
     return result.returncode
 
 
