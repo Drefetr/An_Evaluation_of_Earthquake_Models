@@ -48,6 +48,14 @@ class AdmissionControls(unittest.TestCase):
         with self.assertRaises(ValueError):
             controller.replay_paths(dict(review, registry='../outside.json'))
 
+    def test_inhibition_route_requires_its_own_evaluator_and_build_pins(self):
+        review = {'registry': 'reproduction/score_replay/s04_original/registry.json',
+                  'proposal': 'reproduction/score_replay/s04_original/pilot_proposal.json'}
+        pins = controller.mandatory_sources('inhibition-pilot', review)
+        self.assertTrue({review['registry'], review['proposal'],
+                         'reproduction/score_replay/inhibition_build.py',
+                         'reproduction/score_replay/inhibition_replay.py'}.issubset(pins))
+
 
 if __name__ == '__main__':
     unittest.main()

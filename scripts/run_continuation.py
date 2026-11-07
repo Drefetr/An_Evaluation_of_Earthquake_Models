@@ -83,11 +83,16 @@ def mandatory_sources(stage, review=None):
         package = ROOT/'experiments/s04b_joint_nuisance'
         paths.update(p.relative_to(ROOT).as_posix() for p in package.iterdir()
                      if p.is_file() and p.suffix in ('.py','.cpp','.json'))
-    elif stage in ('cached-pilot','cached-completion','regional-pilot','regional-completion'):
+    elif stage in ('cached-pilot','cached-completion','regional-pilot','regional-completion',
+                   'inhibition-pilot','inhibition-completion'):
         prefix = 'reproduction/score_replay/'
         package, registry, proposal = replay_paths(review or {})
-        names = ('__init__.py','core.py','regional_build.py','regional_replay.py') if stage.startswith('regional-') else (
-            '__init__.py','build.py','cached_native.py','core.py','inventory.py','replay.py')
+        if stage.startswith('regional-'):
+            names = ('__init__.py','core.py','regional_build.py','regional_replay.py')
+        elif stage.startswith('inhibition-'):
+            names = ('__init__.py','core.py','inhibition_build.py','inhibition_replay.py')
+        else:
+            names = ('__init__.py','build.py','cached_native.py','core.py','inventory.py','replay.py')
         paths.update(prefix+name for name in names)
         paths.update(p.relative_to(ROOT).as_posix() for p in (registry, proposal, registry.parent/'input_manifest.json'))
         paths.update(prefix+name for name in ('protocol.json','cached_field_crosswalk.json'))
@@ -194,24 +199,28 @@ def main():
             admission.update(pilot_result_sha256=review['pilot_result_sha256'],
                              pilot_output_review_passed=review['pilot_output_review_passed'])
             command += ['--pilot',str(inside(prior,review['pilot_science_directory']))]
-    elif stage in ('cached-pilot', 'cached-completion', 'regional-pilot', 'regional-completion'):
+    elif stage in ('cached-pilot', 'cached-completion', 'regional-pilot', 'regional-completion',
+                   'inhibition-pilot', 'inhibition-completion'):
         package, registry_path, proposal_path = replay_paths(review)
         regional = stage.startswith('regional-')
+        inhibition = stage.startswith('inhibition-')
+        builder, runner = (('regional_build.py','regional_replay.py') if regional else
+                           ('inhibition_build.py','inhibition_replay.py') if inhibition else ('build.py','replay.py'))
         proposal = read(proposal_path)
         registry = read(registry_path)
         selected, by_id = replay_roster(review, proposal, registry)
         build = output / 'build'
-        subprocess.run([sys.executable,'-B',str(package/('regional_build.py' if regional else 'build.py')),
+        subprocess.run([sys.executable,'-B',str(package/builder),
                         '--registry',str(registry_path),'--output',str(build)],cwd=ROOT,check=True)
         libraries = read(build/'libraries.json')
         phase = stage.split('-')[1]
-        used = {'core','competitive'} if regional else {by_id[row]['adapter'] for row in selected}
+        used = {'core','competitive'} if regional else {'cpu','radial'} if inhibition else {by_id[row]['adapter'] for row in selected}
         write(output/'rows.json',selected)
         admission = dict(proposal, passed=True, status='reviewed_workflow_admission', mode=phase, row_ids=selected,
                          numerical_lease=review['numerical_attempt_id'],
                          libraries_sha256=sha(build/'libraries.json'), expires_utc=review['expires_utc'], numeric_threads=2,
                          build_receipts_sha256={k:sha(libraries['libraries'][k]['build_receipt_path']) for k in sorted(used)})
-        command = [sys.executable,'-B',str(package/('regional_replay.py' if regional else 'replay.py')),'--mode',phase,
+        command = [sys.executable,'-B',str(package/runner),'--mode',phase,
                    '--registry',str(registry_path),
                    '--libraries',str(build/'libraries.json'),'--admission',str(output/'admission.json'),
                    '--rows',str(output/'rows.json'),'--output',str(output/'science')]
