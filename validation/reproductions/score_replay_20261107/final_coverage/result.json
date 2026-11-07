@@ -1,0 +1,179 @@
+{
+  "schema": "final_historical_score_table_coverage_packaging_v1",
+  "passed": true,
+  "status": "complete_arithmetic_and_custody_pending_independent_review",
+  "table_count": 103,
+  "table_status_counts": {
+    "mapped_fields_reconciled": 78,
+    "no_likelihood_required": 13,
+    "prior_replay_retained": 12
+  },
+  "field_statuses_by_scope": {
+    "mapped_fields_reconciled": {
+      "contract_checked": 92,
+      "reconciled": 5679,
+      "metadata_checked": 119
+    },
+    "no_likelihood_required": {
+      "not_run": 204,
+      "reconciled": 88
+    },
+    "prior_replay_retained": {
+      "not_run": 2271
+    }
+  },
+  "required_replay_tables": 78,
+  "required_replay_tables_reconciled": 78,
+  "unresolved_required_numeric_fields": 0,
+  "failed_fields": 0,
+  "unreplayable_required_fields": 0,
+  "metadata_fields_checked": 119,
+  "display_rounding_difference_count": 4,
+  "display_rounding_differences": [
+    {
+      "table_id": "10_nz_spatial_background:table:1",
+      "field": "5:2:0",
+      "evidence": [
+        {
+          "field": "5:2:0",
+          "route": "cached",
+          "status": "reconciled",
+          "scope": "explicit mapped field",
+          "source_row_index": 5,
+          "column_index": 2,
+          "actual": -4.547473508864641e-13,
+          "display": "-5.11591e-13",
+          "absolute_delta": 5.68436491135359e-14,
+          "functional_tolerance": 1e-09,
+          "rounding_half_unit": 5e-19,
+          "allowed_absolute_delta": 1.0000000005000001e-09,
+          "exact_display_match": false,
+          "producer_display_rounding_flags": {
+            "display_rounding_agrees": false
+          }
+        }
+      ]
+    },
+    {
+      "table_id": "13_continuous_local_inhibition:table:4",
+      "field": "3:2:0",
+      "evidence": [
+        {
+          "field": "3:2:0",
+          "route": "regional",
+          "status": "reconciled",
+          "scope": "explicit mapped field",
+          "source_row_index": 3,
+          "column_index": 2,
+          "actual": 1.1273377441137493e-12,
+          "display": "+1.128699e-12",
+          "absolute_delta": 1.3612558862507834e-15,
+          "functional_tolerance": 6.047904191616767e-07,
+          "rounding_half_unit": 5e-19,
+          "allowed_absolute_delta": 6.047904191621766e-07,
+          "exact_display_match": false,
+          "producer_display_rounding_flags": {}
+        }
+      ]
+    },
+    {
+      "table_id": "13_continuous_local_inhibition:table:4",
+      "field": "5:2:0",
+      "evidence": [
+        {
+          "field": "5:2:0",
+          "route": "regional",
+          "status": "reconciled",
+          "scope": "explicit mapped field",
+          "source_row_index": 5,
+          "column_index": 2,
+          "actual": 5.976679468793528e-13,
+          "display": "+5.983898e-13",
+          "absolute_delta": 7.218531206471846e-16,
+          "functional_tolerance": 9.61904761904762e-07,
+          "rounding_half_unit": 5e-20,
+          "allowed_absolute_delta": 9.619047619048119e-07,
+          "exact_display_match": false,
+          "producer_display_rounding_flags": {}
+        }
+      ]
+    },
+    {
+      "table_id": "ch10_audit:table:1",
+      "field": "5:6:0",
+      "evidence": [
+        {
+          "field": "5:6:0",
+          "route": "cached",
+          "status": "reconciled",
+          "scope": "explicit mapped field",
+          "source_row_index": 5,
+          "column_index": 6,
+          "actual": -5.684341886080802e-14,
+          "display": "-1.13687e-13",
+          "absolute_delta": 5.684358113919199e-14,
+          "functional_tolerance": 1e-09,
+          "rounding_half_unit": 5e-19,
+          "allowed_absolute_delta": 1.0000000005000001e-09,
+          "exact_display_match": false,
+          "producer_display_rounding_flags": {
+            "display_rounding_agrees": false
+          }
+        }
+      ]
+    }
+  ],
+  "cached": {
+    "mapped_cells": 4734,
+    "display_roundoff_cells": 2
+  },
+  "regional": {
+    "mapped_cells": 933,
+    "reconciled_cells": 933,
+    "not_run_cells": 0,
+    "failed_cells": 0
+  },
+  "s05_observed_aliases": {
+    "rows": 6,
+    "checks": 54,
+    "passed": true,
+    "scope": "Aliases to accepted actual primary CA OC/EP results, not a new S05 campaign"
+  },
+  "accepted_execution_entries": 28,
+  "accepted_regional_records": 376,
+  "accepted_additional_cached_records": 224,
+  "source_sha256": {
+    "reproduction/score_replay/coverage_report.py": "a67f380f47a99e0ef8f412e886b7b73c27e39b2f82d6cb1c7e7b89bfe6a13501",
+    "reproduction/score_replay/inventory.py": "fd639c1c98aeb26d43ecca3db4f91b2e39b427eb952aff3fa1befd21ebc3b99d",
+    "reproduction/score_replay/reconcile_cached_tables.py": "0f0a78c74dda6e5bff0b372e6a2b1cd55dff5507bfadd2f62d1955749e9709cb",
+    "reproduction/score_replay/reconcile_regional_tables.py": "69b5179948be144acfa42256c5575bb92e263e01a9afb404b8c0bc5e29cf0f9e",
+    "reproduction/score_replay/table_inventory.json": "c4e051452171a9ec831fc02dc1dccc7a0971cd6649fef211799074c4c1f4ac43",
+    "reproduction/score_replay/coverage_plan.json": "d24d7606beb50e304148aa691b59798a11f48cb6420154fe5d5501952b4c2f27",
+    "reproduction/score_replay/table_links_cached.json": "4e23ef87e16cd59d833fd5983987774c5ced27bb9ef376d87ff8d49062a071e7",
+    "reproduction/score_replay/table_links_regional.json": "ca4c1dc5b562e1044fe32446ffa3a5dc25aa91b95f36872e9999c405973f9283",
+    "validation/reproductions/score_replay_20261107/accepted_execution_index.json": "655eaede3b9e4beeb782e4478c425bbbac06071a68563d6d18d8a5d2b0fff4ed",
+    "validation/reproductions/score_replay_20261107/regional_evidence.json": "8389b74114d647ef36807314542a25079006ab424c30b68b8223a8b05505acae",
+    "validation/reproductions/score_replay_20261107/additional_cached_evidence.json": "f23dfdefde2244594acac3f03ebd06858fbb7a7111ffc4d4ab0e2e116829db7e",
+    "validation/reproductions/score_replay_20261107/cached/evidence_index.json": "36df25940bce6e855646e30929986ac6706d5ebc9151e64f906690f433d18faf",
+    "validation/reproductions/score_replay_20261107/table_metadata/extension_02/metadata_crosswalk.json": "3188cc26ac9c0a02a65378613292be3b93ad24647010904eac6d1b72cb22fc36",
+    "validation/reproductions/score_replay_20261107/table_metadata/extension_02/evidence.json": "6408a0d49dc8ec75a8968c85caa97605df40e8fa5e87ba8dddd5b1657e194f71",
+    "validation/reproductions/score_replay_20261107/table_metadata/extension_02/independent_review.json": "ad4e4f4dfae52b3fa23af39e3406ec9f70f52fc85d8fe2ce87e46b58f8f512dc",
+    "validation/reproductions/score_replay_20261107/s04_original/completion_independent_review.json": "29b1ca650925d5c9d8df64343eb3a8c490806f1ff685f751e750ca708732accc"
+  },
+  "artifact_sha256": {
+    "coverage_inputs.json": "adce0c7748d81048db47b94c6e56be42ab87c725c309f65b6b60847caaa5cf0f",
+    "cached_table_deltas.json": "7c6af4086d70608c3d21d1fff7d5d4ea8b5d62e440f7d3c764588d4f51bf2619",
+    "regional_table_deltas.json": "c358a17189152f91ed7f735f1835e20d71c3ee5333d6d8feb9dbf9b19acd8f76",
+    "coverage.json": "78990d8b60a5d32f946a289c9177f2cc5d2e5d68741f062211bc17e269587b26",
+    "README.md": "fbde50db19b6bf59e6d04b247e826dfccb17b2ca7f1ab8aa80a7e876e270108a"
+  },
+  "relocation_check": {
+    "passed": true,
+    "identical_coverage_bytes": true,
+    "scope": "Same manifest and sibling deltas resolve from a second location with repository-relative accepted evidence"
+  },
+  "intended_public_directory": "validation/reproductions/score_replay_20261107/final_coverage",
+  "independent_review_pending": true,
+  "scientific_calls": 0,
+  "scope": "Current saved-output table arithmetic/custody for the declared103 historical containers.78 mapped tables,12 retained prior-replay scopes and13 non-likelihood scopes remain distinct. New Task1 joint-fit tables are outside this historical roster. This record adds no independent scientific acceptance."
+}
