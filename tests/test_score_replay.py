@@ -262,6 +262,21 @@ class TestScoreReplay(unittest.TestCase):
 
 
 class CaliforniaPartitionTests(unittest.TestCase):
+    def test_regional_table_arithmetic_reads_actual_values_and_propagates_tolerance(self):
+        from reproduction.score_replay.reconcile_regional_tables import Evidence
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);report=root/'row.json'
+            report.write_text(json.dumps({'id':'tiny','passed':True,'status':'replayed','actual':{'components':{'joint':4.}},'comparison':{'expected':999.}}))
+            manifest=root/'manifest.json';manifest.write_text(json.dumps({'records':{'tiny':{'path':'row.json','sha256':digest(report.read_bytes())}}}))
+            e=Evidence(root,manifest,{'registry_sha256':{}})
+            expr={'op':'field','record':'tiny','pointer':'/actual/components/joint','absolute_tolerance':1e-6}
+            value,bound=e.evaluate({'op':'divide','numerator':{'op':'sum','terms':[expr,expr]},'denominator':{'op':'constant','value':2}})
+            self.assertEqual(value,4.);self.assertEqual(bound,1e-6)
+            with self.assertRaisesRegex(ValueError,'actual evaluated'):
+                e.evaluate(dict(expr,pointer='/comparison/expected'))
+            with self.assertRaisesRegex(KeyError,'missing'):
+                e.evaluate(dict(expr,record='unexecuted'))
+
     def test_california_historical_paths_resolve_exact_bundled_bytes(self):
         import base64,io,types,numpy as np
         from unittest.mock import patch
