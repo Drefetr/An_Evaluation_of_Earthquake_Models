@@ -59,6 +59,9 @@ class Evidence:
             return math.fsum(x[0] for x in values),math.fsum(x[1] for x in values)
         if op=='scale':
             value,error=self.evaluate(e['value']);return e['weight']*value,abs(e['weight'])*error
+        if op=='multiply':
+            a,ae=self.evaluate(e['left']);b,be=self.evaluate(e['right'])
+            return a*b,abs(a)*be+abs(b)*ae+ae*be
         if op=='divide':
             value,error=self.evaluate(e['numerator']);denominator,de=self.evaluate(e['denominator'])
             if de or denominator<=0:raise ValueError('ratio requires an exact positive denominator')
@@ -119,8 +122,25 @@ def reconcile(package,manifest_path,links_path,output):
             except Exception as exc:result.update(passed=False,status='failed',reason=type(exc).__name__+': '+str(exc))
             cells.append(result)
         reports.append(dict(table_id=table['id'],mapped_cells=len(cells),reconciled_cells=sum(c['passed'] for c in cells),not_run_cells=sum(c['status']=='not_run' for c in cells),failed_cells=sum(c['status']=='failed' for c in cells),passed=bool(cells) and all(c['passed'] for c in cells),scope=table['mapping_scope'],uncovered_reason=table.get('uncovered_reason'),cells=cells))
+    aliases=[];prior_path=package/'prior_s05_inventory.json'
+    if prior_path.exists():
+        prior=json.loads(prior_path.read_bytes())
+        for row in prior['observed_score_aliases']:
+            checks=[]
+            for name,expression in row['expressions'].items():
+                check=dict(field=name,expected=row['score_reference'][name],passed=False)
+                try:
+                    value,bound=evidence.evaluate(expression);delta=abs(value-check['expected'])
+                    check.update(actual=value,absolute_delta=delta,absolute_tolerance=bound,passed=delta<=bound+1e-12,status='reconciled' if delta<=bound+1e-12 else 'failed')
+                except KeyError as exc:check.update(status='not_run',reason=str(exc))
+                except Exception as exc:check.update(status='failed',reason=type(exc).__name__+': '+str(exc))
+                checks.append(check)
+            aliases.append(dict(model=row['model'],origin=row['origin'],replay_row_id=row['replay_row_id'],passed=all(c['passed'] for c in checks),checks=checks))
     mapped=[c for t in reports for c in t['cells']]
     result=dict(schema='regional_table_reconciliation_v1',passed=bool(mapped) and all(c['passed'] for c in mapped),entire_task_complete=False,mapped_cells=len(mapped),reconciled_cells=sum(c['passed'] for c in mapped),not_run_cells=sum(c['status']=='not_run' for c in mapped),failed_cells=sum(c['status']=='failed' for c in mapped),links_sha256=digest(raw),evidence_manifest_sha256=digest(manifest_path.read_bytes()),reconciler_sha256=digest(Path(__file__).read_bytes()),actual_record_pins=evidence.used,tables=reports,scope='Only explicitly mapped score/count cells. Functional tolerance is propagated separately from manuscript display rounding. Historical optimizer execution and omitted/pre-replayed table scope are not certified by this arithmetic route.')
+    result['s05_observed_aliases']=aliases
+    result['s05_inventory_sha256']=digest(prior_path.read_bytes()) if prior_path.exists() else None
+    result['passed']=result['passed'] and all(x['passed'] for x in aliases)
     write_new(output,result);return result
 
 

@@ -309,6 +309,8 @@ class CaliforniaPartitionTests(unittest.TestCase):
             expr={'op':'field','record':'tiny','pointer':'/actual/components/joint','absolute_tolerance':1e-6}
             value,bound=e.evaluate({'op':'divide','numerator':{'op':'sum','terms':[expr,expr]},'denominator':{'op':'constant','value':2}})
             self.assertEqual(value,4.);self.assertEqual(bound,1e-6)
+            value,bound=e.evaluate({'op':'multiply','left':expr,'right':{'op':'constant','value':.5}})
+            self.assertEqual(value,2.);self.assertEqual(bound,5e-7)
             with self.assertRaisesRegex(ValueError,'actual evaluated'):
                 e.evaluate(dict(expr,pointer='/comparison/expected'))
             with self.assertRaisesRegex(KeyError,'missing'):
