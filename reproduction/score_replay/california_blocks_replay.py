@@ -54,14 +54,14 @@ def load_modules(inputs, registry):
 
 def portable_interval_source(kind, raw):
     """Rename only the private validator; never change numerical expressions."""
-    if kind != 'annual':
+    if kind not in ('annual', 'sequence'):
         return raw, dict(kind='unchanged', original_sha256=digest(raw), compiled_sha256=digest(raw))
     declaration = b'void finite(double v) { check(std::isfinite(v)); }'
     if raw.count(declaration) != 1 or b'require_finite' in raw:
-        raise ValueError('Unrecognized annual validation helper')
+        raise ValueError('Unrecognized '+kind+' validation helper')
     adapted, count = re.subn(rb'(?<![A-Za-z0-9_:])finite(?=\s*\()', b'require_finite', raw)
     if count < 2 or adapted.replace(b'require_finite', b'finite') != raw:
-        raise ValueError('Annual helper rename changed more than its identifier')
+        raise ValueError(kind+' helper rename changed more than its identifier')
     return adapted, dict(kind='private_validator_identifier_rename', original_sha256=digest(raw),
                          compiled_sha256=digest(adapted), replacements=count,
                          reason='Avoid ambiguity with the glibc global finite(double) declaration')

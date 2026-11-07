@@ -8,7 +8,7 @@
   "source_sha256": {
     "__init__.py": "66dc04f1795b3ecf23d3a6dc7e3570d9c0592cd0cd214d981fdf179efe246f56",
     "core.py": "e40c3a4ab5e2b8017edec91c7eac60ee4c5d4b7dd7c1cc9817e9d293d7744108",
-    "california_blocks_replay.py": "736f7c7e578cba3a137755ac2247f55648c0fba1b0fa3e8ac43936ad5decbcc6"
+    "california_blocks_replay.py": "186111790f5f6818d8f7935c7110983f4bc4e036dce2ccf1cfa02c932a1ed3a7"
   },
   "row_ids": [
     "primary_annual/california_fold_1/Omori_smooth_cont",
@@ -35,5 +35,20 @@
   "scientific_execution_performed": false,
   "dependency_revision": "California historical source-pin path resolver added; unchanged source/cache/state values and numerical tolerances.",
   "pre_portability_proposal_sha256": "21763658d21061c25b9107136482cbfa326d2acdc1663afcb8b191a5cb1b589b",
-  "portability_amendment": "The compiled annual kernel renames only its private finite validator to avoid glibc ambiguity. Original input source, arithmetic, row roster and tolerances remain unchanged; build receipt binds both original and compiled hashes."
+  "portability_amendment": "Annual and sequence compiled kernels rename only their private finite validator to avoid glibc ambiguity. Both original sources remain immutable; build receipts bind original/compiled hashes and replacement counts.",
+  "portability_amendment_history": [
+    {
+      "revision": 1,
+      "proposal_sha256": "ed6dff50351c8d029b4cd5b538643640b0c24262c5b58bf38f953141d53347a5",
+      "source_sha256": "736f7c7e578cba3a137755ac2247f55648c0fba1b0fa3e8ac43936ad5decbcc6",
+      "amendment": "The compiled annual kernel renames only its private finite validator to avoid glibc ambiguity. Original input source, arithmetic, row roster and tolerances remain unchanged; build receipt binds both original and compiled hashes."
+    },
+    {
+      "revision": 2,
+      "amendment": "Apply the same exact reversible private finite-to-require_finite identifier rename to the sequence kernel as well; original source bytes, arithmetic, quadrature, row roster, limits and tolerances remain unchanged.",
+      "sequence_original_sha256": "fb1af8bc42ae576131d53d410a81f4474c2116c0d0ad4049c635099d60d0885c",
+      "sequence_compiled_sha256": "96459e4beb387aa5439efe8f788e2aaeb1a56e44652442c954c480ada225f893",
+      "sequence_replacements": 13
+    }
+  ]
 }
