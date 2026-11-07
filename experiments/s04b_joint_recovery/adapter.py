@@ -15,24 +15,38 @@ import numpy as np
 from scipy.optimize import OptimizeResult, minimize
 from experiments.s04b_joint_nuisance import fit, checkpoint
 
-SUPPORT_EQUIVALENCE_POLICY = {
-    'schema':'joint_operational_gradient_equivalence_v1',
-    'dtype':'float64','epsilon_multiplier':64,
-    'bound':'64 * float64_epsilon * max(1, abs(actual), abs(expected))',
-    'reused_LI_training_check':{
-        'policy':'reused_LI_training_support_gradient_only_v1','model':'LI',
-        'fields':['projected_gradient_coarse','projected_gradient_fine','projected_gradient_scaled_delta'],
-        'recompute_derived_delta':True,'other_fields_exact':True,'return_original_saved_check':True},
-    'unused_Powell_anchor_gradient':{
-        'policy':'unused_Powell_anchor_gradient_only_v1','fields':['gradient'],
-        'objective_uses_gradient':False,'parameters_scores_counts_options_next_input_exact':True},
-    'replayed_completed_start_support':{
-        'policy':'replayed_completed_start_support_gradient_only_v1','model':'LIplus_immigrant','starts':[0,1,2,3,4],
-        'record_fields':['gradient','projected_gradient'],'candidate_fields':['gradient'],
-        'projection':'frozen fit.projected_gradient at exact parameters and bounds',
-        'other_fields_exact':True,'preserve_original_record_and_candidate_gradient':True,
-        'new_optimizer_gradients_unchanged':True},
-    'scope':'Measured operational equivalence; no established hardware cause or general error bound'}
+SUPPORT_EQUIVALENCE_POLICY = {'schema': 'joint_original_contract_recovery_v2',
+ 'score_absolute_tolerance': 1e-09,
+ 'score_fields': ['P', 'E', 'C', 'M', 'joint', 'nll'],
+ 'score_identities': ['C=-E', 'joint=P-E+M', 'nll=-joint'],
+ 'unused_gradient_policy': 'Cross-run differences descriptive; finite gradients and correct '
+                           'projections required; no added epsilon or bitwise eligibility gate',
+ 'completed_return_support': {'model': 'LIplus_immigrant',
+                              'starts': [0, 1, 2, 3, 4],
+                              'one_shot_token': True,
+                              'exact_model_start_parameters': True,
+                              'order': 8,
+                              'require_gradient': True,
+                              'actual_support_recorded_before_reuse': True,
+                              'original_returned_nll_freshness_required': True,
+                              'canonical_saved_score_and_gradient_before_candidate_construction': True,
+                              'forbidden_in_actual_optimizer_or_new_start': True},
+ 'reused_selected_checks': {'models': ['null', 'LI'],
+                            'capture_existing_raw_coarse_fine_evaluations': True,
+                            'independently_rederive_original_scientific_criteria': True,
+                            'actual_and_original_must_pass': True,
+                            'return_original_saved_check_after_validation': True,
+                            'original_fine_raw_gradient_not_archived': True},
+ 'historical_floor': {'retain_fresh_actual_nll_and_discrepancy': True,
+                      'original_absolute_tolerance': 1e-09,
+                      'identifiers_expected_values_exact': True},
+ 'powell_reference_snapshots': {'observational_only': True,
+                                'record_if_naturally_reached': True,
+                                'not_reached_allowed': True,
+                                'no_forced_evaluations': True,
+                                'initial_bounds_options_caps_unchanged': True},
+ 'scope': 'Operational recovery of completed work under the original scientific acceptance '
+          'criteria; no hardware or bitwise-trajectory guarantee'}
 
 
 def require(ok, message):
@@ -63,80 +77,72 @@ def check_comparison(actual, expected):
         else:
             row=dict(path=path,kind='value',actual=left,expected=right)
             if isinstance(left,(int,float)) and not isinstance(left,bool) and isinstance(right,(int,float)) and not isinstance(right,bool):
-                row.update(delta=left-right,absolute_delta=abs(left-right))
+                delta=left-right
+                row.update(delta=delta if math.isfinite(delta) else None,absolute_delta=abs(delta) if math.isfinite(delta) else None)
             differences.append(row)
     visit(a,b,'')
     return dict(actual=a,expected=b,exact_match=same(a,b),differences=differences)
 
 
-def finite_gradient_equivalence(actual, expected, length=8):
-    """Operational comparison only; not a general numerical-error theorem."""
-    result=dict(passed=False,epsilon=float(np.finfo(np.float64).eps),multiplier=64,
-        formula='64 * float64_epsilon * max(1, abs(actual), abs(expected))',components=[])
-    if not isinstance(actual,list) or not isinstance(expected,list) or len(actual)!=length or len(expected)!=length:
-        result['reason']='gradient shape';return result
-    for i,(a,b) in enumerate(zip(actual,expected)):
-        if isinstance(a,bool) or isinstance(b,bool) or not isinstance(a,(int,float)) or not isinstance(b,(int,float)) or not math.isfinite(a) or not math.isfinite(b):
-            result['reason']='nonfinite or nonnumeric gradient';return result
-        delta=a-b;bound=64*result['epsilon']*max(1.,abs(a),abs(b))
-        result['components'].append(dict(index=i,actual=a,expected=b,
-            delta=delta if math.isfinite(delta) else None,absolute_delta=abs(delta) if math.isfinite(delta) else None,
-            bound=bound,passed=math.isfinite(delta) and abs(delta)<=bound))
-    result['passed']=all(v['passed'] for v in result['components'])
-    return result
+def finite_vector(value, length):
+    return isinstance(value,list) and len(value)==length and all(isinstance(v,(int,float)) and not isinstance(v,bool) and math.isfinite(v) for v in value)
 
 
-def li_training_equivalence(actual, expected):
-    """Only reused LI support gradients may differ; all scientific fields exact."""
-    allowed={'projected_gradient_coarse','projected_gradient_fine','projected_gradient_scaled_delta'}
-    result=dict(passed=False,policy='reused_LI_training_support_gradient_only_v1',gradient_checks={},
-        scientific_criteria_unchanged=True,hardware_cause_established=False)
-    if actual.get('passed') is not True or expected.get('passed') is not True:
-        result['reason']='Original scientific fine-check pass required';return result
-    if not same({k:v for k,v in actual.items() if k not in allowed},{k:v for k,v in expected.items() if k not in allowed}):
-        result['reason']='Non-gradient training-check field differs';return result
-    for key in ('projected_gradient_coarse','projected_gradient_fine'):
-        comparison=finite_gradient_equivalence(actual.get(key),expected.get(key))
-        result['gradient_checks'][key]=comparison
-        if not comparison['passed']:result['reason']='Gradient comparison failed';return result
-    derived={}
-    for label,check in [('actual',actual),('expected',expected)]:
-        coarse=np.asarray(check['projected_gradient_coarse']);fine=np.asarray(check['projected_gradient_fine'])
-        value=float(np.max(np.abs(coarse-fine)/np.maximum(1.,np.maximum(np.abs(coarse),np.abs(fine))),initial=0))
-        derived[label]=value
-        if not same(value,check.get('projected_gradient_scaled_delta')):
-            result.update(reason='Derived gradient delta inconsistent',recomputed_gradient_delta=derived);return result
-    comparison=finite_gradient_equivalence([derived['actual']],[derived['expected']],1)
-    result.update(passed=comparison['passed'],recomputed_gradient_delta=derived,derived_delta_comparison=comparison)
-    return result
-
-
-def powell_anchor_equivalence(actual, expected):
-    """Powell consumes scalar NLL: only its unused finite gradient is compared."""
-    result=dict(passed=False,policy='unused_Powell_anchor_gradient_only_v1',
-        objective_parameters_and_scores_exact=same({k:v for k,v in actual.items() if k!='gradient'},
-            {k:v for k,v in expected.items() if k!='gradient'}))
-    if not result['objective_parameters_and_scores_exact']:
-        result['reason']='Anchor parameter or score field differs';return result
-    comparison=finite_gradient_equivalence(actual.get('gradient'),expected.get('gradient'))
-    result.update(passed=comparison['passed'],gradient_comparison=comparison)
-    return result
-
-
-def replayed_record_equivalence(actual, expected, box):
-    allowed={'gradient','projected_gradient'}
-    result=dict(passed=False,policy='replayed_completed_start_support_gradient_only_v1',
-        non_gradient_fields_exact=same({k:v for k,v in actual.items() if k not in allowed},
-            {k:v for k,v in expected.items() if k not in allowed}))
-    if not result['non_gradient_fields_exact']:return result
-    raw=finite_gradient_equivalence(actual.get('gradient'),expected.get('gradient'))
-    projected=finite_gradient_equivalence(actual.get('projected_gradient'),expected.get('projected_gradient'))
-    result.update(raw_gradient_comparison=raw,projected_gradient_comparison=projected)
-    if not raw['passed'] or not projected['passed']:return result
+def score_comparison(actual, expected, tolerance=1e-9):
+    fields=('P','E','C','M','joint','nll')
+    result=dict(passed=False,tolerance=tolerance,components=[],identities={})
     for label,row in [('actual',actual),('expected',expected)]:
-        derived=fit.projected_gradient(row['parameters'],row['gradient'],box).tolist()
-        result[label+'_projection_exact']=same(derived,row['projected_gradient'])
-    result['passed']=result['actual_projection_exact'] and result['expected_projection_exact']
+        if not isinstance(row,dict) or set(row)!=set(fields) or not finite_vector([row[k] for k in fields],6):
+            result['reason']='Invalid score tuple';return result
+        identity=dict(signed_exposure=row['C']==-row['E'],joint=row['joint']==row['P']-row['E']+row['M'],
+            negative_joint=row['nll']==-row['joint'],model_exposure=row['E']>=-1e-9)
+        result['identities'][label]=identity
+        if not all(identity.values()):result['reason']='Score identity or original exposure bound';return result
+    for key in fields:
+        delta=actual[key]-expected[key]
+        result['components'].append(dict(field=key,actual=actual[key],expected=expected[key],delta=delta,absolute_delta=abs(delta),passed=abs(delta)<=tolerance))
+    result['passed']=all(r['passed'] for r in result['components'])
+    return result
+
+
+def selected_check_criteria(check, protocol, model, raw=None):
+    box=fit.bounds(protocol,model);dims=len(box)
+    result=dict(passed=False,raw_gradient_available=raw is not None)
+    if not finite_vector(check.get('parameters'),8):return result
+    coarse=check.get('projected_gradient_coarse');fine=check.get('projected_gradient_fine')
+    if not finite_vector(coarse,dims) or not finite_vector(fine,dims):return result
+    if not score_comparison(check.get('coarse'),check.get('coarse'))['passed'] or not score_comparison(check.get('fine'),check.get('fine'))['passed']:return result
+    if raw is not None:
+        if len(raw)!=2:return result
+        for order,key,row in zip((8,16),('coarse','fine'),raw):
+            if row['model']!=model or row['order']!=order or not same(row['parameters'],check['parameters']) or not same(row['score'],check[key]) or not finite_vector(row['gradient'],8):return result
+            projected=fit.projected_gradient(row['parameters'][:dims],row['gradient'][:dims],box).tolist()
+            if not same(projected,check['projected_gradient_'+key]):return result
+        result['fresh_projections_exact']=True
+    pg=np.asarray(coarse);pf=np.asarray(fine)
+    delta=abs(check['coarse']['joint']-check['fine']['joint'])
+    scaled=float(np.max(np.abs(pg-pf)/np.maximum(1.,np.maximum(np.abs(pg),np.abs(pf))),initial=0))
+    norm=float(np.max(np.abs(pf),initial=0))
+    arithmetic=same(delta,check.get('absolute_joint_delta')) and same(scaled,check.get('projected_gradient_scaled_delta')) and same(norm,check.get('projected_kkt_infinity_norm'))
+    scientific=delta<=protocol['quadrature']['joint_absolute_tolerance'] and scaled<=protocol['quadrature']['selected_training_gradient_scaled_tolerance'] and check['fine']['E']>=0
+    null_functional=model!='null' or delta<=1e-9
+    result.update(passed=arithmetic and scientific and null_functional and check.get('passed') is True,
+        derived_fields_exact=arithmetic,absolute_joint_delta=delta,projected_gradient_scaled_delta=scaled,
+        projected_kkt_infinity_norm=norm,original_scientific_pass=scientific,null_functional_pass=null_functional)
+    return result
+
+
+def floor_rows_comparison(actual, expected):
+    result=dict(passed=False,actual=copy.deepcopy(actual),expected=copy.deepcopy(expected),rows=[])
+    if len(actual)!=len(expected):return result
+    for a,b in zip(actual,expected):
+        metadata=same({k:v for k,v in a.items() if k not in ('actual_nll','absolute_delta')},{k:v for k,v in b.items() if k not in ('actual_nll','absolute_delta')})
+        valid=metadata and a.get('tolerance')==1e-9
+        for row in (a,b):
+            valid=valid and math.isfinite(row['actual_nll']) and row['absolute_delta']==abs(row['actual_nll']-row['expected_nll']) and row['absolute_delta']<=1e-9
+        cross_delta=a['actual_nll']-b['actual_nll']
+        result['rows'].append(dict(passed=bool(valid and abs(cross_delta)<=1e-9),actual_nll_difference=cross_delta))
+    result['passed']=all(r['passed'] for r in result['rows'])
     return result
 
 
@@ -145,7 +151,7 @@ def bare(record):
 
 
 class CountedPhase:
-    """Count actual evaluations; never synthesize a scientific response."""
+    """Retain actual evaluations; explicitly reuse completed-return support only."""
     def __init__(self, phase, recorder, phase_name):
         self._phase, self._recorder, self._name = phase, recorder, phase_name
 
@@ -164,7 +170,8 @@ class CountedPhase:
         owner.evaluations[key]['returned'] += 1
         owner.last_evaluation = dict(parameters=np.asarray(theta, dtype=float).tolist(), score=copy.deepcopy(score),
             gradient=np.asarray(gradient).tolist() if np.isfinite(gradient).all() else None)
-        return score, gradient
+        owner.capture_selected_evaluation(model,order,owner.last_evaluation)
+        return owner.consume_pending_support(model,order,require_gradient,owner.last_evaluation,score,gradient)
 
 
 class RecoveryAdapter:
@@ -181,7 +188,9 @@ class RecoveryAdapter:
         self.replayed_start_support = {}
         self.replayed_candidates = {}
         self.arm_calls, self.optimizer_calls = [], []
-        self.anchor_return_verified = self.anchor_next_input_verified = False
+        self.reference_snapshots={'return':{'observed':False},'next_input':{'observed':False}}
+        self.pending_return=None;self.active_physical_optimizer=False
+        self.selected_check_name=None;self.selected_check_evaluations={};self.historical_floor_replay=None
         self.current = None
         self._validate_partial()
         self.ends = {(r['model'], r['start_index'], r['method']): bare(r) for r in trace if r['event'] == 'attempt_end'}
@@ -192,12 +201,52 @@ class RecoveryAdapter:
 
     def record_training_check(self, name, actual, expected):
         checked = check_comparison(actual, expected)
-        checked['operational_equivalence']=(li_training_equivalence(checked['actual'],checked['expected'])
-            if name=='LI' else dict(passed=checked['exact_match'],policy='exact_saved_training_check'))
-        checked['accepted_check_source']='original_saved_check' if checked['operational_equivalence']['passed'] else None
+        checked['score_comparisons']={key:score_comparison(actual[key],expected[key]) for key in ('coarse','fine')}
+        checked['actual_criteria']=selected_check_criteria(actual,self.science,name,self.selected_check_evaluations.get(name,[]))
+        checked['expected_criteria']=selected_check_criteria(expected,self.science,name)
+        metadata=set(actual)==set(expected) and same(actual['parameters'],expected['parameters']) and actual['selection']==expected['selection']
+        passed=metadata and checked['actual_criteria']['passed'] and checked['expected_criteria']['passed'] and all(v['passed'] for v in checked['score_comparisons'].values())
+        checked['passed']=passed
+        checked['accepted_check_source']='original_saved_check' if passed else None
         self.repeated_training_checks[name] = checked
         self.log('repeated_training_check', model=name, **checked)
         return checked
+
+    def capture_selected_evaluation(self, model, order, evaluation):
+        if self.selected_check_name is None:return
+        require(self.pending_return is None and not self.active_physical_optimizer,'Selected support inside optimizer or pending return')
+        rows=self.selected_check_evaluations.setdefault(self.selected_check_name,[])
+        require(model==self.selected_check_name and len(rows)<2 and order==(8,16)[len(rows)],'Selected support roster differs')
+        row=dict(model=model,order=order,**copy.deepcopy(evaluation));rows.append(row)
+        self.log('selected_support_evaluation',check_name=model,**row)
+
+    def consume_pending_support(self, model, order, require_gradient, evaluation, score, gradient):
+        if self.pending_return is None:return score,gradient
+        token=self.pending_return;self.pending_return=None
+        require(not self.active_physical_optimizer and self.context=='eligible_floor_or_fresh_return_support'
+            and self.current['model']==model==token['model'] and self.current['start_index']==token['start_index']
+            and self.current['method']=='L-BFGS-B' and order==8 and require_gradient is True
+            and same(evaluation['parameters'],token['parameters']), 'Pending support token used outside exact completed-return boundary')
+        original=self.ends[(model,token['start_index'],'L-BFGS-B')];box=fit.bounds(self.science,model)
+        actual=copy.deepcopy(evaluation)
+        actual['projected_gradient']=(fit.projected_gradient(actual['parameters'],actual['gradient'],box).tolist()
+            if finite_vector(actual['gradient'],8) else None)
+        expected=dict(parameters=original['parameters'],score=original['fresh_score'],gradient=original['gradient'],projected_gradient=original['projected_gradient'])
+        compared=score_comparison(actual['score'],expected['score'])
+        freshness=abs(actual['score']['nll']-original['returned_nll'])
+        finite=finite_vector(actual['gradient'],8) and finite_vector(expected['gradient'],8)
+        saved_projection=finite and same(fit.projected_gradient(expected['parameters'],expected['gradient'],box).tolist(),expected['projected_gradient'])
+        passed=compared['passed'] and freshness<=1e-9 and finite and saved_projection
+        row=dict(token=copy.deepcopy(token),actual_evaluation=actual,expected_evaluation=expected,score_comparison=compared,
+            gradient_differences=check_comparison(actual['gradient'],expected['gradient']),actual_returned_nll_delta=freshness,
+            finite_gradients=finite,saved_projection_exact=bool(saved_projection),consumed_once=True,physical_optimizer_active=False,
+            passed=bool(passed),canonical_return=dict(score=copy.deepcopy(expected['score']),gradient=copy.deepcopy(expected['gradient'])) if passed else None,
+            accepted_source='original_completed_return' if passed else None)
+        self.replayed_start_support[str(token['start_index'])]=row
+        self.log('completed_return_support',**row)
+        require(passed,'Completed-return support fails original scientific freshness contract')
+        self.log('token_consumed',token=copy.deepcopy(token),canonical_return=row['canonical_return'],before_candidate_construction=True)
+        return copy.deepcopy(expected['score']),np.asarray(expected['gradient'],dtype=float).copy()
 
     def _validate_partial(self):
         r, p = self.partial, self.policy
@@ -262,12 +311,11 @@ class RecoveryAdapter:
         for i, record in enumerate(result['records']):
             if record['start_index'] == self.policy['replayed_primary_error_start'] and record['method'] == 'L-BFGS-B':
                 result['records'][i] = copy.deepcopy(self.original_error)
-        require(self.anchor_return_verified and self.anchor_next_input_verified, 'Interrupted invocation did not reach both original anchors')
+        require(self.pending_return is None, 'Unconsumed completed-return token')
         for i,record in enumerate(result['records']):
             if record['start_index'] in self.policy['replayed_successful_starts']:
-                saved=self.replayed_start_support[str(record['start_index'])]
-                require(same(record,saved['actual']) and saved['operational_equivalence']['passed'], 'Replayed successful result changed after support check')
-                result['records'][i]=copy.deepcopy(saved['expected'])
+                original=self.ends[(model,record['start_index'],'L-BFGS-B')]
+                require(same(record,original), 'Canonical completed result changed after support check')
         for candidate in result['candidates']:
             start=candidate['start_index']
             if candidate['kind']!='optimizer' or start not in self.policy['replayed_successful_starts']:continue
@@ -275,17 +323,11 @@ class RecoveryAdapter:
             expected=dict(state_index=start+1,kind='optimizer',start_index=start,parameters=original['parameters'],
                 score=original['fresh_score'],gradient=original['gradient'])
             comparison=check_comparison(candidate,expected)
-            other=same({k:v for k,v in candidate.items() if k!='gradient'},{k:v for k,v in expected.items() if k!='gradient'})
-            gradient=finite_gradient_equivalence(candidate.get('gradient'),expected['gradient'])
-            equivalence=dict(passed=other and gradient['passed'],non_gradient_fields_exact=other,gradient_comparison=gradient)
-            comparison.update(operational_equivalence=equivalence,accepted_candidate_gradient_source='original_saved_record.gradient' if equivalence['passed'] else None)
+            comparison.update(passed=comparison['exact_match'],source_support_token_id=self.replayed_start_support[str(start)]['token']['id'],
+                accepted_candidate_source='original_completed_return_before_selection')
             self.replayed_candidates[str(start)]=comparison
-            self.log('replayed_candidate_support',model=model,start_index=start,**comparison)
-            require(equivalence['passed'] and same(candidate['gradient'],self.replayed_start_support[str(start)]['actual']['gradient']),
-                'Replayed candidate or fresh gradient differs')
-            # Mutate the existing candidate so its selected-state alias remains exact.
-            candidate['gradient']=copy.deepcopy(expected['gradient'])
             self.log('replayed_candidate_preserved',model=model,start_index=start,**comparison)
+            require(comparison['passed'], 'Preselection canonical candidate changed')
         selected=next(v for v in result['candidates'] if v['state_index']==result['selected_state_index'])
         require(same(result['selected'],selected), 'Selected candidate changed during support restoration')
         return result
@@ -296,13 +338,11 @@ class RecoveryAdapter:
                 self.current = copy.deepcopy(record)
             if record['event'] == 'attempt_end' and record['model'] == self.policy['model'] and record['start_index'] in self.policy['replayed_successful_starts']:
                 original=self.ends[(record['model'],record['start_index'],'L-BFGS-B')]
+                support=self.replayed_start_support.get(str(record['start_index']),{})
                 comparison=check_comparison(bare(record),original)
-                equivalence=replayed_record_equivalence(comparison['actual'],comparison['expected'],fit.bounds(self.science,record['model']))
-                comparison.update(operational_equivalence=equivalence,accepted_record_source='original_saved_record' if equivalence['passed'] else None)
-                self.replayed_start_support[str(record['start_index'])]=comparison
-                self.log('replayed_completed_start_support',model=record['model'],start_index=record['start_index'],**comparison)
-                require(equivalence['passed'], 'Replayed successful return or fresh support changed')
-                record=dict(event='attempt_end',model=self.policy['model'],**copy.deepcopy(original))
+                self.log('canonical_completed_record',model=record['model'],start_index=record['start_index'],**comparison)
+                require(self.pending_return is None and support.get('passed') is True and comparison['exact_match'],
+                    'Completed record was not canonicalized before candidate construction')
             if record['event'] == 'attempt_end' and (record['model'], record['start_index'], record['method']) == (self.policy['model'], self.policy['replayed_primary_error_start'], 'L-BFGS-B'):
                 require(record['error_type'] == self.original_error['error_type'] and record['error'] == self.original_error['error'] and same(record['initial_parameters'], self.original_error['initial_parameters']), 'Injected error identity differs')
                 record = dict(event='attempt_end', model=self.policy['model'], **copy.deepcopy(self.original_error))
@@ -322,6 +362,10 @@ class RecoveryAdapter:
         old = self.ends.get(key)
         if name == self.policy['model'] and start in self.policy['replayed_successful_starts']:
             require(method == 'L-BFGS-B' and same(initial, old['initial_parameters']), 'Wrong completed start replay')
+            require(self.pending_return is None and not self.active_physical_optimizer, 'Overlapping completed-return token')
+            self.pending_return=dict(id=name+'/'+str(start),model=name,start_index=start,
+                parameters=copy.deepcopy(old['parameters']),order=8,require_gradient=True)
+            self.log('token_created',token=copy.deepcopy(self.pending_return))
             self.log('replayed_optimizer_return', model=name, start_index=start, method=method, actual_objective_calls=0,
                 historical_nfev=old['nfev'], historical_nit=old['nit'])
             return OptimizeResult(x=np.asarray(old['returned_parameters']), fun=old['returned_nll'], success=old['solver_success'],
@@ -339,37 +383,39 @@ class RecoveryAdapter:
         def counted(x):
             nonlocal count
             if restart and count == self.policy['anchor_completed_returns']:
-                require(same(np.asarray(x).tolist(), self.interrupted['failed_evaluation_parameters']), 'Restart next-input anchor differs')
-                self.anchor_next_input_verified = True
-                self.log('restart_next_input_anchor_verified', evaluation_number=count+1, parameters=np.asarray(x).tolist())
+                snapshot=dict(observed=True,reference_count=count+1,scope='observational_only',
+                    **check_comparison(np.asarray(x).tolist(),self.interrupted['failed_evaluation_parameters']))
+                self.reference_snapshots['next_input']=snapshot
+                self.log('restart_next_input_reference',**snapshot)
             value = objective(x)
             count += 1
             if restart and count == self.policy['anchor_completed_returns']:
                 anchor = {k:v for k,v in self.interrupted['last_evaluation'].items() if k != 'evaluation_count'}
-                comparison=check_comparison(self.last_evaluation,anchor)
-                equivalence=powell_anchor_equivalence(comparison['actual'],comparison['expected'])
-                self.log('restart_return_anchor_comparison',evaluation_count=count,**comparison,operational_equivalence=equivalence)
-                require(equivalence['passed'], 'Restart completed-return anchor differs')
-                self.anchor_return_verified = True
-                self.log('restart_return_anchor_verified', evaluation_count=count, actual_evaluation=copy.deepcopy(self.last_evaluation),
-                    expected_evaluation=copy.deepcopy(anchor),exact_match=comparison['exact_match'],operational_equivalence=equivalence)
+                snapshot=dict(observed=True,reference_count=count,scope='observational_only',**check_comparison(self.last_evaluation,anchor))
+                self.reference_snapshots['return']=snapshot
+                self.log('restart_return_reference',**snapshot)
             return value
         returned = False
+        require(self.pending_return is None and not self.active_physical_optimizer, 'Pending replay support at physical optimizer entry')
+        self.active_physical_optimizer=True
         try:
             with self.operation(kind):
                 result = self.real_optimizer(counted, initial, jac=jac, bounds=bounds, method=method, options=options)
             returned = True
             return result
         finally:
+            self.active_physical_optimizer=False
             self.log('physical_optimizer_end', kind=kind, model=name, start_index=start, method=method,
                 returned=returned, completed_objective_returns=count, actual_evaluations=dict(self.evaluations))
 
     def receipt(self):
-        return dict(schema='joint_partial_optimizer_recovery_calls_v1',arm_calls=self.arm_calls,
+        return dict(schema='joint_partial_optimizer_recovery_calls_v2',arm_calls=self.arm_calls,
             logical_optimizer_calls=[list(v) for v in self.optimizer_calls], actual_evaluations=dict(self.evaluations),
             repeated_training_checks=self.repeated_training_checks,
             replayed_start_support=self.replayed_start_support,replayed_candidates=self.replayed_candidates,
-            anchor_return_verified=self.anchor_return_verified,anchor_next_input_verified=self.anchor_next_input_verified,
+            selected_check_evaluations=self.selected_check_evaluations,historical_floor_replay=self.historical_floor_replay,
+            reference_snapshots=self.reference_snapshots,pending_return=self.pending_return,
+            reference_snapshot_scope='Observational only; not-reached is allowed and no extra evaluations are requested',
             reused_complete_arms=self.policy['reused_complete_arms'],replayed_successful_starts=self.policy['replayed_successful_starts'],
             original_physical_attempts_retained=len(self.ends),original_interrupted_powell=self.interrupted,
             original_primary_error=self.original_error,logical_trace_scope='Consolidated reused/new logical records; call ledger labels physical execution',

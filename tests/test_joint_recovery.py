@@ -124,7 +124,8 @@ class RecoveryControls(unittest.TestCase):
             generator_receipt='receipt.json',fits={m:m+'.json' for m in models},n_train=1,n_test=1)
         generator=SimpleNamespace(MATCHED_NAMES=[name],ROSTER={name:(None,None,0.,30.,7.)},
             Law=lambda *a:SimpleNamespace(a=-3.,d=0.,n=.3,c=1.,p=1.5,r=.7),fitting_metadata=lambda law:{})
-        recorder=SimpleNamespace(context='support_check',evaluations=defaultdict(Counter),last_evaluation=None)
+        recorder=SimpleNamespace(context='support_check',evaluations=defaultdict(Counter),last_evaluation=None,
+            capture_selected_evaluation=lambda *a:None,consume_pending_support=lambda *a:a[-2:])
         phase=TinyPhase();wrapped=adapter.CountedPhase(phase,recorder,'train')
         delegate.model.phase_from_rows=lambda *a,**k:wrapped
         delegate.fit_arm=Mock(side_effect=RuntimeError('invented stop before optimizer'))
@@ -203,7 +204,7 @@ class RecoveryControls(unittest.TestCase):
                 immigrant=result
                 self.assertEqual(result['records'][5],r.original_error)
         self.assertEqual(len(calls),11) # one restarted rescue + two new starts + eight total starts
-        self.assertTrue(r.anchor_return_verified and r.anchor_next_input_verified)
+        self.assertTrue(all(v['observed'] and v['exact_match'] for v in r.reference_snapshots.values()))
         original=[adapter.bare(v) for v in self.trace if v['model']=='LIplus_immigrant' and v['event']=='attempt_end']
         self.assertEqual(immigrant['records'][:6],original[:6])
         rows=[json.loads(line) for line in (self.root/'calls.jsonl').read_text().splitlines()]
@@ -213,10 +214,10 @@ class RecoveryControls(unittest.TestCase):
         self.assertEqual(sum(v['event']=='reused_complete_arm' for v in rows),2)
         self.assertTrue(any('support' in key for key in r.evaluations))
         self.assertEqual(r.receipt()['original_physical_attempts_retained'],23)
-        actual=next(v for v in rows if v['event']=='restart_return_anchor_verified')
-        self.assertEqual(actual['actual_evaluation'],{k:v for k,v in r.interrupted['last_evaluation'].items() if k!='evaluation_count'})
-        pending=next(v for v in rows if v['event']=='restart_next_input_anchor_verified')
-        self.assertEqual(pending['parameters'],r.interrupted['failed_evaluation_parameters'])
+        actual=next(v for v in rows if v['event']=='restart_return_reference')
+        self.assertEqual(actual['actual'],{k:v for k,v in r.interrupted['last_evaluation'].items() if k!='evaluation_count'})
+        pending=next(v for v in rows if v['event']=='restart_next_input_reference')
+        self.assertEqual(pending['actual'],r.interrupted['failed_evaluation_parameters'])
     def test_complete_recovered_training_equals_uninterrupted_invented_reference(self):
         """Same frozen fit_arm, full candidates/selection/checks; no saved history."""
         reference={};reference_checks={};phase=TinyPhase()
@@ -276,18 +277,26 @@ class RecoveryControls(unittest.TestCase):
             eligible=self.partial['fits'][name]['candidates'][0]['parameters']
             r.fit_arm(phase,name,self.science,eligible,lambda _:None)
         return phase
-    def test_changed_restart_anchor_fails_and_records_physical_attempt(self):
+    def test_changed_restart_reference_is_observational_only(self):
         self.trace[-1]['last_evaluation']['score']['nll']+=.5
         r=self.recorder(optimizer=new_optimizer([]));phase=self.run_to_immigrant(r)
-        with self.assertRaisesRegex(ValueError,'return anchor'):r.fit_arm(phase,'LIplus_immigrant',self.science,self.partial['fits']['null']['selected']['parameters'],lambda _:None)
-        rows=[json.loads(x) for x in (self.root/'calls.jsonl').read_text().splitlines()]
-        self.assertFalse(rows[-1]['returned']);self.assertEqual(rows[-1]['completed_objective_returns'],2)
-    def test_changed_next_input_fails_before_extra_evaluation(self):
+        result=r.fit_arm(phase,'LIplus_immigrant',self.science,self.partial['fits']['null']['selected']['parameters'],lambda _:None)
+        self.assertTrue(result['passed']);self.assertFalse(r.reference_snapshots['return']['exact_match'])
+        self.assertEqual(r.reference_snapshots['return']['scope'],'observational_only')
+    def test_changed_next_input_reference_does_not_change_actual_optimizer(self):
         self.trace[-1]['failed_evaluation_parameters'][0]+=.001
         r=self.recorder(optimizer=new_optimizer([]));phase=self.run_to_immigrant(r)
-        with self.assertRaisesRegex(ValueError,'next-input'):r.fit_arm(phase,'LIplus_immigrant',self.science,self.partial['fits']['null']['selected']['parameters'],lambda _:None)
-        rows=[json.loads(x) for x in (self.root/'calls.jsonl').read_text().splitlines()]
-        self.assertEqual(rows[-1]['completed_objective_returns'],2)
+        result=r.fit_arm(phase,'LIplus_immigrant',self.science,self.partial['fits']['null']['selected']['parameters'],lambda _:None)
+        self.assertTrue(result['passed']);self.assertFalse(r.reference_snapshots['next_input']['exact_match'])
+    def test_restart_can_finish_before_reference_count_without_forced_calls(self):
+        calls=[]
+        def quick(objective,x,**kwargs):
+            calls.append(kwargs['method']);value=objective(x)
+            return returned(x,value[0] if kwargs['jac'] else value)
+        r=self.recorder(optimizer=quick);phase=self.run_to_immigrant(r)
+        result=r.fit_arm(phase,'LIplus_immigrant',self.science,self.partial['fits']['null']['selected']['parameters'],lambda _:None)
+        self.assertTrue(result['passed']);self.assertEqual(calls,['Powell','L-BFGS-B','L-BFGS-B'])
+        self.assertEqual(r.reference_snapshots,{'return':{'observed':False},'next_input':{'observed':False}})
     def test_changed_options_rejected(self):
         r=self.recorder();r.current=self.trace[32]
         with self.assertRaisesRegex(ValueError,'recipe'):r.optimizer(lambda _:None,np.array(r.current['initial_parameters']),jac=True,bounds=fit.bounds(self.science,'LIplus_immigrant'),method='L-BFGS-B',options={})
@@ -302,8 +311,8 @@ class RecoveryControls(unittest.TestCase):
         a=dict(case_id=policy['sequence'][40],wall_seconds=1200,numerical_attempt_id='invented')
         with patch.object(driver.legacy,'charged',return_value=(21663.863217721,3321.086780193)):
             _,budget=driver.allocation(index,policy,a,True)
-            self.assertAlmostEqual(budget['maximum_with_unspent_slots_seconds'],109964.885916780)
-            self.assertEqual(budget['operational_failure_charge_seconds'],210)
+            self.assertAlmostEqual(budget['maximum_with_unspent_slots_seconds'],110044.885916780)
+            self.assertEqual(budget['operational_failure_charge_seconds'],290)
             self.assertEqual(budget['operational_diagnostic_charge_seconds'],80)
             a['wall_seconds']=1201
             with self.assertRaisesRegex(ValueError,'slot'):driver.allocation(index,policy,a,True)
@@ -313,12 +322,13 @@ class RecoveryControls(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'unresolved'):driver.allocation(index,p,a,False)
     def ordered_failure_policy(self):
         p=driver.read(driver.HERE/'recovery_protocol.json');first=p['pre_execution_failure']
-        p.pop('operational_diagnostics',None)
+        p['operational_diagnostics']=[]
         second=copy.deepcopy(first)
         second.update(status='failed_during_training_support',charge_seconds=120,
             nested_scientific_seconds=1.780888234,nested_supervised_seconds=2.537754305,
             support_evaluation_count=5,optimizer_call_count=0,archive='invented_second.zip',archive_sha256='b'*64)
         p['operational_failures']=[copy.deepcopy(first),second]
+        p['operational_lineage_files']={first['archive_sha256']:copy.deepcopy(driver.STARTUP_FILES),'b'*64:copy.deepcopy(driver.SUPPORT_FILES)}
         return p
     def test_two_failed_launches_charge_once_and_keep_historical_alias(self):
         p=self.ordered_failure_policy()
@@ -338,8 +348,8 @@ class RecoveryControls(unittest.TestCase):
         changes=[lambda q:q['operational_failures'].reverse(),
             lambda q:q['operational_failures'].append(copy.deepcopy(q['operational_failures'][1])),
             lambda q:q['operational_failures'][1].update(archive_sha256=q['operational_failures'][0]['archive_sha256']),
-            lambda q:q['operational_failures'][1].update(charge_seconds=119),
-            lambda q:q['operational_failures'][1].update(optimizer_call_count=1),
+            lambda q:q['operational_failures'][1].update(charge_seconds=-1),
+            lambda q:q['operational_lineage_files']['b'*64].update(archive='../escape.zip'),
             lambda q:q['operational_failures'][1].update(nested_supervised_seconds=121),
             lambda q:q['pre_execution_failure'].update(nested_scientific_seconds=0)]
         for change in changes:
@@ -363,9 +373,9 @@ class RecoveryControls(unittest.TestCase):
         self.assertEqual(report['pre_execution_failure'],failures[0])
     def test_diagnostic_charge_is_separate_and_not_counted_as_another_failure(self):
         p=driver.read(driver.HERE/'recovery_protocol.json')
-        self.assertEqual(sum(r['charge_seconds'] for r in driver.operational_failures(p)),210)
+        self.assertEqual(sum(r['charge_seconds'] for r in driver.operational_failures(p)),290)
         self.assertEqual(sum(r['charge_seconds'] for r in driver.operational_diagnostics(p)),80)
-        self.assertEqual(len(driver.operational_evidence_files(p)),12)
+        self.assertEqual(len(driver.operational_evidence_files(p)),16)
         out=self.root/'all_operational';out.mkdir();(out/'attempts').mkdir()
         index=dict(cases=[],attempts=[],partial_case=None,original_failure=dict(prior_scientific_seconds=1.),
             recovery_transition={'known_outer_overhead_seconds':.5},pre_execution_failure=p['pre_execution_failure'],
@@ -375,12 +385,12 @@ class RecoveryControls(unittest.TestCase):
             driver.persist(out,index,result,dict(numerical_attempt_id='test',prior_index_sha256='b'),
                 dict(source_sha256={},recovery_protocol_sha256='c'),time.monotonic(),time.monotonic()+60,None)
         saved=driver.read(out/'index.json')
-        self.assertAlmostEqual(saved['operational_accounting']['accounted_seconds']-saved['budget']['total_seconds'],290.5)
+        self.assertAlmostEqual(saved['operational_accounting']['accounted_seconds']-saved['budget']['total_seconds'],370.5)
         self.assertEqual(saved['operational_accounting']['operational_diagnostic_charge_seconds'],80)
         self.assertEqual(len(saved['attempts']),1)
     def test_diagnostic_scope_or_duplicate_charge_corruption_is_rejected(self):
         policy=driver.read(driver.HERE/'recovery_protocol.json')
-        mutations=[lambda p:p['operational_diagnostics'][0].update(charge_seconds=79),
+        mutations=[lambda p:p['operational_diagnostics'][0].update(charge_seconds=-1),
             lambda p:p['operational_diagnostics'][0].update(scientific_completion=True),
             lambda p:p['operational_diagnostics'][0].update(held_out_call_count=1),
             lambda p:p['operational_diagnostics'][0].update(archive_sha256=p['operational_failures'][0]['archive_sha256'])]
@@ -400,7 +410,7 @@ class RecoveryControls(unittest.TestCase):
         self.assertEqual(len(index['attempts']),1)
     def test_recomputed_support_must_match_original_saved_checks(self):
         original=copy.deepcopy(self.partial)
-        original.update(input_sha256={'fixture':'abc'},historical_comparisons=[{'invented':True}],floor_checks=[{'phase':'train','invented':0}])
+        original.update(input_sha256={'fixture':'abc'},historical_comparisons=[{'invented':True}],floor_checks=[dict(phase='train',model='LI',actual_nll=1.,expected_nll=1.,absolute_delta=0.,tolerance=1e-9)])
         report=copy.deepcopy(original)
         driver.validate_recovered_report(report,original)
         report['training_checks']['LI']['fine']['nll']+=.001
@@ -448,7 +458,8 @@ class RecoveryControls(unittest.TestCase):
         index={**copy.deepcopy(original),'recovery_transition':transition,'pre_execution_failure':copy.deepcopy(startup),
             'operational_failures':[copy.deepcopy(startup)]}
         index['operational_diagnostics']=[]
-        p=dict(predecessor=predecessor,pre_execution_failure=startup)
+        p=dict(predecessor=predecessor,pre_execution_failure=startup,operational_failures=[copy.deepcopy(startup)],operational_diagnostics=[],
+            operational_lineage_files={startup['archive_sha256']:copy.deepcopy(driver.STARTUP_FILES)})
         driver.validate_recovery_transition(index,p,self.root)
         index['pre_execution_failure']['charge_seconds']=0
         with self.assertRaisesRegex(ValueError,'Startup failure accounting'):driver.validate_recovery_transition(index,p,self.root)

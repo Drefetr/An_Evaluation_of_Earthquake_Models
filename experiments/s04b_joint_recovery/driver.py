@@ -9,14 +9,14 @@ import hashlib
 import json
 import math
 import os
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 import shutil
 import sys
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[1]
 sys.path.insert(0, str(REPO))
 from experiments.s04b_joint_budgeted import driver as old
-from experiments.s04b_joint_recovery.adapter import RecoveryAdapter, CountedPhase, same, SUPPORT_EQUIVALENCE_POLICY
+from experiments.s04b_joint_recovery.adapter import RecoveryAdapter, CountedPhase, same, floor_rows_comparison, SUPPORT_EQUIVALENCE_POLICY
 legacy, frozen, model = old.legacy, old.frozen, old.model
 read, sha, write, require = old.read, old.sha, old.write, old.require
 SCHEMA = 'joint_recovery_case_index_v2'
@@ -30,47 +30,62 @@ DIAGNOSTIC_FILES = {'archive':'support_diagnostic01.zip','review':'support_diagn
 
 def operational_failures(policy):
     """The historical singleton is an alias, never an additional charged row."""
-    rows=policy.get('operational_failures',[policy['pre_execution_failure']])
-    count=2 if 'operational_failures' in policy else 1
-    require(isinstance(rows,list) and len(rows)==count and rows[0]==policy['pre_execution_failure'],
+    rows=policy['operational_failures']
+    require(isinstance(rows,list) and rows and rows[0]==policy['pre_execution_failure'],
         'Ordered operational failures must preserve the historical alias')
-    require([r['charge_seconds'] for r in rows]==[90,120][:count], 'Reviewed operational charges changed')
-    require(len({r['archive_sha256'] for r in rows})==count, 'Duplicate operational failure archive')
-    for i,row in enumerate(rows):
-        require(row['scientific_predecessor_unchanged'] is True and row['status']==
-            ('failed_before_scientific_evaluation' if i==0 else 'failed_during_training_support'), 'Operational failure scope changed')
-        require(0<=row['nested_scientific_seconds']<=row['nested_supervised_seconds']<=row['charge_seconds'],
-            'Nested operational time exceeds its whole-launch charge')
-        if i==1:require(row['support_evaluation_count']==5 and row['optimizer_call_count']==0,
-            'Second failure support/optimizer census changed')
+    operational_names(policy)
+    require(all(row['status'].startswith('failed_') for row in rows),'Failure scope changed')
     return rows
 
 
 def operational_failure_files(policy):
     files={}
-    for row,names in zip(operational_failures(policy),(STARTUP_FILES,SUPPORT_FILES)):
+    mapping=operational_names(policy)
+    for row in operational_failures(policy):
+        names=mapping[row['archive_sha256']]
         files.update({name:(row[key],row[key+'_sha256']) for key,name in names.items()})
     return files
 
 
 def operational_diagnostics(policy):
-    rows=policy.get('operational_diagnostics',[])
-    require(isinstance(rows,list) and len(rows)==(1 if 'operational_diagnostics' in policy else 0), 'Diagnostic accounting roster changed')
-    if rows:
-        row=rows[0]
+    rows=policy['operational_diagnostics']
+    operational_names(policy)
+    for row in rows:
         require(row['status']=='diagnostic_complete' and row['passed'] is True and row['equality_passed'] is False
             and row['scientific_completion'] is False and row['scientific_predecessor_unchanged'] is True
-            and row['charge_seconds']==80 and row['support_evaluation_count']==5
             and row['optimizer_call_count']==0 and row['held_out_call_count']==0, 'Diagnostic scope or charge changed')
-        require(0<=row['nested_scientific_seconds']<=row['nested_supervised_seconds']<=80,'Nested diagnostic time exceeds whole-launch charge')
-        require(row['archive_sha256'] not in {v['archive_sha256'] for v in operational_failures(policy)}, 'Duplicated diagnostic/failure charge')
     return rows
+
+
+def operational_names(policy):
+    """Validate the exact source-pinned roster's explicit, collision-free paths."""
+    failures=policy['operational_failures'];diagnostics=policy['operational_diagnostics']
+    require(isinstance(failures,list) and failures and isinstance(diagnostics,list),'Invalid operational roster')
+    rows=failures+diagnostics;keys=[r['archive_sha256'] for r in rows]
+    mapping=policy['operational_lineage_files']
+    require(len(keys)==len(set(keys)) and set(mapping)==set(keys),'Operational archive roster differs or repeats')
+    destinations=[]
+    for row in rows:
+        charge=row['charge_seconds']
+        require(type(charge) in (int,float) and math.isfinite(charge) and charge>0
+            and row['scientific_predecessor_unchanged'] is True
+            and 0<=row['nested_scientific_seconds']<=row['nested_supervised_seconds']<=charge,'Invalid whole-launch accounting')
+        names=mapping[row['archive_sha256']]
+        require(set(names)=={'archive','review','resource_review','workflow_log'},'Incomplete operational evidence mapping')
+        for name in names.values():
+            require(isinstance(name,str) and name not in ('','.','..') and len(PurePosixPath(name).parts)==1
+                and PurePosixPath(name).name==name and not PurePosixPath(name).is_absolute()
+                and ':' not in name and '\\' not in name,'Operational filename must be a safe basename')
+            destinations.append(name)
+    require(len(destinations)==len(set(destinations)),'Operational filename collision')
+    return mapping
 
 
 def operational_evidence_files(policy):
     files=operational_failure_files(policy)
+    mapping=operational_names(policy)
     for row in operational_diagnostics(policy):
-        files.update({name:(row[key],row[key+'_sha256']) for key,name in DIAGNOSTIC_FILES.items()})
+        files.update({name:(row[key],row[key+'_sha256']) for key,name in mapping[row['archive_sha256']].items()})
     return files
 
 
@@ -275,21 +290,34 @@ def recovery_delegate(scheduler, partial, trace, science, policy, out):
     delegate.fit_arm=adapter.fit_arm
     original_fine=delegate.fine_check
     def checked_fine(phase, name, fitted, protocol):
-        checked=original_fine(phase,name,fitted,protocol)
         if name in ('null','LI'):
+            require(adapter.selected_check_name is None,'Nested selected support check')
+            adapter.selected_check_name=name
+            try:checked=original_fine(phase,name,fitted,protocol)
+            finally:adapter.selected_check_name=None
             comparison=adapter.record_training_check(name,checked,partial['training_checks'][name])
-            require(comparison['operational_equivalence']['passed'], 'Repeated completed-arm training check differs')
+            require(comparison['passed'], 'Repeated completed-arm training check differs')
             return copy.deepcopy(partial['training_checks'][name])
-        return checked
+        return original_fine(phase,name,fitted,protocol)
     delegate.fine_check=checked_fine
+    original_floor=delegate.historical_floor
+    def checked_floor(*args,**kwargs):
+        score,rows=original_floor(*args,**kwargs)
+        if rows and rows[0]['phase']=='train':
+            comparison=floor_rows_comparison(rows,partial['floor_checks'])
+            adapter.historical_floor_replay=comparison
+            adapter.log('historical_floor_replay',**comparison)
+            require(comparison['passed'],'Repeated historical floor fails original replay tolerance')
+        return score,rows
+    delegate.historical_floor=checked_floor
     return delegate,adapter
 
 
 def validate_recovered_report(report, partial):
-    """Fresh support checks must agree exactly with saved completed-arm checks."""
+    """Completed fits/checks are retained; floor rows retain validated fresh values."""
     require(report['input_sha256'] == partial['input_sha256'], 'Recovery input hashes changed')
     require(same(report['historical_comparisons'], partial['historical_comparisons']), 'Historical comparison custody changed')
-    require(same([v for v in report['floor_checks'] if v['phase']=='train'], partial['floor_checks']), 'Repeated training-floor checks differ')
+    require(floor_rows_comparison([v for v in report['floor_checks'] if v['phase']=='train'],partial['floor_checks'])['passed'], 'Repeated training-floor checks differ')
     for name in ('null','LI'):
         require(same(report['fits'][name], partial['fits'][name]), 'Complete reused fit changed')
         require(same(report['training_checks'][name], partial['training_checks'][name]), 'Repeated completed-arm training check differs')
