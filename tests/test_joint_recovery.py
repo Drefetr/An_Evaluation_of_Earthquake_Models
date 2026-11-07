@@ -303,13 +303,62 @@ class RecoveryControls(unittest.TestCase):
         with patch.object(driver.legacy,'charged',return_value=(21663.863217721,3321.086780193)):
             _,budget=driver.allocation(index,policy,a,True)
             self.assertAlmostEqual(budget['maximum_with_unspent_slots_seconds'],109764.885916780)
-            self.assertEqual(budget['pre_execution_failure_charge_seconds'],90)
+            self.assertEqual(budget['operational_failure_charge_seconds'],90)
             a['wall_seconds']=1201
             with self.assertRaisesRegex(ValueError,'slot'):driver.allocation(index,policy,a,True)
     def test_failed_or_duplicate_recovery_blocks_automatic_retry(self):
         p=driver.read(driver.HERE/'recovery_protocol.json');index=dict(cases=[dict(case_id=v) for v in p['sequence'][:41]],partial_case={'failed':True},last_attempt_passed=False,attempts=[])
         a=dict(case_id=p['sequence'][41],wall_seconds=1200,numerical_attempt_id='invented')
         with self.assertRaisesRegex(ValueError,'unresolved'):driver.allocation(index,p,a,False)
+    def ordered_failure_policy(self):
+        p=driver.read(driver.HERE/'recovery_protocol.json');first=p['pre_execution_failure']
+        second=copy.deepcopy(first)
+        second.update(status='failed_during_training_support',charge_seconds=120,
+            nested_scientific_seconds=1.780888234,nested_supervised_seconds=2.537754305,
+            support_evaluation_count=5,optimizer_call_count=0,archive='invented_second.zip',archive_sha256='b'*64)
+        p['operational_failures']=[copy.deepcopy(first),second]
+        return p
+    def test_two_failed_launches_charge_once_and_keep_historical_alias(self):
+        p=self.ordered_failure_policy()
+        index=dict(cases=[dict(case_id=v) for v in p['sequence'][:40]],partial_case=None,last_attempt_passed=None,attempts=[])
+        a=dict(case_id=p['sequence'][40],wall_seconds=1200,numerical_attempt_id='invented')
+        with patch.object(driver.legacy,'charged',return_value=(21663.863217721,3321.086780193)):
+            _,budget=driver.allocation(index,p,a,True)
+        self.assertEqual(budget['operational_failure_charge_seconds'],210)
+        self.assertAlmostEqual(budget['maximum_with_unspent_slots_seconds'],109884.885916780)
+        self.assertEqual(p['pre_execution_failure'],p['operational_failures'][0])
+        files=driver.operational_failure_files(p)
+        self.assertEqual(len(files),8)
+        self.assertEqual(files['startup_failure.zip'],(p['pre_execution_failure']['archive'],p['pre_execution_failure']['archive_sha256']))
+        self.assertEqual(files['pilot02_support_failure.zip'],('invented_second.zip','b'*64))
+    def test_ordered_failure_corruption_rejected(self):
+        p=self.ordered_failure_policy()
+        changes=[lambda q:q['operational_failures'].reverse(),
+            lambda q:q['operational_failures'].append(copy.deepcopy(q['operational_failures'][1])),
+            lambda q:q['operational_failures'][1].update(archive_sha256=q['operational_failures'][0]['archive_sha256']),
+            lambda q:q['operational_failures'][1].update(charge_seconds=119),
+            lambda q:q['operational_failures'][1].update(optimizer_call_count=1),
+            lambda q:q['operational_failures'][1].update(nested_supervised_seconds=121),
+            lambda q:q['pre_execution_failure'].update(nested_scientific_seconds=0)]
+        for change in changes:
+            with self.subTest(change=change):
+                bad=copy.deepcopy(p);change(bad)
+                with self.assertRaises(ValueError):driver.operational_failures(bad)
+    def test_persistence_separates_both_whole_launches_from_scientific_attempts(self):
+        out=self.root/'two_failures';out.mkdir();(out/'attempts').mkdir()
+        p=self.ordered_failure_policy();failures=p['operational_failures']
+        index=dict(cases=[],attempts=[],partial_case=None,original_failure=dict(prior_scientific_seconds=1.),
+            recovery_transition={'known_outer_overhead_seconds':.5},pre_execution_failure=failures[0],operational_failures=failures)
+        result=dict(passed=False,status='failed_requires_review',cases=[],scientific_completion=False,admission_sha256='a')
+        admission=dict(numerical_attempt_id='test',prior_index_sha256='b')
+        with patch.object(driver.legacy,'fit_census',return_value={}):
+            driver.persist(out,index,result,admission,dict(source_sha256={},recovery_protocol_sha256='c'),time.monotonic(),time.monotonic()+60,None)
+        saved=driver.read(out/'index.json');report=driver.read(out/'result.json')
+        self.assertEqual(len(saved['attempts']),1)
+        self.assertEqual(saved['budget']['total_seconds'],1.+saved['attempts'][0]['seconds'])
+        self.assertAlmostEqual(saved['operational_accounting']['accounted_seconds']-saved['budget']['total_seconds'],210.5)
+        self.assertEqual(saved['operational_failures'],report['operational_failures'])
+        self.assertEqual(report['pre_execution_failure'],failures[0])
     def test_final_serialization_deadline_clears_pass(self):
         out=self.root/'output';out.mkdir();(out/'attempts').mkdir()
         index=dict(cases=[],attempts=[],partial_case=None,original_failure=dict(prior_scientific_seconds=1.),
@@ -360,12 +409,15 @@ class RecoveryControls(unittest.TestCase):
             'admission_sha256':'failed_admission.json','archive_sha256':'failed_host.zip'}
         for name in list(keys.values())[1:]+list(driver.STARTUP_FILES.values()):(lineage/name).write_bytes(b'invented immutable bytes')
         predecessor={key:driver.sha(lineage/name) for key,name in keys.items()};predecessor['known_outer_overhead_seconds']=.5
-        startup={key+'_sha256':driver.sha(lineage/name) for key,name in driver.STARTUP_FILES.items()};startup['charge_seconds']=90
+        startup=copy.deepcopy(driver.read(driver.HERE/'recovery_protocol.json')['pre_execution_failure'])
+        startup.update({key+'_sha256':driver.sha(lineage/name) for key,name in driver.STARTUP_FILES.items()})
         transition=dict(schema='joint_interrupted_optimizer_transition_v1',original_status='failed',original_index_sha256=predecessor['index_sha256'],
             protocol_sha256=driver.sha(driver.HERE/'recovery_protocol.json'),known_outer_overhead_seconds=.5,
             pre_execution_failure=copy.deepcopy(startup),
+            operational_failures=[copy.deepcopy(startup)],
             files={'recovery_lineage/'+name:driver.sha(lineage/name) for name in list(keys.values())+list(driver.STARTUP_FILES.values())})
-        index={**copy.deepcopy(original),'recovery_transition':transition,'pre_execution_failure':copy.deepcopy(startup)}
+        index={**copy.deepcopy(original),'recovery_transition':transition,'pre_execution_failure':copy.deepcopy(startup),
+            'operational_failures':[copy.deepcopy(startup)]}
         p=dict(predecessor=predecessor,pre_execution_failure=startup)
         driver.validate_recovery_transition(index,p,self.root)
         index['pre_execution_failure']['charge_seconds']=0
