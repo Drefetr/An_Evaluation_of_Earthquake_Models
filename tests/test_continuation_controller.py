@@ -56,6 +56,14 @@ class AdmissionControls(unittest.TestCase):
                          'reproduction/score_replay/inhibition_build.py',
                          'reproduction/score_replay/inhibition_replay.py'}.issubset(pins))
 
+    def test_s02_binds_original_oracle_and_new_component_wrapper(self):
+        pins = controller.mandatory_sources('s02-pilot')
+        self.assertTrue({'reproduction/score_replay/s02_replay.py',
+                         'reproduction/score_replay/s02/protocol.json',
+                         'reproduction/score_replay/s02/components.cpp',
+                         'reproduction/score_replay/s02/original/independent_f_oracle.cpp',
+                         'tests/test_s02_score_replay.py'}.issubset(pins))
+
 
 if __name__ == '__main__':
     unittest.main()

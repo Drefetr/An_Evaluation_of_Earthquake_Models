@@ -83,6 +83,11 @@ def mandatory_sources(stage, review=None):
         package = ROOT/'experiments/s04b_joint_nuisance'
         paths.update(p.relative_to(ROOT).as_posix() for p in package.iterdir()
                      if p.is_file() and p.suffix in ('.py','.cpp','.json'))
+    elif stage in ('s02-pilot','s02-completion'):
+        paths.update(('reproduction/score_replay/s02_replay.py','tests/test_s02_score_replay.py'))
+        package = ROOT/'reproduction/score_replay/s02'
+        paths.update(p.relative_to(ROOT).as_posix() for p in package.rglob('*')
+                     if p.is_file() and p.suffix in ('.py','.cpp','.json'))
     elif stage in ('cached-pilot','cached-completion','regional-pilot','regional-completion',
                    'inhibition-pilot','inhibition-completion'):
         prefix = 'reproduction/score_replay/'
@@ -168,6 +173,7 @@ def main():
                    'MKL_NUM_THREADS','NUMEXPR_NUM_THREADS','BLIS_NUM_THREADS')}
     environment['PYTHONDONTWRITEBYTECODE'] = '1'
     environment['JOINT_NUMERICAL_LEASE_TOKEN'] = token
+    environment['NUMERICAL_LEASE_TOKEN'] = token
     os.environ.update(environment)
     prior = prior_artifact(review, output) if 'pilot_artifact_id' in review else None
     # Download credentials are unnecessary in compilers or numerical children.
@@ -195,6 +201,36 @@ def main():
         command = [sys.executable,'-B',str(package/'run.py'),'--phase',phase,
                    '--output',str(output/'science'),'--library',str(library),
                    '--build-receipt',str(receipt),'--admission',str(output/'admission.json')]
+        if prior:
+            admission.update(pilot_result_sha256=review['pilot_result_sha256'],
+                             pilot_output_review_passed=review['pilot_output_review_passed'])
+            command += ['--pilot',str(inside(prior,review['pilot_science_directory']))]
+    elif stage in ('s02-pilot','s02-completion'):
+        from reproduction.score_replay import s02_replay
+        package = ROOT/'reproduction/score_replay/s02'
+        protocol = read(package/'protocol.json')
+        phase = stage.split('-')[1]
+        if (phase == 'completion') != bool(prior):
+            raise ValueError('S02 completion requires the exact accepted pilot artifact')
+        build = inside(prior, review['pilot_build_directory']) if prior else output/'build'
+        if not prior:
+            subprocess.run([sys.executable,'-B',str(ROOT/'reproduction/score_replay/s02_replay.py'),
+                            'build','--output',str(build)],cwd=ROOT,check=True)
+        receipt = build/'build_receipt.json'
+        library = build/'components.so'
+        selected = protocol['pilot'] if phase == 'pilot' else [c for c in protocol['roster'] if c not in protocol['pilot']]
+        if review['case_ids'] != selected:
+            raise ValueError('Reviewed S02 roster differs from its frozen protocol')
+        admission = dict(passed=True,independent_review_passed=True,mode=phase,
+                         source_sha256=s02_replay.source_identity(),protocol_sha256=sha(package/'protocol.json'),
+                         numerical_attempt_id=review['numerical_attempt_id'],
+                         lease_token_sha256=hashlib.sha256(token.encode()).hexdigest(),
+                         expires_utc=review['expires_utc'],case_ids=selected,threads=2,
+                         wall_seconds=review['wall_cap_seconds'],sampled_process_tree_rss_cap_bytes=review['rss_cap_bytes'],
+                         library_sha256=sha(library),build_receipt_sha256=sha(receipt))
+        command = [sys.executable,'-B',str(ROOT/'reproduction/score_replay/s02_replay.py'),'run','--mode',phase,
+                   '--library',str(library),'--build-receipt',str(receipt),
+                   '--admission',str(output/'admission.json'),'--output',str(output/'science')]
         if prior:
             admission.update(pilot_result_sha256=review['pilot_result_sha256'],
                              pilot_output_review_passed=review['pilot_output_review_passed'])
