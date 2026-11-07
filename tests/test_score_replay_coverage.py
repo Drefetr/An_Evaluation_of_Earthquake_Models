@@ -133,6 +133,20 @@ class CoverageControls(unittest.TestCase):
         evidence['recomputed']=1e-13
         self.assertFalse(c.checked_cell(table,mapped,evidence,'fake','cached')['exact_display_match'])
 
+    def test_six_significant_score_is_distinct_from_exact_integer_count(self):
+        table=dict(source_rows=['X & -1234'])
+        mapped=dict(source_row_index=0,column_index=1,display_value=-1234.,
+            display_type='six_significant_digits_trailing_zeros_omitted',rounding_half_unit=.005)
+        evidence=dict(mapped,recomputed=-1234.002,arithmetic_allowance_nats=0.,arithmetic_reconciled=True)
+        result=c.checked_cell(table,mapped,evidence,'fake','cached')
+        self.assertEqual(result['status'],'reconciled');self.assertEqual(result['rounding_half_unit'],.005)
+        self.assertTrue(result['exact_display_match'])
+        wrong=dict(mapped,rounding_half_unit=.5)
+        with self.assertRaises(ValueError):c.checked_cell(table,wrong,evidence,'fake','cached')
+        exact=dict(mapped,display_type='integer',rounding_half_unit=0.)
+        self.assertEqual(c.checked_cell(table,exact,evidence,'fake','cached')['status'],'failed')
+        self.assertEqual(c.source_number(table,0,1)[2],0.)
+
     def test_comma_counts_and_calendar_labels(self):
         table=dict(source_rows=['Year & Count','2011-2016 (79) & 2,829'])
         self.assertEqual(c.inventory_numeric_fields(table),{'1:0:0','1:0:1','1:0:2','1:1:0'})

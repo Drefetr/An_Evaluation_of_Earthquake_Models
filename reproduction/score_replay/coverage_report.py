@@ -204,6 +204,13 @@ def checked_cell(table, mapped, evidence, route, kind):
                       semantic=True, exact_display_match=passed)
         return result
     literal, display, half = source_number(table,mapped['source_row_index'],mapped['column_index'],mapped.get('numeric_token_index',0))
+    if mapped.get('display_type')=='six_significant_digits_trailing_zeros_omitted':
+        require(format(display,'.6g')==literal.lstrip('+'),
+                'Source display is not the declared six-significant-digit format')
+        half=.5*10**(math.floor(math.log10(abs(display)))-5) if display else 0.
+        declared=finite(mapped['rounding_half_unit'])
+        require(abs(declared-half)<=max(math.ulp(declared),math.ulp(half)),
+                'Declared six-significant-digit rounding unit differs from source')
     mapped_display=finite(mapped['display_value'])
     # Equivalent mantissa-times-power and scientific-string parsing can differ
     # by one IEEE-754 unit; this is not an additional score tolerance.
