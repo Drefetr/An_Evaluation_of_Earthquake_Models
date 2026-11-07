@@ -1,6 +1,8 @@
 """Replay calendar/sequence scores from fresh event scores and saved states.
 
-The original interval kernels and reducers are imported byte-for-byte. Expected
+The original interval arithmetic and Python reducers are preserved. The annual
+kernel's private validation helper is renamed in its compiled copy to avoid a
+glibc name collision; its original bytes and both source hashes are retained. Expected
 historical scores are opened only after current rows have been calculated.
 """
 from __future__ import annotations
@@ -12,6 +14,7 @@ import math
 import os
 from pathlib import Path
 import platform
+import re
 import sys
 import time
 import traceback
@@ -49,6 +52,21 @@ def load_modules(inputs, registry):
     return result
 
 
+def portable_interval_source(kind, raw):
+    """Rename only the private validator; never change numerical expressions."""
+    if kind != 'annual':
+        return raw, dict(kind='unchanged', original_sha256=digest(raw), compiled_sha256=digest(raw))
+    declaration = b'void finite(double v) { check(std::isfinite(v)); }'
+    if raw.count(declaration) != 1 or b'require_finite' in raw:
+        raise ValueError('Unrecognized annual validation helper')
+    adapted, count = re.subn(rb'(?<![A-Za-z0-9_:])finite(?=\s*\()', b'require_finite', raw)
+    if count < 2 or adapted.replace(b'require_finite', b'finite') != raw:
+        raise ValueError('Annual helper rename changed more than its identifier')
+    return adapted, dict(kind='private_validator_identifier_rename', original_sha256=digest(raw),
+                         compiled_sha256=digest(adapted), replacements=count,
+                         reason='Avoid ambiguity with the glibc global finite(double) declaration')
+
+
 def build(registry_path, output):
     from engine.cpu_build import build_shared
     raw = registry_path.read_bytes(); registry = json.loads(raw)
@@ -56,12 +74,17 @@ def build(registry_path, output):
     output.mkdir(parents=True)
     inputs = Inputs(registry_path.parent); libraries = {}
     for kind, spec in registry['native_libraries'].items():
-        source = inputs.materialize(spec, output/'sources'/kind, '.cpp')
+        original = inputs.materialize(spec, output/'sources'/kind, '.cpp')
+        adapted, portability = portable_interval_source(kind, original.read_bytes())
+        source = original
+        if adapted != original.read_bytes():
+            source = original.with_name('portable_'+original.name)
+            with source.open('xb') as stream: stream.write(adapted)
         receipt = build_shared(source, output/'build'/kind, dependency_root=source.parent)
         binary = Path(receipt['library'])
         rp = output/'build'/kind/'build_receipt.json'
         libraries[kind] = dict(path=str(binary), sha256=digest(binary.read_bytes()),
-            source_sha256=spec['sha256'], build_receipt_path=str(rp.resolve()),
+            source_sha256=spec['sha256'], portability=portability, build_receipt_path=str(rp.resolve()),
             build_receipt_sha256=digest(rp.read_bytes()), build_receipt=receipt)
     record = dict(schema='california_partition_libraries_v1', passed=True,
                   registry_sha256=digest(raw), source_sha256=source_pins(), libraries=libraries)
@@ -243,17 +266,18 @@ def run(registry_path,libraries_path,fresh_path,admission_path,output,row_ids,mo
     for key,value in [('passed',True),('mode',mode),('registry_sha256',digest(rb)),('source_sha256',source_pins()),('row_ids',selected),('libraries_sha256',digest(lb)),('input_manifest_sha256',digest(ib)),('fresh_scores_sha256',digest(fb))]:
         if admission.get(key)!=value: raise ValueError('admission mismatch '+key)
     if libraries.get('registry_sha256')!=digest(rb) or libraries.get('source_sha256')!=source_pins(): raise ValueError('library manifest source mismatch')
-    receipts={}
+    inputs=Inputs(registry_path.parent);receipts={}
     for kind,library in libraries['libraries'].items():
         data=Path(library['build_receipt_path']).read_bytes(); receipt=json.loads(data);receipts[kind]=digest(data)
-        if (receipts[kind]!=library['build_receipt_sha256'] or receipt!=library['build_receipt'] or receipt.get('passed') is not True or receipt['source_sha256']!=registry['native_libraries'][kind]['sha256'] or receipt['library_sha256']!=library['sha256'] or digest(Path(library['path']).read_bytes())!=library['sha256']): raise ValueError('interval build receipt mismatch')
+        _, portability = portable_interval_source(kind, inputs.read(registry['native_libraries'][kind]))
+        if (receipts[kind]!=library['build_receipt_sha256'] or receipt!=library['build_receipt'] or receipt.get('passed') is not True or library.get('portability')!=portability or library['source_sha256']!=registry['native_libraries'][kind]['sha256'] or receipt['source_sha256']!=portability['compiled_sha256'] or receipt['library_sha256']!=library['sha256'] or digest(Path(library['path']).read_bytes())!=library['sha256']): raise ValueError('interval build receipt mismatch')
     if admission.get('build_receipts_sha256')!=receipts: raise ValueError('build admission mismatch')
     threads=admission.get('numeric_threads')
     if isinstance(threads,bool) or threads not in (1,2): raise ValueError('thread cap missing')
     for name in ('OMP_NUM_THREADS','MKL_NUM_THREADS','OPENBLAS_NUM_THREADS','NUMEXPR_NUM_THREADS'):os.environ[name]=str(threads)
     import numpy as np
     from threadpoolctl import threadpool_limits,threadpool_info
-    inputs=Inputs(registry_path.parent); inherited={};base=registry_path.parent.parent
+    inherited={};base=registry_path.parent.parent
     for name,spec in registry['source_registries'].items():
         r=Inputs(base).json(spec);inherited[name]=(resolve(base,spec['path']).parent,r)
     output.mkdir(parents=True);started=time.monotonic()
