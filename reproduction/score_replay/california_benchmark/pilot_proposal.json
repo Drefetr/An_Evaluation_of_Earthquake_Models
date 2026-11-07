@@ -1,0 +1,51 @@
+{
+  "schema": "california_benchmark_cached_pilot_v1",
+  "passed": false,
+  "status": "proposed_requires_independent_source_review_and_numerical_lease",
+  "mode": "pilot",
+  "registry_sha256": "5cf2a0e4d2240ad66aae62d06da81196b25a8ca201bbdbc7f677592e4b77284d",
+  "input_manifest_sha256": "64fdd361414f135a9afd8f5f3107b3c509c118edd2a4d956a3ef34ce95d06ba3",
+  "source_sha256": {
+    "__init__.py": "66dc04f1795b3ecf23d3a6dc7e3570d9c0592cd0cd214d981fdf179efe246f56",
+    "build.py": "fbb6233bf2aeb3a5d1e5cde0b209bb3752e77f75e97d4aa87950dfeb10888b57",
+    "cached_native.py": "8d9140bc8231f1df872d93fc83d244a2de5705c22a815347302e93c5978c25e5",
+    "core.py": "e40c3a4ab5e2b8017edec91c7eac60ee4c5d4b7dd7c1cc9817e9d293d7744108",
+    "inventory.py": "fd639c1c98aeb26d43ecca3db4f91b2e39b427eb952aff3fa1befd21ebc3b99d",
+    "replay.py": "be19f00553106fb8c82464680db42b3be9d86eeb3d398987e5b7763834eb7859"
+  },
+  "row_ids": [
+    "california_benchmark/california_fold_2/EP/train",
+    "california_benchmark/california_fold_2/EP/test",
+    "california_benchmark/california_fold_2/N0/train",
+    "california_benchmark/california_fold_2/N0/test"
+  ],
+  "selection_rule": "Largest training and smallest test target count within each fixed EP/N0 arm, with ID tie-break; no score-based selection.",
+  "selection": [
+    {
+      "id": "california_benchmark/california_fold_2/EP/train",
+      "n_events": 1097
+    },
+    {
+      "id": "california_benchmark/california_fold_2/EP/test",
+      "n_events": 69
+    },
+    {
+      "id": "california_benchmark/california_fold_2/N0/train",
+      "n_events": 1097
+    },
+    {
+      "id": "california_benchmark/california_fold_2/N0/test",
+      "n_events": 69
+    }
+  ],
+  "numeric_threads": 2,
+  "caps": {
+    "wall_seconds": 900,
+    "process_tree_rss_bytes": 6442450944,
+    "minimum_host_available_bytes": 2147483648
+  },
+  "functional_tolerance_absolute_nats": 1e-06,
+  "reference": "Original full-precision selected-state score components; display rounding is not target.",
+  "full_registry_rows": 12,
+  "scientific_execution_performed": false
+}

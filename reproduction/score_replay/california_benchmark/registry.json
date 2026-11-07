@@ -1,0 +1,532 @@
+{
+  "schema": "california_benchmark_cached_replay_v1",
+  "status": "not_run",
+  "adapters": {
+    "765a6badf8e4f148": {
+      "kind": "original_cached_native_with_portable_import_projection",
+      "python": {
+        "archive": "inputs/cached_01.zip",
+        "member": "source/765a6badf8e4f148dec2ba56a79c86611767a28f5844a4fdc16254199cec0426",
+        "sha256": "765a6badf8e4f148dec2ba56a79c86611767a28f5844a4fdc16254199cec0426",
+        "bytes": 6757
+      },
+      "native": {
+        "archive": "inputs/cached_01.zip",
+        "member": "source/c814489337cee57527d3aadf99846a7fc7730169e1d8981295202b91d2ad1c32",
+        "sha256": "c814489337cee57527d3aadf99846a7fc7730169e1d8981295202b91d2ad1c32",
+        "bytes": 14215
+      },
+      "source_context": {
+        "objective.original.py": {
+          "archive": "inputs/cached_01.zip",
+          "member": "source/a38052a5a3e4870273427b29e24d3e030941a89f404322a8201ed96b1f4e6fbf",
+          "sha256": "a38052a5a3e4870273427b29e24d3e030941a89f404322a8201ed96b1f4e6fbf",
+          "bytes": 6378
+        },
+        "features.original.py": {
+          "archive": "inputs/cached_01.zip",
+          "member": "source/1a775470017fc8bc15d5bca9469ae8ac4623afa191d8628c27123a98dc93ac39",
+          "sha256": "1a775470017fc8bc15d5bca9469ae8ac4623afa191d8628c27123a98dc93ac39",
+          "bytes": 3775
+        },
+        "objective.cpp": {
+          "archive": "inputs/cached_01.zip",
+          "member": "source/c814489337cee57527d3aadf99846a7fc7730169e1d8981295202b91d2ad1c32",
+          "sha256": "c814489337cee57527d3aadf99846a7fc7730169e1d8981295202b91d2ad1c32",
+          "bytes": 14215
+        },
+        "objective.portable.py": {
+          "archive": "inputs/cached_01.zip",
+          "member": "source/765a6badf8e4f148dec2ba56a79c86611767a28f5844a4fdc16254199cec0426",
+          "sha256": "765a6badf8e4f148dec2ba56a79c86611767a28f5844a4fdc16254199cec0426",
+          "bytes": 6757
+        }
+      },
+      "entry_point": "Objective(cache,dll_path).evaluate(model,parameters)",
+      "source_scope": "Original ctypes/native code unchanged except same-module literal identity helpers, ne count alias and detailed-output default."
+    }
+  },
+  "rows": [
+    {
+      "id": "california_benchmark/california_fold_0/EP/train",
+      "study": "california_benchmark",
+      "case": "california_fold_0",
+      "model": "independent_etas",
+      "procedure_key": "EP",
+      "phase": "train",
+      "adapter": "765a6badf8e4f148",
+      "state": {
+        "archive": "inputs/cached_01.zip",
+        "member": "state/757a5c1dfa633e49485f74306321518019fefccb8fcc0f837d59106fcb223f8b",
+        "sha256": "757a5c1dfa633e49485f74306321518019fefccb8fcc0f837d59106fcb223f8b",
+        "bytes": 1516
+      },
+      "parameter_pointer": "/parameters",
+      "cache": {
+        "archive": "inputs/cached_01.zip",
+        "member": "cache/c7bdf194070e29f40c69763796d565b1de60a605d730263528f2909e4bd46788",
+        "sha256": "c7bdf194070e29f40c69763796d565b1de60a605d730263528f2909e4bd46788",
+        "bytes": 63058
+      },
+      "cache_key": "train",
+      "observation_measure": "space_time_mark",
+      "expected_pointer": "/expected_components",
+      "absolute_tolerances": {
+        "P": 1e-06,
+        "E": 1e-06,
+        "C": 1e-06,
+        "M": 1e-06,
+        "timing": 1e-06,
+        "location": 1e-06,
+        "joint": 1e-06
+      },
+      "tolerance_basis": "Same original FP64 native functional/cached features; predeclared1e-6absolute againstfullprecision original.",
+      "execution_status": "not_run",
+      "feature_scope": "cached_original_features",
+      "fit_scope": "unchanged_original_selected_state_no_search",
+      "n_events_expected": 851,
+      "manuscript_tables": []
+    },
+    {
+      "id": "california_benchmark/california_fold_0/EP/test",
+      "study": "california_benchmark",
+      "case": "california_fold_0",
+      "model": "independent_etas",
+      "procedure_key": "EP",
+      "phase": "test",
+      "adapter": "765a6badf8e4f148",
+      "state": {
+        "archive": "inputs/cached_01.zip",
+        "member": "state/fed45442da1054229ba1367fbe6b746082ddb460c7f1ee644825fe97c275fa63",
+        "sha256": "fed45442da1054229ba1367fbe6b746082ddb460c7f1ee644825fe97c275fa63",
+        "bytes": 1663
+      },
+      "parameter_pointer": "/parameters",
+      "cache": {
+        "archive": "inputs/cached_01.zip",
+        "member": "cache/1b0c2763eb3952d7c48127d7f53232e489106fe842c40e3c8e63eea58830e799",
+        "sha256": "1b0c2763eb3952d7c48127d7f53232e489106fe842c40e3c8e63eea58830e799",
+        "bytes": 44431
+      },
+      "cache_key": "test",
+      "observation_measure": "space_time_mark",
+      "expected_pointer": "/expected_components",
+      "absolute_tolerances": {
+        "P": 1e-06,
+        "E": 1e-06,
+        "C": 1e-06,
+        "M": 1e-06,
+        "timing": 1e-06,
+        "location": 1e-06,
+        "joint": 1e-06
+      },
+      "tolerance_basis": "Same original FP64 native functional/cached features; predeclared1e-6absolute againstfullprecision original.",
+      "execution_status": "not_run",
+      "feature_scope": "cached_original_features",
+      "fit_scope": "unchanged_original_selected_state_no_search",
+      "n_events_expected": 79,
+      "manuscript_tables": []
+    },
+    {
+      "id": "california_benchmark/california_fold_0/N0/train",
+      "study": "california_benchmark",
+      "case": "california_fold_0",
+      "model": "no_trigger",
+      "procedure_key": "N0",
+      "phase": "train",
+      "adapter": "765a6badf8e4f148",
+      "state": {
+        "archive": "inputs/cached_01.zip",
+        "member": "state/e32c5c3e0457aface057ffb4f9cd0e15e47179662ddd768712149820309a97e3",
+        "sha256": "e32c5c3e0457aface057ffb4f9cd0e15e47179662ddd768712149820309a97e3",
+        "bytes": 1385
+      },
+      "parameter_pointer": "/parameters",
+      "cache": {
+        "archive": "inputs/cached_01.zip",
+        "member": "cache/c7bdf194070e29f40c69763796d565b1de60a605d730263528f2909e4bd46788",
+        "sha256": "c7bdf194070e29f40c69763796d565b1de60a605d730263528f2909e4bd46788",
+        "bytes": 63058
+      },
+      "cache_key": "train",
+      "observation_measure": "space_time_mark",
+      "expected_pointer": "/expected_components",
+      "absolute_tolerances": {
+        "P": 1e-06,
+        "E": 1e-06,
+        "C": 1e-06,
+        "M": 1e-06,
+        "timing": 1e-06,
+        "location": 1e-06,
+        "joint": 1e-06
+      },
+      "tolerance_basis": "Same original FP64 native functional/cached features; predeclared1e-6absolute againstfullprecision original.",
+      "execution_status": "not_run",
+      "feature_scope": "cached_original_features",
+      "fit_scope": "unchanged_original_selected_state_no_search",
+      "n_events_expected": 851,
+      "manuscript_tables": []
+    },
+    {
+      "id": "california_benchmark/california_fold_0/N0/test",
+      "study": "california_benchmark",
+      "case": "california_fold_0",
+      "model": "no_trigger",
+      "procedure_key": "N0",
+      "phase": "test",
+      "adapter": "765a6badf8e4f148",
+      "state": {
+        "archive": "inputs/cached_01.zip",
+        "member": "state/4e85d471b73b30d0e24f817a3732d026333d291f8d84becd88f4c1b01141f4fd",
+        "sha256": "4e85d471b73b30d0e24f817a3732d026333d291f8d84becd88f4c1b01141f4fd",
+        "bytes": 1522
+      },
+      "parameter_pointer": "/parameters",
+      "cache": {
+        "archive": "inputs/cached_01.zip",
+        "member": "cache/1b0c2763eb3952d7c48127d7f53232e489106fe842c40e3c8e63eea58830e799",
+        "sha256": "1b0c2763eb3952d7c48127d7f53232e489106fe842c40e3c8e63eea58830e799",
+        "bytes": 44431
+      },
+      "cache_key": "test",
+      "observation_measure": "space_time_mark",
+      "expected_pointer": "/expected_components",
+      "absolute_tolerances": {
+        "P": 1e-06,
+        "E": 1e-06,
+        "C": 1e-06,
+        "M": 1e-06,
+        "timing": 1e-06,
+        "location": 1e-06,
+        "joint": 1e-06
+      },
+      "tolerance_basis": "Same original FP64 native functional/cached features; predeclared1e-6absolute againstfullprecision original.",
+      "execution_status": "not_run",
+      "feature_scope": "cached_original_features",
+      "fit_scope": "unchanged_original_selected_state_no_search",
+      "n_events_expected": 79,
+      "manuscript_tables": []
+    },
+    {
+      "id": "california_benchmark/california_fold_1/EP/train",
+      "study": "california_benchmark",
+      "case": "california_fold_1",
+      "model": "independent_etas",
+      "procedure_key": "EP",
+      "phase": "train",
+      "adapter": "765a6badf8e4f148",
+      "state": {
+        "archive": "inputs/cached_01.zip",
+        "member": "state/fbdced4c6d145269ee20aec9cedc5b6745b531af41aa69712f7d39470fb53856",
+        "sha256": "fbdced4c6d145269ee20aec9cedc5b6745b531af41aa69712f7d39470fb53856",
+        "bytes": 1512
+      },
+      "parameter_pointer": "/parameters",
+      "cache": {
+        "archive": "inputs/cached_01.zip",
+        "member": "cache/aff6678c73c7b4a0815ffb22332194b09cfa30c4badee45c51770f14e6e999c9",
+        "sha256": "aff6678c73c7b4a0815ffb22332194b09cfa30c4badee45c51770f14e6e999c9",
+        "bytes": 68054
+      },
+      "cache_key": "train",
+      "observation_measure": "space_time_mark",
+      "expected_pointer": "/expected_components",
+      "absolute_tolerances": {
+        "P": 1e-06,
+        "E": 1e-06,
+        "C": 1e-06,
+        "M": 1e-06,
+        "timing": 1e-06,
+        "location": 1e-06,
+        "joint": 1e-06
+      },
+      "tolerance_basis": "Same original FP64 native functional/cached features; predeclared1e-6absolute againstfullprecision original.",
+      "execution_status": "not_run",
+      "feature_scope": "cached_original_features",
+      "fit_scope": "unchanged_original_selected_state_no_search",
+      "n_events_expected": 930,
+      "manuscript_tables": []
+    },
+    {
+      "id": "california_benchmark/california_fold_1/EP/test",
+      "study": "california_benchmark",
+      "case": "california_fold_1",
+      "model": "independent_etas",
+      "procedure_key": "EP",
+      "phase": "test",
+      "adapter": "765a6badf8e4f148",
+      "state": {
+        "archive": "inputs/cached_01.zip",
+        "member": "state/7f887934f7114372f40c24a97626e862a1903c355be5eb59ad9813fab0bb2c6e",
+        "sha256": "7f887934f7114372f40c24a97626e862a1903c355be5eb59ad9813fab0bb2c6e",
+        "bytes": 1666
+      },
+      "parameter_pointer": "/parameters",
+      "cache": {
+        "archive": "inputs/cached_01.zip",
+        "member": "cache/7d1e3008fbfd26be60055d2806c783c4305482873ebe447253a63f82d6ec0b2f",
+        "sha256": "7d1e3008fbfd26be60055d2806c783c4305482873ebe447253a63f82d6ec0b2f",
+        "bytes": 51857
+      },
+      "cache_key": "test",
+      "observation_measure": "space_time_mark",
+      "expected_pointer": "/expected_components",
+      "absolute_tolerances": {
+        "P": 1e-06,
+        "E": 1e-06,
+        "C": 1e-06,
+        "M": 1e-06,
+        "timing": 1e-06,
+        "location": 1e-06,
+        "joint": 1e-06
+      },
+      "tolerance_basis": "Same original FP64 native functional/cached features; predeclared1e-6absolute againstfullprecision original.",
+      "execution_status": "not_run",
+      "feature_scope": "cached_original_features",
+      "fit_scope": "unchanged_original_selected_state_no_search",
+      "n_events_expected": 167,
+      "manuscript_tables": []
+    },
+    {
+      "id": "california_benchmark/california_fold_1/N0/train",
+      "study": "california_benchmark",
+      "case": "california_fold_1",
+      "model": "no_trigger",
+      "procedure_key": "N0",
+      "phase": "train",
+      "adapter": "765a6badf8e4f148",
+      "state": {
+        "archive": "inputs/cached_01.zip",
+        "member": "state/39cd73df18df82962e123aa88212b0487e7b33227b1a04e16635b2cc8d4aecab",
+        "sha256": "39cd73df18df82962e123aa88212b0487e7b33227b1a04e16635b2cc8d4aecab",
+        "bytes": 1378
+      },
+      "parameter_pointer": "/parameters",
+      "cache": {
+        "archive": "inputs/cached_01.zip",
+        "member": "cache/aff6678c73c7b4a0815ffb22332194b09cfa30c4badee45c51770f14e6e999c9",
+        "sha256": "aff6678c73c7b4a0815ffb22332194b09cfa30c4badee45c51770f14e6e999c9",
+        "bytes": 68054
+      },
+      "cache_key": "train",
+      "observation_measure": "space_time_mark",
+      "expected_pointer": "/expected_components",
+      "absolute_tolerances": {
+        "P": 1e-06,
+        "E": 1e-06,
+        "C": 1e-06,
+        "M": 1e-06,
+        "timing": 1e-06,
+        "location": 1e-06,
+        "joint": 1e-06
+      },
+      "tolerance_basis": "Same original FP64 native functional/cached features; predeclared1e-6absolute againstfullprecision original.",
+      "execution_status": "not_run",
+      "feature_scope": "cached_original_features",
+      "fit_scope": "unchanged_original_selected_state_no_search",
+      "n_events_expected": 930,
+      "manuscript_tables": []
+    },
+    {
+      "id": "california_benchmark/california_fold_1/N0/test",
+      "study": "california_benchmark",
+      "case": "california_fold_1",
+      "model": "no_trigger",
+      "procedure_key": "N0",
+      "phase": "test",
+      "adapter": "765a6badf8e4f148",
+      "state": {
+        "archive": "inputs/cached_01.zip",
+        "member": "state/85c8acbeb112ff17849393aca9b8b8ddc52b8ae8df8e5cec9478146136a0a849",
+        "sha256": "85c8acbeb112ff17849393aca9b8b8ddc52b8ae8df8e5cec9478146136a0a849",
+        "bytes": 1529
+      },
+      "parameter_pointer": "/parameters",
+      "cache": {
+        "archive": "inputs/cached_01.zip",
+        "member": "cache/7d1e3008fbfd26be60055d2806c783c4305482873ebe447253a63f82d6ec0b2f",
+        "sha256": "7d1e3008fbfd26be60055d2806c783c4305482873ebe447253a63f82d6ec0b2f",
+        "bytes": 51857
+      },
+      "cache_key": "test",
+      "observation_measure": "space_time_mark",
+      "expected_pointer": "/expected_components",
+      "absolute_tolerances": {
+        "P": 1e-06,
+        "E": 1e-06,
+        "C": 1e-06,
+        "M": 1e-06,
+        "timing": 1e-06,
+        "location": 1e-06,
+        "joint": 1e-06
+      },
+      "tolerance_basis": "Same original FP64 native functional/cached features; predeclared1e-6absolute againstfullprecision original.",
+      "execution_status": "not_run",
+      "feature_scope": "cached_original_features",
+      "fit_scope": "unchanged_original_selected_state_no_search",
+      "n_events_expected": 167,
+      "manuscript_tables": []
+    },
+    {
+      "id": "california_benchmark/california_fold_2/EP/train",
+      "study": "california_benchmark",
+      "case": "california_fold_2",
+      "model": "independent_etas",
+      "procedure_key": "EP",
+      "phase": "train",
+      "adapter": "765a6badf8e4f148",
+      "state": {
+        "archive": "inputs/cached_01.zip",
+        "member": "state/50d2dbef64c143e1cb61b9773ba9b63d72b06463179afb62b815f78738007ff2",
+        "sha256": "50d2dbef64c143e1cb61b9773ba9b63d72b06463179afb62b815f78738007ff2",
+        "bytes": 1521
+      },
+      "parameter_pointer": "/parameters",
+      "cache": {
+        "archive": "inputs/cached_01.zip",
+        "member": "cache/e9e861cd3aa485ba7f7f73fe489aa9735628d57bd78f9374f43e8bb01576bfbd",
+        "sha256": "e9e861cd3aa485ba7f7f73fe489aa9735628d57bd78f9374f43e8bb01576bfbd",
+        "bytes": 77610
+      },
+      "cache_key": "train",
+      "observation_measure": "space_time_mark",
+      "expected_pointer": "/expected_components",
+      "absolute_tolerances": {
+        "P": 1e-06,
+        "E": 1e-06,
+        "C": 1e-06,
+        "M": 1e-06,
+        "timing": 1e-06,
+        "location": 1e-06,
+        "joint": 1e-06
+      },
+      "tolerance_basis": "Same original FP64 native functional/cached features; predeclared1e-6absolute againstfullprecision original.",
+      "execution_status": "not_run",
+      "feature_scope": "cached_original_features",
+      "fit_scope": "unchanged_original_selected_state_no_search",
+      "n_events_expected": 1097,
+      "manuscript_tables": []
+    },
+    {
+      "id": "california_benchmark/california_fold_2/EP/test",
+      "study": "california_benchmark",
+      "case": "california_fold_2",
+      "model": "independent_etas",
+      "procedure_key": "EP",
+      "phase": "test",
+      "adapter": "765a6badf8e4f148",
+      "state": {
+        "archive": "inputs/cached_01.zip",
+        "member": "state/790d5f625881a666dafbb6ff9ac9a8c3c507749d777856199021539c6014d5b1",
+        "sha256": "790d5f625881a666dafbb6ff9ac9a8c3c507749d777856199021539c6014d5b1",
+        "bytes": 1654
+      },
+      "parameter_pointer": "/parameters",
+      "cache": {
+        "archive": "inputs/cached_01.zip",
+        "member": "cache/3a527573d1a5ddad14623f95194df8c745b9f04bb7e155e213c1aebe4b1d5f5a",
+        "sha256": "3a527573d1a5ddad14623f95194df8c745b9f04bb7e155e213c1aebe4b1d5f5a",
+        "bytes": 51694
+      },
+      "cache_key": "test",
+      "observation_measure": "space_time_mark",
+      "expected_pointer": "/expected_components",
+      "absolute_tolerances": {
+        "P": 1e-06,
+        "E": 1e-06,
+        "C": 1e-06,
+        "M": 1e-06,
+        "timing": 1e-06,
+        "location": 1e-06,
+        "joint": 1e-06
+      },
+      "tolerance_basis": "Same original FP64 native functional/cached features; predeclared1e-6absolute againstfullprecision original.",
+      "execution_status": "not_run",
+      "feature_scope": "cached_original_features",
+      "fit_scope": "unchanged_original_selected_state_no_search",
+      "n_events_expected": 69,
+      "manuscript_tables": []
+    },
+    {
+      "id": "california_benchmark/california_fold_2/N0/train",
+      "study": "california_benchmark",
+      "case": "california_fold_2",
+      "model": "no_trigger",
+      "procedure_key": "N0",
+      "phase": "train",
+      "adapter": "765a6badf8e4f148",
+      "state": {
+        "archive": "inputs/cached_01.zip",
+        "member": "state/8e212ae947ede113716c6a34bae81b0edfeb75e6c2481c5d2eaa5afd64e6fdfd",
+        "sha256": "8e212ae947ede113716c6a34bae81b0edfeb75e6c2481c5d2eaa5afd64e6fdfd",
+        "bytes": 1386
+      },
+      "parameter_pointer": "/parameters",
+      "cache": {
+        "archive": "inputs/cached_01.zip",
+        "member": "cache/e9e861cd3aa485ba7f7f73fe489aa9735628d57bd78f9374f43e8bb01576bfbd",
+        "sha256": "e9e861cd3aa485ba7f7f73fe489aa9735628d57bd78f9374f43e8bb01576bfbd",
+        "bytes": 77610
+      },
+      "cache_key": "train",
+      "observation_measure": "space_time_mark",
+      "expected_pointer": "/expected_components",
+      "absolute_tolerances": {
+        "P": 1e-06,
+        "E": 1e-06,
+        "C": 1e-06,
+        "M": 1e-06,
+        "timing": 1e-06,
+        "location": 1e-06,
+        "joint": 1e-06
+      },
+      "tolerance_basis": "Same original FP64 native functional/cached features; predeclared1e-6absolute againstfullprecision original.",
+      "execution_status": "not_run",
+      "feature_scope": "cached_original_features",
+      "fit_scope": "unchanged_original_selected_state_no_search",
+      "n_events_expected": 1097,
+      "manuscript_tables": []
+    },
+    {
+      "id": "california_benchmark/california_fold_2/N0/test",
+      "study": "california_benchmark",
+      "case": "california_fold_2",
+      "model": "no_trigger",
+      "procedure_key": "N0",
+      "phase": "test",
+      "adapter": "765a6badf8e4f148",
+      "state": {
+        "archive": "inputs/cached_01.zip",
+        "member": "state/27658e351eb02d907c38846f421863cdd809994d35ff2b2d107a32ac79a170ad",
+        "sha256": "27658e351eb02d907c38846f421863cdd809994d35ff2b2d107a32ac79a170ad",
+        "bytes": 1523
+      },
+      "parameter_pointer": "/parameters",
+      "cache": {
+        "archive": "inputs/cached_01.zip",
+        "member": "cache/3a527573d1a5ddad14623f95194df8c745b9f04bb7e155e213c1aebe4b1d5f5a",
+        "sha256": "3a527573d1a5ddad14623f95194df8c745b9f04bb7e155e213c1aebe4b1d5f5a",
+        "bytes": 51694
+      },
+      "cache_key": "test",
+      "observation_measure": "space_time_mark",
+      "expected_pointer": "/expected_components",
+      "absolute_tolerances": {
+        "P": 1e-06,
+        "E": 1e-06,
+        "C": 1e-06,
+        "M": 1e-06,
+        "timing": 1e-06,
+        "location": 1e-06,
+        "joint": 1e-06
+      },
+      "tolerance_basis": "Same original FP64 native functional/cached features; predeclared1e-6absolute againstfullprecision original.",
+      "execution_status": "not_run",
+      "feature_scope": "cached_original_features",
+      "fit_scope": "unchanged_original_selected_state_no_search",
+      "n_events_expected": 69,
+      "manuscript_tables": []
+    }
+  ],
+  "no_scoring_performed": true
+}
