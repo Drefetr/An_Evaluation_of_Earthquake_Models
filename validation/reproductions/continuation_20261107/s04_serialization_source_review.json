@@ -1,0 +1,32 @@
+{
+  "schema": "independent_source_review_v1",
+  "reviewer": "/root/continuation_cpu",
+  "passed": true,
+  "reviewed_commit": "21dd15d2aa847db9bc62e090854360bd37d788b9",
+  "reviewed_files_sha256": {
+    "reproduction/score_replay/inhibition_replay.py": "ae0a3a0b67bc8b94fd91bc95a35f12ed342df6884ecc5f33fc13628ac02bc8b0",
+    "reproduction/score_replay/s04_original/pilot_proposal.json": "6e0aadf7d9616fd97d49389c34891ea8b93741777f3a962f6a779c6c609ae159",
+    "reproduction/score_replay/observed_fixedbackbone/pilot_proposal.json": "132ca0902aa126a84f4d90e6e44b30995bc2953aa5a6007bc2eebd5d8343d307",
+    "tests/test_inhibition_serialization.py": "961cc1ac5c9876119ee0ab44ccd5f74bd1cd9cb69d9c1d9701d10de92a051ea1"
+  },
+  "old_source_sha256": "e37f095362642f505c46f0e10b4695ef481f9cd86bdfe2e74c829b04d2263f38",
+  "source_scope": "Two serialization-boundary casts only in tiny_native_control: optional finite error to Python float and logical result to Python bool.",
+  "exact_text_substitution_verified": true,
+  "changed_ast_functions": [
+    "tiny_native_control"
+  ],
+  "dependent_proposal_pin_updates_only": true,
+  "unchanged_science": "All likelihood, construction, selected/floor states, gates, tolerances, registries, row roster, raw inputs, native source and historical evaluation code are unchanged.",
+  "constructed_tests": {
+    "command": "python -B -m unittest discover -s tests -p test_inhibition_serialization.py -v",
+    "passed": 3,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "log_sha256": "174b80c9efdb934eb26dab7eb8dfd6c8216415bb1febbf4040d7c247bdb2ef94",
+    "scope": "Invented Python native double only; no library or historical inputs loaded."
+  },
+  "numerical_execution_admitted": false,
+  "historical_model_calls": 0,
+  "scope_limit": "Source accepted for a separately admitted retry; this review does not establish any historical score replay."
+}

@@ -1,0 +1,55 @@
+{
+  "schema": "independent_retained_failure_audit_v1",
+  "reviewer": "/root/continuation_cpu",
+  "passed": true,
+  "execution_passed": false,
+  "archive_sha256": "66e164f95cfb343a0a2b9329f1fcd0ef4a17c63acc7b63819ae6fa6e11ee802c",
+  "archive_member_count": 20,
+  "all_extracted_members_byte_exact": true,
+  "source_sha256": "e37f095362642f505c46f0e10b4695ef481f9cd86bdfe2e74c829b04d2263f38",
+  "requested_historical_rows": [
+    "S04_R0_S410012",
+    "S04_R0_S410005",
+    "S04_R1_S410114",
+    "S04_R3_S410320"
+  ],
+  "historical_rows_started": 0,
+  "historical_evaluate_case_calls": 0,
+  "historical_count_evidence": "Source ordering and traceback locate failure at controls serialization, before the row loop; no result, row directory or progress stream is retained.",
+  "constructed_native_evaluate_calls_source_flow_inference": 18,
+  "constructed_count_evidence": "Three modes times two strengths times one whole and two deterministic split evaluations. The function returned before JSON writing. This is a static source-flow census, not instrumented telemetry.",
+  "control_acceptance": "Not asserted: incomplete JSON was retained; the all-controls passed gate was never reached.",
+  "supervisor": {
+    "schema": "linux_research_supervisor_v1",
+    "status": "failed",
+    "started_utc": "2026-11-07T10:05:44.710577+00:00",
+    "platform": "linux",
+    "returncode": 1,
+    "stop_reason": null,
+    "launched": true,
+    "cleanup_errors": [],
+    "survivors_after_cleanup": [],
+    "spec_sha256": "37a455d18e4a093e908eb0c945b7bfb9f3480d7e6365648c9afed54c4d0a6548",
+    "supervisor_sha256": "e8aaca56bb4bccf81aa9687a841d09d28bc5b2ff286de3c396ac37bd09324fcb",
+    "containment": "Dedicated Linux session/group plus child-subreaper; parent PID retained until cleanup",
+    "memory_scope": "Sampled process-tree RSS with enforcement after observation, not a hard OS memory reservation or exact unsampled peak",
+    "execution_wall_seconds": 1.0124584750000167,
+    "known_processes": [
+      {
+        "pid": 2500,
+        "create_time": 1794045944.65
+      }
+    ],
+    "sample_count": 3,
+    "sample_interval_seconds": 0.5,
+    "sampled_peak_tree_rss_bytes": 95100928,
+    "minimum_sampled_host_available_bytes": 15491600384,
+    "wall_seconds_including_cleanup": 1.0255854779999822,
+    "finished_utc": "2026-11-07T10:05:45.740275+00:00",
+    "execution_log_sha256": "69ad9799348d4b72648c727f38e06a806403100ba26ab008a2ad7b74e5857077"
+  },
+  "partial_control_json_sha256": "5bf77f040ed80472f00d391f3d756bd8386645f05775d9b39ccc7dddc8bead91",
+  "error_log_sha256": "69ad9799348d4b72648c727f38e06a806403100ba26ab008a2ad7b74e5857077",
+  "audit_performed_model_calls": 0,
+  "retry_disposition": "All four original fixed pilot rows remain unexecuted; no completed historical fit/score is discarded or repeated by retry."
+}
