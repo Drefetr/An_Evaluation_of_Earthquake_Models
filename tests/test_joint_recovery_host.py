@@ -242,12 +242,12 @@ class RecoveryHostControls(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);policy,recovery=self.diagnostic_fixture(root)
             digest=recovery['operational_diagnostics'][0]['archive_sha256']
-            for mutation in ('missing','extra','traversal','absolute','backslash','colon','collision'):
+            for mutation in ('missing','extra','traversal','absolute','backslash','colon','collision','trailing_slash','dot_prefix'):
                 changed=copy.deepcopy(recovery);mapping=changed['operational_lineage_files']
                 if mutation=='missing':del mapping[digest]
                 elif mutation=='extra':mapping['unreviewed']={}
                 elif mutation=='collision':mapping[digest]['archive']=mapping[digest]['review']
-                else:mapping[digest]['archive']={'traversal':'../x','absolute':'/x','backslash':'x\\y','colon':'C:x'}[mutation]
+                else:mapping[digest]['archive']={'traversal':'../x','absolute':'/x','backslash':'x\\y','colon':'C:x','trailing_slash':'x/','dot_prefix':'./x'}[mutation]
                 with self.subTest(mutation=mutation),self.assertRaises(ValueError):
                     batch.reviewed_operational_records(changed)
 

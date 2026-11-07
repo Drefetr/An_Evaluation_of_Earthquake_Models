@@ -101,7 +101,8 @@ def reviewed_operational_records(recovery):
                 'Incomplete operational lineage mapping')
         for name in names.values():
             require(isinstance(name,str) and name not in ('','.','..') and
-                    len(PurePosixPath(name).parts) == 1 and not PurePosixPath(name).is_absolute() and
+                    len(PurePosixPath(name).parts) == 1 and PurePosixPath(name).name == name and
+                    not PurePosixPath(name).is_absolute() and
                     ':' not in name and '\\' not in name, 'Lineage destination must be an explicit safe basename')
             destinations.append(name)
     require(len(destinations) == len(set(destinations)), 'Operational lineage destination collision')
