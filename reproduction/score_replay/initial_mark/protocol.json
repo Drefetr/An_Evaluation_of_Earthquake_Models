@@ -1,0 +1,122 @@
+{
+  "schema": "initial_mark_selected_state_replay_v1",
+  "status": "frozen_before_new_historical_likelihoods",
+  "input_manifest_sha256": "af3d90760ca607613729bc0f5dd62b5ab608713878a63c69cfc008b8349c12f2",
+  "roster": [
+    "s00_h0p0",
+    "s00_h0p5",
+    "s00_h0p9",
+    "s01_h0p0",
+    "s01_h0p5",
+    "s01_h0p9",
+    "s02_h0p0",
+    "s02_h0p5",
+    "s02_h0p9",
+    "s03_h0p0",
+    "s03_h0p5",
+    "s03_h0p9",
+    "s04_h0p0",
+    "s04_h0p5",
+    "s04_h0p9",
+    "s05_h0p0",
+    "s05_h0p5",
+    "s05_h0p9",
+    "s06_h0p0",
+    "s06_h0p5",
+    "s06_h0p9",
+    "s07_h0p0",
+    "s07_h0p5",
+    "s07_h0p9",
+    "s08_h0p0",
+    "s08_h0p5",
+    "s08_h0p9",
+    "s09_h0p0",
+    "s09_h0p5",
+    "s09_h0p9",
+    "s10_h0p0",
+    "s10_h0p5",
+    "s10_h0p9",
+    "s11_h0p0",
+    "s11_h0p5",
+    "s11_h0p9",
+    "s12_h0p0",
+    "s12_h0p5",
+    "s12_h0p9",
+    "s13_h0p0",
+    "s13_h0p5",
+    "s13_h0p9",
+    "s14_h0p0",
+    "s14_h0p5",
+    "s14_h0p9",
+    "s15_h0p0",
+    "s15_h0p5",
+    "s15_h0p9",
+    "s16_h0p0",
+    "s16_h0p5",
+    "s16_h0p9",
+    "s17_h0p0",
+    "s17_h0p5",
+    "s17_h0p9",
+    "s18_h0p0",
+    "s18_h0p5",
+    "s18_h0p9",
+    "s19_h0p0",
+    "s19_h0p5",
+    "s19_h0p9"
+  ],
+  "pilot": [
+    "s00_h0p0",
+    "s00_h0p5",
+    "s00_h0p9",
+    "s19_h0p0",
+    "s19_h0p5",
+    "s19_h0p9"
+  ],
+  "pilot_rule": "All h in first skeleton0 and largest-event skeleton19 selected from input counts only.",
+  "scope": "60 raw histories,120 methods,240 selected NLLs and120 GLRs; no fit/simulation/terminal-attempt replay. Supplied and fitted background arms retain original n=.5017751599706763 and ratio=.7, unlike laterS02.",
+  "methods": [
+    "known_known",
+    "background_estimated"
+  ],
+  "orders": {
+    "primary": 32,
+    "pilot_refinement": 64,
+    "refined_panels": false,
+    "geometry": "Original45 log-spaced panel offsets, no S02/Q01 extra1e-12 panels"
+  },
+  "tolerance": 0.0001,
+  "component_identity_tolerance": 1e-08,
+  "clock": "paired",
+  "mark_score": "Common fixed Exp(beta) score reported separately; original ground NLL excludes it.",
+  "evaluator": "Reuses the byte-pinned independent Q01 evaluator and read-only component/GLR exports from s02. This is a new CPU saved-state replay of historicalCUDA results, not GPU execution or optimizer equivalence.",
+  "selected_rule": {
+    "glr_above": 0.001,
+    "eta_above": 1e-06
+  },
+  "bootstrap": {
+    "resamples": 20000,
+    "seed": 2026102499,
+    "scope": "Exact historical paired-forest analysis resampling; no new event histories or confirmatory inference"
+  },
+  "resources": {
+    "threads": 2,
+    "workers": 1,
+    "pilot_wall_cap_seconds": 1800,
+    "completion_wall_cap_seconds": 14400,
+    "sampled_rss_cap_bytes": 6442450944
+  },
+  "table_links": [
+    {
+      "source": "paper/source/chapters/09_temporal_mark_extensions.tex",
+      "label": "tab:pilot-frequency",
+      "authority": "records/summary.json",
+      "pointer": "/groups"
+    },
+    {
+      "source": "paper/source/chapters/09_temporal_mark_extensions.tex",
+      "label": "tab:pilot-paired",
+      "authority": "records/summary.json",
+      "pointer": "/paired_contrasts"
+    }
+  ]
+}

@@ -1,0 +1,298 @@
+{
+  "schema_version": 1,
+  "law": {
+    "beta": 2.849401764894274,
+    "horizon_days": 24394.0,
+    "coordinate_horizon_days": 24394.0,
+    "empty_initial_history": true,
+    "alternative_generating_fit": {
+      "model": "ml_shared",
+      "trigger": {
+        "kind": "ml",
+        "tau": 1.0,
+        "alpha": 0.5,
+        "p": 1.3,
+        "spectral_step": 0.4,
+        "spectral_tail_bound": 1e-08
+      },
+      "ratio": 0.7,
+      "stress": {
+        "kind": "ml",
+        "tau": 1.0,
+        "alpha": 0.5,
+        "p": 1.3,
+        "spectral_step": 0.4,
+        "spectral_tail_bound": 1e-08
+      },
+      "start": [
+        -4.296182222574206,
+        0.1,
+        0.7
+      ],
+      "origin": "optimizer",
+      "pars": [
+        -4.162108473051707,
+        0.23211265877958467,
+        0.5017751599706763,
+        0.4885010300470942
+      ],
+      "nll": 2035.3565864281682,
+      "success": true,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "nit": 11,
+      "nfev": 15,
+      "status": 0,
+      "elapsed_seconds": 0.19832560000941157,
+      "boundary_hits": [],
+      "effect": null
+    },
+    "null_rule": "Same a,d,n,productivity ratio,beta,trigger,stress law with eta=0; mark likelihood cancels",
+    "alternative_eta": 0.4885010300470942,
+    "same_mark_density": true,
+    "marks_not_refitted": true
+  },
+  "candidate_intensity": "exp(a+d*(2*t/T-1))*exp(-eta*G_fixed_stress)+n*H_trigger",
+  "parameters": {
+    "eta": {
+      "bounds": [
+        0,
+        3
+      ],
+      "null": 0,
+      "estimated_in_every_procedure": true
+    },
+    "background": {
+      "names": [
+        "a",
+        "d"
+      ],
+      "known": [
+        -4.162108473051707,
+        0.23211265877958467
+      ],
+      "estimated_bounds": [
+        [
+          -12,
+          0
+        ],
+        [
+          -2,
+          2
+        ]
+      ],
+      "estimated_only_in": "background_estimated"
+    },
+    "trigger": {
+      "names": [
+        "n",
+        "r_kappa",
+        "alpha_e",
+        "tau_e"
+      ],
+      "known": {
+        "n": 0.5017751599706763,
+        "r_kappa": 0.7,
+        "alpha_e": 0.5,
+        "tau_e": 1.0
+      },
+      "estimated_n_bounds": [
+        0,
+        0.98
+      ],
+      "estimated_r_grid": [],
+      "estimated_alpha_grid": [],
+      "estimated_tau_days_grid": [],
+      "grid_order": "r outer,alpha middle,tau inner",
+      "estimated_in_this_stage": false,
+      "deferred_full_block": [
+        "n",
+        "r_kappa",
+        "alpha_e",
+        "tau_e"
+      ]
+    },
+    "stress": {
+      "fixed_independently_of_trigger": true,
+      "kernel": {
+        "kind": "ml",
+        "tau": 1.0,
+        "alpha": 0.5,
+        "p": 1.3,
+        "spectral_step": 0.4,
+        "spectral_tail_bound": 1e-08
+      }
+    },
+    "beta": {
+      "value": 2.849401764894274,
+      "fixed": true,
+      "marks_not_refitted": true
+    },
+    "normalization": "kappa=(1-r)*exp(beta*r*Q), so E[kappa]=1 under fixed Exp(beta); g=exp(gamma*(Q-1)),gamma=.75*log(10)"
+  },
+  "procedures": [
+    {
+      "id": "known_known",
+      "background": "known",
+      "trigger": "known",
+      "trigger_cells": 1,
+      "null_minimizations_per_cell": 0,
+      "alternative_minimizations_per_cell": 2,
+      "prescribed_minimizations": 2
+    },
+    {
+      "id": "background_estimated",
+      "background": "estimated",
+      "trigger": "known",
+      "trigger_cells": 1,
+      "null_minimizations_per_cell": 2,
+      "alternative_minimizations_per_cell": 2,
+      "prescribed_minimizations": 4
+    }
+  ],
+  "starts": {
+    "a0": "clip(log(max(N/T,1e-8)),-12,0)",
+    "background_null": [
+      [
+        "a0",
+        0
+      ],
+      [
+        "clip(a0-.5,-12,0)",
+        0.1
+      ]
+    ],
+    "trigger_n_null": "Not used; n supplied in both methods",
+    "both_null_zip": "Not used in this stage; original20 fields retained only in pinned historical authority",
+    "both_not_cartesian": null,
+    "alternative": "Two starts from each cell selected matching null, append eta0 or eta.2 and reoptimize every estimated continuous parameter",
+    "known_known": "Fixed null evaluates true nuisance once; optimize eta from0 and.2",
+    "retained_subsets": "Only exact eta0 matching null within each method is eligible. Eta* and known_known winners are witness-only; never change background starts/selection.",
+    "tie_rule": "Select lowest NLL; exact ties retain first canonical grid/start/subset order"
+  },
+  "bookkeeping": {
+    "methods": 2,
+    "per_history_prescribed_minimizations": 6,
+    "per_method": [
+      2,
+      4
+    ],
+    "full_unique_histories": 2149,
+    "full_method_history_pairs": 4298,
+    "full_prescribed_minimizations": 12894,
+    "full_execution_authorized": "manual_invocation_only_under_this_budget",
+    "old_150_start_procedure_not_executed": true
+  },
+  "solver": {
+    "primary": {
+      "method": "L-BFGS-B",
+      "backend": "CUDA_FP64",
+      "maxiter": 100,
+      "maxls": 40,
+      "ftol": 1e-10,
+      "gtol": 2e-06
+    },
+    "failure_only_sequence": [
+      "same_start_original_CPU_FP64_maxls40",
+      "same_start_original_CPU_FP64_maxls200",
+      "bounded_Powell_and_exact_n0_face_if_n_estimated"
+    ],
+    "retry_options": "Original start,bounds,maxiter100,ftol1e-10,gtol2e-6 unchanged; CPU200 changes only maxls",
+    "powell": {
+      "maxiter": 100,
+      "maxfev": 2000,
+      "ftol": 1e-10,
+      "xtol": 1e-08
+    },
+    "n0_face": {
+      "method": "L-BFGS-B",
+      "maxiter": 100,
+      "maxls": 200,
+      "ftol": 1e-10,
+      "gtol": 2e-06,
+      "start": "Original start with n fixed exactly0; retain all other free coordinates"
+    },
+    "acceptance": {
+      "solver_success_required": true,
+      "finite_feasible_required": true,
+      "returned_and_recomputed_value_agreement_tolerance": 0.0001,
+      "cpu16_cuda16_absolute_NLL_tolerance": 0.0001,
+      "nonworsening_tolerance": 1e-08,
+      "nonworsening": "max(returned_fun,recomputed_CPU16,recomputed_CUDA16)<=min(finite original-start objective,finite validated failed-returned candidate objective)+1e-8",
+      "each_derivativefree_candidate_own_start_nonworsening": true,
+      "both_Powell_and_n0_face_success_if_applicable": true,
+      "no_gradient_clipping": true,
+      "no_success_flag_relaxation": true
+    },
+    "diagnostics": [
+      "all initial/final parameters,NLL,success,status,message,nit,nfev",
+      "full primary/retry/exception lineage",
+      "finite full and bound-projected gradient norms or explicit nonrepresentability",
+      "eta/n boundary hits",
+      "matching-null and global eta0 nesting differences",
+      "cross-procedure embedded-subset witnesses"
+    ],
+    "failure_policy": "Every required start in a method must resolve: known_known2,background_estimated4,one supplied trigger cell. Unresolved orresource-capped method remainsunknown; validatedKK survivesBGfailure, dependentBG requiresvalidatedKK. Benchmarkfirstunresolvedcasestops; no failed-start omission or case replacement.",
+    "pinned_source_policy": "Import exact iteration20 fit_start and RestrictedHistory by source hashes; fallback code unchanged. n supplied, so n0-face tier is inapplicable to these methods."
+  },
+  "validation": {
+    "synthetic_total_wall_seconds": 180,
+    "no_saved_history_fits_during_synthetics": true,
+    "independent_CPU32_fixed_stress_features": true,
+    "selected_objectives": 4,
+    "selected_CPU16_CPU32_absolute_NLL_gate": 0.0001,
+    "each_procedure_D16_D32_absolute_gate": 0.0001,
+    "quadrature_discrepancies_are_empirical_not_error_bounds": true,
+    "required_controls": [
+      "Exact20 RestrictedHistory and fit_start source hashes; no numerical optimizer changes",
+      "2+4 start records and original null/alt initialization/eta0 selection",
+      "one eta* and2background-superset witnesses, never inserted",
+      "4independentCPU32 selected objectives+2directGLRs",
+      "method_validated callbacks bind optimization+validation+law/input/source/clock",
+      "validatedKK reuse afterBG interruption, no promotion of optimization-only",
+      "failed/timecap method retained and dependentBG blocked; no failure-to-zero",
+      "no duplicate workers/IDs and exact source/input cache rejection"
+    ],
+    "GLR_primary": "Direct event log-intensity ratio plus stable background compensator difference and analytic trigger compensator difference. Never obtain primary GLR by subtracting large full NLL totals.",
+    "GLR_background_difference": "sum_q w*(-B0*expm1((a1-a0)+(d1-d0)*x-eta1*G)); add n0*C_H0-n1*C_H1 for selected different trigger/n",
+    "common_mark_density": "Fixed beta exponential mark term cancels across all candidates including r-grid; store separately, optimize ground likelihood.",
+    "full_NLL_subtraction_control_absolute_gate": 0.0001,
+    "direct_GLR_nonnegative_tolerance": 0.0001,
+    "raw_direct_GLR_retained_without_hidden_clamping": true,
+    "direct_GLR_order_checks": 2
+  },
+  "numerical_witnesses": {
+    "eta_star": {
+      "value": 0.4885010300470942,
+      "rule": "Known/known selected alt NLL must be no worse than fixed eta* feasible-point NLL within1e-4; direct GLR check against2*oracle L has its own1e-4 absolute shortfall gate at16/32",
+      "eligible_candidate": false,
+      "extra_optimizer_start": false,
+      "direct_GLR_control_orders": [
+        16,
+        32
+      ],
+      "direct_GLR_shortfall_tolerance": 0.0001
+    },
+    "cross_procedure": {
+      "edges": [
+        [
+          "known_known",
+          "background_estimated"
+        ]
+      ],
+      "null_and_alt_separate": true,
+      "rule": "At common CUDA16, background_estimated null and alternative must each be no worse than selected known_known feasible point by>1e-4; witnesses only",
+      "eligible_candidate": false,
+      "changes_null_or_alternative_initializations": false,
+      "expected_cell_comparisons": 2,
+      "common_order": 16,
+      "CPU32_all_cross_witnesses_performed": false
+    },
+    "NLL_tolerance": 0.0001,
+    "violation": "Retain unresolved search/numerical gate; no insertion or hidden initialization repair",
+    "interpretation": "Only component likelihood nesting follows from family inclusion; GLRs, calibration thresholds and power need not be ordered; witnesses do not certify a global optimum"
+  },
+  "provenance": {
+    "historical_config_sha256": "91d98445f0b722bf960fa0ea331f10a592547f23ae35a74723ad57cbd7a77d65",
+    "scope": "Scientific recipe extraction only. Historical campaign permissions and counts do not authorize or define this run."
+  }
+}
