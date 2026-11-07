@@ -58,6 +58,17 @@ class TestJointFindings(unittest.TestCase):
         self.fixture.index['cases'].pop();self.fixture.persist()
         with self.assertRaisesRegex(ValueError,'eighty unique'):self.load()
 
+    def test_physical_interruption_metadata_keeps_logical_summary_and_export_schema(self):
+        before,_=self.load()
+        self.fixture.audit['physical_recovery']=dict(original_timeout_retained=True,
+            restarted_interrupted_invocations=1,scope='Invented separate physical evidence')
+        self.fixture.persist();after,_=self.load()
+        self.assertEqual(set(before),set(after))
+        self.assertEqual(after['summary'],before['summary'])
+        self.assertEqual(after['display_summary'],before['display_summary'])
+        self.assertIn('unsuccessful logical optimizer attempts',after['note'])
+        self.assertIn('administrative restarts are retained separately',after['note'])
+
     def test_missing_floor_check_is_rejected_despite_complete_declared_totals(self):
         self.fixture.cases[0]['floor_checks'].pop();self.fixture.persist()
         with self.assertRaisesRegex(ValueError,'floor check roster'):self.load()

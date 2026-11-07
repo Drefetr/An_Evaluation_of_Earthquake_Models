@@ -129,6 +129,19 @@ class TestJointPublicationFormatter(unittest.TestCase):
         self.fixture.completion['live_independent_review']=False
         self.rejects('final live independent')
 
+    def test_physical_interruption_metadata_does_not_inflate_logical_census(self):
+        self.fixture.audit['physical_recovery']=dict(original_timeout_retained=True,
+            restarted_interrupted_invocations=1,scope='Invented separate physical evidence')
+        self.fixture.persist();receipt=self.stage()
+        self.assertEqual(receipt['claim_bindings'],420)
+        claims=formatter.read(self.root/'staging/claims.additions.json')['claims']
+        failures=[c for c in claims if c['json_pointer'].endswith('/optimizer_failed_attempts')]
+        self.assertEqual(len(failures),20)
+        self.assertTrue(all(c['resolved_source_value']==7 and c['display']=='7' for c in failures))
+        tex=(self.root/'staging'/self.destination).read_text(encoding='utf-8')
+        self.assertIn('unsuccessful logical optimizer attempts',tex)
+        self.assertIn('administrative restarts are retained separately',tex)
+
     def test_artifact_tampering_is_rejected_before_any_output(self):
         path=self.fixture.repo/self.fixture.paths['summary']
         path.write_bytes(path.read_bytes()+b' ')

@@ -56,9 +56,10 @@ def load_joint_study(repository):
             'not mean-gain uncertainty or simultaneous inference. Positive near-zero gains still count as wins. '
             'Active means positive selected inhibition; it does not establish parameter recovery. A null-search '
             'gap can produce a gain at zero inhibition and prevents attributing that procedure contrast to '
-            'inhibition. Failed optimizer attempts remain counted, including shared searches reused by raw and '
-            'gated rows; their counts must not be added across procedures. These controlled comparisons do not '
-            'establish a physical mechanism or prospective forecasting performance.',
+            'inhibition. The failed-attempt census counts unsuccessful logical optimizer attempts, including shared '
+            'searches reused by raw and gated rows; their counts must not be added across procedures. Resource '
+            'interruptions and administrative restarts are retained separately in the execution records. These '
+            'controlled comparisons do not establish a physical mechanism or prospective forecasting performance.',
         'source':'Chapter 13, separate jointly fitted S04B comparison. Exact summary and complete execution '
                  'are bound to the final live saved-output review; source hashes are in the aggregate download.',
         'evidence_paths':paths,
