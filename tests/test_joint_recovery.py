@@ -122,6 +122,42 @@ class RecoveryControls(unittest.TestCase):
         self.assertEqual(actual['actual_evaluation'],{k:v for k,v in r.interrupted['last_evaluation'].items() if k!='evaluation_count'})
         pending=next(v for v in rows if v['event']=='restart_next_input_anchor_verified')
         self.assertEqual(pending['parameters'],r.interrupted['failed_evaluation_parameters'])
+    def test_complete_recovered_training_equals_uninterrupted_invented_reference(self):
+        """Same frozen fit_arm, full candidates/selection/checks; no saved history."""
+        reference={};reference_checks={};phase=TinyPhase()
+        for name in ('null','LI','LIplus_immigrant','LIplus_inclusive'):
+            start=-1
+            def uninterrupted(objective,x,*,jac,bounds,method,options):
+                nonlocal start
+                if method=='L-BFGS-B':start+=1
+                if name=='LIplus_immigrant' and start==5:
+                    if method=='L-BFGS-B':
+                        objective(x)
+                        trial=np.asarray(x).copy();trial[0]-=.001
+                        phase.fail=ArithmeticError('Finite objective has unrepresentable gradient')
+                        objective(trial)
+                    # Same deterministic Powell invocation, with no artificial
+                    # resource interruption at its third objective call.
+                    for j in range(3):
+                        point=np.asarray(x).copy();point[0]-=.01*j
+                        value=objective(point)
+                    return returned(point,value)
+                value=objective(x)
+                return returned(x,value[0] if jac else value)
+            eligible=(self.partial['fits']['null']['candidates'][0]['parameters'] if name=='null' else reference['null']['selected']['parameters'])
+            reference[name]=fit.fit_arm(phase,name,self.science,eligible,optimizer=uninterrupted)
+            reference_checks[name]=fit.fine_check(phase,name,reference[name],self.science)
+        calls=[];recovery=self.recorder(optimizer=new_optimizer(calls))
+        resumed_phase=adapter.CountedPhase(TinyPhase(),recovery,'train')
+        actual={};actual_checks={}
+        for name in ('null','LI','LIplus_immigrant','LIplus_inclusive'):
+            eligible=(self.partial['fits']['null']['candidates'][0]['parameters'] if name=='null' else actual['null']['selected']['parameters'])
+            actual[name]=recovery.fit_arm(resumed_phase,name,self.science,eligible,lambda _:None)
+            actual_checks[name]=fit.fine_check(resumed_phase,name,actual[name],self.science)
+        self.assertTrue(adapter.same(actual,reference))
+        self.assertTrue(adapter.same(actual_checks,reference_checks))
+        self.assertEqual(actual['LIplus_immigrant']['records'][5],recovery.original_error)
+        self.assertEqual(len(calls),11)
     def test_corrupt_original_start_rejected(self):
         self.trace[0]['initial_parameters'][0]+=.1
         with self.assertRaisesRegex(ValueError,'initial point'):self.recorder()
