@@ -1,0 +1,56 @@
+name: Public joint CPU reader execution
+on:
+  push:
+    branches: ['research/joint_replay_20261107T045457Z-integration']
+permissions:
+  contents: read
+concurrency:
+  group: public-joint-cpu-reader
+  cancel-in-progress: false
+jobs:
+  reader:
+    if: contains(github.event.head_commit.message, '[joint-reader]')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      OMP_NUM_THREADS: '2'
+      OPENBLAS_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+      NUMEXPR_NUM_THREADS: '2'
+      BLIS_NUM_THREADS: '2'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.18'
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - name: Constructed reader and scientific controls
+        run: |
+          python -B -m unittest discover -s tests -p test_joint_cpu_reader.py -v
+          python -B -m unittest discover -s tests -p test_s04b_joint_nuisance.py -v
+          python -B -m unittest discover -s tests -p test_joint_parallel_chunks.py -v
+          python -B -m unittest discover -s scripts/tests -p test_supervise_research_linux.py -v
+      - name: Execute the public CPU command on the next pending case
+        run: |
+          python -B - <<'PY'
+          import json, os
+          with open('validation/reproductions/continuation_20261107/joint_public_reader07_source_review.json') as stream:
+              record = json.load(stream)
+          if (record.get('execution_admitted') is not True
+                  or record.get('published_basename') != 'budgeted06'
+                  or record.get('case_ids') != ['S4_narrow_short_imm_seed410403']):
+              raise SystemExit('The exact pending public-reader execution is not admitted.')
+          if int(os.environ['GITHUB_RUN_ATTEMPT']) != record['allowed_github_run_attempt']:
+              raise SystemExit('A new attempt needs its own execution record; do not repeat a completed fit.')
+          PY
+          python -B scripts/fit_joint_cpu.py run --continue-published budgeted06 --execution-record validation/reproductions/continuation_20261107/joint_public_reader07_source_review.json --output "$RUNNER_TEMP/joint-public-reader07"
+      - name: Retain successful and partial execution evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: joint-public-reader07-${{ github.sha }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/joint-public-reader07
+          if-no-files-found: warn
+

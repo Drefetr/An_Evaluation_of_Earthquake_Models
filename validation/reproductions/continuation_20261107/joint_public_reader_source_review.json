@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "reviewer": "/root",
+  "author": "/root/recover_jma",
+  "review_kind": "independent_source_review",
+  "reviewed_files_sha256": {
+    "scripts/fit_joint_cpu.py": "98b4365a514cd4cbe588cd40d60577d28ffa4cea98d08fa115b3a92778743f5e",
+    "tests/test_joint_cpu_reader.py": "0ac330ad21e94fb970c57c86cb2e3899cb984bc36891fe700eedcebafcfd9ed8",
+    "docs/reproduction_joint_cpu.md": "dacadb7f827763ddc72b92eaab9b615da7f2fa6dbbdf871dd9a967aadaf2e7f0"
+  },
+  "checks": [
+    "Read full fresh/published/resume runner and final case aggregation dependency",
+    "Fresh mode invokes frozen case_run with reviewed scheduler, unchanged starts/bounds/likelihood/gates and fixed inputs",
+    "Dated continuation restores original native/runtime/exact accepted prefix and consumes only next unchanged fixed slot",
+    "Original failed-pilot ZIP preserved separately from published predecessor ZIP after review correction",
+    "Partial output retained, failed prefix cannot automatically resume, successful prefix rechecked before copying",
+    "Independent/external output review never implied by local integrity record; optional actual conductor record preserved",
+    "14 constructed tests passed including invented full-case serial/delegate equivalence and80-case bookkeeping; no historical fit repeated"
+  ],
+  "tests": {
+    "run": 14,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0
+  },
+  "scope": "Source acceptance. Fresh all80 execution not claimed; actual pending dated case07 is the separate Linux public-entry execution check."
+}
