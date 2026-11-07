@@ -40,9 +40,42 @@ def inside(base, relative):
     return path
 
 
-def mandatory_sources(stage):
+def replay_paths(review):
+    package = ROOT / 'reproduction/score_replay'
+    registry = inside(ROOT, review.get('registry', 'reproduction/score_replay/cached_registry.json'))
+    proposal = inside(ROOT, review.get('proposal', 'reproduction/score_replay/cached_pilot_proposal.json'))
+    if not registry.is_relative_to(package) or proposal.parent != registry.parent:
+        raise ValueError('Replay registry/proposal must share a declared package directory')
+    return package, registry, proposal
+
+
+def replay_roster(review, proposal, registry):
+    phase = review['stage'].split('-')[1]
+    selected = review['row_ids']
+    by_id = {row['id']: row for row in registry['rows']}
+    if len(by_id) != len(registry['rows']):
+        raise ValueError('Duplicate registry identity')
+    if not selected or len(selected) != len(set(selected)) or set(selected)-by_id.keys():
+        raise ValueError('Invalid reviewed replay roster')
+    pilot = proposal['row_ids']
+    if not pilot or len(pilot) != len(set(pilot)) or set(pilot)-by_id.keys():
+        raise ValueError('Invalid proposed pilot roster')
+    if phase == 'pilot' and selected != pilot:
+        raise ValueError('Pilot differs from the predeclared source-review roster')
+    if phase == 'completion':
+        if review.get('pilot_output_review_passed') is not True:
+            raise ValueError('Replay completion requires an independently accepted pilot')
+        if selected != [r for r in by_id if r not in pilot]:
+            raise ValueError('Completion must cover exactly the non-pilot rows')
+    if phase not in ('pilot', 'completion'):
+        raise ValueError('Unknown replay phase')
+    return selected, by_id
+
+
+def mandatory_sources(stage, review=None):
     paths = {'scripts/run_continuation.py','scripts/supervise_research.py',
              'scripts/tests/test_supervise_research_linux.py',
+             'tests/test_continuation_controller.py',
              'engine/cpu_build.py','engine/stage2_followup/native_build.py',
              '.github/workflows/research-continuation.yml','requirements.txt','requirements-cpu.txt'}
     if stage in ('joint-pilot','joint-full'):
@@ -50,11 +83,14 @@ def mandatory_sources(stage):
         package = ROOT/'experiments/s04b_joint_nuisance'
         paths.update(p.relative_to(ROOT).as_posix() for p in package.iterdir()
                      if p.is_file() and p.suffix in ('.py','.cpp','.json'))
-    elif stage in ('cached-pilot','cached-completion'):
+    elif stage in ('cached-pilot','cached-completion','regional-pilot','regional-completion'):
         prefix = 'reproduction/score_replay/'
-        paths.update(prefix+name for name in ('__init__.py','build.py','cached_native.py','core.py',
-                     'inventory.py','replay.py','cached_registry.json','protocol.json',
-                     'input_manifest.json','cached_pilot_proposal.json','cached_field_crosswalk.json'))
+        package, registry, proposal = replay_paths(review or {})
+        names = ('__init__.py','core.py','regional_build.py','regional_replay.py') if stage.startswith('regional-') else (
+            '__init__.py','build.py','cached_native.py','core.py','inventory.py','replay.py')
+        paths.update(prefix+name for name in names)
+        paths.update(p.relative_to(ROOT).as_posix() for p in (registry, proposal, registry.parent/'input_manifest.json'))
+        paths.update(prefix+name for name in ('protocol.json','cached_field_crosswalk.json'))
     else:
         raise ValueError('Unknown bounded continuation stage')
     return paths
@@ -105,7 +141,7 @@ def main():
     if review['independent_source_review'] != 'passed':
         raise ValueError('Independent source review has not passed')
     stage = review['stage']
-    missing = mandatory_sources(stage)-review['reviewed_files_sha256'].keys()
+    missing = mandatory_sources(stage, review)-review['reviewed_files_sha256'].keys()
     if missing:
         raise ValueError('Incomplete reviewed-source coverage: '+str(sorted(missing)))
     if int(os.environ.get('GITHUB_RUN_ATTEMPT','1')) != review['allowed_github_run_attempt']:
@@ -158,22 +194,25 @@ def main():
             admission.update(pilot_result_sha256=review['pilot_result_sha256'],
                              pilot_output_review_passed=review['pilot_output_review_passed'])
             command += ['--pilot',str(inside(prior,review['pilot_science_directory']))]
-    elif stage in ('cached-pilot', 'cached-completion'):
-        package = ROOT / 'reproduction/score_replay'
+    elif stage in ('cached-pilot', 'cached-completion', 'regional-pilot', 'regional-completion'):
+        package, registry_path, proposal_path = replay_paths(review)
+        regional = stage.startswith('regional-')
+        proposal = read(proposal_path)
+        registry = read(registry_path)
+        selected, by_id = replay_roster(review, proposal, registry)
         build = output / 'build'
-        subprocess.run([sys.executable,'-B',str(package/'build.py'),'--output',str(build)],cwd=ROOT,check=True)
-        proposal = read(package/'cached_pilot_proposal.json')
+        subprocess.run([sys.executable,'-B',str(package/('regional_build.py' if regional else 'build.py')),
+                        '--registry',str(registry_path),'--output',str(build)],cwd=ROOT,check=True)
         libraries = read(build/'libraries.json')
         phase = stage.split('-')[1]
-        selected = review['row_ids']
-        registry = read(package/'cached_registry.json')
-        used = {row['adapter'] for row in registry['rows'] if row['id'] in selected}
+        used = {'core','competitive'} if regional else {by_id[row]['adapter'] for row in selected}
         write(output/'rows.json',selected)
         admission = dict(proposal, passed=True, status='reviewed_workflow_admission', mode=phase, row_ids=selected,
                          numerical_lease=review['numerical_attempt_id'],
                          libraries_sha256=sha(build/'libraries.json'), expires_utc=review['expires_utc'], numeric_threads=2,
                          build_receipts_sha256={k:sha(libraries['libraries'][k]['build_receipt_path']) for k in sorted(used)})
-        command = [sys.executable,'-B',str(package/'replay.py'),'--mode',phase,
+        command = [sys.executable,'-B',str(package/('regional_replay.py' if regional else 'replay.py')),'--mode',phase,
+                   '--registry',str(registry_path),
                    '--libraries',str(build/'libraries.json'),'--admission',str(output/'admission.json'),
                    '--rows',str(output/'rows.json'),'--output',str(output/'science')]
     else:

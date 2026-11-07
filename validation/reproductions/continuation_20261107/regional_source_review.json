@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "reviewer": "/root",
+  "scope": "Raw-feature regional replay sources and predeclared pilot source review; no real score rows evaluated",
+  "packages": [
+    "jma",
+    "s03",
+    "s06_ca"
+  ],
+  "source_sha256": {
+    "core.py": "e40c3a4ab5e2b8017edec91c7eac60ee4c5d4b7dd7c1cc9817e9d293d7744108",
+    "regional_build.py": "ea2214b6e860f1b50f8873730d4d42e75f1738657b4b7fbf8c06be612d508e16",
+    "regional_replay.py": "77fb6e95ad34c3105009baeb72baebedc59e0be93c6c042ffd7e1a82b0eb9acf"
+  },
+  "findings": [
+    "Original JMA C++ sources compared to portable export wrappers: numerical bodies unchanged",
+    "Generalized Python features specialize to original JMA constants; exact raw feature hashes required per row",
+    "Original S03 prepare/features/evaluate functions only, no fit calls; baseline geometry control1e-10",
+    "California original clock/projection/mark arithmetic retained; selected vectors and fixed nuisance records only",
+    "Expected scalar and detailed array sources read after evaluation; per-component absolute tolerances and failure receipts enforced"
+  ],
+  "constructed_tests": 18,
+  "failures": 0,
+  "errors": 0,
+  "created_utc": "2026-11-07T05:59:09.688171+00:00"
+}
