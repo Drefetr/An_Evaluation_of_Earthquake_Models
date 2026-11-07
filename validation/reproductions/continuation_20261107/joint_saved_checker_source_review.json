@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "reviewer": "/root",
+  "author": "/root/continuation_cpu",
+  "review_kind": "independent_source_review",
+  "reviewed_files_sha256": {
+    "experiments/s04b_joint_audit/check.py": "839c67fd3dca65294b457cb6511a66c1800fa422712fc13e302e4f4495ddaa13",
+    "experiments/s04b_joint_nuisance_audit/audit.py": "47e38c68ff613f5dae1ac80da3713f03a673dc1a31553bf2a8ca3a27773231c3",
+    "tests/test_joint_saved_output_audit.py": "b019e8d963bdae0a3c769626bc8604fc86b90f330987946bc94490611d6e4186"
+  },
+  "checks": [
+    "Read complete portable checker and case-level arithmetic/gating/history/census functions it calls",
+    "Exact one-new-case and predecessor-byte preservation",
+    "Strict score-positive wins, exact null returns and independent Wilson aggregation",
+    "Original failed forecast and time charge preserved; immutable per-case caps and resource records checked",
+    "Ten constructed controls passed independently on Windows CPU; no fits or likelihood evaluations",
+    "Automated intermediate checks explicitly require final independent batch agent review"
+  ],
+  "tests": {
+    "run": 10,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0
+  },
+  "scope": "Source approval for saved-output checks. Does not certify unexecuted future cases. Budgeted06 predates checker-source pins and is covered by its existing independent live output audit; it was not rewritten to manufacture a new checker pass."
+}
