@@ -1,0 +1,95 @@
+{
+  "schema": "joint_failed_operational_launch_resource_v1",
+  "passed": true,
+  "review_scope": "Resource accounting and pinned-list validation design only; not source repair, scientific policy or resumed-fit admission.",
+  "task_id": "joint_recovery_pilot03_resource",
+  "attempt_id": "0015f59a-fc49-4064-86f0-0915f6c61af4",
+  "reviewer": "/root/recover_jma",
+  "input_sha256": {
+    "joint_recovery_pilot_03.zip": "1b9c8f0e99bb00b418f564298c6a65151d060ad788607e980d070928e83810a9",
+    "joint_recovery_pilot_03_workflow.log": "3b0f3c7f5d10ed030ecec0fdc0e85645aafeb60cec9af2ae789b44a8cce75843",
+    "joint_output_and_replay_acceptance/joint_recovery_pilot03_failure_audit.json": "8590040090f46ec08cfb00bbe39e762cc3a119e6cf17bcfe63758efbba61bdc0",
+    "joint_recovery_pilot_03/host/children/01_S5_broad_long_imm_seed410518/science/result.json": "5c41e59cf5c9c099c87e9fbabfb19ba7c364a947dfba929a690512d0904afbb5",
+    "joint_recovery_pilot_03/host/children/01_S5_broad_long_imm_seed410518/science/index.json": "6d3e8773ef8cb186a61eb43ae9294c636287759c799a491e0f87a286fb68fe24",
+    "joint_recovery_pilot_03/supervision/result.json": "03afa55e385d06b8b8eb780abbf62d9d6a07cd445398a09cbf5e29cfa1a647c3",
+    "joint_recovery_pilot02_resource/result.json": "9ad7909cdd04ad7302c5b7f0a96be332c8373a925224ba85851b7f517b42bb8d",
+    "joint_support_diagnostic_resource/result.json": "63764d15a31f8984990b0d9da42263f6efe41e370f4354039796d65303dd96f6",
+    "config.json": "dea0efc08bdeffefaca55d4cffbce983a21d8e3799c9b4e79fba12e70b7ef41c"
+  },
+  "failure": {
+    "workflow_run": 42424194058,
+    "job_id": 128558834750,
+    "artifact_id": 13594344356,
+    "source_commit": "2861de310e25e13ddc5a07d55b4c3fb93a5a8039",
+    "archive_sha256": "1b9c8f0e99bb00b418f564298c6a65151d060ad788607e980d070928e83810a9",
+    "status": "failed_during_replayed_return_support",
+    "passed": false,
+    "completed_cases": 40,
+    "support_evaluation_count": 8,
+    "replayed_optimizer_return_count": 2,
+    "physical_optimizer_call_count": 0,
+    "held_out_call_count": 0,
+    "failed_index_sha256": "6d3e8773ef8cb186a61eb43ae9294c636287759c799a491e0f87a286fb68fe24",
+    "independent_review_sha256": "8590040090f46ec08cfb00bbe39e762cc3a119e6cf17bcfe63758efbba61bdc0",
+    "error": "Replayed successful return or fresh support changed",
+    "scientific_predecessor_unchanged": true
+  },
+  "timing": {
+    "first_log_timestamp": "2026-11-07T23:12:39.2882015Z",
+    "last_log_timestamp": "2026-11-07T23:13:57.0478739Z",
+    "logged_wall_seconds_decimal": "77.7596724",
+    "conservative_whole_launch_charge_seconds": 80,
+    "child_scientific_seconds": 3.4069454839999906,
+    "outer_including_cleanup_seconds": 5.062426819999999,
+    "nested_intervals_not_additive": true,
+    "outside_log_scope": "Queue/provisioning before the first workflow log is not measured."
+  },
+  "accounting": {
+    "prior_failure_charge_seconds": 210,
+    "new_failure_charge_seconds": 80,
+    "operational_failure_charge_seconds": 290,
+    "operational_diagnostic_charge_seconds": 80,
+    "combined_additional_operational_charge_seconds": 370,
+    "known_prior_outer_seconds_decimal": "21714.885916780",
+    "remaining_case_slots_seconds": 71760,
+    "remaining_actual_hosts": 8,
+    "future_host_overhead_reserve_seconds": 14400,
+    "finalization_reserve_seconds": 1800,
+    "conservative_total_seconds_decimal": "110044.885916780",
+    "contingency_seconds_decimal": "5155.114083220",
+    "global_allowance_seconds": 115200,
+    "deadline_utc": "2026-11-09T07:15:00+00:00",
+    "budget_expanded": false,
+    "scientific_predecessor_unchanged": true,
+    "resumed_fit_admission": false
+  },
+  "schema_proposal": {
+    "manifest": "One source-reviewed, protocol-pinned ordered operational launch manifest; no dynamic ingestion.",
+    "descriptor_fields": [
+      "kind",
+      "index",
+      "canonical_record_sha256",
+      "archive_sha256",
+      "charge_seconds",
+      "lineage_files"
+    ],
+    "record_digest_convention": "UTF-8 json.dumps(record,sort_keys=True,separators=(comma,colon),ensure_ascii=False,allow_nan=False), no trailing newline.",
+    "validation": [
+      "Exact kind/index/length/order and complete-record hashes",
+      "Unique archive identities across failures and diagnostics",
+      "All four source evidence hashes, original alias equality and honest pass/fail/census labels",
+      "Positive finite reviewed whole-launch charges with nested timing inside bound",
+      "Independent evidence and launch-roster source pin before numerical admission",
+      "Sum each ordered list once; do not add alias or nested durations again"
+    ],
+    "activation_pending": "No protocol or code change before conductor/A/C policy review."
+  },
+  "execution_scope": {
+    "scientific_calls": 0,
+    "native_calls": 0,
+    "optimizer_calls": 0,
+    "source_edits": 0
+  },
+  "report_sha256": "abd500b51a5616f6962a66c1f8faa7d284820a96729a6525ddd8ee83a14d4be2",
+  "reviewed_at_utc": "2026-11-07T23:21:56.346165+00:00"
+}

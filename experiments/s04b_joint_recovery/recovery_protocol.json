@@ -665,35 +665,26 @@
     "no_completed_optimizer_repeats": true,
     "support_recomputation": "Training floors, eligible floor, replayed-return fresh scores/gradients and selected fine checks may be reevaluated; actual attempts/returns/errors counted separately.",
     "logical_trace": "Consolidated logical fit trace includes exact reused records; physical execution/replay census is separate and original failed trace retained.",
-    "restart": "Original Powell initial point and original per-invocation options, not last iterate; old interrupted invocation charged and retained separately; no exact internal-state continuation claim.",
+    "restart": "Restart the interrupted Powell invocation from its original initial point with unchanged bounds/options/caps; retain original2040th return and2041st input as observational reference snapshots if naturally reached, not eligibility gates or minimum evaluation counts. This is not exact internal-state continuation; no extra evaluations are forced.",
     "automatic_further_retry": false,
     "support_equivalence": {
-      "schema": "joint_operational_gradient_equivalence_v1",
-      "dtype": "float64",
-      "epsilon_multiplier": 64,
-      "bound": "64 * float64_epsilon * max(1, abs(actual), abs(expected))",
-      "reused_LI_training_check": {
-        "policy": "reused_LI_training_support_gradient_only_v1",
-        "model": "LI",
-        "fields": [
-          "projected_gradient_coarse",
-          "projected_gradient_fine",
-          "projected_gradient_scaled_delta"
-        ],
-        "recompute_derived_delta": true,
-        "other_fields_exact": true,
-        "return_original_saved_check": true
-      },
-      "unused_Powell_anchor_gradient": {
-        "policy": "unused_Powell_anchor_gradient_only_v1",
-        "fields": [
-          "gradient"
-        ],
-        "objective_uses_gradient": false,
-        "parameters_scores_counts_options_next_input_exact": true
-      },
-      "replayed_completed_start_support": {
-        "policy": "replayed_completed_start_support_gradient_only_v1",
+      "schema": "joint_original_contract_recovery_v2",
+      "score_absolute_tolerance": 1e-09,
+      "score_fields": [
+        "P",
+        "E",
+        "C",
+        "M",
+        "joint",
+        "nll"
+      ],
+      "score_identities": [
+        "C=-E",
+        "joint=P-E+M",
+        "nll=-joint"
+      ],
+      "unused_gradient_policy": "Cross-run differences descriptive; finite gradients and correct projections required; no added epsilon or bitwise eligibility gate",
+      "completed_return_support": {
         "model": "LIplus_immigrant",
         "starts": [
           0,
@@ -702,25 +693,46 @@
           3,
           4
         ],
-        "record_fields": [
-          "gradient",
-          "projected_gradient"
-        ],
-        "candidate_fields": [
-          "gradient"
-        ],
-        "projection": "frozen fit.projected_gradient at exact parameters and bounds",
-        "other_fields_exact": true,
-        "preserve_original_record_and_candidate_gradient": true,
-        "new_optimizer_gradients_unchanged": true
+        "one_shot_token": true,
+        "exact_model_start_parameters": true,
+        "order": 8,
+        "require_gradient": true,
+        "actual_support_recorded_before_reuse": true,
+        "original_returned_nll_freshness_required": true,
+        "canonical_saved_score_and_gradient_before_candidate_construction": true,
+        "forbidden_in_actual_optimizer_or_new_start": true
       },
-      "scope": "Measured operational equivalence; no established hardware cause or general error bound"
+      "reused_selected_checks": {
+        "models": [
+          "null",
+          "LI"
+        ],
+        "capture_existing_raw_coarse_fine_evaluations": true,
+        "independently_rederive_original_scientific_criteria": true,
+        "actual_and_original_must_pass": true,
+        "return_original_saved_check_after_validation": true,
+        "original_fine_raw_gradient_not_archived": true
+      },
+      "historical_floor": {
+        "retain_fresh_actual_nll_and_discrepancy": true,
+        "original_absolute_tolerance": 1e-09,
+        "identifiers_expected_values_exact": true
+      },
+      "powell_reference_snapshots": {
+        "observational_only": true,
+        "record_if_naturally_reached": true,
+        "not_reached_allowed": true,
+        "no_forced_evaluations": true,
+        "initial_bounds_options_caps_unchanged": true
+      },
+      "scope": "Operational recovery of completed work under the original scientific acceptance criteria; no hardware or bitwise-trajectory guarantee"
     }
   },
   "evidence_sha256": {
     "evidence/design_review.json": "26ce5b7e4625fbe38bb00bd0bbd125316ba26292018fa791847c6a9275be3879",
     "evidence/resource_review.json": "7f770bacc67de61f096d8fcb8b2b80d69b5d9a093541f6bdbf38ec50f86d957b",
-    "evidence/gradient_equivalence_design_addendum.json": "faf812a1891ebf44adebfa9c603770017d55c38f3f15698f8a5d29978712b5f3"
+    "evidence/gradient_equivalence_design_addendum.json": "faf812a1891ebf44adebfa9c603770017d55c38f3f15698f8a5d29978712b5f3",
+    "evidence/original_contract_recovery_design_review.json": "0c8a239a6568a88f04c64beee948358577ace40bcfbf4540baf9ab43e210d485"
   },
   "rules": [
     "One-case recovery pilot at first remaining case; independent live output review before later case.",
@@ -775,6 +787,25 @@
       "resource_review_sha256": "9ad7909cdd04ad7302c5b7f0a96be332c8373a925224ba85851b7f517b42bb8d",
       "workflow_log": "experiments/s04b_joint_recovery/evidence/pilot02_support_failure_workflow.log",
       "workflow_log_sha256": "1634ba7e3865e13dd206b391888bee63ad440c8b6604efe1cd192355439e820b"
+    },
+    {
+      "status": "failed_during_replayed_return_support",
+      "charge_seconds": 80,
+      "scientific_predecessor_unchanged": true,
+      "nested_scientific_seconds": 3.4069454839999906,
+      "nested_supervised_seconds": 5.062426819999999,
+      "support_evaluation_count": 8,
+      "replayed_optimizer_return_count": 2,
+      "physical_optimizer_call_count": 0,
+      "held_out_call_count": 0,
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot03_component_check_failed.zip",
+      "archive_sha256": "1b9c8f0e99bb00b418f564298c6a65151d060ad788607e980d070928e83810a9",
+      "review": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot03_component_check_failure_review.json",
+      "review_sha256": "8590040090f46ec08cfb00bbe39e762cc3a119e6cf17bcfe63758efbba61bdc0",
+      "resource_review": "experiments/s04b_joint_recovery/evidence/pilot03_component_failure_resource.json",
+      "resource_review_sha256": "096a6e6798597eea371a80d51c1061851f79e2b8fbc0e8786e38325c4ca6cc65",
+      "workflow_log": "experiments/s04b_joint_recovery/evidence/pilot03_component_failure_workflow.log",
+      "workflow_log_sha256": "3b0f3c7f5d10ed030ecec0fdc0e85645aafeb60cec9af2ae789b44a8cce75843"
     }
   ],
   "operational_diagnostics": [
@@ -799,5 +830,31 @@
       "workflow_log": "experiments/s04b_joint_recovery/evidence/support_diagnostic01_workflow.log",
       "workflow_log_sha256": "d65e6040eea2e4e6c34bf95803711efffd553586655fa99929f28801e330ae67"
     }
-  ]
+  ],
+  "operational_lineage_files": {
+    "b05e68bfb391826b66f73fa8d2c83505494d893c4572bfa61f32c95c70c10b89": {
+      "archive": "startup_failure.zip",
+      "review": "startup_failure_review.json",
+      "resource_review": "startup_failure_resource.json",
+      "workflow_log": "startup_failure_workflow.log"
+    },
+    "844495719d70bf2c13b8e2cad1ae9c6617e857423461a0d97cf72e0a13931158": {
+      "archive": "pilot02_support_failure.zip",
+      "review": "pilot02_support_failure_review.json",
+      "resource_review": "pilot02_support_failure_resource.json",
+      "workflow_log": "pilot02_support_failure_workflow.log"
+    },
+    "1b9c8f0e99bb00b418f564298c6a65151d060ad788607e980d070928e83810a9": {
+      "archive": "pilot03_component_failure.zip",
+      "review": "pilot03_component_failure_review.json",
+      "resource_review": "pilot03_component_failure_resource.json",
+      "workflow_log": "pilot03_component_failure_workflow.log"
+    },
+    "5ac97f01050c5734d2a4efc3d6c91cf181f7be5c0141a8a335c6ed51eb83aca4": {
+      "archive": "support_diagnostic01.zip",
+      "review": "support_diagnostic01_review.json",
+      "resource_review": "support_diagnostic01_resource.json",
+      "workflow_log": "support_diagnostic01_workflow.log"
+    }
+  }
 }

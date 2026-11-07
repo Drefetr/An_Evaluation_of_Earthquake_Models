@@ -1,0 +1,72 @@
+{
+  "schema": "independent_joint_original_contract_recovery_design_v1",
+  "passed": true,
+  "reviewer": "/root/continuation_cpu",
+  "review_kind": "independent_source_semantics_and_operational_design_review",
+  "live_agent_review": true,
+  "execution_admitted": false,
+  "scientific_calls": 0,
+  "scientific_completion": false,
+  "accepted_complete_cases": 40,
+  "supersession": {
+    "preceding_design_sha256": "faf812a1891ebf44adebfa9c603770017d55c38f3f15698f8a5d29978712b5f3",
+    "intermediate_inventory_sha256": "32923c4dac4c582844b9b4d5eba245138e5772197f6477d4a9e67b5ce8278842",
+    "change": "Replaces added bitwise/64-epsilon cross-run support and Powell-trajectory acceptance gates with the original scientific fitting/replay contract plus explicit completed-state reuse. Earlier failed runs and their source policies remain historically failed; they are not retroactively accepted."
+  },
+  "evidence": {
+    "pilot03_failure_review_sha256": "8590040090f46ec08cfb00bbe39e762cc3a119e6cf17bcfe63758efbba61bdc0",
+    "pilot03_archive_sha256": "1b9c8f0e99bb00b418f564298c6a65151d060ad788607e980d070928e83810a9",
+    "frozen_fit_source_sha256": "878dbf6a71bbc1b9e934f190d3ad0a1c3663097610edf5a42c8aab89b62775bb",
+    "frozen_model_source_sha256": "cc891181e51251247b9668fb6213642f0884deb288050efb2586cf179c6e8898",
+    "frozen_run_source_sha256": "3f6d9cb3d14a45ea7752c3ab8b011ee1281f59c305c55eda35c36df7dd6ea243",
+    "scientific_protocol_sha256": "8f31b9f28d830eeffa30bdbf3e0fcf1295087411869fa301b91333c95fa445e9"
+  },
+  "scientific_basis": [
+    "Frozen fit_arm classifies a returned state from solver success, feasibility and absolute fresh NLL versus solver-returned NLL discrepancy<=1e-9. Its candidate ordering uses NLL and original tie-breaking metadata.",
+    "Frozen identical-floor and saved comparison identities already use absolute1e-9. Applying that same declared replay tolerance to a repeated completed state does not relax any new optimizer objective or selected quadrature criterion.",
+    "Frozen selected training checks require coarse/fine joint discrepancy<=1e-4, scaled projected-gradient discrepancy<=1e-4 and fine exposure>=0. The null additionally requires coarse/fine joint agreement<=1e-9. No KKT-norm acceptance threshold is specified.",
+    "The original interrupted Powell invocation has no completed candidate. A restart under the same original input and full original per-invocation options is not an internal-state continuation and need not reproduce its unavailable internal trajectory."
+  ],
+  "completed_state_replay": {
+    "allowed_scope": "Repeated support for already completed null/LI fits and replayed completed immigrant starts0 through4 only. Immutable completed states remain authoritative; all raw new support results are retained as replay evidence.",
+    "scores": "For each of exactly P,E,C,M,joint,nll, require finite values and absolute actual-versus-original difference<=1e-9 without added slack. Independently require C=-E, joint=P-E+M and nll=-joint within each actual/original payload. Preserve original nonnegative exposure requirements. This is not a relative tolerance or a general error theorem.",
+    "derived_quantities": "Independently recompute fresh_nll_delta from each fresh NLL and the exact injected solver-returned NLL; recompute absolute_joint_delta from each coarse/fine joint pair; recompute projected_gradient_scaled_delta and projected_kkt_infinity_norm from each projected-gradient pair. Each stored derived value must equal its own recomputed value. Do not impose an additional cross-run equality or epsilon gate on these derived diagnostics.",
+    "gradient_diagnostics": "Require finite gradients, correct fresh projection at exact parameters and original bounds, and original scientific selected coarse/fine gradient criteria. Preserve complete original/actual gradient differences descriptively; no cross-run bitwise or64-epsilon gradient eligibility gate is added. This permission never alters a genuinely new L-BFGS or Powell objective/gradient evaluation.",
+    "selected_check_scope": "Both raw fresh and original selected-state checks independently satisfy the frozen joint/gradient/exposure pass criteria and the null-specific1e-9 functional check. Reused null has five projected coordinates; LI has eight. Preserve exact parameters, selection identity and pass classifications.",
+    "raw_gradient_retention": "Capture the raw fresh coarse/fine gradients and state vectors from the existing repeated selected-check evaluate calls, without any extra evaluations, so independent projection validation is possible. Original selected fine raw gradients were not archived; do not fabricate them or claim their recovery. Validate the archived original projected diagnostics and their derived arithmetic, and retain their prior provenance.",
+    "before_selection": "After an actual successful replay check, supply the immutable completed score/gradient to the frozen candidate construction BEFORE min-selection and null-search-gap derivation. Do not allow a fresh score perturbed within1e-9 to choose a different near-tie winner and restore it afterward.",
+    "one_shot_boundary": "Use an explicit pending replay-return state bound to the exact model/start/returned parameters and support context. Consume it once at that replayed return's fresh support evaluation, after retaining raw actual values. Reject substitution during every actual optimizer objective, new start, eligible-floor evaluation, wrong model/state or repeated consumption. A replayed OptimizeResult alone is not permission to replace arbitrary subsequent evaluations.",
+    "preserved_fields": "Exact initial/returned/selected parameters, solver-returned NLL, solver success/status/message, nfev/nit, feasibility/boundaries, candidate identifiers/order/kind, bounds/options and original recipe. Reconstructed original records and candidate values remain byte-equivalent to their saved objects after validated reuse.",
+    "retention": "Record raw actual support, immutable original support, component differences, projection/derived checks and explicit accepted source before returning an authoritative old value. The final record must label reuse rather than describe preserved old fields as fresh calculations. Failure evidence is durable before raising."
+  },
+  "floor_replay": {
+    "rule": "Retain actual newly evaluated historical-floor NLL and independently recompute its difference from the unchanged expected NLL. Require original phase/model/expected-value/tolerance identity and original absolute1e-9 floor/component checks; compare repeated floor NLL against the old actual NLL at that same declared replay tolerance. Do not demand literal equality of the old actual NLL or its old derived delta.",
+    "boundary": "The actual new floor remains visible. No floor exposure, parameter or expected value is silently replaced. Historical comparison rows based solely on unchanged saved scalars remain exact custody arithmetic."
+  },
+  "fresh_powell_restart": {
+    "contract": "One explicitly admitted restart from the original initial vector using the unmodified scalar objective, bounds, method and original maxiter400/maxfev5000/options. Previously completed arms/returns remain preserved; no completed old Powell candidate exists to select against.",
+    "anchor_status": "Original return2040 and next-input2041 snapshots are reference diagnostics only. Retain actual snapshots and full differences if naturally reached, with exact-match observations. A successful fresh invocation may stop before either snapshot: record not_reached with actual call count/reason, do not force extra evaluations or impose a2041-call minimum.",
+    "scientific_acceptance": "The original solver-success/finite-feasible/fresh-NLL discrepancy<=1e-9/selected fine-check rules alone determine the fresh invocation's scientific eligibility. Any unsuccessful, nonfinite, unresolved, capped or interrupted result follows the original failure handling; there is no automatic retry or extra optimizer budget.",
+    "accounting": "Keep the original interrupted invocation, repeated prefix work, all new actual objective calls and the full returned/failed trace separately. The fresh physical run can differ from an uninterrupted counterfactual; it is never called an exact internal-state resume.",
+    "selection": "Use training-only candidate selection under the frozen rule. No completed adverse result is discarded, rerun or chosen against another completed result based on held-out performance."
+  },
+  "guards_still_exact": [
+    "Source/input/runtime/native hashes and the original40-case prefix",
+    "Historical saved records and all copied completed fit objects",
+    "Optimizer recipe, initial vectors, bounds/options, state identifiers and solver-returned metadata",
+    "Original historical comparison rows computed solely from unchanged saved scalar operands",
+    "Post-reuse in-memory record/candidate/selected consistency",
+    "Original number/order of remaining cases/starts, training-only gates, strict-win definition, resource/deadline limits and failed-execution lineage"
+  ],
+  "required_controls": [
+    "Replay scores at and beyond1e-9, nonfinite values, wrong score tuple shape, inconsistent signed exposure or reconstructed joint/NLL must fail as appropriate.",
+    "Derived fresh-NLL/joint/gradient discrepancy and KKT values are independently recomputed; unchanged original scientific thresholds reject failures.",
+    "One-shot support substitution rejects wrong model/state/context, eligible-floor or real optimizer calls, and double consumption; actual call counts and raw evidence remain correct.",
+    "A near-tie constructed fixture shows original completed scores enter candidate construction before ranking, preserving the original candidate pool/tie-breaking semantics while new candidates remain fresh.",
+    "A fresh Powell success before2040 and a fresh success with differing reached reference snapshots obey original criteria without extra evaluations; reference mismatch alone is not a failed fit.",
+    "Actual new objective/gradient calls and their optimizer inputs are never substituted, rounded, clipped or compared under replay tolerance.",
+    "Original unsuccessful/unknown/capped/fine-check failures still stop; no extra starts, retries or cap extension.",
+    "The independent checker verifies the declared replay contract and physical lineage using saved outputs only, without importing producer comparison helpers."
+  ],
+  "next_gate": "Final source/protocol/checker and ordered resource-accounting review is required before a separate genuine admission. All previous operational failures stay failed. This design grants no numerical retry, scientific completion, general numerical equivalence theorem or causal/forecasting claim."
+}
