@@ -9,8 +9,8 @@
     "experiments/s04b_joint_nuisance/protocol.json": "8f31b9f28d830eeffa30bdbf3e0fcf1295087411869fa301b91333c95fa445e9",
     "experiments/s04b_joint_nuisance/input_pins.json": "636e2f6ebd1db404a04155acef1979f36931338cbfa0e4c24351a80378924dad"
   },
-  "candidate_source_sha256": "95faba952002e9eb737e303cb2c771a123d53546fe73fcacd559aa2a2b344a8b",
-  "constructed_controls_sha256": "4a7c6956f65844a60eb75daecf1792c20b065912f5985006ef07cb030298aace",
+  "candidate_source_sha256": "94734c667745abf995a89cd386c642127a6dd4ef0029e6f97638c96b9a38db1f",
+  "constructed_controls_sha256": "248616fad04cdf8291df5e5c5cb10864246f61f21c6687b2b400a5828b78b2c0",
   "chunk_rows": 256,
   "max_native_calls": 2,
   "blas_threads": 2,
@@ -18,9 +18,12 @@
   "preparation": "Two separate original-sized products sequentially before native submission; no BLAS/native overlap",
   "reduction": "Original spatial-chunk order; same operations inside each unchanged native call",
   "extra_H_buffer_bytes": "At most256*n_time*3*8 beyond serial; no hard OS memory-reservation claim",
-  "failure_policy": "Drain all submitted work, propagate first error in original chunk order, never start another batch after failure.",
+  "failure_policy": "Drain all submitted work, including work enqueued by submit without a returned future; submission failure permanently closes/drains the owned pool. Propagate original error; no next batch.",
   "scientific_changes": [],
   "new_history_or_fit_calls": 0,
   "measured_performance_claim": null,
-  "resource_policy": "Original failed pilot and all elapsed time remain retained. Original caps are not changed here. Any new envelope requires a separately frozen conductor amendment."
+  "resource_policy": "Original failed pilot and all elapsed time remain retained. Original caps are not changed here. Any new envelope requires a separately frozen conductor amendment.",
+  "entry_guard": "The full inherited evaluate call is guarded before baseline/event NumPy work, with a same-thread/same-phase internal deficit path.",
+  "supersedes_candidate_commit": "0666f9c",
+  "source_review_amendment": "Independent review identified late concurrent-evaluate rejection and possible enqueue-before-submit-error escape. Both repaired before activation; no numerical recipe change."
 }

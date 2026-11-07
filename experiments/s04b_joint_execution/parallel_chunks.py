@@ -22,6 +22,8 @@ class OrderedChunkScheduler:
         self._pool = ThreadPoolExecutor(max_workers=2, thread_name_prefix='joint-native')
         self._lock = _PROCESS_EVALUATION_LOCK
         self._closed = False
+        self._owner = None
+        self._phase = None
 
     def __enter__(self):
         if self._closed:
@@ -38,16 +40,28 @@ class OrderedChunkScheduler:
                 self._closed = True
                 self._pool.shutdown(wait=True, cancel_futures=False)
 
-    def deficit(self, phase, theta, name, order):
+    def _owned_call(self, phase, function):
         if not self._lock.acquire(blocking=False):
             raise RuntimeError('Scheduler already belongs to an evaluation')
         try:
             if self._closed:
                 raise RuntimeError('Scheduler is closed')
+            self._owner = threading.get_ident()
+            self._phase = phase
             with threadpool_limits(limits=2):
-                return self._deficit(phase, theta, name, order)
+                return function()
         finally:
+            self._owner = self._phase = None
             self._lock.release()
+
+    def evaluate(self, phase, theta, name, order, require_gradient):
+        return self._owned_call(phase, lambda: frozen.Phase.evaluate(
+            phase, theta, name, order, require_gradient))
+
+    def deficit(self, phase, theta, name, order):
+        if self._owner == threading.get_ident() and self._phase is phase:
+            return self._deficit(phase, theta, name, order)
+        return self._owned_call(phase, lambda: self._deficit(phase, theta, name, order))
 
     @staticmethod
     def _invoke(native, prepared, index):
@@ -81,10 +95,18 @@ class OrderedChunkScheduler:
                     grid['area'][sl], grid['b'][sl], t, grid['w'], h, theta, phase.m['T0']))
             futures = []
             try:
-                for index in range(len(prepared)):
-                    # Native.integrate invokes the C function and reads its
-                    # thread-local error text within this same worker thread.
-                    futures.append(self._pool.submit(self._invoke, phase.native, prepared, index))
+                try:
+                    for index in range(len(prepared)):
+                        # Native.integrate invokes the C function and reads its
+                        # thread-local error text within this same worker thread.
+                        futures.append(self._pool.submit(self._invoke, phase.native, prepared, index))
+                except BaseException:
+                    # submit can enqueue work and then fail while creating a
+                    # worker, without returning that future. Drain the entire
+                    # owned pool, not only futures returned to this function.
+                    self._closed = True
+                    self._pool.shutdown(wait=True, cancel_futures=False)
+                    raise
                 # Finish the entire batch before summation or new BLAS work.
                 wait(futures)
                 for future in futures:
@@ -102,10 +124,13 @@ class OrderedChunkScheduler:
 
 
 class ParallelPhase(frozen.Phase):
-    """Opt-in candidate Phase; all other likelihood code is inherited unchanged."""
+    """Guard the full evaluation, delegating its mathematics to the frozen Phase."""
     def __init__(self, *args, scheduler, **kwargs):
         super().__init__(*args, **kwargs)
         self.scheduler = scheduler
 
     def deficit(self, theta, model, order):
         return self.scheduler.deficit(self, theta, model, order)
+
+    def evaluate(self, theta, model='null', order=8, require_gradient=True):
+        return self.scheduler.evaluate(self, theta, model, order, require_gradient)

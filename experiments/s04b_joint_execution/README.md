@@ -17,11 +17,15 @@ scheduling with no triggering-matrix product.
 The C++ evaluator and its ABI are unchanged. Its work vectors are local and
 its error string is thread-local; the existing Python native wrapper calls
 the evaluator and reads that error in the same worker. A process-wide lock
-rejects concurrent evaluations through multiple scheduler instances. At most
+guards the entire evaluation, including the inherited baseline/event NumPy
+work, and rejects concurrent evaluations through multiple scheduler instances. At most
 two native calls run, and neither overlaps BLAS preparation. Every failure
 waits for submitted work to finish before returning. A second chunk can have
 started when the first fails; the whole objective still fails, with the first
 error in original chunk order. No failure becomes a score or optimizer retry.
+If submission fails after queuing a job without returning its future, the
+entire owned pool is shut down and drained before buffers are cleared. That
+scheduler is closed and cannot silently resume work.
 
 At most two H/Hc/Hp chunk buffers are retained for a pair, adding one buffer
 relative to the serial implementation: at most `256 * n_time * 3 * 8` bytes.
@@ -29,7 +33,7 @@ The shared job list is cleared before the next pair, including after errors.
 This is an additional-array bound, not a hard operating-system memory limit;
 the conductor's process-tree memory and wall supervision remain necessary.
 
-`ParallelPhase` overrides only `deficit`; the point likelihood, gradients,
+`ParallelPhase` guards the evaluation entry and overrides `deficit`; the point likelihood, gradients,
 unattenuated exposure, grids, temporal field calculation, native evaluator,
 fitting recipe and gates are inherited or called unchanged. The scheduler
 must be closed (prefer its context manager). For constructed use:
@@ -53,6 +57,8 @@ byte for byte in the same runtime. Coverage includes zero and positive eta,
 all three inhibited models, both quadrature orders, even/odd/partial chunks,
 changing temporal coordinates, exact original reduction order, concurrency,
 native error propagation and failure during the second job submission.
+They also check early rejection of concurrent calls before baseline NumPy
+work and a submission that queues work before throwing an exception.
 These are small invented inputs, not timing benchmarks or scientific runs.
 
 Expected benefit is at most approximately twofold for parallelizable native

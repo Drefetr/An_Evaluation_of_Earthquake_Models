@@ -1,5 +1,6 @@
 """Invented fixtures only: candidate scheduling equivalence, not a benchmark."""
 import math,tempfile,threading,time,unittest
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from unittest.mock import patch
 import numpy as np
@@ -59,6 +60,25 @@ class NativeEquivalence(unittest.TestCase):
         phase=fixture(self.native);theta=np.array([-1.2,.15,.3,math.log(.07),1.4,-1.,math.log(3.),math.log(.25)])
         with OrderedChunkScheduler()as scheduler:
             with self.assertRaisesRegex(ArithmeticError,'invalid attenuation parameter'):scheduler.deficit(phase,theta,'LI',8)
+    def test_concurrent_evaluate_rejected_before_baseline_numpy_work(self):
+        original=fixture(self.native);started=threading.Event();release=threading.Event();native=self.native
+        class BlockNative:
+            def integrate(self,*args):
+                started.set()
+                if not release.wait(timeout=3):raise RuntimeError('fixture release timed out')
+                return native.integrate(*args)
+        theta=np.array([-1.2,.15,.3,math.log(.07),1.4,.4,math.log(3.),math.log(.25)])
+        with OrderedChunkScheduler()as scheduler,ThreadPoolExecutor(max_workers=1)as caller:
+            candidate=ParallelPhase(original.a,original.m,{},BlockNative(),scheduler=scheduler)
+            candidate._grids=original._grids;candidate.plan=lambda o:candidate._grids[o]
+            with patch.object(candidate,'baseline',wraps=candidate.baseline)as baseline:
+                future=caller.submit(candidate.evaluate,theta,'LIplus_inclusive',8)
+                try:
+                    self.assertTrue(started.wait(timeout=3));self.assertEqual(baseline.call_count,1)
+                    with self.assertRaisesRegex(RuntimeError,'already belongs'):candidate.evaluate(theta,'LIplus_inclusive',8)
+                    self.assertEqual(baseline.call_count,1)
+                finally:release.set()
+                score,gradient=future.result(timeout=3);self.assertTrue(math.isfinite(score['joint']));self.assertTrue(np.isfinite(gradient).all())
 
 
 class SchedulingControls(unittest.TestCase):
@@ -136,6 +156,20 @@ class SchedulingControls(unittest.TestCase):
         try:
             with self.assertRaisesRegex(RuntimeError,'already belongs'):second.deficit(phase,np.zeros(8),'LI',8)
         finally:first._lock.release();first.close();second.close()
+    def test_enqueue_then_submit_raises_still_drains_unreturned_future(self):
+        scheduler=OrderedChunkScheduler();phase,state=self.fixture();theta=np.zeros(8)
+        submit=scheduler._pool.submit;count=0;unreturned=[]
+        def enqueue_then_fail(*args):
+            nonlocal count
+            count+=1;future=submit(*args)
+            if count==2:
+                unreturned.append(future);raise RuntimeError('enqueued then failed worker startup')
+            return future
+        with patch.object(scheduler._pool,'submit',side_effect=enqueue_then_fail):
+            with self.assertRaisesRegex(RuntimeError,'enqueued'):scheduler.deficit(phase,theta,'LIplus_inclusive',8)
+        self.assertEqual(state['active'],0);self.assertEqual(sorted(state['calls']),[0,1]);self.assertTrue(unreturned[0].done());self.assertTrue(scheduler._closed)
+        with self.assertRaisesRegex(RuntimeError,'closed'):scheduler.deficit(phase,theta,'LI',8)
+        scheduler.close()
 
 
 if __name__=='__main__':unittest.main()
