@@ -1,0 +1,26 @@
+{
+  "schema": "unchanged_study_operational_continuation_v1",
+  "old_run": "joint_replay_20261107T045457Z",
+  "new_run": "joint_replay_continuation_20261107T071500Z",
+  "baseline": "5374140404130421d878152a952024b43c1fbcc4",
+  "old_config_sha256": "0da211c600810c4612d5c190def3877a6c3471e1f5641dd7e50aef9a7c5cff2d",
+  "new_config_sha256": "dea0efc08bdeffefaca55d4cffbce983a21d8e3799c9b4e79fba12e70b7ef41c",
+  "old_active_attempts": 0,
+  "scope": "Same80 saved histories and missing selected-state replays; no changed fits, optimizer recipe, score, starts, sampling or gates",
+  "reason": "Measured first training case and recovered original observed quadrature require a larger finite operational allowance",
+  "old_joint_pilot_status": "failed_serialization_with_four_preserved_training_fits; not retroactively passed",
+  "old_joint_scientific_seconds": 867.9114977749999,
+  "old_joint_supervised_seconds": 868.633507731,
+  "new_limits": {
+    "numeric_threads": 2,
+    "numerical_process_tree_rss_cap_bytes": 6442450944,
+    "minimum_host_free_bytes": 2147483648,
+    "joint_pilot_wall_seconds": 14400,
+    "joint_campaign_wall_seconds": 115200,
+    "replay_campaign_wall_seconds": 28800,
+    "scope": "Task1 allowances include original867.911497775 seconds plus all subsequent attempts. Task2 new28800 aggregate seconds includes all predecessor replays; selected-state roster unchanged. Budget accommodates originalS04 replay plus recovered observed fine quadrature. No automatic cap extension."
+  },
+  "deadline_utc": "2026-11-09T07:15:00+00:00",
+  "accounting": "Original joint failure and every later attempt are charged once. Task2 cumulative accounting includes all predecessor attempts; a new envelope does not reset prior effort. Input/score failures remain visible.",
+  "execution_status": "new_envelope_frozen_before_any_continuation_execution"
+}
