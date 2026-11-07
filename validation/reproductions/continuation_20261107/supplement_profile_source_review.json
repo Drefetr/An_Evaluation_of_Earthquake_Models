@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "reviewer": "/root/continuation_cpu",
+  "status": "source_review_passed_ready_for_bounded_pilots",
+  "passed": true,
+  "numerical_execution_performed": false,
+  "reviewed_utc": "2026-11-07T07:07:44.265049+00:00",
+  "integration_head": "dd57c8e6e29ef642c05742160e65c9d9233dcf69",
+  "scope": "Independent review of new cached-supplement and productivity-profile input mappings against unchanged previously admitted selected-state evaluator kernels. No real-history native evaluator, likelihood, fitting, simulation or re-aggregation of new numerical results was executed.",
+  "evidence": {
+    "script": "audit_additional_inputs.py",
+    "script_sha256": "7030718ad4a00ca1bc205a65ac76bd246e5347b478a9d0177bfb00d25f6677cf",
+    "result": "audit_additional_inputs.json",
+    "result_sha256": "a32ea281966f19f639196d8bde4e9d5081892e700ca3fe39b89497941b999746"
+  },
+  "common_source_sha256": {
+    "__init__.py": "66dc04f1795b3ecf23d3a6dc7e3570d9c0592cd0cd214d981fdf179efe246f56",
+    "build.py": "fbb6233bf2aeb3a5d1e5cde0b209bb3752e77f75e97d4aa87950dfeb10888b57",
+    "cached_native.py": "8d9140bc8231f1df872d93fc83d244a2de5705c22a815347302e93c5978c25e5",
+    "core.py": "e40c3a4ab5e2b8017edec91c7eac60ee4c5d4b7dd7c1cc9817e9d293d7744108",
+    "inventory.py": "fd639c1c98aeb26d43ecca3db4f91b2e39b427eb952aff3fa1befd21ebc3b99d",
+    "replay.py": "be19f00553106fb8c82464680db42b3be9d86eeb3d398987e5b7763834eb7859"
+  },
+  "packages": {
+    "cached_supplement": {
+      "rows": 140,
+      "study_rows": {
+        "productivity_training": 36,
+        "productivity_engineering": 32,
+        "mark_prediction_engineering": 36,
+        "continuous_references": 12,
+        "background_small_scale": 24
+      },
+      "counts": {
+        "unchanged_accepted_evaluator_files": 8,
+        "resource_hash_checks": 223,
+        "exact_original_file_comparisons": 83,
+        "original_selected_and_score_pointer_checks": 140
+      },
+      "registry_sha256": "07a4a27d0f8e607b7d32f6efdbb6976a8e572c8f561d8afe04688c91cee5bbac",
+      "input_manifest_sha256": "9d696bac717d69425219b53683a45244b6f7fc3e89588422f4000ea08d1f02b3",
+      "pilot_sha256": "748b3c5fd047781a7ea10e257dee5a8818bbd78b562eba58b345e8d191a8e89f",
+      "pilot_row_ids": [
+        "productivity_training/constant_background_fold_2/E0_fixed/train",
+        "productivity_engineering/control_E0_r035_00/E0_fixed/train",
+        "mark_prediction_engineering/control_E0_control_02/E0/train",
+        "continuous_references/primary_fold_2/E_oldD_lift/train",
+        "background_small_scale/primary_fold_2/primary_fold_2__sensitivity_fixedML_smooth_cont_sigma2/train"
+      ],
+      "evaluator_identities": {
+        "fa7e0b51e50a0e3a": {
+          "python": "fa7e0b51e50a0e3a88f6f7bbbe716fd03d32cc3b484d966b81f5d6ae06d19070",
+          "native": "45fe9c6134d0692d4fb88da312c29976273cd9285216daefffb262c766eaf0ed"
+        },
+        "3d2db32fdfee1442": {
+          "python": "3d2db32fdfee144213773961b1cffb28b5f50c195374f214865c78c7460b182f",
+          "native": "1cd01c51a90579f59b9695745665b797416d081838f5a504f46662b3b0893d21"
+        },
+        "d38734dc4bb8280a": {
+          "python": "d38734dc4bb8280aae60f1bf5739a033891c996bb5840ce6cdfadc1a3c178dd3",
+          "native": "42b63cbd62bbd092fe4be57cdffae7bd04764ad468657748dea01458146d69f4"
+        },
+        "64a2e6bdcc5aa600": {
+          "python": "64a2e6bdcc5aa600158b93e95bf8c73ab264b52b68301ab4fbb1245acec3ecd5",
+          "native": "a1e9271cee2b229dffa7f4f6bf9df0035fe5def5d8db4fcba16bcb25c336fdb1"
+        }
+      }
+    },
+    "productivity_profiles": {
+      "rows": 84,
+      "study_rows": {
+        "productivity_profiles": 84
+      },
+      "counts": {
+        "unchanged_accepted_evaluator_files": 2,
+        "resource_hash_checks": 102,
+        "exact_original_file_comparisons": 17,
+        "original_protocol_projection_checks": 1,
+        "original_selected_and_score_pointer_checks": 84,
+        "complete_seven_node_profile_groups": 6
+      },
+      "registry_sha256": "83ca48cb3b380c087bd9641abb71d251c97638ad145c4a79ae424959e294d496",
+      "input_manifest_sha256": "0136c62a911986689ea1f65e40e22cbbfb4d0f0ef4e23690df23a24937ff0bfd",
+      "pilot_sha256": "bf1c56933322357fde14195c5bf869de4de72bb4b46a0a2acffdcb5822243ef9",
+      "pilot_row_ids": [
+        "productivity_profiles/primary_fold_2/E0_free/node_6/train",
+        "productivity_profiles/primary_fold_2/E0_free/node_0/test",
+        "productivity_profiles/primary_fold_2/I0_free/node_6/train",
+        "productivity_profiles/primary_fold_2/I0_free/node_0/test"
+      ],
+      "evaluator_identities": {
+        "fa7e0b51e50a0e3a": {
+          "python": "fa7e0b51e50a0e3a88f6f7bbbe716fd03d32cc3b484d966b81f5d6ae06d19070",
+          "native": "45fe9c6134d0692d4fb88da312c29976273cd9285216daefffb262c766eaf0ed"
+        }
+      }
+    }
+  },
+  "findings": [],
+  "checks": [
+    "All 224 saved selected-state parameter and expected-score pointers map exactly to original recovered records; counts and cache dimensional metadata agree.",
+    "All 325 declared package resources are SHA-256 verified; 100 original byte copies and the exact original profile-protocol projection match.",
+    "All four Python/native evaluator pairs are byte-identical to the earlier admitted cached registry; this extension changes selected-state inputs, not scientific evaluator mathematics.",
+    "Five supplemental pilot rows cover all five studies and use largest-cache selections without score-dependent selection. Four profile pilot rows cover each model/phase with deterministic cache/r tie-breaking.",
+    "All six profile groups retain all seven r nodes, both train/test phases, and exact selected parent-registry references. The +2 NLL support rule is descriptive and is not converted to a confidence interval.",
+    "Original state references are comparison targets, not runtime evaluator operands; runtime scores still derive from cached input arrays and selected vectors via the original Objective."
+  ],
+  "conditions_for_execution": [
+    "Conductor must pin these registry, manifest, pilot and evaluator bytes in a new stage admission.",
+    "Execute only the predeclared pilots first under the Linux supervisor and retain actual native component arrays, source/cache/state/binary/build identities and failures.",
+    "Completion can only be accepted after the disjoint pilot/completion union and independent output arithmetic audit; this source review does not claim that any of these 224 scores has been recomputed.",
+    "Initial magnitude-history pilot and all historical optimizer searches are outside this route."
+  ]
+}

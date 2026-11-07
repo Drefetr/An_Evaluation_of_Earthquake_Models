@@ -1,0 +1,107 @@
+{
+  "task": "joint_pilot_failure_audit",
+  "attempt_id": "e2944a9e-7bd9-4716-b4a9-8661b5e026e6",
+  "passed": true,
+  "terminated": true,
+  "status": "partial_training_checkpoint_validated_conditional_reuse_supported",
+  "scientific_pilot_passed": false,
+  "complete_cases": 0,
+  "retained_heldout_rows": 0,
+  "checks": {
+    "passed": true,
+    "commit": "5e56ba92335f6a904e7d763ab145ddb4c1adce33",
+    "immutable_zip_sha256": "113a9de9ad85a131efd5c5bb653a3832e005fb045f36804773dc63c07dad97e8",
+    "checkpoint_sha256": "93ffff96d46b26d14b857b8e3f9a91ae6789b2517f6bf8d9d1e76f882199953d",
+    "attempts_sha256": "a1c4ab379a639a14b1712710099560c41cccded2b16a8766f60d7e6e203f7c7c",
+    "trace_hash_origin": "Computed by independent audit; retained checkpoint predates case-final attempts_sha256 field. Trace is bound by immutable ZIP.",
+    "source_files": 6,
+    "input_pins": 648,
+    "fit_arms": 4,
+    "resolved_starts": 32,
+    "attempts": 32,
+    "attempt_trace_lines": 64,
+    "training_selected_checks": 4,
+    "training_historical_floor_checks": 3,
+    "saved_comparison_identities": 5,
+    "training_freeze_flag": true,
+    "complete_cases": 0,
+    "heldout_rows": 0,
+    "optimizer_failed_attempts": 0,
+    "function_evaluations_by_arm": {
+      "null": 220,
+      "LI": 340,
+      "LIplus_immigrant": 331,
+      "LIplus_inclusive": 326
+    },
+    "selected_state_indices": {
+      "null": 6,
+      "LI": 6,
+      "LIplus_immigrant": 3,
+      "LIplus_inclusive": 6
+    },
+    "training_plan": {
+      "8": {
+        "space_nodes": 7936,
+        "time_nodes": 5376,
+        "parents": 87,
+        "estimate": 60952576
+      },
+      "16": {
+        "space_nodes": 31744,
+        "time_nodes": 10752,
+        "parents": 87,
+        "estimate": 155299840
+      }
+    },
+    "auditor_sha256": "704cee28af9bbe6eaa85a5dda5c91f10d54230ae069e549c27251d0b2d35fdf9",
+    "scientific_calls": 0
+  },
+  "training_payload_keys": [
+    "case_id",
+    "regime",
+    "seed",
+    "fits",
+    "floor_checks",
+    "fixed_spatial_mark_law",
+    "input_sha256",
+    "n_train",
+    "n_test",
+    "thinning",
+    "stratum",
+    "historical_comparisons",
+    "training_checks",
+    "plan_dimensions",
+    "training_selections_frozen"
+  ],
+  "training_payload_canonical_sha256": "c7e9fa603edd40eac01f2b1da25df05d82f598c4bb5e20ab9afb0260cd8d3cbf",
+  "serialization_error": {
+    "type": "TypeError",
+    "message": "Object of type bool is not JSON serializable",
+    "source_scope": "Inference from retained error and write path: NumPy boolean outcome fields are incompatible with plain JSON encoding; no retained outcome row is available to identify an individual field."
+  },
+  "supervisor": {
+    "returncode": 1,
+    "stop_reason": null,
+    "cleanup_errors": [],
+    "survivors": [],
+    "sampled_peak_tree_rss_bytes": 504868864,
+    "execution_wall_seconds": 868.620960427,
+    "wall_seconds_including_cleanup": 868.633507731
+  },
+  "reuse_conditions": [
+    "Keep the failed ZIP and every retained original file immutable; bind original commit, ZIP, failed result, checkpoint, attempt trace, build/native and audit hashes in a fresh conductor-reviewed admission.",
+    "Permit only independently reviewed serializer/resume changes. Model, native attenuation, fit implementation, input pins, bounds, starts, solver/tolerance/recovery policy, quadrature, training/test split and gate rules remain identical; separately document source-map amendment rather than pretending hashes are unchanged.",
+    "Use exact saved training subtrees: four fit records and candidate arrays, selected indices, selected parameter vectors, selected coarse/fine checks, three train-floor checks and five historical comparison identities. Preserve the exact64-line attempt trace. Do not recompute training objectives, rebuild training plans, reselect candidates, add starts or refit.",
+    "The resumed case must build and evaluate only the missing held-out phase under the original recipe after loading the frozen training checkpoint. No complete-case or held-out-gain claim is supported before those outputs are retained and pass the independent full-case checks.",
+    "Pin the same native library bytes and essential runtime identities (Python/executable, NumPy/SciPy/extensions, loaded BLAS hashes, architecture/byteorder). Preserve old and new source maps; reuse is an explicit reviewed source-provenance exception, not a silent relaxation.",
+    "Retain the original checkpoint/result/trace as separate resume evidence in the fresh output. Validate canonical training payload identity and byte-exact attempt trace before accepting the completed case.",
+    "Report4 reused fits plus16 newly fitted arms for the five-case pilot,20 distinct fitted arms in total. Keep original failed attempt and elapsed time; do not label reused fits as new execution.",
+    "Charge prior867.911497775 scientific seconds to the original1800-second pilot allowance (932.088502225 seconds remaining before resume overhead), and preserve the full868.633507731-second supervised attempt separately. Exceeding the remaining original allowance cannot silently reset the budget or count as an accepted original pilot.",
+    "Require a new numerical lease, no surviving old processes, fresh supervised output directory, reviewed partial-checkpoint audit and final independent output audit before full-campaign admission. Unknown or missing cases remain unknown.",
+    "Update the independent auditor to validate explicit resume provenance and revised new/reused counts, while retaining all original strict-win/gate/480-floor/400-identity criteria for eventual full completion."
+  ],
+  "scientific_likelihood_calls": 0,
+  "scientific_fit_calls": 0,
+  "repo_files_changed": 0,
+  "created_utc": "2026-11-07T06:10:46.142394+00:00"
+}

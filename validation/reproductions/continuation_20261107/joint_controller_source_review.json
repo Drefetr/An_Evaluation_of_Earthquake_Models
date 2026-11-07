@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "reviewer": "/root/continuation_cpu",
+  "reviewed_utc": "2026-11-07T07:09:27.256696+00:00",
+  "commit": "2a1a6bdaa33041cf0a88df2962f26b3c79655789",
+  "status": "source_review_passed_conditional_on_new_run_and_linux_preflight",
+  "passed": true,
+  "numerical_execution_performed": false,
+  "source_sha256": {
+    "scripts/run_continuation.py": "d4970ad689a67a9a67e78ae020a5acb4637790243acc9b7681a9ccf1139a0dae",
+    ".github/workflows/research-continuation.yml": "f82e3db8943b2108eb5880e741daaafb27685f2a7442cfeb598eb7234547e59d",
+    "tests/test_continuation_controller.py": "f50aaf021d9b3ff28be10ac1a33c1496fe433b4b6ba19f47515928c0a3b719e8"
+  },
+  "prior_driver_review": {
+    "path": "joint_driver_source_review/result.json",
+    "sha256": "500f1d747f172a1e7ce70c4cca264c63c9de7c0306c7e6e96117f0f6e4927118"
+  },
+  "prior_scheduler_review": {
+    "path": "parallel_source_audit/result.json",
+    "sha256": "42102c384ad3db9cae5aa72eb0a70984d7dd30118c411f6da231e673ea2d5f63"
+  },
+  "constructed_controls": {
+    "passed": true,
+    "tests": 18,
+    "errors": 0,
+    "failures": 0,
+    "skips": 0,
+    "platform": "Windows; Linux preflight remains required",
+    "evidence": "joint_controller_constructed_tests.json",
+    "sha256": "15fd8eb0a892967ba86798d82c41ae77180d7bc505aa862ee4343232aa4b111e"
+  },
+  "findings": [],
+  "source_checks": [
+    "Only the separately named joint-continuation-pilot/campaign stages activate this route. Existing replay helpers remain AST-identical to the prior admitted controller.",
+    "Mandatory source coverage includes scientific package, operational driver/protocol/scheduler, constructed controls, original failed artifact, pre-repair source archive and the applicable independent acceptance record.",
+    "The controller does not build or refit: it verifies and copies the original immutable Linux native binary/build receipt from the failed artifact and delegates the already reviewed driver.",
+    "First-case reuse pins the original result, training checkpoint, attempts trace, failed ZIP and independent partial-training audit. Subsequent batches require an independently accepted exact prefix index, reject partial cases, and preserve source/runtime/native/budget gates in the driver.",
+    "Only the next fixed prefix within one phase may run; pilot batches contain one history, campaign requires all accepted pilots plus measured-projection attestation checked by the driver. Positive finite case reservations must fit the explicit batch allowance.",
+    "The new operational run identifier and configuration hash are retained attestations, not authorization credentials or proof of external config contents. The conductor must preserve the actual corresponding configuration separately.",
+    "Zero child exit alone is insufficient: the exact requested completed-case roster and index hash are checked after the Linux supervisor passes. Failed supervision or failed/incomplete batch cannot be promoted.",
+    "Workflow retains the full science subtree, original failed ZIP, build bytes, logs and supervision evidence, and runs scheduler11 plus driver14 controls for these new stages only. Existing exact-branch/explicit-marker/serial workflow gates remain."
+  ],
+  "conditions_for_activation": [
+    "Establish and retain the separately labelled operational run/config before admission; do not reinterpret the original failed pilot as passing its earlier cap.",
+    "Fresh Linux execution must pass all controller18, scheduler11, driver14, scientific constructed controls and Linux supervisor lifecycle preflight before any history evaluation. This review ran only constructed controller controls on Windows.",
+    "Bind exact reviewed source hashes, original failure artifact, applicable independent acceptance receipt, attempt ID, expiration, numerical lease and new-run config hash into each conductor admission.",
+    "Independent output acceptance is required after each batch before a following batch may reuse its index. Any partial failure requires explicit independent disposition; this source review grants no automatic retry or refit.",
+    "Final Task1 scientific acceptance still requires the exact80-history/400-outcome roster, comparator checks and independent aggregation; no full result is claimed here."
+  ]
+}
