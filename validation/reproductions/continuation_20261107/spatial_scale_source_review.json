@@ -1,0 +1,46 @@
+{
+  "schema": "independent_spatial_scale_source_review_v1",
+  "passed": true,
+  "status": "source_review_passed_ready_for_separately_admitted_metadata_arithmetic",
+  "reviewer": "/root/continuation_cpu",
+  "source_commit": "6611c1c6316a0406a669f765cdbab9fcf64ca20e",
+  "source_sha256": {
+    "reproduction/score_replay/reconcile_cached_tables.py": "0f0a78c74dda6e5bff0b372e6a2b1cd55dff5507bfadd2f62d1955749e9709cb",
+    "reproduction/score_replay/table_links_cached.json": "4e23ef87e16cd59d833fd5983987774c5ced27bb9ef376d87ff8d49062a071e7",
+    "tests/test_score_replay.py": "e6e4384cc28afc7982b3a54ea5da419f3524d8842e7974c8e3d10cf865802f63"
+  },
+  "prior_cells_preserved": 4710,
+  "added_coordinate_cells": 24,
+  "scope": "Source, mapping semantics and invented controls only; no actual table output aggregation, likelihood, fit or generator execution.",
+  "semantics": {
+    "column2": "Sensitivity triggering sigma in km from the same actually replayed cache as the positive score operand.",
+    "column3": "Primary triggering sigma in km from the same actually replayed cache as the negative score operand.",
+    "not_kde_bandwidth": true,
+    "evidence": "Original geometry computes offspring point/mass allocation with sigma at104-107; KDE uses separate kde_bandwidth at113-114; metadata preserves both separately at124. Original workflow passes sigma and training KDE bandwidth separately at99, shares selected primary sigma at117/123, and passes sensitivity sigma at128."
+  },
+  "original_source_sha256": {
+    "workflow.py": "c304aae3229c2c15ca725e9633b629da388c6ae86e44e7723d44c0fb0120013d",
+    "geometry.py": "5f4eecabfc0833930fab6157b590875ca46f3f99d893d28088f2eaf1afaf7a65"
+  },
+  "new_atom_checks": {
+    "requires_passed_actual_row_before_cache_access": true,
+    "actual_state_cache_source_pins_required_by_existing_row_loader": true,
+    "cache_bytes_hash_checked": true,
+    "nonfinite_null_boolean_string_rejected": true,
+    "missing_or_failed_actual_row_not_certified": true
+  },
+  "tests": {
+    "constructed_run": 12,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0
+  },
+  "artifacts": {
+    "spatial_scale_source_controls.log": "89e174a52b50f71afadc644b91b9beaec3cb8507c114afc9292742172de762ad",
+    "spatial_scale_coordinate_crosswalk.json": "3fcf35da95d87844fdf3476249b30cb2aef5c6bc55478455048879ceea33b92f"
+  },
+  "must_fix_findings": [],
+  "scientific_calls": 0,
+  "actual_table_reconstruction_run": false,
+  "repository_files_modified": []
+}
