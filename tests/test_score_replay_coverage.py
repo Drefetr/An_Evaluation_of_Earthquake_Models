@@ -119,6 +119,20 @@ class CoverageControls(unittest.TestCase):
         # A missing mapping still cannot drop this score from the required census.
         self.assertEqual(c.merge_fields(c.inventory_numeric_fields(table),{})[0]['status'],'not_run')
 
+    def test_tiny_zero_tolerance_and_producer_rounding_disagreement(self):
+        table=dict(source_rows=[r'X & \shortstack[r]{$1.00000$\\$\times10^{-13}$}'])
+        mapped=dict(source_row_index=0,column_index=1,display_value=1e-13)
+        evidence=dict(mapped,recomputed=0.,arithmetic_allowance_nats=0.,arithmetic_reconciled=True,
+                      display_rounding_agrees=False)
+        result=c.checked_cell(table,mapped,evidence,'fake','cached')
+        self.assertEqual(result['status'],'failed');self.assertFalse(result['exact_display_match'])
+        evidence['arithmetic_allowance_nats']=1e-9
+        result=c.checked_cell(table,mapped,evidence,'fake','cached')
+        self.assertEqual(result['status'],'reconciled');self.assertFalse(result['exact_display_match'])
+        self.assertIs(result['producer_display_rounding_flags']['display_rounding_agrees'],False)
+        evidence['recomputed']=1e-13
+        self.assertFalse(c.checked_cell(table,mapped,evidence,'fake','cached')['exact_display_match'])
+
     def test_comma_counts_and_calendar_labels(self):
         table=dict(source_rows=['Year & Count','2011-2016 (79) & 2,829'])
         self.assertEqual(c.inventory_numeric_fields(table),{'1:0:0','1:0:1','1:0:2','1:1:0'})
@@ -203,6 +217,12 @@ class CoverageControls(unittest.TestCase):
         c.add_case_route('initial_mark',delta,execution,protocol,inventory,observations,required,'fake')
         self.assertTrue(all(x['status'] in ('reconciled','contract_checked') for tid in required for x in c.merge_fields(required[tid],observations[tid])))
         self.assertTrue(any(x['status']=='contract_checked' for v in observations.values() for fields in v.values() for x in fields))
+        # A complete case campaign cannot turn a small zero-tolerance count
+        # discrepancy into success through a blanket absolute epsilon.
+        tiny=copy.deepcopy(delta);tiny['cells'][0].update(recomputed=1e-13,tolerance=0.)
+        local_observations={tid:{} for tid in inventory};local_required={tid:set() for tid in inventory}
+        c.add_case_route('initial_mark',tiny,execution,protocol,inventory,local_observations,local_required,'tiny')
+        self.assertEqual(local_observations['09_temporal_mark_extensions:table:1']['2:2:0'][0]['status'],'failed')
         execution['cases'][0]['passed']=False
         with self.assertRaises(ValueError):c.add_case_route('initial_mark',delta,execution,protocol,inventory,observations,required,'fake')
         execution['cases'][0]['passed']=True

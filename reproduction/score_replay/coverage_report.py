@@ -214,9 +214,12 @@ def checked_cell(table, mapped, evidence, route, kind):
     require(allowance >= 0, 'Negative functional allowance')
     delta = abs(actual-display); limit = half+allowance
     producer_pass = evidence.get('arithmetic_reconciled') is True if kind == 'cached' else evidence.get('passed') is True
-    result.update(status='reconciled' if producer_pass and delta <= limit+1e-12 else 'failed',
+    rounding_flags={key:evidence[key] for key in ('display_rounding_agrees','displayed_rounding_matches','exact_display_match') if key in evidence}
+    exact_rounding=delta<=half and all(value is not False for value in rounding_flags.values())
+    result.update(status='reconciled' if producer_pass and delta <= limit else 'failed',
                   actual=actual, display=literal, absolute_delta=delta, functional_tolerance=allowance,
-                  rounding_half_unit=half, allowed_absolute_delta=limit, exact_display_match=delta <= half+1e-12)
+                  rounding_half_unit=half, allowed_absolute_delta=limit, exact_display_match=exact_rounding,
+                  producer_display_rounding_flags=rounding_flags)
     return result
 
 
@@ -357,8 +360,8 @@ def add_case_route(kind, delta, execution, protocol, inventory, observations, re
             actual=finite(cell['recomputed']);tol=finite(cell['tolerance']);require(tol>=0,'Negative case tolerance')
             diff=abs(actual-display)
             result.update(actual=actual,absolute_delta=diff,functional_tolerance=tol,rounding_half_unit=half,
-                allowed_absolute_delta=tol+half,exact_display_match=diff<=half+1e-12,
-                status='reconciled' if cell.get('passed') is True and diff<=tol+half+1e-12 else 'failed',
+                allowed_absolute_delta=tol+half,exact_display_match=diff<=half and cell.get('displayed_rounding_matches') is not False,
+                status='reconciled' if cell.get('passed') is True and diff<=tol+half else 'failed',
                 producer_display_rounding_matches=cell.get('displayed_rounding_matches'))
         observations[table_id].setdefault(key,[]).append(result)
     for table_id,row,col,token,value,scope in contracts:
