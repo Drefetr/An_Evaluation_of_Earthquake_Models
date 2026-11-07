@@ -160,4 +160,77 @@ class RecoveryOutputAudit(unittest.TestCase):
         with self.assertRaises(FileExistsError):c.main(argv)
 
 
+class StartupFailureAccounting(unittest.TestCase):
+    def setUp(self):
+        self.temp=tempfile.TemporaryDirectory();self.addCleanup(self.temp.cleanup)
+        self.root=Path(self.temp.name);lineage=self.root/'recovery_lineage';lineage.mkdir()
+        (lineage/'startup_failure.zip').write_bytes(b'invented retained archive')
+        (lineage/'startup_failure_workflow.log').write_text('invented log\n')
+        startup=dict(status='failed_before_scientific_evaluation',charge_seconds=90,
+                     scientific_predecessor_unchanged=True,nested_scientific_seconds=.5,nested_supervised_seconds=1.5,
+                     archive_sha256=c.sha(lineage/'startup_failure.zip'),workflow_log_sha256=c.sha(lineage/'startup_failure_workflow.log'))
+        review=dict(passed=False,audit_passed=True,live_agent_review=True,reviewer='/root/continuation_cpu',
+                    overall_scientific_passed=False,archive_sha256=startup['archive_sha256'],
+                    execution_census=dict(new_completed_cases=0,new_full_likelihood_evaluations=0,
+                                          new_optimizer_invocations=0,new_optimizer_trace_records=0))
+        write(lineage/'startup_failure_review.json',review)
+        startup['review_sha256']=c.sha(lineage/'startup_failure_review.json')
+        resource=dict(passed=True,failure=dict(passed=False,archive_sha256=startup['archive_sha256'],failed_attempt_id='startup-failed'),
+                      amendment=dict(explicit_new_charge_bound_seconds=90,shared_allowance_seconds=115200,automatic_retry=False),
+                      independent_failure_audit=dict(sha256=startup['review_sha256']),
+                      inputs_sha256={'joint_recovery_host_01_workflow.log':startup['workflow_log_sha256']},
+                      observed_timing=dict(child_scientific_seconds=.5,outer_supervised_seconds=1.5,timings_nested=True))
+        write(lineage/'startup_failure_resource.json',resource)
+        startup['resource_review_sha256']=c.sha(lineage/'startup_failure_resource.json')
+        self.policy=dict(pre_execution_failure=startup,predecessor=dict(known_outer_overhead_seconds=3.))
+        self.index=dict(pre_execution_failure=copy.deepcopy(startup),recovery_transition=dict(pre_execution_failure=copy.deepcopy(startup)),
+                        attempts=[dict(attempt_id='original-interruption')],
+                        operational_accounting=dict(scientific_indexed_seconds=100.,known_prior_outer_overhead_seconds=3.,
+                                                    pre_execution_failure_charge_seconds=90,accounted_seconds=193.))
+
+    def audit(self):
+        c.inspect_startup_failure(self.index,self.root,self.policy)
+        return c.inspect_operational_accounting(self.index,self.policy,100.)
+
+    def test_separate_charge_preserves_scientific_sum(self):
+        result=self.audit()
+        self.assertEqual(result['scientific_indexed_seconds'],100.)
+        self.assertEqual(result['accounted_seconds'],193.)
+
+    def test_omitted_or_doubled_charge_rejected(self):
+        for value in (0,180):
+            with self.subTest(value=value):
+                self.index['operational_accounting']['pre_execution_failure_charge_seconds']=value
+                self.index['operational_accounting']['accounted_seconds']=103.+value
+                with self.assertRaisesRegex(c.core.AuditError,'Operational accounting'):self.audit()
+
+    def test_nested_child_cannot_be_another_scientific_attempt(self):
+        self.index['attempts'].append(dict(attempt_id='startup-failed'))
+        with self.assertRaisesRegex(c.AuditError,'charged again'):self.audit()
+
+    def test_nested_duration_cannot_be_added_to_scientific_sum(self):
+        self.index['operational_accounting']['scientific_indexed_seconds']+=.5
+        self.index['operational_accounting']['accounted_seconds']+=.5
+        with self.assertRaisesRegex(c.core.AuditError,'scientific_indexed'):self.audit()
+
+    def test_retained_failed_archive_cannot_change(self):
+        (self.root/'recovery_lineage/startup_failure.zip').write_bytes(b'replaced')
+        with self.assertRaisesRegex(c.AuditError,'evidence bytes'):self.audit()
+
+    def test_failed_startup_cannot_be_relabelled(self):
+        self.policy['pre_execution_failure']['status']='passed'
+        with self.assertRaisesRegex(c.AuditError,'status'):self.audit()
+
+    def test_transition_cannot_omit_charge_record(self):
+        self.index['recovery_transition']['pre_execution_failure'].pop('charge_seconds')
+        with self.assertRaisesRegex(c.AuditError,'Transition startup'):self.audit()
+
+    def test_repinned_claim_of_calls_rejected(self):
+        path=self.root/'recovery_lineage/startup_failure_review.json'
+        review=c.read(path);review['execution_census']['new_optimizer_invocations']=1;write(path,review)
+        for obj in (self.policy['pre_execution_failure'],self.index['pre_execution_failure'],self.index['recovery_transition']['pre_execution_failure']):
+            obj['review_sha256']=c.sha(path)
+        with self.assertRaisesRegex(c.AuditError,'zero-call'):self.audit()
+
+
 if __name__=='__main__':unittest.main()

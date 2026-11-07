@@ -24,6 +24,8 @@ CORE_PATH = 'experiments/s04b_joint_nuisance_audit/audit.py'
 CUSTODY_SHA256 = '839c67fd3dca65294b457cb6511a66c1800fa422712fc13e302e4f4495ddaa13'
 CORE_SHA256 = '47e38c68ff613f5dae1ac80da3713f03a673dc1a31553bf2a8ca3a27773231c3'
 RECOVERY_PATH = 'experiments/s04b_joint_recovery/recovery_protocol.json'
+STARTUP_FILES = {'archive': 'startup_failure.zip', 'review': 'startup_failure_review.json',
+                 'resource_review': 'startup_failure_resource.json', 'workflow_log': 'startup_failure_workflow.log'}
 read, sha, safe, require, AuditError = custody.read, custody.sha, custody.safe, custody.require, custody.AuditError
 
 
@@ -98,6 +100,9 @@ def inspect_lineage(index, science, policy):
                 'recovery_lineage/failed_supervision.json': p['supervision_sha256'],
                 'recovery_lineage/failed_admission.json': p['admission_sha256'],
                 'recovery_lineage/failed_host.zip': p['archive_sha256']}
+    startup = policy['pre_execution_failure']
+    expected.update({'recovery_lineage/' + filename: startup[key + '_sha256']
+                     for key, filename in STARTUP_FILES.items()})
     require(transition['schema'] == 'joint_interrupted_optimizer_transition_v1' and
             transition['original_status'] == 'failed' and transition['files'] == expected,
             'Failed transition identity or evidence roster changed')
@@ -107,6 +112,7 @@ def inspect_lineage(index, science, policy):
             'Recovery transition pins changed')
     for relative, pin in expected.items():
         require(sha(safe(science, relative)) == pin, 'Failed evidence bytes changed: ' + relative)
+    inspect_startup_failure(index, science, policy)
     failed = read(science / 'recovery_lineage/failed_index.json')
     disposition = read(science / 'recovery_lineage/failed_review.json')
     result = read(science / 'recovery_lineage/failed_result.json')
@@ -128,6 +134,59 @@ def inspect_lineage(index, science, policy):
     for relative, pin in index['transition']['files'].items():
         require(sha(safe(science, relative)) == pin, 'Earlier allocation evidence changed')
     return failed
+
+
+def inspect_startup_failure(index, science, policy):
+    """Retain the failed startup separately; its nested time is not a fit attempt."""
+    startup = policy['pre_execution_failure']
+    require(startup['status'] == 'failed_before_scientific_evaluation' and
+            startup['scientific_predecessor_unchanged'] is True and
+            type(startup['charge_seconds']) is int and startup['charge_seconds'] == 90,
+            'Startup failure status or single charge changed')
+    exact(index['pre_execution_failure'], startup, 'Index startup failure changed')
+    exact(index['recovery_transition']['pre_execution_failure'], startup, 'Transition startup failure changed')
+    for key, filename in STARTUP_FILES.items():
+        require(sha(science / 'recovery_lineage' / filename) == startup[key + '_sha256'],
+                'Startup failure evidence bytes changed: ' + key)
+    review = read(science / 'recovery_lineage/startup_failure_review.json')
+    resource = read(science / 'recovery_lineage/startup_failure_resource.json')
+    require(review.get('passed') is False and review.get('audit_passed') is True and
+            review.get('live_agent_review') is True and review.get('reviewer') == '/root/continuation_cpu' and
+            review.get('overall_scientific_passed') is False and
+            review['archive_sha256'] == startup['archive_sha256'], 'Startup failure relabelled or unreviewed')
+    census = review['execution_census']
+    require(all(census[key] == 0 for key in ('new_completed_cases', 'new_full_likelihood_evaluations',
+                                           'new_optimizer_invocations', 'new_optimizer_trace_records')),
+            'Startup failure zero-call scope changed')
+    require(resource.get('passed') is True and resource['failure']['passed'] is False and
+            resource['failure']['archive_sha256'] == startup['archive_sha256'] and
+            resource['amendment']['explicit_new_charge_bound_seconds'] == 90 and
+            resource['amendment']['shared_allowance_seconds'] == 115200 and
+            resource['amendment']['automatic_retry'] is False,
+            'Startup resource disposition changed')
+    require(resource['independent_failure_audit']['sha256'] == startup['review_sha256'] and
+            resource['inputs_sha256']['joint_recovery_host_01_workflow.log'] == startup['workflow_log_sha256'],
+            'Startup review/log linkage changed')
+    require(resource['observed_timing']['child_scientific_seconds'] == startup['nested_scientific_seconds'] and
+            resource['observed_timing']['outer_supervised_seconds'] == startup['nested_supervised_seconds'] and
+            resource['observed_timing']['timings_nested'] is True, 'Startup nested timing changed')
+    require(resource['failure']['failed_attempt_id'] not in {v['attempt_id'] for v in index['attempts']},
+            'Startup child duration charged again as scientific attempt')
+
+
+def inspect_operational_accounting(index, policy, total):
+    startup = policy['pre_execution_failure']
+    require(type(startup['charge_seconds']) is int and startup['charge_seconds'] == 90,
+            'Startup single charge must be ninety seconds')
+    expected = dict(scientific_indexed_seconds=total,
+                    known_prior_outer_overhead_seconds=policy['predecessor']['known_outer_overhead_seconds'],
+                    pre_execution_failure_charge_seconds=90,
+                    accounted_seconds=math.fsum([total, policy['predecessor']['known_outer_overhead_seconds'], 90]))
+    require(set(index['operational_accounting']) == set(expected), 'Operational accounting fields changed')
+    for key, value in expected.items():
+        core.close(index['operational_accounting'][key], value, 'Operational accounting ' + key, 1e-8)
+    require(expected['accounted_seconds'] <= 115200, 'Global operational envelope exceeded')
+    return expected
 
 
 def inspect_charges(index, science, policy):
@@ -159,13 +218,15 @@ def inspect_charges(index, science, policy):
                       *[v['seconds'] for v in entries if v['phase'] == 'pilot']])
     core.close(total, index['budget']['total_seconds'], 'Total charge', 1e-8)
     core.close(pilot, index['budget']['pilot_seconds'], 'Original pilot charge', 1e-8)
+    operational = inspect_operational_accounting(index, policy, total)
     before = total - entries[-1]['seconds']
     remaining = sum(v['wall_seconds'] for v in policy['fixed_slots'][len(index['cases']) - 41:])
-    bound = before + p['known_outer_overhead_seconds'] + remaining + 8*1800 + 1800
+    bound = before + p['known_outer_overhead_seconds'] + policy['pre_execution_failure']['charge_seconds'] + remaining + 8*1800 + 1800
     require(bound <= 115200 and total <= 115200, 'Global recovery envelope exceeded')
     return {'total_seconds': total, 'pilot_seconds': pilot,
             'original_failed_attempt_seconds': entries[40]['seconds'],
             'known_outer_overhead_seconds': p['known_outer_overhead_seconds'],
+            'operational_accounting': operational,
             'conservative_remaining_admission_bound_seconds': bound,
             'past_unmeasured_workflow_overhead': 'unknown, not asserted zero'}
 
@@ -356,6 +417,8 @@ def audit_saved(args):
             admission['case_ids'] == conductor['case_ids'] == [ids[-1]] and admission['wall_seconds'] == slot['wall_seconds'], 'One-case fixed allocation changed')
     require(result['wall_seconds'] == index['attempts'][-1]['seconds'] and result['budget'] == index['budget'] and
             result['index_sha256'] == sha(science/'index.json') and result['admission_sha256'] == sha(art/'admission.json'), 'Result/index linkage differs')
+    exact(result['pre_execution_failure'], policy['pre_execution_failure'], 'Result startup failure changed')
+    exact(result['operational_accounting'], index['operational_accounting'], 'Result operational accounting changed')
     require(index['attempts'][-1]['attempt_id'] == admission['numerical_attempt_id'] == conductor['numerical_attempt_id'], 'Current attempt attribution differs')
     spec, supervision = read(art/'supervisor_spec.json'),read(art/'supervision/result.json')
     custody.verify_resource_spec(spec,conductor,admission,config)
