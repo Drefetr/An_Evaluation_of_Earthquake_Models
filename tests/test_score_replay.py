@@ -88,6 +88,49 @@ class TestScoreReplay(unittest.TestCase):
         self.assertEqual(len(backgrounds), 4)
         self.assertEqual(len({r['procedure_key'] for r in backgrounds}), 4)
 
+    def test_original_s04_stage_orders_and_saved_history_counts(self):
+        import io
+        import numpy as np
+        from reproduction.score_replay.inhibition_replay import selected_states
+        root = Path(__file__).resolve().parents[1]/'reproduction/score_replay/s04_original'
+        registry = json.loads((root/'registry.json').read_text(encoding='utf-8'))
+        inputs = Inputs(root)
+        self.assertEqual(len(registry['rows']), 80)
+        counts = {}
+        for case in registry['rows']:
+            counts[case['stage']] = counts.get(case['stage'], 0)+1
+            with np.load(io.BytesIO(inputs.read(case['history'])), allow_pickle=False) as saved:
+                rows = saved['rows']
+            self.assertEqual(digest(rows.tobytes()), case['rows_sha256'])
+            for phase, start, end in [('train',30,395),('test',395,760)]:
+                self.assertEqual(int(((rows[:,0]>=start)&(rows[:,0]<end)).sum()),case['n_'+phase])
+            for spec in case['fits'].values():
+                selected_states(inputs.json(spec))
+        self.assertEqual(counts, {'first_pass':59,'fixed_state_refinement':3,'order16_refit':18})
+
+    def test_inhibition_decomposition_does_not_invent_timing_split(self):
+        from reproduction.score_replay.inhibition_replay import joint_components
+        result = joint_components([7.,0.,0.,0.,2.,1.],[0,0,0,0,0,0,8.,-2.])
+        self.assertEqual((result['P'],result['E'],result['C'],result['M'],result['joint']),
+                         (1.,6.,-6.,-2.,-7.))
+        self.assertIsNone(result['timing'])
+        self.assertIsNone(result['location'])
+        with self.assertRaisesRegex(ValueError,'decomposition'):
+            joint_components([1.,0.,0.,0.,2.,1.],[0,0,0,0,0,0,8.,-2.])
+
+    def test_inhibition_chunks_count_events_and_exposure_once(self):
+        import numpy as np
+        from reproduction.score_replay.inhibition_replay import chunks
+        data=dict(parents=np.zeros((2,6)),events=np.ones((3,6)),space=np.ones((10,5)),
+                  times=np.ones(4),weights=np.ones(4),meta=np.arange(9,dtype=float))
+        result=list(chunks(data,1000))
+        self.assertGreater(len(result),1)
+        self.assertEqual(sum(len(x['events']) for x in result),3)
+        self.assertEqual(sum(len(x['space']) for x in result),10)
+        self.assertEqual(sum(x['meta'][6] for x in result),6.)
+        self.assertEqual(sum(x['meta'][7] for x in result),7.)
+        self.assertEqual(data['meta'][6],6.)
+
     def test_temporal_crosswalk_has_positive_integral_and_signed_compensator(self):
         x = components({'timing_logscore': -3., 'mark_logscore': -2.,
                         'integrated_intensity': 5., 'joint_nll': 5.}, 'time_mark')

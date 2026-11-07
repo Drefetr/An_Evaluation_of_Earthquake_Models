@@ -1,0 +1,88 @@
+{
+  "schema": "original_s04_replay_pilot_v1",
+  "passed": false,
+  "status": "proposed_requires_independent_source_review_and_numerical_lease",
+  "mode": "pilot",
+  "registry_sha256": "81d9e733d0b83f6d8c0c7b12c71bb92ccac9d40d379e145b3d2a3feebc840349",
+  "input_manifest_sha256": "c798386e13df2d7607bb067681358112eb111fb9f25176b1ccd71871e2a28869",
+  "source_sha256": {
+    "__init__.py": "66dc04f1795b3ecf23d3a6dc7e3570d9c0592cd0cd214d981fdf179efe246f56",
+    "core.py": "e40c3a4ab5e2b8017edec91c7eac60ee4c5d4b7dd7c1cc9817e9d293d7744108",
+    "inhibition_build.py": "e76bc71041c4e09d0d464280a75e1a5bc8c86132a07bfcbab3eec870cc7905ad",
+    "inhibition_replay.py": "be547c402d1d0a8cbd2a63178f9491f229c6dfbbbf9b8f09ed4e86b48b51684c"
+  },
+  "row_ids": [
+    "S04_R0_S410012",
+    "S04_R0_S410005",
+    "S04_R1_S410114",
+    "S04_R3_S410320"
+  ],
+  "selection": [
+    {
+      "id": "S04_R0_S410012",
+      "stage": "first_pass",
+      "regime": 0,
+      "n_train": 137,
+      "n_test": 129,
+      "phase_orders": {
+        "train": 8,
+        "test": 16
+      }
+    },
+    {
+      "id": "S04_R0_S410005",
+      "stage": "fixed_state_refinement",
+      "regime": 0,
+      "n_train": 78,
+      "n_test": 134,
+      "phase_orders": {
+        "train": 32,
+        "test": 32
+      }
+    },
+    {
+      "id": "S04_R1_S410114",
+      "stage": "order16_refit",
+      "regime": 1,
+      "n_train": 85,
+      "n_test": 206,
+      "phase_orders": {
+        "train": 16,
+        "test": 32
+      }
+    },
+    {
+      "id": "S04_R3_S410320",
+      "stage": "order16_refit",
+      "regime": 3,
+      "n_train": 140,
+      "n_test": 27,
+      "phase_orders": {
+        "train": 16,
+        "test": 32
+      }
+    }
+  ],
+  "selection_rule": "Largest count-times-test-order workload in each original provenance stage, plus largest broad/long case if not covered. No score-based selection.",
+  "numeric_threads": 2,
+  "chunk_bytes": 536870912,
+  "caps": {
+    "wall_seconds": 1800,
+    "process_tree_rss_bytes": 6442450944,
+    "minimum_host_available_bytes": 2147483648
+  },
+  "absolute_nll_tolerance": 0.0001,
+  "absolute_gain_tolerance": 0.0001,
+  "floor_tolerance": 1e-09,
+  "native_gradients": "Diagnostic deltas retained, not substituted for scores.",
+  "no_fits": true,
+  "no_generation": true,
+  "scientific_execution_performed": false,
+  "tests": {
+    "passed": 21,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "scope": "Hand-authored controls and saved-input identities only; no native build or scientific likelihood evaluation."
+  }
+}
