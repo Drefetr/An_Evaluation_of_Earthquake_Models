@@ -39,8 +39,79 @@ def arrays_from_bytes(data):
         return {key: saved[key].copy() for key in saved.files}
 
 
+def projection_difference(live, archived):
+    """Quantify a preprocessing difference; never change a score tolerance."""
+    import numpy as np
+    live=np.asarray(live,dtype='float64');archived=np.asarray(archived,dtype='float64')
+    if live.shape!=archived.shape or not np.isfinite(live).all() or not np.isfinite(archived).all():
+        raise ValueError('Invalid live/archived projection diagnostic arrays')
+    difference=np.abs(live-archived);maximum=float(difference.max()) if difference.size else 0.
+    at=np.unravel_index(int(difference.argmax()),difference.shape) if maximum else None
+    return dict(shape=list(live.shape),live_sha256=digest(np.ascontiguousarray(live).tobytes()),
+                archived_sha256=digest(np.ascontiguousarray(archived).tobytes()),
+                byte_exact=np.array_equal(live,archived),maximum_absolute_delta=maximum,
+                changed_values=int(np.count_nonzero(live!=archived)),
+                maximum_difference_index=[int(v) for v in at] if at is not None else None,
+                live_at_maximum=float(live[at]) if at is not None else None,
+                archived_at_maximum=float(archived[at]) if at is not None else None)
+
+
+def archived_california_projection(inputs,row,state,times,q,latitude,longitude,cells,xy,rect,area,centers,output):
+    """Bind original projected coordinates to the exact raw-event prefix.
+
+The independent live projection remains diagnostic. This uses archived original
+preprocessing bytes; it does not claim platform-bit-exact reprojection or weaken
+any original raw feature identity or score comparison.
+"""
+    import numpy as np
+    if 'projection' not in row or 'projection_provenance' not in row:
+        raise ValueError('California replay needs its pinned archived projection')
+    archived=arrays_from_bytes(inputs.read(row['projection']))
+    provenance=inputs.json(row['projection_provenance'])
+    keys={'source_event_indices','t_days','latitude','longitude','xy_km','K','cell_id',
+          'rectangles','cell_areas','centers','coverage_end_days'}
+    if set(archived)!=keys or provenance.get('projection_sha256')!=row['projection']['sha256']:
+        raise ValueError('Archived projection identity/schema differs')
+    if provenance.get('catalogue_sha256')!=row['catalogue']['sha256'] or provenance.get('geometry_sha256')!=row['geometry']['sha256']:
+        raise ValueError('Archived projection raw cohort/geometry differs')
+    end=archived['coverage_end_days']
+    if end.shape!=() or not np.isfinite(end) or state['end']>float(end):
+        raise ValueError('Requested interval exceeds archived projection coverage')
+    indices=archived['source_event_indices'];n=len(indices)
+    if indices.ndim!=1 or not np.issubdtype(indices.dtype,np.integer) or not np.array_equal(indices,np.arange(n)):
+        raise ValueError('Archived event-index prefix differs')
+    selected=np.flatnonzero(times<float(end))
+    if not np.array_equal(selected,indices):
+        raise ValueError('Archived projection time prefix differs from raw cohort')
+    raw={'t_days':times[indices],'latitude':latitude[indices],'longitude':longitude[indices],
+         'K':q[indices]/.1,'cell_id':cells[indices]}
+    for key,value in raw.items():
+        if not np.array_equal(value,archived[key]):
+            raise ValueError('Archived projection/raw event binding differs: '+key)
+    original=state['original_feature_metadata']['array_sha256']
+    parent=raw['t_days']<state['end'];event=parent&(raw['t_days']>=state['start'])
+    checks={'parent_xy':archived['xy_km'][parent],'event_xy':archived['xy_km'][event],
+            'rectangles':archived['rectangles'],'cell_areas':archived['cell_areas']}
+    for key,value in checks.items():
+        if digest(np.ascontiguousarray(value,dtype='float64').tobytes())!=original[key]:
+            raise ValueError('Archived geometry/original feature identity differs: '+key)
+    diagnostics=dict(schema='s06_archived_projection_diagnostics_v1',passed=True,
+        scope='Exact original projected-coordinate/support preprocessing input; live platform reprojection differences are retained, not used as score tolerances.',
+        projection_sha256=row['projection']['sha256'],provenance_sha256=row['projection_provenance']['sha256'],
+        catalogue_sha256=row['catalogue']['sha256'],geometry_sha256=row['geometry']['sha256'],
+        raw_catalogue_rows=len(times),archived_prefix_rows=n,unused_later_raw_rows=len(times)-n,
+        coverage_end_days=float(end),raw_event_binding_exact=True,
+        original_geometry_hashes={key:original[key] for key in checks},
+        live_platform_comparison={key:projection_difference(live,old) for key,live,old in
+            [('xy_km',xy[indices],archived['xy_km']),('rectangles',rect,archived['rectangles']),
+             ('cell_areas',area,archived['cell_areas']),('centers',centers,archived['centers'])]})
+    write_new(output/'projection_diagnostics.json',diagnostics)
+    catalogue=dict(t_days=raw['t_days'],K=raw['K'],Q=q[indices],xy_km=archived['xy_km'],cell_id=raw['cell_id'])
+    return catalogue,archived['rectangles'],archived['cell_areas'],archived['centers']
+
+
 def catalogue_and_geometry(inputs, row, state, output, engine):
-    """Exact original event parsing/projection, without nuisance estimation."""
+    """Parse raw events and use pinned original projection preprocessing."""
     import numpy as np
     if state['region'] == 'JMA':
         return arrays_from_bytes(inputs.read(row['catalogue']))
@@ -60,11 +131,12 @@ def catalogue_and_geometry(inputs, row, state, output, engine):
     if not np.isfinite(times).all() or np.any(np.diff(times)<0) or np.any(q<0):
         raise ValueError('Invalid California event order/marks')
     rect, area, centers = geometry.support('california')
+    catalogue,rect,area,centers=archived_california_projection(
+        inputs,row,state,times,q,latitude,longitude,cells,xy,rect,area,centers,output)
     engine.RECT, engine.AREA, engine.CENTERS = rect, area, centers
     engine.XEDGE = np.r_[rect[:3,0], rect[2,1]]
     engine.YEDGE = np.r_[rect[::3,2], rect[6,3]]
-    # Preserve the original S06 arithmetic order, including Q/0.1.
-    return dict(t_days=times, K=q/.1, Q=q, xy_km=xy, cell_id=cells)
+    return catalogue
 
 
 def compare_arrays(actual, expected, tolerances):
@@ -299,6 +371,10 @@ def run(registry_path, libraries_path, admission_path, output, selected, mode):
                           aliases=alias_results)
         except Exception as error:
             report.update(error_type=type(error).__name__, error=str(error), traceback=traceback.format_exc())
+        projection_record=target/'projection_diagnostics.json'
+        if projection_record.exists():
+            report['projection_diagnostics']=json.loads(projection_record.read_text(encoding='utf-8'))
+            report['projection_diagnostics_record']={'path':projection_record.name,'sha256':digest(projection_record.read_bytes())}
         report['elapsed_seconds'] = time.monotonic()-start
         write_new(target/'result.json', report)
         record = {'id': row_id, 'passed': report['passed'], 'status': report['status'],

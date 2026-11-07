@@ -1,15 +1,15 @@
 {
   "schema": "regional_saved_score_replay_pilot_v1",
   "passed": false,
-  "status": "proposed_requires_independent_review_and_root_numerical_lease",
+  "status": "proposed_archived_projection_retry_requires_independent_review_and_root_numerical_lease",
   "mode": "pilot",
-  "registry_sha256": "0257b41e11d5b730358223d5164f2eed72bd9e964d3e94c7477c8efb9bd30ea9",
-  "input_manifest_sha256": "c26e85e0ed21c0dfb3c12d5c9531239e39d1be3c47c61a1f346d18ab9b12b763",
+  "registry_sha256": "15a5fe7dc406f43c2924105b3c99acf5b67a79db9ba3964d0b5fe914ffc9b713",
+  "input_manifest_sha256": "4777c8ffb497b5744df352c80f17135ca7fb4905ed7fb0f0bf6580565b4bbc60",
   "source_sha256": {
     "__init__.py": "66dc04f1795b3ecf23d3a6dc7e3570d9c0592cd0cd214d981fdf179efe246f56",
     "core.py": "e40c3a4ab5e2b8017edec91c7eac60ee4c5d4b7dd7c1cc9817e9d293d7744108",
     "regional_build.py": "ea2214b6e860f1b50f8873730d4d42e75f1738657b4b7fbf8c06be612d508e16",
-    "regional_replay.py": "77fb6e95ad34c3105009baeb72baebedc59e0be93c6c042ffd7e1a82b0eb9acf"
+    "regional_replay.py": "fe4eac81a17611fe7a57e4bb24abf2b636861d1c3c3b915d8a18c18804bdd242"
   },
   "engine_sha256": {
     "engine.py": "86c81d0fbaf8fc0dbddab4f9f085afe550c426002ba3f7bf77f740d78c00c82b",
@@ -41,10 +41,16 @@
   "no_refits": true,
   "scientific_execution_performed": false,
   "tests": {
-    "passed": 18,
+    "passed": 46,
     "errors": 0,
     "failures": 0,
     "skips": 0,
-    "scope": "Invented controls and saved-data counts only."
+    "scope": "42 existing invented/metadata custody controls plus 4 focused invented projection controls; no historical likelihood/native execution."
+  },
+  "projection_amendment": {
+    "provenance_sha256": "a758d1753130bbd6d9caa13c5db7f3096dcccab4515ad19357114e1bb54450e3",
+    "projection_sha256": "8ebfc12e10f3ab7f9e122a1c6646c1c8beeecf47a68afbbf327f7c7e9ad2d863",
+    "original_failed_pilot_archive_sha256": "8072284e45e3884d32f46b2d492832c2e99c63537f3a8ebea8d2b67ac70dd44c",
+    "scope": "Use exact archived original projected coordinates/support with current raw event/time/mark/cell identity. Retain live-platform raw-projection deltas and unchanged original feature/score comparisons. No score or fit was rerun while preparing this amendment."
   }
 }
