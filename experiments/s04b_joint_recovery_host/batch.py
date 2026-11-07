@@ -211,7 +211,8 @@ def check_source_reviews(admission, policy, scientific, checker_review_path):
     require(sha(source_path) == admission['source_review_sha256'], 'Host/driver source review changed')
     source = read(source_path)
     require(source.get('passed') is True, 'Host/driver source review is not passed')
-    require(sha(checker_review_path) == admission['checker_source_review_sha256'], 'Checker source review changed')
+    require(sha(checker_review_path) == admission['checker_source_review_sha256'] ==
+            policy['checker']['source_review_sha256'], 'Checker source review changed')
     checker_review = read(checker_review_path)
     require(checker_review.get('passed') is True, 'Checker source review is not passed')
     checker_keys = (policy['checker']['path'], policy['checker']['core_path'],

@@ -145,6 +145,8 @@ class RecoveryHostControls(unittest.TestCase):
         batch.write(old,{'original_failure':{'failed_archive_sha256':batch.sha(root/'failed.zip')}})
         batch.write(root/'config.json',{'invented':True})
         batch.write(root/'checker_review.json',{'passed':True,'reviewed_files_sha256':checker_pins})
+        policy['checker']['source_review_sha256']=batch.sha(root/'checker_review.json')
+        batch.write(here/'batch_policy.json',policy)
         source_review=repo/'source_review.json';batch.write(source_review,{'passed':True,'reviewed_files_sha256':{**hostpins,**driverpins}})
         policy['shared_run'].update(config_sha256=batch.sha(root/'config.json'),expires_utc='2099-01-01T00:00:00+00:00')
         grant.update(mode='recovery_host_batch',source_sha256=hostpins,scientific_source_sha256=driverpins,
@@ -225,10 +227,11 @@ class RecoveryHostControls(unittest.TestCase):
             self.assertIsNotNone(result['failed_child']['evidence']['supervision/result.json'])
 
     def test_source_review_pins_and_actual_window_are_not_boolean_bypasses(self):
-        for change in ('source','window','prior','expiry'):
+        for change in ('source','window','prior','expiry','checker_review'):
             with self.subTest(change=change),tempfile.TemporaryDirectory() as directory:
                 values=self.fixture(Path(directory));args,grant=values[:2]
                 if change=='source':(values[4]/'source_review.json').write_text('{}')
+                if change=='checker_review':values[2]['checker']['source_review_sha256']='0'*64
                 if change=='window':grant['execution_window_seconds']=13800;batch.write(args.admission,grant)
                 if change=='prior':(args.prior/'science/index.json').write_text('{}')
                 if change=='expiry':grant['expires_utc']='2099-01-02T00:00:00+00:00';batch.write(args.admission,grant)
