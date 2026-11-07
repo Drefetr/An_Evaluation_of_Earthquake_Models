@@ -439,6 +439,40 @@ def merge_fields(requirements, observations):
     return result
 
 
+def validate_s04b_prior(scores,score_sha256,summary,review,review_sha256):
+    """Validate the retained 80-history/five-procedure outcome schema."""
+    regimes={4:'narrow_short_imm',5:'broad_long_imm',6:'narrow_short_total',7:'broad_long_total'}
+    roster={f'S{regime}_{label}_seed{seed}':(regime,seed)
+            for regime,label in regimes.items() for seed in range(410001+100*regime,410021+100*regime)}
+    procedures={('LI','raw'),('LIplus_immigrant','raw'),('LIplus_immigrant','BIC'),
+                ('LIplus_inclusive','raw'),('LIplus_inclusive','BIC')}
+    require(isinstance(scores,list) and len(scores)==400,'S04B prior needs 400 procedure outcomes')
+    seen=set();counts={}
+    for row in scores:
+        case=row['case_id'];require(case in roster,'Unknown S04B history identity')
+        require((row['regime'],row['seed'])==roster[case],'S04B regime/seed identity differs')
+        procedure=(row['model'],row['gate']);require(procedure in procedures,'Unknown S04B procedure')
+        key=(case,*procedure);require(key not in seen,'Duplicate S04B outcome');seen.add(key)
+        finite(row['gain'])
+        require(type(row['win']) is bool and type(row['off_floor']) is bool,'Invalid S04B outcome flags')
+        cohort=(row['n_train'],row['n_test'])
+        require(all(type(n) is int and n>=0 for n in cohort),'Invalid S04B cohort counts')
+        require(case not in counts or counts[case]==cohort,'S04B procedures have different history counts')
+        counts[case]=cohort
+    require(seen=={(case,*procedure) for case in roster for procedure in procedures},'Incomplete S04B history/procedure roster')
+    require(summary.get('schema')=='s04b_completed_replay_public_summary_v1' and summary.get('passed') is True
+            and summary.get('full_roster') is True and summary.get('accepted_cases')==80
+            and summary.get('combined',{}).get('score_rows')==400 and summary['combined'].get('summary_rows')==20,
+            'S04B retained completion summary differs')
+    require(review.get('schema')=='independent_s04b_completion_terminal_review_v1' and review.get('passed') is True
+            and review.get('terminal') is True and review.get('full_roster') is True
+            and review.get('total_cases')==80 and review.get('score_rows')==400 and review.get('summary_rows')==20,
+            'S04B retained output review differs')
+    require(summary.get('independent_review',{}).get('public_sha256')==review_sha256,'S04B summary/review identity differs')
+    matches=[item for item in review.get('evidence',[]) if item.get('path','').endswith('/combined_02_scores.json')]
+    require(len(matches)==1 and matches[0].get('sha256')==score_sha256,'S04B review does not pin these 400 outcomes')
+
+
 def build(repo, manifest_path, output):
     require(not output.exists(),'Coverage output must be new')
     manifest_raw=manifest_path.read_bytes();manifest=json.loads(manifest_raw)
@@ -497,7 +531,11 @@ def build(repo, manifest_path, output):
         else:raise ValueError('Unknown reconciliation route')
     if 'metadata_dispositions' in manifest:
         add_metadata_dispositions(resources,manifest['metadata_dispositions'],inventory,observations,required)
-    prior_specs=manifest.get('prior_evidence',{});prior_checked={}
+    prior_specs=manifest.get('prior_evidence',{});prior_checked={};prior_documents={}
+    s04b_prefix='validation/reproductions/s04b_completed_'
+    s04b_scores=s04b_prefix+'scores_20261105.json'
+    s04b_summary=s04b_prefix+'replay_20261105.json'
+    s04b_review=s04b_prefix+'independent_review_20261105.json'
     for name,spec in prior_specs.items():
         parts=name.split('#',1)
         require(spec.get('base','repository')=='repository' and
@@ -505,9 +543,13 @@ def build(repo, manifest_path, output):
                  spec.get('archive')==parts[0] and spec.get('member')==parts[1]),'Prior evidence identity was substituted')
         prior=resources.json(spec,'prior/'+name)
         require((isinstance(prior,dict) and prior.get('passed') is True)
-                or (name.endswith('s04b_completed_scores_20261105.json') and isinstance(prior,list) and len(prior)==20),
+                or (name==s04b_scores and isinstance(prior,list)),
                 'Prior evidence is not a passed retained report or its declared score rows')
-        prior_checked[name]=spec['sha256']
+        prior_checked[name]=spec['sha256'];prior_documents[name]=prior
+    if s04b_scores in prior_documents:
+        require(s04b_summary in prior_documents and s04b_review in prior_documents,'S04B outcomes require their pinned completed summary and review')
+        validate_s04b_prior(prior_documents[s04b_scores],prior_checked[s04b_scores],prior_documents[s04b_summary],
+                            prior_documents[s04b_review],prior_checked[s04b_review])
     reports=[]
     for tid,table in inventory.items():
         dep=dependencies[tid];fields=merge_fields(required[tid],observations[tid]);state=dep['execution_status']

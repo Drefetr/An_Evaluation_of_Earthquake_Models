@@ -155,6 +155,30 @@ class CoverageControls(unittest.TestCase):
                          [2829.,-2829.,-.25,1.25e-13,12345678.])
         self.assertEqual(c.inventory_numeric_fields(table),{'0:1:0','0:1:1','0:2:0','0:3:0','0:4:0','0:5:0','0:6:0'})
 
+    def test_s04b_prior_is_exactly_eighty_histories_times_five_procedures(self):
+        names={4:'narrow_short_imm',5:'broad_long_imm',6:'narrow_short_total',7:'broad_long_total'}
+        procedures=[('LI','raw'),('LIplus_immigrant','raw'),('LIplus_immigrant','BIC'),('LIplus_inclusive','raw'),('LIplus_inclusive','BIC')]
+        scores=[dict(case_id=f'S{regime}_{label}_seed{seed}',regime=regime,seed=seed,model=model,gate=gate,
+                     gain=0.,win=False,off_floor=False,n_train=1,n_test=2)
+                for regime,label in names.items() for seed in range(410001+100*regime,410021+100*regime)
+                for model,gate in procedures]
+        summary=dict(schema='s04b_completed_replay_public_summary_v1',passed=True,full_roster=True,accepted_cases=80,
+                     combined=dict(score_rows=400,summary_rows=20),independent_review=dict(public_sha256='review'))
+        review=dict(schema='independent_s04b_completion_terminal_review_v1',passed=True,terminal=True,full_roster=True,
+                    total_cases=80,score_rows=400,summary_rows=20,evidence=[dict(path='archive:/combined_02_scores.json',sha256='scores')])
+        c.validate_s04b_prior(scores,'scores',summary,review,'review')
+        for mutation in ('twenty','duplicate','procedure','seed','counts','review_pin','incomplete_review'):
+            rows=copy.deepcopy(scores);summ=copy.deepcopy(summary);rev=copy.deepcopy(review)
+            if mutation=='twenty':rows=rows[:20]
+            elif mutation=='duplicate':rows[-1]=copy.deepcopy(rows[0])
+            elif mutation=='procedure':rows[0]['gate']='unknown'
+            elif mutation=='seed':rows[0]['seed']+=1
+            elif mutation=='counts':rows[0]['n_test']+=1
+            elif mutation=='review_pin':rev['evidence'][0]['sha256']='other'
+            else:rev['full_roster']=False
+            with self.subTest(mutation=mutation),self.assertRaises(ValueError):
+                c.validate_s04b_prior(rows,'scores',summ,rev,'review')
+
     def test_comma_counts_and_calendar_labels(self):
         table=dict(source_rows=['Year & Count','2011-2016 (79) & 2,829'])
         self.assertEqual(c.inventory_numeric_fields(table),{'1:0:0','1:0:1','1:0:2','1:1:0'})
