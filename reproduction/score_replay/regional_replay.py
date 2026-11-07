@@ -47,9 +47,9 @@ def projection_difference(live, archived):
         raise ValueError('Invalid live/archived projection diagnostic arrays')
     difference=np.abs(live-archived);maximum=float(difference.max()) if difference.size else 0.
     at=np.unravel_index(int(difference.argmax()),difference.shape) if maximum else None
-    return dict(shape=list(live.shape),live_sha256=digest(np.ascontiguousarray(live).tobytes()),
-                archived_sha256=digest(np.ascontiguousarray(archived).tobytes()),
-                byte_exact=np.array_equal(live,archived),maximum_absolute_delta=maximum,
+    live_hash=digest(np.ascontiguousarray(live).tobytes());archived_hash=digest(np.ascontiguousarray(archived).tobytes())
+    return dict(shape=list(live.shape),live_sha256=live_hash,archived_sha256=archived_hash,
+                byte_exact=live_hash==archived_hash,maximum_absolute_delta=maximum,
                 changed_values=int(np.count_nonzero(live!=archived)),
                 maximum_difference_index=[int(v) for v in at] if at is not None else None,
                 live_at_maximum=float(live[at]) if at is not None else None,

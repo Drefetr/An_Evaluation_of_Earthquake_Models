@@ -11,6 +11,13 @@ from reproduction.score_replay.regional_replay import archived_california_projec
 
 
 class ProjectionInputControls(unittest.TestCase):
+    def test_signed_zero_is_numerically_equal_but_not_byte_exact(self):
+        report=projection_difference(np.array([0.]),np.array([-0.]))
+        self.assertFalse(report['byte_exact'])
+        self.assertNotEqual(report['live_sha256'],report['archived_sha256'])
+        self.assertEqual(report['maximum_absolute_delta'],0.)
+        self.assertEqual(report['changed_values'],0)
+
     def fixture(self,root):
         arrays=dict(source_event_indices=np.array([0,1],dtype=np.int64),t_days=np.array([0.,1.]),
             latitude=np.array([10.,11.]),longitude=np.array([20.,21.]),xy_km=np.array([[0.,0.],[1.,1.]]),
