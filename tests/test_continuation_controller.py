@@ -1,7 +1,12 @@
 """Admission controls using invented identifiers; no scientific execution."""
 import importlib.util
+import hashlib
+import json
 from pathlib import Path
+import tempfile
 import unittest
+import zipfile
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location('continuation_controller', ROOT/'scripts/run_continuation.py')
@@ -78,6 +83,40 @@ class AdmissionControls(unittest.TestCase):
         pins = controller.mandatory_sources('li-pilot', review)
         self.assertTrue({review['registry'], review['proposal'],
                          'reproduction/score_replay/li_replay.py'}.issubset(pins))
+
+    def test_partition_dependencies_require_actual_passed_rows_and_array_hashes(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            data = b'invented event array bytes'
+            row = {'id':'row','passed':True,'status':'replayed','actual':{'native_array_components':{
+                'path':'native_components.npz','sha256':hashlib.sha256(data).hexdigest()}}}
+            archive = root/'evidence.zip'
+            def save(report):
+                with zipfile.ZipFile(archive,'w') as z:
+                    z.writestr('science/rows/0/result.json',json.dumps(report))
+                    z.writestr('science/rows/0/native_components.npz',data)
+                return {'fresh_artifacts_sha256':{'evidence.zip':controller.sha(archive)}}
+            with patch.object(controller,'ROOT',root):
+                review = save(row)
+                path = controller.materialize_fresh_scores(review,root/'out',{'row'})
+                self.assertEqual(set(controller.read(path)['rows']),{'row'})
+                with self.assertRaises(ValueError):
+                    controller.materialize_fresh_scores(review,root/'missing',{'unknown'})
+                review = save(dict(row,passed=False))
+                with self.assertRaises(ValueError):
+                    controller.materialize_fresh_scores(review,root/'failed',{'row'})
+                bad = dict(row,actual={'native_array_components':{'path':'../escape','sha256':'x'}})
+                review = save(bad)
+                with self.assertRaises(ValueError):
+                    controller.materialize_fresh_scores(review,root/'escape',{'row'})
+
+    def test_partition_artifacts_and_interval_source_are_mandatory(self):
+        review = {'registry':'reproduction/score_replay/california_blocks/registry.json',
+                  'proposal':'reproduction/score_replay/california_blocks/pilot_proposal.json',
+                  'fresh_artifacts_sha256':{'validation/reproductions/invented.zip':'fixture'}}
+        pins = controller.mandatory_sources('blocks-pilot',review)
+        self.assertTrue({'reproduction/score_replay/california_blocks_replay.py',
+                         'validation/reproductions/invented.zip'}.issubset(pins))
 
 
 if __name__ == '__main__':

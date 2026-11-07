@@ -94,10 +94,14 @@ def mandatory_sources(stage, review=None):
             paths.update(p.relative_to(ROOT).as_posix() for p in package.rglob('*')
                          if p.is_file() and p.suffix in ('.py','.json'))
     elif stage in ('cached-pilot','cached-completion','regional-pilot','regional-completion',
-                   'inhibition-pilot','inhibition-completion','li-pilot','li-completion'):
+                   'inhibition-pilot','inhibition-completion','li-pilot','li-completion',
+                   'blocks-pilot','blocks-completion'):
         prefix = 'reproduction/score_replay/'
         package, registry, proposal = replay_paths(review or {})
-        if stage.startswith('li-'):
+        if stage.startswith('blocks-'):
+            names = ('__init__.py','core.py','california_blocks_replay.py')
+            paths.update((review or {}).get('fresh_artifacts_sha256',{}))
+        elif stage.startswith('li-'):
             names = ('__init__.py','core.py','li_replay.py')
         elif stage.startswith('regional-'):
             names = ('__init__.py','core.py','regional_build.py','regional_replay.py')
@@ -111,6 +115,48 @@ def mandatory_sources(stage, review=None):
     else:
         raise ValueError('Unknown bounded continuation stage')
     return paths
+
+
+def materialize_fresh_scores(review, output, required):
+    """Copy only passed event-array evidence from already accepted local ZIPs."""
+    records = {}
+    for index, (relative, expected) in enumerate(review['fresh_artifacts_sha256'].items()):
+        archive = inside(ROOT, relative)
+        if sha(archive) != expected:
+            raise ValueError('Fresh-score artifact changed')
+        destination = output/'fresh'/str(index)
+        with zipfile.ZipFile(archive) as source:
+            names = source.namelist()
+            if len(names) != len(set(names)):
+                raise ValueError('Duplicate fresh-score artifact member')
+            for name in names:
+                if not name.startswith('science/rows/') or not name.endswith('/result.json'):
+                    continue
+                raw = source.read(name)
+                report = json.loads(raw)
+                identity = report.get('id')
+                if identity not in required:
+                    continue
+                if identity in records or report.get('passed') is not True or report.get('status') != 'replayed':
+                    raise ValueError('Fresh-score row duplicate or not passed')
+                target = inside(destination, name)
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_bytes(raw)
+                array = report['actual']['native_array_components']
+                array_name = (Path(name).parent/array['path']).as_posix()
+                array_target = inside(target.parent, array['path'])
+                if array_name not in names:
+                    raise ValueError('Missing fresh event arrays')
+                data = source.read(array_name)
+                if hashlib.sha256(data).hexdigest() != array['sha256']:
+                    raise ValueError('Fresh event array identity differs')
+                array_target.write_bytes(data)
+                records[identity] = dict(result_path=str(target),sha256=sha(target))
+    if set(records) != set(required):
+        raise ValueError('Fresh-score evidence does not cover every required state')
+    path = output/'fresh_scores.json'
+    write(path,dict(rows=records))
+    return path
 
 
 def prior_artifact(review, output):
@@ -248,23 +294,26 @@ def main():
                              pilot_output_review_passed=review['pilot_output_review_passed'])
             command += ['--pilot',str(inside(prior,review['pilot_science_directory']))]
     elif stage in ('cached-pilot', 'cached-completion', 'regional-pilot', 'regional-completion',
-                   'inhibition-pilot', 'inhibition-completion','li-pilot','li-completion'):
+                   'inhibition-pilot', 'inhibition-completion','li-pilot','li-completion',
+                   'blocks-pilot','blocks-completion'):
         package, registry_path, proposal_path = replay_paths(review)
         regional = stage.startswith('regional-')
         inhibition = stage.startswith('inhibition-')
         li = stage.startswith('li-')
-        builder, runner = (('li_replay.py','li_replay.py') if li else
+        blocks = stage.startswith('blocks-')
+        builder, runner = (('california_blocks_replay.py','california_blocks_replay.py') if blocks else
+                           ('li_replay.py','li_replay.py') if li else
                            ('regional_build.py','regional_replay.py') if regional else
                            ('inhibition_build.py','inhibition_replay.py') if inhibition else ('build.py','replay.py'))
         proposal = read(proposal_path)
         registry = read(registry_path)
         selected, by_id = replay_roster(review, proposal, registry)
         build = output / 'build'
-        subprocess.run([sys.executable,'-B',str(package/builder)]+(['--build'] if li else [])+[
+        subprocess.run([sys.executable,'-B',str(package/builder)]+(['--build'] if li or blocks else [])+[
                         '--registry',str(registry_path),'--output',str(build)],cwd=ROOT,check=True)
         libraries = read(build/'libraries.json')
         phase = stage.split('-')[1]
-        used = {'core','competitive'} if regional else {'cpu','radial'} if inhibition else {by_id[row]['adapter'] for row in selected} if not li else set()
+        used = {'annual','sequence'} if blocks else {'core','competitive'} if regional else {'cpu','radial'} if inhibition else {by_id[row]['adapter'] for row in selected} if not li else set()
         receipts = {'li':sha(libraries['library']['build_receipt_path'])} if li else {k:sha(libraries['libraries'][k]['build_receipt_path']) for k in sorted(used)}
         write(output/'rows.json',selected)
         admission = dict(proposal, passed=True, status='reviewed_workflow_admission', mode=phase, row_ids=selected,
@@ -275,6 +324,10 @@ def main():
                    '--registry',str(registry_path),
                    '--libraries',str(build/'libraries.json'),'--admission',str(output/'admission.json'),
                    '--rows',str(output/'rows.json'),'--output',str(output/'science')]
+        if blocks:
+            fresh = materialize_fresh_scores(review,output,{by_id[row]['fresh_score_row_id'] for row in selected})
+            admission['fresh_scores_sha256'] = sha(fresh)
+            command += ['--fresh-scores',str(fresh)]
     else:
         raise ValueError('Unknown bounded continuation stage')
     write(output/'admission.json',admission)

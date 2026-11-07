@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "status": "source_amendment_review_passed",
+  "commit": "f9904d53afce5eda721ba996f58bc6bc7c9e408c",
+  "projection_sha256": "1610b481a3733fbfdb453ce5e974504abb3fe6aa3ce5c4cff3fadd1f7ecd47be",
+  "registry_sha256": "ffbc58f806c6d9db15d0c629a2c88c762936bae778ef28268e5b26588a346f99",
+  "input_manifest_sha256": "9c2ce7e5c72211d8e74bca4741ed5ccc188ff6b869c5b7ccb56c47b227fc3b4b",
+  "archive_sha256": "6af472f3071a63e0bf8824f10f6a9ee3c39147f9d487d79375b5da0a90cde9ae",
+  "checks": {
+    "original_adapter_body_byte_identical": true,
+    "native_source_unchanged": true,
+    "exact_historical_path_bytes": 21,
+    "exact_cache_pin_sets": 24,
+    "primary_rows_unchanged_except_adapter_id": 60,
+    "primary_parameters_caches_expected_unchanged": true,
+    "block_rows_byte_equivalent_as_json": 39,
+    "block_registry_only_source_registry_resource_changed": true
+  },
+  "constructed_controls": {
+    "supplied_control_passed": true,
+    "independent_same_length_tamper_rejected": true,
+    "unresolved_pin_rejected": true,
+    "current_new_path_digest_reads_actual_bytes": true,
+    "native_calls": 0
+  },
+  "mechanism": "Wrapper executes exact original adapter bytes, resolves only21 declared historic source paths to exact recovered bytes, verifies cache production pins before construction, and delegates original constructor/evaluator without numerical-body changes.",
+  "conditions": [
+    "Use explicitly supplied fresh-built numerical library at a new path outside the historical resolver keys; current library binary/build receipt must pass normal runner custody checks. Historical DLL bytes are source-custody evidence, not the executing library.",
+    "Preserve failed pilot artifact and rerun only previously failed-before-construction selected rows under a new reviewed admission.",
+    "This is source acceptance only; independent output and per-table delta audit remains required."
+  ],
+  "historical_likelihood_calls": 0,
+  "fit_calls": 0,
+  "recorded_utc": "2026-11-07T06:39:09.826219+00:00"
+}
