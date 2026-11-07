@@ -1,0 +1,60 @@
+{
+  "schema": "regional_saved_score_replay_pilot_v1",
+  "passed": false,
+  "status": "proposed_requires_independent_review_and_root_numerical_lease",
+  "mode": "pilot",
+  "registry_sha256": "85cb731a4a536d9cf72c63a8d0c6d4a56e37b42791c4d80fd8be66854464bec3",
+  "input_manifest_sha256": "cebdee33232c5911d3176c096eb27709a60e8d87c2ef26c88b49e50743e9d7ab",
+  "source_sha256": {
+    "__init__.py": "66dc04f1795b3ecf23d3a6dc7e3570d9c0592cd0cd214d981fdf179efe246f56",
+    "core.py": "e40c3a4ab5e2b8017edec91c7eac60ee4c5d4b7dd7c1cc9817e9d293d7744108",
+    "regional_build.py": "ea2214b6e860f1b50f8873730d4d42e75f1738657b4b7fbf8c06be612d508e16",
+    "regional_replay.py": "77fb6e95ad34c3105009baeb72baebedc59e0be93c6c042ffd7e1a82b0eb9acf"
+  },
+  "engine_sha256": {
+    "engine.py": "86c81d0fbaf8fc0dbddab4f9f085afe550c426002ba3f7bf77f740d78c00c82b",
+    "core.cpp": "a5752ba1b6931d3afa5c26f7acd3ffc59736c7780d9764f69ddb0c50cdcc0119",
+    "competitive.cpp": "dc72288681f4752b04b3bf150f4aacd728cffbd74a9299f04a4dd2b5a667b69a"
+  },
+  "row_ids": [
+    "s03/NZ_fold_2/arm1/test",
+    "s03/NZ_fold_2/arm4/test",
+    "s03/CA_fold_1/arm1/test",
+    "s03/CA_fold_1/arm4/test"
+  ],
+  "selection": [
+    {
+      "id": "s03/NZ_fold_2/arm1/test",
+      "n_events": 254
+    },
+    {
+      "id": "s03/NZ_fold_2/arm4/test",
+      "n_events": 254
+    },
+    {
+      "id": "s03/CA_fold_1/arm1/test",
+      "n_events": 167
+    },
+    {
+      "id": "s03/CA_fold_1/arm4/test",
+      "n_events": 167
+    }
+  ],
+  "selection_rule": "Largest target count within fixed region/arm roles; no selection by gain sign.",
+  "numeric_threads": 2,
+  "caps": {
+    "wall_seconds": 1200,
+    "process_tree_rss_bytes": 6442450944,
+    "minimum_host_available_bytes": 2147483648
+  },
+  "functional_tolerance_absolute_nats": 1e-06,
+  "no_refits": true,
+  "scientific_execution_performed": false,
+  "tests": {
+    "passed": 18,
+    "errors": 0,
+    "failures": 0,
+    "skips": 0,
+    "scope": "Invented controls and saved-data counts only."
+  }
+}

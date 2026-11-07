@@ -10,10 +10,40 @@ from reproduction.score_replay import cached_native
 from reproduction.score_replay.core import Inputs, compare, components, digest, pointer, resolve, write_new
 from reproduction.score_replay.inventory import tables
 from reproduction.score_replay.replay import checked_admission, source_pins
-from reproduction.score_replay.regional_replay import compare_arrays, arrays_from_bytes
+from reproduction.score_replay.regional_replay import compare_arrays, arrays_from_bytes, catalogue_and_geometry, module_from_spec
 
 
 class TestScoreReplay(unittest.TestCase):
+    def test_original_s03_evaluator_on_hand_authored_one_event(self):
+        import math
+        import numpy as np
+        root = Path(__file__).resolve().parents[1]/'reproduction/score_replay/s03'
+        registry = json.loads((root/'registry.json').read_text(encoding='utf-8'))
+        with tempfile.TemporaryDirectory() as d:
+            source = module_from_spec(Inputs(root), registry['rows'][0]['spatial_source'], Path(d), 'tiny_s03_')
+            feature = dict(b=np.array([.25]), x=np.array([0.]), hp=np.array([.5]),
+                           hg=np.array([2.]), exposure=4., start=0., end=2., T0=2., marks=-1.)
+            value, gradient = source.evaluate(feature, [math.log(2.), 0., .5])
+            self.assertAlmostEqual(value['compensator'], 6.)
+            self.assertAlmostEqual(value['joint'], math.log(.75)-7.)
+            self.assertAlmostEqual(value['timing'], math.log(3.)-6.)
+            self.assertAlmostEqual(value['location'], math.log(.25))
+            self.assertTrue(np.isfinite(gradient).all())
+
+    def test_s06_ca_exact_partition_counts_without_likelihood_execution(self):
+        from types import SimpleNamespace
+        root = Path(__file__).resolve().parents[1]/'reproduction/score_replay/s06_ca'
+        registry = json.loads((root/'registry.json').read_text(encoding='utf-8'))
+        inputs = Inputs(root)
+        self.assertEqual(len(registry['rows']), 60)
+        with tempfile.TemporaryDirectory() as d:
+            first = registry['rows'][0]
+            catalogue = catalogue_and_geometry(inputs, first, inputs.json(first['state']), Path(d), SimpleNamespace())
+        for row in registry['rows']:
+            state = inputs.json(row['state'])
+            mask = (catalogue['t_days'] >= state['start']) & (catalogue['t_days'] < state['end'])
+            self.assertEqual(int(mask.sum()), row['n_events_expected'], row['id'])
+
     def test_regional_arrays_use_exact_shape_and_declared_absolute_tolerance(self):
         import numpy as np
         reference = {'event_time': np.array([1., 2.]), 'event_logs': np.array([[1., -2.]])}

@@ -1,5 +1,5 @@
 {
-  "schema": "regional_raw_replay_pilot_v1",
+  "schema": "regional_raw_replay_pilot_v3",
   "passed": false,
   "status": "proposed_requires_independent_review_and_root_numerical_lease",
   "mode": "pilot",
@@ -9,7 +9,7 @@
     "__init__.py": "66dc04f1795b3ecf23d3a6dc7e3570d9c0592cd0cd214d981fdf179efe246f56",
     "core.py": "e40c3a4ab5e2b8017edec91c7eac60ee4c5d4b7dd7c1cc9817e9d293d7744108",
     "regional_build.py": "ea2214b6e860f1b50f8873730d4d42e75f1738657b4b7fbf8c06be612d508e16",
-    "regional_replay.py": "4e1992778db970c3ae8d56cfeba3311ecbc972b075528cff59234970da4f9aa3"
+    "regional_replay.py": "77fb6e95ad34c3105009baeb72baebedc59e0be93c6c042ffd7e1a82b0eb9acf"
   },
   "engine_sha256": {
     "engine.py": "86c81d0fbaf8fc0dbddab4f9f085afe550c426002ba3f7bf77f740d78c00c82b",
@@ -61,10 +61,11 @@
   "no_refits": true,
   "scientific_execution_performed": false,
   "tests": {
-    "passed": 16,
+    "passed": 18,
     "errors": 0,
     "failures": 0,
     "skips": 0,
     "scope": "Invented controls and saved-data counts only; no native builds/likelihoods."
-  }
+  },
+  "supersedes": "Private v1/v2 preserved; adds independent S03 selected-score branch without changing original JMA evaluation path; no real-row evaluation performed."
 }

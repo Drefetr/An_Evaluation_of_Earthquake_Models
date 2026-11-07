@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import datetime as dt
 import importlib.util
 import io
 import json
@@ -38,6 +39,34 @@ def arrays_from_bytes(data):
         return {key: saved[key].copy() for key in saved.files}
 
 
+def catalogue_and_geometry(inputs, row, state, output, engine):
+    """Exact original event parsing/projection, without nuisance estimation."""
+    import numpy as np
+    if state['region'] == 'JMA':
+        return arrays_from_bytes(inputs.read(row['catalogue']))
+    if state['region'] != 'CA' or row.get('catalogue_format') != 'california_events_json':
+        raise ValueError('Undeclared regional input constructor')
+    geometry = module_from_spec(inputs, row['geometry'], output/'source', 'regional_geometry_')
+    events = inputs.json(row['catalogue'])
+    if not isinstance(events, list):
+        raise ValueError('California cohort must be the exact event-object list')
+    epoch = dt.datetime(1981, 1, 1, tzinfo=dt.timezone.utc)
+    times = np.array([(dt.datetime.fromisoformat(v['origin_time_utc'].replace('Z', '+00:00'))-epoch).total_seconds()/86400 for v in events])
+    q = np.array([float(v['magnitude'])-4 for v in events])
+    latitude = np.array([float(v['latitude']) for v in events])
+    longitude = np.array([float(v['longitude']) for v in events])
+    cells = geometry.cell_ids(latitude, longitude, 'california')
+    xy = geometry.project(latitude, longitude, 'california')
+    if not np.isfinite(times).all() or np.any(np.diff(times)<0) or np.any(q<0):
+        raise ValueError('Invalid California event order/marks')
+    rect, area, centers = geometry.support('california')
+    engine.RECT, engine.AREA, engine.CENTERS = rect, area, centers
+    engine.XEDGE = np.r_[rect[:3,0], rect[2,1]]
+    engine.YEDGE = np.r_[rect[::3,2], rect[6,3]]
+    # Preserve the original S06 arithmetic order, including Q/0.1.
+    return dict(t_days=times, K=q/.1, Q=q, xy_km=xy, cell_id=cells)
+
+
 def compare_arrays(actual, expected, tolerances):
     import numpy as np
     report = {}
@@ -68,16 +97,16 @@ def compare_arrays(actual, expected, tolerances):
 
 def evaluate(inputs, registry, row, native_directory, output):
     """Expected score resources are not read by this function."""
+    if row['kind'] == 's03_cached_spatial':
+        return evaluate_s03(inputs, row, native_directory, output)
     import numpy as np
     state = inputs.json(row['state'])
     pars = state['parameters']
     if not isinstance(pars, list) or not pars or not all(
             isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v) for v in pars):
         raise ValueError('Invalid selected parameter vector')
-    if state['region'] != 'JMA':
-        raise ValueError('Regional input constructor is not yet implemented for this region')
-    catalogue = arrays_from_bytes(inputs.read(row['catalogue']))
     engine = module_from_spec(inputs, registry['engine_resources']['engine.py'], output/'source', 'regional_engine_')
+    catalogue = catalogue_and_geometry(inputs, row, state, output, engine)
     os.environ['INHIBITORY_S06_NATIVE_DIR'] = str(native_directory)
     # Only the fitted vector, raw event arrays, fixed nuisance law and declared
     # interval enter numerical construction. Original score totals never do.
@@ -117,6 +146,56 @@ def evaluate(inputs, registry, row, native_directory, output):
                                          if isinstance(v, (float, int))},
             'native_array_components': {'path': detailed_path.name,
                                          'sha256': digest(detailed_path.read_bytes())},
+            'feature_scope': row['feature_scope'], 'fit_scope': row['fit_scope']}, detailed
+
+
+def evaluate_s03(inputs, row, native_directory, output):
+    """Call only the original S03 prepare/features/evaluate functions, never fit."""
+    import numpy as np
+    state = inputs.json(row['state'])
+    pars = state['parameters']
+    if (not isinstance(pars, list) or len(pars) != 3
+            or not all(isinstance(v, (int, float)) and math.isfinite(v) for v in pars)
+            or state['arm'] not in (1, 2, 3, 4)):
+        raise ValueError('Invalid S03 selected state')
+    spatial = module_from_spec(inputs, row['spatial_source'], output/'source', 'original_s03_')
+    cache_path = inputs.materialize(row['cache'], output/'inputs', '.npz')
+    arrays, metadata = spatial.load(cache_path)
+    if len(arrays['event_time']) != row['n_events_expected']:
+        raise ValueError('S03 inherited cache target count differs')
+    libraries = [native_directory/('competitive'+suffix) for suffix in ('.dll', '.so', '.dylib')]
+    libraries = [p for p in libraries if p.is_file()]
+    if len(libraries) != 1:
+        raise ValueError('S03 requires one unambiguous recorded competitive library')
+    geometry = spatial.Geometry(libraries[0])
+    prepared = spatial.prepare(arrays, metadata, geometry, state['arm'],
+                               metadata['kde_bandwidth'], state['ep_spatial'], training=False)
+    baseline_control = None
+    if state['arm'] == 1:
+        density_error = float(np.max(np.abs(prepared['event_parent_density']-arrays['event_parent_density'])))
+        mass_error = float(np.max(np.abs(prepared['parent_cell_mass']-arrays['parent_cell_mass'])))
+        baseline_control = {'maximum_density_delta': density_error, 'maximum_mass_delta': mass_error,
+                            'absolute_tolerance': 1e-10,
+                            'passed': density_error <= 1e-10 and mass_error <= 1e-10}
+        if not baseline_control['passed']:
+            raise ValueError('Original S03 baseline geometry control failed')
+    features = spatial.features(prepared, metadata, state['temporal'])
+    raw, gradient = spatial.evaluate(features, pars)
+    result = components(raw, row['observation_measure'])
+    detailed = {k: v for k, v in features.items() if isinstance(v, np.ndarray)}
+    detailed['gradient'] = gradient
+    if not all(np.isfinite(v).all() for v in detailed.values()):
+        raise ValueError('Nonfinite S03 numerical feature')
+    path = output/'native_components.npz'
+    with path.open('xb') as stream:
+        np.savez_compressed(stream, **detailed)
+    return {'components': result, 'n_events': len(arrays['event_time']), 'parameters': pars,
+            'state_sha256': row['state']['sha256'], 'cache_sha256': row['cache']['sha256'],
+            'spatial_source_sha256': row['spatial_source']['sha256'],
+            'original_calls': ['Geometry.masses', 'prepare', 'features', 'evaluate'],
+            'fit_calls': 0, 'baseline_geometry_control': baseline_control,
+            'native_scalar_components': raw,
+            'native_array_components': {'path': path.name, 'sha256': digest(path.read_bytes())},
             'feature_scope': row['feature_scope'], 'fit_scope': row['fit_scope']}, detailed
 
 
@@ -199,7 +278,8 @@ def run(registry_path, libraries_path, admission_path, output, selected, mode):
             if expected != row['expected_components']:
                 raise ValueError('Registry reference projection differs from pinned original')
             comparison = compare(actual['components'], expected, row['absolute_tolerances'])
-            array_comparison = compare_arrays(detailed, arrays_from_bytes(inputs.read(row['expected_arrays'])), row['array_tolerances'])
+            array_comparison = (compare_arrays(detailed, arrays_from_bytes(inputs.read(row['expected_arrays'])), row['array_tolerances'])
+                                if row.get('expected_arrays') is not None else None)
             alias_results = []
             for alias in aliases:
                 if alias['replay_row'] != row_id:
@@ -210,9 +290,13 @@ def run(registry_path, libraries_path, admission_path, output, selected, mode):
                 alias_results.append({'table_study': alias['table_study'], 'case': alias['case'],
                                       'arm': alias['arm'], 'trend': alias['trend'],
                                       'comparison': compare(actual['components'], other, row['absolute_tolerances'])})
-            passed = comparison['passed'] and array_comparison['passed'] and all(v['comparison']['passed'] for v in alias_results)
+            passed = (comparison['passed'] and (array_comparison is None or array_comparison['passed'])
+                      and all(v['comparison']['passed'] for v in alias_results))
             report.update(passed=passed, status='replayed' if passed else 'failed', actual=actual,
-                          comparison=comparison, array_comparison=array_comparison, aliases=alias_results)
+                          comparison=comparison, array_comparison=array_comparison,
+                          array_reference_scope='original detailed arrays compared' if array_comparison is not None
+                          else 'Original record supplies scalar forecasts only; no per-event array equality claimed.',
+                          aliases=alias_results)
         except Exception as error:
             report.update(error_type=type(error).__name__, error=str(error), traceback=traceback.format_exc())
         report['elapsed_seconds'] = time.monotonic()-start
