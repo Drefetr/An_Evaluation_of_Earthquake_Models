@@ -6,7 +6,11 @@
 #include <limits>
 #include <stdexcept>
 #include <vector>
+#ifdef _WIN32
 #define API extern "C" __declspec(dllexport)
+#else
+#define API extern "C" __attribute__((visibility("default")))
+#endif
 
 namespace {
 thread_local char error_text[256] = {};

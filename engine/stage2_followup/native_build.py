@@ -1,4 +1,4 @@
-"""Windows/MSVC build entry point for registered Stage 2 native sources.
+"""Portable C++17 build entry point for registered Stage 2 native sources.
 
 Compilation only: no simulation, fit, oracle replay or fixture is executed.
 Outputs must be outside the source directories and in a fresh directory.
@@ -10,8 +10,18 @@ import json
 import os
 import shutil
 import subprocess
+import sys
+import platform
 
 HERE = Path(__file__).resolve().parent
+
+
+def library_suffix():
+    return '.dll' if os.name == 'nt' else ('.dylib' if sys.platform == 'darwin' else '.so')
+
+
+def executable_suffix():
+    return '.exe' if os.name == 'nt' else ''
 
 
 def discover_vcvars(explicit=None):
@@ -48,7 +58,7 @@ def targets(group):
     temporal = HERE / 's01_s02_temporal'
     spatial = HERE / 's03_s06_spatial_benchmarks'
     li = HERE / 's04_s04b_local_inhibition'
-    return {
+    selected = {
         'temporal': [('temporal_stage2.dll', temporal / 'cached_stage2.cpp'),
                      ('mdfhp_cli.exe', temporal / 'r_matched/main.cpp')],
         'spatial': [('radial.dll', spatial / 'radial.cpp')],
@@ -57,11 +67,61 @@ def targets(group):
         's06': [('core.dll', spatial / 's06/core.cpp'),
                 ('competitive.dll', spatial / 's06/competitive.cpp')],
     }[group]
+    return [(name.replace('.dll', library_suffix()).replace('.exe', executable_suffix()), source)
+            for name, source in selected]
 
 
-def build(group, output, vcvars=None):
+def build_posix(group, output, compiler=None):
+    """Compile real kernels with GNU/Clang; missing compilers are errors."""
+    out = Path(output).resolve()
+    if out == HERE or HERE in out.parents:
+        raise ValueError('Use a build directory outside engine/stage2_followup')
+    selected = targets(group)
+    for _, source in selected:
+        if not source.is_file():
+            raise FileNotFoundError(source)
+    cxx = compiler or os.environ.get('CXX') or shutil.which('g++') or shutil.which('clang++')
+    if not cxx:
+        raise FileNotFoundError('A C++17 g++ or clang++ compiler is required; no numerical stub is substituted')
+    out.mkdir(parents=True, exist_ok=False)
+    commands, returncode, failure = [], 1, None
+    try:
+        with (out / 'build.log').open('w', encoding='utf-8') as log:
+            probe = subprocess.run([str(cxx), '--version'], stdout=log, stderr=subprocess.STDOUT)
+            if probe.returncode:
+                raise RuntimeError('Compiler version probe failed')
+            for name, source in selected:
+                command = [str(cxx), '-std=c++17', '-O2', '-Wall', '-Wextra',
+                           '-fno-fast-math', '-ffp-contract=off']
+                if name.endswith(library_suffix()):
+                    command += ['-fPIC', '-dynamiclib' if sys.platform == 'darwin' else '-shared']
+                command += [str(source), '-o', str(out / name)]
+                commands.append(command)
+                returncode = subprocess.run(command, cwd=out, stdout=log, stderr=subprocess.STDOUT).returncode
+                if returncode:
+                    break
+    except Exception as exc:
+        failure = type(exc).__name__ + ': ' + str(exc)
+    digest = lambda p: hashlib.sha256(p.read_bytes()).hexdigest()
+    sources = [p for p in HERE.rglob('*') if p.suffix in {'.cpp', '.hpp'}]
+    receipt = {'schema': 'stage2_native_build_v2', 'group': group,
+               'returncode': returncode, 'error': failure, 'binaries_executed': False,
+               'platform': platform.platform(), 'python': sys.version, 'commands': commands,
+               'fast_math': False, 'fp_contraction': False,
+               'source_sha256': {p.relative_to(HERE).as_posix(): digest(p) for p in sorted(sources)},
+               'builder_sha256': digest(Path(__file__)),
+               'binary_sha256': {name: digest(out / name) for name, _ in selected if (out / name).is_file()}}
+    (out / 'build_receipt.json').write_text(json.dumps(receipt, indent=2) + '\n', encoding='utf-8')
+    if returncode or failure:
+        raise RuntimeError('Native build failed; see ' + str(out / 'build_receipt.json'))
+    return receipt
+
+
+def build(group, output, vcvars=None, compiler=None):
     if os.name != 'nt':
-        raise OSError('This source set supports Windows/MSVC. EP has a separate portable build command.')
+        return build_posix(group, output, compiler)
+    if compiler and compiler != 'msvc':
+        return build_posix(group, output, compiler)
     setup = discover_vcvars(vcvars)
     out = Path(output).resolve()
     if out == HERE or HERE in out.parents:
@@ -76,6 +136,7 @@ def build(group, output, vcvars=None):
     commands = ['@echo off', 'setlocal DisableDelayedExpansion']
     if setup:
         commands += ['call ' + quote_batch(setup), 'if errorlevel 1 exit /b %errorlevel%']
+    commands.append('cl.exe /Bv')
     for name, source in selected:
         obj = out / (Path(name).stem + '.obj')
         command = 'cl.exe /nologo /std:c++17 /W4 /EHsc /O2 /fp:strict '
@@ -95,8 +156,10 @@ def build(group, output, vcvars=None):
     (out / 'build.log').write_text(result.stdout, encoding='utf-8')
     digest = lambda p: hashlib.sha256(p.read_bytes()).hexdigest()
     sources = [p for p in HERE.rglob('*') if p.suffix in {'.cpp', '.hpp'}]
-    receipt = {'schema': 'stage2_native_build_v1', 'group': group,
+    receipt = {'schema': 'stage2_native_build_v2', 'group': group,
                'returncode': result.returncode, 'binaries_executed': False,
+               'platform': platform.platform(), 'python': sys.version,
+               'commands': commands, 'fast_math': False, 'fp_contraction': False,
                'source_sha256': {p.relative_to(HERE).as_posix(): digest(p) for p in sorted(sources)},
                'builder_sha256': digest(Path(__file__)),
                'binary_sha256': {name: digest(out / name) for name, _ in selected if (out / name).is_file()}}
@@ -111,8 +174,9 @@ def main():
     parser.add_argument('--group', choices=('temporal', 'spatial', 'li', 's06'), required=True)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--vcvars', type=Path, help='Optional explicit vcvars64.bat; otherwise use developer shell/vswhere')
+    parser.add_argument('--compiler', help='C++17 compiler executable; defaults to MSVC on Windows and CXX/g++/clang++ elsewhere')
     args = parser.parse_args()
-    build(args.group, args.output, args.vcvars)
+    build(args.group, args.output, args.vcvars, args.compiler)
 
 
 if __name__ == '__main__':

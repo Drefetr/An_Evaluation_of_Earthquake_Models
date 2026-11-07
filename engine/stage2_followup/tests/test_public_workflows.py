@@ -5,6 +5,7 @@ import math
 import os
 import subprocess
 import sys
+import tempfile
 import unittest
 from unittest.mock import patch
 
@@ -41,11 +42,11 @@ class PublicWorkflows(unittest.TestCase):
                 self.assertIn('usage:', result.stdout)
 
     def test_native_build_uses_existing_shared_radial_source(self):
-        from engine.stage2_followup.native_build import targets
+        from engine.stage2_followup.native_build import targets, library_suffix
         for group in ('li', 'temporal', 'spatial', 's06'):
             for _, source in targets(group):
                 self.assertTrue(source.is_file(), source)
-        radial = dict(targets('li'))['radial.dll']
+        radial = dict(targets('li'))['radial' + library_suffix()]
         self.assertEqual(radial.parent.name, 's03_s06_spatial_benchmarks')
 
     def test_unknown_reference_cannot_be_silently_zero_filled(self):
@@ -63,14 +64,30 @@ class PublicWorkflows(unittest.TestCase):
         self.assertTrue(answer['degenerate'])
 
 
-@unittest.skipUnless(os.environ.get('INHIBITORY_TEST_NATIVE_ROOT'),
-                     'Set INHIBITORY_TEST_NATIVE_ROOT to separately built native groups')
 class NativeFixtures(unittest.TestCase):
+    native_root = None
+
+    @classmethod
+    def setUpClass(cls):
+        from engine.stage2_followup.native_build import build
+        configured = cls.native_root or os.environ.get('INHIBITORY_TEST_NATIVE_ROOT')
+        if configured:
+            cls.native = Path(configured)
+        else:
+            # Retain build receipts. Windows keeps loaded DLLs locked until this
+            # process exits, so deleting the directory in tearDownClass is unsafe.
+            cls.native = Path(tempfile.mkdtemp(prefix='earthquake_native_'))
+            print('Native fixture build/receipts: ' + str(cls.native), file=sys.stderr)
+            for group in ('li', 'temporal', 's06'):
+                build(group, cls.native / group)
+
     def setUp(self):
-        self.native = Path(os.environ['INHIBITORY_TEST_NATIVE_ROOT'])
+        from engine.stage2_followup.native_build import library_suffix, executable_suffix
+        self.lib_suffix = library_suffix()
+        self.exe_suffix = executable_suffix()
 
     def test_li_handcrafted_gradient_and_boundary_fixture(self):
-        result = subprocess.run([str(self.native / 'li/fixture.exe')],
+        result = subprocess.run([str(self.native / 'li' / ('fixture' + self.exe_suffix))],
                                 capture_output=True, text=True, timeout=10)
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn('"passed":true', result.stdout)
@@ -90,7 +107,7 @@ class NativeFixtures(unittest.TestCase):
         law = old.KnownLaw(math.log(.2), 0., 0., 1., 0., 10.,
                            old.KernelSpec('exp', 1.), old.KernelSpec('exp', 1.))
         arrays = {'times': np.array([1., 3.]), 'excess': np.array([.2, .4])}
-        model = CachedHistory(self.native / 'temporal/temporal_stage2.dll', arrays, law,
+        model = CachedHistory(self.native / 'temporal' / ('temporal_stage2' + self.lib_suffix), arrays, law,
                               old.cpu, clock_mode='projected', order=16)
         try:
             value = model.objective([law.a, 0., 0., 0.], gradient=False)

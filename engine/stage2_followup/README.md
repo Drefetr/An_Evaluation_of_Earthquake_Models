@@ -1,6 +1,6 @@
 # Stage 2 and matched-law source implementations
 
-This directory preserves numerical implementations for S01-S06, the S04B matched-law local-inhibition study, and independent Q01 checks. It includes reusable kernels and historical campaign recipes. The aggregate evidence in the manuscript is supplied separately from the private state arrays, history banks, frozen run plans and execution records needed by those recipes.
+This directory preserves numerical implementations for S01-S06, the S04B matched-law local-inhibition study, and independent Q01 checks. It includes reusable kernels and historical campaign recipes. Recovered inputs and explicit replay routes now live under [`reproduction/`](../../reproduction/README.md); the old campaign entry points do not automatically discover those packages.
 
 The cleanup does not rerun research or change reported findings. Exact missing source dependencies were recovered from the local research archive: `stage2_history.py`, `fit_adapter_v2.py`, `calibration_arithmetic.py`, and `rank_envelope.py`. Recovery identities and import adaptations are recorded in the repository provenance. Historical refit process wrappers were removed from the current tree; their original bytes remain in the baseline Git history.
 
@@ -8,12 +8,12 @@ The cleanup does not rerun research or change reported findings. Exact missing s
 
 | Study | Reusable implementation and current checks | Inputs for the historical campaign | Replay status |
 |---|---|---|---|
-| S01: four-cell nuisance/calibration | `s01_s02_temporal/{recursive_adapter,fit_adapter_v2,stage2_history,calibration_arithmetic}.py`; cached native likelihood; handcrafted Poisson and unknown-reference controls | `INPUT_CASES.json`, original fitted-history/reference banks, missing-cell selections, meshes and frozen generating-law settings | Numerical modules are importable; `campaign.py`, `s01_aggregate.py` and `s01_bootstrap_report.py` preserve archive-specific recipes. Complete historical replay is unavailable from this checkout alone. |
-| S02: matched-productivity temporal extension | `recursive_temporal.cpp`, `contrast_v2.cpp`, `cached_stage2.cpp`, `r_matched/` and adapters; native sources compile | `S02_STAGED_RECIPE.json`, original law/authority tree and registered generation/fitting plans | `s02_campaign.py` is a preserved campaign recipe, not an advertised turnkey replay. New generation/fitting is a research workload. |
-| S03: spatial decomposition | `s03_s06_spatial_benchmarks/{spatial.py,radial.cpp}`; radial source is also used by LI | Case JSON, causal training/forecast caches, frozen nuisance parameters and EP fit records referenced by that JSON | Kernel/source and explicit-input CLI supplied. Per-event caches are external and are not reconstructed by aggregate tables. |
-| S04/S04B: LI and LI+ | `s04_s04b_local_inhibition/` native likelihood/integration, geometry, generator and explicit-input fitting code; handcrafted C++ boundary/gradient fixture | Observed case/caches or registered synthetic law/runtime admission; frozen backbone parameters and quadrature plans | Native build and small controls supported. Campaign reproduction requires external registered inputs; it is not part of quick checks. One-off GPU worker/controller wrappers are retired. |
-| S05: conditional calibration | `ep/adapter.py`, `ep/engine.cpp`, recovered `rank_envelope.py`, `continuous_omnibus.py`; EP library builds and version-loads | Exact observed/simulation states and manifests; OC/EP scalar results for omnibus calculations | EP adapter and explicit saved-results summaries supplied. `calibration_campaign.py` retains original `research_runs/` layout and is archival orchestration. |
-| S06: competitive/JMA backtests | `s06/{core.cpp,competitive.cpp,engine.py,runner.py}`; native compilation and Python/native geometry ABI control | Registered protocol and data pointer JSON, exact catalogue, frozen source/selection pins, case caches | Supported module invocation and configurable binary location; full backtests require the original protocol/data, not included per-event arrays. |
+| S01: four-cell nuisance/calibration | `s01_s02_temporal/{recursive_adapter,fit_adapter_v2,stage2_history,calibration_arithmetic}.py`; cached native likelihood; handcrafted Poisson and unknown-reference controls | Recovered histories in `reproduction/synthetic/`; F restricted fitted states remain unrecoverable | The F/S01 continuation was withdrawn. Source preservation does not reinstate those results. See `docs/F_followup.md`. |
+| S02: matched-productivity temporal extension | `recursive_temporal.cpp`, `contrast_v2.cpp`, `cached_stage2.cpp`, `r_matched/` and adapters | Original histories, fitted states and traces in `reproduction/s02/` | The input verifier checks custody. `s02_campaign.py` remains an archive-specific campaign recipe; new fitting is a separate workload. |
+| S03: spatial decomposition | `s03_s06_spatial_benchmarks/{spatial.py,radial.cpp}`; radial source is also used by LI | Recovered original fits/scores and scoring inputs in `reproduction/regional/` | Follow that package's explicit saved-state route and per-table execution status, not the old private-path campaign. |
+| S04/S04B: LI and LI+ | `s04_s04b_local_inhibition/` likelihood/integration, geometry, generator and explicit-input fitting code; handcrafted C++ boundary/gradient fixture | S04B raw histories, generating settings, selected fits/gates in `reproduction/synthetic/`; recovered observed evidence in regional packages | S04B has an executed saved-state replay. Original S04 and observed runs have separately documented provenance; source availability does not assert fresh replay. |
+| S05: conditional calibration | `ep/adapter.py`, `ep/engine.cpp`, recovered `rank_envelope.py`, `continuous_omnibus.py` | Recovered original records under `reproduction/regional/` | The original reconstruction covers all 5,994 point-score paths and fifteen full-vector EP paths. These are distinct audit layers, not 5,994 full-vector reruns. |
+| S06: competitive/JMA backtests | `s06/{core.cpp,competitive.cpp,engine.py,runner.py}`; geometry ABI control | Provider bytes, projected arrays, original fitted-state/score records in `reproduction/jma/` and `reproduction/regional/` | Follow the current packages' explicit scoring routes. The old `runner.py` still expects its registered protocol/pointer schema. |
 | Q01: independent verification | `q01_independent_oracles/` compiled/Python implementations | Exact saved private fitted states, replay vectors, phase captures and source-binding manifests | Independent implementation source is supplied; original comprehensive replay cannot run from public aggregate evidence alone. |
 
 `controls_campaign.py` contains scientific synthetic/negative controls. It is retained. The two EP oracle variants are distinct implementations, not accidental duplicates. Source files named `backup`, `review` or `control` are not automatically obsolete.
@@ -28,7 +28,7 @@ python -B -m engine.stage2_followup.s04_s04b_local_inhibition.controls_campaign 
 python -B -m engine.stage2_followup.s03_s06_spatial_benchmarks.continuous_omnibus --help
 ```
 
-The five portable tests check imports, direct CLI help, build source paths, conservative unknown-reference arithmetic and tied ranks. Three additional native fixture tests run only when separately built libraries are provided. These checks do not simulate histories, fit models, bootstrap results or certify theorems.
+The five Python tests check imports, direct CLI help, build source paths, conservative unknown-reference arithmetic and tied ranks. Three native fixture tests build actual libraries automatically into a fresh temporary directory when no explicit native root is supplied. A missing compiler fails the tests; it does not skip them. Compiler logs and source/binary receipts are retained at the printed path. These eight checks do not simulate histories, fit study models, bootstrap results or certify theorems.
 
 For example, the recovered arithmetic can be used without any archive paths:
 
@@ -47,7 +47,7 @@ Unknown references widen bounds; they are not silently replaced by zero.
 
 ## Native builds
 
-The temporal, radial, LI and S06 source set currently targets **Windows x64/MSVC C++17**. Linux/macOS portability is not claimed for those Windows export declarations. Install the Visual Studio C++ build tools and Windows SDK, then use either a developer shell, automatic `vswhere` discovery, `INHIBITORY_VCVARS`, or an explicit `--vcvars` path. No Visual Studio edition/install path is hardcoded.
+The temporal, radial, LI and S06 build selects MSVC on Windows and a C++17 `CXX`, `g++` or `clang++` compiler on Linux/macOS. Export decoration and library suffixes are platform-aware; numerical formulas are unchanged. Windows can use a developer shell, automatic `vswhere` discovery, or an explicit `--vcvars` path. No Visual Studio edition/install path is hardcoded. Build support is distinct from an executed platform acceptance record: the [CPU guide](../../docs/cpu_reproduction.md) describes the fresh Linux CI and its retained results.
 
 Each output directory must be new and outside `engine/stage2_followup`:
 
@@ -59,9 +59,9 @@ python -B -m engine.stage2_followup.native_build --group s06 --output build/nati
 python -B -m engine.stage2_followup.s03_s06_spatial_benchmarks.ep.adapter build --compiler msvc --output build/native/ep/ep.dll
 ```
 
-The LI command compiles the shared radial source from the sibling spatial directory. The temporal command produces `temporal_stage2.dll` and `mdfhp_cli.exe`. Builds write logs, source/binary hashes and receipts under their output paths; the shared builder does not execute resulting binaries. The EP builder loads its library to record the engine version but does not evaluate scientific state. EP also retains its existing GNU C++ route (`--compiler g++`); the cleanup verified the MSVC route only.
+The LI command compiles the shared radial source from the sibling spatial directory. The temporal command produces `temporal_stage2` with `.dll`/`.so`/`.dylib` and `mdfhp_cli` with `.exe` on Windows. Builds write logs, source/binary hashes and receipts under their output paths; the shared builder does not execute resulting binaries. The EP builder loads its library to record the engine version but does not evaluate scientific state; its GNU C++ route uses `--compiler g++` and an explicit output path.
 
-To run the three small native fixtures in PowerShell after the LI, temporal and S06 builds:
+An optional locator reuses separately built libraries. It is no longer a prerequisite:
 
 ```powershell
 $env:INHIBITORY_TEST_NATIVE_ROOT = (Resolve-Path build/native).Path
@@ -82,7 +82,7 @@ python -B -m engine.stage2_followup.s03_s06_spatial_benchmarks.continuous_omnibu
 
 The OC root must contain `observed_producer_cost_v1/california_fold_N/scalars.json` and `production_v1/california_fold_N/INDEX/scalars.json`. The EP root must contain `california_fold_N/observed/scalars.json` and `california_fold_N/INDEX/scalars.json`. Each model needs folds 0-2 with observed plus 999 simulated scalar records; the original 84-coordinate schema and pooled denominator checks remain enforced. No catalogue or simulation is acquired by this command.
 
-Other explicit-input CLI signatures, for users who already have the required private inputs:
+Other explicit-input CLI signatures, for users following the matching package's input contract (the example library suffixes below are Windows suffixes):
 
 ```sh
 python -B -m engine.stage2_followup.s03_s06_spatial_benchmarks.spatial --case CASE.json --dll build/native/spatial/radial.dll --ep-fit EP_FIT.json --output build/spatial_case
@@ -92,8 +92,8 @@ python -B -m engine.stage2_followup.s03_s06_spatial_benchmarks.ep.adapter job --
 python -B -m engine.stage2_followup.s03_s06_spatial_benchmarks.s06.runner run --pointer POINTER.json --protocol PROTOCOL.json --output build/s06_run
 ```
 
-These are research/state-consuming commands, not quick checks. Read their admission, source-hash, schema and failure rules before execution. Private case/cache files and manifests must agree exactly; do not replace missing historical inputs with newly selected data and call that exact reproduction. The S06 runner retains its registered JMA schema and should not be treated as a generic California runner.
+These are research/state-consuming commands, not quick checks. Read their admission, source-hash, schema and failure rules before execution. Case/cache files and manifests must agree exactly; do not replace missing historical inputs with newly selected data and call that exact reproduction. The S06 runner retains its registered JMA schema and should not be treated as a generic California runner.
 
-Set `INHIBITORY_S06_NATIVE_DIR` to the S06 build directory. Historical temporal recipes can use `INHIBITORY_TEMPORAL_LIBRARY` and `INHIBITORY_MATCHED_CLI` for separately built binaries; setting those paths does not supply their missing run plans or authorize a changed source identity. Explicit new runs must record public source variants and retain historical pins separately.
+S06 defaults to `build/native/s06`; `INHIBITORY_S06_NATIVE_DIR` optionally selects another build directory. Historical temporal recipes can use `INHIBITORY_TEMPORAL_LIBRARY` and `INHIBITORY_MATCHED_CLI` for separately built binaries; setting paths does not supply missing run plans or authorize a changed source identity. Explicit new runs record public source variants and retain historical pins separately.
 
 See [historical source status](../HISTORICAL_SOURCES.md) for the older iteration launchers and optional missing backends.

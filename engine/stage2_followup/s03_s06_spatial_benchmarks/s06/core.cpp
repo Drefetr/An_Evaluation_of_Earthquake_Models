@@ -5,7 +5,11 @@
 #include <limits>
 #include <cstddef>
 #include <algorithm>
+#ifdef _WIN32
 #define API extern "C" __declspec(dllexport)
+#else
+#define API extern "C" __attribute__((visibility("default")))
+#endif
 namespace {
 thread_local char err[512]={};void fail(const char*s){std::size_t i=0;for(;s[i]&&i<511;++i)err[i]=s[i];err[i]='\0';}
 void check(bool x,const char*s){if(!x)throw std::runtime_error(s);}void finite(double x,const char*s){check(std::isfinite(x),s);}

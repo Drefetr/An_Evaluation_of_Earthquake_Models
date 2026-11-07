@@ -4,7 +4,11 @@
 #include <string>
 #include <algorithm>
 #include <memory>
+#ifdef _WIN32
 #define API extern "C" __declspec(dllexport)
+#else
+#define API extern "C" __attribute__((visibility("default")))
+#endif
 using remediation::require;
 static thread_local std::string error;
 struct Model {

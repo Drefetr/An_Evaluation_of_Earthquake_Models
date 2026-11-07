@@ -5,7 +5,7 @@ features and performs optimizer orchestration. All times are strict-past, ties
 remain unjittered, and target rows are the window suffix.
 """
 from pathlib import Path
-import ctypes as ct, hashlib, json, math, os
+import ctypes as ct, hashlib, json, math, os, sys
 import numpy as np
 HERE=Path(__file__).resolve().parent
 SCALES=(5.,15.,50.,150.,500.,1500.)
@@ -28,10 +28,13 @@ def bounds(arm):
     if arm=='EP':b += [(math.log(2),math.log(500)),(1.05,3.)]
     return b
 def library(name):
-    # The registered sources currently target Windows/MSVC. Keep binaries in a
-    # separate build directory rather than modifying the preserved source tree.
-    p=Path(os.environ.get('INHIBITORY_S06_NATIVE_DIR',HERE))/(name+'.dll')
-    if not p.is_file():raise FileNotFoundError('Build S06 native libraries and set INHIBITORY_S06_NATIVE_DIR: '+str(p))
+    # Build products are separate from the source tree. An explicit override is
+    # optional; the normal repository build/native/s06 location is discoverable.
+    suffix='.dll' if os.name=='nt' else ('.dylib' if sys.platform=='darwin' else '.so')
+    default=Path(__file__).resolve().parents[4]/'build/native/s06'
+    directory=Path(os.environ.get('INHIBITORY_S06_NATIVE_DIR',default))
+    p=directory/(name+suffix)
+    if not p.is_file():raise FileNotFoundError('Build S06 native libraries under build/native/s06 or supply INHIBITORY_S06_NATIVE_DIR: '+str(p))
     lib=ct.CDLL(str(p.resolve()));prefix='ts' if name=='core' else 'cb'
     getattr(lib,prefix+'_create').argtypes=([ct.c_int]*3+[PD]*13) if name=='core' else ([ct.c_int]*2+[PD]*13)
     getattr(lib,prefix+'_create').restype=ct.c_void_p

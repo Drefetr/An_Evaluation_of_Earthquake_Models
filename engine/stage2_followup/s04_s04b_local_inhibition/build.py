@@ -1,7 +1,7 @@
 """Compile LI sources, including the shared sibling radial geometry source.
 
-Windows/MSVC is the supported platform. Use --vcvars or INHIBITORY_VCVARS to
-select an installation, or invoke from a developer shell.
+MSVC is discovered on Windows. Other platforms use a C++17 GNU/Clang compiler.
+Compilation preserves the same numerical kernels and creates fresh outputs.
 """
 from pathlib import Path
 import argparse
@@ -18,8 +18,9 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--vcvars', type=Path)
+    parser.add_argument('--compiler')
     args = parser.parse_args()
-    build('li', args.output, args.vcvars)
+    build('li', args.output, args.vcvars, args.compiler)
 
 
 if __name__ == '__main__':

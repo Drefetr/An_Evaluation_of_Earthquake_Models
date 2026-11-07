@@ -1,0 +1,64 @@
+name: Portable CPU kernel acceptance
+
+on:
+  push:
+    branches:
+      - 'research/**'
+    paths:
+      - 'engine/**'
+      - 'reproduction/**'
+      - 'tests/test_cpu_portability.py'
+      - 'requirements*.txt'
+      - '.github/workflows/cpu-reproduction.yml'
+  workflow_dispatch:
+    inputs:
+      stage:
+        description: Bounded check stage (no scientific campaigns)
+        type: choice
+        default: all
+        options: [all, build, stage2, iteration27]
+
+permissions:
+  contents: read
+
+jobs:
+  cpu-core:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      OMP_NUM_THREADS: '2'
+      OPENBLAS_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+      NUMEXPR_NUM_THREADS: '2'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: pip
+      - run: python -m pip install -r requirements-cpu.txt
+      - name: Confirm clean CPU environment has no PyTorch dependency
+        run: python -c "import importlib.util; assert importlib.util.find_spec('torch') is None"
+      - name: Run actual CPU kernels and bounded assertions
+        env:
+          CHECK_STAGE: ${{ inputs.stage || 'all' }}
+        run: python -B -m engine.cpu_reproduction --stage "$CHECK_STAGE" --output "$RUNNER_TEMP/cpu-core"
+      - name: Test source-preserving generic compiler route
+        run: python -B -m unittest discover -s tests -p test_cpu_portability.py -v
+      - name: Verify supplied scientific inputs
+        run: |
+          python -B reproduction/regional/inputs.py verify
+          python -B reproduction/s02/inputs.py verify
+          python -B reproduction/historical_fits/verify.py
+      - name: Verify claim and repository custody
+        run: |
+          python -B scripts/verify_claims.py
+          python -B scripts/verify_repository.py
+      - name: Retain CPU execution receipt, source hashes, and compiler logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cpu-core-${{ github.sha }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/cpu-core
+          if-no-files-found: error
