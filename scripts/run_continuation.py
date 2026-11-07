@@ -42,6 +42,7 @@ def inside(base, relative):
 
 def mandatory_sources(stage):
     paths = {'scripts/run_continuation.py','scripts/supervise_research.py',
+             'scripts/tests/test_supervise_research_linux.py',
              'engine/cpu_build.py','engine/stage2_followup/native_build.py',
              '.github/workflows/research-continuation.yml','requirements.txt','requirements-cpu.txt'}
     if stage in ('joint-pilot','joint-full'):

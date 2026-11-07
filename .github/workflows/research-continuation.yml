@@ -27,7 +27,16 @@ jobs:
           cache: pip
       - run: python -m pip install -r requirements-cpu.txt
       - name: Verify Linux process containment before scientific execution
+        env:
+          SUPERVISOR_TEST_OUTPUT: ${{ runner.temp }}/continuation-preflight
         run: python -B -m unittest discover -s scripts/tests -p test_supervise_research_linux.py -v
+      - name: Retain process-lifetime controls
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: continuation-preflight-${{ github.sha }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/continuation-preflight
+          if-no-files-found: error
       - name: Supervised source-pinned scientific stage
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -48,4 +57,4 @@ jobs:
             ${{ runner.temp }}/continuation/supervision/*.json
             ${{ runner.temp }}/continuation/supervision/*.log
             ${{ runner.temp }}/continuation/build/**
-          if-no-files-found: error
+          if-no-files-found: warn

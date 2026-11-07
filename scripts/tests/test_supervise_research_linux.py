@@ -34,7 +34,7 @@ class LinuxSupervisor(unittest.TestCase):
         command = [sys.executable, '-B', str(SCRIPT), str(config)]
         if injection:
             wrapper = ("import sys;sys.path.insert(0," + repr(str(SCRIPT.parent)) + ");"
-                       "import supervise_research as s;" + injection + ";s.main()")
+                       "import supervise_research as s;" + injection + ";raise SystemExit(s.main())")
             command = [sys.executable, '-B', '-c', wrapper, str(config)]
         with (self.folder / 'supervisor.log').open('w', encoding='utf-8') as log:
             process = subprocess.Popen(command, stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
