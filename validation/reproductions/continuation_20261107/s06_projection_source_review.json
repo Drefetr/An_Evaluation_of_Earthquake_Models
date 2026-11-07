@@ -1,0 +1,67 @@
+{
+  "schema": "independent_s06_archived_projection_source_review_v1",
+  "passed": true,
+  "status": "source_and_input_custody_accepted_pending_actual_retry",
+  "reviewer": "continuation_cpu independent audit lane",
+  "source_commit": "3f549694643c3ffb54748431c989f47f0c0c3c99",
+  "preprocessing_commit": "17b63f380115698c00a1269dcbea3b52a69504bd",
+  "scope": "Source/input custody and five invented controls only; no scientific native features, likelihood, fitting, or simulation executed.",
+  "source_sha256": {
+    "reproduction/score_replay/regional_replay.py": "aa0cc9d4f4827b464d81e2db0a5a0bc21d0c4a6bc5ca89cc2580500ec6778aa6",
+    "reproduction/score_replay/s06_ca/pilot_proposal.json": "245f742827ce524033eeac00652d9d0654284a2b319972f34b664ec4a6dcba8c",
+    "reproduction/score_replay/s06_ca/registry.json": "15a5fe7dc406f43c2924105b3c99acf5b67a79db9ba3964d0b5fe914ffc9b713",
+    "reproduction/score_replay/s06_ca/input_manifest.json": "4777c8ffb497b5744df352c80f17135ca7fb4905ed7fb0f0bf6580565b4bbc60",
+    "reproduction/score_replay/s06_ca/projection_input.npz": "8ebfc12e10f3ab7f9e122a1c6646c1c8beeecf47a68afbbf327f7c7e9ad2d863",
+    "reproduction/score_replay/s06_ca/projection_provenance.json": "a758d1753130bbd6d9caa13c5db7f3096dcccab4515ad19357114e1bb54450e3",
+    "tests/test_s06_projection_inputs.py": "4c7c42f3f390543ac2c6ad1a7c9841c6189b160bf8900952017e483e74ff7c0b"
+  },
+  "reviewer_script_sha256": "15ea24f573afa3a6646d540d0a2bd3e81617aa5f856a581a92e0df53c9a405b0",
+  "input_probe_sha256": "731ea7ad1978ac22a7bfb16f3d18ec2548d9381b358c2e297feaa1f4e3477912",
+  "failed_original_pilot_audit_sha256": "07a363bcd7506aaba496667406e4d71302c7d16b050b7d8b1fb0da917e441232",
+  "constructed_tests": {
+    "count": 5,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "log_sha256": "a3734d5de506e51deb6449ea4db2006f422f4ce50c98100d3aebf283b8b6025a"
+  },
+  "checks": {
+    "original_cache_files": 60,
+    "exact_original_raw_array_comparisons": 660,
+    "raw_catalogue_rows": 1272,
+    "archived_prefix_rows": 1189,
+    "projected_input_bytes": 38163,
+    "prior_metadata_bytes_preserved": true,
+    "original_selected_states_scores_tolerances_roster_unchanged": true,
+    "live_projection_diagnostics_before_feature_construction": true,
+    "required_original_raw_identity_checks_unchanged": true,
+    "score_evaluator_ast_unchanged": true,
+    "s03_evaluator_ast_unchanged": true,
+    "jma_catalogue_branch_ast_unchanged": true,
+    "signed_zero_byte_identity_fixed": true
+  },
+  "findings": [],
+  "current_executable_metadata_followup": [
+    {
+      "route": "s03",
+      "proposal_sha256": "bac68ff8909893a04f4c1e4e340640f2960259027171d4b178c249387d52ae88",
+      "declared_shared_source_sha256": "77fb6e95ad34c3105009baeb72baebedc59e0be93c6c042ffd7e1a82b0eb9acf",
+      "current_shared_source_sha256": "aa0cc9d4f4827b464d81e2db0a5a0bc21d0c4a6bc5ca89cc2580500ec6778aa6",
+      "requires_current_metadata_refresh": true
+    },
+    {
+      "route": "jma",
+      "proposal_sha256": "fd99b12173b821226e0cd38118fc00442f8f1fb49648faa2f595d8f19d2b4766",
+      "declared_shared_source_sha256": "77fb6e95ad34c3105009baeb72baebedc59e0be93c6c042ffd7e1a82b0eb9acf",
+      "current_shared_source_sha256": "aa0cc9d4f4827b464d81e2db0a5a0bc21d0c4a6bc5ca89cc2580500ec6778aa6",
+      "requires_current_metadata_refresh": true
+    }
+  ],
+  "limitations": [
+    "The original failed Linux pilot retained no actual coordinate arrays; a cross-platform floating-point explanation remains plausible, not measured from that failed artifact.",
+    "Replay now uses exact archived projection preprocessing rather than claiming all coordinate bits were regenerated identically on Linux. Raw events, times, marks, and cells still require exact binding; fresh downstream features and likelihoods are required at retry.",
+    "No tolerance was relaxed and no archived score is used as a numerical input. Live-platform geometric discrepancies are recorded as diagnostics, not scoring tolerances.",
+    "Current S03/JMA executable proposal pins need refresh to this shared source for fresh public-reader launches; historical accepted ZIPs and admissions retain their original source identities and must not be rewritten.",
+    "This review does not pass the S06 numerical pilot or completion roster."
+  ]
+}

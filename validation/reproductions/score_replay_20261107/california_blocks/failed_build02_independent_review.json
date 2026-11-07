@@ -1,0 +1,56 @@
+{
+  "schema": "independent_partition_second_build_failure_audit_v1",
+  "passed": true,
+  "status": "failure_accounting_accepted_numerical_stage_not_executed",
+  "scope": "Retained archive/build/source review only; no new compilation or native/scientific calls.",
+  "artifact_sha256": "4aacb8426f75a151cf17327f532ed32acaded77e43bb937f77280a6ac25bc50e",
+  "workflow_id": "42359103160",
+  "job_id": "128363467124",
+  "source_commit": "3f674d7",
+  "reviewer_script_sha256": "a043f223562f38305580d8a7ab64d0a061cf5bc06abb4ead121184f4ae9f81b3",
+  "member_sha256": {
+    "build/build/annual/build_receipt.json": "7859453b5fa1c1d8616b45bf28e913a15a95637ffa6401f224494d50907b77b6",
+    "build/build/annual/build.log": "59d1cbef41d4ae78d5063d525b7aa13d18dc0493ea00537efc19b2ee398cb5a8",
+    "build/build/annual/portable_65657bcd4cdea4aee683063fe8e152f6c0f9d9b9200c37dfe2eb97083f089eb8.so": "a0110ed175ec3692c4347fdabe820f76174987e6a67323ad9b42b2bf3bbdf397",
+    "build/build/sequence/build.log": "8c2803856b33a9a1ca0c6a9808e5afdacf91fe5859adc6f04e7a7ac60a352374",
+    "build/build/sequence/build_receipt.json": "24ffbbb4f669000c7243b3c2699e3408a9e06d741321aba5a5e4e44c437ac807",
+    "build/sources/annual/65657bcd4cdea4aee683063fe8e152f6c0f9d9b9200c37dfe2eb97083f089eb8.cpp": "65657bcd4cdea4aee683063fe8e152f6c0f9d9b9200c37dfe2eb97083f089eb8",
+    "build/sources/annual/portable_65657bcd4cdea4aee683063fe8e152f6c0f9d9b9200c37dfe2eb97083f089eb8.cpp": "06f7ccd974d1a436df9c56464e94c0978e322ccaaeb5b9dbd624d67e29da2e01",
+    "build/sources/sequence/fb1af8bc42ae576131d53d410a81f4474c2116c0d0ad4049c635099d60d0885c.cpp": "fb1af8bc42ae576131d53d410a81f4474c2116c0d0ad4049c635099d60d0885c",
+    "conductor_review.json": "12fbf0c67a12057dc3725524163966304447109c9827634b4dd5d49dab813beb"
+  },
+  "annual_build": {
+    "record_passed": true,
+    "source_sha256": "06f7ccd974d1a436df9c56464e94c0978e322ccaaeb5b9dbd624d67e29da2e01",
+    "library_sha256_recorded": "a0110ed175ec3692c4347fdabe820f76174987e6a67323ad9b42b2bf3bbdf397",
+    "library_bytes_in_artifact": true,
+    "binaries_executed": false
+  },
+  "sequence_build": {
+    "record_passed": false,
+    "source_sha256": "fb1af8bc42ae576131d53d410a81f4474c2116c0d0ad4049c635099d60d0885c",
+    "returncode": 1,
+    "binaries_executed": false
+  },
+  "likelihood_calls": 0,
+  "scientific_supervisor_launched": false,
+  "diagnosis": "The unmodified sequence source has the same private finite(double) identifier collision with glibc as the already-repaired annual source.",
+  "minimal_correction": {
+    "kind": "reversible_private_helper_identifier_rename",
+    "original_sha256": "fb1af8bc42ae576131d53d410a81f4474c2116c0d0ad4049c635099d60d0885c",
+    "compiled_candidate_sha256": "96459e4beb387aa5439efe8f788e2aaeb1a56e44652442c954c480ada225f893",
+    "replacements": 13,
+    "reverse_bytes_exact": true,
+    "math_or_api_changes": false,
+    "implementation_performed_by_reviewer": false
+  },
+  "required_followup": [
+    "Apply the same reviewed identifier-only transformation to both annual and sequence sources, retaining original/compiled pins.",
+    "Extend token/reversal constructed controls to sequence before fresh GCC build.",
+    "Retain this failure separately and retry original3-row pilot only after new source/admission review."
+  ],
+  "limitations": [
+    "Annual library bytes match the retained successful build receipt; no binary was executed.",
+    "The prior source acceptance verified the annual transformation and unchanged sequence bytes; it did not prove that the unchanged sequence source would compile on GCC."
+  ]
+}
