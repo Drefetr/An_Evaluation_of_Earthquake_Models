@@ -1,0 +1,47 @@
+{
+  "schema": "independent_joint_operational_gradient_equivalence_design_v1",
+  "passed": true,
+  "reviewer": "/root/continuation_cpu",
+  "review_kind": "independent_source_semantics_and_design_review",
+  "scientific_calls": 0,
+  "execution_admitted": false,
+  "scientific_completion": false,
+  "diagnostic_output_review_sha256": "d670fee3fbf9592e4e14fa7c0dbf2b3124e880aced859bcffe200524b4d2dce0",
+  "frozen_fit_source_sha256": "878dbf6a71bbc1b9e934f190d3ad0a1c3663097610edf5a42c8aab89b62775bb",
+  "shared_rule": {
+    "formula": "abs(actual - expected) <= 64 * binary64_epsilon * max(1, abs(actual), abs(expected))",
+    "finite_numeric_only": true,
+    "non_gradient_fields_exact": true,
+    "purpose": "Explicit operational reproducibility criterion for unused diagnostic gradients. Not a general numerical error theorem, hardware-cause proof, or change to scientific fit/quadrature tolerances.",
+    "retention": "Keep full fresh/original payloads, recursive differences, each bound and explicit non-bitwise status. Any preserved original field must be labelled as reuse after validation."
+  },
+  "policies": [
+    {
+      "scope": "Reused completed LI training check",
+      "allowed_fields": ["projected_gradient_coarse", "projected_gradient_fine", "projected_gradient_scaled_delta"],
+      "conditions": "Recompute derived scaled discrepancy from both gradient pairs; require original scientific fine-check passes and exact all other fields including full scores, parameters, KKT norm and selection text. Return the preserved authoritative original check only after labelled equivalence acceptance. Null training check remains exact.",
+      "evidence": "The five-evaluation diagnostic observed six differences only in these fields, maximum7.105427357601002e-15; scores, parameters, pass and KKT norm were exact."
+    },
+    {
+      "scope": "Unused gradient at the2040th restarted Powell completed-return anchor",
+      "allowed_fields": ["gradient"],
+      "conditions": "All parameters, every score component, evaluation count, optimizer options and next-input vector stay exact. Retain original and actual full anchor objects. No tolerance is granted to scalar NLL or trajectory inputs.",
+      "source_basis": "Frozen Powell receives jac=False and a scalar objective returning score.nll; the separately retained gradient is not supplied to the optimizer. This source-semantic finding does not prove all unsaved intermediate evaluations are identical."
+    },
+    {
+      "scope": "Fresh support evaluation after replayed completed immigrant optimizer returns for starts0 through4 only",
+      "allowed_fields": ["record.gradient", "record.projected_gradient", "corresponding candidate.gradient"],
+      "conditions": "Independently reconstruct each projected gradient from raw gradient, exact parameters and original bounds. Require every other record/candidate field exact, including full score, fresh NLL discrepancy, parameters, success/status, boundaries, counters, start and state identity. Preserve full actual/original comparison before retaining original record/candidate gradients. Require unchanged candidate set and selected state.",
+      "source_basis": "Frozen fit_arm uses the returned scalar NLL discrepancy and optimizer success to classify the replayed return; selection uses candidate score/state metadata. The fresh gradient is recorded as diagnostics and does not feed an optimizer or candidate ranking. This permission excludes all actual new L-BFGS objective gradients and every new optimizer invocation."
+    }
+  ],
+  "required_controls": [
+    "At-bound and over-bound finite gradient values, plus nonfinite rejection.",
+    "Changed scores, parameters, success/status, boundaries, counts/options or next-input vector must fail.",
+    "Projected-gradient and derived-delta reconstruction must reject inconsistent diagnostic values.",
+    "Original and actual evidence must survive both pass and failure without overwriting historical bytes.",
+    "Candidate set, selected state and optimizer-call census must remain unchanged.",
+    "Independent checker must implement the declared comparisons without importing producer equivalence helpers."
+  ],
+  "boundary": "Conditional design approval only. Final source/checker review, finite accounting and a separate genuine numerical admission remain required. All prior failed pilots remain failed; completed study prefix remains40/80."
+}
