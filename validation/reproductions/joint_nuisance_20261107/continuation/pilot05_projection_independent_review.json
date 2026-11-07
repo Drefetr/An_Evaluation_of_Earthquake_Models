@@ -1,0 +1,381 @@
+{
+  "schema": "independent_joint_projection_audit_v1",
+  "passed": true,
+  "scope": "Saved-result and hash-pinned input-size arithmetic, static source review; no fitting, scoring, simulation, geometry planning or production admission.",
+  "projection_file_sha256": "26327c25140fbeedfba8a8df1b5fd1350bf65071d3f5fc67ca50ee8567fec114",
+  "projection_identity": "a9f033e40691e2bad39457873621c232c12e836bd64c22cd9016ca98d82c6f18",
+  "index_sha256": "19f6e808bc992049ced819ce20e69ab4e543e04ccffed04587ffb75d9d2aebf8",
+  "pilot_review_sha256": "a4cee87acc3616bde28a04695e85f4632c16c7b8c5caf6f1a248cddcfe367fa9",
+  "reviewer_script_sha256": "366735d540314901dff6bae62f453c51647381148a1ea479c2944e2f28e8ec36",
+  "source_sha256": {
+    "experiments/s04b_joint_nuisance/run.py": "3f6d9cb3d14a45ea7752c3ab8b011ee1281f59c305c55eda35c36df7dd6ea243",
+    "experiments/s04b_joint_nuisance/model.py": "cc891181e51251247b9668fb6213642f0884deb288050efb2586cf179c6e8898",
+    "experiments/s04b_joint_nuisance/attenuation.cpp": "d47a85c5ed899a952b315977a700487c54bd79b90eddc88f62feef7001d2751e",
+    "experiments/s04b_joint_execution/driver.py": "f188cc787c8c62a735e88e34a606dac8b992c6c42d8d1070676df885353aa012",
+    "reproduction/synthetic/source/geometry_plan.py": "96adbadb202c57953730aab5c4afeae05d0e3b8586034c4a60d639cb7d4cc92c"
+  },
+  "arithmetic": {
+    "remaining_seconds": 4176267.2304257513,
+    "available_seconds": 111878.913219807,
+    "excess_factor": 37.328457260044125,
+    "maximum_seconds_per_work": 3.1872511058747145e-08,
+    "maximum_rate_case": "S7_broad_long_total_seed410701",
+    "ratio": 1516.3076923076924,
+    "original_failed_training_charged_once": true,
+    "charged_seconds": 3321.086780193,
+    "mean_allowable_seconds_per_remaining_case": 1491.71884293076
+  },
+  "pilot": [
+    {
+      "case_id": "S4_narrow_short_imm_seed410401",
+      "regime": 4,
+      "case_seconds": 886.6896522059999,
+      "prior_training_seconds": 867.9114977749999,
+      "current_attempt_seconds": 18.77815443099999,
+      "proxy_work": 737003367502.7693,
+      "seconds_per_proxy_work": 1.2031012221971538e-09,
+      "global_threefold_predicted_seconds": 70470.4439431977,
+      "global_prediction_over_actual": 79.47588400053378,
+      "n_train": 83,
+      "n_test": 94,
+      "parents_train": 87,
+      "parents_test": 181,
+      "native_grid_dimensions": {
+        "train": {
+          "8": {
+            "space_nodes": 7936,
+            "time_nodes": 5376,
+            "parents": 87,
+            "estimate": 60952576
+          },
+          "16": {
+            "space_nodes": 31744,
+            "time_nodes": 10752,
+            "parents": 87,
+            "estimate": 155299840
+          }
+        },
+        "test": {
+          "16": {
+            "space_nodes": 33280,
+            "time_nodes": 12160,
+            "parents": 181,
+            "estimate": 272634880
+          },
+          "8": {
+            "space_nodes": 8320,
+            "time_nodes": 6080,
+            "parents": 181,
+            "estimate": 100042240
+          }
+        }
+      },
+      "nfev_by_arm": {
+        "null": 220,
+        "LI": 340,
+        "LIplus_immigrant": 331,
+        "LIplus_inclusive": 326
+      }
+    },
+    {
+      "case_id": "S5_broad_long_imm_seed410501",
+      "regime": 5,
+      "case_seconds": 86.96860721499999,
+      "prior_training_seconds": 0.0,
+      "current_attempt_seconds": 86.96860721499999,
+      "proxy_work": 4757469971.692307,
+      "seconds_per_proxy_work": 1.828043219031898e-08,
+      "global_threefold_predicted_seconds": 454.8975428532616,
+      "global_prediction_over_actual": 5.2305947792021525,
+      "n_train": 14,
+      "n_test": 16,
+      "parents_train": 17,
+      "parents_test": 33,
+      "native_grid_dimensions": {
+        "train": {
+          "8": {
+            "space_nodes": 4544,
+            "time_nodes": 960,
+            "parents": 17,
+            "estimate": 8216576
+          },
+          "16": {
+            "space_nodes": 18176,
+            "time_nodes": 1920,
+            "parents": 17,
+            "estimate": 20286464
+          }
+        },
+        "test": {
+          "16": {
+            "space_nodes": 24576,
+            "time_nodes": 2176,
+            "parents": 33,
+            "estimate": 34950144
+          },
+          "8": {
+            "space_nodes": 6144,
+            "time_nodes": 1088,
+            "parents": 33,
+            "estimate": 12510720
+          }
+        }
+      },
+      "nfev_by_arm": {
+        "null": 270,
+        "LI": 503,
+        "LIplus_immigrant": 443,
+        "LIplus_inclusive": 350
+      }
+    },
+    {
+      "case_id": "S6_narrow_short_total_seed410601",
+      "regime": 6,
+      "case_seconds": 1006.8984611529999,
+      "prior_training_seconds": 0.0,
+      "current_attempt_seconds": 1006.8984611529999,
+      "proxy_work": 1160219449501.5386,
+      "seconds_per_proxy_work": 8.678517340711625e-10,
+      "global_threefold_predicted_seconds": 110937.32170443394,
+      "global_prediction_over_actual": 110.17726810049899,
+      "n_train": 112,
+      "n_test": 94,
+      "parents_train": 119,
+      "parents_test": 213,
+      "native_grid_dimensions": {
+        "train": {
+          "8": {
+            "space_nodes": 8128,
+            "time_nodes": 7232,
+            "parents": 119,
+            "estimate": 88431616
+          },
+          "16": {
+            "space_nodes": 32512,
+            "time_nodes": 14464,
+            "parents": 119,
+            "estimate": 223550464
+          }
+        },
+        "test": {
+          "16": {
+            "space_nodes": 32512,
+            "time_nodes": 12160,
+            "parents": 213,
+            "estimate": 303594496
+          },
+          "8": {
+            "space_nodes": 8128,
+            "time_nodes": 6080,
+            "parents": 213,
+            "estimate": 110116864
+          }
+        }
+      },
+      "nfev_by_arm": {
+        "null": 217,
+        "LI": 360,
+        "LIplus_immigrant": 332,
+        "LIplus_inclusive": 445
+      }
+    },
+    {
+      "case_id": "S6_narrow_short_total_seed410605",
+      "regime": 6,
+      "case_seconds": 1249.2023414559999,
+      "prior_training_seconds": 0.0,
+      "current_attempt_seconds": 1249.2023414559999,
+      "proxy_work": 2252968495576.615,
+      "seconds_per_proxy_work": 5.544695116281617e-10,
+      "global_threefold_predicted_seconds": 215423.28987082376,
+      "global_prediction_over_actual": 172.44867602452499,
+      "n_train": 137,
+      "n_test": 120,
+      "parents_train": 146,
+      "parents_test": 266,
+      "native_grid_dimensions": {
+        "train": {
+          "8": {
+            "space_nodes": 7040,
+            "time_nodes": 8832,
+            "parents": 146,
+            "estimate": 109991936
+          },
+          "16": {
+            "space_nodes": 28160,
+            "time_nodes": 17664,
+            "parents": 146,
+            "estimate": 269545472
+          }
+        },
+        "test": {
+          "16": {
+            "space_nodes": 31744,
+            "time_nodes": 15488,
+            "parents": 266,
+            "estimate": 397195264
+          },
+          "8": {
+            "space_nodes": 7936,
+            "time_nodes": 7744,
+            "parents": 266,
+            "estimate": 147807232
+          }
+        }
+      },
+      "nfev_by_arm": {
+        "null": 293,
+        "LI": 397,
+        "LIplus_immigrant": 634,
+        "LIplus_inclusive": 542
+      }
+    },
+    {
+      "case_id": "S7_broad_long_total_seed410701",
+      "regime": 7,
+      "case_seconds": 90.14315429800001,
+      "prior_training_seconds": 0.0,
+      "current_attempt_seconds": 90.14315429800001,
+      "proxy_work": 2828241368.615385,
+      "seconds_per_proxy_work": 3.1872511058747145e-08,
+      "global_threefold_predicted_seconds": 270.42946289400004,
+      "global_prediction_over_actual": 3.0,
+      "n_train": 11,
+      "n_test": 15,
+      "parents_train": 12,
+      "parents_test": 27,
+      "native_grid_dimensions": {
+        "train": {
+          "8": {
+            "space_nodes": 4928,
+            "time_nodes": 768,
+            "parents": 12,
+            "estimate": 6437888
+          },
+          "16": {
+            "space_nodes": 19712,
+            "time_nodes": 1536,
+            "parents": 12,
+            "estimate": 15872000
+          }
+        },
+        "test": {
+          "16": {
+            "space_nodes": 23808,
+            "time_nodes": 2048,
+            "parents": 27,
+            "estimate": 29718528
+          },
+          "8": {
+            "space_nodes": 5952,
+            "time_nodes": 1024,
+            "parents": 27,
+            "estimate": 10907136
+          }
+        }
+      },
+      "nfev_by_arm": {
+        "null": 106,
+        "LI": 312,
+        "LIplus_immigrant": 355,
+        "LIplus_inclusive": 543
+      }
+    }
+  ],
+  "regimes": {
+    "4": {
+      "pilot_cases": 1,
+      "remaining_cases": 19,
+      "remaining_proxy_work": 21446751296905.848,
+      "max_remaining_train_events": 110,
+      "max_remaining_test_events": 132
+    },
+    "5": {
+      "pilot_cases": 1,
+      "remaining_cases": 19,
+      "remaining_proxy_work": 114992311374.76924,
+      "max_remaining_train_events": 25,
+      "max_remaining_test_events": 25
+    },
+    "6": {
+      "pilot_cases": 2,
+      "remaining_cases": 18,
+      "remaining_proxy_work": 22052425823783.387,
+      "max_remaining_train_events": 126,
+      "max_remaining_test_events": 140
+    },
+    "7": {
+      "pilot_cases": 1,
+      "remaining_cases": 19,
+      "remaining_proxy_work": 62623847345.230774,
+      "max_remaining_train_events": 17,
+      "max_remaining_test_events": 16
+    }
+  },
+  "illustrative_not_admitted_projections": {
+    "cubic_same_proxy": {
+      "remaining_seconds": 147116.81131997576,
+      "remaining_hours": 40.86578092221549,
+      "regime_remaining_seconds": {
+        "4": 77407.83809239745,
+        "5": 6306.327451483545,
+        "6": 57414.7079749383,
+        "7": 5987.937801156483
+      },
+      "feasible_under_32h_cap": false,
+      "admission_authorized": false
+    },
+    "quadratic_both_phases": {
+      "remaining_seconds": 131321.26275827258,
+      "remaining_hours": 36.47812854396461,
+      "regime_remaining_seconds": {
+        "4": 65263.94367208407,
+        "5": 5732.236277202825,
+        "6": 54646.0640882117,
+        "7": 5679.018720774001
+      },
+      "feasible_under_32h_cap": false,
+      "admission_authorized": false
+    },
+    "quadratic_train_only": {
+      "remaining_seconds": 112637.3971597761,
+      "remaining_hours": 31.28816587771558,
+      "regime_remaining_seconds": {
+        "4": 59311.76480381205,
+        "5": 5964.113819233111,
+        "6": 39267.70339408936,
+        "7": 8093.815142641577
+      },
+      "feasible_under_32h_cap": false,
+      "admission_authorized": false
+    },
+    "linear_both_phases": {
+      "remaining_seconds": 119651.20303611635,
+      "remaining_hours": 33.2364452878101,
+      "regime_remaining_seconds": {
+        "4": 56495.36207195823,
+        "5": 5289.554931683749,
+        "6": 52304.84533904559,
+        "7": 5561.440693428784
+      },
+      "feasible_under_32h_cap": false,
+      "admission_authorized": false
+    }
+  },
+  "findings": [
+    "The frozen arithmetic is correct and the operational campaign gate must currently reject.",
+    "One global cubic-work rate is dominated by the sparse S7 pilot and overpredicts all three already measured dense cases by about 80 to 172 times after its 3x factor. This is an extrapolation failure, not evidence of actual 48-day runtime.",
+    "The native attenuation recurrence advances each parent once per spatial node: native cost scales as space_nodes*(time_nodes+parents), not space_nodes*time_nodes*parents. The total-intensity BLAS product still has the latter product cost, so the whole mixed evaluator cannot be relabelled linear.",
+    "Adaptive spatial nodes are determined by geometry and error indicators. Across the pilots, maximum nodes per case range from 23808 to 33280 rather than scaling proportionally with parent counts. The observed maximum space_nodes/(parents+1) occurs on sparse S7 and is not a certified bound for unseen cases.",
+    "The same 3x cubic proxy calibrated separately by regime still projects 40.87 hours remaining. Three other illustrative 3x regime-normalized proxies also exceed the available cap. Choosing a smaller multiplier merely to pass is not justified by these five observations.",
+    "Optimizer work is path-dependent: accepted pilot nfev totals differ and future rescue starts remain possible. Five cases do not provide a statistical runtime guarantee."
+  ],
+  "disposition": {
+    "current_campaign_admission": false,
+    "automatic_cap_extension": false,
+    "scientific_change_required": false,
+    "recommended_next_step": "Review a separately versioned operational bounded-progress policy before any further case. Preserve science/solver/roster/starts/quadrature/native/runtime and all accepted outputs. Keep the 32-hour cumulative hard cap and 2-thread/6-GiB limits. Admit only a predeclared next-prefix batch under a conservative per-case wall reservation, retaining every attempt and stopping at unresolved/timeout. Recompute resource estimates after each independently audited case; do not call full completion feasible until the amended policy explicitly supports it. A failed case stays incomplete, not a negative result. This is a proposal for source review, not permission to bypass the current gate.",
+    "alternative": "Retain the five accepted cases as an incomplete pilot and continue Task2 while developing a better source-informed operational model; no claim of 80-case completion.",
+    "budget_warning": "At the present frozen gate, launching even one campaign case is forbidden. Any replacement admission heuristic must be explicit, reviewed, versioned, and distinguish hard resource safety from uncertain all-80 completion."
+  }
+}
