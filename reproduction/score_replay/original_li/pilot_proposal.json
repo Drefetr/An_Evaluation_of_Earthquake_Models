@@ -8,7 +8,7 @@
   "source_sha256": {
     "__init__.py": "66dc04f1795b3ecf23d3a6dc7e3570d9c0592cd0cd214d981fdf179efe246f56",
     "core.py": "e40c3a4ab5e2b8017edec91c7eac60ee4c5d4b7dd7c1cc9817e9d293d7744108",
-    "li_replay.py": "0bf9f2420e4f88875a4410d3a1d5fed06f28f51315fafdf5aae3c70a00e72a7d"
+    "li_replay.py": "e6615b6b429d74bc0b67c1d28e96a2971b74ca4206d7ab3df7e258943c2b78f5"
   },
   "row_ids": [
     "original_li/LI_CA_M4_F2/LI/train",
@@ -54,5 +54,100 @@
     "failures": 0,
     "skips": 0,
     "scope": "Hand-authored scalar/custody tests plus saved raw-input count checks; no likelihood/native call."
+  },
+  "constructor_repair": {
+    "status": "source_amendment_requires_independent_review_before_one_row_retry",
+    "original_proposal_sha256": "db3084c29465d4d78ee1d6287a2f330777d8e468ef1e4528007916a21f3fad03",
+    "original_replay_source_sha256": "0bf9f2420e4f88875a4410d3a1d5fed06f28f51315fafdf5aae3c70a00e72a7d",
+    "failed_pilot_archive_sha256": "c7e614b4c1b1763c55fa6a29985a7daccbac2a54eca42dcf3404f6abc73572af",
+    "failed_pilot_result_sha256": "d8fbcd082c7fd1acb7e3198871e72ebbb733c27a24fbf64b886a2452621cfcc1",
+    "failed_pilot_launch_sha256": "2ae6259ee7631e6fd161913e0c6b47e87d5a65dd662a717aedd5820990c81a56",
+    "retained_passed_rows": [
+      {
+        "id": "original_li/S0_uniform_null_seed410002/LI/test",
+        "result_member": "science/rows/00001/result.json",
+        "result_sha256": "859ba0ab53b28f109f695bbaaee5ad6153f00526a792eede1488f7d31cde0311",
+        "native_arrays_member": "science/rows/00001/native_components.npz",
+        "native_arrays_sha256": "93dd4049dcd4bc0eb14c28362da6deef230d2af62a34bc2088f91b1b3e1ac26d"
+      },
+      {
+        "id": "original_li/S0_uniform_null_seed410002/OC/test",
+        "result_member": "science/rows/00002/result.json",
+        "result_sha256": "a08d75e1706b2107e22f363af832136ae6b6205e2065c9e779601522de82f60e",
+        "native_arrays_member": "science/rows/00002/native_components.npz",
+        "native_arrays_sha256": "b6f7cbfe9a99b7ceae26857ed098d1d404c3fbb926360a5f045f7192a85e784d"
+      }
+    ],
+    "retry_row_ids": [
+      "original_li/LI_CA_M4_F2/LI/train"
+    ],
+    "original_pilot_roster_unchanged": true,
+    "completion_rule": "After independent acceptance of the two original passed rows plus the single repaired row, ordinary completion covers the 35 registry rows outside original row_ids. No passed pilot row is rerun.",
+    "excluded_constructor_fields": [
+      "tile_nodes",
+      "interval_chunk",
+      "parent_chunk"
+    ],
+    "policy": "Validate and retain original GPU resource controls; omit only those three from the pinned CPU constructor. Preserve all supplied scientific quadrature options, selected parameters, cohorts, saved references and tolerances. Reject every other unknown option.",
+    "affected_rows": [
+      {
+        "id": "original_li/LI_CA_M4_F1/LI/train",
+        "state_sha256": "6935b7ab84abf9ab37448ea4643f3193fb32920117f4d9ee8efff886607f2239"
+      },
+      {
+        "id": "original_li/LI_CA_M4_F1/LI/test",
+        "state_sha256": "4657ba2df9a52ea84cfa02722566cb33d6e85dc3fd489152d24dcf98df36e5d6"
+      },
+      {
+        "id": "original_li/LI_CA_M4_F2/LI/train",
+        "state_sha256": "d8789900a441683837f6aad8fb31c2dddeba90b5110375934ce7fd8c842cb52d"
+      },
+      {
+        "id": "original_li/LI_CA_M4_F2/LI/test",
+        "state_sha256": "07e1d234906f2ec11543541ca9aeca91c1b53036c7254da010b6af31e9e39ade"
+      }
+    ],
+    "source_evidence": {
+      "original_provider_config": {
+        "original_relative_path": "research_runs/gpu_local_inhibition_20261028T084002Z/accepted/production_provider_config.json",
+        "sha256": "04086e1a625f55c3083044815928070678690a2e60fdcc949d51c6c0e6370d7f",
+        "fields": [
+          "/objective_kwargs",
+          "/resource_config",
+          "/scientific_contract"
+        ]
+      },
+      "original_gpu_build_manifest_sha256": "611553827521d6306416a7b7fabf873900ce25158c34dde6dfef008c5ecc8b00",
+      "pinned_cpu_engine_sha256": "90f04f1f5f564c8fb6e7547a28e0d0d9b91acaddcbf9268c9e5db1f57680fd71",
+      "gpu_sources": {
+        "gpu_host_epoch2.hpp": {
+          "original_relative_path": "work/gpu_local_inhibition_20261028T084002Z/study/source/research/gpu_local_inhibition/gpu_host_epoch2.hpp",
+          "sha256": "fa08c00161cb8ec120509912b16c015d9c28735869a246db57bb20eba59ba01f",
+          "bytes": 14391
+        },
+        "engine_gpu_epoch2.cpp": {
+          "original_relative_path": "work/gpu_local_inhibition_20261028T084002Z/study/source/research/gpu_local_inhibition/engine_gpu_epoch2.cpp",
+          "sha256": "638aa795ee1b8c07ce6194f620d66b53a4423e37bfeb84574ff15c369b12cd47",
+          "bytes": 42356
+        },
+        "engine_gpu_epoch2.py": {
+          "original_relative_path": "work/gpu_local_inhibition_20261028T084002Z/study/source/research/gpu_local_inhibition/engine_gpu_epoch2.py",
+          "sha256": "a35c929450c7f7acc165940968c3be79dab6291225ec18776deb4b760730fe2a",
+          "bytes": 4714
+        }
+      },
+      "source_locations": {
+        "engine_gpu_epoch2.py": "49-56: consume three resource controls, forward scientific kwargs to reference constructor",
+        "engine_gpu_epoch2.cpp": "474: configure bounded batch sizes only",
+        "gpu_host_epoch2.hpp": "59-73: allocations and loop extents traverse unchanged spatial nodes, intervals and parents; no quadrature selection",
+        "local_inhibition_experiment/engine.py": "226: exact CPU constructor scientific options"
+      }
+    },
+    "scientific_execution_performed": false,
+    "constructed_controls": {
+      "passed": 6,
+      "failed": 0,
+      "scope": "Invented constructor/output fixtures plus AST and saved-option custody checks; no original engine/native/evaluator calls"
+    }
   }
 }

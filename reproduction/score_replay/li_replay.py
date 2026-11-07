@@ -22,6 +22,28 @@ def source_pins():
     return {n:digest((folder/n).read_bytes()) for n in ('__init__.py','core.py','li_replay.py')}
 
 
+def objective_options(original):
+    """Separate archived GPU batching from the pinned CPU quadrature options.
+
+    GPU adapter a35c9294 (lines49--56) consumes these three resource controls
+    before forwarding scientific kwargs to CPU engine90f04f1 (line226).
+    GPU host fa08c001 (lines59--73) uses them as node/interval/parent batch
+    extents; GPU C++638aa795 (line474) supplies the domains below. They neither
+    select quadrature nodes nor change the selected model/vector/cohort.
+    """
+    scientific={'order','fine_order','space_scheme','spatial_tol','near_width','tile_width'}
+    resource_limits={'tile_nodes':4096,'interval_chunk':64,'parent_chunk':4096}
+    if not isinstance(original,dict) or set(original)-scientific-set(resource_limits):
+        raise ValueError('Unexpected original objective option')
+    controls={key:value for key,value in original.items()if key in resource_limits}
+    if any(type(value)is not int or not 0<value<=resource_limits[key]for key,value in controls.items()):
+        raise ValueError('Invalid original GPU execution resource control')
+    cpu={key:value for key,value in original.items()if key in scientific}
+    return dict(original=dict(original),cpu_constructor=cpu,original_gpu_resource_controls=controls,
+        excluded_from_cpu_constructor=sorted(controls),
+        scope='Only archived GPU execution batching is inapplicable to the pinned CPU evaluator; all supplied scientific quadrature options remain exact. CPU/GPU floating-point equality is tested against the unchanged saved references and tolerances, not assumed.')
+
+
 def materialize_source(inputs,registry,folder):
     folder.mkdir(parents=True,exist_ok=False)
     for relative,spec in registry['source_resources'].items():
@@ -91,9 +113,7 @@ def evaluate(inputs,row,engine,dll,folder):
     if len(pars)!=expected_dim or not all(isinstance(x,(int,float)) and math.isfinite(x) for x in pars):
         raise ValueError('Invalid original selected vector')
     path=inputs.materialize(row['raw'],folder/'inputs','.npz')
-    kwargs=state['objective_kwargs']
-    if set(kwargs)-{'order','fine_order','space_scheme','spatial_tol','near_width','tile_width'}:
-        raise ValueError('Unexpected original objective option')
+    options=objective_options(state['objective_kwargs']);kwargs=options['cpu_constructor']
     # eta-zero scales vanish identically. Use the original engine's exact OC
     # branch, preserving the original full selected vector in the output.
     shortcut=model=='LI' and pars[5]==0.
@@ -117,6 +137,7 @@ def evaluate(inputs,row,engine,dll,folder):
     p=folder/'native_components.npz'
     with p.open('xb') as stream:np.savez_compressed(stream,**arrays)
     result.update(parameters=pars,model=model,evaluated_model=evaluated_model,exact_eta_zero_shortcut=shortcut,
+        objective_options=options,
         shortcut_scope='Same selected intensity; inhibition-scale derivatives not requested.' if shortcut else None,
         n_events=row['n_events_expected'],raw_sha256=row['raw']['sha256'],state_sha256=row['state']['sha256'],
         feature_array_sha256=feature_hashes,metadata=meta,
@@ -181,6 +202,9 @@ def run(registry_path,libraries_path,admission_path,output,selected,mode):
         row=by_id[identity];folder=output/'rows'/f'{index:05d}';folder.mkdir(parents=True)
         report=dict(id=identity,passed=False,status='failed');start=time.monotonic()
         try:
+            # Retain the exact option mapping even when subsequent construction
+            # or scoring fails; the immutable state resource remains its source.
+            report['objective_options']=objective_options(inputs.json(row['state'])['objective_kwargs'])
             with threadpool_limits(limits=threads):
                 if any(v['num_threads']>threads for v in threadpool_info()):raise RuntimeError('Thread cap exceeded')
                 actual,arrays=evaluate(inputs,row,engine,dll,folder)
