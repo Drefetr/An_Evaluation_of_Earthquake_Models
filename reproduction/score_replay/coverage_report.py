@@ -407,7 +407,8 @@ record; this layer verifies its identity and exact display, not its derivation.
         table=inventory[tid]
         require(entry['source_body_sha256']==table['body_sha256'],'Metadata source identity differs')
         role=entry['role']
-        require(role in ('fold_id','seed','year','interval_endpoint','count','contrast_arm_label'),
+        require(role in ('fold_id','seed','year','episode_origin_year','calendar_year',
+                         'interval_endpoint','count','contrast_arm_label'),
                 'Metadata disposition cannot excuse a scientific score')
         row=entry['source_row_index'];column=entry['column_index'];token=entry['numeric_token_index']
         field=f'{row}:{column}:{token}'

@@ -234,6 +234,38 @@ class CoverageControls(unittest.TestCase):
         self.assertEqual(result[0]['status'],'failed')
         self.assertEqual(c.merge_fields({'y'},{})[0]['status'],'not_run')
 
+    def test_precise_year_metadata_roles_keep_source_and_value_guards(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);resources=c.Resources(root,root/'inputs.json')
+            table=dict(id='fake:table:1',body_sha256='bodypin',source_rows=['Year & Score','2010 & -2.0'])
+            inventory={table['id']:table}
+            def evaluate(entry):
+                observations={table['id']:{}};required={table['id']:c.inventory_numeric_fields(table)}
+                spec=self.put(root,'metadata.json',dict(schema='score_table_metadata_dispositions_v1',entries=[entry]))
+                c.add_metadata_dispositions(resources,spec,inventory,observations,required)
+                return c.merge_fields(required[table['id']],observations[table['id']])
+            for role in ('year','episode_origin_year','calendar_year'):
+                with self.subTest(role=role):
+                    record=self.put(root,'actual.json',dict(records=[dict(passed=True,id='invented-year',value=2010)]))
+                    entry=dict(table_id=table['id'],source_body_sha256='bodypin',source_row_index=1,column_index=0,
+                        numeric_token_index=0,source_token='2010',role=role,
+                        evidence=dict(resource=record,record_pointer='/records/0',identity_pointer='/id',
+                                      identity='invented-year',value_pointer='/value'))
+                    fields=evaluate(entry)
+                    self.assertEqual([r['status']for r in fields],['metadata_checked','not_run'])
+                    self.assertEqual(fields[0]['evidence'][0]['role'],role)
+                    bad=copy.deepcopy(entry);bad['source_body_sha256']='changed'
+                    with self.assertRaisesRegex(ValueError,'source identity'):evaluate(bad)
+                    bad=copy.deepcopy(entry);bad['source_token']='2011'
+                    with self.assertRaisesRegex(ValueError,'source token'):evaluate(bad)
+                    bad=copy.deepcopy(entry);bad['evidence']['resource']['sha256']='wrong'
+                    with self.assertRaisesRegex(ValueError,'Resource identity'):evaluate(bad)
+                    bad=copy.deepcopy(entry)
+                    bad['evidence']['resource']=self.put(root,'wrong_year.json',dict(records=[dict(passed=True,id='invented-year',value=2011)]))
+                    self.assertEqual(evaluate(bad)[0]['status'],'failed')
+                    bad=copy.deepcopy(entry);bad['role']='mean_score'
+                    with self.assertRaisesRegex(ValueError,'scientific score'):evaluate(bad)
+
     def test_prior_label_without_pinned_prior_stays_unresolved(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);manifest,_,_=self.fixture(root)
