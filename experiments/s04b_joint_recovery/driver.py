@@ -16,7 +16,7 @@ HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[1]
 sys.path.insert(0, str(REPO))
 from experiments.s04b_joint_budgeted import driver as old
-from experiments.s04b_joint_recovery.adapter import RecoveryAdapter, CountedPhase, same
+from experiments.s04b_joint_recovery.adapter import RecoveryAdapter, CountedPhase, same, SUPPORT_EQUIVALENCE_POLICY
 legacy, frozen, model = old.legacy, old.frozen, old.model
 read, sha, write, require = old.read, old.sha, old.write, old.require
 SCHEMA = 'joint_recovery_case_index_v2'
@@ -24,6 +24,8 @@ STARTUP_FILES = {'archive':'startup_failure.zip','review':'startup_failure_revie
     'resource_review':'startup_failure_resource.json','workflow_log':'startup_failure_workflow.log'}
 SUPPORT_FILES = {'archive':'pilot02_support_failure.zip','review':'pilot02_support_failure_review.json',
     'resource_review':'pilot02_support_failure_resource.json','workflow_log':'pilot02_support_failure_workflow.log'}
+DIAGNOSTIC_FILES = {'archive':'support_diagnostic01.zip','review':'support_diagnostic01_review.json',
+    'resource_review':'support_diagnostic01_resource.json','workflow_log':'support_diagnostic01_workflow.log'}
 
 
 def operational_failures(policy):
@@ -51,6 +53,27 @@ def operational_failure_files(policy):
     return files
 
 
+def operational_diagnostics(policy):
+    rows=policy.get('operational_diagnostics',[])
+    require(isinstance(rows,list) and len(rows)==(1 if 'operational_diagnostics' in policy else 0), 'Diagnostic accounting roster changed')
+    if rows:
+        row=rows[0]
+        require(row['status']=='diagnostic_complete' and row['passed'] is True and row['equality_passed'] is False
+            and row['scientific_completion'] is False and row['scientific_predecessor_unchanged'] is True
+            and row['charge_seconds']==80 and row['support_evaluation_count']==5
+            and row['optimizer_call_count']==0 and row['held_out_call_count']==0, 'Diagnostic scope or charge changed')
+        require(0<=row['nested_scientific_seconds']<=row['nested_supervised_seconds']<=80,'Nested diagnostic time exceeds whole-launch charge')
+        require(row['archive_sha256'] not in {v['archive_sha256'] for v in operational_failures(policy)}, 'Duplicated diagnostic/failure charge')
+    return rows
+
+
+def operational_evidence_files(policy):
+    files=operational_failure_files(policy)
+    for row in operational_diagnostics(policy):
+        files.update({name:(row[key],row[key+'_sha256']) for key,name in DIAGNOSTIC_FILES.items()})
+    return files
+
+
 def source_identity():
     current = old.source_identity()
     current.update({p.relative_to(REPO).as_posix():sha(p) for p in sorted(HERE.rglob('*')) if p.is_file() and p.suffix in ('.py', '.json')})
@@ -61,6 +84,7 @@ def verify_protocol():
     policy = read(HERE/'recovery_protocol.json')
     previous = old.verify_protocol()
     require(policy['schema'] == 'joint_partial_optimizer_recovery_protocol_v1', 'Wrong recovery protocol')
+    require(same(policy['recovery'].get('support_equivalence'),SUPPORT_EQUIVALENCE_POLICY), 'Unreviewed operational gradient policy')
     require(old.source_identity() == policy['predecessor_source_sha256'], 'Frozen predecessor source changed')
     require(policy['scientific_protocol_sha256'] == previous['scientific_protocol_sha256'], 'Scientific protocol changed')
     require(policy['sequence'] == previous['sequence'], 'Scientific roster/order changed')
@@ -87,9 +111,10 @@ def verify_protocol():
     require(policy['shared_run'] == previous['shared_run'], 'Shared run or expiry changed')
     require(same(p['known_outer_overhead_seconds'], p['known_outer_charged_seconds']-p['original_index_charged_seconds']), 'Outer charge arithmetic changed')
     failures=operational_failures(policy);failure_charge=sum(row['charge_seconds'] for row in failures)
-    for name,(path,pin) in operational_failure_files(policy).items():
+    diagnostic_charge=sum(row['charge_seconds'] for row in operational_diagnostics(policy))
+    for name,(path,pin) in operational_evidence_files(policy).items():
         require(sha(frozen.safe(REPO,path)) == pin, 'Changed retained operational failure '+name)
-    require(p['known_outer_charged_seconds']+failure_charge+71760+8*1800+1800 <= 115200, 'Fixed recovery allocation exceeds aggregate')
+    require(p['known_outer_charged_seconds']+failure_charge+diagnostic_charge+71760+8*1800+1800 <= 115200, 'Fixed recovery allocation exceeds aggregate')
     return policy
 
 
@@ -146,11 +171,12 @@ def validate_recovery_transition(index, policy, root):
     require(t['known_outer_overhead_seconds'] == p['known_outer_overhead_seconds'], 'Historical overhead changed')
     require(t['pre_execution_failure'] == index['pre_execution_failure'] == policy['pre_execution_failure'], 'Startup failure accounting changed')
     require(t['operational_failures'] == index['operational_failures'] == operational_failures(policy), 'Ordered operational failure accounting changed')
+    require(t['operational_diagnostics'] == index['operational_diagnostics'] == operational_diagnostics(policy), 'Diagnostic accounting changed')
     expected = {'recovery_lineage/failed_index.json':p['index_sha256'], 'recovery_lineage/failed_case.json':p['case_sha256'],
         'recovery_lineage/failed_trace.jsonl':p['trace_sha256'], 'recovery_lineage/failed_review.json':p['review_sha256'],
         'recovery_lineage/failed_result.json':p['result_sha256'], 'recovery_lineage/failed_supervision.json':p['supervision_sha256'],
         'recovery_lineage/failed_admission.json':p['admission_sha256'], 'recovery_lineage/failed_host.zip':p['archive_sha256']}
-    expected.update({'recovery_lineage/'+filename:pin for filename,(_,pin) in operational_failure_files(policy).items()})
+    expected.update({'recovery_lineage/'+filename:pin for filename,(_,pin) in operational_evidence_files(policy).items()})
     require(t['files'] == expected, 'Recovery lineage roster changed')
 
 
@@ -197,16 +223,18 @@ def accepted_index(args, admission, policy, current, cases, out):
             'failed_trace.jsonl':root/index['partial_case']['trace'],'failed_result.json':root/'result.json',
             'failed_supervision.json':root.parent/'supervision/result.json','failed_admission.json':root.parent/'admission.json',
             'failed_review.json':review_path,'failed_host.zip':REPO/p['archive']}
-        sources.update({filename:frozen.safe(REPO,path) for filename,(path,_) in operational_failure_files(policy).items()})
+        sources.update({filename:frozen.safe(REPO,path) for filename,(path,_) in operational_evidence_files(policy).items()})
         for name,source in sources.items():shutil.copy2(source,lineage/name)
         index['recovery_transition'] = dict(schema='joint_interrupted_optimizer_transition_v1',original_status='failed',
             original_index_sha256=p['index_sha256'],protocol_sha256=current['recovery_protocol_sha256'],
             known_outer_overhead_seconds=p['known_outer_overhead_seconds'],pre_execution_failure=copy.deepcopy(policy['pre_execution_failure']),
             operational_failures=copy.deepcopy(operational_failures(policy)),
+            operational_diagnostics=copy.deepcopy(operational_diagnostics(policy)),
             files={'recovery_lineage/'+name:sha(lineage/name) for name in sources})
         index.update(schema=SCHEMA,source_sha256=current['source_sha256'],recovery_protocol_sha256=current['recovery_protocol_sha256'],
             pre_execution_failure=copy.deepcopy(policy['pre_execution_failure']),
-            operational_failures=copy.deepcopy(operational_failures(policy)),partial_case=None,last_attempt_passed=None)
+            operational_failures=copy.deepcopy(operational_failures(policy)),operational_diagnostics=copy.deepcopy(operational_diagnostics(policy)),
+            partial_case=None,last_attempt_passed=None)
         validate_recovery_transition(index,policy,out)
     target='reviews/'+sha(review_path)+'.json'
     require(not(out/target).exists(), 'Repeated prior review')
@@ -227,10 +255,12 @@ def allocation(index, policy, admission, first):
     # Reserve all eight host allowances conservatively throughout. These do not
     # masquerade as measured elapsed seconds; actual scientific time remains exact.
     failure_charge=sum(row['charge_seconds'] for row in operational_failures(policy))
-    bound=total+policy['predecessor']['known_outer_overhead_seconds']+failure_charge+sum(s['wall_seconds'] for s in policy['fixed_slots'][count-40:])+8*1800+1800
+    diagnostic_charge=sum(row['charge_seconds'] for row in operational_diagnostics(policy))
+    bound=total+policy['predecessor']['known_outer_overhead_seconds']+failure_charge+diagnostic_charge+sum(s['wall_seconds'] for s in policy['fixed_slots'][count-40:])+8*1800+1800
     require(bound <= policy['resources']['campaign_aggregate_seconds'], 'Remaining fixed envelope exceeds aggregate')
     return slot,dict(scientific_charge_seconds=total,known_prior_outer_overhead_seconds=policy['predecessor']['known_outer_overhead_seconds'],
-        operational_failure_charge_seconds=failure_charge,all_host_reserve_seconds=8*1800,global_finalization_reserve_seconds=1800,
+        operational_failure_charge_seconds=failure_charge,operational_diagnostic_charge_seconds=diagnostic_charge,
+        all_host_reserve_seconds=8*1800,global_finalization_reserve_seconds=1800,
         maximum_with_unspent_slots_seconds=bound,completion_guaranteed=False)
 
 
@@ -248,7 +278,8 @@ def recovery_delegate(scheduler, partial, trace, science, policy, out):
         checked=original_fine(phase,name,fitted,protocol)
         if name in ('null','LI'):
             comparison=adapter.record_training_check(name,checked,partial['training_checks'][name])
-            require(comparison['exact_match'], 'Repeated completed-arm training check differs')
+            require(comparison['operational_equivalence']['passed'], 'Repeated completed-arm training check differs')
+            return copy.deepcopy(partial['training_checks'][name])
         return checked
     delegate.fine_check=checked_fine
     return delegate,adapter
@@ -285,12 +316,15 @@ def persist(out,index,result,admission,current,started,deadline,active):
         scientific=index['budget']['total_seconds'];overhead=index['recovery_transition']['known_outer_overhead_seconds']
         failures=index.get('operational_failures',[index['pre_execution_failure']])
         failure_charge=math.fsum(row['charge_seconds'] for row in failures)
+        diagnostics=index.get('operational_diagnostics',[]);diagnostic_charge=math.fsum(row['charge_seconds'] for row in diagnostics)
         index['operational_accounting']=dict(scientific_indexed_seconds=scientific,known_prior_outer_overhead_seconds=overhead,
-            operational_failure_charge_seconds=failure_charge,accounted_seconds=math.fsum([scientific,overhead,failure_charge]))
+            operational_failure_charge_seconds=failure_charge,operational_diagnostic_charge_seconds=diagnostic_charge,
+            accounted_seconds=math.fsum([scientific,overhead,failure_charge,diagnostic_charge]))
         write(out/'index.json',index)
         result.update(index_sha256=sha(out/'index.json'),complete_cases=len(index['cases']),budget=index['budget'],
             pre_execution_failure=index['pre_execution_failure'],operational_accounting=index['operational_accounting'],
             operational_failures=failures,
+            operational_diagnostics=diagnostics,
             independent_index_review_required=True,**legacy.fit_census(index,out))
         write(out/'result.json',result)
     save()

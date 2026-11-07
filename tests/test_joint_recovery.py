@@ -302,8 +302,9 @@ class RecoveryControls(unittest.TestCase):
         a=dict(case_id=policy['sequence'][40],wall_seconds=1200,numerical_attempt_id='invented')
         with patch.object(driver.legacy,'charged',return_value=(21663.863217721,3321.086780193)):
             _,budget=driver.allocation(index,policy,a,True)
-            self.assertAlmostEqual(budget['maximum_with_unspent_slots_seconds'],109764.885916780)
-            self.assertEqual(budget['operational_failure_charge_seconds'],90)
+            self.assertAlmostEqual(budget['maximum_with_unspent_slots_seconds'],109964.885916780)
+            self.assertEqual(budget['operational_failure_charge_seconds'],210)
+            self.assertEqual(budget['operational_diagnostic_charge_seconds'],80)
             a['wall_seconds']=1201
             with self.assertRaisesRegex(ValueError,'slot'):driver.allocation(index,policy,a,True)
     def test_failed_or_duplicate_recovery_blocks_automatic_retry(self):
@@ -312,6 +313,7 @@ class RecoveryControls(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'unresolved'):driver.allocation(index,p,a,False)
     def ordered_failure_policy(self):
         p=driver.read(driver.HERE/'recovery_protocol.json');first=p['pre_execution_failure']
+        p.pop('operational_diagnostics',None)
         second=copy.deepcopy(first)
         second.update(status='failed_during_training_support',charge_seconds=120,
             nested_scientific_seconds=1.780888234,nested_supervised_seconds=2.537754305,
@@ -359,6 +361,32 @@ class RecoveryControls(unittest.TestCase):
         self.assertAlmostEqual(saved['operational_accounting']['accounted_seconds']-saved['budget']['total_seconds'],210.5)
         self.assertEqual(saved['operational_failures'],report['operational_failures'])
         self.assertEqual(report['pre_execution_failure'],failures[0])
+    def test_diagnostic_charge_is_separate_and_not_counted_as_another_failure(self):
+        p=driver.read(driver.HERE/'recovery_protocol.json')
+        self.assertEqual(sum(r['charge_seconds'] for r in driver.operational_failures(p)),210)
+        self.assertEqual(sum(r['charge_seconds'] for r in driver.operational_diagnostics(p)),80)
+        self.assertEqual(len(driver.operational_evidence_files(p)),12)
+        out=self.root/'all_operational';out.mkdir();(out/'attempts').mkdir()
+        index=dict(cases=[],attempts=[],partial_case=None,original_failure=dict(prior_scientific_seconds=1.),
+            recovery_transition={'known_outer_overhead_seconds':.5},pre_execution_failure=p['pre_execution_failure'],
+            operational_failures=p['operational_failures'],operational_diagnostics=p['operational_diagnostics'])
+        result=dict(passed=False,status='failed_requires_review',cases=[],scientific_completion=False,admission_sha256='a')
+        with patch.object(driver.legacy,'fit_census',return_value={}):
+            driver.persist(out,index,result,dict(numerical_attempt_id='test',prior_index_sha256='b'),
+                dict(source_sha256={},recovery_protocol_sha256='c'),time.monotonic(),time.monotonic()+60,None)
+        saved=driver.read(out/'index.json')
+        self.assertAlmostEqual(saved['operational_accounting']['accounted_seconds']-saved['budget']['total_seconds'],290.5)
+        self.assertEqual(saved['operational_accounting']['operational_diagnostic_charge_seconds'],80)
+        self.assertEqual(len(saved['attempts']),1)
+    def test_diagnostic_scope_or_duplicate_charge_corruption_is_rejected(self):
+        policy=driver.read(driver.HERE/'recovery_protocol.json')
+        mutations=[lambda p:p['operational_diagnostics'][0].update(charge_seconds=79),
+            lambda p:p['operational_diagnostics'][0].update(scientific_completion=True),
+            lambda p:p['operational_diagnostics'][0].update(held_out_call_count=1),
+            lambda p:p['operational_diagnostics'][0].update(archive_sha256=p['operational_failures'][0]['archive_sha256'])]
+        for change in mutations:
+            p=copy.deepcopy(policy);change(p)
+            with self.assertRaises(ValueError):driver.operational_diagnostics(p)
     def test_final_serialization_deadline_clears_pass(self):
         out=self.root/'output';out.mkdir();(out/'attempts').mkdir()
         index=dict(cases=[],attempts=[],partial_case=None,original_failure=dict(prior_scientific_seconds=1.),
@@ -415,9 +443,11 @@ class RecoveryControls(unittest.TestCase):
             protocol_sha256=driver.sha(driver.HERE/'recovery_protocol.json'),known_outer_overhead_seconds=.5,
             pre_execution_failure=copy.deepcopy(startup),
             operational_failures=[copy.deepcopy(startup)],
+            operational_diagnostics=[],
             files={'recovery_lineage/'+name:driver.sha(lineage/name) for name in list(keys.values())+list(driver.STARTUP_FILES.values())})
         index={**copy.deepcopy(original),'recovery_transition':transition,'pre_execution_failure':copy.deepcopy(startup),
             'operational_failures':[copy.deepcopy(startup)]}
+        index['operational_diagnostics']=[]
         p=dict(predecessor=predecessor,pre_execution_failure=startup)
         driver.validate_recovery_transition(index,p,self.root)
         index['pre_execution_failure']['charge_seconds']=0
