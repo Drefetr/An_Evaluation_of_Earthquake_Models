@@ -1,0 +1,51 @@
+name: Reviewed research continuation
+on:
+  push:
+    branches: ['research/joint_replay_20261107T045457Z-integration']
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: reviewed-research-continuation
+  cancel-in-progress: false
+jobs:
+  continuation:
+    if: contains(github.event.head_commit.message, '[run-continuation]')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 290
+    env:
+      OMP_NUM_THREADS: '2'
+      OPENBLAS_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+      NUMEXPR_NUM_THREADS: '2'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.18'
+          cache: pip
+      - run: python -m pip install -r requirements-cpu.txt
+      - name: Verify Linux process containment before scientific execution
+        run: python -B -m unittest discover -s scripts/tests -p test_supervise_research_linux.py -v
+      - name: Supervised source-pinned scientific stage
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python -B scripts/run_continuation.py --admission validation/reproductions/continuation_20261107/dispatch.json --output "$RUNNER_TEMP/continuation"
+      - name: Preserve successes, failures, partial rows, and build receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: continuation-${{ github.sha }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/continuation/**/result.json
+            ${{ runner.temp }}/continuation/**/launch.json
+            ${{ runner.temp }}/continuation/**/progress.jsonl
+            ${{ runner.temp }}/continuation/**/native_components.npz
+            ${{ runner.temp }}/continuation/science/*.json
+            ${{ runner.temp }}/continuation/science/*.jsonl
+            ${{ runner.temp }}/continuation/*.json
+            ${{ runner.temp }}/continuation/supervision/*.json
+            ${{ runner.temp }}/continuation/supervision/*.log
+            ${{ runner.temp }}/continuation/build/**
+          if-no-files-found: error
