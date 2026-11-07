@@ -1,0 +1,53 @@
+{
+  "schema": "independent_joint_budgeted_driver_source_review_v1",
+  "passed": true,
+  "status": "source_accepted_pending_controller_admission_and_actual_execution",
+  "source_commit": "6d21c57e8b29f3ab465fdd4c1a49b480d1efbcc0",
+  "source_sha256": {
+    "experiments/s04b_joint_budgeted/driver.py": "dabc42274b777715ff75229e46d38ef8fbd656b0565fe6cdcef59e6f908e417c",
+    "experiments/s04b_joint_budgeted/allocation_protocol.json": "75f3a55557a2c0d4dae4ad596ff0e92268adb3496d633867afc899f093db9fa5",
+    "tests/test_joint_budgeted_driver.py": "f822bf876eed1dbad9d21377a0d2e139057f106b357882ca21f81f04b2aa4aa5"
+  },
+  "reviewer_script_sha256": "9e9f5dd0789d3ae2dec724f14cbf37306dbf7fe80b626fb8afd01c9106591d4e",
+  "reviewer": "continuation_cpu independent audit lane",
+  "scope": "Static source and exact evidence custody; constructed tests only. No historical model calls, fits, simulation or native likelihood evaluation.",
+  "executed_checks": {
+    "constructed_controls": 15,
+    "failures": 0,
+    "errors": 0,
+    "control_log_sha256": "b402611fc82c06a32dfa298f5fb3d862abb95a2b4c6913a40cf1252d06783859",
+    "frozen_input_hashes_checked": 648,
+    "prior_case_count": 5,
+    "remaining_fixed_cases": 75,
+    "fixed_slot_seconds": 109200,
+    "prior_charged_seconds": 3321.086780193,
+    "campaign_cap_seconds": 115200,
+    "maximum_allocated_seconds": 112521.086780193,
+    "unchanged_shared_expiry": "2026-11-09T07:15:00+00:00",
+    "original_training_resume_provenance_sha256": "767e7b75e8f95fbfd8c07f31a343aa99858f77b4f9723ffe045d2ca670a6fed5",
+    "predecessor_native_runtime_preserved": true,
+    "old_projection_status_preserved": "failed"
+  },
+  "source_checks": [
+    "Separate new package and index schema; all predecessor execution and scientific source hashes remain exact.",
+    "First transition invokes original accepted_index under the actual old source identity; accepted case/trace/attempt/review/resume bytes are archived and pinned.",
+    "Amendment rejects missing or altered resume evidence, altered original reviews prefix, and admission expiry extending the frozen shared run.",
+    "Each new attempt has the next exact case and frozen external wall cap; original startup/finalization allowance does not enlarge that cap.",
+    "One unchanged scientific delegate executes per attempt; pilot fits are copied, never repeated. Bounds, starts, tolerances, quadrature and gates remain unchanged.",
+    "Every failed or partial attempt blocks automatic progression; killed or unpersisted attempts require external conductor accounting.",
+    "Final receipt/index serialization is deadline-tested and late results are rewritten failed.",
+    "Any complete all80 result still requires original scientific checks and independent400-outcome aggregation."
+  ],
+  "resolved_findings": [
+    "Mandatory exact original training_resume evidence and first-case provenance added.",
+    "Original review prefix now checked in every migrated index.",
+    "Admission expiry now bounded by immutable shared-run expiry."
+  ],
+  "findings": [],
+  "limitations": [
+    "No actual budgeted batch has executed under this source; controller/workflow command, mandatory source pins, runtime/native copying and external supervision require separate review.",
+    "This is a finite fixed opportunity, not a forecast that all75 remaining cases will complete; the rejected original projection remains failed.",
+    "RSS is sampled rather than a hard memory reservation; process lifetime bounds rely on the separately audited external supervisor.",
+    "A failed or killed process whose receipts cannot be persisted must remain charged in external accounting and cannot receive automatic continuation."
+  ]
+}

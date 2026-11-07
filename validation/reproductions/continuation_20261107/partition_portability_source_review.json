@@ -1,0 +1,34 @@
+{
+  "schema": "independent_partition_portability_source_review_v1",
+  "passed": true,
+  "source_commit": "79b79f811eca3a15740e88af05b4850dc2565dbf",
+  "source_sha256": "736f7c7e578cba3a137755ac2247f55648c0fba1b0fa3e8ac43936ad5decbcc6",
+  "registry_sha256": "1103335d1949fca8dda9159ac721460122f7e9e8b2a6cb88d4c11a728e8a23ff",
+  "proposal_sha256": "ed6dff50351c8d029b4cd5b538643640b0c24262c5b58bf38f953141d53347a5",
+  "transformations": [
+    {
+      "kernel": "annual",
+      "kind": "private_validator_identifier_rename",
+      "original_sha256": "65657bcd4cdea4aee683063fe8e152f6c0f9d9b9200c37dfe2eb97083f089eb8",
+      "compiled_sha256": "06f7ccd974d1a436df9c56464e94c0978e322ccaaeb5b9dbd624d67e29da2e01",
+      "replacements": 15,
+      "reason": "Avoid ambiguity with the glibc global finite(double) declaration"
+    },
+    {
+      "kernel": "sequence",
+      "kind": "unchanged",
+      "original_sha256": "fb1af8bc42ae576131d53d410a81f4474c2116c0d0ad4049c635099d60d0885c",
+      "compiled_sha256": "fb1af8bc42ae576131d53d410a81f4474c2116c0d0ad4049c635099d60d0885c"
+    }
+  ],
+  "constructed_controls": {
+    "count": 3,
+    "passed": 3,
+    "failures": 0,
+    "log_sha256": "06277a92a2f3ffabdeda4437bd938c64ab42db8a2db3ca49e488560a4b75b9a6"
+  },
+  "source_findings": [],
+  "scope": "Only the annual private helper identifier changes in a derived compiled copy. Original input bytes, sequence kernel, arithmetic tokens, row roster, parameters and tolerances remain unchanged. Runner regenerates transformation metadata and checks compiled source and library receipt. Linux build/replay still requires execution; no native call made in this audit.",
+  "reviewer_script_sha256": "bbb31cf458862495ad9e8274190fec007e84c2ded0dd076348e73379d181174f",
+  "numerical_admission": false
+}
