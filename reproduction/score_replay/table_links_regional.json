@@ -20,7 +20,8 @@
     "s03": "85cb731a4a536d9cf72c63a8d0c6d4a56e37b42791c4d80fd8be66854464bec3",
     "s06_ca": "0257b41e11d5b730358223d5164f2eed72bd9e964d3e94c7477c8efb9bd30ea9",
     "original_li": "5e9fc3907867d6d6fc4e137b30c72ae490be129b3f0add8c5c97758542b81e49",
-    "s04_original": "81d9e733d0b83f6d8c0c7b12c71bb92ccac9d40d379e145b3d2a3feebc840349"
+    "s04_original": "81d9e733d0b83f6d8c0c7b12c71bb92ccac9d40d379e145b3d2a3feebc840349",
+    "observed_fixedbackbone": "cb87bf0e4fe36a1a326a89ff864e5e53f27752b7b1f383e6efc68856ebb8a9e3"
   },
   "tables": [
     {
@@ -10980,16 +10981,316 @@
       "headings": {
         "section": "Observed California fixed-backbone inhibition"
       },
-      "execution_status": "not_mapped_by_this_regional_score_reconciler",
+      "execution_status": "pending_actual_replay",
       "replay_rows": [],
       "source_authorities": [
         "validation/acceptances/S04_observed_public.json"
       ],
       "coverage_note": "Complete source-table census. Per-table replay-row mapping is explicit; an empty mapping never means reproduced.",
-      "cells": [],
+      "cells": [
+        {
+          "id": "13_s04_observed_completed:table:1:row:1:col:4:token:0",
+          "source_row_index": 1,
+          "column_index": 4,
+          "numeric_token_index": 0,
+          "display": "0.0000",
+          "display_value": 0.0,
+          "rounding_half_unit": 5e-05,
+          "expression": {
+            "op": "select",
+            "record": "observed_fixedbackbone/california_fold_0/test_order32",
+            "pointer": "/comparison/comparisons",
+            "where": {
+              "model": "LI",
+              "gate": "raw"
+            },
+            "field": "gain",
+            "absolute_tolerance": 0.0001
+          }
+        },
+        {
+          "id": "13_s04_observed_completed:table:1:row:2:col:4:token:0",
+          "source_row_index": 2,
+          "column_index": 4,
+          "numeric_token_index": 0,
+          "display": "0.0000",
+          "display_value": 0.0,
+          "rounding_half_unit": 5e-05,
+          "expression": {
+            "op": "select",
+            "record": "observed_fixedbackbone/california_fold_0/test_order32",
+            "pointer": "/comparison/comparisons",
+            "where": {
+              "model": "LIplus_immigrant",
+              "gate": "raw"
+            },
+            "field": "gain",
+            "absolute_tolerance": 0.0001
+          }
+        },
+        {
+          "id": "13_s04_observed_completed:table:1:row:3:col:4:token:0",
+          "source_row_index": 3,
+          "column_index": 4,
+          "numeric_token_index": 0,
+          "display": "0.0000",
+          "display_value": 0.0,
+          "rounding_half_unit": 5e-05,
+          "expression": {
+            "op": "select",
+            "record": "observed_fixedbackbone/california_fold_0/test_order32",
+            "pointer": "/comparison/comparisons",
+            "where": {
+              "model": "LIplus_immigrant",
+              "gate": "BIC"
+            },
+            "field": "gain",
+            "absolute_tolerance": 0.0001
+          }
+        },
+        {
+          "id": "13_s04_observed_completed:table:1:row:4:col:4:token:0",
+          "source_row_index": 4,
+          "column_index": 4,
+          "numeric_token_index": 0,
+          "display": "-0.2245",
+          "display_value": -0.2245,
+          "rounding_half_unit": 5e-05,
+          "expression": {
+            "op": "select",
+            "record": "observed_fixedbackbone/california_fold_0/test_order32",
+            "pointer": "/comparison/comparisons",
+            "where": {
+              "model": "LIplus_inclusive",
+              "gate": "raw"
+            },
+            "field": "gain",
+            "absolute_tolerance": 0.0001
+          }
+        },
+        {
+          "id": "13_s04_observed_completed:table:1:row:5:col:4:token:0",
+          "source_row_index": 5,
+          "column_index": 4,
+          "numeric_token_index": 0,
+          "display": "0.0000",
+          "display_value": 0.0,
+          "rounding_half_unit": 5e-05,
+          "expression": {
+            "op": "select",
+            "record": "observed_fixedbackbone/california_fold_0/test_order32",
+            "pointer": "/comparison/comparisons",
+            "where": {
+              "model": "LIplus_inclusive",
+              "gate": "BIC"
+            },
+            "field": "gain",
+            "absolute_tolerance": 0.0001
+          }
+        },
+        {
+          "id": "13_s04_observed_completed:table:1:row:6:col:4:token:0",
+          "source_row_index": 6,
+          "column_index": 4,
+          "numeric_token_index": 0,
+          "display": "0.0000",
+          "display_value": 0.0,
+          "rounding_half_unit": 5e-05,
+          "expression": {
+            "op": "select",
+            "record": "observed_fixedbackbone/california_fold_1/test_order32",
+            "pointer": "/comparison/comparisons",
+            "where": {
+              "model": "LI",
+              "gate": "raw"
+            },
+            "field": "gain",
+            "absolute_tolerance": 0.0001
+          }
+        },
+        {
+          "id": "13_s04_observed_completed:table:1:row:7:col:4:token:0",
+          "source_row_index": 7,
+          "column_index": 4,
+          "numeric_token_index": 0,
+          "display": "0.0000",
+          "display_value": 0.0,
+          "rounding_half_unit": 5e-05,
+          "expression": {
+            "op": "select",
+            "record": "observed_fixedbackbone/california_fold_1/test_order32",
+            "pointer": "/comparison/comparisons",
+            "where": {
+              "model": "LIplus_immigrant",
+              "gate": "raw"
+            },
+            "field": "gain",
+            "absolute_tolerance": 0.0001
+          }
+        },
+        {
+          "id": "13_s04_observed_completed:table:1:row:8:col:4:token:0",
+          "source_row_index": 8,
+          "column_index": 4,
+          "numeric_token_index": 0,
+          "display": "0.0000",
+          "display_value": 0.0,
+          "rounding_half_unit": 5e-05,
+          "expression": {
+            "op": "select",
+            "record": "observed_fixedbackbone/california_fold_1/test_order32",
+            "pointer": "/comparison/comparisons",
+            "where": {
+              "model": "LIplus_immigrant",
+              "gate": "BIC"
+            },
+            "field": "gain",
+            "absolute_tolerance": 0.0001
+          }
+        },
+        {
+          "id": "13_s04_observed_completed:table:1:row:9:col:4:token:0",
+          "source_row_index": 9,
+          "column_index": 4,
+          "numeric_token_index": 0,
+          "display": "-1.9529",
+          "display_value": -1.9529,
+          "rounding_half_unit": 5e-05,
+          "expression": {
+            "op": "select",
+            "record": "observed_fixedbackbone/california_fold_1/test_order32",
+            "pointer": "/comparison/comparisons",
+            "where": {
+              "model": "LIplus_inclusive",
+              "gate": "raw"
+            },
+            "field": "gain",
+            "absolute_tolerance": 0.0001
+          }
+        },
+        {
+          "id": "13_s04_observed_completed:table:1:row:10:col:4:token:0",
+          "source_row_index": 10,
+          "column_index": 4,
+          "numeric_token_index": 0,
+          "display": "0.0000",
+          "display_value": 0.0,
+          "rounding_half_unit": 5e-05,
+          "expression": {
+            "op": "select",
+            "record": "observed_fixedbackbone/california_fold_1/test_order32",
+            "pointer": "/comparison/comparisons",
+            "where": {
+              "model": "LIplus_inclusive",
+              "gate": "BIC"
+            },
+            "field": "gain",
+            "absolute_tolerance": 0.0001
+          }
+        },
+        {
+          "id": "13_s04_observed_completed:table:1:row:11:col:4:token:0",
+          "source_row_index": 11,
+          "column_index": 4,
+          "numeric_token_index": 0,
+          "display": "0.0000",
+          "display_value": 0.0,
+          "rounding_half_unit": 5e-05,
+          "expression": {
+            "op": "select",
+            "record": "observed_fixedbackbone/california_fold_2/test_order32",
+            "pointer": "/comparison/comparisons",
+            "where": {
+              "model": "LI",
+              "gate": "raw"
+            },
+            "field": "gain",
+            "absolute_tolerance": 0.0001
+          }
+        },
+        {
+          "id": "13_s04_observed_completed:table:1:row:12:col:4:token:0",
+          "source_row_index": 12,
+          "column_index": 4,
+          "numeric_token_index": 0,
+          "display": "0.0000",
+          "display_value": 0.0,
+          "rounding_half_unit": 5e-05,
+          "expression": {
+            "op": "select",
+            "record": "observed_fixedbackbone/california_fold_2/test_order32",
+            "pointer": "/comparison/comparisons",
+            "where": {
+              "model": "LIplus_immigrant",
+              "gate": "raw"
+            },
+            "field": "gain",
+            "absolute_tolerance": 0.0001
+          }
+        },
+        {
+          "id": "13_s04_observed_completed:table:1:row:13:col:4:token:0",
+          "source_row_index": 13,
+          "column_index": 4,
+          "numeric_token_index": 0,
+          "display": "0.0000",
+          "display_value": 0.0,
+          "rounding_half_unit": 5e-05,
+          "expression": {
+            "op": "select",
+            "record": "observed_fixedbackbone/california_fold_2/test_order32",
+            "pointer": "/comparison/comparisons",
+            "where": {
+              "model": "LIplus_immigrant",
+              "gate": "BIC"
+            },
+            "field": "gain",
+            "absolute_tolerance": 0.0001
+          }
+        },
+        {
+          "id": "13_s04_observed_completed:table:1:row:14:col:4:token:0",
+          "source_row_index": 14,
+          "column_index": 4,
+          "numeric_token_index": 0,
+          "display": "-0.2093",
+          "display_value": -0.2093,
+          "rounding_half_unit": 5e-05,
+          "expression": {
+            "op": "select",
+            "record": "observed_fixedbackbone/california_fold_2/test_order32",
+            "pointer": "/comparison/comparisons",
+            "where": {
+              "model": "LIplus_inclusive",
+              "gate": "raw"
+            },
+            "field": "gain",
+            "absolute_tolerance": 0.0001
+          }
+        },
+        {
+          "id": "13_s04_observed_completed:table:1:row:15:col:4:token:0",
+          "source_row_index": 15,
+          "column_index": 4,
+          "numeric_token_index": 0,
+          "display": "0.0000",
+          "display_value": 0.0,
+          "rounding_half_unit": 5e-05,
+          "expression": {
+            "op": "select",
+            "record": "observed_fixedbackbone/california_fold_2/test_order32",
+            "pointer": "/comparison/comparisons",
+            "where": {
+              "model": "LIplus_inclusive",
+              "gate": "BIC"
+            },
+            "field": "gain",
+            "absolute_tolerance": 0.0001
+          }
+        }
+      ],
       "mapping_scope": "Explicit semantic expressions for score/count cells. Labels, predeclared contract constants and historical optimizer-execution counts are not new likelihood targets.",
-      "mapped_cells": 0,
-      "uncovered_reason": "Exact positive-eta selected states remain on the original reachable LAN host; configured authentication is required. Floor-return equivalence is separately identified, not substituted for positive-eta states."
+      "mapped_cells": 15
     },
     {
       "begin_line": 51,
@@ -11017,7 +11318,7 @@
       "cells": [],
       "mapping_scope": "Explicit semantic expressions for score/count cells. Labels, predeclared contract constants and historical optimizer-execution counts are not new likelihood targets.",
       "mapped_cells": 0,
-      "uncovered_reason": "Exact positive-eta selected states remain on the original reachable LAN host; configured authentication is required. Floor-return equivalence is separately identified, not substituted for positive-eta states."
+      "uncovered_reason": "Original training/held-out denominator metadata; exact counts retained in51 original input/state resources, not a separate likelihood target."
     },
     {
       "begin_line": 43,

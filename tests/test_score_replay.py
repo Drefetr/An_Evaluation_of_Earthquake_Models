@@ -262,6 +262,26 @@ class TestScoreReplay(unittest.TestCase):
 
 
 class CaliforniaPartitionTests(unittest.TestCase):
+    def test_observed_blas_matches_scalar_strict_past_and_tiling_controls(self):
+        from reproduction.score_replay.observed_replay import tiny_controls
+        result=tiny_controls()
+        self.assertTrue(result['passed']);self.assertEqual(len(result['rows']),6)
+        self.assertLessEqual(max(r['max_absolute_delta'] for r in result['rows']),1e-12)
+        json.dumps(result,allow_nan=False)
+
+    def test_observed_saved_floor_indices_are_recovered_not_assumed(self):
+        base=Path(__file__).resolve().parents[1]/'reproduction/score_replay/observed_fixedbackbone'
+        registry=json.loads((base/'registry.json').read_bytes());inputs=Inputs(base)
+        self.assertEqual(len(registry['rows']),6)
+        self.assertEqual(len(registry['original_resources']),51)
+        for row in registry['rows']:
+            selected=inputs.json(row['selected_states'])
+            self.assertEqual(selected['models']['LIplus_inclusive']['floor_index'],8 if row['case']=='california_fold_2' else 0)
+            self.assertGreater(selected['models']['LIplus_inclusive']['selected'][0],0.)
+            for model in selected['models'].values():self.assertEqual(model['floor'][0],0.)
+            gated=next(p for p in selected['procedures'] if p['model']=='LIplus_inclusive' and p['gate']=='BIC')
+            self.assertEqual(gated['state'],'floor')
+
     def test_complete_saved_productivity_profile_roster_and_identity(self):
         base=Path(__file__).resolve().parents[1]/'reproduction/score_replay/productivity_profiles'
         registry=json.loads((base/'cached_registry.json').read_bytes());inputs=Inputs(base)
