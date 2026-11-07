@@ -106,10 +106,13 @@ def mandatory_sources(stage, review=None):
                          if p.is_file() and p.suffix in ('.py','.json'))
     elif stage in ('cached-pilot','cached-completion','regional-pilot','regional-completion',
                    'inhibition-pilot','inhibition-completion','li-pilot','li-completion',
-                   'blocks-pilot','blocks-completion'):
+                   'blocks-pilot','blocks-completion','observed-pilot','observed-completion'):
         prefix = 'reproduction/score_replay/'
         package, registry, proposal = replay_paths(review or {})
-        if stage.startswith('blocks-'):
+        if stage.startswith('observed-'):
+            names = ('__init__.py','core.py','inhibition_replay.py','observed_replay.py')
+            paths.update((review or {}).get('fresh_artifacts_sha256',{}))
+        elif stage.startswith('blocks-'):
             names = ('__init__.py','core.py','california_blocks_replay.py')
             paths.update((review or {}).get('fresh_artifacts_sha256',{}))
         elif stage.startswith('li-'):
@@ -128,7 +131,7 @@ def mandatory_sources(stage, review=None):
     return paths
 
 
-def materialize_fresh_scores(review, output, required):
+def materialize_fresh_scores(review, output, required, require_arrays=True):
     """Copy only passed event-array evidence from already accepted local ZIPs."""
     records = {}
     for index, (relative, expected) in enumerate(review['fresh_artifacts_sha256'].items()):
@@ -153,21 +156,67 @@ def materialize_fresh_scores(review, output, required):
                 target = inside(destination, name)
                 target.parent.mkdir(parents=True, exist_ok=True)
                 target.write_bytes(raw)
-                array = report['actual']['native_array_components']
-                array_name = (Path(name).parent/array['path']).as_posix()
-                array_target = inside(target.parent, array['path'])
-                if array_name not in names:
-                    raise ValueError('Missing fresh event arrays')
-                data = source.read(array_name)
-                if hashlib.sha256(data).hexdigest() != array['sha256']:
-                    raise ValueError('Fresh event array identity differs')
-                array_target.write_bytes(data)
+                if require_arrays:
+                    array = report['actual']['native_array_components']
+                    array_name = (Path(name).parent/array['path']).as_posix()
+                    array_target = inside(target.parent, array['path'])
+                    if array_name not in names:
+                        raise ValueError('Missing fresh event arrays')
+                    data = source.read(array_name)
+                    if hashlib.sha256(data).hexdigest() != array['sha256']:
+                        raise ValueError('Fresh event array identity differs')
+                    array_target.write_bytes(data)
                 records[identity] = dict(result_path=str(target),sha256=sha(target))
     if set(records) != set(required):
         raise ValueError('Fresh-score evidence does not cover every required state')
     path = output/'fresh_scores.json'
     write(path,dict(rows=records))
     return path
+
+
+def observed_continuation(review, output):
+    """Prepare the reviewed CPU BLAS replay; no builder or score is invoked."""
+    package, registry_path, proposal_path = replay_paths(review)
+    proposal, registry = read(proposal_path), read(registry_path)
+    selected, rows = replay_roster(review, proposal, registry)
+    phase = review['stage'].split('-')[1]
+    if review['stage'] not in ('observed-pilot','observed-completion'):
+        raise ValueError('Unexpected observed phase')
+    if proposal['registry_sha256'] != sha(registry_path) or proposal['input_manifest_sha256'] != sha(registry_path.parent/'input_manifest.json'):
+        raise ValueError('Observed proposal input identity differs')
+    budget = proposal.get('chunk_bytes')
+    if type(budget) is not int or not 64*2**20 <= budget <= 512*2**20 or proposal.get('numeric_threads') != 2:
+        raise ValueError('Observed proposal scratch/thread limits differ')
+    wall = review['wall_cap_seconds']
+    if isinstance(wall,bool) or not isinstance(wall,(int,float)) or not math.isfinite(wall) or wall<=0:
+        raise ValueError('Observed wall allowance must be finite and positive')
+    if phase == 'pilot' and wall > proposal['caps']['wall_seconds']:
+        raise ValueError('Observed pilot exceeds frozen wall cap')
+    if review['rss_cap_bytes'] > proposal['caps']['process_tree_rss_bytes'] or review['host_headroom_bytes'] < proposal['caps']['minimum_host_available_bytes']:
+        raise ValueError('Observed memory/headroom envelope differs')
+    fresh = materialize_fresh_scores(review,output,{rows[r]['fresh_score_row_id'] for r in selected},require_arrays=False)
+    write(output/'rows.json',selected)
+    admission = dict(proposal,passed=True,status='reviewed_workflow_admission',mode=phase,row_ids=selected,
+                     numerical_lease=review['numerical_attempt_id'],expires_utc=review['expires_utc'],
+                     fresh_scores_sha256=sha(fresh),numeric_threads=2)
+    command = [sys.executable,'-B',str(package/'observed_replay.py'),'--registry',str(registry_path),
+               '--fresh-scores',str(fresh),'--admission',str(output/'admission.json'),
+               '--mode',phase,'--rows',str(output/'rows.json'),'--output',str(output/'science')]
+    return admission,command
+
+
+def observed_batch_passed(output, review):
+    result = read(output/'science/result.json')
+    selected = review['row_ids']
+    if result.get('passed') is not True or result.get('mode') != review['stage'].split('-')[1]:
+        raise ValueError('Observed child did not pass its requested phase')
+    if [r.get('id') for r in result.get('rows',[])] != selected or any(r.get('passed') is not True or r.get('status')!='replayed' for r in result['rows']):
+        raise ValueError('Observed child did not finish exact passed roster')
+    if any(result.get(key)!=len(selected) for key in ('requested_rows','completed_rows','passed_rows')) or result.get('failed_rows')!=0:
+        raise ValueError('Observed child terminal counts differ')
+    _, registry, _ = replay_paths(review)
+    if result.get('registry_sha256')!=sha(registry):
+        raise ValueError('Observed child terminal registry differs')
 
 
 def prior_artifact(review, output):
@@ -420,6 +469,8 @@ def main():
             admission.update(pilot_result_sha256=review['pilot_result_sha256'],
                              pilot_output_review_passed=review['pilot_output_review_passed'])
             command += ['--pilot',str(inside(prior,review['pilot_science_directory']))]
+    elif stage in ('observed-pilot','observed-completion'):
+        admission,command = observed_continuation(review,output)
     elif stage in ('cached-pilot', 'cached-completion', 'regional-pilot', 'regional-completion',
                    'inhibition-pilot', 'inhibition-completion','li-pilot','li-completion',
                    'blocks-pilot','blocks-completion'):
@@ -469,6 +520,8 @@ def main():
                              str(output/'supervisor_spec.json')],cwd=ROOT)
     if stage in JOINT_CONTINUATION_STAGES and result.returncode == 0:
         joint_batch_passed(output,review)
+    if stage in ('observed-pilot','observed-completion') and result.returncode == 0:
+        observed_batch_passed(output,review)
     return result.returncode
 
 

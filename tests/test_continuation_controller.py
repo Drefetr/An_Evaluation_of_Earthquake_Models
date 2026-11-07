@@ -261,5 +261,65 @@ class JointContinuationControls(unittest.TestCase):
                 else:controller.joint_batch_passed(root,{'case_ids':['a']})
 
 
+class ObservedContinuationControls(unittest.TestCase):
+    """Invented reports and hashes only; no BLAS score or native build."""
+    def fixture(self, root):
+        package=root/'reproduction/score_replay/observed_fixedbackbone';package.mkdir(parents=True)
+        registry={'rows':[{'id':n,'fresh_score_row_id':'OC'} for n in ('small','remaining')]}
+        controller.write(package/'registry.json',registry)
+        controller.write(package/'input_manifest.json',{})
+        proposal=dict(row_ids=['small'],registry_sha256=controller.sha(package/'registry.json'),
+                      input_manifest_sha256=controller.sha(package/'input_manifest.json'),
+                      numeric_threads=2,chunk_bytes=256*2**20,source_sha256={'invented':'pin'},
+                      caps=dict(wall_seconds=1800,process_tree_rss_bytes=6*2**30,minimum_host_available_bytes=2*2**30))
+        controller.write(package/'pilot_proposal.json',proposal)
+        archive=root/'fresh.zip'
+        with zipfile.ZipFile(archive,'w') as stream:
+            stream.writestr('science/rows/0/result.json',json.dumps(dict(id='OC',passed=True,status='replayed',actual={'components':{'joint':-1.}})))
+        review=dict(stage='observed-pilot',registry='reproduction/score_replay/observed_fixedbackbone/registry.json',
+                    proposal='reproduction/score_replay/observed_fixedbackbone/pilot_proposal.json',row_ids=['small'],
+                    fresh_artifacts_sha256={'fresh.zip':controller.sha(archive)},wall_cap_seconds=1800,
+                    rss_cap_bytes=6*2**30,host_headroom_bytes=2*2**30,numerical_attempt_id='invented',expires_utc='2099-01-01T00:00:00Z')
+        return review,proposal
+
+    def test_observed_route_pins_sources_and_fresh_evidence_without_builder(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);review,_=self.fixture(root);out=root/'out';out.mkdir()
+            with patch.object(controller,'ROOT',root),patch.object(controller.subprocess,'run') as processes:
+                pins=controller.mandatory_sources('observed-pilot',review)
+                self.assertTrue({'reproduction/score_replay/observed_replay.py','reproduction/score_replay/inhibition_replay.py','fresh.zip'}.issubset(pins))
+                admission,command=controller.observed_continuation(review,out)
+                processes.assert_not_called()
+            self.assertIn('--fresh-scores',command);self.assertNotIn('--libraries',command)
+            self.assertEqual(admission['row_ids'],['small'])
+            self.assertEqual(admission['fresh_scores_sha256'],controller.sha(out/'fresh_scores.json'))
+
+    def test_observed_exact_remaining_roster_and_frozen_caps(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);review,_=self.fixture(root)
+            changes=[{'wall_cap_seconds':1801},{'wall_cap_seconds':float('inf')},
+                     {'rss_cap_bytes':7*2**30},{'host_headroom_bytes':1},
+                     {'stage':'observed-completion','row_ids':['remaining'],'pilot_output_review_passed':False},
+                     {'stage':'observed-completion','row_ids':['small'],'pilot_output_review_passed':True}]
+            with patch.object(controller,'ROOT',root):
+                for i,change in enumerate(changes):
+                    out=root/str(i);out.mkdir()
+                    with self.assertRaises(ValueError):controller.observed_continuation(dict(review,**change),out)
+                out=root/'completion';out.mkdir()
+                admission,_=controller.observed_continuation(dict(review,stage='observed-completion',row_ids=['remaining'],pilot_output_review_passed=True),out)
+                self.assertEqual(admission['mode'],'completion');self.assertEqual(admission['row_ids'],['remaining'])
+
+    def test_observed_zero_exit_still_requires_actual_complete_result(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);review,_=self.fixture(root);out=root/'out';(out/'science').mkdir(parents=True)
+            good=dict(passed=True,mode='pilot',rows=[dict(id='small',passed=True,status='replayed')],requested_rows=1,completed_rows=1,passed_rows=1,failed_rows=0,registry_sha256=controller.sha(root/review['registry']))
+            with patch.object(controller,'ROOT',root):
+                for change in ({'passed':False},{'rows':[]},{'completed_rows':0},{'registry_sha256':'wrong'},{}):
+                    (out/'science/result.json').write_text(json.dumps(dict(good,**change)))
+                    if change:
+                        with self.assertRaises(ValueError):controller.observed_batch_passed(out,review)
+                    else:controller.observed_batch_passed(out,review)
+
+
 if __name__ == '__main__':
     unittest.main()
