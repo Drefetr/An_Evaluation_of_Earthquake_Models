@@ -19,8 +19,23 @@ class InitialMarkControls(unittest.TestCase):
         if not cls.build['passed']: raise RuntimeError('Constructed native build failed')
         cls.oracle = R.base.load_oracle(); cls.native = cls.oracle.Native(cls.build['library'])
         path = R.HERE/'original/engine/iteration_20/code/restricted_history.py'
-        spec = importlib.util.spec_from_file_location('initial_mark_original_restricted', path)
-        cls.original = importlib.util.module_from_spec(spec); sys.modules[spec.name] = cls.original; spec.loader.exec_module(cls.original)
+        # Original imports use historical top-level module names and prepend a
+        # source directory. Keep their isolated module graph alive by object
+        # references, without changing later test imports or replacing a public
+        # kernel module that was loaded before this fixture.
+        names = ('kernels', '_restricted20_cuda_authority', '_iteration17_oracle_cpu_authority',
+                 'initial_mark_original_restricted')
+        previous = {name: sys.modules[name] for name in names if name in sys.modules}
+        old_path = sys.path.copy()
+        try:
+            for name in names: sys.modules.pop(name, None)
+            spec = importlib.util.spec_from_file_location('initial_mark_original_restricted', path)
+            cls.original = importlib.util.module_from_spec(spec)
+            sys.modules[spec.name] = cls.original; spec.loader.exec_module(cls.original)
+        finally:
+            sys.path[:] = old_path
+            for name in names: sys.modules.pop(name, None)
+            sys.modules.update(previous)
         cls.kernel = dict(kind='ml', tau=1., alpha=.5, p=1.3, spectral_step=.4, spectral_tail_bound=1e-8)
         cls.law = dict(T=3., coordinate=3., beta=2.849401764894274, gamma=.75*math.log(10),
                        n=.5017751599706763, ratio=.7, stress=cls.kernel, trigger=cls.kernel)
