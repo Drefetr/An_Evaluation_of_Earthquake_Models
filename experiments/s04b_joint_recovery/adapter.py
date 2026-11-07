@@ -36,12 +36,12 @@ class CountedPhase:
     def __getattr__(self, name):
         return getattr(self._phase, name)
 
-    def evaluate(self, theta, model, order, **kwargs):
+    def evaluate(self, theta, model='null', order=8, require_gradient=True):
         owner = self._recorder
-        key = '|'.join(map(str, (self._name, model, order, owner.context, kwargs.get('require_gradient', True))))
+        key = '|'.join(map(str, (self._name, model, order, owner.context, require_gradient)))
         owner.evaluations[key]['attempted'] += 1
         try:
-            score, gradient = self._phase.evaluate(theta, model, order, **kwargs)
+            score, gradient = self._phase.evaluate(theta, model, order, require_gradient=require_gradient)
         except BaseException:
             owner.evaluations[key]['errors'] += 1
             raise

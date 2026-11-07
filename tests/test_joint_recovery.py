@@ -2,14 +2,18 @@
 import copy
 import datetime
 import hashlib
+import inspect
 import json
+import math
 import os
+from collections import Counter, defaultdict
+from contextlib import ExitStack, nullcontext
 from pathlib import Path
 from types import SimpleNamespace
 import tempfile
 import time
 import unittest
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 import numpy as np
 from scipy.optimize import OptimizeResult
 from experiments.s04b_joint_nuisance import fit
@@ -21,7 +25,7 @@ class TinyPhase:
         self.a={'event_time':np.arange(3)}
         self.fail=None
         self.calls=0
-    def evaluate(self, theta, model, order, **kwargs):
+    def evaluate(self, theta, model='null', order=8, require_gradient=True):
         self.calls+=1
         if self.fail:
             exc,self.fail=self.fail,None
@@ -93,6 +97,97 @@ class RecoveryControls(unittest.TestCase):
     def tearDown(self):self.temp.cleanup()
     def recorder(self, **kwargs):
         return adapter.RecoveryAdapter(self.partial,self.trace,self.science,self.policy,self.root/'calls.jsonl',**kwargs)
+    def startup_fixture(self):
+        """Actual frozen case_run/historical_floor, entirely invented inputs."""
+        repo=self.root/'invented_repo';root=repo/'reproduction/synthetic';root.mkdir(parents=True)
+        delegate=driver.legacy.runner_with_scheduler(None);delegate.REPO=repo
+        name='invented';models=delegate.MODELS
+        theta=[math.log(.2),.2,.35,math.log(.05),1.3,0.,math.log(30),math.log(7)]
+        score=TinyPhase().evaluate(theta)[0]
+        floor=[0.];fits={m:{'floor':floor} for m in models}
+        states={m:[{'pars':floor}] for m in models}
+        values={m:[[score['nll'],0.,0.,0.,0.,score['P']]] for m in models}
+        expected={'phase_values':{'order16_train':values,'order32_test':values},'results':[]}
+        old={'phases':{p:{'historical':score,'refitted':score} for p in ('train','test')},'outcomes':[]}
+        for m in models:
+            for gate in (('raw',) if m=='LI' else ('raw','BIC')):
+                expected['results'].append(dict(model=m,gate=gate,selected_state_index=0,gain=0.))
+                old['outcomes'].append(dict(model=m,gate=gate,selected_state_index=0,
+                    original_floor_test_joint=score['joint'],saved_procedure_test_joint=score['joint'],
+                    original_gain=0.,new_gain=0.,original_off_floor=False))
+        np.savez(root/'rows.npz',rows=np.array([[31.,0.,0.,1.],[396.,0.,0.,1.]]))
+        for key,value in [('states',states),('expected',expected),('receipt',{'counters':{}})]:driver.write(root/(key+'.json'),value)
+        for m,value in fits.items():driver.write(root/(m+'.json'),value)
+        oldroot=repo/'validation/live_results/methodological_20261106/refitted_floor';oldroot.mkdir(parents=True)
+        driver.write(oldroot/(name+'.json'),old)
+        case=dict(case_id=name,regime=4,seed=1,history='rows.npz',states='states.json',expected='expected.json',
+            generator_receipt='receipt.json',fits={m:m+'.json' for m in models},n_train=1,n_test=1)
+        generator=SimpleNamespace(MATCHED_NAMES=[name],ROSTER={name:(None,None,0.,30.,7.)},
+            Law=lambda *a:SimpleNamespace(a=-3.,d=0.,n=.3,c=1.,p=1.5,r=.7),fitting_metadata=lambda law:{})
+        recorder=SimpleNamespace(context='support_check',evaluations=defaultdict(Counter),last_evaluation=None)
+        phase=TinyPhase();wrapped=adapter.CountedPhase(phase,recorder,'train')
+        delegate.model.phase_from_rows=lambda *a,**k:wrapped
+        delegate.fit_arm=Mock(side_effect=RuntimeError('invented stop before optimizer'))
+        return delegate,case,{'generator':generator},phase,recorder
+    def test_counted_phase_matches_complete_frozen_evaluate_signature(self):
+        from experiments.s04b_joint_execution.parallel_chunks import ParallelPhase
+        self.assertEqual(inspect.signature(adapter.CountedPhase.evaluate),inspect.signature(driver.model.Phase.evaluate))
+        self.assertEqual(inspect.signature(adapter.CountedPhase.evaluate),inspect.signature(ParallelPhase.evaluate))
+        r=self.recorder();phase=adapter.CountedPhase(TinyPhase(),r,'train');theta=[0.]*8
+        phase.evaluate(theta)
+        phase.evaluate(theta,'null',16,False)
+        self.assertEqual(r.evaluations['train|null|8|support_check|True']['returned'],1)
+        self.assertEqual(r.evaluations['train|null|16|support_check|False']['returned'],1)
+    def test_frozen_case_startup_reaches_optimizer_after_implicit_floor_call(self):
+        delegate,case,modules,phase,recorder=self.startup_fixture()
+        out=self.root/'case';out.mkdir()
+        report=delegate.case_run(case,modules,None,self.science,out,time.monotonic()+60)
+        self.assertEqual(report['error'],'invented stop before optimizer')
+        self.assertEqual(report['error_type'],'RuntimeError')
+        self.assertEqual(len(report['floor_checks']),3)
+        self.assertEqual(len(report['historical_comparisons']),5)
+        self.assertEqual(phase.calls,1)
+        self.assertEqual(recorder.evaluations['train|null|8|support_check|True']['returned'],1)
+        delegate.fit_arm.assert_called_once()
+        self.assertEqual(delegate.fit_arm.call_args.args[1],'null')
+        self.assertFalse((out/'invented.attempts.jsonl').exists())
+    def test_driver_retains_primary_case_error_when_no_optimizer_trace_exists(self):
+        delegate,case,modules,phase,recorder=self.startup_fixture()
+        message="CountedPhase.evaluate() missing 1 required positional argument: 'order'"
+        phase.fail=TypeError(message)
+        args=SimpleNamespace(output=self.root/'driver_output')
+        for name in ('admission','library','build_receipt'):
+            path=self.root/(name+'.fixture');path.write_bytes(b'invented fixture');setattr(args,name,path)
+        admission=dict(numerical_attempt_id='invented-startup-failure',wall_seconds=1200,
+            expires_utc='2099-01-01T00:00:00+00:00',prior_index_sha256='invented')
+        index=dict(cases=[],attempts=[],partial_case=None,original_failure={'prior_scientific_seconds':0.},
+            recovery_transition={'known_outer_overhead_seconds':2.},
+            pre_execution_failure={'charge_seconds':90,'nested_scientific_seconds':.6658659909999898})
+        replacements=[(driver,'verify_protocol',{}),(driver,'check_admission',admission),
+            (driver.frozen,'verify_inputs',[case]),(driver,'accepted_index',(index,False)),
+            (driver,'allocation',({'case_id':case['case_id'],'scientific_reservation_seconds':1170},{})),
+            (driver.model,'archived',modules),(driver.model,'Native',None),
+            (driver.legacy,'OrderedChunkScheduler',nullcontext()),(driver.legacy,'runner_with_scheduler',delegate),
+            (driver.legacy,'fit_census',{})]
+        with ExitStack() as stack:
+            for target,name,value in replacements:stack.enter_context(patch.object(target,name,return_value=value))
+            code=driver.run(args,started=time.monotonic())
+        self.assertEqual(code,1)
+        report=driver.read(args.output/'result.json');partial=driver.read(args.output/'cases/invented.json')
+        self.assertFalse(report['passed']);self.assertEqual(report['status'],'failed_requires_review')
+        self.assertEqual((report['error_type'],report['error']),('TypeError',message))
+        self.assertEqual((partial['error_type'],partial['error']),('TypeError',message))
+        self.assertEqual(report['failed_case_sha256'],driver.sha(args.output/'cases/invented.json'))
+        saved=driver.read(args.output/'index.json');self.assertIsNone(saved['partial_case']['trace_sha256'])
+        self.assertFalse((args.output/'cases/invented.attempts.jsonl').exists())
+        self.assertEqual(saved['cases'],[]);self.assertEqual(len(saved['attempts']),1)
+        self.assertFalse(driver.read(args.output/saved['attempts'][0]['file'])['passed'])
+        self.assertGreater(saved['attempts'][0]['seconds'],0.)
+        self.assertEqual(saved['budget']['total_seconds'],saved['attempts'][0]['seconds'])
+        self.assertEqual(report['operational_accounting'],saved['operational_accounting'])
+        self.assertAlmostEqual(saved['operational_accounting']['accounted_seconds']-saved['budget']['total_seconds'],92.)
+        self.assertEqual(saved['pre_execution_failure'],report['pre_execution_failure'])
+        self.assertEqual(partial['fits'],{});delegate.fit_arm.assert_not_called()
     def test_frozen_protocol_and_actual_inputs_only_hash_validation(self):
         # This validates bytes and allocations, not any history's objective.
         p=driver.verify_protocol()
@@ -207,7 +302,8 @@ class RecoveryControls(unittest.TestCase):
         a=dict(case_id=policy['sequence'][40],wall_seconds=1200,numerical_attempt_id='invented')
         with patch.object(driver.legacy,'charged',return_value=(21663.863217721,3321.086780193)):
             _,budget=driver.allocation(index,policy,a,True)
-            self.assertAlmostEqual(budget['maximum_with_unspent_slots_seconds'],109674.885916780)
+            self.assertAlmostEqual(budget['maximum_with_unspent_slots_seconds'],109764.885916780)
+            self.assertEqual(budget['pre_execution_failure_charge_seconds'],90)
             a['wall_seconds']=1201
             with self.assertRaisesRegex(ValueError,'slot'):driver.allocation(index,policy,a,True)
     def test_failed_or_duplicate_recovery_blocks_automatic_retry(self):
@@ -216,7 +312,8 @@ class RecoveryControls(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'unresolved'):driver.allocation(index,p,a,False)
     def test_final_serialization_deadline_clears_pass(self):
         out=self.root/'output';out.mkdir();(out/'attempts').mkdir()
-        index=dict(cases=[],attempts=[],partial_case=None,original_failure=dict(prior_scientific_seconds=1.))
+        index=dict(cases=[],attempts=[],partial_case=None,original_failure=dict(prior_scientific_seconds=1.),
+            recovery_transition={'known_outer_overhead_seconds':.5},pre_execution_failure={'charge_seconds':90})
         result=dict(passed=True,status='batch_complete',cases=[],scientific_completion=True,admission_sha256='a')
         admission=dict(numerical_attempt_id='test',prior_index_sha256='b')
         with patch.object(driver.legacy,'fit_census',return_value={}):
@@ -261,13 +358,22 @@ class RecoveryControls(unittest.TestCase):
         keys={'index_sha256':'failed_index.json','case_sha256':'failed_case.json','trace_sha256':'failed_trace.jsonl',
             'review_sha256':'failed_review.json','result_sha256':'failed_result.json','supervision_sha256':'failed_supervision.json',
             'admission_sha256':'failed_admission.json','archive_sha256':'failed_host.zip'}
-        for name in list(keys.values())[1:]:(lineage/name).write_bytes(b'invented immutable bytes')
+        for name in list(keys.values())[1:]+list(driver.STARTUP_FILES.values()):(lineage/name).write_bytes(b'invented immutable bytes')
         predecessor={key:driver.sha(lineage/name) for key,name in keys.items()};predecessor['known_outer_overhead_seconds']=.5
+        startup={key+'_sha256':driver.sha(lineage/name) for key,name in driver.STARTUP_FILES.items()};startup['charge_seconds']=90
         transition=dict(schema='joint_interrupted_optimizer_transition_v1',original_status='failed',original_index_sha256=predecessor['index_sha256'],
             protocol_sha256=driver.sha(driver.HERE/'recovery_protocol.json'),known_outer_overhead_seconds=.5,
-            files={'recovery_lineage/'+name:driver.sha(lineage/name) for name in keys.values()})
-        index={**copy.deepcopy(original),'recovery_transition':transition};p=dict(predecessor=predecessor)
+            pre_execution_failure=copy.deepcopy(startup),
+            files={'recovery_lineage/'+name:driver.sha(lineage/name) for name in list(keys.values())+list(driver.STARTUP_FILES.values())})
+        index={**copy.deepcopy(original),'recovery_transition':transition,'pre_execution_failure':copy.deepcopy(startup)}
+        p=dict(predecessor=predecessor,pre_execution_failure=startup)
         driver.validate_recovery_transition(index,p,self.root)
+        index['pre_execution_failure']['charge_seconds']=0
+        with self.assertRaisesRegex(ValueError,'Startup failure accounting'):driver.validate_recovery_transition(index,p,self.root)
+        index['pre_execution_failure']=copy.deepcopy(startup)
+        logfile=lineage/driver.STARTUP_FILES['workflow_log'];original_log=logfile.read_bytes();logfile.write_bytes(b'changed')
+        with self.assertRaisesRegex(ValueError,'artifact changed'):driver.validate_recovery_transition(index,p,self.root)
+        logfile.write_bytes(original_log)
         index['reviews']=[]
         with self.assertRaisesRegex(ValueError,'prefix'):driver.validate_recovery_transition(index,p,self.root)
         index['reviews']=original['reviews'];(lineage/'failed_host.zip').write_bytes(b'changed')
