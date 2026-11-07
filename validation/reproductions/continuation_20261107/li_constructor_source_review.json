@@ -1,0 +1,50 @@
+{
+  "schema": "independent_original_li_constructor_source_review_v1",
+  "passed": true,
+  "status": "source_accepted_pending_one_row_retry_controller_admission",
+  "reviewer": "continuation_cpu independent source audit lane",
+  "source_commit": "461cc79996468ee42e3c1b3685940373182c237f",
+  "integration_commit": "c2ebeaf52f70b805d81093cb38343b6249838fb1",
+  "reviewer_script_sha256": "df09e53ee9fc74d4324bcf2b8dec0ca8ff69b9c8df005c977c91ae61b8652d3b",
+  "source_sha256": {
+    "reproduction/score_replay/li_replay.py": "e6615b6b429d74bc0b67c1d28e96a2971b74ca4206d7ab3df7e258943c2b78f5",
+    "reproduction/score_replay/original_li/pilot_proposal.json": "19673b54ef3281b989670d95894099848f04595b8c933a7faccdb5f2eeb2ff6e",
+    "tests/test_li_replay_options.py": "380686661c9e10337beed7c436c5e428778eb33fb22a65e454b8167caafe9fde"
+  },
+  "source_evidence_sha256": "76bddf75d5585e4d54aefdbd698efcae19d20c128b847924683b01746c8b244b",
+  "partial_output_review_sha256": "e62c10280953ec89c19a75d6bc26e9a7536685e46c42dfe604855487f4009217",
+  "scope": "Static original GPU/CPU constructor and retained-input evidence plus6 invented controls only; no historical model/native/likelihood calls.",
+  "controls": {
+    "count": 6,
+    "errors": 0,
+    "failures": 0,
+    "log_sha256": "d91d48ee7808fbc26d3edb2199a17753d2e6fd1f6d7a2c55b208ca2f7bf32d2f"
+  },
+  "checks": {
+    "original_gpu_adapter_consumes_only_three_batch_controls": true,
+    "original_cpp_domains_verified": true,
+    "original_gpu_batch_loops_preserve_scientific_node_interval_parent_sets": true,
+    "pinned_cpu_signature_matches_allowed_options": true,
+    "all38_original_argument_maps_checked": true,
+    "affected_saved_rows": 4,
+    "scientific_kwargs_exact": true,
+    "original_registry_states_raw_inputs_expected_scores_tolerances_unchanged": true,
+    "original_and_actual_options_retained": true,
+    "unknown_options_rejected": true,
+    "original3row_pilot_identity_preserved": true,
+    "retained_passed_rows": 2,
+    "retry_rows": 1,
+    "subsequent_completion_rows": 35
+  },
+  "required_execution_sequence": [
+    "Controller admission must select only failed original_li/LI_CA_M4_F2/LI/train, with explicit repair proposal and exact original partial artifact/output-review pins.",
+    "Preserve the2 original passed reports and component arrays byte-exactly.",
+    "Independently audit original2+repaired1 union before ordinary35-row completion; do not rerun passed pilot rows."
+  ],
+  "findings": [],
+  "limitations": [
+    "Batch sizes affect GPU execution/reduction organization; CPU/GPU floating-point equality is not assumed. Existing saved-reference scalar/event-array tolerances remain the test.",
+    "Dropping only validated GPU resource fields does not change selected model/vector or scientific quadrature options; gradient/optimizer-search coverage remains excluded.",
+    "Source acceptance is not evidence that the failed CA state has now passed scoring. No retry was run by this auditor."
+  ]
+}

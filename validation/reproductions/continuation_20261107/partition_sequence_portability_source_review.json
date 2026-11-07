@@ -1,0 +1,50 @@
+{
+  "schema": "independent_partition_both_kernels_portability_review_v1",
+  "passed": true,
+  "status": "source_accepted_pending_fresh_gcc_build_and_pilot",
+  "reviewer": "continuation_cpu independent source audit lane",
+  "source_commit": "4096ea8a837a8e318c99da8f296a182ba42c171d",
+  "integration_commit": "f78719ec568b1b810d3683d9bc7c986dcdff640b",
+  "source_sha256": {
+    "reproduction/score_replay/california_blocks_replay.py": "186111790f5f6818d8f7935c7110983f4bc4e036dce2ccf1cfa02c932a1ed3a7",
+    "reproduction/score_replay/california_blocks/pilot_proposal.json": "b4377f51cda390eeb6830130065fc41672e9527c0974aaad7192157d537bfb1d",
+    "tests/test_partition_portable_source.py": "d17edc325e2d2bee5f348c1368413d4d35fe4312f2a9b5a32abb9f41360aefce"
+  },
+  "reviewer_script_sha256": "7ab3f36ad7b474ec9dd195b7ad715f7ba45926e9e38a07dcea69f0f7e44a2c24",
+  "scope": "Source-byte/token equivalence and4 invented controls; no compilation or native/scientific execution.",
+  "constructed_controls": {
+    "count": 4,
+    "failures": 0,
+    "errors": 0,
+    "log_sha256": "dfb4212c980e687fc3d2eb9441bed5849c31032bb29a2385dc4f52260bfcb4c5"
+  },
+  "kernel_equivalence": [
+    {
+      "kernel": "annual",
+      "original_sha256": "65657bcd4cdea4aee683063fe8e152f6c0f9d9b9200c37dfe2eb97083f089eb8",
+      "compiled_sha256": "06f7ccd974d1a436df9c56464e94c0978e322ccaaeb5b9dbd624d67e29da2e01",
+      "identifier_changes": 15,
+      "reverse_bytes_exact": true
+    },
+    {
+      "kernel": "sequence",
+      "original_sha256": "fb1af8bc42ae576131d53d410a81f4474c2116c0d0ad4049c635099d60d0885c",
+      "compiled_sha256": "96459e4beb387aa5439efe8f788e2aaeb1a56e44652442c954c480ada225f893",
+      "identifier_changes": 13,
+      "reverse_bytes_exact": true
+    }
+  ],
+  "checks": {
+    "all_other_runner_function_ASTs_unchanged": true,
+    "original_registry_inputs_sources_preserved": true,
+    "original_pilot3_roster_caps_unchanged": true,
+    "no_score_tolerance_change": true,
+    "build_and_runtime_rederive_transformation": true
+  },
+  "prior_failure_audit_sha256": "b7240f03fe1e544c7a9102a7cc3b6c818ab55c5c9bf5b3068d8697d6fe96923f",
+  "findings": [],
+  "limitations": [
+    "Fresh GCC compilation of both transformed sources and actual3-row scoring remain required; this source review does not claim either executed.",
+    "Original failed artifacts remain separate. No historical source bytes were edited."
+  ]
+}

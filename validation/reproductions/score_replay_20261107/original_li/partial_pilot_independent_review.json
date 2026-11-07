@@ -1,0 +1,63 @@
+{
+  "schema": "independent_original_li_partial_pilot_audit_v1",
+  "passed": true,
+  "status": "two_passed_rows_accepted_partial_pilot_remains_failed",
+  "reviewer": "continuation_cpu independent output audit lane",
+  "scope": "Saved output/source/input arithmetic audit only; no fresh historical likelihood, feature/native call or fit.",
+  "artifact_sha256": "c7e614b4c1b1763c55fa6a29985a7daccbac2a54eca42dcf3404f6abc73572af",
+  "result_sha256": "d8fbcd082c7fd1acb7e3198871e72ebbb733c27a24fbf64b886a2452621cfcc1",
+  "launch_sha256": "2ae6259ee7631e6fd161913e0c6b47e87d5a65dd662a717aedd5820990c81a56",
+  "reviewer_script_sha256": "1f6c74f6a752924ba8de3cf709a1e0b1c1c2e1244054ac852dd504fd50322715",
+  "original_pilot_passed": false,
+  "requested_rows": 3,
+  "accepted_rows": 2,
+  "failed_rows": 1,
+  "retained_passed_rows": [
+    {
+      "id": "original_li/S0_uniform_null_seed410002/LI/test",
+      "result_member": "science/rows/00001/result.json",
+      "result_sha256": "859ba0ab53b28f109f695bbaaee5ad6153f00526a792eede1488f7d31cde0311",
+      "native_arrays_member": "science/rows/00001/native_components.npz",
+      "native_arrays_sha256": "93dd4049dcd4bc0eb14c28362da6deef230d2af62a34bc2088f91b1b3e1ac26d"
+    },
+    {
+      "id": "original_li/S0_uniform_null_seed410002/OC/test",
+      "result_member": "science/rows/00002/result.json",
+      "result_sha256": "a08d75e1706b2107e22f363af832136ae6b6205e2065c9e779601522de82f60e",
+      "native_arrays_member": "science/rows/00002/native_components.npz",
+      "native_arrays_sha256": "b6f7cbfe9a99b7ceae26857ed098d1d404c3fbb926360a5f045f7192a85e784d"
+    }
+  ],
+  "retry_row_ids": [
+    "original_li/LI_CA_M4_F2/LI/train"
+  ],
+  "complete_pilot_union_accepted": false,
+  "full_registry_accepted": false,
+  "checks": {
+    "original_source_and_inputs_pinned": true,
+    "current_registry_unchanged": true,
+    "native_library_and_build_pinned": true,
+    "scalar_comparisons": 28,
+    "array_comparisons": 24,
+    "maximum_scalar_delta": 0.0,
+    "maximum_array_delta": 1.7763568394002505e-15,
+    "event_component_sums_reconciled": true,
+    "expected_tolerances_unchanged": true,
+    "unknown_failed_row_has_no_score": true,
+    "failed_row_likelihood_calls": 0,
+    "other_two_rows_actual_likelihoods_executed": true
+  },
+  "resource_evidence": {
+    "status": "failed",
+    "reason": "child reported one failed row; no resource gate violation",
+    "science_seconds": 6.575576216999991,
+    "supervision_seconds": 7.059513721000002,
+    "sampled_peak_rss_bytes": 55508992,
+    "cleanup_clean": true
+  },
+  "limitations": [
+    "The failed CA row stopped before Objective construction; this does not mean the entire batch made zero native calls: invented controls and two synthetic rows did execute.",
+    "The two passing rows may be reused byte-exactly. They do not turn the failed3-row pilot into a pass before the one-row retry and union audit.",
+    "No gradient, optimizer-search, scientific generality or GPU parity claim is added."
+  ]
+}
