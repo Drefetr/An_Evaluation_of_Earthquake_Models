@@ -120,6 +120,151 @@ class AdmissionControls(unittest.TestCase):
                          'validation/reproductions/invented.zip'}.issubset(pins))
 
 
+class LIConstructorRepairControls(unittest.TestCase):
+    """Invented JSON/array bytes; no imported evaluator, native load or model call."""
+    def fixture(self, root, change=None):
+        digest = lambda raw: hashlib.sha256(raw).hexdigest()
+        encode = lambda value: json.dumps(value,sort_keys=True).encode()
+        roster = controller.LI_ORIGINAL_PILOT
+        registry = {'rows':[dict(id=name,raw={'sha256':'raw'},state={'sha256':'state'}) for name in roster+['remaining']]}
+        directory=root/'reproduction/score_replay/original_li';directory.mkdir(parents=True)
+        registry_path=directory/'registry.json';registry_path.write_bytes(encode(registry))
+        sources={'__init__.py':'init','core.py':'core','li_replay.py':'repaired'}
+        launch=dict(source_sha256=dict(sources,**{'li_replay.py':'original'}),registry_sha256=controller.sha(registry_path),
+                    mode='pilot',row_ids=roster)
+        members={'science/launch.json':encode(launch)};rows=[];retained=[]
+        for i,name in enumerate(roster):
+            member=f'science/rows/{i:05d}/result.json'
+            report=dict(id=name,passed=i>0,status='replayed' if i else 'failed')
+            if i:
+                array=f'science/rows/{i:05d}/native_components.npz'
+                members[array]=f'invented arrays {i}'.encode()
+                report.update(actual=dict(raw_sha256='raw',state_sha256='state',native_arrays={
+                    'path':'native_components.npz','sha256':digest(members[array])}),comparison={'passed':True})
+            else:report['error']='Unexpected original objective option'
+            if change:change(i,report,members)
+            members[member]=encode(report)
+            rows.append(dict(id=name,passed=i>0,status=report['status'],result=member.removeprefix('science/'),sha256=digest(members[member])))
+            if i:retained.append(dict(id=name,result_member=member,result_sha256=digest(members[member]),
+                                     native_arrays_member=array,native_arrays_sha256=digest(members[array])))
+        result=dict(passed=False,requested_rows=3,completed_rows=3,passed_rows=2,rows=rows,full_registry=False,entire_task_complete=False)
+        members['science/result.json']=encode(result)
+        archive=root/'partial.zip'
+        with zipfile.ZipFile(archive,'w')as z:
+            for name,raw in members.items():z.writestr(name,raw)
+        repair=dict(failed_pilot_archive_sha256=controller.sha(archive),failed_pilot_result_sha256=digest(members['science/result.json']),
+                    failed_pilot_launch_sha256=digest(members['science/launch.json']),original_replay_source_sha256='original',
+                    retained_passed_rows=retained,retry_row_ids=roster[:1],original_pilot_roster_unchanged=True)
+        proposal=dict(schema='original_li_replay_pilot_v1',row_ids=roster,constructor_repair=repair,source_sha256=sources,
+                      registry_sha256=controller.sha(registry_path))
+        proposal_path=directory/'pilot_proposal.json';proposal_path.write_bytes(encode(proposal))
+        audit=dict(schema='independent_original_li_partial_pilot_audit_v1',passed=True,original_pilot_passed=False,
+                   requested_rows=3,accepted_rows=2,failed_rows=1,complete_pilot_union_accepted=False,retained_passed_rows=retained,
+                   retry_row_ids=roster[:1],artifact_sha256=controller.sha(archive),result_sha256=repair['failed_pilot_result_sha256'],
+                   launch_sha256=repair['failed_pilot_launch_sha256'])
+        (root/'audit.json').write_bytes(encode(audit))
+        files=['reproduction/score_replay/li_replay.py','tests/test_li_replay_options.py']
+        for path in files:
+            target=root/path;target.parent.mkdir(parents=True,exist_ok=True);target.write_text('invented source')
+        files.append(proposal_path.relative_to(root).as_posix())
+        source=dict(schema='independent_original_li_constructor_source_review_v1',passed=True,
+                    partial_output_review_sha256=controller.sha(root/'audit.json'),
+                    source_sha256={p:controller.sha(root/p) for p in files})
+        (root/'source.json').write_bytes(encode(source))
+        review=dict(stage=controller.LI_REPAIR_STAGE,constructor_repair=True,row_ids=roster[:1],
+                    registry=registry_path.relative_to(root).as_posix(),proposal=proposal_path.relative_to(root).as_posix(),
+                    partial_archive='partial.zip',partial_archive_sha256=controller.sha(archive),
+                    partial_output_review='audit.json',source_review_record='source.json')
+        return review,proposal,registry
+
+    def test_exact_retry_and_unchanged_ordinary_pilot_completion_rosters(self):
+        with tempfile.TemporaryDirectory()as directory:
+            root=Path(directory);review,proposal,registry=self.fixture(root)
+            with patch.object(controller,'ROOT',root):
+                evidence=controller.li_constructor_repair_evidence(review,proposal,registry)
+                self.assertEqual(evidence['retry_row_ids'],controller.LI_ORIGINAL_PILOT[:1])
+                self.assertFalse(evidence['complete_pilot_union_accepted'])
+                self.assertEqual(len(evidence['retained_passed_rows']),2)
+                for changed in ({'row_ids':controller.LI_ORIGINAL_PILOT},{'row_ids':controller.LI_ORIGINAL_PILOT[1:]},
+                                {'constructor_repair':False},{'stage':'li-pilot'}):
+                    with self.assertRaises(ValueError):controller.replay_roster(dict(review,**changed),proposal,registry)
+                ordinary={'stage':'li-pilot','row_ids':controller.LI_ORIGINAL_PILOT}
+                self.assertEqual(controller.replay_roster(ordinary,proposal,registry)[0],controller.LI_ORIGINAL_PILOT)
+                ordinary.update(stage='li-completion',row_ids=['remaining'],pilot_output_review_passed=True)
+                self.assertEqual(controller.replay_roster(ordinary,proposal,registry)[0],['remaining'])
+
+    def test_repair_requires_original_partial_archive_and_both_reviews_as_source_pins(self):
+        with tempfile.TemporaryDirectory()as directory:
+            root=Path(directory);review,_,_=self.fixture(root)
+            with patch.object(controller,'ROOT',root):
+                self.assertTrue({'partial.zip','audit.json','source.json','tests/test_li_replay_options.py'}.issubset(
+                    controller.mandatory_sources(controller.LI_REPAIR_STAGE,review)))
+
+    def test_tampered_archive_row_or_array_is_rejected(self):
+        for member in ('science/rows/00001/result.json','science/rows/00002/native_components.npz'):
+            with self.subTest(member=member),tempfile.TemporaryDirectory()as directory:
+                root=Path(directory);review,proposal,registry=self.fixture(root)
+                archive=root/'partial.zip'
+                with zipfile.ZipFile(archive)as z:members={n:z.read(n)for n in z.namelist()}
+                members[member]+=b' changed'
+                with zipfile.ZipFile(archive,'w')as z:
+                    for name,raw in members.items():z.writestr(name,raw)
+                with patch.object(controller,'ROOT',root),self.assertRaises(ValueError):
+                    controller.li_constructor_repair_evidence(review,proposal,registry)
+
+    def test_failed_row_with_actuals_or_passed_row_with_wrong_inputs_is_rejected(self):
+        for target in (0,1):
+            def change(i,report,members):
+                if i==target:
+                    if i==0:report['actual']={'invented':True}
+                    else:report['actual']['state_sha256']='substituted state'
+            with self.subTest(target=target),tempfile.TemporaryDirectory()as directory:
+                root=Path(directory);review,proposal,registry=self.fixture(root,change)
+                with patch.object(controller,'ROOT',root),self.assertRaises(ValueError):
+                    controller.li_constructor_repair_evidence(review,proposal,registry)
+
+    def test_unaccepted_or_substituted_source_review_is_rejected(self):
+        for target in ('audit.json','source.json','reproduction/score_replay/li_replay.py'):
+            with self.subTest(target=target),tempfile.TemporaryDirectory()as directory:
+                root=Path(directory);review,proposal,registry=self.fixture(root)
+                path=root/target
+                if target.endswith('.json'):
+                    changed=controller.read(path);changed['passed']=False;path.write_text(json.dumps(changed))
+                else:path.write_text('changed source')
+                with patch.object(controller,'ROOT',root),self.assertRaises(ValueError):
+                    controller.li_constructor_repair_evidence(review,proposal,registry)
+
+    def test_dispatch_retains_original_bytes_and_supervises_only_one_pilot_row(self):
+        with tempfile.TemporaryDirectory()as directory:
+            base=Path(directory);root=base/'repo';root.mkdir()
+            review,_,_=self.fixture(root);output=base/'output'
+            review.update(independent_source_review='passed',reviewed_files_sha256={},allowed_github_run_attempt=1,
+                          expires_utc='2099-01-01T00:00:00+00:00',numerical_attempt_id='invented',
+                          wall_cap_seconds=60,rss_cap_bytes=1024,host_headroom_bytes=1024)
+            controller.write(root/'dispatch.json',review)
+            def fake_process(command,**kwargs):
+                if '--build' in command:
+                    build=Path(command[command.index('--output')+1]);build.mkdir()
+                    controller.write(build/'receipt.json',{'invented':True})
+                    controller.write(build/'libraries.json',{'library':{'build_receipt_path':str(build/'receipt.json')}})
+                else:
+                    spec=controller.read(output/'supervisor_spec.json');child=spec['command']
+                    self.assertEqual(child[child.index('--mode')+1],'pilot')
+                    self.assertEqual(controller.read(output/'rows.json'),controller.LI_ORIGINAL_PILOT[:1])
+                    self.assertEqual(spec['wall_cap_seconds'],60)
+                return types.SimpleNamespace(returncode=0)
+            with patch.object(controller,'ROOT',root),patch.object(controller.sys,'platform','linux'),\
+                    patch.object(controller.sys,'argv',['controller','--admission',str(root/'dispatch.json'),'--output',str(output)]),\
+                    patch.dict(controller.os.environ,{'GITHUB_RUN_ATTEMPT':'1'}),\
+                    patch.object(controller,'mandatory_sources',return_value=set()),\
+                    patch.object(controller.subprocess,'run',side_effect=fake_process)as process:
+                self.assertEqual(controller.main(),0);self.assertEqual(process.call_count,2)
+            self.assertEqual((output/'original_failure.zip').read_bytes(),(root/'partial.zip').read_bytes())
+            admission=controller.read(output/'admission.json')
+            self.assertEqual(admission['constructor_repair_evidence_sha256'],controller.sha(output/'constructor_repair_evidence.json'))
+            self.assertEqual(admission['original_partial_archive_sha256'],controller.sha(root/'partial.zip'))
+
+
 class JointContinuationControls(unittest.TestCase):
     """Invented archives/indexes only; no library load, optimizer or score call."""
     def fixture(self, root):

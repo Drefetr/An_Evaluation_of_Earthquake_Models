@@ -20,6 +20,10 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 JOINT_CONTINUATION_STAGES = ('joint-continuation-pilot', 'joint-continuation-campaign')
 BUDGETED_STAGE = 'joint-budgeted-case'
+LI_REPAIR_STAGE = 'li-constructor-repair'
+LI_ORIGINAL_PILOT = ['original_li/LI_CA_M4_F2/LI/train',
+                     'original_li/S0_uniform_null_seed410002/LI/test',
+                     'original_li/S0_uniform_null_seed410002/OC/test']
 READER_STAGES = {'reader-pilot': ('productivity_profiles', 'pilot'),
                  'reader-completion': ('s03', 'completion')}
 
@@ -66,6 +70,18 @@ def replay_roster(review, proposal, registry):
     pilot = proposal['row_ids']
     if not pilot or len(pilot) != len(set(pilot)) or set(pilot)-by_id.keys():
         raise ValueError('Invalid proposed pilot roster')
+    if review['stage'] == LI_REPAIR_STAGE:
+        repair = proposal.get('constructor_repair', {})
+        if (review.get('constructor_repair') is not True or
+                proposal.get('schema') != 'original_li_replay_pilot_v1' or
+                pilot != LI_ORIGINAL_PILOT or selected != pilot[:1] or
+                repair.get('retry_row_ids') != pilot[:1] or
+                repair.get('original_pilot_roster_unchanged') is not True or
+                [r['id'] for r in repair.get('retained_passed_rows', [])] != pilot[1:]):
+            raise ValueError('Constructor repair admits only the one original failed LI row')
+        return selected, by_id
+    if 'constructor_repair' in review:
+        raise ValueError('Constructor repair marker requires its dedicated stage')
     if phase == 'pilot' and selected != pilot:
         raise ValueError('Pilot differs from the predeclared source-review roster')
     if phase == 'completion':
@@ -76,6 +92,92 @@ def replay_roster(review, proposal, registry):
     if phase not in ('pilot', 'completion'):
         raise ValueError('Unknown replay phase')
     return selected, by_id
+
+
+def li_constructor_repair_evidence(review, proposal, registry):
+    """Validate the unchanged two-row evidence; never score or treat the pilot as passed."""
+    selected, by_id = replay_roster(review, proposal, registry)
+    if review['stage'] != LI_REPAIR_STAGE:
+        raise ValueError('Not a constructor repair admission')
+    repair = proposal['constructor_repair']
+    _, registry_path, proposal_path = replay_paths(review)
+    archive = inside(ROOT, review['partial_archive'])
+    audit_path = inside(ROOT, review['partial_output_review'])
+    source_path = inside(ROOT, review['source_review_record'])
+    audit, source = read(audit_path), read(source_path)
+    if sha(archive) != review['partial_archive_sha256'] or sha(archive) != repair['failed_pilot_archive_sha256']:
+        raise ValueError('Original partial LI archive changed')
+    if (audit.get('schema') != 'independent_original_li_partial_pilot_audit_v1' or
+            audit.get('passed') is not True or audit.get('original_pilot_passed') is not False or
+            audit.get('requested_rows') != 3 or audit.get('accepted_rows') != 2 or audit.get('failed_rows') != 1 or
+            audit.get('complete_pilot_union_accepted') is not False or
+            audit.get('retained_passed_rows') != repair['retained_passed_rows'] or
+            audit.get('retry_row_ids') != selected):
+        raise ValueError('Independent partial review does not certify precisely the original two rows')
+    for audit_key, repair_key in [('artifact_sha256','failed_pilot_archive_sha256'),
+                                  ('result_sha256','failed_pilot_result_sha256'),
+                                  ('launch_sha256','failed_pilot_launch_sha256')]:
+        if audit.get(audit_key) != repair[repair_key]:
+            raise ValueError('Partial review evidence identity differs')
+    required_source = {'reproduction/score_replay/li_replay.py',
+                       proposal_path.relative_to(ROOT).as_posix(), 'tests/test_li_replay_options.py'}
+    if (source.get('schema') != 'independent_original_li_constructor_source_review_v1' or
+            source.get('passed') is not True or source.get('partial_output_review_sha256') != sha(audit_path) or
+            not required_source.issubset(source.get('source_sha256', {})) or
+            any(sha(inside(ROOT, path)) != value for path, value in source['source_sha256'].items())):
+        raise ValueError('Constructor source review does not bind the current source and partial review')
+    with zipfile.ZipFile(archive) as saved:
+        if len(saved.namelist()) != len(set(saved.namelist())):
+            raise ValueError('Duplicate original partial archive member')
+        def member(name, expected):
+            raw = saved.read(name)
+            if hashlib.sha256(raw).hexdigest() != expected:
+                raise ValueError('Original partial member changed: '+name)
+            return json.loads(raw)
+        result = member('science/result.json', repair['failed_pilot_result_sha256'])
+        launch = member('science/launch.json', repair['failed_pilot_launch_sha256'])
+        old_sources = dict(proposal['source_sha256'], **{'li_replay.py':repair['original_replay_source_sha256']})
+        if (launch.get('source_sha256') != old_sources or launch.get('registry_sha256') != sha(registry_path) or
+                launch.get('registry_sha256') != proposal['registry_sha256'] or
+                launch.get('mode') != 'pilot' or launch.get('row_ids') != LI_ORIGINAL_PILOT):
+            raise ValueError('Original launch source/input/roster differs')
+        if (result.get('passed') is not False or result.get('requested_rows') != 3 or
+                result.get('completed_rows') != 3 or result.get('passed_rows') != 2 or
+                [r['id'] for r in result.get('rows', [])] != LI_ORIGINAL_PILOT or
+                result.get('full_registry') is not False or result.get('entire_task_complete') is not False):
+            raise ValueError('Original partial result is not the declared failed pilot')
+        for index, row in enumerate(result['rows']):
+            name = 'science/rows/%05d/result.json' % index
+            if row['result'] != name.removeprefix('science/'):
+                raise ValueError('Original partial row member differs')
+            report = member(name, row['sha256'])
+            if report.get('id') != row['id']:
+                raise ValueError('Original partial row identity differs')
+            if index == 0:
+                if (row.get('passed') is not False or report.get('passed') is not False or
+                        report.get('status') != 'failed' or report.get('error') != 'Unexpected original objective option' or
+                        'actual' in report):
+                    raise ValueError('Retry row is not the original pre-objective constructor failure')
+                continue
+            retained = repair['retained_passed_rows'][index-1]
+            actual = report.get('actual', {})
+            array = actual.get('native_arrays', {})
+            array_name = (Path(name).parent/'native_components.npz').as_posix()
+            original = by_id[row['id']]
+            if (row.get('passed') is not True or report.get('passed') is not True or
+                    report.get('status') != 'replayed' or report.get('comparison', {}).get('passed') is not True or
+                    retained['result_member'] != name or retained['result_sha256'] != row['sha256'] or
+                    retained['native_arrays_member'] != array_name or array.get('path') != 'native_components.npz' or
+                    array.get('sha256') != retained['native_arrays_sha256'] or
+                    actual.get('raw_sha256') != original['raw']['sha256'] or
+                    actual.get('state_sha256') != original['state']['sha256'] or
+                    hashlib.sha256(saved.read(array_name)).hexdigest() != retained['native_arrays_sha256']):
+                raise ValueError('Accepted original LI row or array evidence changed')
+    return dict(schema='original_li_constructor_retry_evidence_v1',
+                original_pilot_passed=False, complete_pilot_union_accepted=False,
+                partial_archive_sha256=sha(archive), partial_output_review_sha256=sha(audit_path),
+                source_review_sha256=sha(source_path), retained_passed_rows=repair['retained_passed_rows'],
+                retry_row_ids=selected, original_pilot_row_ids=LI_ORIGINAL_PILOT)
 
 
 def mandatory_sources(stage, review=None):
@@ -122,7 +224,7 @@ def mandatory_sources(stage, review=None):
             paths.update(p.relative_to(ROOT).as_posix() for p in package.rglob('*')
                          if p.is_file() and p.suffix in ('.py','.json'))
     elif stage in ('cached-pilot','cached-completion','regional-pilot','regional-completion',
-                   'inhibition-pilot','inhibition-completion','li-pilot','li-completion',
+                   'inhibition-pilot','inhibition-completion','li-pilot','li-completion',LI_REPAIR_STAGE,
                    'blocks-pilot','blocks-completion','observed-pilot','observed-completion'):
         prefix = 'reproduction/score_replay/'
         package, registry, proposal = replay_paths(review or {})
@@ -135,6 +237,9 @@ def mandatory_sources(stage, review=None):
             paths.update((review or {}).get('fresh_artifacts_sha256',{}))
         elif stage.startswith('li-'):
             names = ('__init__.py','core.py','li_replay.py')
+            if stage == LI_REPAIR_STAGE:
+                paths.update(('tests/test_li_replay_options.py', review['partial_archive'],
+                              review['partial_output_review'], review['source_review_record']))
         elif stage.startswith('regional-'):
             names = ('__init__.py','core.py','regional_build.py','regional_replay.py')
         elif stage.startswith('inhibition-'):
@@ -655,7 +760,7 @@ def main():
     elif stage in ('observed-pilot','observed-completion'):
         admission,command = observed_continuation(review,output)
     elif stage in ('cached-pilot', 'cached-completion', 'regional-pilot', 'regional-completion',
-                   'inhibition-pilot', 'inhibition-completion','li-pilot','li-completion',
+                   'inhibition-pilot', 'inhibition-completion','li-pilot','li-completion',LI_REPAIR_STAGE,
                    'blocks-pilot','blocks-completion'):
         package, registry_path, proposal_path = replay_paths(review)
         regional = stage.startswith('regional-')
@@ -669,11 +774,15 @@ def main():
         proposal = read(proposal_path)
         registry = read(registry_path)
         selected, by_id = replay_roster(review, proposal, registry)
+        if stage == LI_REPAIR_STAGE:
+            evidence = li_constructor_repair_evidence(review, proposal, registry)
+            write(output/'constructor_repair_evidence.json', evidence)
+            shutil.copyfile(inside(ROOT,review['partial_archive']), output/'original_failure.zip')
         build = output / 'build'
         subprocess.run([sys.executable,'-B',str(package/builder)]+(['--build'] if li or blocks else [])+[
                         '--registry',str(registry_path),'--output',str(build)],cwd=ROOT,check=True)
         libraries = read(build/'libraries.json')
-        phase = stage.split('-')[1]
+        phase = 'pilot' if stage == LI_REPAIR_STAGE else stage.split('-')[1]
         used = {'annual','sequence'} if blocks else {'core','competitive'} if regional else {'cpu','radial'} if inhibition else {by_id[row]['adapter'] for row in selected} if not li else set()
         receipts = {'li':sha(libraries['library']['build_receipt_path'])} if li else {k:sha(libraries['libraries'][k]['build_receipt_path']) for k in sorted(used)}
         write(output/'rows.json',selected)
@@ -681,6 +790,9 @@ def main():
                          numerical_lease=review['numerical_attempt_id'],
                          libraries_sha256=sha(build/'libraries.json'), expires_utc=review['expires_utc'], numeric_threads=2,
                          build_receipts_sha256=receipts)
+        if stage == LI_REPAIR_STAGE:
+            admission['constructor_repair_evidence_sha256'] = sha(output/'constructor_repair_evidence.json')
+            admission['original_partial_archive_sha256'] = sha(output/'original_failure.zip')
         command = [sys.executable,'-B',str(package/runner),'--mode',phase,
                    '--registry',str(registry_path),
                    '--libraries',str(build/'libraries.json'),'--admission',str(output/'admission.json'),
