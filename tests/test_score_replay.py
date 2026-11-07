@@ -261,5 +261,47 @@ class TestScoreReplay(unittest.TestCase):
                                        adapter, library, root/'bad_result')
 
 
+class CaliforniaPartitionTests(unittest.TestCase):
+    def test_complete_partition_roster_and_original_sources_load_without_dll(self):
+        from reproduction.score_replay.california_blocks_replay import load_modules
+        base = Path(__file__).resolve().parents[1]/'reproduction/score_replay/california_blocks'
+        registry = json.loads((base/'registry.json').read_text())
+        self.assertEqual(len(registry['rows']),39)
+        self.assertEqual(sum(r['expected_rows'] for r in registry['rows']),185)
+        modules = load_modules(Inputs(base),registry)
+        partition = modules['sequence']['partition']
+        # At the origin an anchor cannot inhibit itself; the next event is active.
+        episodes = partition.episodes([10])
+        rows = partition.rows_for_range('tiny',0,100,[10,11,99],[6.,4.,4.],episodes,[10])
+        self.assertEqual(rows[1]['indices'],[1,2])
+        self.assertEqual(rows[2]['indices'],[0])
+
+    def test_partition_comparison_keeps_counts_exact_and_numeric_tolerance_separate(self):
+        from reproduction.score_replay.california_blocks_replay import numeric_delta
+        checks=numeric_delta({'n_target':3,'joint':1.+5e-7},{'n_target':3,'joint':1.},1e-6)
+        self.assertTrue(all(c['passed'] for c in checks))
+        checks=numeric_delta({'n_target':4,'joint':1.},{'n_target':3,'joint':1.},1e-6)
+        self.assertFalse(all(c['passed'] for c in checks))
+        with self.assertRaisesRegex(ValueError,'partition identity'):
+            numeric_delta({'membership_sha256':'different'},{'membership_sha256':'bound'},1e-6)
+
+    def test_fresh_dependency_requires_real_passed_state_and_cache_identity(self):
+        import numpy as np
+        from reproduction.score_replay.california_blocks_replay import checked_fresh
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);a=root/'native_components.npz'
+            np.savez(a,**{'event_log_'+k+'_intensity':np.array([1.]) for k in ('point','cell','zone','ground')})
+            row=dict(id='tiny',state={'sha256':'state'},cache={'sha256':'cache'},n_events_expected=1)
+            adapter=dict(native={'sha256':'cpp'},python={'sha256':'py'})
+            record=dict(id='tiny',passed=True,status='replayed',actual=dict(state_sha256='state',cache_sha256='cache',native_source_sha256='cpp',python_source_sha256='py',components={'n_events':1},native_array_components={'path':a.name,'sha256':digest(a.read_bytes())}))
+            p=root/'result.json';p.write_text(json.dumps(record));entry={'result_path':str(p),'sha256':digest(p.read_bytes())}
+            logs,_,_=checked_fresh(entry,row,adapter);self.assertEqual(logs['point'].tolist(),[1.])
+            with self.assertRaisesRegex(ValueError,'state_sha256'):
+                checked_fresh(entry,dict(row,state={'sha256':'different'}),adapter)
+            record['passed']=False;p.write_text(json.dumps(record));entry['sha256']=digest(p.read_bytes())
+            with self.assertRaisesRegex(ValueError,'passed replay'):
+                checked_fresh(entry,row,adapter)
+
+
 if __name__ == '__main__':
     unittest.main()

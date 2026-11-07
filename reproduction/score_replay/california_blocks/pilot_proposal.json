@@ -1,0 +1,36 @@
+{
+  "schema": "california_partitions_pilot_v1",
+  "passed": false,
+  "status": "proposed_requires_source_review_build_and_passed_fresh_score_dependencies",
+  "mode": "pilot",
+  "registry_sha256": "42bdf5bf2dc23ba077b8e2ae797045195498825427ee88a48918233cb9a8108d",
+  "input_manifest_sha256": "e4e0ef1dad12a02d0295828b2785d30f9712dcb50be10068b68e4759d727a696",
+  "source_sha256": {
+    "__init__.py": "66dc04f1795b3ecf23d3a6dc7e3570d9c0592cd0cd214d981fdf179efe246f56",
+    "core.py": "e40c3a4ab5e2b8017edec91c7eac60ee4c5d4b7dd7c1cc9817e9d293d7744108",
+    "california_blocks_replay.py": "978b98a2a2df04e6e8c425c0a8e7077d2c08de4aabf7eb3f6a1dd452e8bfc25c"
+  },
+  "row_ids": [
+    "primary_annual/california_fold_1/Omori_smooth_cont",
+    "m45_annual/california_fold_1/Omori_smooth_cont",
+    "sequence/california_fold_1/EP"
+  ],
+  "selection_rule": "Largest-target primary and M4.5 OC annual states plus EP Fold1, which contains the nonempty merged Ridgecrest and calendar2019 partitions; selected by workload/partition roles only.",
+  "fresh_score_row_ids": [
+    "primary_california/california_fold_1/Omori_smooth_cont/test",
+    "california_m45/california_fold_1/Omori_smooth_cont/test",
+    "california_benchmark/california_fold_1/EP/test"
+  ],
+  "numeric_threads": 2,
+  "caps": {
+    "wall_seconds": 600,
+    "process_tree_rss_bytes": 6442450944,
+    "minimum_host_available_bytes": 2147483648
+  },
+  "mandatory_controls": "Three invented one-parent analytic interval kernels, split-interval additivity and cell-exposure sums before any historical row.",
+  "absolute_tolerance": 1e-06,
+  "full_registry_states": 39,
+  "full_absolute_rows": 200,
+  "full_contrasts": 154,
+  "scientific_execution_performed": false
+}
