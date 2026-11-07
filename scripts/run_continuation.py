@@ -19,6 +19,8 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 JOINT_CONTINUATION_STAGES = ('joint-continuation-pilot', 'joint-continuation-campaign')
+READER_STAGES = {'reader-pilot': ('productivity_profiles', 'pilot'),
+                 'reader-completion': ('s03', 'completion')}
 
 
 def sha(path):
@@ -81,7 +83,16 @@ def mandatory_sources(stage, review=None):
              'tests/test_continuation_controller.py',
              'engine/cpu_build.py','engine/stage2_followup/native_build.py',
              '.github/workflows/research-continuation.yml','requirements.txt','requirements-cpu.txt'}
-    if stage in ('joint-pilot','joint-full') + JOINT_CONTINUATION_STAGES:
+    if stage in READER_STAGES:
+        route, phase = READER_STAGES[stage]
+        if review is None or review.get('reader_route') != route:
+            raise ValueError('Public reader dispatch route is not declared')
+        inherited = dict(review, stage=('cached-' if route == 'productivity_profiles' else 'regional-')+phase)
+        paths.update(mandatory_sources(inherited['stage'], inherited))
+        paths.update(('scripts/reproduce_cpu.py',
+                      'validation/reproductions/score_replay_20261107/accepted_execution_index.json'))
+        paths.update(review.get('reader_execution_evidence_sha256', {}))
+    elif stage in ('joint-pilot','joint-full') + JOINT_CONTINUATION_STAGES:
         paths.add('tests/test_s04b_joint_nuisance.py')
         package = ROOT/'experiments/s04b_joint_nuisance'
         paths.update(p.relative_to(ROOT).as_posix() for p in package.iterdir()
@@ -363,6 +374,100 @@ def joint_batch_passed(output, review):
         raise ValueError('Completed joint index identity differs')
 
 
+def reader_dispatch_plan(review, output):
+    """Validate a nonduplicate public-reader request; no build/evaluation here."""
+    from scripts import reproduce_cpu as reader
+    route, phase = READER_STAGES[review['stage']]
+    if review.get('reader_route') != route or any(k in review for k in ('pilot_artifact_id','prior_artifact_id')):
+        raise ValueError('Reader dispatch uses its declared route and local published evidence only')
+    wall = review['wall_cap_seconds']
+    if isinstance(wall, bool) or not isinstance(wall, (int, float)) or not math.isfinite(wall) or not 0 < wall <= 14400:
+        raise ValueError('Reader wall cap must be finite, positive and within the workflow allowance')
+    args = argparse.Namespace(route=route,phase=phase,rows=None,wall_seconds=wall,
+        rss_mib=review['rss_cap_bytes']/2**20,headroom_mib=review['host_headroom_bytes']/2**20,
+        pilot_output=None,pilot_review=None)
+    plan = reader.make_plan(args)
+    if (plan['row_ids'] != review['row_ids'] or plan['registry'] != review['registry']
+            or plan['proposal'] != review['proposal']):
+        raise ValueError('Reviewed public-reader request differs from exact frozen source/roster')
+    for name, expected in plan['pins'].items():
+        if review['reviewed_files_sha256'].get(name) != expected:
+            raise ValueError('Reader plan is not covered by source admission: '+name)
+    existing = set(); evidence = {}
+    for archive in sorted((reader.PUBLISHED/route).glob('*.zip')):
+        record = reader.published_review(route,archive.stem)
+        evidence[record['archive']] = record['sha256']
+        for item in record['reviews']:
+            evidence[item['path']] = item['sha256']
+        if record['acceptance_index']:
+            item = record['acceptance_index']; evidence[item['path']] = item['sha256']
+        result = record['result']
+        if result.get('passed') is not True:
+            raise ValueError('Published route execution has not passed')
+        for row in result.get('rows', []):
+            if row.get('passed') is not True:
+                raise ValueError('Published route contains a failed row')
+            if row['id'] in existing:
+                raise ValueError('Duplicate published route row')
+            existing.add(row['id'])
+    if review.get('reader_execution_evidence_sha256') != evidence:
+        raise ValueError('Published execution inventory differs from reviewed nonduplicate evidence')
+    if set(plan['row_ids']) & existing:
+        raise ValueError('Public reader would repeat an already passed published row')
+    if phase == 'completion':
+        proposal = read(ROOT/review['proposal'])
+        if existing != set(proposal['row_ids']) or review.get('pilot_output_review_passed') is not True:
+            raise ValueError('Reader completion requires exactly the accepted pilot and unexecuted remainder')
+    elif existing:
+        raise ValueError('Fresh reader pilot cannot have a prior passed route execution')
+    command = [sys.executable,'-B',str(ROOT/'scripts/reproduce_cpu.py'),'run',
+        '--route',route,'--phase',phase,'--output',str(output/'reader'),
+        '--wall-seconds',str(wall),'--rss-mib',str(review['rss_cap_bytes']/2**20),
+        '--headroom-mib',str(review['host_headroom_bytes']/2**20)]
+    return plan,command
+
+
+def reader_batch_passed(output, review):
+    """A zero process exit alone cannot certify a reader execution."""
+    base=output/'reader'; result=read(base/'reader_result.json'); science=read(base/'science/result.json')
+    supervision=read(base/'supervision/result.json')
+    route,phase=READER_STAGES[review['stage']]
+    if (result.get('passed') is not True or result.get('route')!=route or result.get('phase')!=phase
+            or result.get('requested_ids')!=review['row_ids'] or result.get('retained_result_ids')!=review['row_ids']
+            or result.get('result_sha256')!=sha(base/'science/result.json')
+            or result.get('supervision_sha256')!=sha(base/'supervision/result.json')
+            or supervision.get('status')!='passed' or science.get('passed') is not True
+            or science.get('mode')!=phase or [r['id'] for r in science.get('rows',[])]!=review['row_ids']):
+        raise ValueError('Reader did not certify exact requested output and supervised terminal state')
+    return dict(passed=True,scope='Workflow custody check; public reader output is not independently accepted here',
+                reader_result_sha256=sha(base/'reader_result.json'),row_ids=review['row_ids'])
+
+
+def execute_reader_dispatch(review, output, expires):
+    plan,command=reader_dispatch_plan(review,output)
+    remaining=(expires-dt.datetime.now(dt.timezone.utc)).total_seconds()
+    if remaining < review['wall_cap_seconds']:
+        raise ValueError('Lease expires before entire public-reader allowance')
+    # The reader owns compilation and the only scientific supervisor.
+    child_environment={k:v for k,v in os.environ.items() if k not in (
+        'GITHUB_TOKEN','GH_TOKEN','ACTIONS_RUNTIME_TOKEN','ACTIONS_ID_TOKEN_REQUEST_TOKEN')}
+    write(output/'reader_plan.json',plan)
+    write(output/'reader_command.json',dict(command=command,source_plan_sha256=sha(output/'reader_plan.json'),
+        conductor_admission_sha256=sha(output/'conductor_review.json'),numerical_attempt_id=review['numerical_attempt_id'],
+        github_token_forwarded=any(k in child_environment for k in ('GITHUB_TOKEN','GH_TOKEN')),
+        resource_owner='scripts/reproduce_cpu.py -> scripts/supervise_research.py',nested_scientific_supervisor=False))
+    process=subprocess.run(command,cwd=ROOT,env=child_environment)
+    result=dict(passed=False,returncode=process.returncode,
+        scope='All partial public-reader outputs retained; no numerical acceptance')
+    if process.returncode==0:
+        try:
+            result=reader_batch_passed(output,review)
+        except (ValueError,KeyError,OSError) as exc:
+            result.update(error_type=type(exc).__name__,error=str(exc))
+    write(output/'reader_dispatch_result.json',result)
+    return 0 if result['passed'] else process.returncode or 1
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--admission', type=Path, required=True)
@@ -374,6 +479,8 @@ def main():
     if review['independent_source_review'] != 'passed':
         raise ValueError('Independent source review has not passed')
     stage = review['stage']
+    if stage in READER_STAGES and any(k in review for k in ('pilot_artifact_id','prior_artifact_id')):
+        raise ValueError('Public reader dispatch does not download remote artifacts')
     missing = mandatory_sources(stage, review)-review['reviewed_files_sha256'].keys()
     if missing:
         raise ValueError('Incomplete reviewed-source coverage: '+str(sorted(missing)))
@@ -405,6 +512,8 @@ def main():
         prior = prior_artifact(review, output) if 'pilot_artifact_id' in review else None
     # Download credentials are unnecessary in compilers or numerical children.
     os.environ.pop('GITHUB_TOKEN', None)
+    if stage in READER_STAGES:
+        return execute_reader_dispatch(review,output,expires)
     if stage in JOINT_CONTINUATION_STAGES:
         admission,command = joint_continuation(review,output,token,prior)
     elif stage in ('joint-pilot', 'joint-full'):

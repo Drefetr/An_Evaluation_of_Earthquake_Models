@@ -424,4 +424,99 @@ class LocalCpuReaderControls(unittest.TestCase):
                 with self.assertRaises(ValueError):self.reader.published_review('fake','completion')
 
 
+class PublicReaderDispatchControls(unittest.TestCase):
+    """Invented dispatch metadata; the public reader is never executed."""
+    def fixture(self, root):
+        from scripts import reproduce_cpu as reader
+        published=root/'published';(published/'s03').mkdir(parents=True)
+        (published/'s03/pilot.zip').write_bytes(b'invented archive')
+        proposal=root/'reproduction/score_replay/s03/pilot_proposal.json';proposal.parent.mkdir(parents=True)
+        controller.write(proposal,dict(row_ids=['p']))
+        evidence={'published/s03/pilot.zip':'archive-pin','published/review.json':'review-pin','published/index.json':'index-pin'}
+        prior=dict(archive='published/s03/pilot.zip',sha256='archive-pin',
+            reviews=[dict(path='published/review.json',sha256='review-pin')],
+            acceptance_index=dict(path='published/index.json',sha256='index-pin'),
+            result=dict(passed=True,rows=[dict(id='p',passed=True)]))
+        plan=dict(row_ids=['r'],registry='reproduction/score_replay/s03/registry.json',
+            proposal='reproduction/score_replay/s03/pilot_proposal.json',pins={'source.py':'source-pin'})
+        review=dict(stage='reader-completion',reader_route='s03',row_ids=['r'],registry=plan['registry'],proposal=plan['proposal'],
+            reviewed_files_sha256={'source.py':'source-pin'},reader_execution_evidence_sha256=evidence,
+            wall_cap_seconds=60,rss_cap_bytes=6*2**30,host_headroom_bytes=2*2**30,pilot_output_review_passed=True)
+        return reader,published,prior,plan,review
+
+    def test_exact_remaining_reader_plan_and_mandatory_sources(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);reader,published,prior,plan,review=self.fixture(root)
+            with patch.object(controller,'ROOT',root),patch.object(reader,'PUBLISHED',published),\
+                 patch.object(reader,'make_plan',return_value=plan),patch.object(reader,'published_review',return_value=prior),\
+                 patch.object(controller.subprocess,'run') as child:
+                actual,command=controller.reader_dispatch_plan(review,root/'out')
+                child.assert_not_called()
+                mandatory=controller.mandatory_sources('reader-completion',review)
+            self.assertEqual(actual,plan);self.assertIn('scripts/reproduce_cpu.py',mandatory)
+            self.assertIn('reproduction/score_replay/regional_replay.py',mandatory)
+            self.assertEqual(command[2],str(root/'scripts/reproduce_cpu.py'))
+            self.assertNotIn('supervise_research.py',command)
+
+    def test_repeated_rows_or_missing_pins_block_reader(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);reader,published,prior,plan,review=self.fixture(root)
+            with patch.object(controller,'ROOT',root),patch.object(reader,'PUBLISHED',published),\
+                 patch.object(reader,'make_plan',return_value=plan),patch.object(reader,'published_review',return_value=prior):
+                for change in ({'reader_route':'jma'},{'row_ids':['p']},{'pilot_output_review_passed':False},
+                               {'reader_execution_evidence_sha256':{}},{'reviewed_files_sha256':{}},
+                               {'pilot_artifact_id':123},{'wall_cap_seconds':float('inf')}):
+                    with self.assertRaises(ValueError):controller.reader_dispatch_plan(dict(review,**change),root/'out')
+                prior['result']['rows']=[dict(id='r',passed=True)]
+                with self.assertRaises(ValueError):controller.reader_dispatch_plan(review,root/'out')
+
+    def test_one_reader_child_without_credentials_or_nested_supervision(self):
+        import types, datetime
+        with tempfile.TemporaryDirectory() as directory:
+            out=Path(directory);controller.write(out/'conductor_review.json',{})
+            review=dict(wall_cap_seconds=60,numerical_attempt_id='invented')
+            command=['python','reader.py','run']
+            with patch.object(controller,'reader_dispatch_plan',return_value=({'invented':True},command)),\
+                 patch.object(controller,'reader_batch_passed',return_value=dict(passed=True)),\
+                 patch.dict(controller.os.environ,{'GITHUB_TOKEN':'invented','GH_TOKEN':'invented','ACTIONS_RUNTIME_TOKEN':'invented'}),\
+                 patch.object(controller.subprocess,'run',return_value=types.SimpleNamespace(returncode=0)) as child:
+                code=controller.execute_reader_dispatch(review,out,datetime.datetime(2099,1,1,tzinfo=datetime.timezone.utc))
+                self.assertEqual(code,0);self.assertEqual(child.call_count,1)
+                self.assertEqual(child.call_args.args[0],command)
+                env=child.call_args.kwargs['env']
+                self.assertTrue(all(k not in env for k in ('GITHUB_TOKEN','GH_TOKEN','ACTIONS_RUNTIME_TOKEN')))
+            receipt=controller.read(out/'reader_command.json')
+            self.assertFalse(receipt['github_token_forwarded']);self.assertFalse(receipt['nested_scientific_supervisor'])
+
+    def test_zero_exit_with_missing_result_retains_failed_dispatch(self):
+        import types, datetime
+        with tempfile.TemporaryDirectory() as directory:
+            out=Path(directory);controller.write(out/'conductor_review.json',{})
+            review=dict(stage='reader-pilot',wall_cap_seconds=60,numerical_attempt_id='invented',row_ids=['p'])
+            with patch.object(controller,'reader_dispatch_plan',return_value=({},['fake'])),\
+                 patch.object(controller.subprocess,'run',return_value=types.SimpleNamespace(returncode=0)):
+                code=controller.execute_reader_dispatch(review,out,datetime.datetime(2099,1,1,tzinfo=datetime.timezone.utc))
+            self.assertEqual(code,1);self.assertFalse(controller.read(out/'reader_dispatch_result.json')['passed'])
+
+    def test_actual_reader_result_and_supervision_hashes_required(self):
+        with tempfile.TemporaryDirectory() as directory:
+            out=Path(directory);base=out/'reader';(base/'science').mkdir(parents=True);(base/'supervision').mkdir()
+            controller.write(base/'science/result.json',dict(passed=True,mode='pilot',rows=[dict(id='p')]))
+            controller.write(base/'supervision/result.json',dict(status='passed'))
+            result=dict(passed=True,route='productivity_profiles',phase='pilot',requested_ids=['p'],retained_result_ids=['p'],
+                result_sha256=controller.sha(base/'science/result.json'),supervision_sha256=controller.sha(base/'supervision/result.json'))
+            controller.write(base/'reader_result.json',result)
+            review=dict(stage='reader-pilot',row_ids=['p'])
+            self.assertTrue(controller.reader_batch_passed(out,review)['passed'])
+            (base/'supervision/result.json').write_text('{}')
+            with self.assertRaises(ValueError):controller.reader_batch_passed(out,review)
+
+    def test_workflow_retains_outputs_without_copied_reader_inputs(self):
+        text=(ROOT/'.github/workflows/research-continuation.yml').read_text()
+        self.assertNotIn('/continuation/reader/**\n',text)
+        for suffix in ('reader/*.json','reader/build/**','reader/supervision/*.log',
+                       'reader/science/rows/**/result.json','reader/science/rows/**/native_components.npz'):
+            self.assertIn('/continuation/'+suffix,text)
+
+
 if __name__ == '__main__': unittest.main()

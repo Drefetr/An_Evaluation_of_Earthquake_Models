@@ -77,4 +77,12 @@ jobs:
             ${{ runner.temp }}/continuation/supervision/*.json
             ${{ runner.temp }}/continuation/supervision/*.log
             ${{ runner.temp }}/continuation/build/**
+            ${{ runner.temp }}/continuation/reader/*.json
+            ${{ runner.temp }}/continuation/reader/build/**
+            ${{ runner.temp }}/continuation/reader/supervision/*.json
+            ${{ runner.temp }}/continuation/reader/supervision/*.log
+            ${{ runner.temp }}/continuation/reader/science/*.json
+            ${{ runner.temp }}/continuation/reader/science/*.jsonl
+            ${{ runner.temp }}/continuation/reader/science/rows/**/result.json
+            ${{ runner.temp }}/continuation/reader/science/rows/**/native_components.npz
           if-no-files-found: warn
