@@ -10,9 +10,42 @@ from reproduction.score_replay import cached_native
 from reproduction.score_replay.core import Inputs, compare, components, digest, pointer, resolve, write_new
 from reproduction.score_replay.inventory import tables
 from reproduction.score_replay.replay import checked_admission, source_pins
+from reproduction.score_replay.regional_replay import compare_arrays, arrays_from_bytes
 
 
 class TestScoreReplay(unittest.TestCase):
+    def test_regional_arrays_use_exact_shape_and_declared_absolute_tolerance(self):
+        import numpy as np
+        reference = {'event_time': np.array([1., 2.]), 'event_logs': np.array([[1., -2.]])}
+        self.assertTrue(compare_arrays(reference, reference, {'event_time': 0., 'event_logs': 1e-8})['passed'])
+        different = dict(reference, event_time=np.array([1., 2.00001]))
+        self.assertFalse(compare_arrays(different, reference, {'event_time': 0., 'event_logs': 1e-8})['passed'])
+        wrong_shape = dict(reference, event_logs=np.array([1., -2.]))
+        self.assertFalse(compare_arrays(wrong_shape, reference, {'event_time': 0., 'event_logs': 1e-8})['passed'])
+
+    def test_regional_unconfigured_or_nonfinite_arrays_fail(self):
+        import numpy as np
+        with self.assertRaises(ValueError):
+            compare_arrays({'x': np.array([1.])}, {'x': np.array([1.])}, {})
+        with self.assertRaises(ValueError):
+            compare_arrays({'x': np.array([float('nan')])}, {'x': np.array([1.])}, {'x': 1e-6})
+
+    def test_jma_registry_exact_target_counts_without_likelihood_execution(self):
+        root = Path(__file__).resolve().parents[1]/'reproduction/score_replay/jma'
+        registry = json.loads((root/'registry.json').read_text(encoding='utf-8'))
+        self.assertEqual(len(registry['rows']), 93)
+        self.assertEqual(len({r['id'] for r in registry['rows']}), 93)
+        self.assertEqual(len(registry['aliases']), 9)
+        inputs = Inputs(root)
+        catalogue = arrays_from_bytes(inputs.read(registry['rows'][0]['catalogue']))
+        for row in registry['rows']:
+            state = inputs.json(row['state'])
+            selected = (catalogue['t_days'] >= state['start']) & (catalogue['t_days'] < state['end'])
+            self.assertEqual(int(selected.sum()), row['n_events_expected'], row['id'])
+            self.assertEqual(state['nuisance']['training_start'], 1826.)
+            self.assertEqual(state['nuisance']['T0'], 6940.)
+            self.assertNotEqual(state['nuisance'].get('mark_measure'), 'continuous')
+
     def test_registry_distinguishes_same_model_different_background_procedures(self):
         path = Path(__file__).resolve().parents[1]/'reproduction/score_replay/cached_registry.json'
         registry = json.loads(path.read_text(encoding='utf-8'))
