@@ -73,6 +73,66 @@ class RecoveryHostControls(unittest.TestCase):
         changed=copy.deepcopy(recovery);changed['pre_execution_failure']['workflow_log_sha256']='0'*64
         with self.assertRaises(ValueError):batch.pre_execution_charge(policy,changed)
 
+    def ordered_failure_fixture(self,root):
+        # Primitive invented failure evidence; never an actual fit/result fixture.
+        failures=[]
+        for number,(charge,status,count) in enumerate(((90,'failed_before_scientific_evaluation',0),
+                                                      (120,'failed_during_training_support',5)),1):
+            row=dict(status=status,charge_seconds=charge,scientific_predecessor_unchanged=True,
+                     nested_scientific_seconds=.25,nested_supervised_seconds=.5)
+            if number==2:row.update(support_evaluation_count=count,optimizer_call_count=0)
+            for key in ('archive','review','resource_review','workflow_log'):
+                relative=f'failure{number}_{key}.json';path=root/relative
+                if key=='review':
+                    value=dict(audit_passed=True,passed=False,overall_scientific_passed=False,
+                               archive_sha256=row['archive_sha256'])
+                elif key=='resource_review':
+                    value=(dict(passed=True,amendment={'explicit_new_charge_bound_seconds':charge}) if number==1 else
+                           dict(passed=True,timing={'conservative_whole_launch_charge_seconds':charge},
+                                failure={'support_evaluation_count':5,'optimizer_call_count':0}))
+                else:value={'invented':True,'identity':number,'kind':key}
+                batch.write(path,value);row[key]=relative;row[key+'_sha256']=batch.sha(path)
+            failures.append(row)
+        recovery={'pre_execution_failure':copy.deepcopy(failures[0]),'operational_failures':failures}
+        policy={'pre_execution_failure_charge_seconds':90,
+                'pre_execution_failure_resource_review_sha256':failures[0]['resource_review_sha256']}
+        return policy,recovery
+
+    def test_ordered_failures_charge_list_once_without_alias_or_nested_addition(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);policy,recovery=self.ordered_failure_fixture(root)
+            with patch.object(batch,'REPO',root):
+                self.assertEqual(batch.operational_failure_charge(policy,recovery),210)
+                changed=copy.deepcopy(recovery)
+                changed['operational_failures'][1]['nested_scientific_seconds']=.3
+                self.assertEqual(batch.operational_failure_charge(policy,changed),210)
+
+    def test_order_alias_unique_archive_and_scope_cannot_be_changed(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);policy,recovery=self.ordered_failure_fixture(root)
+            mutations=[]
+            wrong=copy.deepcopy(recovery);wrong['operational_failures'].reverse();mutations.append(wrong)
+            wrong=copy.deepcopy(recovery);wrong['operational_failures'][0]['charge_seconds']=91;mutations.append(wrong)
+            wrong=copy.deepcopy(recovery);wrong['operational_failures'][1]['archive_sha256']=wrong['operational_failures'][0]['archive_sha256'];mutations.append(wrong)
+            for key,value in [('charge_seconds',121.780888234),('status','failed_before_scientific_evaluation'),
+                              ('support_evaluation_count',0),('optimizer_call_count',1),('nested_supervised_seconds',121)]:
+                wrong=copy.deepcopy(recovery);wrong['operational_failures'][1][key]=value;mutations.append(wrong)
+            with patch.object(batch,'REPO',root):
+                for wrong in mutations:
+                    with self.subTest(value=wrong),self.assertRaises(ValueError):
+                        batch.operational_failure_charge(policy,wrong)
+
+    def test_second_failure_evidence_hash_and_failed_status_are_required(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);policy,recovery=self.ordered_failure_fixture(root)
+            with patch.object(batch,'REPO',root):
+                wrong=copy.deepcopy(recovery);wrong['operational_failures'][1]['workflow_log_sha256']='0'*64
+                with self.assertRaises(ValueError):batch.operational_failure_charge(policy,wrong)
+                path=root/recovery['operational_failures'][1]['review'];review=batch.read(path)
+                review['passed']=True;batch.write(path,review)
+                recovery['operational_failures'][1]['review_sha256']=batch.sha(path)
+                with self.assertRaises(ValueError):batch.operational_failure_charge(policy,recovery)
+
     def test_actual_frozen_recovery_protocol_integrates_without_scientific_calls(self):
         policy,recovery=batch.verify_policy()
         self.assertEqual(batch.sha(batch.REPO/'experiments/s04b_joint_recovery/recovery_protocol.json'),

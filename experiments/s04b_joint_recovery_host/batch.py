@@ -77,6 +77,42 @@ def pre_execution_charge(policy, recovery):
     return failure['charge_seconds']
 
 
+def operational_failure_charge(policy, recovery):
+    """Prepared ordered accounting; the historical singleton is an uncharged alias."""
+    failures = recovery['operational_failures']
+    require(isinstance(failures,list) and len(failures) == 2 and
+            failures[0] == recovery['pre_execution_failure'],
+            'Operational failures must preserve the exact first historical alias')
+    require(len({row['archive_sha256'] for row in failures}) == len(failures),
+            'Duplicate failed operational launch')
+    require([row['charge_seconds'] for row in failures] == [90,120],
+            'Reviewed ordered operational charges differ')
+    # This validates the original90s evidence once; it does not add the alias separately.
+    first = pre_execution_charge(policy,recovery)
+    second = failures[1]
+    require(second['status'] == 'failed_during_training_support' and
+            second['scientific_predecessor_unchanged'] is True and
+            second['support_evaluation_count'] == 5 and second['optimizer_call_count'] == 0,
+            'Second failure execution scope differs')
+    for key in ('archive','review','resource_review','workflow_log'):
+        require(sha(repo_path(second[key])) == second[key+'_sha256'],
+                'Second failed-launch evidence changed: '+key)
+    audit = read(repo_path(second['review']))
+    resource = read(repo_path(second['resource_review']))
+    require(audit.get('audit_passed') is True and audit.get('passed') is False and
+            audit.get('overall_scientific_passed') is False and
+            audit['archive_sha256'] == second['archive_sha256'],
+            'Second failed launch cannot be relabelled successful')
+    require(resource.get('passed') is True and
+            resource['timing']['conservative_whole_launch_charge_seconds'] == 120 and
+            resource['failure']['support_evaluation_count'] == 5 and
+            resource['failure']['optimizer_call_count'] == 0,
+            'Second failure resource/scope evidence differs')
+    require(0 <= second['nested_scientific_seconds'] <= second['nested_supervised_seconds'] <= 120,
+            'Nested second-launch time exceeds its one workflow bound')
+    return first+second['charge_seconds']
+
+
 def verify_policy():
     policy = read(HERE/'batch_policy.json')
     path = REPO/'experiments/s04b_joint_recovery/recovery_protocol.json'
