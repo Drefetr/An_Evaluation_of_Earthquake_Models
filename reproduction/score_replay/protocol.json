@@ -1,0 +1,18 @@
+{
+  "schema": "saved_state_score_replay_protocol_v1",
+  "baseline": "5374140404130421d878152a952024b43c1fbcc4",
+  "status": "inventory_and_implementation_only_pending_source_review",
+  "scope": "Recompute likelihood components at recovered selected states. No fitting, optimizer selection, simulation, history replacement or retuning.",
+  "required_studies": ["ch9_mark_history", "ch9_productivity", "ch9_orthogonal", "ch9_temporal_decay", "ch9_omori", "s02_non_f", "ch10_local_zones", "ch10_weighted_zones", "ch10_distance", "ch10_continuous", "ch10_background", "primary_california", "california_m45", "california_ep_n0", "primary_jma", "s03", "s06_california", "s06_jma", "observed_li", "observed_liplus", "s04_original"],
+  "excluded_campaigns": ["ch7_known_law", "ch8_frozen_refit", "ch8_autonomous", "s04b_saved_state", "s04b_intercept_sensitivity"],
+  "existing_execution": {"s05_point": "All 5994 original point-score checks already completed; inventory their exact report rows without repeat. Full84 scope remains fifteen EP paths and is not represented as all-path spatial-PIT replay."},
+  "withdrawn_scope": "Historical F/S01 restricted-fit continuation stays previously_withdrawn; no surrogate refit or available earlier non-F state may replace a missing historical state.",
+  "input_rule": "Every source module, cache, state, historical reference and protocol has a SHA-256 pin. Exact local archive inputs may be recovered only with explicit original identity and public mapping. Projected states identify their original file SHA and JSON pointer. Original reference scores are read only after the evaluator returns and are never inputs to a likelihood computation.",
+  "evaluation_modes": ["cached-feature likelihood evaluation using frozen original history/geometry arrays", "raw-history feature reconstruction where the public route requires it"],
+  "component_contract": "P is the event point/zone/ground log-intensity sum under the row's stated observation measure; E is nonnegative integrated intensity; C=-E; M is the conditional mark score; joint=P+C+M. Timing and location are separately emitted only when the evaluator determines them. No spatial decomposition is inferred from an ABI that does not return or determine it.",
+  "comparison_rule": "Compare complete full-precision selected-state outputs against their original full-precision references. Separate numerical functional agreement from displayed rounding. Each route freezes absolute field tolerances and their historical numerical basis before its pilot. No relative tolerance, post-failure tolerance enlargement or automatic withdrawal on a mismatch. Diagnose identity, state, units, quadrature and arithmetic first.",
+  "tolerances": {},
+  "pilot": {"status": "not_admitted", "rows": [], "selection_rule": "Freeze one ordinary row per implemented evaluator plus the largest declared workload for that evaluator before real scoring; selection is by roster/workload metadata, never gain sign."},
+  "execution": {"status": "not_admitted", "numerical_lease_required": true, "max_numeric_threads": 2, "wall_seconds_cap": 14400, "process_tree_rss_cap_bytes": 6442450944, "minimum_host_free_bytes": 2147483648, "new_output_directory_required": true},
+  "completion": "Every source table and every declared replay row must have an explicit outcome. not_run, partial and failed do not pass completion. not_replayable requires exact missing-input identities and documented recovery attempts. already_replayed requires a verified complete prior execution covering the same rows. No scientific completion claim follows from inventory, source availability or tests alone."
+}
