@@ -262,6 +262,43 @@ class TestScoreReplay(unittest.TestCase):
 
 
 class CaliforniaPartitionTests(unittest.TestCase):
+    def test_block_finalizer_union_rejects_missing_duplicate_and_unexpected(self):
+        from reproduction.score_replay.finalize_blocks import require_union, terminal_roster
+        roster=[{'id':'a'},{'id':'b'},{'id':'c'}]
+        self.assertEqual(list(require_union(roster,[{'id':'c'},{'id':'a'},{'id':'b'}])),['c','a','b'])
+        for rows in ([{'id':'a'},{'id':'b'}],[{'id':'a'},{'id':'a'},{'id':'c'}],[{'id':'a'},{'id':'b'},{'id':'other'}]):
+            with self.assertRaises(ValueError): require_union(roster,rows)
+        rows=[{'id':'a','passed':True,'status':'replayed'}]
+        launch={'row_ids':['a'],'mode':'pilot'}
+        terminal={'schema':'california_partition_replay_result_v1','passed':True,'mode':'pilot','rows':rows,'requested_rows':1,'completed_rows':1,'passed_rows':1,'failed_rows':0}
+        self.assertEqual(terminal_roster(terminal,launch,['a','b']),rows)
+        for mutation in ({'passed':False},{'completed_rows':0},{'failed_rows':1},{'mode':'completion'},{'rows':[dict(rows[0],status='failed')]}):
+            with self.assertRaises(ValueError):terminal_roster(dict(terminal,**mutation),launch,['a','b'])
+
+    def test_block_finalizer_requires_exact_attempt_hashes_and_safe_members(self):
+        from reproduction.score_replay.finalize_blocks import Attempt
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);data=b'{"passed":true}'
+            folder=root/'stage';folder.mkdir();(folder/'result.json').write_bytes(data)
+            attempt=Attempt(root,{'directory':'stage'})
+            self.assertTrue(attempt.read('result.json',digest(data))['passed'])
+            for member,sha in [('result.json','0'*64),('../result.json',digest(data)),('result.json',None)]:
+                with self.assertRaises(ValueError):attempt.read(member,sha)
+            archive=root/'stage.zip'
+            with zipfile.ZipFile(archive,'w') as z:z.writestr('science/result.json',data)
+            spec={'archive':'stage.zip','archive_sha256':digest(archive.read_bytes()),'prefix':'science'}
+            self.assertTrue(Attempt(root,spec).read('result.json',digest(data))['passed'])
+            with self.assertRaises(ValueError):Attempt(root,dict(spec,archive_sha256='0'*64))
+
+    def test_block_finalizer_imports_reducers_without_native_modules(self):
+        import sys
+        from reproduction.score_replay.finalize_blocks import reducers_only
+        base=Path(__file__).resolve().parents[1]/'reproduction/score_replay/california_blocks'
+        registry=json.loads((base/'registry.json').read_text())
+        reducers=reducers_only(Inputs(base),registry)
+        self.assertEqual(set(reducers),{'annual','sequence'})
+        self.assertFalse(any(k.startswith('_california_blocks_finalizer_original.') and k.endswith('.native') for k in sys.modules))
+
     def test_regional_table_arithmetic_reads_actual_values_and_propagates_tolerance(self):
         from reproduction.score_replay.reconcile_regional_tables import Evidence
         with tempfile.TemporaryDirectory() as d:

@@ -29,6 +29,26 @@ receipts, ordered row roster and numeric thread cap. Omit `--rows` for the compl
 registry only after measured pilot admission. `not_run` and partial runs are not
 completion. Output directories must be new.
 
+When a pilot and a disjoint completion stage jointly cover the registry, run the
+separate finalizer after both stages have passed:
+
+```text
+python -B reproduction/score_replay/finalize_blocks.py --attempts ATTEMPTS.json --output NEW_UNION
+```
+
+`ATTEMPTS.json` pins the current `registry_sha256`, `input_manifest_sha256` and
+scored `source_sha256` mapping. Its `attempts` list gives each unique `label`,
+either a `directory` or an `archive` plus `archive_sha256`, an optional member
+`prefix` (for example `science`), and `result_sha256`, `launch_sha256` and
+`controls_sha256`. Directory/archive locations may be absolute execution paths
+or portable paths relative to this manifest. Result entries pin each row report.
+The finalizer rejects incomplete, failed, duplicated or unexpected rows, verifies
+saved state/cache/parameter identities and applies only the original reducers to
+the retained actual partition scores. It imports no native wrapper and makes no
+likelihood calls. It produces all three `*_aggregate.json` files, a terminal
+`result.json`, and `regional_evidence_manifest.json` with the record names used by
+the regional table reconciliation. The original stage outputs remain intact.
+
 The original full-precision components, integer memberships and count identities
 are compared after evaluation. Absolute numerical tolerance is one micro-nat,
 below the original reconciliation tolerance; integer counts and partition hashes
