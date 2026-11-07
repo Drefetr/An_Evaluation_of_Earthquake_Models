@@ -666,11 +666,61 @@
     "support_recomputation": "Training floors, eligible floor, replayed-return fresh scores/gradients and selected fine checks may be reevaluated; actual attempts/returns/errors counted separately.",
     "logical_trace": "Consolidated logical fit trace includes exact reused records; physical execution/replay census is separate and original failed trace retained.",
     "restart": "Original Powell initial point and original per-invocation options, not last iterate; old interrupted invocation charged and retained separately; no exact internal-state continuation claim.",
-    "automatic_further_retry": false
+    "automatic_further_retry": false,
+    "support_equivalence": {
+      "schema": "joint_operational_gradient_equivalence_v1",
+      "dtype": "float64",
+      "epsilon_multiplier": 64,
+      "bound": "64 * float64_epsilon * max(1, abs(actual), abs(expected))",
+      "reused_LI_training_check": {
+        "policy": "reused_LI_training_support_gradient_only_v1",
+        "model": "LI",
+        "fields": [
+          "projected_gradient_coarse",
+          "projected_gradient_fine",
+          "projected_gradient_scaled_delta"
+        ],
+        "recompute_derived_delta": true,
+        "other_fields_exact": true,
+        "return_original_saved_check": true
+      },
+      "unused_Powell_anchor_gradient": {
+        "policy": "unused_Powell_anchor_gradient_only_v1",
+        "fields": [
+          "gradient"
+        ],
+        "objective_uses_gradient": false,
+        "parameters_scores_counts_options_next_input_exact": true
+      },
+      "replayed_completed_start_support": {
+        "policy": "replayed_completed_start_support_gradient_only_v1",
+        "model": "LIplus_immigrant",
+        "starts": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "record_fields": [
+          "gradient",
+          "projected_gradient"
+        ],
+        "candidate_fields": [
+          "gradient"
+        ],
+        "projection": "frozen fit.projected_gradient at exact parameters and bounds",
+        "other_fields_exact": true,
+        "preserve_original_record_and_candidate_gradient": true,
+        "new_optimizer_gradients_unchanged": true
+      },
+      "scope": "Measured operational equivalence; no established hardware cause or general error bound"
+    }
   },
   "evidence_sha256": {
     "evidence/design_review.json": "26ce5b7e4625fbe38bb00bd0bbd125316ba26292018fa791847c6a9275be3879",
-    "evidence/resource_review.json": "7f770bacc67de61f096d8fcb8b2b80d69b5d9a093541f6bdbf38ec50f86d957b"
+    "evidence/resource_review.json": "7f770bacc67de61f096d8fcb8b2b80d69b5d9a093541f6bdbf38ec50f86d957b",
+    "evidence/gradient_equivalence_design_addendum.json": "faf812a1891ebf44adebfa9c603770017d55c38f3f15698f8a5d29978712b5f3"
   },
   "rules": [
     "One-case recovery pilot at first remaining case; independent live output review before later case.",
@@ -692,5 +742,62 @@
     "resource_review_sha256": "d52403f8bfb65a66a157adfcce3e8dbb937245f6c48d280b80b93cc07a9646e9",
     "workflow_log": "experiments/s04b_joint_recovery/evidence/startup_failure_workflow.log",
     "workflow_log_sha256": "9263bd937a75ac190edeac23a07967d5c797961f1684539eb0529280f6c1336f"
-  }
+  },
+  "operational_failures": [
+    {
+      "status": "failed_before_scientific_evaluation",
+      "charge_seconds": 90,
+      "scientific_predecessor_unchanged": true,
+      "nested_scientific_seconds": 0.6658659909999898,
+      "nested_supervised_seconds": 1.5289834670000033,
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot01_startup_failed.zip",
+      "archive_sha256": "b05e68bfb391826b66f73fa8d2c83505494d893c4572bfa61f32c95c70c10b89",
+      "review": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot01_startup_failure_review.json",
+      "review_sha256": "5ee4135103991a8568201b1ffa757168df70abd962377c5fcf039654f84353dc",
+      "resource_review": "experiments/s04b_joint_recovery/evidence/startup_failure_resource.json",
+      "resource_review_sha256": "d52403f8bfb65a66a157adfcce3e8dbb937245f6c48d280b80b93cc07a9646e9",
+      "workflow_log": "experiments/s04b_joint_recovery/evidence/startup_failure_workflow.log",
+      "workflow_log_sha256": "9263bd937a75ac190edeac23a07967d5c797961f1684539eb0529280f6c1336f"
+    },
+    {
+      "status": "failed_during_training_support",
+      "charge_seconds": 120,
+      "scientific_predecessor_unchanged": true,
+      "nested_scientific_seconds": 1.7808882340000025,
+      "nested_supervised_seconds": 2.537754304999993,
+      "support_evaluation_count": 5,
+      "optimizer_call_count": 0,
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot02_support_check_failed.zip",
+      "archive_sha256": "844495719d70bf2c13b8e2cad1ae9c6617e857423461a0d97cf72e0a13931158",
+      "review": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot02_support_check_failure_review.json",
+      "review_sha256": "d7e3efa388666f59e49ea2dd8e13ca84af902bec2a398c2e5a45ffbcee6c8c86",
+      "resource_review": "experiments/s04b_joint_recovery/evidence/pilot02_support_failure_resource.json",
+      "resource_review_sha256": "9ad7909cdd04ad7302c5b7f0a96be332c8373a925224ba85851b7f517b42bb8d",
+      "workflow_log": "experiments/s04b_joint_recovery/evidence/pilot02_support_failure_workflow.log",
+      "workflow_log_sha256": "1634ba7e3865e13dd206b391888bee63ad440c8b6604efe1cd192355439e820b"
+    }
+  ],
+  "operational_diagnostics": [
+    {
+      "status": "diagnostic_complete",
+      "passed": true,
+      "equality_passed": false,
+      "scientific_completion": false,
+      "scientific_predecessor_unchanged": true,
+      "charge_seconds": 80,
+      "nested_scientific_seconds": 1.3498455479999905,
+      "nested_supervised_seconds": 2.031802134000003,
+      "support_evaluation_count": 5,
+      "optimizer_call_count": 0,
+      "held_out_call_count": 0,
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/support_diagnostic01.zip",
+      "archive_sha256": "5ac97f01050c5734d2a4efc3d6c91cf181f7be5c0141a8a335c6ed51eb83aca4",
+      "review": "validation/reproductions/joint_nuisance_20261107/continuation/support_diagnostic01_independent_review.json",
+      "review_sha256": "d670fee3fbf9592e4e14fa7c0dbf2b3124e880aced859bcffe200524b4d2dce0",
+      "resource_review": "experiments/s04b_joint_recovery/evidence/support_diagnostic01_resource.json",
+      "resource_review_sha256": "63764d15a31f8984990b0d9da42263f6efe41e370f4354039796d65303dd96f6",
+      "workflow_log": "experiments/s04b_joint_recovery/evidence/support_diagnostic01_workflow.log",
+      "workflow_log_sha256": "d65e6040eea2e4e6c34bf95803711efffd553586655fa99929f28801e330ae67"
+    }
+  ]
 }

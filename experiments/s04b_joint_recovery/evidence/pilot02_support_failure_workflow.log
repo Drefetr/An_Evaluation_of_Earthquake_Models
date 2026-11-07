@@ -1,0 +1,780 @@
+﻿2026-11-07T22:31:39.0510494Z Current runner version: '2.338.2'
+2026-11-07T22:31:39.0531361Z ##[group]Runner Image Provisioner
+2026-11-07T22:31:39.0532065Z Hosted Compute Agent
+2026-11-07T22:31:39.0532879Z Version: 20261028.624
+2026-11-07T22:31:39.0533419Z Commit: 54898b74c23fde5556c9b3c3a2290865feef0dfe
+2026-11-07T22:31:39.0534081Z Build Date: 2026-10-28T21:51:42Z
+2026-11-07T22:31:39.0534680Z Worker ID: {7d0c455e-5e58-4738-bed3-b0f5231e49f0}
+2026-11-07T22:31:39.0535307Z Region: westus2
+2026-11-07T22:31:39.0535848Z Cloud: Azure
+2026-11-07T22:31:39.0536322Z ##[endgroup]
+2026-11-07T22:31:39.0537542Z ##[group]Operating System
+2026-11-07T22:31:39.0538087Z Ubuntu
+2026-11-07T22:31:39.0538540Z 24.04.5
+2026-11-07T22:31:39.0539022Z LTS
+2026-11-07T22:31:39.0539470Z ##[endgroup]
+2026-11-07T22:31:39.0539957Z ##[group]Runner Image
+2026-11-07T22:31:39.0540523Z Image: ubuntu-24.04
+2026-11-07T22:31:39.0541056Z Version: 20261101.360.1
+2026-11-07T22:31:39.0542102Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261101.360/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-07T22:31:39.0543493Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261101.360
+2026-11-07T22:31:39.0544329Z ##[endgroup]
+2026-11-07T22:31:39.0545303Z ##[group]GITHUB_TOKEN Permissions
+2026-11-07T22:31:39.0547153Z Actions: read
+2026-11-07T22:31:39.0547697Z Contents: read
+2026-11-07T22:31:39.0548295Z Metadata: read
+2026-11-07T22:31:39.0548776Z ##[endgroup]
+2026-11-07T22:31:39.0550421Z Secret source: Actions
+2026-11-07T22:31:39.0551372Z Cache mode: write
+2026-11-07T22:31:39.0552230Z Prepare workflow directory
+2026-11-07T22:31:39.1429347Z Prepare all required actions
+2026-11-07T22:31:39.1469136Z Getting action download info
+2026-11-07T22:31:39.4666260Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-07T22:31:39.5785198Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-11-07T22:31:39.6911043Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-07T22:31:39.9276717Z Complete job name: continuation
+2026-11-07T22:31:39.9892521Z ##[group]Run echo "CONTINUATION_HOST_STARTED_UTC=$(date -u +%Y-%m-%dT%H:%M:%S+00:00)" >> "$GITHUB_ENV"
+2026-11-07T22:31:39.9893552Z [36;1mecho "CONTINUATION_HOST_STARTED_UTC=$(date -u +%Y-%m-%dT%H:%M:%S+00:00)" >> "$GITHUB_ENV"[0m
+2026-11-07T22:31:39.9914364Z shell: /usr/bin/bash -e {0}
+2026-11-07T22:31:39.9914998Z env:
+2026-11-07T22:31:39.9915328Z   OMP_NUM_THREADS: 2
+2026-11-07T22:31:39.9915700Z   OPENBLAS_NUM_THREADS: 2
+2026-11-07T22:31:39.9916084Z   MKL_NUM_THREADS: 2
+2026-11-07T22:31:39.9916448Z   NUMEXPR_NUM_THREADS: 2
+2026-11-07T22:31:39.9916843Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-07T22:31:39.9917317Z   CONTINUATION_HOST_TIMEOUT_MINUTES: 240
+2026-11-07T22:31:39.9917750Z ##[endgroup]
+2026-11-07T22:31:40.0180069Z ##[group]Run actions/checkout@v4
+2026-11-07T22:31:40.0180538Z with:
+2026-11-07T22:31:40.0180957Z   repository: Drefetr/An_Evaluation_of_Earthquake_Models
+2026-11-07T22:31:40.0184234Z   token: ***
+2026-11-07T22:31:40.0184591Z   ssh-strict: true
+2026-11-07T22:31:40.0184946Z   ssh-user: git
+2026-11-07T22:31:40.0185304Z   persist-credentials: true
+2026-11-07T22:31:40.0185695Z   clean: true
+2026-11-07T22:31:40.0186053Z   sparse-checkout-cone-mode: true
+2026-11-07T22:31:40.0186475Z   fetch-depth: 1
+2026-11-07T22:31:40.0186820Z   fetch-tags: false
+2026-11-07T22:31:40.0187181Z   show-progress: true
+2026-11-07T22:31:40.0187541Z   lfs: false
+2026-11-07T22:31:40.0187887Z   submodules: false
+2026-11-07T22:31:40.0188247Z   set-safe-directory: true
+2026-11-07T22:31:40.0188656Z   allow-unsafe-pr-checkout: false
+2026-11-07T22:31:40.0189059Z env:
+2026-11-07T22:31:40.0189378Z   OMP_NUM_THREADS: 2
+2026-11-07T22:31:40.0189744Z   OPENBLAS_NUM_THREADS: 2
+2026-11-07T22:31:40.0190155Z   MKL_NUM_THREADS: 2
+2026-11-07T22:31:40.0190516Z   NUMEXPR_NUM_THREADS: 2
+2026-11-07T22:31:40.0191008Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-07T22:31:40.0191427Z   CONTINUATION_HOST_TIMEOUT_MINUTES: 240
+2026-11-07T22:31:40.0192152Z   CONTINUATION_HOST_STARTED_UTC: 2026-11-07T22:31:40+00:00
+2026-11-07T22:31:40.0192742Z ##[endgroup]
+2026-11-07T22:31:40.2383676Z Syncing repository: Drefetr/An_Evaluation_of_Earthquake_Models
+2026-11-07T22:31:40.2385672Z ##[group]Getting Git version info
+2026-11-07T22:31:40.2386540Z Working directory is '/home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models'
+2026-11-07T22:31:40.2387933Z [command]/usr/bin/git version
+2026-11-07T22:31:40.2395351Z git version 2.56.0
+2026-11-07T22:31:40.2414778Z ##[endgroup]
+2026-11-07T22:31:40.2428373Z Temporarily overriding HOME='/home/runner/work/_temp/da9e170f-7d79-4313-970a-e7157269cba7' before making global git config changes
+2026-11-07T22:31:40.2430135Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-07T22:31:40.2434210Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models
+2026-11-07T22:31:40.2479263Z Deleting the contents of '/home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models'
+2026-11-07T22:31:40.2483597Z ##[group]Initializing the repository
+2026-11-07T22:31:40.2487764Z [command]/usr/bin/git init /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models
+2026-11-07T22:31:40.2566056Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-07T22:31:40.2567239Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-07T22:31:40.2568163Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-07T22:31:40.2568914Z hint: call:
+2026-11-07T22:31:40.2569429Z hint:
+2026-11-07T22:31:40.2570116Z hint: 	git config --global init.defaultBranch <name>
+2026-11-07T22:31:40.2570827Z hint:
+2026-11-07T22:31:40.2571510Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-07T22:31:40.2572627Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-07T22:31:40.2573415Z hint:
+2026-11-07T22:31:40.2573946Z hint: 	git branch -m <name>
+2026-11-07T22:31:40.2574532Z hint:
+2026-11-07T22:31:40.2575196Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-07T22:31:40.3989524Z Initialized empty Git repository in /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/.git/
+2026-11-07T22:31:40.4001027Z [command]/usr/bin/git remote add origin https://github.com/Drefetr/An_Evaluation_of_Earthquake_Models
+2026-11-07T22:31:40.4049684Z ##[endgroup]
+2026-11-07T22:31:40.4050635Z ##[group]Disabling automatic garbage collection
+2026-11-07T22:31:40.4053234Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-07T22:31:40.4093105Z ##[endgroup]
+2026-11-07T22:31:40.4094154Z ##[group]Setting up auth
+2026-11-07T22:31:40.4101388Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-07T22:31:40.4142601Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-07T22:31:40.4432594Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-07T22:31:40.4467968Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-07T22:31:40.4669115Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-07T22:31:40.4705776Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-07T22:31:40.4907014Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-07T22:31:40.5113155Z ##[endgroup]
+2026-11-07T22:31:40.5114070Z ##[group]Fetching the repository
+2026-11-07T22:31:40.5122885Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +b35d1e9d231f46a59504399b1158c9ce3778cabb:refs/remotes/origin/research/joint_replay_20261107T045457Z-integration
+2026-11-07T22:32:36.1830538Z From https://github.com/Drefetr/An_Evaluation_of_Earthquake_Models
+2026-11-07T22:32:36.1831876Z  * [new ref]         b35d1e9d231f46a59504399b1158c9ce3778cabb -> origin/research/joint_replay_20261107T045457Z-integration
+2026-11-07T22:32:36.1851372Z ##[endgroup]
+2026-11-07T22:32:36.1852031Z ##[group]Determining the checkout info
+2026-11-07T22:32:36.1852756Z ##[endgroup]
+2026-11-07T22:32:36.1853107Z [command]/usr/bin/git sparse-checkout disable
+2026-11-07T22:32:36.1901973Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-07T22:32:36.1945115Z ##[group]Checking out the ref
+2026-11-07T22:32:36.1945801Z [command]/usr/bin/git checkout --progress --force -B research/joint_replay_20261107T045457Z-integration refs/remotes/origin/research/joint_replay_20261107T045457Z-integration
+2026-11-07T22:32:37.5118780Z Updating files:  27% (2650/9534)
+2026-11-07T22:32:38.2358992Z Updating files:  28% (2670/9534)
+2026-11-07T22:32:39.2226001Z Updating files:  28% (2704/9534)
+2026-11-07T22:32:39.5607607Z Updating files:  28% (2726/9534)
+2026-11-07T22:32:39.5963340Z Updating files:  29% (2765/9534)
+2026-11-07T22:32:39.6088809Z Updating files:  30% (2861/9534)
+2026-11-07T22:32:39.6220708Z Updating files:  31% (2956/9534)
+2026-11-07T22:32:39.6321716Z Updating files:  32% (3051/9534)
+2026-11-07T22:32:39.6373207Z Updating files:  33% (3147/9534)
+2026-11-07T22:32:39.6405417Z Updating files:  34% (3242/9534)
+2026-11-07T22:32:39.6438683Z Updating files:  35% (3337/9534)
+2026-11-07T22:32:39.6475661Z Updating files:  36% (3433/9534)
+2026-11-07T22:32:39.6511842Z Updating files:  37% (3528/9534)
+2026-11-07T22:32:39.6544253Z Updating files:  38% (3623/9534)
+2026-11-07T22:32:39.6591742Z Updating files:  39% (3719/9534)
+2026-11-07T22:32:39.6639608Z Updating files:  40% (3814/9534)
+2026-11-07T22:32:39.6686424Z Updating files:  41% (3909/9534)
+2026-11-07T22:32:39.6729796Z Updating files:  42% (4005/9534)
+2026-11-07T22:32:39.6764691Z Updating files:  43% (4100/9534)
+2026-11-07T22:32:39.6800543Z Updating files:  44% (4195/9534)
+2026-11-07T22:32:39.6838719Z Updating files:  45% (4291/9534)
+2026-11-07T22:32:39.6886142Z Updating files:  46% (4386/9534)
+2026-11-07T22:32:39.6934590Z Updating files:  47% (4481/9534)
+2026-11-07T22:32:39.6980623Z Updating files:  48% (4577/9534)
+2026-11-07T22:32:39.7011606Z Updating files:  49% (4672/9534)
+2026-11-07T22:32:39.7042315Z Updating files:  50% (4767/9534)
+2026-11-07T22:32:39.7073757Z Updating files:  51% (4863/9534)
+2026-11-07T22:32:39.7113628Z Updating files:  52% (4958/9534)
+2026-11-07T22:32:39.7140728Z Updating files:  53% (5054/9534)
+2026-11-07T22:32:39.7173665Z Updating files:  54% (5149/9534)
+2026-11-07T22:32:39.7221391Z Updating files:  55% (5244/9534)
+2026-11-07T22:32:39.7419297Z Updating files:  56% (5340/9534)
+2026-11-07T22:32:39.7543457Z Updating files:  57% (5435/9534)
+2026-11-07T22:32:39.7609534Z Updating files:  58% (5530/9534)
+2026-11-07T22:32:39.7678142Z Updating files:  59% (5626/9534)
+2026-11-07T22:32:39.7745399Z Updating files:  60% (5721/9534)
+2026-11-07T22:32:39.7813439Z Updating files:  61% (5816/9534)
+2026-11-07T22:32:39.7884161Z Updating files:  62% (5912/9534)
+2026-11-07T22:32:39.7953140Z Updating files:  63% (6007/9534)
+2026-11-07T22:32:39.8022269Z Updating files:  64% (6102/9534)
+2026-11-07T22:32:39.8089400Z Updating files:  65% (6198/9534)
+2026-11-07T22:32:39.8160424Z Updating files:  66% (6293/9534)
+2026-11-07T22:32:39.8228402Z Updating files:  67% (6388/9534)
+2026-11-07T22:32:39.8297429Z Updating files:  68% (6484/9534)
+2026-11-07T22:32:39.8365992Z Updating files:  69% (6579/9534)
+2026-11-07T22:32:39.8435421Z Updating files:  70% (6674/9534)
+2026-11-07T22:32:39.8571945Z Updating files:  71% (6770/9534)
+2026-11-07T22:32:39.8636363Z Updating files:  72% (6865/9534)
+2026-11-07T22:32:39.8711036Z Updating files:  73% (6960/9534)
+2026-11-07T22:32:39.8778812Z Updating files:  74% (7056/9534)
+2026-11-07T22:32:39.8845535Z Updating files:  75% (7151/9534)
+2026-11-07T22:32:39.8913822Z Updating files:  76% (7246/9534)
+2026-11-07T22:32:39.8980380Z Updating files:  77% (7342/9534)
+2026-11-07T22:32:39.9040063Z Updating files:  78% (7437/9534)
+2026-11-07T22:32:39.9098013Z Updating files:  79% (7532/9534)
+2026-11-07T22:32:39.9174997Z Updating files:  80% (7628/9534)
+2026-11-07T22:32:39.9210198Z Updating files:  81% (7723/9534)
+2026-11-07T22:32:39.9244265Z Updating files:  82% (7818/9534)
+2026-11-07T22:32:39.9277677Z Updating files:  83% (7914/9534)
+2026-11-07T22:32:39.9311753Z Updating files:  84% (8009/9534)
+2026-11-07T22:32:39.9345499Z Updating files:  85% (8104/9534)
+2026-11-07T22:32:39.9377444Z Updating files:  86% (8200/9534)
+2026-11-07T22:32:39.9405601Z Updating files:  87% (8295/9534)
+2026-11-07T22:32:39.9453644Z Updating files:  88% (8390/9534)
+2026-11-07T22:32:40.0026129Z Updating files:  89% (8486/9534)
+2026-11-07T22:32:40.0321514Z Updating files:  90% (8581/9534)
+2026-11-07T22:32:40.0388882Z Updating files:  91% (8676/9534)
+2026-11-07T22:32:40.0455928Z Updating files:  92% (8772/9534)
+2026-11-07T22:32:40.0517467Z Updating files:  93% (8867/9534)
+2026-11-07T22:32:40.0569770Z Updating files:  94% (8962/9534)
+2026-11-07T22:32:40.1493213Z Updating files:  95% (9058/9534)
+2026-11-07T22:32:40.1537139Z Updating files:  96% (9153/9534)
+2026-11-07T22:32:40.2114665Z Updating files:  97% (9248/9534)
+2026-11-07T22:32:40.2277334Z Updating files:  97% (9320/9534)
+2026-11-07T22:32:40.2407145Z Updating files:  98% (9344/9534)
+2026-11-07T22:32:40.2695059Z Updating files:  99% (9439/9534)
+2026-11-07T22:32:40.2695761Z Updating files: 100% (9534/9534)
+2026-11-07T22:32:40.2696087Z Updating files: 100% (9534/9534), done.
+2026-11-07T22:32:40.5425559Z Switched to a new branch 'research/joint_replay_20261107T045457Z-integration'
+2026-11-07T22:32:40.5427216Z branch 'research/joint_replay_20261107T045457Z-integration' set up to track 'origin/research/joint_replay_20261107T045457Z-integration'.
+2026-11-07T22:32:40.5782286Z ##[endgroup]
+2026-11-07T22:32:40.5832102Z [command]/usr/bin/git log -1 --format=%H
+2026-11-07T22:32:40.5866388Z b35d1e9d231f46a59504399b1158c9ce3778cabb
+2026-11-07T22:32:40.6580215Z ##[group]Run actions/setup-python@v5
+2026-11-07T22:32:40.6580450Z with:
+2026-11-07T22:32:40.6580622Z   python-version: 3.13.18
+2026-11-07T22:32:40.6580811Z   cache: pip
+2026-11-07T22:32:40.6580976Z   check-latest: false
+2026-11-07T22:32:40.6583008Z   token: ***
+2026-11-07T22:32:40.6583195Z   update-environment: true
+2026-11-07T22:32:40.6583400Z   allow-prereleases: false
+2026-11-07T22:32:40.6583587Z   freethreaded: false
+2026-11-07T22:32:40.6583758Z env:
+2026-11-07T22:32:40.6583915Z   OMP_NUM_THREADS: 2
+2026-11-07T22:32:40.6584107Z   OPENBLAS_NUM_THREADS: 2
+2026-11-07T22:32:40.6584306Z   MKL_NUM_THREADS: 2
+2026-11-07T22:32:40.6584483Z   NUMEXPR_NUM_THREADS: 2
+2026-11-07T22:32:40.6584683Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-07T22:32:40.6584918Z   CONTINUATION_HOST_TIMEOUT_MINUTES: 240
+2026-11-07T22:32:40.6585184Z   CONTINUATION_HOST_STARTED_UTC: 2026-11-07T22:31:40+00:00
+2026-11-07T22:32:40.6585433Z ##[endgroup]
+2026-11-07T22:32:40.7672999Z ##[group]Installed versions
+2026-11-07T22:32:40.7703052Z (node:2147) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-07T22:32:40.7703719Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-07T22:32:40.7704290Z Successfully set up CPython (3.13.18)
+2026-11-07T22:32:40.7705160Z ##[endgroup]
+2026-11-07T22:32:41.2952188Z [command]/opt/hostedtoolcache/Python/3.13.18/x64/bin/pip cache dir
+2026-11-07T22:32:41.5482155Z /home/runner/.cache/pip
+2026-11-07T22:32:41.8022598Z Cache hit for: setup-python-Linux-x64-24.04-Ubuntu-python-3.13.18-pip-a1bd06fa1bbdf82681ac917566054635b071af1bc7a263a680c87af6476ed699
+2026-11-07T22:32:41.8106841Z (node:2147) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-07T22:32:43.0773337Z Received 29360128 of 130291886 (22.5%), 28.0 MBs/sec
+2026-11-07T22:32:43.7420619Z Received 130291886 of 130291886 (100.0%), 74.6 MBs/sec
+2026-11-07T22:32:43.7420946Z Cache Size: ~124 MB (130291886 B)
+2026-11-07T22:32:43.7448208Z [command]/usr/bin/tar -xf /home/runner/work/_temp/d4c974ad-51b5-4e3f-ab38-92eb86699dd5/cache.tzst -P -C /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models --use-compress-program unzstd
+2026-11-07T22:32:43.9613856Z Cache restored successfully
+2026-11-07T22:32:43.9670878Z Cache restored from key: setup-python-Linux-x64-24.04-Ubuntu-python-3.13.18-pip-a1bd06fa1bbdf82681ac917566054635b071af1bc7a263a680c87af6476ed699
+2026-11-07T22:32:43.9988086Z ##[group]Run python -m pip install -r requirements-cpu.txt
+2026-11-07T22:32:43.9988460Z [36;1mpython -m pip install -r requirements-cpu.txt[0m
+2026-11-07T22:32:44.0009913Z shell: /usr/bin/bash -e {0}
+2026-11-07T22:32:44.0010134Z env:
+2026-11-07T22:32:44.0010315Z   OMP_NUM_THREADS: 2
+2026-11-07T22:32:44.0010513Z   OPENBLAS_NUM_THREADS: 2
+2026-11-07T22:32:44.0010708Z   MKL_NUM_THREADS: 2
+2026-11-07T22:32:44.0010893Z   NUMEXPR_NUM_THREADS: 2
+2026-11-07T22:32:44.0011094Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-07T22:32:44.0011318Z   CONTINUATION_HOST_TIMEOUT_MINUTES: 240
+2026-11-07T22:32:44.0011596Z   CONTINUATION_HOST_STARTED_UTC: 2026-11-07T22:31:40+00:00
+2026-11-07T22:32:44.0011911Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:32:44.0012260Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib/pkgconfig
+2026-11-07T22:32:44.0012787Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:32:44.0013141Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:32:44.0013453Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:32:44.0013766Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib
+2026-11-07T22:32:44.0014032Z ##[endgroup]
+2026-11-07T22:32:45.5329352Z Collecting numpy==2.2.6 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 1))
+2026-11-07T22:32:45.5342078Z   Using cached numpy-2.2.6-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (62 kB)
+2026-11-07T22:32:45.7522127Z Collecting scipy==1.15.3 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 2))
+2026-11-07T22:32:45.7533637Z   Using cached scipy-1.15.3-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (61 kB)
+2026-11-07T22:32:45.9084600Z Collecting pandas==2.3.3 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 3))
+2026-11-07T22:32:45.9129753Z   Using cached pandas-2.3.3-cp313-cp313-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (91 kB)
+2026-11-07T22:32:46.0250324Z Collecting numexpr==2.14.1 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 4))
+2026-11-07T22:32:46.0260326Z   Using cached numexpr-2.14.1-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.0 kB)
+2026-11-07T22:32:46.2516542Z Collecting matplotlib==3.11.2 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 5))
+2026-11-07T22:32:46.2527378Z   Using cached matplotlib-3.11.2-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (80 kB)
+2026-11-07T22:32:46.7489435Z Collecting mpmath==1.3.0 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 6))
+2026-11-07T22:32:46.7499723Z   Using cached mpmath-1.3.0-py3-none-any.whl.metadata (8.6 kB)
+2026-11-07T22:32:46.9664417Z Collecting sympy==1.14.0 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 7))
+2026-11-07T22:32:46.9675300Z   Using cached sympy-1.14.0-py3-none-any.whl.metadata (12 kB)
+2026-11-07T22:32:47.2749587Z Collecting PyMuPDF==1.28.2 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 8))
+2026-11-07T22:32:47.2760894Z   Using cached pymupdf-1.28.2-cp310-abi3-manylinux_2_28_x86_64.whl.metadata (26 kB)
+2026-11-07T22:32:47.4570817Z Collecting Pillow==12.0.0 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 9))
+2026-11-07T22:32:47.4581963Z   Using cached pillow-12.0.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (8.8 kB)
+2026-11-07T22:32:47.7123920Z Collecting PyYAML==6.0.3 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 10))
+2026-11-07T22:32:47.7134089Z   Using cached pyyaml-6.0.3-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+2026-11-07T22:32:47.9238342Z Collecting threadpoolctl==3.6.0 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 11))
+2026-11-07T22:32:47.9248346Z   Using cached threadpoolctl-3.6.0-py3-none-any.whl.metadata (13 kB)
+2026-11-07T22:32:48.1998611Z Collecting psutil==7.0.0 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 12))
+2026-11-07T22:32:48.2009316Z   Using cached psutil-7.0.0-cp36-abi3-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (22 kB)
+2026-11-07T22:32:48.4662223Z Collecting reportlab==5.1.0 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 13))
+2026-11-07T22:32:48.4673009Z   Using cached reportlab-5.1.0-py3-none-any.whl.metadata (1.6 kB)
+2026-11-07T22:32:48.9296852Z Collecting python-dateutil>=2.8.2 (from pandas==2.3.3->-r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 3))
+2026-11-07T22:32:48.9307274Z   Using cached python_dateutil-4.0.0-py3-none-any.whl.metadata (7.3 kB)
+2026-11-07T22:32:49.1893058Z Collecting pytz>=2020.1 (from pandas==2.3.3->-r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 3))
+2026-11-07T22:32:49.1903245Z   Using cached pytz-2026.6-py2.py3-none-any.whl.metadata (22 kB)
+2026-11-07T22:32:49.3954477Z Collecting tzdata>=2022.7 (from pandas==2.3.3->-r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 3))
+2026-11-07T22:32:49.3964342Z   Using cached tzdata-2026.6-py2.py3-none-any.whl.metadata (1.4 kB)
+2026-11-07T22:32:49.6455029Z Collecting contourpy>=1.0.1 (from matplotlib==3.11.2->-r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 5))
+2026-11-07T22:32:49.6466275Z   Using cached contourpy-1.4.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (3.8 kB)
+2026-11-07T22:32:49.7763251Z Collecting cycler>=0.10 (from matplotlib==3.11.2->-r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 5))
+2026-11-07T22:32:49.7773424Z   Using cached cycler-0.12.1-py3-none-any.whl.metadata (3.8 kB)
+2026-11-07T22:32:49.8812958Z Collecting fonttools>=4.28.2 (from matplotlib==3.11.2->-r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 5))
+2026-11-07T22:32:49.8824052Z   Using cached fonttools-4.68.0-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (139 kB)
+2026-11-07T22:32:49.9534782Z Collecting kiwisolver>=1.3.1 (from matplotlib==3.11.2->-r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 5))
+2026-11-07T22:32:49.9546104Z   Using cached kiwisolver-1.5.1-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (5.2 kB)
+2026-11-07T22:32:49.9727006Z Collecting packaging>=20.0 (from matplotlib==3.11.2->-r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 5))
+2026-11-07T22:32:49.9736006Z   Using cached packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+2026-11-07T22:32:49.9950076Z Collecting pyparsing>=3 (from matplotlib==3.11.2->-r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 5))
+2026-11-07T22:32:49.9959409Z   Using cached pyparsing-3.3.3-py3-none-any.whl.metadata (5.9 kB)
+2026-11-07T22:32:50.0842989Z Collecting charset-normalizer (from reportlab==5.1.0->-r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 13))
+2026-11-07T22:32:50.0854043Z   Using cached charset_normalizer-3.5.2-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (46 kB)
+2026-11-07T22:32:50.0926633Z Using cached numpy-2.2.6-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (16.5 MB)
+2026-11-07T22:32:50.0985878Z Using cached scipy-1.15.3-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (37.3 MB)
+2026-11-07T22:32:50.1102720Z Using cached pandas-2.3.3-cp313-cp313-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (12.3 MB)
+2026-11-07T22:32:50.1152949Z Using cached numexpr-2.14.1-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (446 kB)
+2026-11-07T22:32:50.1163023Z Using cached matplotlib-3.11.2-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (9.9 MB)
+2026-11-07T22:32:50.1201889Z Using cached mpmath-1.3.0-py3-none-any.whl (536 kB)
+2026-11-07T22:32:50.1212668Z Using cached sympy-1.14.0-py3-none-any.whl (6.3 MB)
+2026-11-07T22:32:50.1240739Z Using cached pymupdf-1.28.2-cp310-abi3-manylinux_2_28_x86_64.whl (25.8 MB)
+2026-11-07T22:32:50.1330529Z Using cached pillow-12.0.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (7.0 MB)
+2026-11-07T22:32:50.1362180Z Using cached pyyaml-6.0.3-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (801 kB)
+2026-11-07T22:32:50.1372899Z Using cached threadpoolctl-3.6.0-py3-none-any.whl (18 kB)
+2026-11-07T22:32:50.1382211Z Using cached psutil-7.0.0-cp36-abi3-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (277 kB)
+2026-11-07T22:32:50.1391691Z Using cached reportlab-5.1.0-py3-none-any.whl (2.0 MB)
+2026-11-07T22:32:50.1407154Z Using cached contourpy-1.4.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (384 kB)
+2026-11-07T22:32:50.1416830Z Using cached cycler-0.12.1-py3-none-any.whl (8.3 kB)
+2026-11-07T22:32:50.1426036Z Using cached fonttools-4.68.0-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (5.4 MB)
+2026-11-07T22:32:50.1451218Z Using cached kiwisolver-1.5.1-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (1.5 MB)
+2026-11-07T22:32:50.1464876Z Using cached packaging-26.3-py3-none-any.whl (129 kB)
+2026-11-07T22:32:50.1473975Z Using cached pyparsing-3.3.3-py3-none-any.whl (126 kB)
+2026-11-07T22:32:50.1482947Z Using cached python_dateutil-4.0.0-py3-none-any.whl (92 kB)
+2026-11-07T22:32:50.1491627Z Using cached pytz-2026.6-py2.py3-none-any.whl (506 kB)
+2026-11-07T22:32:50.1501778Z Using cached tzdata-2026.6-py2.py3-none-any.whl (348 kB)
+2026-11-07T22:32:50.1511927Z Using cached charset_normalizer-3.5.2-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (254 kB)
+2026-11-07T22:32:50.4630223Z Installing collected packages: pytz, mpmath, tzdata, threadpoolctl, sympy, PyYAML, pyparsing, PyMuPDF, psutil, Pillow, packaging, numpy, kiwisolver, fonttools, cycler, charset-normalizer, scipy, reportlab, python-dateutil, numexpr, contourpy, pandas, matplotlib
+2026-11-07T22:33:08.3440509Z 
+2026-11-07T22:33:08.3463721Z Successfully installed Pillow-12.0.0 PyMuPDF-1.28.2 PyYAML-6.0.3 charset-normalizer-3.5.2 contourpy-1.4.0 cycler-0.12.1 fonttools-4.68.0 kiwisolver-1.5.1 matplotlib-3.11.2 mpmath-1.3.0 numexpr-2.14.1 numpy-2.2.6 packaging-26.3 pandas-2.3.3 psutil-7.0.0 pyparsing-3.3.3 python-dateutil-4.0.0 pytz-2026.6 reportlab-5.1.0 scipy-1.15.3 sympy-1.14.0 threadpoolctl-3.6.0 tzdata-2026.6
+2026-11-07T22:33:08.3470793Z 
+2026-11-07T22:33:08.3471052Z [notice] A new release of pip is available: 26.2.2 -> 26.3
+2026-11-07T22:33:08.3471396Z [notice] To update, run: pip install --upgrade pip
+2026-11-07T22:33:08.4540025Z ##[group]Run python -B -m unittest discover -s tests -p test_continuation_controller.py -v
+2026-11-07T22:33:08.4540524Z [36;1mpython -B -m unittest discover -s tests -p test_continuation_controller.py -v[0m
+2026-11-07T22:33:08.4559381Z shell: /usr/bin/bash -e {0}
+2026-11-07T22:33:08.4559601Z env:
+2026-11-07T22:33:08.4559773Z   OMP_NUM_THREADS: 2
+2026-11-07T22:33:08.4559962Z   OPENBLAS_NUM_THREADS: 2
+2026-11-07T22:33:08.4560146Z   MKL_NUM_THREADS: 2
+2026-11-07T22:33:08.4560328Z   NUMEXPR_NUM_THREADS: 2
+2026-11-07T22:33:08.4560529Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-07T22:33:08.4560743Z   CONTINUATION_HOST_TIMEOUT_MINUTES: 240
+2026-11-07T22:33:08.4561010Z   CONTINUATION_HOST_STARTED_UTC: 2026-11-07T22:31:40+00:00
+2026-11-07T22:33:08.4561325Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:33:08.4561655Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib/pkgconfig
+2026-11-07T22:33:08.4562019Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:33:08.4562314Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:33:08.4562802Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:33:08.4563108Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib
+2026-11-07T22:33:08.4563367Z ##[endgroup]
+2026-11-07T22:33:08.6725368Z test_completion_requires_accepted_pilot_and_exact_remaining_rows (test_continuation_controller.AdmissionControls.test_completion_requires_accepted_pilot_and_exact_remaining_rows) ... ok
+2026-11-07T22:33:08.6729245Z test_inhibition_route_requires_its_own_evaluator_and_build_pins (test_continuation_controller.AdmissionControls.test_inhibition_route_requires_its_own_evaluator_and_build_pins) ... ok
+2026-11-07T22:33:08.6742549Z test_initial_mark_binds_own_protocol_and_shared_original_oracle (test_continuation_controller.AdmissionControls.test_initial_mark_binds_own_protocol_and_shared_original_oracle) ... ok
+2026-11-07T22:33:08.6748741Z test_nested_registry_and_proposal_are_both_mandatory_pins (test_continuation_controller.AdmissionControls.test_nested_registry_and_proposal_are_both_mandatory_pins) ... ok
+2026-11-07T22:33:08.6752140Z test_original_li_binds_its_dedicated_evaluator (test_continuation_controller.AdmissionControls.test_original_li_binds_its_dedicated_evaluator) ... ok
+2026-11-07T22:33:08.6755790Z test_partition_artifacts_and_interval_source_are_mandatory (test_continuation_controller.AdmissionControls.test_partition_artifacts_and_interval_source_are_mandatory) ... ok
+2026-11-07T22:33:08.6796764Z test_partition_dependencies_require_actual_passed_rows_and_array_hashes (test_continuation_controller.AdmissionControls.test_partition_dependencies_require_actual_passed_rows_and_array_hashes) ... ok
+2026-11-07T22:33:08.6798414Z test_pilot_must_keep_predeclared_order_and_members (test_continuation_controller.AdmissionControls.test_pilot_must_keep_predeclared_order_and_members) ... ok
+2026-11-07T22:33:08.6799908Z test_registry_duplicates_and_unknown_pilot_are_rejected (test_continuation_controller.AdmissionControls.test_registry_duplicates_and_unknown_pilot_are_rejected) ... ok
+2026-11-07T22:33:08.6803116Z test_s02_binds_original_oracle_and_new_component_wrapper (test_continuation_controller.AdmissionControls.test_s02_binds_original_oracle_and_new_component_wrapper) ... ok
+2026-11-07T22:33:08.6827331Z test_budgeted_route_is_explicit_and_reuses_opaque_native_bytes (test_continuation_controller.BudgetedDispatchControls.test_budgeted_route_is_explicit_and_reuses_opaque_native_bytes) ... ok
+2026-11-07T22:33:08.6845635Z test_exact_predecessor_review_is_required (test_continuation_controller.BudgetedDispatchControls.test_exact_predecessor_review_is_required) ... ok
+2026-11-07T22:33:08.6865456Z test_new_stage_pins_its_own_protocol_review_and_driver_controls (test_continuation_controller.BudgetedDispatchControls.test_new_stage_pins_its_own_protocol_review_and_driver_controls) ... ok
+2026-11-07T22:33:08.6879158Z test_no_forecast_relabelling_slot_growth_or_multiple_cases (test_continuation_controller.BudgetedDispatchControls.test_no_forecast_relabelling_slot_growth_or_multiple_cases) ... ok
+2026-11-07T22:33:08.6887728Z test_host_route_pins_checker_config_and_original_driver (test_continuation_controller.HostBatchDispatchControls.test_host_route_pins_checker_config_and_original_driver) ... ok
+2026-11-07T22:33:09.2146741Z test_preparation_uses_local_predecessor_and_requires_host_timeout_marker (test_continuation_controller.HostBatchDispatchControls.test_preparation_uses_local_predecessor_and_requires_host_timeout_marker) ... ok
+2026-11-07T22:33:09.2148604Z test_workflow_is_host_specific_and_retains_every_child (test_continuation_controller.HostBatchDispatchControls.test_workflow_is_host_specific_and_retains_every_child) ... ok
+2026-11-07T22:33:09.2193010Z test_campaign_requires_accepted_pilot_and_explicit_projection (test_continuation_controller.JointContinuationControls.test_campaign_requires_accepted_pilot_and_explicit_projection) ... ok
+2026-11-07T22:33:09.2228114Z test_failed_partial_and_unaccepted_index_block_continuation (test_continuation_controller.JointContinuationControls.test_failed_partial_and_unaccepted_index_block_continuation) ... ok
+2026-11-07T22:33:09.2263630Z test_first_resume_keeps_original_binary_and_all_five_training_evidence_pins (test_continuation_controller.JointContinuationControls.test_first_resume_keeps_original_binary_and_all_five_training_evidence_pins) ... ok
+2026-11-07T22:33:09.2299947Z test_later_index_uses_exact_next_case_without_original_training_resume (test_continuation_controller.JointContinuationControls.test_later_index_uses_exact_next_case_without_original_training_resume) ... ok
+2026-11-07T22:33:09.2308756Z test_new_route_requires_driver_scheduler_frozen_archive_and_review_pins (test_continuation_controller.JointContinuationControls.test_new_route_requires_driver_scheduler_frozen_archive_and_review_pins) ... ok
+2026-11-07T22:33:09.2348157Z test_substituted_repeated_or_phase_crossing_case_is_rejected (test_continuation_controller.JointContinuationControls.test_substituted_repeated_or_phase_crossing_case_is_rejected) ... ok
+2026-11-07T22:33:09.2410360Z test_tampered_artifact_and_review_or_missing_new_envelope_fail (test_continuation_controller.JointContinuationControls.test_tampered_artifact_and_review_or_missing_new_envelope_fail) ... ok
+2026-11-07T22:33:09.2428052Z test_zero_exit_cannot_pass_failed_or_incomplete_batch (test_continuation_controller.JointContinuationControls.test_zero_exit_cannot_pass_failed_or_incomplete_batch) ... ok
+2026-11-07T22:33:09.2485960Z test_dispatch_retains_original_bytes_and_supervises_only_one_pilot_row (test_continuation_controller.LIConstructorRepairControls.test_dispatch_retains_original_bytes_and_supervises_only_one_pilot_row) ... ok
+2026-11-07T22:33:09.2512189Z test_exact_retry_and_unchanged_ordinary_pilot_completion_rosters (test_continuation_controller.LIConstructorRepairControls.test_exact_retry_and_unchanged_ordinary_pilot_completion_rosters) ... ok
+2026-11-07T22:33:09.2559934Z test_failed_row_with_actuals_or_passed_row_with_wrong_inputs_is_rejected (test_continuation_controller.LIConstructorRepairControls.test_failed_row_with_actuals_or_passed_row_with_wrong_inputs_is_rejected) ... ok
+2026-11-07T22:33:09.2577539Z test_repair_requires_original_partial_archive_and_both_reviews_as_source_pins (test_continuation_controller.LIConstructorRepairControls.test_repair_requires_original_partial_archive_and_both_reviews_as_source_pins) ... ok
+2026-11-07T22:33:09.2625851Z test_tampered_archive_row_or_array_is_rejected (test_continuation_controller.LIConstructorRepairControls.test_tampered_archive_row_or_array_is_rejected) ... ok
+2026-11-07T22:33:09.2690881Z test_unaccepted_or_substituted_source_review_is_rejected (test_continuation_controller.LIConstructorRepairControls.test_unaccepted_or_substituted_source_review_is_rejected) ... ok
+2026-11-07T22:33:09.2875486Z test_acceptance_index_pins_archive_result_and_actual_review (test_continuation_controller.LocalCpuReaderControls.test_acceptance_index_pins_archive_result_and_actual_review) ... ok
+2026-11-07T22:33:09.2896257Z test_bad_caps_and_changed_source_fail_before_launch (test_continuation_controller.LocalCpuReaderControls.test_bad_caps_and_changed_source_fail_before_launch) ... ok
+2026-11-07T22:33:09.2916737Z test_nested_reader_result_preserves_zip_and_uses_matching_admission (test_continuation_controller.LocalCpuReaderControls.test_nested_reader_result_preserves_zip_and_uses_matching_admission) ... ok
+2026-11-07T22:33:09.2935187Z test_plan_only_has_no_processes_or_scientific_acceptance (test_continuation_controller.LocalCpuReaderControls.test_plan_only_has_no_processes_or_scientific_acceptance) ... ok
+2026-11-07T22:33:09.2937332Z test_science_result_member_rejects_noncanonical_paths (test_continuation_controller.LocalCpuReaderControls.test_science_result_member_rejects_noncanonical_paths) ... ok
+2026-11-07T22:33:09.2956018Z test_subset_is_explicit_and_not_silently_full (test_continuation_controller.LocalCpuReaderControls.test_subset_is_explicit_and_not_silently_full) ... ok
+2026-11-07T22:33:09.2969937Z test_terminal_checks_retained_row_bytes (test_continuation_controller.LocalCpuReaderControls.test_terminal_checks_retained_row_bytes) ... ok
+2026-11-07T22:33:09.2973659Z test_zero_exit_missing_science_is_failure (test_continuation_controller.LocalCpuReaderControls.test_zero_exit_missing_science_is_failure) ... ok
+2026-11-07T22:33:09.3029944Z test_observed_exact_remaining_roster_and_frozen_caps (test_continuation_controller.ObservedContinuationControls.test_observed_exact_remaining_roster_and_frozen_caps) ... ok
+2026-11-07T22:33:09.3054286Z test_observed_route_pins_sources_and_fresh_evidence_without_builder (test_continuation_controller.ObservedContinuationControls.test_observed_route_pins_sources_and_fresh_evidence_without_builder) ... ok
+2026-11-07T22:33:09.3081716Z test_observed_zero_exit_still_requires_actual_complete_result (test_continuation_controller.ObservedContinuationControls.test_observed_zero_exit_still_requires_actual_complete_result) ... ok
+2026-11-07T22:33:09.3094605Z test_actual_reader_result_and_supervision_hashes_required (test_continuation_controller.PublicReaderDispatchControls.test_actual_reader_result_and_supervision_hashes_required) ... ok
+2026-11-07T22:33:09.3156954Z test_exact_remaining_reader_plan_and_mandatory_sources (test_continuation_controller.PublicReaderDispatchControls.test_exact_remaining_reader_plan_and_mandatory_sources) ... ok
+2026-11-07T22:33:09.3172098Z test_one_reader_child_without_credentials_or_nested_supervision (test_continuation_controller.PublicReaderDispatchControls.test_one_reader_child_without_credentials_or_nested_supervision) ... ok
+2026-11-07T22:33:09.3184268Z test_repeated_rows_or_missing_pins_block_reader (test_continuation_controller.PublicReaderDispatchControls.test_repeated_rows_or_missing_pins_block_reader) ... ok
+2026-11-07T22:33:09.3185889Z test_workflow_retains_outputs_without_copied_reader_inputs (test_continuation_controller.PublicReaderDispatchControls.test_workflow_retains_outputs_without_copied_reader_inputs) ... ok
+2026-11-07T22:33:09.3195260Z test_zero_exit_with_missing_result_retains_failed_dispatch (test_continuation_controller.PublicReaderDispatchControls.test_zero_exit_with_missing_result_retains_failed_dispatch) ... ok
+2026-11-07T22:33:09.3196180Z 
+2026-11-07T22:33:09.3196512Z ----------------------------------------------------------------------
+2026-11-07T22:33:09.3196937Z Ran 48 tests in 0.647s
+2026-11-07T22:33:09.3197121Z 
+2026-11-07T22:33:09.3197226Z OK
+2026-11-07T22:33:09.3678116Z ##[group]Run python -B -m unittest discover -s tests -p test_s04b_joint_nuisance.py -v
+2026-11-07T22:33:09.3678762Z [36;1mpython -B -m unittest discover -s tests -p test_s04b_joint_nuisance.py -v[0m
+2026-11-07T22:33:09.3697316Z shell: /usr/bin/bash -e {0}
+2026-11-07T22:33:09.3697526Z env:
+2026-11-07T22:33:09.3697693Z   OMP_NUM_THREADS: 2
+2026-11-07T22:33:09.3697879Z   OPENBLAS_NUM_THREADS: 2
+2026-11-07T22:33:09.3698065Z   MKL_NUM_THREADS: 2
+2026-11-07T22:33:09.3698248Z   NUMEXPR_NUM_THREADS: 2
+2026-11-07T22:33:09.3698450Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-07T22:33:09.3698664Z   CONTINUATION_HOST_TIMEOUT_MINUTES: 240
+2026-11-07T22:33:09.3698932Z   CONTINUATION_HOST_STARTED_UTC: 2026-11-07T22:31:40+00:00
+2026-11-07T22:33:09.3699247Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:33:09.3699579Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib/pkgconfig
+2026-11-07T22:33:09.3699914Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:33:09.3700259Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:33:09.3700571Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:33:09.3700883Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib
+2026-11-07T22:33:09.3701150Z ##[endgroup]
+2026-11-07T22:33:10.9030152Z test_all_shared_and_inhibition_gradients (test_s04b_joint_nuisance.JointLikelihood.test_all_shared_and_inhibition_gradients) ... ok
+2026-11-07T22:33:10.9060362Z test_analytic_omori_exposure_gradients (test_s04b_joint_nuisance.JointLikelihood.test_analytic_omori_exposure_gradients) ... ok
+2026-11-07T22:33:10.9513587Z test_components_match_independent_full_quadrature (test_s04b_joint_nuisance.JointLikelihood.test_components_match_independent_full_quadrature) ... ok
+2026-11-07T22:33:10.9515416Z test_constructed_full_case_json_roundtrip_and_no_training_resume (test_s04b_joint_nuisance.JointLikelihood.test_constructed_full_case_json_roundtrip_and_no_training_resume)
+2026-11-07T22:33:13.2466047Z Real native fixture scores, fixed-return test optimizer; never study inputs. ... ok
+2026-11-07T22:33:13.2533907Z test_eta_zero_is_same_exact_floor (test_s04b_joint_nuisance.JointLikelihood.test_eta_zero_is_same_exact_floor) ... ok
+2026-11-07T22:33:13.2566755Z test_exact_historical_floor_checks_are_six_not_five (test_s04b_joint_nuisance.JointLikelihood.test_exact_historical_floor_checks_are_six_not_five) ... ok
+2026-11-07T22:33:13.2593687Z test_nonfinite_parameters_rejected (test_s04b_joint_nuisance.JointLikelihood.test_nonfinite_parameters_rejected) ... ok
+2026-11-07T22:33:13.2625648Z test_rectangle_primitive_independent_cartesian_integral (test_s04b_joint_nuisance.JointLikelihood.test_rectangle_primitive_independent_cartesian_integral) ... ok
+2026-11-07T22:33:13.2764451Z test_shared_parameters_actually_change_exposure (test_s04b_joint_nuisance.JointLikelihood.test_shared_parameters_actually_change_exposure) ... ok
+2026-11-07T22:33:13.2791293Z test_strict_past_tied_events (test_s04b_joint_nuisance.JointLikelihood.test_strict_past_tied_events) ... ok
+2026-11-07T22:33:13.2837705Z test_time_grid_does_not_change_with_c (test_s04b_joint_nuisance.JointLikelihood.test_time_grid_does_not_change_with_c) ... ok
+2026-11-07T22:33:13.3007541Z test_zero_branching_gradients (test_s04b_joint_nuisance.JointLikelihood.test_zero_branching_gradients) ... ok
+2026-11-07T22:33:13.3039104Z test_failed_replace_preserves_checkpoint_and_cleans_own_temp (test_s04b_joint_nuisance.PersistenceControls.test_failed_replace_preserves_checkpoint_and_cleans_own_temp) ... ok
+2026-11-07T22:33:13.3048439Z test_failed_serialization_preserves_last_checkpoint_and_no_temp (test_s04b_joint_nuisance.PersistenceControls.test_failed_serialization_preserves_last_checkpoint_and_no_temp) ... ok
+2026-11-07T22:33:13.3064003Z test_interrupt_cleans_own_temporary_and_keeps_last_good_bytes (test_s04b_joint_nuisance.PersistenceControls.test_interrupt_cleans_own_temporary_and_keeps_last_good_bytes) ... ok
+2026-11-07T22:33:13.3065566Z test_numpy_scalars_arrays_and_nonfinite_rejection (test_s04b_joint_nuisance.PersistenceControls.test_numpy_scalars_arrays_and_nonfinite_rejection) ... ok
+2026-11-07T22:33:13.3070857Z test_eight_shared_start_budgets_and_null_candidate (test_s04b_joint_nuisance.PolicyControls.test_eight_shared_start_budgets_and_null_candidate) ... ok
+2026-11-07T22:33:13.3072880Z test_exact_floor_return_uses_stored_score (test_s04b_joint_nuisance.PolicyControls.test_exact_floor_return_uses_stored_score) ... ok
+2026-11-07T22:33:13.3074653Z test_missing_reports_cannot_be_completed (test_s04b_joint_nuisance.PolicyControls.test_missing_reports_cannot_be_completed) ... ok
+2026-11-07T22:33:13.3081144Z test_null_candidate_and_all_resolved_returns_retained (test_s04b_joint_nuisance.PolicyControls.test_null_candidate_and_all_resolved_returns_retained) ... ok
+2026-11-07T22:33:13.3087959Z test_primary_arithmetic_failure_retained_before_powell (test_s04b_joint_nuisance.PolicyControls.test_primary_arithmetic_failure_retained_before_powell) ... ok
+2026-11-07T22:33:13.3090371Z test_projected_gradient_at_bounds (test_s04b_joint_nuisance.PolicyControls.test_projected_gradient_at_bounds) ... ok
+2026-11-07T22:33:13.3092225Z test_strict_win_and_separate_nearzero (test_s04b_joint_nuisance.PolicyControls.test_strict_win_and_separate_nearzero) ... ok
+2026-11-07T22:33:13.3095207Z test_timeout_never_retried (test_s04b_joint_nuisance.PolicyControls.test_timeout_never_retried) ... ok
+2026-11-07T22:33:13.3098964Z test_unresolved_starts_remain_unknown (test_s04b_joint_nuisance.PolicyControls.test_unresolved_starts_remain_unknown) ... ok
+2026-11-07T22:33:13.3100600Z test_wilson_all_wins (test_s04b_joint_nuisance.PolicyControls.test_wilson_all_wins) ... ok
+2026-11-07T22:33:13.3101052Z 
+2026-11-07T22:33:13.3101245Z ----------------------------------------------------------------------
+2026-11-07T22:33:13.3101671Z Ran 26 tests in 3.522s
+2026-11-07T22:33:13.3101842Z 
+2026-11-07T22:33:13.3101945Z OK
+2026-11-07T22:33:13.3546999Z ##[group]Run python -B - <<'PY'
+2026-11-07T22:33:13.3547290Z [36;1mpython -B - <<'PY'[0m
+2026-11-07T22:33:13.3547505Z [36;1mimport json, subprocess, sys[0m
+2026-11-07T22:33:13.3547889Z [36;1mwith open('validation/reproductions/continuation_20261107/dispatch.json') as stream:[0m
+2026-11-07T22:33:13.3548272Z [36;1m    stage = json.load(stream)['stage'][0m
+2026-11-07T22:33:13.3548797Z [36;1mif stage in ('joint-continuation-pilot', 'joint-continuation-campaign', 'joint-budgeted-case', 'joint-budgeted-host', 'joint-recovery-host'):[0m
+2026-11-07T22:33:13.3549420Z [36;1m    for pattern in ('test_joint_parallel_chunks.py', 'test_joint_execution_driver.py'):[0m
+2026-11-07T22:33:13.3549951Z [36;1m        subprocess.run([sys.executable, '-B', '-m', 'unittest', 'discover', '-s', 'tests', '-p', pattern, '-v'], check=True)[0m
+2026-11-07T22:33:13.3550423Z [36;1mif stage in ('joint-budgeted-case', 'joint-budgeted-host'):[0m
+2026-11-07T22:33:13.3550966Z [36;1m    subprocess.run([sys.executable, '-B', '-m', 'unittest', 'discover', '-s', 'tests', '-p', 'test_joint_budgeted_driver.py', '-v'], check=True)[0m
+2026-11-07T22:33:13.3551434Z [36;1mif stage == 'joint-budgeted-host':[0m
+2026-11-07T22:33:13.3551799Z [36;1m    for pattern in ('test_joint_budgeted_batch.py', 'test_joint_saved_output_audit.py'):[0m
+2026-11-07T22:33:13.3552330Z [36;1m        subprocess.run([sys.executable, '-B', '-m', 'unittest', 'discover', '-s', 'tests', '-p', pattern, '-v'], check=True)[0m
+2026-11-07T22:33:13.3552981Z [36;1mif stage == 'joint-recovery-host':[0m
+2026-11-07T22:33:13.3553315Z [36;1m    for pattern in ('test_joint_recovery*.py', 'test_joint_saved_output_audit.py'):[0m
+2026-11-07T22:33:13.3553809Z [36;1m        subprocess.run([sys.executable, '-B', '-m', 'unittest', 'discover', '-s', 'tests', '-p', pattern, '-v'], check=True)[0m
+2026-11-07T22:33:13.3554192Z [36;1mPY[0m
+2026-11-07T22:33:13.3572281Z shell: /usr/bin/bash -e {0}
+2026-11-07T22:33:13.3572630Z env:
+2026-11-07T22:33:13.3572800Z   OMP_NUM_THREADS: 2
+2026-11-07T22:33:13.3572988Z   OPENBLAS_NUM_THREADS: 2
+2026-11-07T22:33:13.3573181Z   MKL_NUM_THREADS: 2
+2026-11-07T22:33:13.3573354Z   NUMEXPR_NUM_THREADS: 2
+2026-11-07T22:33:13.3573706Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-07T22:33:13.3573919Z   CONTINUATION_HOST_TIMEOUT_MINUTES: 240
+2026-11-07T22:33:13.3574182Z   CONTINUATION_HOST_STARTED_UTC: 2026-11-07T22:31:40+00:00
+2026-11-07T22:33:13.3574486Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:33:13.3574827Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib/pkgconfig
+2026-11-07T22:33:13.3575158Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:33:13.3575450Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:33:13.3575757Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:33:13.3576062Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib
+2026-11-07T22:33:13.3576322Z ##[endgroup]
+2026-11-07T22:33:14.2005570Z test_concurrent_evaluate_rejected_before_baseline_numpy_work (test_joint_parallel_chunks.NativeEquivalence.test_concurrent_evaluate_rejected_before_baseline_numpy_work) ... ok
+2026-11-07T22:33:14.2636639Z test_even_multichunk_zero_and_positive_eta_all_arms (test_joint_parallel_chunks.NativeEquivalence.test_even_multichunk_zero_and_positive_eta_all_arms) ... ok
+2026-11-07T22:33:14.3410740Z test_fine_multichunk_total_and_cache_parameter_changes (test_joint_parallel_chunks.NativeEquivalence.test_fine_multichunk_total_and_cache_parameter_changes) ... ok
+2026-11-07T22:33:14.3450565Z test_native_error_is_read_in_worker_thread (test_joint_parallel_chunks.NativeEquivalence.test_native_error_is_read_in_worker_thread) ... ok
+2026-11-07T22:33:14.3728928Z test_odd_and_partial_final_chunks_all_arms (test_joint_parallel_chunks.NativeEquivalence.test_odd_and_partial_final_chunks_all_arms) ... ok
+2026-11-07T22:33:14.3733806Z test_closed_or_reentrant_scheduler_is_rejected (test_joint_parallel_chunks.SchedulingControls.test_closed_or_reentrant_scheduler_is_rejected) ... ok
+2026-11-07T22:33:14.3746366Z test_enqueue_then_submit_raises_still_drains_unreturned_future (test_joint_parallel_chunks.SchedulingControls.test_enqueue_then_submit_raises_still_drains_unreturned_future) ... ok
+2026-11-07T22:33:14.3757389Z test_native_failure_drains_batch_and_does_not_start_another (test_joint_parallel_chunks.SchedulingControls.test_native_failure_drains_batch_and_does_not_start_another) ... ok
+2026-11-07T22:33:14.3758784Z test_process_wide_lock_prevents_two_scheduler_instances (test_joint_parallel_chunks.SchedulingControls.test_process_wide_lock_prevents_two_scheduler_instances) ... ok
+2026-11-07T22:33:14.3768891Z test_submission_failure_waits_for_already_submitted_work (test_joint_parallel_chunks.SchedulingControls.test_submission_failure_waits_for_already_submitted_work) ... ok
+2026-11-07T22:33:14.3780053Z test_two_calls_no_blas_overlap_and_original_ordered_sum (test_joint_parallel_chunks.SchedulingControls.test_two_calls_no_blas_overlap_and_original_ordered_sum) ... ok
+2026-11-07T22:33:14.3780640Z 
+2026-11-07T22:33:14.3780871Z ----------------------------------------------------------------------
+2026-11-07T22:33:14.3781275Z Ran 11 tests in 0.574s
+2026-11-07T22:33:14.3781461Z 
+2026-11-07T22:33:14.3781566Z OK
+2026-11-07T22:33:14.8583942Z {"event": "case_complete", "case_id": "a", "complete_cases": 1}
+2026-11-07T22:33:14.8673591Z test_duplicate_attempt_cannot_overwrite_prior_receipt (test_joint_execution_driver.BatchControls.test_duplicate_attempt_cannot_overwrite_prior_receipt) ... ok
+2026-11-07T22:33:14.8729314Z test_exhausted_budget_stops_before_any_case_call (test_joint_execution_driver.BatchControls.test_exhausted_budget_stops_before_any_case_call) ... ok
+2026-11-07T22:33:14.8797722Z test_failed_case_is_retained_charged_and_not_accepted (test_joint_execution_driver.BatchControls.test_failed_case_is_retained_charged_and_not_accepted) ... ok
+2026-11-07T22:33:14.8934219Z {"event": "case_complete", "case_id": "a", "complete_cases": 1}
+2026-11-07T22:33:14.9100858Z {"event": "case_complete", "case_id": "b", "complete_cases": 2}
+2026-11-07T22:33:14.9143481Z test_first_partial_training_then_exact_complete_case_reuse (test_joint_execution_driver.BatchControls.test_first_partial_training_then_exact_complete_case_reuse) ... ok
+2026-11-07T22:33:15.7373889Z test_delegated_full_case_matches_serial_science_exactly (test_joint_execution_driver.FullCaseEquivalence.test_delegated_full_case_matches_serial_science_exactly) ... ok
+2026-11-07T22:33:15.7474825Z test_factory_is_local_and_preserves_original_constructor_inputs (test_joint_execution_driver.FullCaseEquivalence.test_factory_is_local_and_preserves_original_constructor_inputs) ... ok
+2026-11-07T22:33:15.7501699Z test_bound_copy_rejects_tampering_and_overwrite (test_joint_execution_driver.IndexAndBudgetControls.test_bound_copy_rejects_tampering_and_overwrite) ... ok
+2026-11-07T22:33:15.7503214Z test_failed_attempt_time_is_counted_once (test_joint_execution_driver.IndexAndBudgetControls.test_failed_attempt_time_is_counted_once) ... ok
+2026-11-07T22:33:15.7521951Z test_failed_partial_index_cannot_automatically_continue (test_joint_execution_driver.IndexAndBudgetControls.test_failed_partial_index_cannot_automatically_continue) ... ok
+2026-11-07T22:33:15.8098417Z test_final_serialization_deadline_is_checked_after_writing (test_joint_execution_driver.IndexAndBudgetControls.test_final_serialization_deadline_is_checked_after_writing) ... ok
+2026-11-07T22:33:15.8099926Z test_fixed_order_no_repeat_or_phase_crossing (test_joint_execution_driver.IndexAndBudgetControls.test_fixed_order_no_repeat_or_phase_crossing) ... ok
+2026-11-07T22:33:15.8134186Z test_projection_uses_prior_training_plus_resumed_test_cost (test_joint_execution_driver.IndexAndBudgetControls.test_projection_uses_prior_training_plus_resumed_test_cost) ... ok
+2026-11-07T22:33:15.8135625Z test_tampered_or_nonfinite_cost_is_rejected (test_joint_execution_driver.IndexAndBudgetControls.test_tampered_or_nonfinite_cost_is_rejected) ... ok
+2026-11-07T22:33:15.8137443Z test_unavailable_partial_checkpoint_is_unknown_not_zero (test_joint_execution_driver.IndexAndBudgetControls.test_unavailable_partial_checkpoint_is_unknown_not_zero) ... ok
+2026-11-07T22:33:15.8138258Z 
+2026-11-07T22:33:15.8138472Z ----------------------------------------------------------------------
+2026-11-07T22:33:15.8138893Z Ran 14 tests in 0.973s
+2026-11-07T22:33:15.8139072Z 
+2026-11-07T22:33:15.8139179Z OK
+2026-11-07T22:33:16.3656221Z test_allocation_keeps_failed_charge_and_enforces_next_slot (test_joint_recovery.RecoveryControls.test_allocation_keeps_failed_charge_and_enforces_next_slot) ... ok
+2026-11-07T22:33:16.4322050Z test_changed_next_input_fails_before_extra_evaluation (test_joint_recovery.RecoveryControls.test_changed_next_input_fails_before_extra_evaluation) ... ok
+2026-11-07T22:33:16.4375648Z test_changed_options_rejected (test_joint_recovery.RecoveryControls.test_changed_options_rejected) ... ok
+2026-11-07T22:33:16.4484060Z test_changed_restart_anchor_fails_and_records_physical_attempt (test_joint_recovery.RecoveryControls.test_changed_restart_anchor_fails_and_records_physical_attempt) ... ok
+2026-11-07T22:33:16.4485062Z test_complete_recovered_training_equals_uninterrupted_invented_reference (test_joint_recovery.RecoveryControls.test_complete_recovered_training_equals_uninterrupted_invented_reference)
+2026-11-07T22:33:16.4794418Z Same frozen fit_arm, full candidates/selection/checks; no saved history. ... ok
+2026-11-07T22:33:16.4999514Z test_completed_arms_and_starts_not_reoptimized (test_joint_recovery.RecoveryControls.test_completed_arms_and_starts_not_reoptimized) ... ok
+2026-11-07T22:33:16.5024889Z test_corrupt_original_start_rejected (test_joint_recovery.RecoveryControls.test_corrupt_original_start_rejected) ... ok
+2026-11-07T22:33:16.5075822Z test_counted_phase_matches_complete_frozen_evaluate_signature (test_joint_recovery.RecoveryControls.test_counted_phase_matches_complete_frozen_evaluate_signature) ... ok
+2026-11-07T22:33:16.5779789Z test_driver_retains_primary_case_error_when_no_optimizer_trace_exists (test_joint_recovery.RecoveryControls.test_driver_retains_primary_case_error_when_no_optimizer_trace_exists) ... ok
+2026-11-07T22:33:16.5813313Z test_failed_or_duplicate_recovery_blocks_automatic_retry (test_joint_recovery.RecoveryControls.test_failed_or_duplicate_recovery_blocks_automatic_retry) ... ok
+2026-11-07T22:33:16.5883441Z test_final_serialization_deadline_clears_pass (test_joint_recovery.RecoveryControls.test_final_serialization_deadline_clears_pass) ... ok
+2026-11-07T22:33:16.6057336Z test_frozen_case_startup_reaches_optimizer_after_implicit_floor_call (test_joint_recovery.RecoveryControls.test_frozen_case_startup_reaches_optimizer_after_implicit_floor_call) ... ok
+2026-11-07T22:33:16.6243177Z test_frozen_protocol_and_actual_inputs_only_hash_validation (test_joint_recovery.RecoveryControls.test_frozen_protocol_and_actual_inputs_only_hash_validation) ... ok
+2026-11-07T22:33:16.6351122Z test_interruption_retains_execution_ledger (test_joint_recovery.RecoveryControls.test_interruption_retains_execution_ledger) ... ok
+2026-11-07T22:33:16.6376479Z test_missing_original_timeout_rejected (test_joint_recovery.RecoveryControls.test_missing_original_timeout_rejected) ... ok
+2026-11-07T22:33:16.6433421Z test_recomputed_support_must_match_original_saved_checks (test_joint_recovery.RecoveryControls.test_recomputed_support_must_match_original_saved_checks) ... ok
+2026-11-07T22:33:16.6523693Z test_removed_original_review_or_lineage_file_is_rejected (test_joint_recovery.RecoveryControls.test_removed_original_review_or_lineage_file_is_rejected) ... ok
+2026-11-07T22:33:16.6576393Z test_reused_arm_floor_change_rejected_before_calls (test_joint_recovery.RecoveryControls.test_reused_arm_floor_change_rejected_before_calls) ... ok
+2026-11-07T22:33:16.6657046Z test_runtime_source_and_expiry_admission_corruption (test_joint_recovery.RecoveryControls.test_runtime_source_and_expiry_admission_corruption) ... ok
+2026-11-07T22:33:16.6718305Z test_second_complete_arm_invocation_rejected (test_joint_recovery.RecoveryControls.test_second_complete_arm_invocation_rejected) ... ok
+2026-11-07T22:33:16.6755696Z test_wrong_primary_error_rejected (test_joint_recovery.RecoveryControls.test_wrong_primary_error_rejected) ... ok
+2026-11-07T22:33:16.6790238Z test_explicit_failed_transition_is_delegated_without_changing_review (test_joint_recovery_controller.RecoveryControllerControls.test_explicit_failed_transition_is_delegated_without_changing_review) ... ok
+2026-11-07T22:33:16.6813635Z test_independent_prefix_and_pilot_rejection_prevents_command_preparation (test_joint_recovery_controller.RecoveryControllerControls.test_independent_prefix_and_pilot_rejection_prevents_command_preparation) ... ok
+2026-11-07T22:33:16.6826554Z test_recovery_sources_retain_failed_legacy_lineage_and_new_audit (test_joint_recovery_controller.RecoveryControllerControls.test_recovery_sources_retain_failed_legacy_lineage_and_new_audit) ... ok
+2026-11-07T22:33:16.6963926Z test_stage_reviews_old_projection_and_resource_extensions_are_rejected (test_joint_recovery_controller.RecoveryControllerControls.test_stage_reviews_old_projection_and_resource_extensions_are_rejected) ... ok
+2026-11-07T22:33:16.7062351Z test_actual_frozen_recovery_protocol_integrates_without_scientific_calls (test_joint_recovery_host.RecoveryHostControls.test_actual_frozen_recovery_protocol_integrates_without_scientific_calls) ... ok
+2026-11-07T22:33:16.7070341Z test_actual_pilot_window_is_not_generic_four_hours (test_joint_recovery_host.RecoveryHostControls.test_actual_pilot_window_is_not_generic_four_hours) ... ok
+2026-11-07T22:33:16.7431724Z test_bad_checker_or_false_exit_never_starts_next_child (test_joint_recovery_host.RecoveryHostControls.test_bad_checker_or_false_exit_never_starts_next_child) ... ok
+2026-11-07T22:33:16.7488413Z test_changed_checker_core_or_misattributed_receipt_is_rejected (test_joint_recovery_host.RecoveryHostControls.test_changed_checker_core_or_misattributed_receipt_is_rejected) ... ok
+2026-11-07T22:33:16.7496470Z test_exact_eight_host_roster_and_all_reserves (test_joint_recovery_host.RecoveryHostControls.test_exact_eight_host_roster_and_all_reserves) ... ok
+2026-11-07T22:33:16.7504758Z test_exact_failed_predecessor_allowed_only_for_standalone_pilot (test_joint_recovery_host.RecoveryHostControls.test_exact_failed_predecessor_allowed_only_for_standalone_pilot) ... ok
+2026-11-07T22:33:16.7512915Z test_no_partial_host_suffix_retry_or_duplicate_attempt (test_joint_recovery_host.RecoveryHostControls.test_no_partial_host_suffix_retry_or_duplicate_attempt) ... ok
+2026-11-07T22:33:16.7712774Z test_order_native_bytes_and_independent_check_between_every_child (test_joint_recovery_host.RecoveryHostControls.test_order_native_bytes_and_independent_check_between_every_child) ... ok
+2026-11-07T22:33:16.7733342Z test_pilot_machine_check_never_unlocks_host_two (test_joint_recovery_host.RecoveryHostControls.test_pilot_machine_check_never_unlocks_host_two) ... ok
+2026-11-07T22:33:16.8051270Z test_policy_rejects_repinning_different_caps_or_incomplete_roster (test_joint_recovery_host.RecoveryHostControls.test_policy_rejects_repinning_different_caps_or_incomplete_roster) ... ok
+2026-11-07T22:33:16.8131341Z test_preparation_rechecks_whole_slot_before_science (test_joint_recovery_host.RecoveryHostControls.test_preparation_rechecks_whole_slot_before_science) ... ok
+2026-11-07T22:33:16.8239415Z test_second_child_failure_retains_first_accepted_index (test_joint_recovery_host.RecoveryHostControls.test_second_child_failure_retains_first_accepted_index) ... ok
+2026-11-07T22:33:16.8530783Z test_source_review_pins_and_actual_window_are_not_boolean_bypasses (test_joint_recovery_host.RecoveryHostControls.test_source_review_pins_and_actual_window_are_not_boolean_bypasses) ... ok
+2026-11-07T22:33:16.8626100Z test_standalone_pilot_cannot_start_another_case (test_joint_recovery_host.RecoveryHostControls.test_standalone_pilot_cannot_start_another_case) ... ok
+2026-11-07T22:33:16.8868931Z test_startup_charge_is_once_and_never_changes_scientific_predecessor (test_joint_recovery_host.RecoveryHostControls.test_startup_charge_is_once_and_never_changes_scientific_predecessor) ... ok
+2026-11-07T22:33:16.8888300Z test_supervisor_survivors_or_uncertainty_are_not_success (test_joint_recovery_host.RecoveryHostControls.test_supervisor_survivors_or_uncertainty_are_not_success) ... ok
+2026-11-07T22:33:16.8915139Z test_anchor_payload_not_boolean_only (test_joint_recovery_output_audit.RecoveryOutputAudit.test_anchor_payload_not_boolean_only) ... ok
+2026-11-07T22:33:16.8928571Z test_automated_pilot_review_is_not_live (test_joint_recovery_output_audit.RecoveryOutputAudit.test_automated_pilot_review_is_not_live) ... ok
+2026-11-07T22:33:16.8944706Z test_changed_replayed_return_rejected (test_joint_recovery_output_audit.RecoveryOutputAudit.test_changed_replayed_return_rejected) ... ok
+2026-11-07T22:33:16.8960289Z test_changed_reused_training_check_rejected (test_joint_recovery_output_audit.RecoveryOutputAudit.test_changed_reused_training_check_rejected) ... ok
+2026-11-07T22:33:16.8973438Z test_eval_counters_balance (test_joint_recovery_output_audit.RecoveryOutputAudit.test_eval_counters_balance) ... ok
+2026-11-07T22:33:16.8997061Z test_extra_physical_optimizer_rejected (test_joint_recovery_output_audit.RecoveryOutputAudit.test_extra_physical_optimizer_rejected) ... ok
+2026-11-07T22:33:16.9021064Z test_failed_checker_receipt_is_unambiguously_automated (test_joint_recovery_output_audit.RecoveryOutputAudit.test_failed_checker_receipt_is_unambiguously_automated) ... ok
+2026-11-07T22:33:16.9044373Z test_last_iterate_restart_rejected (test_joint_recovery_output_audit.RecoveryOutputAudit.test_last_iterate_restart_rejected) ... ok
+2026-11-07T22:33:16.9065665Z test_logical_success_keeps_physical_timeout (test_joint_recovery_output_audit.RecoveryOutputAudit.test_logical_success_keeps_physical_timeout) ... ok
+2026-11-07T22:33:16.9078796Z test_missing_live_attribution_rejected (test_joint_recovery_output_audit.RecoveryOutputAudit.test_missing_live_attribution_rejected) ... ok
+2026-11-07T22:33:16.9103518Z test_next_input_payload_checked (test_joint_recovery_output_audit.RecoveryOutputAudit.test_next_input_payload_checked) ... ok
+2026-11-07T22:33:16.9126684Z test_optimizer_budget_not_extended (test_joint_recovery_output_audit.RecoveryOutputAudit.test_optimizer_budget_not_extended) ... ok
+2026-11-07T22:33:16.9141155Z test_prefix_attempt_cannot_disappear (test_joint_recovery_output_audit.RecoveryOutputAudit.test_prefix_attempt_cannot_disappear) ... ok
+2026-11-07T22:33:16.9148755Z test_failed_startup_cannot_be_relabelled (test_joint_recovery_output_audit.StartupFailureAccounting.test_failed_startup_cannot_be_relabelled) ... ok
+2026-11-07T22:33:16.9158201Z test_nested_child_cannot_be_another_scientific_attempt (test_joint_recovery_output_audit.StartupFailureAccounting.test_nested_child_cannot_be_another_scientific_attempt) ... ok
+2026-11-07T22:33:16.9167628Z test_nested_duration_cannot_be_added_to_scientific_sum (test_joint_recovery_output_audit.StartupFailureAccounting.test_nested_duration_cannot_be_added_to_scientific_sum) ... ok
+2026-11-07T22:33:16.9179432Z test_omitted_or_doubled_charge_rejected (test_joint_recovery_output_audit.StartupFailureAccounting.test_omitted_or_doubled_charge_rejected) ... ok
+2026-11-07T22:33:16.9192185Z test_repinned_claim_of_calls_rejected (test_joint_recovery_output_audit.StartupFailureAccounting.test_repinned_claim_of_calls_rejected) ... ok
+2026-11-07T22:33:16.9202260Z test_retained_failed_archive_cannot_change (test_joint_recovery_output_audit.StartupFailureAccounting.test_retained_failed_archive_cannot_change) ... ok
+2026-11-07T22:33:16.9211060Z test_separate_charge_preserves_scientific_sum (test_joint_recovery_output_audit.StartupFailureAccounting.test_separate_charge_preserves_scientific_sum) ... ok
+2026-11-07T22:33:16.9218804Z test_transition_cannot_omit_charge_record (test_joint_recovery_output_audit.StartupFailureAccounting.test_transition_cannot_omit_charge_record) ... ok
+2026-11-07T22:33:16.9219302Z 
+2026-11-07T22:33:16.9219438Z ----------------------------------------------------------------------
+2026-11-07T22:33:16.9219873Z Ran 62 tests in 0.560s
+2026-11-07T22:33:16.9220030Z 
+2026-11-07T22:33:16.9220128Z OK
+2026-11-07T22:33:16.9220837Z {"passed": false, "receipt": "/tmp/tmp4s0lvf81/failure.json", "receipt_sha256": "640a17c643afaab4f30bfc2a4bf4367eb91c8eab263421aa673382fec9258499"}
+2026-11-07T22:33:17.1448758Z test_archive_must_match_extraction_and_not_escape (test_joint_saved_output_audit.SavedCheckerControls.test_archive_must_match_extraction_and_not_escape) ... ok
+2026-11-07T22:33:17.1450402Z test_automated_prior_must_not_impersonate_live_agent (test_joint_saved_output_audit.SavedCheckerControls.test_automated_prior_must_not_impersonate_live_agent) ... ok
+2026-11-07T22:33:17.1454055Z test_directory_paths_reject_traversal_windows_drive_and_backslash (test_joint_saved_output_audit.SavedCheckerControls.test_directory_paths_reject_traversal_windows_drive_and_backslash) ... ok
+2026-11-07T22:33:17.1472308Z test_git_source_map_checks_current_bytes_and_commit (test_joint_saved_output_audit.SavedCheckerControls.test_git_source_map_checks_current_bytes_and_commit) ... ok
+2026-11-07T22:33:17.1482595Z test_json_duplicate_and_nonfinite_cannot_relabel_failure (test_joint_saved_output_audit.SavedCheckerControls.test_json_duplicate_and_nonfinite_cannot_relabel_failure) ... ok
+2026-11-07T22:33:17.1496426Z test_main_failure_is_retained_and_cannot_overwrite_previous_receipt (test_joint_saved_output_audit.SavedCheckerControls.test_main_failure_is_retained_and_cannot_overwrite_previous_receipt) ... ok
+2026-11-07T22:33:17.1505146Z test_missing_source_review_is_failure_not_unchecked_pass (test_joint_saved_output_audit.SavedCheckerControls.test_missing_source_review_is_failure_not_unchecked_pass) ... ok
+2026-11-07T22:33:18.2778655Z test_optimized_python_fails_before_touching_missing_inputs (test_joint_saved_output_audit.SavedCheckerControls.test_optimized_python_fails_before_touching_missing_inputs) ... ok
+2026-11-07T22:33:18.2779939Z test_resource_spec_cannot_expand_caps_or_threads (test_joint_saved_output_audit.SavedCheckerControls.test_resource_spec_cannot_expand_caps_or_threads) ... ok
+2026-11-07T22:33:18.2802766Z test_source_review_requires_exact_checker_and_core (test_joint_saved_output_audit.SavedCheckerControls.test_source_review_requires_exact_checker_and_core) ... ok
+2026-11-07T22:33:18.2803530Z 
+2026-11-07T22:33:18.2803673Z ----------------------------------------------------------------------
+2026-11-07T22:33:18.2803962Z Ran 10 tests in 1.138s
+2026-11-07T22:33:18.2804086Z 
+2026-11-07T22:33:18.2804160Z OK
+2026-11-07T22:33:18.3030666Z ##[group]Run python -B -m unittest discover -s scripts/tests -p test_supervise_research_linux.py -v
+2026-11-07T22:33:18.3031213Z [36;1mpython -B -m unittest discover -s scripts/tests -p test_supervise_research_linux.py -v[0m
+2026-11-07T22:33:18.3048916Z shell: /usr/bin/bash -e {0}
+2026-11-07T22:33:18.3049126Z env:
+2026-11-07T22:33:18.3049306Z   OMP_NUM_THREADS: 2
+2026-11-07T22:33:18.3049498Z   OPENBLAS_NUM_THREADS: 2
+2026-11-07T22:33:18.3049690Z   MKL_NUM_THREADS: 2
+2026-11-07T22:33:18.3049863Z   NUMEXPR_NUM_THREADS: 2
+2026-11-07T22:33:18.3050061Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-07T22:33:18.3050287Z   CONTINUATION_HOST_TIMEOUT_MINUTES: 240
+2026-11-07T22:33:18.3050561Z   CONTINUATION_HOST_STARTED_UTC: 2026-11-07T22:31:40+00:00
+2026-11-07T22:33:18.3050890Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:33:18.3051238Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib/pkgconfig
+2026-11-07T22:33:18.3051594Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:33:18.3051896Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:33:18.3052195Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:33:18.3052682Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib
+2026-11-07T22:33:18.3053128Z   SUPERVISOR_TEST_OUTPUT: /home/runner/work/_temp/continuation-preflight
+2026-11-07T22:33:18.3053435Z ##[endgroup]
+2026-11-07T22:33:18.7094193Z test_early_parent_exit_with_unobserved_child (test_supervise_research_linux.LinuxSupervisor.test_early_parent_exit_with_unobserved_child) ... ok
+2026-11-07T22:33:18.8240275Z test_host_headroom_cap (test_supervise_research_linux.LinuxSupervisor.test_host_headroom_cap) ... ok
+2026-11-07T22:33:19.0093326Z test_interrupt_cleans_and_retains_failure (test_supervise_research_linux.LinuxSupervisor.test_interrupt_cleans_and_retains_failure) ... ok
+2026-11-07T22:33:19.1238042Z test_missing_executable_retains_failure_receipt (test_supervise_research_linux.LinuxSupervisor.test_missing_executable_retains_failure_receipt) ... ok
+2026-11-07T22:33:19.4386203Z test_orphan_in_separate_session_is_still_owned (test_supervise_research_linux.LinuxSupervisor.test_orphan_in_separate_session_is_still_owned) ... ok
+2026-11-07T22:33:19.5531161Z test_sampled_rss_cap (test_supervise_research_linux.LinuxSupervisor.test_sampled_rss_cap) ... ok
+2026-11-07T22:33:19.6676917Z test_sampling_error_fails_closed_and_cleans (test_supervise_research_linux.LinuxSupervisor.test_sampling_error_fails_closed_and_cleans) ... ok
+2026-11-07T22:33:19.7820448Z test_successful_fast_exit (test_supervise_research_linux.LinuxSupervisor.test_successful_fast_exit) ... ok
+2026-11-07T22:33:20.3976785Z test_termination_resistant_child_is_killed (test_supervise_research_linux.LinuxSupervisor.test_termination_resistant_child_is_killed) ... ok
+2026-11-07T22:33:20.7124299Z test_timeout (test_supervise_research_linux.LinuxSupervisor.test_timeout) ... ok
+2026-11-07T22:33:20.7124805Z 
+2026-11-07T22:33:20.7125041Z ----------------------------------------------------------------------
+2026-11-07T22:33:20.7125472Z Ran 10 tests in 2.318s
+2026-11-07T22:33:20.7125660Z 
+2026-11-07T22:33:20.7125758Z OK
+2026-11-07T22:33:20.7299613Z ##[group]Run actions/upload-artifact@v4
+2026-11-07T22:33:20.7299862Z with:
+2026-11-07T22:33:20.7300135Z   name: continuation-preflight-b35d1e9d231f46a59504399b1158c9ce3778cabb-1
+2026-11-07T22:33:20.7300514Z   path: /home/runner/work/_temp/continuation-preflight
+2026-11-07T22:33:20.7300777Z   if-no-files-found: error
+2026-11-07T22:33:20.7300976Z   compression-level: 6
+2026-11-07T22:33:20.7301162Z   overwrite: false
+2026-11-07T22:33:20.7301347Z   include-hidden-files: false
+2026-11-07T22:33:20.7301557Z env:
+2026-11-07T22:33:20.7301712Z   OMP_NUM_THREADS: 2
+2026-11-07T22:33:20.7302035Z   OPENBLAS_NUM_THREADS: 2
+2026-11-07T22:33:20.7302231Z   MKL_NUM_THREADS: 2
+2026-11-07T22:33:20.7302603Z   NUMEXPR_NUM_THREADS: 2
+2026-11-07T22:33:20.7302808Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-07T22:33:20.7303026Z   CONTINUATION_HOST_TIMEOUT_MINUTES: 240
+2026-11-07T22:33:20.7303289Z   CONTINUATION_HOST_STARTED_UTC: 2026-11-07T22:31:40+00:00
+2026-11-07T22:33:20.7303625Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:33:20.7303984Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib/pkgconfig
+2026-11-07T22:33:20.7304312Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:33:20.7304606Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:33:20.7304903Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:33:20.7305206Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib
+2026-11-07T22:33:20.7305465Z ##[endgroup]
+2026-11-07T22:33:20.8652825Z (node:2316) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-07T22:33:20.8653636Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-07T22:33:20.8816543Z With the provided path, there will be 71 files uploaded
+2026-11-07T22:33:20.8821210Z Artifact name is valid!
+2026-11-07T22:33:20.8821534Z Root directory input is valid!
+2026-11-07T22:33:21.2481895Z Beginning upload of artifact content to blob storage
+2026-11-07T22:33:21.3085718Z (node:2316) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-07T22:33:21.6356606Z Uploaded bytes 37989
+2026-11-07T22:33:21.7089757Z Finished uploading artifact content to blob storage!
+2026-11-07T22:33:21.7090387Z SHA256 digest of uploaded artifact zip is cd6131e8a4407d376bbcd8f0b6b32a6bb0e4e0685c5f4bbc02996c60de4035b1
+2026-11-07T22:33:21.7091365Z Finalizing artifact upload
+2026-11-07T22:33:22.0959408Z Artifact continuation-preflight-b35d1e9d231f46a59504399b1158c9ce3778cabb-1.zip successfully finalized. Artifact ID 13593606003
+2026-11-07T22:33:22.0960801Z Artifact continuation-preflight-b35d1e9d231f46a59504399b1158c9ce3778cabb-1 has been successfully uploaded! Final size is 37989 bytes. Artifact ID is 13593606003
+2026-11-07T22:33:22.0965389Z Artifact download URL: https://github.com/Drefetr/An_Evaluation_of_Earthquake_Models/actions/runs/42421020214/artifacts/13593606003
+2026-11-07T22:33:22.1103477Z ##[group]Run python -B scripts/run_continuation.py --admission validation/reproductions/continuation_20261107/dispatch.json --output "$RUNNER_TEMP/continuation"
+2026-11-07T22:33:22.1104446Z [36;1mpython -B scripts/run_continuation.py --admission validation/reproductions/continuation_20261107/dispatch.json --output "$RUNNER_TEMP/continuation"[0m
+2026-11-07T22:33:22.1122698Z shell: /usr/bin/bash -e {0}
+2026-11-07T22:33:22.1122950Z env:
+2026-11-07T22:33:22.1123142Z   OMP_NUM_THREADS: 2
+2026-11-07T22:33:22.1123350Z   OPENBLAS_NUM_THREADS: 2
+2026-11-07T22:33:22.1123547Z   MKL_NUM_THREADS: 2
+2026-11-07T22:33:22.1123731Z   NUMEXPR_NUM_THREADS: 2
+2026-11-07T22:33:22.1123937Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-07T22:33:22.1124160Z   CONTINUATION_HOST_TIMEOUT_MINUTES: 240
+2026-11-07T22:33:22.1124443Z   CONTINUATION_HOST_STARTED_UTC: 2026-11-07T22:31:40+00:00
+2026-11-07T22:33:22.1124755Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:33:22.1125141Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib/pkgconfig
+2026-11-07T22:33:22.1125494Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:33:22.1125815Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:33:22.1126129Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:33:22.1126439Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib
+2026-11-07T22:33:22.1128457Z   GITHUB_TOKEN: ***
+2026-11-07T22:33:22.1128829Z ##[endgroup]
+2026-11-07T22:33:26.7962884Z {"schema": "linux_research_supervisor_v1", "status": "failed", "started_utc": "2026-11-07T22:33:24.254020+00:00", "platform": "linux", "returncode": 1, "stop_reason": null, "launched": true, "cleanup_errors": [], "survivors_after_cleanup": [], "spec_sha256": "482241135f206fe5901a5bbf47cab27f35d073a5d46b89895aed7c159b706f31", "supervisor_sha256": "e8aaca56bb4bccf81aa9687a841d09d28bc5b2ff286de3c396ac37bd09324fcb", "containment": "Dedicated Linux session/group plus child-subreaper; parent PID retained until cleanup", "memory_scope": "Sampled process-tree RSS with enforcement after observation, not a hard OS memory reservation or exact unsampled peak", "execution_wall_seconds": 2.5267671269999994, "known_processes": [{"pid": 2335, "create_time": 1794090804.0}, {"pid": 2338, "create_time": 1794090804.38}, {"pid": 2339, "create_time": 1794090804.42}], "sample_count": 6, "sample_interval_seconds": 0.5, "sampled_peak_tree_rss_bytes": 242438144, "minimum_sampled_host_available_bytes": 15523356672, "wall_seconds_including_cleanup": 2.537754304999993, "finished_utc": "2026-11-07T22:33:26.795292+00:00", "execution_log_sha256": "d95f1b714dc6fd67350d69a3c0e46c94ca5dbbdb3e183ab23a8cdfbe2586163c"}
+2026-11-07T22:33:26.8518805Z ##[error]Process completed with exit code 1.
+2026-11-07T22:33:26.8578430Z ##[group]Run actions/upload-artifact@v4
+2026-11-07T22:33:26.8578684Z with:
+2026-11-07T22:33:26.8578939Z   name: continuation-b35d1e9d231f46a59504399b1158c9ce3778cabb-1
+2026-11-07T22:33:26.8583044Z   path: /home/runner/work/_temp/continuation/**/result.json
+/home/runner/work/_temp/continuation/**/launch.json
+/home/runner/work/_temp/continuation/**/progress.jsonl
+/home/runner/work/_temp/continuation/**/native_components.npz
+/home/runner/work/_temp/continuation/science/rows/**/*.json
+/home/runner/work/_temp/continuation/science/*.json
+/home/runner/work/_temp/continuation/science/*.jsonl
+/home/runner/work/_temp/continuation/science/cases/**
+/home/runner/work/_temp/continuation/science/attempts/**
+/home/runner/work/_temp/continuation/science/reviews/**
+/home/runner/work/_temp/continuation/science/training_resume/**
+/home/runner/work/_temp/continuation/science/transition/**
+/home/runner/work/_temp/continuation/*.json
+/home/runner/work/_temp/continuation/original_failure.zip
+/home/runner/work/_temp/continuation/supervision/*.json
+/home/runner/work/_temp/continuation/supervision/*.log
+/home/runner/work/_temp/continuation/build/**
+/home/runner/work/_temp/continuation/host/**
+/home/runner/work/_temp/continuation/reader/*.json
+/home/runner/work/_temp/continuation/reader/build/**
+/home/runner/work/_temp/continuation/reader/supervision/*.json
+/home/runner/work/_temp/continuation/reader/supervision/*.log
+/home/runner/work/_temp/continuation/reader/science/*.json
+/home/runner/work/_temp/continuation/reader/science/*.jsonl
+/home/runner/work/_temp/continuation/reader/science/rows/**/result.json
+/home/runner/work/_temp/continuation/reader/science/rows/**/native_components.npz
+
+2026-11-07T22:33:26.8587052Z   if-no-files-found: warn
+2026-11-07T22:33:26.8587267Z   compression-level: 6
+2026-11-07T22:33:26.8587456Z   overwrite: false
+2026-11-07T22:33:26.8587649Z   include-hidden-files: false
+2026-11-07T22:33:26.8587855Z env:
+2026-11-07T22:33:26.8588026Z   OMP_NUM_THREADS: 2
+2026-11-07T22:33:26.8588212Z   OPENBLAS_NUM_THREADS: 2
+2026-11-07T22:33:26.8588399Z   MKL_NUM_THREADS: 2
+2026-11-07T22:33:26.8588611Z   NUMEXPR_NUM_THREADS: 2
+2026-11-07T22:33:26.8588813Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-07T22:33:26.8589031Z   CONTINUATION_HOST_TIMEOUT_MINUTES: 240
+2026-11-07T22:33:26.8589309Z   CONTINUATION_HOST_STARTED_UTC: 2026-11-07T22:31:40+00:00
+2026-11-07T22:33:26.8589624Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:33:26.8589975Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib/pkgconfig
+2026-11-07T22:33:26.8590315Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:33:26.8590628Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:33:26.8591098Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:33:26.8591402Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib
+2026-11-07T22:33:26.8591673Z ##[endgroup]
+2026-11-07T22:33:26.9965073Z (node:2347) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-07T22:33:26.9966139Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-07T22:33:27.1880021Z With the provided path, there will be 329 files uploaded
+2026-11-07T22:33:27.1880472Z Artifact name is valid!
+2026-11-07T22:33:27.1880684Z Root directory input is valid!
+2026-11-07T22:33:27.5349455Z Beginning upload of artifact content to blob storage
+2026-11-07T22:33:27.8831642Z (node:2347) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-07T22:33:28.7227476Z Uploaded bytes 8388608
+2026-11-07T22:33:28.9319302Z Uploaded bytes 15642805
+2026-11-07T22:33:29.0038299Z Finished uploading artifact content to blob storage!
+2026-11-07T22:33:29.0039171Z SHA256 digest of uploaded artifact zip is 844495719d70bf2c13b8e2cad1ae9c6617e857423461a0d97cf72e0a13931158
+2026-11-07T22:33:29.0040747Z Finalizing artifact upload
+2026-11-07T22:33:29.8424778Z Artifact continuation-b35d1e9d231f46a59504399b1158c9ce3778cabb-1.zip successfully finalized. Artifact ID 13593182913
+2026-11-07T22:33:29.8425636Z Artifact continuation-b35d1e9d231f46a59504399b1158c9ce3778cabb-1 has been successfully uploaded! Final size is 15642805 bytes. Artifact ID is 13593182913
+2026-11-07T22:33:29.8430246Z Artifact download URL: https://github.com/Drefetr/An_Evaluation_of_Earthquake_Models/actions/runs/42421020214/artifacts/13593182913
+2026-11-07T22:33:29.8658319Z Post job cleanup.
+2026-11-07T22:33:29.9373218Z [command]/usr/bin/git version
+2026-11-07T22:33:29.9393828Z git version 2.56.0
+2026-11-07T22:33:29.9427960Z Temporarily overriding HOME='/home/runner/work/_temp/f954614a-a059-4cb9-88bd-0be67888637a' before making global git config changes
+2026-11-07T22:33:29.9428860Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-07T22:33:29.9433084Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models
+2026-11-07T22:33:29.9473009Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-07T22:33:29.9506459Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-07T22:33:29.9753587Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-07T22:33:29.9772327Z http.https://github.com/.extraheader
+2026-11-07T22:33:29.9782901Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-07T22:33:29.9817417Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-07T22:33:30.0061660Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-07T22:33:30.0101895Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-07T22:33:30.0460473Z Cleaning up orphan processes
+2026-11-07T22:33:30.0771560Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+

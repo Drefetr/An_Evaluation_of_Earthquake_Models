@@ -1,0 +1,422 @@
+﻿2026-11-07T22:50:26.8602039Z Current runner version: '2.338.2'
+2026-11-07T22:50:26.8623323Z ##[group]Runner Image Provisioner
+2026-11-07T22:50:26.8624498Z Hosted Compute Agent
+2026-11-07T22:50:26.8625008Z Version: 20261028.624
+2026-11-07T22:50:26.8625533Z Commit: 54898b74c23fde5556c9b3c3a2290865feef0dfe
+2026-11-07T22:50:26.8626230Z Build Date: 2026-10-28T21:51:42Z
+2026-11-07T22:50:26.8626826Z Worker ID: {680baf46-e4d9-41d0-b13b-b74c3cf33b09}
+2026-11-07T22:50:26.8627446Z Region: westus3
+2026-11-07T22:50:26.8628195Z Cloud: Azure
+2026-11-07T22:50:26.8628673Z ##[endgroup]
+2026-11-07T22:50:26.8630203Z ##[group]Operating System
+2026-11-07T22:50:26.8630739Z Ubuntu
+2026-11-07T22:50:26.8631237Z 24.04.5
+2026-11-07T22:50:26.8631708Z LTS
+2026-11-07T22:50:26.8632194Z ##[endgroup]
+2026-11-07T22:50:26.8632719Z ##[group]Runner Image
+2026-11-07T22:50:26.8633250Z Image: ubuntu-24.04
+2026-11-07T22:50:26.8633729Z Version: 20261101.360.1
+2026-11-07T22:50:26.8634846Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261101.360/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-07T22:50:26.8636210Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261101.360
+2026-11-07T22:50:26.8637015Z ##[endgroup]
+2026-11-07T22:50:26.8638149Z ##[group]GITHUB_TOKEN Permissions
+2026-11-07T22:50:26.8639889Z Contents: read
+2026-11-07T22:50:26.8640424Z Metadata: read
+2026-11-07T22:50:26.8641043Z ##[endgroup]
+2026-11-07T22:50:26.8642794Z Secret source: Actions
+2026-11-07T22:50:26.8643643Z Cache mode: write
+2026-11-07T22:50:26.8644273Z Prepare workflow directory
+2026-11-07T22:50:26.8959981Z Prepare all required actions
+2026-11-07T22:50:26.8998458Z Getting action download info
+2026-11-07T22:50:27.2170280Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-07T22:50:27.3481446Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-11-07T22:50:27.4580808Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-07T22:50:27.6984339Z Complete job name: diagnostic
+2026-11-07T22:50:27.7677451Z ##[group]Run actions/checkout@v4
+2026-11-07T22:50:27.7678286Z with:
+2026-11-07T22:50:27.7678724Z   repository: Drefetr/An_Evaluation_of_Earthquake_Models
+2026-11-07T22:50:27.7681908Z   token: ***
+2026-11-07T22:50:27.7682264Z   ssh-strict: true
+2026-11-07T22:50:27.7682624Z   ssh-user: git
+2026-11-07T22:50:27.7682983Z   persist-credentials: true
+2026-11-07T22:50:27.7683376Z   clean: true
+2026-11-07T22:50:27.7683737Z   sparse-checkout-cone-mode: true
+2026-11-07T22:50:27.7684159Z   fetch-depth: 1
+2026-11-07T22:50:27.7684509Z   fetch-tags: false
+2026-11-07T22:50:27.7684875Z   show-progress: true
+2026-11-07T22:50:27.7685241Z   lfs: false
+2026-11-07T22:50:27.7685582Z   submodules: false
+2026-11-07T22:50:27.7685947Z   set-safe-directory: true
+2026-11-07T22:50:27.7686351Z   allow-unsafe-pr-checkout: false
+2026-11-07T22:50:27.7686894Z env:
+2026-11-07T22:50:27.7687313Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-07T22:50:27.7687852Z   OMP_NUM_THREADS: 2
+2026-11-07T22:50:27.7688260Z   OPENBLAS_NUM_THREADS: 2
+2026-11-07T22:50:27.7688646Z   MKL_NUM_THREADS: 2
+2026-11-07T22:50:27.7689008Z   NUMEXPR_NUM_THREADS: 2
+2026-11-07T22:50:27.7689378Z   BLIS_NUM_THREADS: 2
+2026-11-07T22:50:27.7689733Z ##[endgroup]
+2026-11-07T22:50:27.9610758Z Syncing repository: Drefetr/An_Evaluation_of_Earthquake_Models
+2026-11-07T22:50:27.9612329Z ##[group]Getting Git version info
+2026-11-07T22:50:27.9613121Z Working directory is '/home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models'
+2026-11-07T22:50:27.9614178Z [command]/usr/bin/git version
+2026-11-07T22:50:27.9661168Z git version 2.56.0
+2026-11-07T22:50:27.9679105Z ##[endgroup]
+2026-11-07T22:50:27.9691870Z Temporarily overriding HOME='/home/runner/work/_temp/6e56e72e-892c-4040-81b6-c2c53c771d22' before making global git config changes
+2026-11-07T22:50:27.9693636Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-07T22:50:27.9700112Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models
+2026-11-07T22:50:27.9741814Z Deleting the contents of '/home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models'
+2026-11-07T22:50:27.9744686Z ##[group]Initializing the repository
+2026-11-07T22:50:27.9748292Z [command]/usr/bin/git init /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models
+2026-11-07T22:50:27.9821826Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-07T22:50:27.9823018Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-07T22:50:27.9824309Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-07T22:50:27.9825272Z hint: call:
+2026-11-07T22:50:27.9825765Z hint:
+2026-11-07T22:50:27.9826384Z hint: 	git config --global init.defaultBranch <name>
+2026-11-07T22:50:27.9827131Z hint:
+2026-11-07T22:50:27.9828051Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-07T22:50:27.9829216Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-07T22:50:27.9830137Z hint:
+2026-11-07T22:50:27.9830625Z hint: 	git branch -m <name>
+2026-11-07T22:50:27.9831195Z hint:
+2026-11-07T22:50:27.9831955Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-07T22:50:27.9833629Z Initialized empty Git repository in /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/.git/
+2026-11-07T22:50:27.9839700Z [command]/usr/bin/git remote add origin https://github.com/Drefetr/An_Evaluation_of_Earthquake_Models
+2026-11-07T22:50:27.9880763Z ##[endgroup]
+2026-11-07T22:50:27.9881695Z ##[group]Disabling automatic garbage collection
+2026-11-07T22:50:27.9883881Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-07T22:50:27.9914451Z ##[endgroup]
+2026-11-07T22:50:27.9915294Z ##[group]Setting up auth
+2026-11-07T22:50:27.9919910Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-07T22:50:27.9950611Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-07T22:50:28.0245245Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-07T22:50:28.0298099Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-07T22:50:28.0501732Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-07T22:50:28.0541461Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-07T22:50:28.0747925Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-07T22:50:28.0820133Z ##[endgroup]
+2026-11-07T22:50:28.0820815Z ##[group]Fetching the repository
+2026-11-07T22:50:28.0830586Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +c314e8505b5244393c9991722cd8bb3dcc524b4c:refs/remotes/origin/research/joint_replay_20261107T045457Z-integration
+2026-11-07T22:51:10.2780592Z From https://github.com/Drefetr/An_Evaluation_of_Earthquake_Models
+2026-11-07T22:51:10.2781389Z  * [new ref]         c314e8505b5244393c9991722cd8bb3dcc524b4c -> origin/research/joint_replay_20261107T045457Z-integration
+2026-11-07T22:51:10.2783077Z ##[endgroup]
+2026-11-07T22:51:10.2783732Z ##[group]Determining the checkout info
+2026-11-07T22:51:10.2784376Z ##[endgroup]
+2026-11-07T22:51:10.2789831Z [command]/usr/bin/git sparse-checkout disable
+2026-11-07T22:51:10.2852872Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-07T22:51:10.2888677Z ##[group]Checking out the ref
+2026-11-07T22:51:10.2892126Z [command]/usr/bin/git checkout --progress --force -B research/joint_replay_20261107T045457Z-integration refs/remotes/origin/research/joint_replay_20261107T045457Z-integration
+2026-11-07T22:51:11.5993818Z Updating files:  27% (2652/9542)
+2026-11-07T22:51:12.4515180Z Updating files:  28% (2672/9542)
+2026-11-07T22:51:13.3041510Z Updating files:  28% (2707/9542)
+2026-11-07T22:51:13.6140334Z Updating files:  28% (2729/9542)
+2026-11-07T22:51:13.6467330Z Updating files:  29% (2768/9542)
+2026-11-07T22:51:13.6592489Z Updating files:  30% (2863/9542)
+2026-11-07T22:51:13.6723891Z Updating files:  31% (2959/9542)
+2026-11-07T22:51:13.6817919Z Updating files:  32% (3054/9542)
+2026-11-07T22:51:13.6867384Z Updating files:  33% (3149/9542)
+2026-11-07T22:51:13.6898086Z Updating files:  34% (3245/9542)
+2026-11-07T22:51:13.6931698Z Updating files:  35% (3340/9542)
+2026-11-07T22:51:13.6967779Z Updating files:  36% (3436/9542)
+2026-11-07T22:51:13.6999035Z Updating files:  37% (3531/9542)
+2026-11-07T22:51:13.7031020Z Updating files:  38% (3626/9542)
+2026-11-07T22:51:13.7065406Z Updating files:  39% (3722/9542)
+2026-11-07T22:51:13.7098889Z Updating files:  40% (3817/9542)
+2026-11-07T22:51:13.7130250Z Updating files:  41% (3913/9542)
+2026-11-07T22:51:13.7161997Z Updating files:  42% (4008/9542)
+2026-11-07T22:51:13.7194348Z Updating files:  43% (4104/9542)
+2026-11-07T22:51:13.7226985Z Updating files:  44% (4199/9542)
+2026-11-07T22:51:13.7261683Z Updating files:  45% (4294/9542)
+2026-11-07T22:51:13.7295535Z Updating files:  46% (4390/9542)
+2026-11-07T22:51:13.7329547Z Updating files:  47% (4485/9542)
+2026-11-07T22:51:13.7362525Z Updating files:  48% (4581/9542)
+2026-11-07T22:51:13.7393492Z Updating files:  49% (4676/9542)
+2026-11-07T22:51:13.7424076Z Updating files:  50% (4771/9542)
+2026-11-07T22:51:13.7455650Z Updating files:  51% (4867/9542)
+2026-11-07T22:51:13.7487183Z Updating files:  52% (4962/9542)
+2026-11-07T22:51:13.7519987Z Updating files:  53% (5058/9542)
+2026-11-07T22:51:13.7559418Z Updating files:  54% (5153/9542)
+2026-11-07T22:51:13.7610152Z Updating files:  55% (5249/9542)
+2026-11-07T22:51:13.7806824Z Updating files:  56% (5344/9542)
+2026-11-07T22:51:13.7927001Z Updating files:  57% (5439/9542)
+2026-11-07T22:51:13.7992334Z Updating files:  58% (5535/9542)
+2026-11-07T22:51:13.8061748Z Updating files:  59% (5630/9542)
+2026-11-07T22:51:13.8126085Z Updating files:  60% (5726/9542)
+2026-11-07T22:51:13.8192951Z Updating files:  61% (5821/9542)
+2026-11-07T22:51:13.8261229Z Updating files:  62% (5917/9542)
+2026-11-07T22:51:13.8327216Z Updating files:  63% (6012/9542)
+2026-11-07T22:51:13.8394157Z Updating files:  64% (6107/9542)
+2026-11-07T22:51:13.8459492Z Updating files:  65% (6203/9542)
+2026-11-07T22:51:13.8531317Z Updating files:  66% (6298/9542)
+2026-11-07T22:51:13.8603151Z Updating files:  67% (6394/9542)
+2026-11-07T22:51:13.8675658Z Updating files:  68% (6489/9542)
+2026-11-07T22:51:13.8751613Z Updating files:  69% (6584/9542)
+2026-11-07T22:51:13.8905094Z Updating files:  70% (6680/9542)
+2026-11-07T22:51:13.8987020Z Updating files:  71% (6775/9542)
+2026-11-07T22:51:13.9053960Z Updating files:  72% (6871/9542)
+2026-11-07T22:51:13.9119018Z Updating files:  73% (6966/9542)
+2026-11-07T22:51:13.9185939Z Updating files:  74% (7062/9542)
+2026-11-07T22:51:13.9252832Z Updating files:  75% (7157/9542)
+2026-11-07T22:51:13.9320696Z Updating files:  76% (7252/9542)
+2026-11-07T22:51:13.9387726Z Updating files:  77% (7348/9542)
+2026-11-07T22:51:13.9447335Z Updating files:  78% (7443/9542)
+2026-11-07T22:51:13.9505677Z Updating files:  79% (7539/9542)
+2026-11-07T22:51:13.9580797Z Updating files:  80% (7634/9542)
+2026-11-07T22:51:13.9615675Z Updating files:  81% (7730/9542)
+2026-11-07T22:51:13.9649125Z Updating files:  82% (7825/9542)
+2026-11-07T22:51:13.9682319Z Updating files:  83% (7920/9542)
+2026-11-07T22:51:13.9713770Z Updating files:  84% (8016/9542)
+2026-11-07T22:51:13.9745512Z Updating files:  85% (8111/9542)
+2026-11-07T22:51:13.9775758Z Updating files:  86% (8207/9542)
+2026-11-07T22:51:13.9803815Z Updating files:  87% (8302/9542)
+2026-11-07T22:51:13.9853531Z Updating files:  88% (8397/9542)
+2026-11-07T22:51:14.0445827Z Updating files:  89% (8493/9542)
+2026-11-07T22:51:14.0723265Z Updating files:  90% (8588/9542)
+2026-11-07T22:51:14.0775252Z Updating files:  91% (8684/9542)
+2026-11-07T22:51:14.0843037Z Updating files:  92% (8779/9542)
+2026-11-07T22:51:14.0903906Z Updating files:  93% (8875/9542)
+2026-11-07T22:51:14.0952180Z Updating files:  94% (8970/9542)
+2026-11-07T22:51:14.2035790Z Updating files:  95% (9065/9542)
+2026-11-07T22:51:14.2043520Z Updating files:  96% (9161/9542)
+2026-11-07T22:51:14.2750622Z Updating files:  97% (9256/9542)
+2026-11-07T22:51:14.2880949Z Updating files:  98% (9352/9542)
+2026-11-07T22:51:14.2998164Z Updating files:  99% (9447/9542)
+2026-11-07T22:51:14.3169375Z Updating files:  99% (9466/9542)
+2026-11-07T22:51:14.3170001Z Updating files: 100% (9542/9542)
+2026-11-07T22:51:14.3170332Z Updating files: 100% (9542/9542), done.
+2026-11-07T22:51:14.4849341Z Switched to a new branch 'research/joint_replay_20261107T045457Z-integration'
+2026-11-07T22:51:14.4850531Z branch 'research/joint_replay_20261107T045457Z-integration' set up to track 'origin/research/joint_replay_20261107T045457Z-integration'.
+2026-11-07T22:51:14.5120801Z ##[endgroup]
+2026-11-07T22:51:14.5173806Z [command]/usr/bin/git log -1 --format=%H
+2026-11-07T22:51:14.5209051Z c314e8505b5244393c9991722cd8bb3dcc524b4c
+2026-11-07T22:51:14.6098200Z ##[group]Run actions/setup-python@v5
+2026-11-07T22:51:14.6098450Z with:
+2026-11-07T22:51:14.6098627Z   python-version: 3.13.18
+2026-11-07T22:51:14.6098822Z   cache: pip
+2026-11-07T22:51:14.6099010Z   check-latest: false
+2026-11-07T22:51:14.6100893Z   token: ***
+2026-11-07T22:51:14.6101068Z   update-environment: true
+2026-11-07T22:51:14.6101286Z   allow-prereleases: false
+2026-11-07T22:51:14.6101471Z   freethreaded: false
+2026-11-07T22:51:14.6101645Z env:
+2026-11-07T22:51:14.6101812Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-07T22:51:14.6102020Z   OMP_NUM_THREADS: 2
+2026-11-07T22:51:14.6102222Z   OPENBLAS_NUM_THREADS: 2
+2026-11-07T22:51:14.6102406Z   MKL_NUM_THREADS: 2
+2026-11-07T22:51:14.6102579Z   NUMEXPR_NUM_THREADS: 2
+2026-11-07T22:51:14.6102757Z   BLIS_NUM_THREADS: 2
+2026-11-07T22:51:14.6102923Z ##[endgroup]
+2026-11-07T22:51:14.7790661Z ##[group]Installed versions
+2026-11-07T22:51:14.7822235Z (node:2141) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-07T22:51:14.7823122Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-07T22:51:14.7823649Z Successfully set up CPython (3.13.18)
+2026-11-07T22:51:14.7824375Z ##[endgroup]
+2026-11-07T22:51:15.3150687Z [command]/opt/hostedtoolcache/Python/3.13.18/x64/bin/pip cache dir
+2026-11-07T22:51:15.9183224Z /home/runner/.cache/pip
+2026-11-07T22:51:16.1566283Z Cache hit for: setup-python-Linux-x64-24.04-Ubuntu-python-3.13.18-pip-a1bd06fa1bbdf82681ac917566054635b071af1bc7a263a680c87af6476ed699
+2026-11-07T22:51:16.1644680Z (node:2141) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-07T22:51:17.4252677Z Received 54525952 of 130291886 (41.8%), 52.0 MBs/sec
+2026-11-07T22:51:17.8474702Z Received 130291886 of 130291886 (100.0%), 87.4 MBs/sec
+2026-11-07T22:51:17.8475955Z Cache Size: ~124 MB (130291886 B)
+2026-11-07T22:51:17.8504534Z [command]/usr/bin/tar -xf /home/runner/work/_temp/e62c9fd2-1161-4e52-84a4-2bac4a04ebe9/cache.tzst -P -C /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models --use-compress-program unzstd
+2026-11-07T22:51:18.0518170Z Cache restored successfully
+2026-11-07T22:51:18.0574781Z Cache restored from key: setup-python-Linux-x64-24.04-Ubuntu-python-3.13.18-pip-a1bd06fa1bbdf82681ac917566054635b071af1bc7a263a680c87af6476ed699
+2026-11-07T22:51:18.1016296Z ##[group]Run python -m pip install -r requirements-cpu.txt
+2026-11-07T22:51:18.1016912Z [36;1mpython -m pip install -r requirements-cpu.txt[0m
+2026-11-07T22:51:18.1040335Z shell: /usr/bin/bash -e {0}
+2026-11-07T22:51:18.1040554Z env:
+2026-11-07T22:51:18.1040735Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-07T22:51:18.1040952Z   OMP_NUM_THREADS: 2
+2026-11-07T22:51:18.1041138Z   OPENBLAS_NUM_THREADS: 2
+2026-11-07T22:51:18.1041331Z   MKL_NUM_THREADS: 2
+2026-11-07T22:51:18.1041507Z   NUMEXPR_NUM_THREADS: 2
+2026-11-07T22:51:18.1041693Z   BLIS_NUM_THREADS: 2
+2026-11-07T22:51:18.1041934Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:51:18.1042300Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib/pkgconfig
+2026-11-07T22:51:18.1042646Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:51:18.1042945Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:51:18.1043301Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:51:18.1043604Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib
+2026-11-07T22:51:18.1043874Z ##[endgroup]
+2026-11-07T22:51:19.3949070Z Collecting numpy==2.2.6 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 1))
+2026-11-07T22:51:19.3961419Z   Using cached numpy-2.2.6-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (62 kB)
+2026-11-07T22:51:19.5208440Z Collecting scipy==1.15.3 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 2))
+2026-11-07T22:51:19.5221376Z   Using cached scipy-1.15.3-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (61 kB)
+2026-11-07T22:51:19.7679670Z Collecting pandas==2.3.3 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 3))
+2026-11-07T22:51:19.7693482Z   Using cached pandas-2.3.3-cp313-cp313-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (91 kB)
+2026-11-07T22:51:19.9203888Z Collecting numexpr==2.14.1 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 4))
+2026-11-07T22:51:19.9214207Z   Using cached numexpr-2.14.1-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.0 kB)
+2026-11-07T22:51:20.1945674Z Collecting matplotlib==3.11.2 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 5))
+2026-11-07T22:51:20.1957272Z   Using cached matplotlib-3.11.2-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (80 kB)
+2026-11-07T22:51:20.2958479Z Collecting mpmath==1.3.0 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 6))
+2026-11-07T22:51:20.2970722Z   Using cached mpmath-1.3.0-py3-none-any.whl.metadata (8.6 kB)
+2026-11-07T22:51:20.4915061Z Collecting sympy==1.14.0 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 7))
+2026-11-07T22:51:20.4925372Z   Using cached sympy-1.14.0-py3-none-any.whl.metadata (12 kB)
+2026-11-07T22:51:20.7385798Z Collecting PyMuPDF==1.28.2 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 8))
+2026-11-07T22:51:20.7396981Z   Using cached pymupdf-1.28.2-cp310-abi3-manylinux_2_28_x86_64.whl.metadata (26 kB)
+2026-11-07T22:51:20.9607103Z Collecting Pillow==12.0.0 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 9))
+2026-11-07T22:51:20.9618699Z   Using cached pillow-12.0.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (8.8 kB)
+2026-11-07T22:51:21.1738818Z Collecting PyYAML==6.0.3 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 10))
+2026-11-07T22:51:21.1749359Z   Using cached pyyaml-6.0.3-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+2026-11-07T22:51:21.3366590Z Collecting threadpoolctl==3.6.0 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 11))
+2026-11-07T22:51:21.3376708Z   Using cached threadpoolctl-3.6.0-py3-none-any.whl.metadata (13 kB)
+2026-11-07T22:51:21.5467848Z Collecting psutil==7.0.0 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 12))
+2026-11-07T22:51:21.5478944Z   Using cached psutil-7.0.0-cp36-abi3-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (22 kB)
+2026-11-07T22:51:21.6209484Z Collecting reportlab==5.1.0 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 13))
+2026-11-07T22:51:21.6220303Z   Using cached reportlab-5.1.0-py3-none-any.whl.metadata (1.6 kB)
+2026-11-07T22:51:21.6332190Z Collecting python-dateutil>=2.8.2 (from pandas==2.3.3->-r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 3))
+2026-11-07T22:51:21.6340819Z   Using cached python_dateutil-4.0.0-py3-none-any.whl.metadata (7.3 kB)
+2026-11-07T22:51:21.6557373Z Collecting pytz>=2020.1 (from pandas==2.3.3->-r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 3))
+2026-11-07T22:51:21.6566682Z   Using cached pytz-2026.6-py2.py3-none-any.whl.metadata (22 kB)
+2026-11-07T22:51:21.6663483Z Collecting tzdata>=2022.7 (from pandas==2.3.3->-r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 3))
+2026-11-07T22:51:21.6672309Z   Using cached tzdata-2026.6-py2.py3-none-any.whl.metadata (1.4 kB)
+2026-11-07T22:51:21.7102834Z Collecting contourpy>=1.0.1 (from matplotlib==3.11.2->-r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 5))
+2026-11-07T22:51:21.7113255Z   Using cached contourpy-1.4.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (3.8 kB)
+2026-11-07T22:51:21.7192988Z Collecting cycler>=0.10 (from matplotlib==3.11.2->-r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 5))
+2026-11-07T22:51:21.7202231Z   Using cached cycler-0.12.1-py3-none-any.whl.metadata (3.8 kB)
+2026-11-07T22:51:21.8250402Z Collecting fonttools>=4.28.2 (from matplotlib==3.11.2->-r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 5))
+2026-11-07T22:51:21.8262663Z   Using cached fonttools-4.68.0-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (139 kB)
+2026-11-07T22:51:21.8999381Z Collecting kiwisolver>=1.3.1 (from matplotlib==3.11.2->-r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 5))
+2026-11-07T22:51:21.9010120Z   Using cached kiwisolver-1.5.1-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (5.2 kB)
+2026-11-07T22:51:21.9120621Z Collecting packaging>=20.0 (from matplotlib==3.11.2->-r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 5))
+2026-11-07T22:51:21.9130057Z   Using cached packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+2026-11-07T22:51:21.9278266Z Collecting pyparsing>=3 (from matplotlib==3.11.2->-r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 5))
+2026-11-07T22:51:21.9287349Z   Using cached pyparsing-3.3.3-py3-none-any.whl.metadata (5.9 kB)
+2026-11-07T22:51:22.0168071Z Collecting charset-normalizer (from reportlab==5.1.0->-r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 13))
+2026-11-07T22:51:22.0181219Z   Using cached charset_normalizer-3.5.2-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (46 kB)
+2026-11-07T22:51:22.0260074Z Using cached numpy-2.2.6-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (16.5 MB)
+2026-11-07T22:51:22.0316841Z Using cached scipy-1.15.3-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (37.3 MB)
+2026-11-07T22:51:22.0430637Z Using cached pandas-2.3.3-cp313-cp313-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (12.3 MB)
+2026-11-07T22:51:22.0475521Z Using cached numexpr-2.14.1-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (446 kB)
+2026-11-07T22:51:22.0486644Z Using cached matplotlib-3.11.2-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (9.9 MB)
+2026-11-07T22:51:22.0523557Z Using cached mpmath-1.3.0-py3-none-any.whl (536 kB)
+2026-11-07T22:51:22.0534463Z Using cached sympy-1.14.0-py3-none-any.whl (6.3 MB)
+2026-11-07T22:51:22.0561162Z Using cached pymupdf-1.28.2-cp310-abi3-manylinux_2_28_x86_64.whl (25.8 MB)
+2026-11-07T22:51:22.0641585Z Using cached pillow-12.0.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (7.0 MB)
+2026-11-07T22:51:22.0670520Z Using cached pyyaml-6.0.3-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (801 kB)
+2026-11-07T22:51:22.0681506Z Using cached threadpoolctl-3.6.0-py3-none-any.whl (18 kB)
+2026-11-07T22:51:22.0691162Z Using cached psutil-7.0.0-cp36-abi3-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (277 kB)
+2026-11-07T22:51:22.0700438Z Using cached reportlab-5.1.0-py3-none-any.whl (2.0 MB)
+2026-11-07T22:51:22.0715060Z Using cached contourpy-1.4.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (384 kB)
+2026-11-07T22:51:22.0724649Z Using cached cycler-0.12.1-py3-none-any.whl (8.3 kB)
+2026-11-07T22:51:22.0733535Z Using cached fonttools-4.68.0-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (5.4 MB)
+2026-11-07T22:51:22.0757218Z Using cached kiwisolver-1.5.1-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (1.5 MB)
+2026-11-07T22:51:22.0770008Z Using cached packaging-26.3-py3-none-any.whl (129 kB)
+2026-11-07T22:51:22.0778933Z Using cached pyparsing-3.3.3-py3-none-any.whl (126 kB)
+2026-11-07T22:51:22.0787468Z Using cached python_dateutil-4.0.0-py3-none-any.whl (92 kB)
+2026-11-07T22:51:22.0796166Z Using cached pytz-2026.6-py2.py3-none-any.whl (506 kB)
+2026-11-07T22:51:22.0806068Z Using cached tzdata-2026.6-py2.py3-none-any.whl (348 kB)
+2026-11-07T22:51:22.0815809Z Using cached charset_normalizer-3.5.2-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (254 kB)
+2026-11-07T22:51:22.4330747Z Installing collected packages: pytz, mpmath, tzdata, threadpoolctl, sympy, PyYAML, pyparsing, PyMuPDF, psutil, Pillow, packaging, numpy, kiwisolver, fonttools, cycler, charset-normalizer, scipy, reportlab, python-dateutil, numexpr, contourpy, pandas, matplotlib
+2026-11-07T22:51:40.7682795Z 
+2026-11-07T22:51:40.7706347Z Successfully installed Pillow-12.0.0 PyMuPDF-1.28.2 PyYAML-6.0.3 charset-normalizer-3.5.2 contourpy-1.4.0 cycler-0.12.1 fonttools-4.68.0 kiwisolver-1.5.1 matplotlib-3.11.2 mpmath-1.3.0 numexpr-2.14.1 numpy-2.2.6 packaging-26.3 pandas-2.3.3 psutil-7.0.0 pyparsing-3.3.3 python-dateutil-4.0.0 pytz-2026.6 reportlab-5.1.0 scipy-1.15.3 sympy-1.14.0 threadpoolctl-3.6.0 tzdata-2026.6
+2026-11-07T22:51:40.7713081Z 
+2026-11-07T22:51:40.7713360Z [notice] A new release of pip is available: 26.2.2 -> 26.3
+2026-11-07T22:51:40.7713693Z [notice] To update, run: pip install --upgrade pip
+2026-11-07T22:51:40.8930164Z ##[group]Run python -B -m unittest discover -s tests -p test_joint_support_diagnostic.py -v
+2026-11-07T22:51:40.8930692Z [36;1mpython -B -m unittest discover -s tests -p test_joint_support_diagnostic.py -v[0m
+2026-11-07T22:51:40.8949971Z shell: /usr/bin/bash -e {0}
+2026-11-07T22:51:40.8950190Z env:
+2026-11-07T22:51:40.8950378Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-07T22:51:40.8950602Z   OMP_NUM_THREADS: 2
+2026-11-07T22:51:40.8950783Z   OPENBLAS_NUM_THREADS: 2
+2026-11-07T22:51:40.8950967Z   MKL_NUM_THREADS: 2
+2026-11-07T22:51:40.8951145Z   NUMEXPR_NUM_THREADS: 2
+2026-11-07T22:51:40.8951497Z   BLIS_NUM_THREADS: 2
+2026-11-07T22:51:40.8951726Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:51:40.8952066Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib/pkgconfig
+2026-11-07T22:51:40.8952394Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:51:40.8952694Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:51:40.8953051Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:51:40.8953351Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib
+2026-11-07T22:51:40.8953615Z ##[endgroup]
+2026-11-07T22:51:41.5276536Z test_exact_five_training_checks_and_no_optimizer (test_joint_support_diagnostic.SupportDiagnosticControls.test_exact_five_training_checks_and_no_optimizer) ... ok
+2026-11-07T22:51:41.5440618Z test_five_check_diagnostic_retains_actual_shape_mismatch_without_relaxation (test_joint_support_diagnostic.SupportDiagnosticControls.test_five_check_diagnostic_retains_actual_shape_mismatch_without_relaxation) ... ok
+2026-11-07T22:51:41.5494316Z test_guard_rejects_sixth_or_wrong_evaluation_before_objective (test_joint_support_diagnostic.SupportDiagnosticControls.test_guard_rejects_sixth_or_wrong_evaluation_before_objective) ... ok
+2026-11-07T22:51:41.5519571Z test_partial_evaluation_error_is_durable (test_joint_support_diagnostic.SupportDiagnosticControls.test_partial_evaluation_error_is_durable) ... ok
+2026-11-07T22:51:41.5606590Z test_recovery_records_full_check_before_unchanged_guard_raises (test_joint_support_diagnostic.SupportDiagnosticControls.test_recovery_records_full_check_before_unchanged_guard_raises) ... ok
+2026-11-07T22:51:41.5632459Z test_recursive_comparison_preserves_signed_zero_and_missing_fields (test_joint_support_diagnostic.SupportDiagnosticControls.test_recursive_comparison_preserves_signed_zero_and_missing_fields) ... ok
+2026-11-07T22:51:41.5633076Z 
+2026-11-07T22:51:41.5633216Z ----------------------------------------------------------------------
+2026-11-07T22:51:41.5633578Z Ran 6 tests in 0.060s
+2026-11-07T22:51:41.5633703Z 
+2026-11-07T22:51:41.5633787Z OK
+2026-11-07T22:51:41.6087005Z ##[group]Run python -B scripts/run_joint_support_diagnostic.py --admission validation/reproductions/continuation_20261107/joint_support_diagnostic_admission.json --output "$RUNNER_TEMP/support-diagnostic"
+2026-11-07T22:51:41.6088387Z [36;1mpython -B scripts/run_joint_support_diagnostic.py --admission validation/reproductions/continuation_20261107/joint_support_diagnostic_admission.json --output "$RUNNER_TEMP/support-diagnostic"[0m
+2026-11-07T22:51:41.6107053Z shell: /usr/bin/bash -e {0}
+2026-11-07T22:51:41.6107257Z env:
+2026-11-07T22:51:41.6107447Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-07T22:51:41.6107848Z   OMP_NUM_THREADS: 2
+2026-11-07T22:51:41.6108034Z   OPENBLAS_NUM_THREADS: 2
+2026-11-07T22:51:41.6108221Z   MKL_NUM_THREADS: 2
+2026-11-07T22:51:41.6108401Z   NUMEXPR_NUM_THREADS: 2
+2026-11-07T22:51:41.6108582Z   BLIS_NUM_THREADS: 2
+2026-11-07T22:51:41.6108813Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:51:41.6109218Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib/pkgconfig
+2026-11-07T22:51:41.6109549Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:51:41.6109850Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:51:41.6110153Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:51:41.6110456Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib
+2026-11-07T22:51:41.6110714Z ##[endgroup]
+2026-11-07T22:51:44.1077769Z {"schema": "linux_research_supervisor_v1", "status": "passed", "started_utc": "2026-11-07T22:51:42.071541+00:00", "platform": "linux", "returncode": 0, "stop_reason": null, "launched": true, "cleanup_errors": [], "survivors_after_cleanup": [], "spec_sha256": "e7567b9cf52d4427d63a39baa97b5db81fe6ca585bd12aa4ad13bdc963172fb1", "supervisor_sha256": "e8aaca56bb4bccf81aa9687a841d09d28bc5b2ff286de3c396ac37bd09324fcb", "containment": "Dedicated Linux session/group plus child-subreaper; parent PID retained until cleanup", "memory_scope": "Sampled process-tree RSS with enforcement after observation, not a hard OS memory reservation or exact unsampled peak", "execution_wall_seconds": 2.020907469000008, "known_processes": [{"pid": 2216, "create_time": 1794091901.8}], "sample_count": 5, "sample_interval_seconds": 0.5, "sampled_peak_tree_rss_bytes": 121982976, "minimum_sampled_host_available_bytes": 15433461760, "wall_seconds_including_cleanup": 2.031802134000003, "finished_utc": "2026-11-07T22:51:44.106791+00:00", "execution_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+2026-11-07T22:51:44.1671803Z ##[group]Run actions/upload-artifact@v4
+2026-11-07T22:51:44.1672050Z with:
+2026-11-07T22:51:44.1672330Z   name: joint-support-diagnostic-c314e8505b5244393c9991722cd8bb3dcc524b4c-1
+2026-11-07T22:51:44.1672981Z   path: /home/runner/work/_temp/support-diagnostic/*.json
+/home/runner/work/_temp/support-diagnostic/science/**
+/home/runner/work/_temp/support-diagnostic/supervision/**
+
+2026-11-07T22:51:44.1673548Z   if-no-files-found: warn
+2026-11-07T22:51:44.1673754Z   compression-level: 6
+2026-11-07T22:51:44.1673942Z   overwrite: false
+2026-11-07T22:51:44.1674123Z   include-hidden-files: false
+2026-11-07T22:51:44.1674321Z env:
+2026-11-07T22:51:44.1674499Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-07T22:51:44.1674701Z   OMP_NUM_THREADS: 2
+2026-11-07T22:51:44.1674879Z   OPENBLAS_NUM_THREADS: 2
+2026-11-07T22:51:44.1675064Z   MKL_NUM_THREADS: 2
+2026-11-07T22:51:44.1675243Z   NUMEXPR_NUM_THREADS: 2
+2026-11-07T22:51:44.1675422Z   BLIS_NUM_THREADS: 2
+2026-11-07T22:51:44.1675672Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:51:44.1676011Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib/pkgconfig
+2026-11-07T22:51:44.1676344Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:51:44.1676653Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:51:44.1676956Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T22:51:44.1677265Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib
+2026-11-07T22:51:44.1677521Z ##[endgroup]
+2026-11-07T22:51:44.3049783Z (node:2223) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-07T22:51:44.3050510Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-07T22:51:44.3138641Z With the provided path, there will be 7 files uploaded
+2026-11-07T22:51:44.3139343Z Artifact name is valid!
+2026-11-07T22:51:44.3139660Z Root directory input is valid!
+2026-11-07T22:51:44.6335340Z Beginning upload of artifact content to blob storage
+2026-11-07T22:51:44.6718267Z (node:2223) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-07T22:51:44.8821269Z Uploaded bytes 9605
+2026-11-07T22:51:44.9391657Z Finished uploading artifact content to blob storage!
+2026-11-07T22:51:44.9392302Z SHA256 digest of uploaded artifact zip is 5ac97f01050c5734d2a4efc3d6c91cf181f7be5c0141a8a335c6ed51eb83aca4
+2026-11-07T22:51:44.9393347Z Finalizing artifact upload
+2026-11-07T22:51:45.3819388Z Artifact joint-support-diagnostic-c314e8505b5244393c9991722cd8bb3dcc524b4c-1.zip successfully finalized. Artifact ID 13593214467
+2026-11-07T22:51:45.3820333Z Artifact joint-support-diagnostic-c314e8505b5244393c9991722cd8bb3dcc524b4c-1 has been successfully uploaded! Final size is 9605 bytes. Artifact ID is 13593214467
+2026-11-07T22:51:45.3825763Z Artifact download URL: https://github.com/Drefetr/An_Evaluation_of_Earthquake_Models/actions/runs/42422474090/artifacts/13593214467
+2026-11-07T22:51:45.3996202Z Post job cleanup.
+2026-11-07T22:51:45.5017751Z Cache hit occurred on the primary key setup-python-Linux-x64-24.04-Ubuntu-python-3.13.18-pip-a1bd06fa1bbdf82681ac917566054635b071af1bc7a263a680c87af6476ed699, not saving cache.
+2026-11-07T22:51:45.5019630Z (node:2235) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-07T22:51:45.5020353Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-07T22:51:45.5142000Z Post job cleanup.
+2026-11-07T22:51:45.5844303Z [command]/usr/bin/git version
+2026-11-07T22:51:45.5911774Z git version 2.56.0
+2026-11-07T22:51:45.5953256Z Temporarily overriding HOME='/home/runner/work/_temp/ec5728f5-0eec-4881-b870-95841484a8b7' before making global git config changes
+2026-11-07T22:51:45.5954482Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-07T22:51:45.5960627Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models
+2026-11-07T22:51:45.6014393Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-07T22:51:45.6057658Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-07T22:51:45.6377781Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-07T22:51:45.6438449Z http.https://github.com/.extraheader
+2026-11-07T22:51:45.6451128Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-07T22:51:45.6488025Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-07T22:51:45.6774773Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-07T22:51:45.6822271Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-07T22:51:45.7236322Z Cleaning up orphan processes
+2026-11-07T22:51:45.7525566Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+
