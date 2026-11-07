@@ -321,5 +321,107 @@ class ObservedContinuationControls(unittest.TestCase):
                     else:controller.observed_batch_passed(out,review)
 
 
-if __name__ == '__main__':
-    unittest.main()
+class LocalCpuReaderControls(unittest.TestCase):
+    """Reader orchestration with invented inputs; no build/model execution."""
+    @classmethod
+    def setUpClass(cls):
+        spec = importlib.util.spec_from_file_location('local_cpu_reader', ROOT/'scripts/reproduce_cpu.py')
+        cls.reader = importlib.util.module_from_spec(spec); spec.loader.exec_module(cls.reader)
+
+    def fixture(self, root):
+        import argparse
+        package = root/'reproduction/score_replay'; package.mkdir(parents=True)
+        (root/'scripts').mkdir()
+        for name in ('reproduce_cpu.py', 'supervise_research.py', 'run_continuation.py'):
+            (root/'scripts'/name).write_text('invented')
+        (root/'engine/stage2_followup').mkdir(parents=True)
+        (root/'engine/cpu_build.py').write_text('invented')
+        (root/'engine/stage2_followup/native_build.py').write_text('invented')
+        for name in ('runner.py',): (package/name).write_text('invented')
+        self.reader.write(package/'registry.json', dict(rows=[dict(id='pilot'), dict(id='other')]))
+        self.reader.write(package/'input_manifest.json', {})
+        self.reader.write(package/'pilot_proposal.json', dict(row_ids=['pilot'],
+            registry_sha256=self.reader.sha(package/'registry.json'),
+            input_manifest_sha256=self.reader.sha(package/'input_manifest.json'),
+            source_sha256={'runner.py':self.reader.sha(package/'runner.py')},
+            caps=dict(wall_seconds=100,process_tree_rss_bytes=6*2**30,minimum_host_available_bytes=2*2**30)))
+        args = argparse.Namespace(route='fake',phase='pilot',rows=None,wall_seconds=50.,rss_mib=6144.,headroom_mib=2048.,pilot_output=None,pilot_review=None)
+        return package,args
+
+    def context(self, root, package):
+        from contextlib import ExitStack
+        stack = ExitStack()
+        for key,value in [('ROOT',root),('PACKAGE',package),('__file__',str(root/'scripts/reproduce_cpu.py')),
+                          ('ROUTES',{'fake':('cached','registry.json','build','runner')})]:
+            stack.enter_context(patch.object(self.reader,key,value))
+        return stack
+
+    def test_plan_only_has_no_processes_or_scientific_acceptance(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory); package,args=self.fixture(root)
+            with self.context(root,package),patch.object(self.reader.subprocess,'run') as child:
+                plan=self.reader.make_plan(args); child.assert_not_called()
+            self.assertEqual(plan['row_ids'],['pilot'])
+            self.assertTrue(plan['compilation_inside_wall_cap'])
+            self.assertIsNone(plan['inherited_published_source_review'])
+            self.assertNotIn('independent_review_passed',plan)
+
+    def test_bad_caps_and_changed_source_fail_before_launch(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory); package,args=self.fixture(root)
+            with self.context(root,package):
+                for wall in (0.,float('nan'),101.):
+                    args.wall_seconds=wall
+                    with self.assertRaises(ValueError): self.reader.make_plan(args)
+                args.wall_seconds=50.;(package/'runner.py').write_text('changed')
+                with self.assertRaises(ValueError): self.reader.make_plan(args)
+
+    def test_subset_is_explicit_and_not_silently_full(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory); package,args=self.fixture(root)
+            with self.context(root,package):
+                args.phase='subset'
+                with self.assertRaises(ValueError): self.reader.make_plan(args)
+                args.rows=root/'rows.json';self.reader.write(args.rows,['other'])
+                plan=self.reader.make_plan(args)
+                self.assertEqual(plan['row_ids'],['other']);self.assertEqual(plan['declared_roster'],['pilot','other'])
+
+    def test_terminal_checks_retained_row_bytes(self):
+        with tempfile.TemporaryDirectory() as directory:
+            output=Path(directory)
+            request=dict(family='cached',route='fake',phase='pilot',row_ids=['x'],declared_roster=['x','y'])
+            self.reader.write(output/'request.json',request)
+            self.reader.write(output/'supervision/result.json',{'status':'passed'})
+            self.reader.write(output/'science/row.json',dict(id='x',passed=True))
+            row=dict(id='x',result='row.json',sha256=self.reader.sha(output/'science/row.json'))
+            self.reader.write(output/'science/result.json',dict(passed=True,rows=[row]))
+            result=self.reader.terminal_summary(request,output,0)
+            self.assertTrue(result['passed']);self.assertFalse(result['all_declared_rows_present'])
+            self.assertFalse(result['numerical_output_reviewed_independently'])
+            (output/'science/row.json').write_text('{}')
+            self.assertFalse(self.reader.terminal_summary(request,output,0)['passed'])
+
+    def test_zero_exit_missing_science_is_failure(self):
+        with tempfile.TemporaryDirectory() as directory:
+            output=Path(directory);request=dict(family='cases',route='fake',phase='pilot',row_ids=['x'],declared_roster=['x'])
+            self.reader.write(output/'request.json',request)
+            self.assertFalse(self.reader.terminal_summary(request,output,0)['passed'])
+
+    def test_acceptance_index_pins_archive_result_and_actual_review(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);published=root/'published';(published/'fake').mkdir(parents=True)
+            archive=published/'fake/completion.zip';raw=json.dumps(dict(passed=True,rows=[])).encode()
+            with zipfile.ZipFile(archive,'w') as stream: stream.writestr('science/result.json',raw)
+            review_path=published/'fake/review.json'
+            self.reader.write(review_path,dict(status='passed_independent_complete_registry_output_audit',scope='invented output review'))
+            entry=dict(route='fake',phase='completion',passed=True,archive='published/fake/completion.zip',
+                archive_sha256=self.reader.sha(archive),science_result_sha256=hashlib.sha256(raw).hexdigest(),
+                review_path='published/fake/review.json',review_sha256=self.reader.sha(review_path))
+            self.reader.write(published/'accepted_execution_index.json',dict(entries=[entry]))
+            with patch.object(self.reader,'ROOT',root),patch.object(self.reader,'PUBLISHED',published):
+                self.assertEqual(self.reader.published_review('fake','completion')['result_sha256'],entry['science_result_sha256'])
+                review_path.write_text('{}')
+                with self.assertRaises(ValueError):self.reader.published_review('fake','completion')
+
+
+if __name__ == '__main__': unittest.main()

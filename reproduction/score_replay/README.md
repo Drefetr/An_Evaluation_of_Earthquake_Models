@@ -1,26 +1,74 @@
 # Saved-state score replay
 
-This package separates input recovery, likelihood evaluation, and publication coverage. The initial cached registry supplies 510 selected training/test rows in ten Chapter 9/10 study groups. Additional registries cover the recovered regional, inhibition and profile inputs. The table inventory includes 103 table containers in the requested chapters and their appendix tables. Input/code availability is distinct from a passed execution or reconciled table: actual outcomes belong to the separately retained execution receipts and table deltas.
+These routes recompute likelihoods at the original selected parameter vectors. They do not rerun a parameter search, fit a new model, or generate replacement histories. Expected scores enter only after the evaluator returns its new components. Raw-feature reconstruction and cached-feature replay are identified separately in each registry and output row.
 
-`coverage_plan.json` records all implementation routes, including the delegated S02 and initial mark-history routes. `table_links_regional.json` maps 933 score/count cells to actual replay outputs, and the S05 inventory adds 54 observed-score alias checks. The cached-table mapping and route-specific table deltas cover the remaining Chapter 9/10 arithmetic. The complete productivity profile grid is required for the sampled-support lists, not merely the displayed selected coefficient.
+## Local Linux reader
 
-The observed fixed-backbone package now contains all 51 exact original state and preparation files, including the positive total-intensity fits. Its held-out replay retains recorded training gate choices and uses unchanged quadrature with CPU matrix contractions. Every identified input route is available; source review, empirical execution and output reconciliation remain separate gates. No pending row is silently counted as a successful replay.
+Use a Linux host with Python 3.13 and a GNU or Clang C++ compiler. No GitHub token, private directory, CUDA installation, or MSVC is required. The original C++ sources are compiled locally with strict floating-point options; the observed fixed-backbone route uses CPU NumPy contractions without a native build. The inputs and published execution ZIPs are included in the checkout.
 
-The evaluator loads the original selected parameter vector and byte-exact cached features, builds the original native source with a recorded compiler, and evaluates the likelihood again. Expected scalar scores are compared after evaluation. This is cached-feature replay: it neither regenerates raw catalogue geometry nor reruns the original parameter search. `input_manifest.json` records original identities, historical seals or case-artifact pins where available, and the SHA-256 of every packaged resource. Projected state records identify their original JSON pointers. The original numerical source bytes and cached arrays are unchanged.
+From the repository root:
 
-`cached_field_crosswalk.json` maps each engine's output to positive integrated intensity **E**, signed compensator **C = −E**, event log-intensity sum **P**, and mark score **M**. Timing and location remain distinct. Same-cache comparisons use a predeclared absolute tolerance of one micro-nat; original coarse/fine checks and displayed rounding are separate. A discrepancy remains a failed replay requiring diagnosis, not an automatic withdrawal of the historical finding.
-
-The initial pilot proposal selects one ordinary test row and the largest stored cache for each of nine engines without consulting gain signs. No real-history execution is authorized by a proposal file. The conductor supplies a passed admission with exact source/registry/input/build identities, the ordered roster, numerical-thread cap and an actual numerical lease. Build and replay outputs must use fresh directories:
-
-```text
-python -B reproduction/score_replay/build.py --output build/score_replay_native
-python -B reproduction/score_replay/replay.py --libraries build/score_replay_native/libraries.json --admission PATH_TO_REVIEWED_ADMISSION.json --rows PATH_TO_ORDERED_ROSTER.json --mode pilot --output build/score_replay_pilot
+```sh
+python -m venv .venv
+. .venv/bin/activate
+python -m pip install -r requirements-cpu.txt
+python -B scripts/reproduce_cpu.py list
+python -B scripts/reproduce_cpu.py run --route cached --phase pilot \
+  --output ../reader-cached-pilot --wall-seconds 900 --rss-mib 6144 --headroom-mib 2048
 ```
 
-The runner validates the actual target count, compiler receipt, binary identity and thread limits; an external supervisor enforces wall time, process-tree memory and process cleanup. Every completed row receives a retained report and progress entry. `not_run`, `failed`, and interrupted rows cannot be promoted to completed coverage. The existing Chapter 7/8, S04B and refitted-intercept campaigns are outside this replay roster. The original S05 all-path point checks are inventoried as already executed and are not automatically repeated.
+The three resource limits are required. The wall allowance includes compilation and evaluation. The Linux supervisor samples process-tree RSS and available host memory, enforces the wall deadline, and checks descendant cleanup. Memory sampling is not a kernel allocation limit. The evaluator uses two numerical threads. Pilot limits cannot exceed the frozen pilot envelope. Outputs must use a new directory outside the checkout; an existing result is never overwritten.
 
-Tiny controls use invented scalar data and a fake adapter, not historical scores:
+Add `--plan-only` to check source, input, roster and published-dependency identities without compiling or evaluating a historical row. A plan directory is retained as evidence; use a different fresh directory for the actual run. `list` inspects locally published archives and their review pins; it does not perform a numerical replay.
 
-```text
+| Route | Declared units | Evaluator/input scope |
+|---|---:|---|
+| `cached` | 510 rows | Original Chapter 9/10 selected states and cached features |
+| `cached_supplement` | 140 rows | Additional training, engineering, reference and small-scale states |
+| `productivity_profiles` | 84 rows | Full saved profile grid, including training support points |
+| `california` | 60 rows | Primary and magnitude-threshold sensitivity cached states |
+| `california_benchmark` | 12 rows | Original EP/N0 cached states; common mark term is stored in the cache |
+| `jma` | 93 rows | Regional reconstruction at frozen states |
+| `s03` | 24 rows | Original spatial-source/cached-state adapter |
+| `s06_ca` | 60 rows | Episode-block reconstruction at frozen states |
+| `original_li` | 38 rows | Original selected LI/OC procedures and raw-input reconstruction |
+| `s04_original` | 80 histories | Original selected synthetic procedures; no history generation |
+| `california_blocks` | 39 rows | Interval scores using retained, freshly replayed event arrays |
+| `observed_fixedbackbone` | 6 phase/order rows | Exact selected states and prepared quadrature, checked against freshly replayed OC |
+| `s02` | 300 catalogues | Original paired-clock selected-state likelihoods |
+| `initial_mark` | 60 catalogues | Initial mark-history selected-state likelihoods |
+
+Counts are workload units, not independent samples. For registry routes, `--phase all` requests every row. `--phase completion` requests exactly the nonpilot rows and does not claim the pilot was rerun. `--phase subset --rows ordered_ids.json` requests a nonempty explicit list of registry IDs. Keep all attempt directories: a failed or interrupted attempt is evidence, not a result to erase. A later subset can recompute unresolved rows from scratch without changing their state, quadrature or tolerance. No partial run is labelled full coverage.
+
+S02 and initial-mark routes retain their original pilot/completion contract. Their local pilot inherits the exact source admission recorded in the hash-checked published pilot, not an endorsement of the new numerical output. Completion reuses a local pilot's actual library and reports and requires a separate output review:
+
+```sh
+python -B scripts/reproduce_cpu.py run --route s02 --phase pilot \
+  --output ../reader-s02-pilot --wall-seconds 1800 --rss-mib 6144 --headroom-mib 2048
+python -B scripts/reproduce_cpu.py run --route s02 --phase completion \
+  --pilot-output ../reader-s02-pilot --pilot-review ../s02-pilot-review.json \
+  --output ../reader-s02-completion --wall-seconds 14400 --rss-mib 6144 --headroom-mib 2048
+```
+
+The separately authored review must identify `reviewer` and `scope`, set `passed: true`, and pin the pilot's `science/result.json` with `result_sha256`. The reader does not generate this independent review. The frozen runner also requires identical source, runtime, numerical library and ordered pilot records. A failure of those conditions is retained; it does not authorize a refit or a relaxed tolerance.
+
+The block and observed routes use locally published California pilot/completion ZIPs, bound to the public acceptance index and original output reviews. They do not fetch artifacts through GitHub or read private build paths. Their retained dependency records distinguish a saved benchmark mark scalar from a newly evaluated intensity. `california_mark_replay.py` provides a separate source-reviewed arithmetic route from the exact recovered cohort and saved beta to the common mark term; its execution and acceptance remain separate from the intensity replay.
+
+## Reading results and coverage
+
+`reader_result.json` records the actual supervision and scientific-result hashes, requested IDs, retained IDs and missing IDs. It succeeds only when the supervisor and requested scientific roster pass and every retained row matches its hash. `all_declared_rows_present` is separate from success on a subset. Partial row reports, compiler logs and supervisor samples remain on disk after failure. These are automated integrity and numerical checks, not independent scientific acceptance.
+
+`coverage_plan.json` inventories 103 table containers. `table_links_regional.json` maps 933 score/count cells; the original S05 inventory adds 54 observed-score aliases. Cached-table links and route-specific `table_deltas.json` retain the remaining Chapter 9/10 arithmetic. The complete profile grid is needed to reconstruct sampled-support lists. The block pilot/completion union needs the separate hash-bound `finalize_blocks.py` aggregation before all partition contrasts are claimed. Implementation availability does not establish a table result: consult actual execution rosters and reconciled table deltas. A missing or failed row stays unresolved.
+
+All 51 original observed fixed-backbone state and preparation files are present, including the positive total-intensity states. Training gate choices remain recorded choices; the held-out replay does not repeat selection. The original S05 all-path point checks are inventoried as already executed and are not automatically repeated. Existing Chapter 7/8 and S04B campaigns are outside this reader's replay roster.
+
+`cached_field_crosswalk.json` maps original output to event log-intensity sum **P**, positive integrated intensity **E**, signed compensator **C = −E**, and mark score **M**. Timing and location remain distinct. Same-cache comparisons use the declared absolute tolerance against full-precision saved results; quadrature sensitivity and displayed rounding are separate checks. Source/input/build identities and the actual target count are checked before comparisons. A discrepancy remains a failed replay requiring diagnosis.
+
+Constructed controls (no historical fits or score campaigns):
+
+```sh
+python -B -m unittest discover -s tests -p test_continuation_controller.py -v
+python -B -m unittest discover -s tests -p test_california_mark_replay.py -v
 python -B -m unittest discover -s tests -p test_score_replay.py -v
 ```
+
