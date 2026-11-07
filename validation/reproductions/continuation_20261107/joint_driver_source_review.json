@@ -1,0 +1,86 @@
+{
+  "status": "passed_independent_source_review",
+  "reviewer": "/root/continuation_cpu",
+  "author_final_commit": "d72b0af8ff8f94c380d0e0c44a256d9813c06ad8",
+  "original_driver_commit": "783f6ee",
+  "scope": "Operational driver/index and scheduler integration only; no historical fit, objective, generation or real-history feature calls",
+  "source_sha256": {
+    "experiments/s04b_joint_execution/driver.py": "f188cc787c8c62a735e88e34a606dac8b992c6c42d8d1070676df885353aa012",
+    "experiments/s04b_joint_execution/operational_protocol.json": "6d48997cba7005037c959709f6f27a8ba447f72769bd5051302c5cf865e4409b",
+    "experiments/s04b_joint_execution/parallel_chunks.py": "94734c667745abf995a89cd386c642127a6dd4ef0029e6f97638c96b9a38db1f",
+    "tests/test_joint_execution_driver.py": "be4c1c0dc3473c2cdc8586b1604f8243960fbc72448e31fd9209e653e2228e74",
+    "tests/test_joint_parallel_chunks.py": "248616fad04cdf8291df5e5c5cb10864246f61f21c6687b2b400a5828b78b2c0"
+  },
+  "scientific_protocol_sha256": "8f31b9f28d830eeffa30bdbf3e0fcf1295087411869fa301b91333c95fa445e9",
+  "scientific_input_pins_sha256": "636e2f6ebd1db404a04155acef1979f36931338cbfa0e4c24351a80378924dad",
+  "frozen_science_sources_verified": {
+    "experiments/s04b_joint_nuisance/attenuation.cpp": "d47a85c5ed899a952b315977a700487c54bd79b90eddc88f62feef7001d2751e",
+    "experiments/s04b_joint_nuisance/checkpoint.py": "e0c4af19dca51a471188e86409a2a9533ba54a26922bfa7acff8ee5cd04275d7",
+    "experiments/s04b_joint_nuisance/checkpoint_repair.json": "25fff5174ab62efc1ebc71f5bb2b89e4ea2f4b975e10d3b53b613b095e29c5de",
+    "experiments/s04b_joint_nuisance/fit.py": "878dbf6a71bbc1b9e934f190d3ad0a1c3663097610edf5a42c8aab89b62775bb",
+    "experiments/s04b_joint_nuisance/input_pins.json": "636e2f6ebd1db404a04155acef1979f36931338cbfa0e4c24351a80378924dad",
+    "experiments/s04b_joint_nuisance/model.py": "cc891181e51251247b9668fb6213642f0884deb288050efb2586cf179c6e8898",
+    "experiments/s04b_joint_nuisance/pre_repair_source.zip": "092f1b03026e557d190f7ba61115f898f2f5c5ec2419136d6d550efb766f9355",
+    "experiments/s04b_joint_nuisance/protocol.json": "8f31b9f28d830eeffa30bdbf3e0fcf1295087411869fa301b91333c95fa445e9",
+    "experiments/s04b_joint_nuisance/run.py": "3f6d9cb3d14a45ea7752c3ab8b011ee1281f59c305c55eda35c36df7dd6ea243"
+  },
+  "scheduler_sha256": "94734c667745abf995a89cd386c642127a6dd4ef0029e6f97638c96b9a38db1f",
+  "preliminary_review_sha256": "1cc46ed2e907a3967ba334ec9988515bcf86b10041afff58dbef6546c647b325",
+  "findings": [
+    {
+      "id": "D1",
+      "status": "resolved",
+      "evidence": "final_summary checks deadline after aggregate and summary serialization; constructed late-write control fails and preserves summary."
+    },
+    {
+      "id": "D2",
+      "status": "resolved",
+      "evidence": "completed_case_fit_arms/new/reused census explicitly restricted to complete cases; partial checkpoint lists recorded complete/incomplete arms and keeps unknown counts as null."
+    }
+  ],
+  "constructed_controls": {
+    "tests": 14,
+    "passed": 14,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "seconds": 6.855,
+    "platform": "Windows",
+    "controls_include": [
+      "Full constructed serial/scheduled case-report equivalence",
+      "Private facade preserves original model module and constructor inputs",
+      "Exact accepted completed-case byte reuse and original partial-training delegation",
+      "Contiguous fixed prefix/no repeat/no phase crossing",
+      "Duplicate attempt and unchanged receipt protection",
+      "Failed partial case retained, charged, blocks automatic continuation",
+      "Missing partial checkpoint remains unknown",
+      "Aggregate budget sums original failed time and admitted attempts once",
+      "Projection retains original first-case training cost instead of cheap resumed-test cost",
+      "Post-summary deadline failure retains artifact"
+    ]
+  },
+  "reviewed_invariants": [
+    "Original nine scientific/checkpoint/source files and audited scheduler all match frozen operational pins. No scientific source/optimizer/quadrature/start/gate change.",
+    "Driver delegates unchanged case_run, fit_arm, aggregation and Phase mathematics. Only private Phase constructor wraps the independently reviewed ordered two-native-call scheduler; no process-wide monkey patch.",
+    "First history must reuse original independently audited four-arm training checkpoint with original source/runtime/native/build/input/payload/trace identities. All old time is charged; training is not rerun.",
+    "Each next batch contains exactly the next prefix within pilot or campaign. Pilot is one history per batch; all five accepted pilot cases and reviewed measured projection are required before campaign.",
+    "Complete reports/traces copied byte-for-byte only from hash-bound independent accepted-index review, with stable input/source/essential runtime/native identities.",
+    "Failed partial case prohibits automatic continuation. Unindexed preflight failures explicitly require conductor accounting; external forced termination requires retained supervisor/partial-artifact disposition, not a fresh retry from the older index.",
+    "Case reservations are pre-outcome workload admission checks, not promises of exact runtime. External Linux process-tree supervisor supplies wall/RSS enforcement; sampledRSS is not an OS memory reservation.",
+    "New 14400-second aggregate pilot /115200-second campaign allowance is expressly separate from original failed1800-second pilot and never recasts the original cap as passed.",
+    "Final output requires80 histories,400 outcomes,480 historical floor checks and400 prior comparison rows. No partial pilot is scientific completion."
+  ],
+  "must_fix": [],
+  "conditions": [
+    "Root must create and record the separate operational continuation envelope before activation; old run configuration remains immutable.",
+    "Fresh Linux must run14 driver and11 scheduler constructed controls with the exact admitted source bytes before any continuation science. Windows source-review controls are not Linux numerical acceptance.",
+    "Every batch requires unique numerical lease and source/build/runtime/admission identities plus external supervisor; supervisor failure overrides a passed-looking intermediate scientific file.",
+    "Independently audit every accepted index and retained report/trace before reuse. Retain any interrupted partial checkpoint and all consumed time; no implicit refit or automatic budget increase.",
+    "Final400-outcome independent aggregation and all80 case coverage remain required before publication."
+  ],
+  "historical_likelihood_calls": 0,
+  "fits": 0,
+  "histories_generated": 0,
+  "production_execution_authorized_by_this_receipt": false,
+  "scientific_completion": false
+}
