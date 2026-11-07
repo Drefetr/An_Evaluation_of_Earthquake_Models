@@ -1,0 +1,52 @@
+{
+  "passed": true,
+  "status": "source_review_passed_pending_target_runtime_controls_and_admission",
+  "reviewed_commit": "072077ace1a0f0ecdd3b10cf2a5064999b21ab5d",
+  "predecessor_review_sha256": "e63fbc7a634c96063afe9549a8a15e80509eee36fa55a5643a1af39a64833435",
+  "source_sha256": "94734c667745abf995a89cd386c642127a6dd4ef0029e6f97638c96b9a38db1f",
+  "proposal_sha256": "3c61eb930ff7b03906afbc5d6c1b0d634923597f67d74a331e67badbfe7e8efc",
+  "tests_sha256": "248616fad04cdf8291df5e5c5cb10864246f61f21c6687b2b400a5828b78b2c0",
+  "controls": {
+    "tests": 11,
+    "passed": 11,
+    "failed": 0,
+    "platform": "Windows x64 / MSVC",
+    "log_sha256": "8e5be64cb0c7f762627233f28ef4f6c95581050111693f7fe54e8ef2dac57b28"
+  },
+  "frozen_dependencies_unchanged": {
+    "experiments/s04b_joint_nuisance/model.py": true,
+    "experiments/s04b_joint_nuisance/attenuation.cpp": true,
+    "experiments/s04b_joint_nuisance/fit.py": true,
+    "experiments/s04b_joint_nuisance/protocol.json": true,
+    "experiments/s04b_joint_nuisance/input_pins.json": true
+  },
+  "findings": [
+    {
+      "id": "P1",
+      "status": "fixed",
+      "description": "ParallelPhase.evaluate obtains the process-wide guard before baseline/event work; only same-thread/same-phase deficit inherits ownership. Concurrent-entry control confirms rejection before baseline."
+    },
+    {
+      "id": "P2",
+      "status": "fixed",
+      "description": "Any submission exception closes/drains the entire pool including enqueued work with no returned future before releasing buffers/ownership. Enqueue-then-raise control confirms worker quiescence and permanent closure."
+    }
+  ],
+  "scientific_calls": 0,
+  "activation_performed": false,
+  "conditions": [
+    "Run constructed bitwise/equivalence controls on intended Linux numerical runtime before activation.",
+    "Freeze separate operational source admission identifying this scheduler; unchanged original source hashes alone do not identify runtime substitution.",
+    "No increase or reset of resource caps by this source review. Original failed pilot time/evidence remains charged.",
+    "Retain supervised process-tree wall/RSS enforcement. Additional triggering buffer is bounded by256*n_time*3*8, not a hard memory-reservation guarantee.",
+    "No measured speedup or full-campaign feasibility claim follows from fixture controls."
+  ],
+  "technical_findings": [
+    "Every original256-row BLAS call and native chunk is preserved; two preparations complete before two native calls.",
+    "All nine-vector additions follow original spatial chunk order; all model/fit/gradient/quadrature and gates unchanged.",
+    "Native C++ work arrays are per-call; error string thread_local, with status/error read on same worker.",
+    "At most2 native numerical tasks or2-thread BLAS preparation, never intentionally overlapping, within scheduler-owned evaluations. Idle operating-system BLAS threads are not claimed absent.",
+    "Known native and submission exceptions drain before returning; process supervisor remains necessary for hung native work or forced termination."
+  ],
+  "recorded_utc": "2026-11-07T06:34:45.762597+00:00"
+}

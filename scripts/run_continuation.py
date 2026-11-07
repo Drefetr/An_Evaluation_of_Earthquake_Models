@@ -83,16 +83,23 @@ def mandatory_sources(stage, review=None):
         package = ROOT/'experiments/s04b_joint_nuisance'
         paths.update(p.relative_to(ROOT).as_posix() for p in package.iterdir()
                      if p.is_file() and p.suffix in ('.py','.cpp','.json'))
-    elif stage in ('s02-pilot','s02-completion'):
+    elif stage in ('s02-pilot','s02-completion','initialmark-pilot','initialmark-completion'):
         paths.update(('reproduction/score_replay/s02_replay.py','tests/test_s02_score_replay.py'))
         package = ROOT/'reproduction/score_replay/s02'
         paths.update(p.relative_to(ROOT).as_posix() for p in package.rglob('*')
                      if p.is_file() and p.suffix in ('.py','.cpp','.json'))
+        if stage.startswith('initialmark-'):
+            paths.update(('reproduction/score_replay/initial_mark_replay.py','tests/test_initial_mark_replay.py'))
+            package = ROOT/'reproduction/score_replay/initial_mark'
+            paths.update(p.relative_to(ROOT).as_posix() for p in package.rglob('*')
+                         if p.is_file() and p.suffix in ('.py','.json'))
     elif stage in ('cached-pilot','cached-completion','regional-pilot','regional-completion',
-                   'inhibition-pilot','inhibition-completion'):
+                   'inhibition-pilot','inhibition-completion','li-pilot','li-completion'):
         prefix = 'reproduction/score_replay/'
         package, registry, proposal = replay_paths(review or {})
-        if stage.startswith('regional-'):
+        if stage.startswith('li-'):
+            names = ('__init__.py','core.py','li_replay.py')
+        elif stage.startswith('regional-'):
             names = ('__init__.py','core.py','regional_build.py','regional_replay.py')
         elif stage.startswith('inhibition-'):
             names = ('__init__.py','core.py','inhibition_build.py','inhibition_replay.py')
@@ -205,30 +212,35 @@ def main():
             admission.update(pilot_result_sha256=review['pilot_result_sha256'],
                              pilot_output_review_passed=review['pilot_output_review_passed'])
             command += ['--pilot',str(inside(prior,review['pilot_science_directory']))]
-    elif stage in ('s02-pilot','s02-completion'):
-        from reproduction.score_replay import s02_replay
-        package = ROOT/'reproduction/score_replay/s02'
+    elif stage in ('s02-pilot','s02-completion','initialmark-pilot','initialmark-completion'):
+        if stage.startswith('initialmark-'):
+            from reproduction.score_replay import initial_mark_replay as replay_module
+            package = ROOT/'reproduction/score_replay/initial_mark'
+        else:
+            from reproduction.score_replay import s02_replay as replay_module
+            package = ROOT/'reproduction/score_replay/s02'
+        runner_path = Path(replay_module.__file__)
         protocol = read(package/'protocol.json')
         phase = stage.split('-')[1]
         if (phase == 'completion') != bool(prior):
-            raise ValueError('S02 completion requires the exact accepted pilot artifact')
+            raise ValueError('Case replay completion requires the exact accepted pilot artifact')
         build = inside(prior, review['pilot_build_directory']) if prior else output/'build'
         if not prior:
-            subprocess.run([sys.executable,'-B',str(ROOT/'reproduction/score_replay/s02_replay.py'),
+            subprocess.run([sys.executable,'-B',str(runner_path),
                             'build','--output',str(build)],cwd=ROOT,check=True)
         receipt = build/'build_receipt.json'
         library = build/'components.so'
         selected = protocol['pilot'] if phase == 'pilot' else [c for c in protocol['roster'] if c not in protocol['pilot']]
         if review['case_ids'] != selected:
-            raise ValueError('Reviewed S02 roster differs from its frozen protocol')
+            raise ValueError('Reviewed case roster differs from its frozen protocol')
         admission = dict(passed=True,independent_review_passed=True,mode=phase,
-                         source_sha256=s02_replay.source_identity(),protocol_sha256=sha(package/'protocol.json'),
+                         source_sha256=replay_module.source_identity(),protocol_sha256=sha(package/'protocol.json'),
                          numerical_attempt_id=review['numerical_attempt_id'],
                          lease_token_sha256=hashlib.sha256(token.encode()).hexdigest(),
                          expires_utc=review['expires_utc'],case_ids=selected,threads=2,
                          wall_seconds=review['wall_cap_seconds'],sampled_process_tree_rss_cap_bytes=review['rss_cap_bytes'],
                          library_sha256=sha(library),build_receipt_sha256=sha(receipt))
-        command = [sys.executable,'-B',str(ROOT/'reproduction/score_replay/s02_replay.py'),'run','--mode',phase,
+        command = [sys.executable,'-B',str(runner_path),'run','--mode',phase,
                    '--library',str(library),'--build-receipt',str(receipt),
                    '--admission',str(output/'admission.json'),'--output',str(output/'science')]
         if prior:
@@ -236,26 +248,29 @@ def main():
                              pilot_output_review_passed=review['pilot_output_review_passed'])
             command += ['--pilot',str(inside(prior,review['pilot_science_directory']))]
     elif stage in ('cached-pilot', 'cached-completion', 'regional-pilot', 'regional-completion',
-                   'inhibition-pilot', 'inhibition-completion'):
+                   'inhibition-pilot', 'inhibition-completion','li-pilot','li-completion'):
         package, registry_path, proposal_path = replay_paths(review)
         regional = stage.startswith('regional-')
         inhibition = stage.startswith('inhibition-')
-        builder, runner = (('regional_build.py','regional_replay.py') if regional else
+        li = stage.startswith('li-')
+        builder, runner = (('li_replay.py','li_replay.py') if li else
+                           ('regional_build.py','regional_replay.py') if regional else
                            ('inhibition_build.py','inhibition_replay.py') if inhibition else ('build.py','replay.py'))
         proposal = read(proposal_path)
         registry = read(registry_path)
         selected, by_id = replay_roster(review, proposal, registry)
         build = output / 'build'
-        subprocess.run([sys.executable,'-B',str(package/builder),
+        subprocess.run([sys.executable,'-B',str(package/builder)]+(['--build'] if li else [])+[
                         '--registry',str(registry_path),'--output',str(build)],cwd=ROOT,check=True)
         libraries = read(build/'libraries.json')
         phase = stage.split('-')[1]
-        used = {'core','competitive'} if regional else {'cpu','radial'} if inhibition else {by_id[row]['adapter'] for row in selected}
+        used = {'core','competitive'} if regional else {'cpu','radial'} if inhibition else {by_id[row]['adapter'] for row in selected} if not li else set()
+        receipts = {'li':sha(libraries['library']['build_receipt_path'])} if li else {k:sha(libraries['libraries'][k]['build_receipt_path']) for k in sorted(used)}
         write(output/'rows.json',selected)
         admission = dict(proposal, passed=True, status='reviewed_workflow_admission', mode=phase, row_ids=selected,
                          numerical_lease=review['numerical_attempt_id'],
                          libraries_sha256=sha(build/'libraries.json'), expires_utc=review['expires_utc'], numeric_threads=2,
-                         build_receipts_sha256={k:sha(libraries['libraries'][k]['build_receipt_path']) for k in sorted(used)})
+                         build_receipts_sha256=receipts)
         command = [sys.executable,'-B',str(package/runner),'--mode',phase,
                    '--registry',str(registry_path),
                    '--libraries',str(build/'libraries.json'),'--admission',str(output/'admission.json'),

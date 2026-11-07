@@ -64,6 +64,21 @@ class AdmissionControls(unittest.TestCase):
                          'reproduction/score_replay/s02/original/independent_f_oracle.cpp',
                          'tests/test_s02_score_replay.py'}.issubset(pins))
 
+    def test_initial_mark_binds_own_protocol_and_shared_original_oracle(self):
+        pins = controller.mandatory_sources('initialmark-pilot')
+        self.assertTrue({'reproduction/score_replay/initial_mark_replay.py',
+                         'reproduction/score_replay/initial_mark/protocol.json',
+                         'reproduction/score_replay/s02/components.cpp',
+                         'reproduction/score_replay/s02/original/independent_f_oracle.cpp',
+                         'tests/test_initial_mark_replay.py'}.issubset(pins))
+
+    def test_original_li_binds_its_dedicated_evaluator(self):
+        review = {'registry': 'reproduction/score_replay/original_li/registry.json',
+                  'proposal': 'reproduction/score_replay/original_li/pilot_proposal.json'}
+        pins = controller.mandatory_sources('li-pilot', review)
+        self.assertTrue({review['registry'], review['proposal'],
+                         'reproduction/score_replay/li_replay.py'}.issubset(pins))
+
 
 if __name__ == '__main__':
     unittest.main()
