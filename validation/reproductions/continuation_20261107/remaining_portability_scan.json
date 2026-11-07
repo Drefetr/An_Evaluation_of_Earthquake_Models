@@ -1,0 +1,387 @@
+{
+  "schema": "metadata_only_portability_scan_v1",
+  "passed": true,
+  "scope": "Static source/call-site and saved-metadata scan only. No DLL load/construction, build, likelihood, fitting or generation. This is not an empirical portability acceptance.",
+  "unresolved_runtime_paths": [],
+  "packages": [
+    {
+      "package": "cached_supplement",
+      "registry_sha256": "07a4a27d0f8e607b7d32f6efdbb6976a8e572c8f561d8afe04688c91cee5bbac",
+      "declared_rows": 140,
+      "unique_caches_inspected": 65,
+      "original_modules": [
+        {
+          "name": "fa7e0b51e50a0e3a",
+          "sha256": "fa7e0b51e50a0e3a88f6f7bbbe716fd03d32cc3b484d966b81f5d6ae06d19070",
+          "inspected_loaders": [
+            {
+              "name": "digest",
+              "line": 11,
+              "path_related_lines": [
+                "def digest(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()"
+              ]
+            },
+            {
+              "name": "library",
+              "line": 17,
+              "path_related_lines": [
+                "path=Path(path or Path(__file__).with_name(\"objective.dll\")).resolve();lib=ct.CDLL(str(path));pd=ct.POINTER(ct.c_double)"
+              ]
+            },
+            {
+              "name": "__init__",
+              "line": 25,
+              "path_related_lines": [
+                "def __init__(self,path,dll_path=None):",
+                "self.path=Path(path).resolve();self.handle=None;self.lib,self.dll_path=library(dll_path)",
+                "with np.load(self.path,allow_pickle=False) as saved:",
+                "self.handle=handle;self.identity={\"feature_path\":str(self.path),\"feature_sha256\":digest(self.path),\"dll_path\":str(self.dll_path),\"dll_sha256\":digest(self.dll_path),\"metadata\":m,\"n_events\":self.ne,\"n_parents\":self.np,\"quadrature_nodes\":self.nq}"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "3d2db32fdfee1442",
+          "sha256": "3d2db32fdfee144213773961b1cffb28b5f50c195374f214865c78c7460b182f",
+          "inspected_loaders": [
+            {
+              "name": "digest",
+              "line": 35,
+              "path_related_lines": [
+                "def digest(path):",
+                "return hashlib.sha256(Path(path).read_bytes()).hexdigest()"
+              ]
+            },
+            {
+              "name": "library",
+              "line": 39,
+              "path_related_lines": [
+                "path=Path(path or Path(__file__).with_name(\"objective.dll\")).resolve()",
+                "lib=ct.CDLL(str(path))"
+              ]
+            },
+            {
+              "name": "__init__",
+              "line": 53,
+              "path_related_lines": [
+                "def __init__(self,cache_path,dll_path=None):",
+                "self.path=Path(cache_path).resolve();self.lib,self.dll_path=library(dll_path)",
+                "with np.load(self.path,allow_pickle=False) as saved:",
+                "self.identity={\"feature_path\":str(self.path),\"feature_sha256\":digest(self.path),",
+                "\"dll_path\":str(self.dll_path),\"dll_sha256\":digest(self.dll_path),"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "d38734dc4bb8280a",
+          "sha256": "d38734dc4bb8280aae60f1bf5739a033891c996bb5840ce6cdfadc1a3c178dd3",
+          "inspected_loaders": [
+            {
+              "name": "digest",
+              "line": 6,
+              "path_related_lines": [
+                "def digest(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()"
+              ]
+            },
+            {
+              "name": "library",
+              "line": 11,
+              "path_related_lines": [
+                "path=Path(path or Path(__file__).with_name(\"objective.dll\")).resolve();lib=ct.CDLL(str(path));pd=ct.POINTER(ct.c_double)"
+              ]
+            },
+            {
+              "name": "__init__",
+              "line": 18,
+              "path_related_lines": [
+                "def __init__(self,path,dll_path=None):",
+                "self.path=Path(path).resolve();self.handle=None;self.lib,self.dll_path=library(dll_path)",
+                "with np.load(self.path,allow_pickle=False) as saved:",
+                "self.identity=dict(feature_path=str(self.path),feature_sha256=digest(self.path),dll_path=str(self.dll_path),dll_sha256=digest(self.dll_path),metadata=m)"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "64a2e6bdcc5aa600",
+          "sha256": "64a2e6bdcc5aa600158b93e95bf8c73ab264b52b68301ab4fbb1245acec3ecd5",
+          "inspected_loaders": [
+            {
+              "name": "digest",
+              "line": 6,
+              "path_related_lines": [
+                "def digest(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()"
+              ]
+            },
+            {
+              "name": "library",
+              "line": 14,
+              "path_related_lines": [
+                "path=Path(path or Path(__file__).with_name(\"objective.dll\")).resolve();lib=ct.CDLL(str(path));pd=ct.POINTER(ct.c_double)"
+              ]
+            },
+            {
+              "name": "__init__",
+              "line": 21,
+              "path_related_lines": [
+                "def __init__(self,path,dll_path=None):",
+                "self.path=Path(path).resolve();self.handle=None;self.lib,self.dll_path=library(dll_path)",
+                "with np.load(self.path,allow_pickle=False) as saved:",
+                "if m.get('cache_identity_sha256')!=hashlib.sha256(json.dumps(identity,sort_keys=True,allow_nan=False,separators=(',',':')).encode()).hexdigest():raise ValueError('stale cache metadata identity')",
+                "if m.get('array_sha256')!={k:hashlib.sha256(v.tobytes(order='C')).hexdigest() for k,v in a.items()}:raise ValueError('stale cache array digest')",
+                "self.identity=dict(feature_path=str(self.path),feature_sha256=digest(self.path),dll_path=str(self.dll_path),dll_sha256=digest(self.dll_path),metadata=m)"
+              ]
+            }
+          ]
+        }
+      ],
+      "cache_production_source_pin_sets": [],
+      "unresolved_runtime_paths": [],
+      "manual_runtime_trace": "All65 distinct NPZ metadata and4 constructor/loader sources inspected. source_hashes metadata is documentary; constructors do not dereference it. Runtime reads are supplied cache and current library only."
+    },
+    {
+      "package": "california_benchmark",
+      "registry_sha256": "570b3684477ae6dfa91a80a113132617d7adbb5e4c2619be7252ac52c983d0df",
+      "declared_rows": 12,
+      "unique_caches_inspected": 6,
+      "original_modules": [
+        {
+          "name": "765a6badf8e4f148",
+          "sha256": "765a6badf8e4f148dec2ba56a79c86611767a28f5844a4fdc16254199cec0426",
+          "inspected_loaders": [
+            {
+              "name": "sha",
+              "line": 6,
+              "path_related_lines": [
+                "def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()"
+              ]
+            },
+            {
+              "name": "library",
+              "line": 14,
+              "path_related_lines": [
+                "path=Path(path or Path(__file__).with_name('objective.dll')).resolve();lib=ct.CDLL(str(path));pd=ct.POINTER(ct.c_double)"
+              ]
+            },
+            {
+              "name": "__init__",
+              "line": 23,
+              "path_related_lines": [
+                "def __init__(self,feature_path,dll_path=None):",
+                "self.path=Path(feature_path).resolve();self.handle=None;self.lib,self.dll_path=library(dll_path)",
+                "with np.load(self.path,allow_pickle=False) as saved:",
+                "if actual!=_identity(ident) or m['array_sha256']!={k:hashlib.sha256(v.tobytes()).hexdigest() for k,v in a.items()}:raise ValueError('feature identity')",
+                "self.identity=dict(feature_path=str(self.path),feature_sha256=sha(self.path),dll_path=str(self.dll_path),dll_sha256=sha(self.dll_path),metadata_identity=actual)"
+              ]
+            }
+          ]
+        }
+      ],
+      "cache_production_source_pin_sets": [],
+      "unresolved_runtime_paths": [],
+      "manual_runtime_trace": "All6 distinct caches inspected; strict feature-array/metadata identity checks remain. Relative features import was already replaced by exact inline helpers in reviewed adapter. Runtime reads are supplied cache/current library only."
+    },
+    {
+      "package": "original_li",
+      "registry_sha256": "5e9fc3907867d6d6fc4e137b30c72ae490be129b3f0add8c5c97758542b81e49",
+      "declared_rows": 38,
+      "unique_caches_inspected": 0,
+      "original_modules": [
+        {
+          "name": "local_inhibition_experiment/engine.py",
+          "sha256": "90f04f1f5f564c8fb6e7547a28e0d0d9b91acaddcbf9268c9e5db1f57680fd71",
+          "inspected_loaders": [
+            {
+              "name": "__init__",
+              "line": 226,
+              "path_related_lines": [
+                "def __init__(self,features_path,*,order=8,fine_order=16,dll_path=None,space_scheme=\"adaptive\",tile_width=40.,spatial_tol=1e-9,near_width=20.):",
+                "self.raw_path=Path(features_path).resolve();self.raw_sha256=hashlib.sha256(self.raw_path.read_bytes()).hexdigest()",
+                "with np.load(features_path,allow_pickle=False) as f:",
+                "path=Path(dll_path) if dll_path else Path(__file__).with_name('engine_epoch4.dll')",
+                "self.lib=ct.CDLL(str(path.resolve()))",
+                "self.dll_sha256=hashlib.sha256(path.read_bytes()).hexdigest()"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "local_inhibition_experiment/engine_epoch5.py",
+          "sha256": "95ddfbf8b0f3f084f3638661192b671ef175e09a8b3fde94e787453a98b61d04",
+          "inspected_loaders": [
+            {
+              "name": "__init__",
+              "line": 11,
+              "path_related_lines": [
+                "kwargs.setdefault('dll_path',str(Path(__file__).with_name('engine_epoch5.dll')))"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "continuous_local_inhibition/features.py",
+          "sha256": "c4505a5fbe01fe5ad73d144ac62437babba9415fe0f6e0bb653334843f3fbd5a",
+          "inspected_loaders": [
+            {
+              "name": "make_generic",
+              "line": 301,
+              "path_related_lines": [
+                "construction_source_sha256=file_sha(Path(__file__).resolve()),",
+                "parent_time_sha256=array_sha(t), parent_xy_sha256=array_sha(xy),",
+                "kde_xy_sha256=array_sha(kxy), feature_limits=limits.__dict__,"
+              ]
+            },
+            {
+              "name": "__init__",
+              "line": 58,
+              "path_related_lines": [
+                "meta[\"array_sha256\"] = {k: array_sha(a) for k, a in result.items()}"
+              ]
+            },
+            {
+              "name": "load",
+              "line": 101,
+              "path_related_lines": [
+                "path = Path(path)",
+                "raw = path.read_bytes()",
+                "with np.load(io.BytesIO(raw), allow_pickle=False) as saved:"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "continuous_local_inhibition/compiled_objective.py",
+          "sha256": "d897648602ee77ab37499feaf8dd8e291c9f68767c3c5b3e69d55a2b80d06c5b",
+          "inspected_loaders": [
+            {
+              "name": "library",
+              "line": 48,
+              "path_related_lines": [
+                "path = Path(path)",
+                "need(file_sha(path) == expected_sha256, \"DLL_CHANGED_BEFORE_LOAD\")",
+                "lib = ct.CDLL(str(path.resolve()))",
+                "need(file_sha(path) == expected_sha256, \"DLL_CHANGED_DURING_LOAD\")"
+              ]
+            },
+            {
+              "name": "__init__",
+              "line": 75,
+              "path_related_lines": [
+                "def __init__(self, features, plan, *, dll_path, expected_dll_sha256,",
+                "self.lib, self.dll_path = library(dll_path, expected_dll_sha256)",
+                "dll_path=str(self.dll_path), dll_sha256=expected_dll_sha256,"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "continuous_local_inhibition/quadrature_plan.py",
+          "sha256": "50b7dbf96fbde31d49a57b5b8b82cd759b0b0f864449c8588185ac9c5a2ed758",
+          "inspected_loaders": []
+        }
+      ],
+      "cache_production_source_pin_sets": [],
+      "unresolved_runtime_paths": [],
+      "manual_runtime_trace": "Declared engine.Objective imports bundled continuous_local_inhibition modules and reads supplied raw NPZ. kwargs always include explicit current DLL. epoch5 fallback DLL path is not called by this route. make_generic/quadrature paths operate on supplied arrays, not historical raw_source strings."
+    },
+    {
+      "package": "s04_original",
+      "registry_sha256": "81d9e733d0b83f6d8c0c7b12c71bb92ccac9d40d379e145b3d2a3feebc840349",
+      "declared_rows": 80,
+      "unique_caches_inspected": 0,
+      "original_modules": [
+        {
+          "name": "spatial.py",
+          "sha256": "764a006cc06967840839bdab9122039431c72603e2156470ae1d433549d2feaf",
+          "inspected_loaders": [
+            {
+              "name": "sha",
+              "line": 8,
+              "path_related_lines": [
+                "def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()"
+              ]
+            },
+            {
+              "name": "load",
+              "line": 12,
+              "path_related_lines": [
+                "with np.load(p,allow_pickle=False) as f:return {k:f[k].copy() for k in f.files if k!='metadata_json'},json.loads(str(f['metadata_json'].item()))"
+              ]
+            },
+            {
+              "name": "__init__",
+              "line": 16,
+              "path_related_lines": [
+                "self.lib=C.CDLL(str(Path(dll).resolve()));ptr=np.ctypeslib.ndpointer(dtype=np.float64,flags='C_CONTIGUOUS')"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "geometry_plan.py",
+          "sha256": "96adbadb202c57953730aab5c4afeae05d0e3b8586034c4a60d639cb7d4cc92c",
+          "inspected_loaders": []
+        },
+        {
+          "name": "generator.py",
+          "sha256": "b524070abed4a5cdd5b184d76094a861b11ee9205d7927a2d5bae80eb5ef95b7",
+          "inspected_loaders": []
+        },
+        {
+          "name": "controls_campaign.py",
+          "sha256": "d65b6cb80bb4e470d17b5e8191f4eafc6fb8ed7723c655aacac476006af3be51",
+          "inspected_loaders": [
+            {
+              "name": "__init__",
+              "line": 25,
+              "path_related_lines": [
+                "self.lib=C.CDLL(str(Path(dll).resolve()));ptr=np.ctypeslib.ndpointer(dtype=np.float64,flags='C_CONTIGUOUS')"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "refit_worker.py",
+          "sha256": "b5ddbd953b27c44ab6de2f50f62e0a0b37b0aa36a6af380708ba96f95e6e0a83",
+          "inspected_loaders": [
+            {
+              "name": "sha",
+              "line": 19,
+              "path_related_lines": [
+                "def sha(p):",
+                "with Path(p).open('rb') as f:",
+                "for block in iter(lambda:f.read(1024**2),b''):h.update(block)",
+                "return h.hexdigest()"
+              ]
+            },
+            {
+              "name": "digest",
+              "line": 24,
+              "path_related_lines": [
+                "def digest(v):return hashlib.sha256(json.dumps(v,sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest()"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "refine_worker.py",
+          "sha256": "171c2459246f9cfd0a5a4b410ce5458350d2159793a0eff0285325b927462814",
+          "inspected_loaders": [
+            {
+              "name": "sha",
+              "line": 12,
+              "path_related_lines": [
+                "def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()"
+              ]
+            }
+          ]
+        }
+      ],
+      "cache_production_source_pin_sets": [],
+      "unresolved_runtime_paths": [],
+      "manual_runtime_trace": "Declared canonical_arrays/features/background/time_plan and reviewed chunk evaluator use bundled history/fits and explicit current CPU/radial libraries. Original generation/fit/refine entrypoints are preserved source context but never called. Fitter/private output paths are not runtime dependencies."
+    }
+  ],
+  "excluded": "Already completed base510 not rescanned."
+}

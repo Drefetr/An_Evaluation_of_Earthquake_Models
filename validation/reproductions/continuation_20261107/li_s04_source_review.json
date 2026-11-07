@@ -1,0 +1,52 @@
+{
+  "status": "passed_source_review_for_bounded_pilot",
+  "reviewer": "/root/continuation_cpu",
+  "independent_of_route_author": true,
+  "scope": "LI and original S04 source and recovered selected-state mapping; not historical numerical acceptance",
+  "integration_head_at_review": "156389ab229c6b7b2f4eda04b5d9516c5b6a6a22",
+  "source_sha256": {
+    "reproduction/score_replay/li_replay.py": "0bf9f2420e4f88875a4410d3a1d5fed06f28f51315fafdf5aae3c70a00e72a7d",
+    "reproduction/score_replay/inhibition_replay.py": "e37f095362642f505c46f0e10b4695ef481f9cd86bdfe2e74c829b04d2263f38",
+    "reproduction/score_replay/inhibition_build.py": "e76bc71041c4e09d0d464280a75e1a5bc8c86132a07bfcbab3eec870cc7905ad",
+    "reproduction/score_replay/core.py": "e40c3a4ab5e2b8017edec91c7eac60ee4c5d4b7dd7c1cc9817e9d293d7744108",
+    "tests/test_score_replay.py": "a6c23d15963667abeaf3a0814790f01e3dca391bd97bb4fbaca1d50d7e74b706"
+  },
+  "metadata_audit": {
+    "path": "li_s04_metadata_audit.json",
+    "sha256": "f37f472eeebaed8254ab29f84bbceb4ec111381d0a5ce5766748cddd9d6b0ca0",
+    "script_sha256": "36e7f9e2b83647d5c8c4a18a4c8d5eef67bd635623233c5ca3f7a9a2315ae2ab"
+  },
+  "executed_controls": {
+    "command": "python -B -m unittest discover -s tests -p test_score_replay.py -v",
+    "tests": 28,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "seconds": 12.043,
+    "historical_likelihood_calls": 0,
+    "native_real_history_constructions": 0
+  },
+  "reviewed_invariants": [
+    "LI loads exact original engine/source closure and reconstructs original raw-event features, rather than reading saved score operands. Three observed eta=0 LI fits execute the exact original OC null branch with original five nuisance coordinates; no LI eta derivative certification is claimed.",
+    "LI 38 raw-history/state/coarse-fine reference mappings checked against original files. All 105 resources hash-checked; 29 original source/raw byte comparisons, 38 selected-vector matches and 38 coarse/fine reference pairs exact.",
+    "S04 fixed-state provenance retains first-pass 8/16, refinement 32/32 and refit 16/32 phase orders, and exact three-model selected/floor vectors. 409 resources verified, 329 original byte comparisons, 960 saved six-component outputs found in original report/phase records, 240 selected vectors and 400 gates/gains independently checked.",
+    "S04 native source has immutable handle data and per-call temporaries, with thread-local errors retrieved by the calling worker. Two-worker per-handle evaluation is safe under the inspected implementation. Handle freed after workers drain.",
+    "S04 spatial chunking preserves original rows and ordered reduction; events and unattenuated baseline/mark constants occur only in the first chunk. Original source uses the same decomposition.",
+    "Positive E and negative C crosswalk retained; S04 does not invent unavailable timing/location decomposition. P+C+M joint matches negative NLL before reference comparison.",
+    "Historical references are loaded for comparison after evaluators return; unknown/nonfinite/mismatched configured components fail, gradients are explicit diagnostics only.",
+    "Raw/BIC selection reuses saved fitted vectors and applies training-only gate; no optimizer or generator execution in replay route."
+  ],
+  "must_fix": [],
+  "conditions": [
+    "Root admission must pin these source bytes, exact resource registries, current compiled binary/build receipt and bounded pilot IDs.",
+    "Execute mandatory native constructed controls and resource supervisor in fresh Linux before historical pilot rows. This review does not attest those historical scores.",
+    "Retain all failed rows and native arrays; independently reconcile actual outputs and manuscript table rows before accepting completion."
+  ],
+  "not_executed": [
+    "Historical LI/S04 likelihood evaluation",
+    "Full replay",
+    "New fit",
+    "Generation",
+    "Linux native controls in this review"
+  ]
+}
