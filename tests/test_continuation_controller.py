@@ -4,6 +4,7 @@ import hashlib
 import json
 from pathlib import Path
 import tempfile
+import types
 import unittest
 import zipfile
 from unittest.mock import patch
@@ -553,6 +554,70 @@ class PublicReaderDispatchControls(unittest.TestCase):
         for suffix in ('reader/*.json','reader/build/**','reader/supervision/*.log',
                        'reader/science/rows/**/result.json','reader/science/rows/**/native_components.npz'):
             self.assertIn('/continuation/'+suffix,text)
+
+
+class BudgetedDispatchControls(unittest.TestCase):
+    def setUp(self):
+        self.tmp=tempfile.TemporaryDirectory();self.addCleanup(self.tmp.cleanup)
+        self.root=Path(self.tmp.name);self.prior=self.root/'prior';self.out=self.root/'output'
+        (self.prior/'science').mkdir(parents=True);(self.prior/'build').mkdir();self.out.mkdir()
+        def put(path, data):
+            path.parent.mkdir(parents=True,exist_ok=True)
+            path.write_text(json.dumps(data))
+        (self.prior/'build/attenuation.so').write_bytes(b'opaque unused library')
+        put(self.prior/'build/build_receipt.json',{'opaque':True})
+        self.index=dict(partial_case=None,cases=[{'case_id':f'case{i}'} for i in range(5)])
+        self.index_path=self.prior/'science/index.json';put(self.index_path,self.index)
+        put(self.root/'review.json',dict(passed=True,index_sha256=controller.sha(self.index_path)))
+        failed=self.root/'failed.zip';failed.write_bytes(b'opaque historical artifact')
+        put(self.root/'experiments/s04b_joint_execution/operational_protocol.json',
+            dict(original_failure={'failed_archive_sha256':controller.sha(failed)}))
+        put(self.root/'experiments/s04b_joint_budgeted/allocation_protocol.json',{})
+        self.policy=dict(resources={'sampled_process_tree_rss_cap_bytes':6442450944,'minimum_host_free_bytes':2147483648},
+            fixed_slots=[{'case_id':'case5','wall_seconds':420}],sequence=[f'case{i}' for i in range(6)],
+            predecessor={'library_sha256':controller.sha(self.prior/'build/attenuation.so'),
+                         'build_receipt_sha256':controller.sha(self.prior/'build/build_receipt.json')},
+            transition_review_sha256='frozen-transition')
+        self.driver=types.SimpleNamespace(verify_protocol=lambda:self.policy,source_identity=lambda:{'fake.py':'frozen'})
+        self.review=dict(stage=controller.BUDGETED_STAGE,driver_source_review_passed=True,
+            scheduler_source_review_passed=True,allocation_protocol_review_passed=True,case_id='case5',case_ids=['case5'],
+            wall_cap_seconds=420,rss_cap_bytes=6442450944,host_headroom_bytes=2147483648,
+            prior_index_path='science/index.json',prior_index_review='review.json',
+            prior_index_sha256=controller.sha(self.index_path),failed_archive='failed.zip',
+            numerical_attempt_id='invented-attempt',expires_utc='2030-01-01T00:00:00+00:00',
+            operational_run_id='invented',operational_run_config_sha256='invented-hash')
+
+    def call(self, changed=None):
+        with patch.object(controller,'ROOT',self.root):
+            return controller.joint_budgeted(dict(self.review,**(changed or {})),self.out,'test-token',self.prior,self.driver)
+
+    def test_budgeted_route_is_explicit_and_reuses_opaque_native_bytes(self):
+        admission,command=self.call()
+        self.assertEqual(admission['mode'],'budgeted_campaign')
+        self.assertNotIn('pilot_projection_review_passed',admission)
+        self.assertEqual((self.out/'build/attenuation.so').read_bytes(),b'opaque unused library')
+        self.assertEqual(admission['case_ids'],['case5'])
+        self.assertIn('--prior-index',command)
+        self.assertEqual(admission['prior_index_sha256'],controller.sha(self.index_path))
+
+    def test_no_forecast_relabelling_slot_growth_or_multiple_cases(self):
+        for changed in ({'pilot_projection_review_passed':True},{'wall_cap_seconds':421},
+                        {'case_ids':['case5','case6']},{'allocation_protocol_review_passed':False}):
+            with self.subTest(changed=changed),self.assertRaises(ValueError):self.call(changed)
+
+    def test_exact_predecessor_review_is_required(self):
+        (self.root/'review.json').write_text(json.dumps({'passed':True,'index_sha256':'different'}))
+        with self.assertRaisesRegex(ValueError,'independent acceptance'):self.call()
+
+    def test_new_stage_pins_its_own_protocol_review_and_driver_controls(self):
+        review=dict(stage=controller.BUDGETED_STAGE,prior_artifact_id=1,
+            prior_index_review='retained-review.json',failed_archive='old-failure.zip',source_review_record='new-source-review.json')
+        pins=controller.mandatory_sources(controller.BUDGETED_STAGE,review)
+        self.assertTrue({'experiments/s04b_joint_budgeted/driver.py',
+            'experiments/s04b_joint_budgeted/allocation_protocol.json','tests/test_joint_budgeted_driver.py',
+            'new-source-review.json','retained-review.json'}.issubset(pins))
+        workflow=(ROOT/'.github/workflows/research-continuation.yml').read_text()
+        self.assertIn('/continuation/science/transition/**',workflow)
 
 
 if __name__ == '__main__': unittest.main()

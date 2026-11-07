@@ -36,9 +36,11 @@ jobs:
           import json, subprocess, sys
           with open('validation/reproductions/continuation_20261107/dispatch.json') as stream:
               stage = json.load(stream)['stage']
-          if stage in ('joint-continuation-pilot', 'joint-continuation-campaign'):
+          if stage in ('joint-continuation-pilot', 'joint-continuation-campaign', 'joint-budgeted-case'):
               for pattern in ('test_joint_parallel_chunks.py', 'test_joint_execution_driver.py'):
                   subprocess.run([sys.executable, '-B', '-m', 'unittest', 'discover', '-s', 'tests', '-p', pattern, '-v'], check=True)
+          if stage == 'joint-budgeted-case':
+              subprocess.run([sys.executable, '-B', '-m', 'unittest', 'discover', '-s', 'tests', '-p', 'test_joint_budgeted_driver.py', '-v'], check=True)
           PY
       - name: Verify Linux process containment before scientific execution
         env:
@@ -72,6 +74,7 @@ jobs:
             ${{ runner.temp }}/continuation/science/attempts/**
             ${{ runner.temp }}/continuation/science/reviews/**
             ${{ runner.temp }}/continuation/science/training_resume/**
+            ${{ runner.temp }}/continuation/science/transition/**
             ${{ runner.temp }}/continuation/*.json
             ${{ runner.temp }}/continuation/original_failure.zip
             ${{ runner.temp }}/continuation/supervision/*.json

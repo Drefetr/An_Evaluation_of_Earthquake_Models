@@ -19,6 +19,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 JOINT_CONTINUATION_STAGES = ('joint-continuation-pilot', 'joint-continuation-campaign')
+BUDGETED_STAGE = 'joint-budgeted-case'
 READER_STAGES = {'reader-pilot': ('productivity_profiles', 'pilot'),
                  'reader-completion': ('s03', 'completion')}
 
@@ -92,12 +93,12 @@ def mandatory_sources(stage, review=None):
         paths.update(('scripts/reproduce_cpu.py',
                       'validation/reproductions/score_replay_20261107/accepted_execution_index.json'))
         paths.update(review.get('reader_execution_evidence_sha256', {}))
-    elif stage in ('joint-pilot','joint-full') + JOINT_CONTINUATION_STAGES:
+    elif stage in ('joint-pilot','joint-full',BUDGETED_STAGE) + JOINT_CONTINUATION_STAGES:
         paths.add('tests/test_s04b_joint_nuisance.py')
         package = ROOT/'experiments/s04b_joint_nuisance'
         paths.update(p.relative_to(ROOT).as_posix() for p in package.iterdir()
                      if p.is_file() and p.suffix in ('.py','.cpp','.json'))
-        if stage in JOINT_CONTINUATION_STAGES:
+        if stage in JOINT_CONTINUATION_STAGES or stage == BUDGETED_STAGE:
             execution = ROOT/'experiments/s04b_joint_execution'
             paths.update(p.relative_to(ROOT).as_posix() for p in execution.iterdir()
                          if p.is_file() and p.suffix in ('.py','.json'))
@@ -105,6 +106,11 @@ def mandatory_sources(stage, review=None):
                           'experiments/s04b_joint_nuisance/pre_repair_source.zip'))
             paths.add(review['failed_archive'])
             paths.add(review['prior_index_review'] if 'prior_artifact_id' in review else review['training_review'])
+            if stage == BUDGETED_STAGE:
+                budgeted = ROOT/'experiments/s04b_joint_budgeted'
+                paths.update(p.relative_to(ROOT).as_posix() for p in budgeted.rglob('*')
+                             if p.is_file() and p.suffix in ('.py','.json','.md'))
+                paths.update(('tests/test_joint_budgeted_driver.py',review['source_review_record']))
     elif stage in ('s02-pilot','s02-completion','initialmark-pilot','initialmark-completion'):
         paths.update(('reproduction/score_replay/s02_replay.py','tests/test_s02_score_replay.py'))
         package = ROOT/'reproduction/score_replay/s02'
@@ -125,6 +131,7 @@ def mandatory_sources(stage, review=None):
             paths.update((review or {}).get('fresh_artifacts_sha256',{}))
         elif stage.startswith('blocks-'):
             names = ('__init__.py','core.py','california_blocks_replay.py')
+            paths.add('tests/test_partition_portable_source.py')
             paths.update((review or {}).get('fresh_artifacts_sha256',{}))
         elif stage.startswith('li-'):
             names = ('__init__.py','core.py','li_replay.py')
@@ -366,6 +373,71 @@ def joint_continuation(review, output, token, prior):
     return admission,command
 
 
+def joint_budgeted(review, output, token, prior, driver=None):
+    """Explicit allocation transition; the failed forecast is never approved."""
+    if driver is None:
+        from experiments.s04b_joint_budgeted import driver
+    if prior is None or review.get('stage') != BUDGETED_STAGE:
+        raise ValueError('Budgeted continuation requires its exact predecessor artifact')
+    if any(review.get(k) is not True for k in ('driver_source_review_passed',
+                                               'scheduler_source_review_passed',
+                                               'allocation_protocol_review_passed')):
+        raise ValueError('Budgeted source, scheduler and allocation reviews are required')
+    if 'pilot_projection_review_passed' in review:
+        raise ValueError('A failed runtime forecast cannot authorize this separate mode')
+    policy = driver.verify_protocol()
+    resources = policy['resources']
+    case = review['case_id']
+    if review.get('case_ids') != [case]:
+        raise ValueError('Exactly one budgeted case is required')
+    slots = {s['case_id']: s for s in policy['fixed_slots']}
+    wall = review['wall_cap_seconds']
+    if (case not in slots or isinstance(wall,bool) or not isinstance(wall,(int,float))
+            or not math.isfinite(wall) or wall != slots[case]['wall_seconds']):
+        raise ValueError('Budgeted case wall cap differs from its frozen allocation')
+    if (review['rss_cap_bytes'] != resources['sampled_process_tree_rss_cap_bytes']
+            or review['host_headroom_bytes'] < resources['minimum_host_free_bytes']):
+        raise ValueError('Budgeted resource envelope differs')
+    index_path = inside(prior,review['prior_index_path'])
+    checked_path = inside(ROOT,review['prior_index_review'])
+    checked = read(checked_path); index = read(index_path)
+    if (checked.get('passed') is not True or sha(index_path) != review['prior_index_sha256']
+            or checked.get('index_sha256') != sha(index_path) or index['partial_case'] is not None):
+        raise ValueError('Budgeted predecessor lacks complete exact independent acceptance')
+    count = len(index['cases'])
+    if (not 5 <= count < 80 or [r['case_id'] for r in index['cases']] != policy['sequence'][:count]
+            or case != policy['sequence'][count]):
+        raise ValueError('Budgeted case must be the next unchanged roster entry')
+    build = output/'build'
+    shutil.copytree(prior/'build',build)
+    library, receipt = build/'attenuation.so', build/'build_receipt.json'
+    original = policy['predecessor']
+    if sha(library) != original['library_sha256'] or sha(receipt) != original['build_receipt_sha256']:
+        raise ValueError('Budgeted continuation requires the original native/build bytes')
+    original_op = read(ROOT/'experiments/s04b_joint_execution/operational_protocol.json')
+    failed = inside(ROOT,review['failed_archive'])
+    if sha(failed) != original_op['original_failure']['failed_archive_sha256']:
+        raise ValueError('Original failed training artifact changed')
+    shutil.copy2(failed,output/'original_failure.zip')
+    package = ROOT/'experiments/s04b_joint_budgeted'
+    admission = dict(mode='budgeted_campaign',independent_review_passed=True,
+        scheduler_review_passed=True,external_supervision=True,source_sha256=driver.source_identity(),
+        allocation_protocol_sha256=sha(package/'allocation_protocol.json'),
+        transition_review_sha256=policy['transition_review_sha256'],
+        prior_index_sha256=sha(index_path),prior_review_sha256=sha(checked_path),
+        library_sha256=sha(library),build_receipt_sha256=sha(receipt),
+        numerical_attempt_id=review['numerical_attempt_id'],expires_utc=review['expires_utc'],
+        operational_run_id=review['operational_run_id'],
+        operational_run_config_sha256=review['operational_run_config_sha256'],
+        lease_token_sha256=hashlib.sha256(token.encode()).hexdigest(),threads=2,workers=1,
+        sampled_process_tree_rss_cap_bytes=review['rss_cap_bytes'],case_id=case,
+        case_ids=[case],wall_seconds=wall)
+    command = [sys.executable,'-B',str(package/'driver.py'),'--output',str(output/'science'),
+        '--admission',str(output/'admission.json'),'--library',str(library),
+        '--build-receipt',str(receipt),'--prior-index',str(index_path),'--prior-review',str(checked_path)]
+    return admission, command
+
+
 def joint_batch_passed(output, review):
     result = read(output/'science/result.json')
     if result.get('passed') is not True or result.get('status') != 'batch_complete' or [r['case_id'] for r in result.get('cases',[])] != review['case_ids']:
@@ -505,7 +577,7 @@ def main():
     environment['JOINT_NUMERICAL_LEASE_TOKEN'] = token
     environment['NUMERICAL_LEASE_TOKEN'] = token
     os.environ.update(environment)
-    if stage in JOINT_CONTINUATION_STAGES:
+    if stage in JOINT_CONTINUATION_STAGES or stage == BUDGETED_STAGE:
         prior = prior_artifact(dict(pilot_artifact_id=review['prior_artifact_id'],
                                    pilot_archive_sha256=review['prior_archive_sha256']), output) if 'prior_artifact_id' in review else None
     else:
@@ -514,7 +586,9 @@ def main():
     os.environ.pop('GITHUB_TOKEN', None)
     if stage in READER_STAGES:
         return execute_reader_dispatch(review,output,expires)
-    if stage in JOINT_CONTINUATION_STAGES:
+    if stage == BUDGETED_STAGE:
+        admission,command = joint_budgeted(review,output,token,prior)
+    elif stage in JOINT_CONTINUATION_STAGES:
         admission,command = joint_continuation(review,output,token,prior)
     elif stage in ('joint-pilot', 'joint-full'):
         package = ROOT / 'experiments/s04b_joint_nuisance'
@@ -627,7 +701,7 @@ def main():
     write(output/'supervisor_spec.json',spec)
     result = subprocess.run([sys.executable,'-B',str(ROOT/'scripts/supervise_research.py'),
                              str(output/'supervisor_spec.json')],cwd=ROOT)
-    if stage in JOINT_CONTINUATION_STAGES and result.returncode == 0:
+    if (stage in JOINT_CONTINUATION_STAGES or stage == BUDGETED_STAGE) and result.returncode == 0:
         joint_batch_passed(output,review)
     if stage in ('observed-pilot','observed-completion') and result.returncode == 0:
         observed_batch_passed(output,review)
