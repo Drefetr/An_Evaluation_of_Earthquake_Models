@@ -1,0 +1,78 @@
+{
+  "passed": true,
+  "reviewer": "/root/continuation_cpu",
+  "review_kind": "independent_source_review",
+  "source_commit": "abba9858eeba7c90d6c565095742001c683cd1ef",
+  "reviewed_files_sha256": {
+    ".github/workflows/research-continuation.yml": "e03c7bc1df52185ee6cd58dd65340f1ecbb4129596833ed60889b54a7d21838e",
+    "experiments/s04b_joint_host_batch/batch.py": "021607cc7441339ede94b6fb41b929dd8b2f97785452794b92d4aa55bcec9f5c",
+    "experiments/s04b_joint_host_batch/batch_policy.json": "cd32e77ebc59b577f7c10ede9acd293233a9c39341cfdebe35c5454fdc599c41",
+    "scripts/run_continuation.py": "b60728503a51d09d1652c0386034c20fb8f81f5a4642f617f622d802eb31a3a0",
+    "tests/test_continuation_controller.py": "35bf0e843031d768c9b1c88b76dd5908dfc5c9b663596905742e8fcab6fadc72",
+    "tests/test_joint_budgeted_batch.py": "0441b39e0ceeb1440837f5767325f1529d680c67a9ce9f6287edd8d4eed5bbc4"
+  },
+  "scientific_execution_performed": false,
+  "scope": "Source/constructed-control review only. No source authoring or model calls. Operational sequential scheduling around unchanged one-case driver; final actual-host-batch agent output review required.",
+  "findings": [
+    {
+      "id": "H1",
+      "status": "resolved",
+      "finding": "Preparation could consume whole-slot admission margin.",
+      "resolution": "Whole fixed slot plus checker/finalization and expiry are rechecked immediately before child launch.",
+      "control": "test_preparation_must_leave_whole_fixed_slot_before_launch"
+    },
+    {
+      "id": "H2",
+      "status": "resolved",
+      "finding": "Failed child supervision elapsed time was omitted from host wrapper charge.",
+      "resolution": "try/finally records all launched scientific supervisor durations, failure retains hashed child/supervisor/index/checker evidence.",
+      "control": "test_second_failure_retains_first_accepted_index_without_repetition"
+    }
+  ],
+  "constructed_controls": {
+    "host": 10,
+    "controller": 48,
+    "total": 58,
+    "failures": 0,
+    "skips": 0,
+    "platform": "Windows source-only mocked orchestration; Linux production/preflight pending"
+  },
+  "frozen_scientific_sources_unchanged": 18,
+  "unchanged_controller_functions": [
+    "sha",
+    "read",
+    "write",
+    "inside",
+    "replay_paths",
+    "replay_roster",
+    "li_constructor_repair_evidence",
+    "materialize_fresh_scores",
+    "observed_continuation",
+    "observed_batch_passed",
+    "prior_artifact",
+    "joint_continuation",
+    "joint_budgeted",
+    "joint_batch_passed",
+    "reader_dispatch_plan",
+    "reader_batch_passed",
+    "execute_reader_dispatch"
+  ],
+  "fixed_schedule": {
+    "remaining_cases": 74,
+    "batches": 9,
+    "fixed_slot_seconds": 106680,
+    "maximum_batch_slots": 12600,
+    "host_wall_cap": 14400,
+    "upload_reserve": 600,
+    "checker_cap": 120
+  },
+  "verified_behaviors": [
+    "One child process and one independent automated output check, sequentially; failed checker/supervisor/partial/unknown stops.",
+    "Original exact native build, runtime, shared expiry, scientific recipe, fixed per-case slots and32h campaign remain unchanged.",
+    "New automated receipts explicitly do not assert live-agent or publication acceptance.",
+    "Predecessor/case order cannot be skipped, duplicated or replaced; initial6-case index and review pins exact.",
+    "Host/setup/checker overhead distinct from scientific index charges; no unused-slot redistribution.",
+    "GitHub host240-minute route mandatory and every child artifact/partial retained."
+  ],
+  "required_next_gate": "Root source integration confirmation and fresh Linux constructed preflight before any admitted host batch; actual output requires separate agent review."
+}
