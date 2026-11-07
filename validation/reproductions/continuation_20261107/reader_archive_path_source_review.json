@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "reviewer": "/root",
+  "author": "/root/recover_jma",
+  "author_commit": "d71d9f93642b810a7721f212c5ca74136b61c957",
+  "source_sha256": {
+    "scripts/reproduce_cpu.py": "eec8878e805276839b8ad9f43af5da70fd56145a034211d2aba8a27d1ac6bf09",
+    "tests/test_continuation_controller.py": "b3e5ac480666809fccb39e0efdaf67b28359ca09a4320f310ea47aa5741924c0"
+  },
+  "scope": "Explicit retained archive member support; source review and35 invented controller/reader controls only.",
+  "checks": [
+    "Original ZIP bytes retained",
+    "Optional result member defaults to original science/result.json",
+    "Reader-prefixed actual result and corresponding admission use exact declared member",
+    "Archive/member/result/review hashes remain required",
+    "Conflicting outer and inner invented results select only the pinned prefix",
+    "Path and result tampering rejected"
+  ],
+  "scientific_calls": 0,
+  "tests": 35,
+  "failures": 0,
+  "errors": 0
+}
