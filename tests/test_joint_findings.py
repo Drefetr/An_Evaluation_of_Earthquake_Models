@@ -128,5 +128,52 @@ class TestJointFindings(unittest.TestCase):
             self.assertEqual(len(exported['studies']),3 if enabled else 2)
         self.assertEqual(payload,original)
 
+    def test_installed_legacy_site_without_joint_dataset_keeps_all_selector_checks(self):
+        node=shutil.which('node');self.assertIsNotNone(node)
+        site=findings.ROOT/'website/site'
+        data=json.loads((site/'findings-data.json').read_text(encoding='utf-8'))
+        completed=subprocess.run([node,str(findings.ROOT/'website/check_interactions.cjs'),str(site)],
+                                 capture_output=True,text=True,check=True)
+        report=json.loads(completed.stdout)
+        self.assertTrue(report['passed'])
+        expected=sum(len(s['comparisons'])*len(s['metrics'])*2 for s in data['studies'])
+        self.assertEqual(report['selector_combinations'],expected)
+        self.assertEqual(report['joint_selector_cases'],10*sum(s.get('kind')=='joint_simulation'for s in data['studies']))
+
+    def test_joint_dataset_requires_real_panel_markup_not_stub_created_nodes(self):
+        node=shutil.which('node');self.assertIsNotNone(node)
+        joint,_=self.load();payload=self.invented_payload(joint);payload['studies'].append(joint)
+        output=self.root/'joint_missing_panel';output.mkdir();findings.write_findings(output,payload)
+        path=output/'findings.html';original=path.read_text(encoding='utf-8')
+        for missing in ('joint-diagnostics','joint-search-rows','joint-floor-rows'):
+            with self.subTest(missing=missing):
+                modified=original.replace('id="'+missing+'"','id="missing-'+missing+'"')
+                self.assertNotEqual(modified,original);path.write_text(modified,encoding='utf-8')
+                completed=subprocess.run([node,str(findings.ROOT/'website/check_interactions.cjs'),str(output)],
+                                         capture_output=True,text=True)
+                self.assertNotEqual(completed.returncode,0)
+                self.assertIn('Joint dataset requires one actual panel node: '+missing,completed.stderr)
+
+    def test_invented_legacy_view_without_joint_nodes_keeps_seventy_combinations(self):
+        node=shutil.which('node');self.assertIsNotNone(node)
+        joint,_=self.load();payload=self.invented_payload(joint)
+        for index in range(5):
+            extra=deepcopy(payload['studies'][0]);extra['name']='Invented extra region '+str(index)
+            payload['studies'].append(extra)
+        output=self.root/'invented_legacy';output.mkdir();findings.write_findings(output,payload)
+        path=output/'findings.html';html=path.read_text(encoding='utf-8')
+        start=html.index('<div id="joint-diagnostics"')
+        end=html.index('<h3>How to read this comparison</h3>',start)
+        # Emulate the legacy template and its original simulation/observed code:
+        # no joint DOM nodes or active initialization calls exist in that edition.
+        html=(html[:start]+html[end:]).replace("el('joint-diagnostics').hidden=true;",'')
+        self.assertNotIn('id="joint-diagnostics"',html)
+        path.write_text(html,encoding='utf-8')
+        completed=subprocess.run([node,str(findings.ROOT/'website/check_interactions.cjs'),str(output)],
+                                 capture_output=True,text=True,check=True)
+        report=json.loads(completed.stdout)
+        self.assertTrue(report['passed']);self.assertEqual(report['selector_combinations'],70)
+        self.assertEqual(report['joint_selector_cases'],0)
+
 
 if __name__=='__main__':unittest.main()
