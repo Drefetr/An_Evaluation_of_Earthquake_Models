@@ -1,11 +1,79 @@
 """Export only accepted aggregate results; no fit or live-run access."""
 import hashlib
 import fnmatch
+import importlib.util
 import json
+from decimal import Decimal, ROUND_HALF_EVEN
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 AUTH = ROOT/'validation/authorities'
+JOINT_DIRECTORY = 'validation/live_results/joint_nuisance_20261107'
+FORMATTER_PATH = ROOT/'scripts/render_joint_nuisance_results.py'
+
+
+def joint_display(value):
+    """Match the manuscript formatter's four-decimal presentation, including zero."""
+    rounded=Decimal(str(value)).quantize(Decimal('0.0001'),rounding=ROUND_HALF_EVEN)
+    return format(abs(rounded) if rounded==0 else rounded,'.4f')
+
+
+def load_joint_study(repository):
+    """Absent evidence adds nothing; present evidence must pass the full publication gate.
+
+    This verifies saved outputs and their issued reviews, not scientific correctness
+    or reviewer identity. It never reads an in-progress execution directory.
+    """
+    base=repository/JOINT_DIRECTORY
+    if not base.exists():return None,[]
+    paths={key:JOINT_DIRECTORY+'/'+filename+'.json' for key,filename in
+           [('summary','summary'),('result','result'),('index','index'),
+            ('audit','independent_review'),('completion_review','completion_review')]}
+    if not base.is_dir() or not all((repository/p).is_file()for p in paths.values()):
+        raise ValueError('Joint study publication evidence is incomplete')
+    spec=importlib.util.spec_from_file_location('joint_publication_validator',FORMATTER_PATH)
+    validator=importlib.util.module_from_spec(spec);spec.loader.exec_module(validator)
+    try:summary,pins=validator.validate(repository,paths)
+    except (KeyError,TypeError) as exc:
+        raise ValueError('Malformed joint study publication evidence') from exc
+    study={
+        'name':'Synthetic controls - S04B joint nuisance comparison',
+        'kind':'joint_simulation',
+        'comparisons':{'LI_raw':'LI','LIplus_immigrant_raw':'LI+ immigrant',
+            'LIplus_immigrant_BIC':'LI+ immigrant gated','LIplus_inclusive_raw':'LI+ total',
+            'LIplus_inclusive_BIC':'LI+ total gated'},
+        'comparator':'Jointly fitted uninhibited floor',
+        'metrics':['joint'],'summary':summary,
+        'display_summary':[dict(regime=r['regime'],model=r['model'],gate=r['gate'],
+            mean_gain=joint_display(r['mean_gain']),median_gain=joint_display(r['median_gain']),
+            wilson95=[joint_display(x)for x in r['wilson95']])for r in summary],
+        'regime_names':{'4':'Immigrant: narrow/short','5':'Immigrant: broad/long',
+                        '6':'Total: narrow/short','7':'Total: broad/long'},
+        'note':'Temporal and background coordinates are fitted jointly with inhibition on training data. '
+            'The common spatial and mark laws remain fixed. Each regime uses 20 independent seeded histories; '
+            'procedures share those histories and regimes are never pooled. Mean and median gains are total '
+            'held-out nats per history. Pointwise Wilson intervals describe strict-positive win indicators, '
+            'not mean-gain uncertainty or simultaneous inference. Positive near-zero gains still count as wins. '
+            'Active means positive selected inhibition; it does not establish parameter recovery. A null-search '
+            'gap can produce a gain at zero inhibition and prevents attributing that procedure contrast to '
+            'inhibition. Failed optimizer attempts remain counted, including shared searches reused by raw and '
+            'gated rows; their counts must not be added across procedures. These controlled comparisons do not '
+            'establish a physical mechanism or prospective forecasting performance.',
+        'source':'Chapter 13, separate jointly fitted S04B comparison. Exact summary and complete execution '
+                 'are bound to the final live saved-output review; source hashes are in the aggregate download.',
+        'evidence_paths':paths,
+        'validation_source':'scripts/render_joint_nuisance_results.py',
+        'validation_source_sha256':hashlib.sha256(FORMATTER_PATH.read_bytes()).hexdigest(),
+    }
+    return study,[{'file':Path(p).name,'path':p,'sha256':h}for p,h in sorted(pins.items())]
+
+
+def write_findings(out,payload):
+    """Render an already assembled export; this helper does not accept scientific inputs."""
+    (out/'findings-data.json').write_text(json.dumps(payload,indent=2)+'\n',encoding='utf-8')
+    template=(ROOT/'website/findings.html').read_text(encoding='utf-8')
+    (out/'findings.html').write_text(template.replace('/* DATA */',
+        'const DATA='+json.dumps(payload).replace('<','\\u003c')+';'),encoding='utf-8')
 
 def build(out):
     studies=[];sources=[]
@@ -64,7 +132,8 @@ def build(out):
     studies[-1]['note']+=' The narrow/short immigrant generator rejected no event in 19 of 20 histories. The lower table refits only the uninhibited background intercept on training data; all original inhibited fits and gates stay unchanged. This isolates comparator sensitivity without claiming joint nuisance fitting or parameter recovery. In the separate original unit-mark S04 controls, all 20 narrow/short histories had no rejected proposals; they are not additional S04B replicates.'
     studies[-1]['source']='Chapter 13: original fixed-floor S04B summaries, source-backed generator/parameter diagnostics, and completed 80-history intercept sensitivity.'
     payload={'studies':studies,'sources':sources,'scope':'Reported aggregates, including the dated train-only intercept sensitivity. No uncertainty intervals inferred from dependent windows. S06 acceptance covers saved rows and arithmetic, not independent likelihood replay.'}
-    (out/'findings-data.json').write_text(json.dumps(payload,indent=2)+'\n',encoding='utf-8')
-    template=(ROOT/'website/findings.html').read_text(encoding='utf-8')
-    (out/'findings.html').write_text(template.replace('/* DATA */', 'const DATA='+json.dumps(payload).replace('<','\\u003c')+';'),encoding='utf-8')
+    joint,joint_sources=load_joint_study(ROOT)
+    if joint is not None:
+        studies.append(joint);sources.extend(joint_sources)
+    write_findings(out,payload)
     return payload
