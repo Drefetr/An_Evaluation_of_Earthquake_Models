@@ -219,7 +219,8 @@ def recovery_delegate(scheduler, partial, trace, science, policy, out):
     def checked_fine(phase, name, fitted, protocol):
         checked=original_fine(phase,name,fitted,protocol)
         if name in ('null','LI'):
-            require(same(checked,partial['training_checks'][name]), 'Repeated completed-arm training check differs')
+            comparison=adapter.record_training_check(name,checked,partial['training_checks'][name])
+            require(comparison['exact_match'], 'Repeated completed-arm training check differs')
         return checked
     delegate.fine_check=checked_fine
     return delegate,adapter

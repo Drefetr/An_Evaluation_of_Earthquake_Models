@@ -24,6 +24,31 @@ def same(a, b):
     return checkpoint.dumps(a, sort_keys=True, separators=(',', ':')) == checkpoint.dumps(b, sort_keys=True, separators=(',', ':'))
 
 
+def check_comparison(actual, expected):
+    """Retain exact mismatches, including signed zero; this applies no tolerance."""
+    a, b = [json.loads(checkpoint.dumps(v)) for v in (actual, expected)]
+    differences = []
+    def visit(left, right, path):
+        if same(left, right):
+            return
+        if isinstance(left, dict) and isinstance(right, dict):
+            for key in sorted(set(left) | set(right)):
+                child = path+'/'+str(key).replace('~','~0').replace('/','~1')
+                if key not in left or key not in right:
+                    differences.append(dict(path=child,kind='missing_key',actual_present=key in left,
+                        expected_present=key in right,actual=left.get(key),expected=right.get(key)))
+                else:visit(left[key],right[key],child)
+        elif isinstance(left,list) and isinstance(right,list) and len(left)==len(right):
+            for i,(x,y) in enumerate(zip(left,right)):visit(x,y,path+'/'+str(i))
+        else:
+            row=dict(path=path,kind='value',actual=left,expected=right)
+            if isinstance(left,(int,float)) and not isinstance(left,bool) and isinstance(right,(int,float)) and not isinstance(right,bool):
+                row.update(delta=left-right,absolute_delta=abs(left-right))
+            differences.append(row)
+    visit(a,b,'')
+    return dict(actual=a,expected=b,exact_match=same(a,b),differences=differences)
+
+
 def bare(record):
     return {k: copy.deepcopy(v) for k, v in record.items() if k not in ('event', 'model')}
 
@@ -60,6 +85,7 @@ class RecoveryAdapter:
         self.context = 'support_check'
         self.evaluations = defaultdict(Counter)
         self.last_evaluation = None
+        self.repeated_training_checks = {}
         self.arm_calls, self.optimizer_calls = [], []
         self.anchor_return_verified = self.anchor_next_input_verified = False
         self.current = None
@@ -69,6 +95,12 @@ class RecoveryAdapter:
         self.interrupted = self.ends[(policy['model'], policy['replayed_primary_error_start'], 'Powell')]
         self.log('lineage', original_failed_physical_attempts=len(self.ends), interrupted=self.interrupted,
             scope='Original interrupted invocation is not a successful logical return or an internal-state resume')
+
+    def record_training_check(self, name, actual, expected):
+        checked = check_comparison(actual, expected)
+        self.repeated_training_checks[name] = checked
+        self.log('repeated_training_check', model=name, **checked)
+        return checked
 
     def _validate_partial(self):
         r, p = self.partial, self.policy
@@ -205,6 +237,7 @@ class RecoveryAdapter:
     def receipt(self):
         return dict(schema='joint_partial_optimizer_recovery_calls_v1',arm_calls=self.arm_calls,
             logical_optimizer_calls=[list(v) for v in self.optimizer_calls], actual_evaluations=dict(self.evaluations),
+            repeated_training_checks=self.repeated_training_checks,
             anchor_return_verified=self.anchor_return_verified,anchor_next_input_verified=self.anchor_next_input_verified,
             reused_complete_arms=self.policy['reused_complete_arms'],replayed_successful_starts=self.policy['replayed_successful_starts'],
             original_physical_attempts_retained=len(self.ends),original_interrupted_powell=self.interrupted,
