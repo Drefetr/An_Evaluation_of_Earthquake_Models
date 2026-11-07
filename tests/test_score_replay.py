@@ -108,6 +108,32 @@ class TestScoreReplay(unittest.TestCase):
                 selected_states(inputs.json(spec))
         self.assertEqual(counts, {'first_pass':59,'fixed_state_refinement':3,'order16_refit':18})
 
+    def test_original_li_raw_counts_and_selected_reference_bindings(self):
+        import io
+        import numpy as np
+        root=Path(__file__).resolve().parents[1]/'reproduction/score_replay/original_li'
+        registry=json.loads((root/'registry.json').read_text(encoding='utf-8'));inputs=Inputs(root)
+        self.assertEqual(len(registry['rows']),38)
+        self.assertEqual(len({(r['case'],r['arm']) for r in registry['rows']}),19)
+        for row in registry['rows']:
+            state=inputs.json(row['state']);reference=inputs.json(row['expected'])
+            self.assertEqual(len(state['parameters']),8 if row['arm']=='LI' else 5)
+            with np.load(io.BytesIO(inputs.read(row['raw'])),allow_pickle=False) as saved:
+                meta=json.loads(str(saved['metadata_json'].item()));times=saved['parent_time']
+            self.assertEqual(int(((times>=meta['start'])&(times<meta['end'])).sum()),row['n_events_expected'])
+            for phase in ('coarse','fine'):components(reference[phase],'space_time_mark')
+
+    def test_original_li_array_mismatch_cannot_hide_behind_scalar_match(self):
+        import numpy as np
+        from reproduction.score_replay.li_replay import compare_result
+        raw=dict(P=1.,E=2.,M=3.,timing=-1.,event_log_point_intensity=[1.])
+        reference={k:dict(raw) for k in ('coarse','fine')}
+        actual={k:dict(components=components(raw,'space_time_mark')) for k in ('coarse','fine')}
+        arrays={k+'__event_log_point_intensity':np.array([5.]) for k in ('coarse','fine')}
+        row=dict(absolute_tolerances={k:1e-4 for k in ('P','E','C','M','timing','location','joint')},
+                 event_log_absolute_tolerance=1e-4)
+        self.assertFalse(compare_result(actual,arrays,reference,row)['passed'])
+
     def test_inhibition_decomposition_does_not_invent_timing_split(self):
         from reproduction.score_replay.inhibition_replay import joint_components
         result = joint_components([7.,0.,0.,0.,2.,1.],[0,0,0,0,0,0,8.,-2.])
