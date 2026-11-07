@@ -26,6 +26,8 @@ jobs:
           python-version: '3.13.18'
           cache: pip
       - run: python -m pip install -r requirements-cpu.txt
+      - name: Validate joint likelihood derivatives and selection controls on Linux
+        run: python -B -m unittest discover -s tests -p test_s04b_joint_nuisance.py -v
       - name: Verify Linux process containment before scientific execution
         env:
           SUPERVISOR_TEST_OUTPUT: ${{ runner.temp }}/continuation-preflight

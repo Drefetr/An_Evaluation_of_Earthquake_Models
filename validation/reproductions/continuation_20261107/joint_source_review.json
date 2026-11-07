@@ -1,0 +1,91 @@
+{
+  "task": "joint_source_audit",
+  "reviewer": "/root/continuation_cpu",
+  "reviewed_utc": "2026-11-07T05:36:46.494848+00:00",
+  "execution_status": "succeeded",
+  "terminated": true,
+  "verdict": "source_review_passed_for_bounded_five_history_pilot",
+  "scientific_acceptance": false,
+  "source_code_commit": "4c95daca63ea684a58af5279846a263036121529",
+  "code_and_test_bytes_match_commit": {
+    "experiments/s04b_joint_nuisance/attenuation.cpp": true,
+    "experiments/s04b_joint_nuisance/model.py": true,
+    "experiments/s04b_joint_nuisance/fit.py": true,
+    "experiments/s04b_joint_nuisance/run.py": true,
+    "tests/test_s04b_joint_nuisance.py": true
+  },
+  "source_sha256": {
+    "experiments/s04b_joint_nuisance/attenuation.cpp": "d47a85c5ed899a952b315977a700487c54bd79b90eddc88f62feef7001d2751e",
+    "experiments/s04b_joint_nuisance/DERIVATION.md": "5de5c23e5cb65b7380977e4df4281001ef9e2103d6117f7ecde61a113b5e0962",
+    "experiments/s04b_joint_nuisance/fit.py": "878dbf6a71bbc1b9e934f190d3ad0a1c3663097610edf5a42c8aab89b62775bb",
+    "experiments/s04b_joint_nuisance/input_pins.json": "636e2f6ebd1db404a04155acef1979f36931338cbfa0e4c24351a80378924dad",
+    "experiments/s04b_joint_nuisance/model.py": "cc891181e51251247b9668fb6213642f0884deb288050efb2586cf179c6e8898",
+    "experiments/s04b_joint_nuisance/protocol.json": "8f31b9f28d830eeffa30bdbf3e0fcf1295087411869fa301b91333c95fa445e9",
+    "experiments/s04b_joint_nuisance/README.md": "299abb8e079fae65fa18f691e1874d475660bcefa0a63b7c7740fee49b566813",
+    "experiments/s04b_joint_nuisance/run.py": "6194ca871c6c7ead61b0e9656ff0a693732ca1a4a66dad571e51bc8fc9479229",
+    "tests/test_s04b_joint_nuisance.py": "7ae2551ca5f9d2a6d452710307cee24e49b117354302e497d5a5c87c2927d794"
+  },
+  "protocol_sha256": "8f31b9f28d830eeffa30bdbf3e0fcf1295087411869fa301b91333c95fa445e9",
+  "pre_execution_amendment": "Single input pin updated for already-reviewed portable S06 library loader; protocol input-pin hash and amendment note refreshed before any fit. Original candidate retained separately. No likelihood, parameter box, quadrature, start or gate code changed.",
+  "input_pin_check": {
+    "checked": 648,
+    "mismatches": [],
+    "manifest_hash_matches_protocol": true
+  },
+  "review_scope": "Independent static likelihood/protocol/runner/test audit plus input hashes and approved arithmetic-only five-history dimension planning. No objective evaluation, score, fit, simulation, native call, or full adaptive geometry planner executed by this reviewer.",
+  "must_fix_before_pilot": [],
+  "resolved_findings": [
+    {
+      "id": "J-1",
+      "finding": "Old S06 engine.py pin would reject portability-integrated checkout before fitting.",
+      "resolution": "Updated live-source pin and protocol input manifest hash; all648 current pins now match."
+    }
+  ],
+  "required_before_full": [
+    {
+      "id": "J-2",
+      "finding": "Full runner requires pilot_result_sha256 and pilot_output_review_passed admission fields, in addition to source/runtime/library identity and conservative runtime gate.",
+      "controller_has_fields_now": false,
+      "action": "Bind the independently reviewed exact pilot result before full dispatch. This is a full-phase integration condition, not a pilot source blocker."
+    }
+  ],
+  "checked_features": [
+    {
+      "topic": "budget parity",
+      "assessment": "Both null and each alternative use eight starts with the same L-BFGS-B caps/tolerances and failure-only bounded Powell policy; all starts must resolve. Shared(a,d,n,log_c,p) are free in all arms, spatial/mark laws fixed. Alternative null warm start and unoptimized eligible null are explicit; no global-optimum guarantee."
+    },
+    {
+      "topic": "train/test separation",
+      "assessment": "Canonical arrays truncate parents at each phase end; point fields mask t_parent<t_event, including tied-time exclusion. Training phases retain warmup parents. Fits and fine training checks finish before held-out phase creation. Gate operands are stored training scores only; held-out fine/coarse scoring cannot reselect parameters or gates."
+    },
+    {
+      "topic": "point and exposure derivatives",
+      "assessment": "Omori point and exact finite-window exposure derivatives in log_c and p agree with differentiation. Shared background/intercept/trend/n terms are included. Immigrant versus total attenuation fractions and all three inhibition derivatives match the declared laws. Native stress recurrence and derivative recurrence preserve strict past; trigger matrix block layout matches C ABI."
+    },
+    {
+      "topic": "numerical objective",
+      "assessment": "Quadrature nodes use fixed c_min and orders, not a fitted moving mesh. E=E0-deficit retains analytic uninhibited background/trigger integrals and fixed normalized spatial laws. Selected coarse states are checked at finer order without re-ranking; projected-gradient check and nonnegative selected exposure are enforced. These numerical gates still require actual pilot execution."
+    },
+    {
+      "topic": "gates and wins",
+      "assessment": "Gate compares new fine training null/alternative NLL against1.5log(Ntrain), with coarse disagreement retained. Exact new-null returns use the stored score and zero contrast. Strict positive wins, near-zero flags and active selections remain separate. Eta0 shared-coordinate improvements are flagged as null-search gaps."
+    },
+    {
+      "topic": "custody and outputs",
+      "assessment": "Saved states and historical comparisons are preserved.480 phase/model floor checks and400 saved comparison identities are distinct. All400 new outcomes and20 summary rows require complete80 histories; unknown/capped starts stop execution, retain traces and cannot become zero outcomes. Wilson intervals concern bounded per-regime win indicators only."
+    },
+    {
+      "topic": "pilot reuse",
+      "assessment": "Five fixed pilot IDs include the input-dimension largest training case. Full phase requires independently reviewed pinned pilot result, complete fixed pilot roster, per-case/trace hashes, identical source/input/runtime/numerical-library identities and exact compiled library. It reuses five cases rather than refitting them, then adds75."
+    },
+    {
+      "topic": "resource feasibility",
+      "assessment": "Actual time-grid counts and minimum forced geometry factors show substantial dense total-attenuation work. The projection is explicitly a heuristic, not a guaranteed runtime or memory bound. Native work is chunked; geometry planning and retained arrays still require the external sampled6GiB/2GiB-headroom supervisor and1800s pilot gate. No source-only feasibility success is asserted."
+    }
+  ],
+  "evidence": {
+    "pilot_input_dimensions.json": "bc1a13875db3f7049cb794b00f6b6db52059e82491810b7a8baf23230ca0d6ba",
+    "reviewed_source_identities.json": "d9b0d92be460334735bfbacd67201cf535177b5b4db5a609cadbd62c1c7290be"
+  },
+  "execution_boundary": "Constructed tests were read, not rerun by this reviewer. Root-run Linux fixture success and numerical output review are separate prerequisites; no scientific result is established by this source acceptance."
+}

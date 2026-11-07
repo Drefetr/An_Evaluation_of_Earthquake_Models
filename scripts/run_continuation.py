@@ -46,6 +46,7 @@ def mandatory_sources(stage):
              'engine/cpu_build.py','engine/stage2_followup/native_build.py',
              '.github/workflows/research-continuation.yml','requirements.txt','requirements-cpu.txt'}
     if stage in ('joint-pilot','joint-full'):
+        paths.add('tests/test_s04b_joint_nuisance.py')
         package = ROOT/'experiments/s04b_joint_nuisance'
         paths.update(p.relative_to(ROOT).as_posix() for p in package.iterdir()
                      if p.is_file() and p.suffix in ('.py','.cpp','.json'))
@@ -154,6 +155,8 @@ def main():
                    '--output',str(output/'science'),'--library',str(library),
                    '--build-receipt',str(receipt),'--admission',str(output/'admission.json')]
         if prior:
+            admission.update(pilot_result_sha256=review['pilot_result_sha256'],
+                             pilot_output_review_passed=review['pilot_output_review_passed'])
             command += ['--pilot',str(inside(prior,review['pilot_science_directory']))]
     elif stage in ('cached-pilot', 'cached-completion'):
         package = ROOT / 'reproduction/score_replay'

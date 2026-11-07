@@ -1,0 +1,356 @@
+{
+  "scope": "Input-only dimensions/arithmetic; no objectives, likelihood scores, native libraries, fits, or adaptive quadrature planner called. Forced-width recursion counts only mandatory binary geometric splits; accuracy refinement may increase leaves.",
+  "protocol_sha256": "8f31b9f28d830eeffa30bdbf3e0fcf1295087411869fa301b91333c95fa445e9",
+  "case_count": 5,
+  "cases": [
+    {
+      "case_id": "S4_narrow_short_imm_seed410401",
+      "history_sha256": "8f7b297e00ef236b0db76379813e8578cecc8a15bd3ee3d3db4b5be1fa651fe3",
+      "rows_sha256": "2deb090815e90f8fac69cadd218d293da62a064c45d860e4dfb1f28353c0d09d",
+      "phases": {
+        "train": {
+          "parents": 87,
+          "targets": 83,
+          "unique_internal_event_times": 83,
+          "time_panels": 84,
+          "forced_width_minimum_leaves": 32,
+          "orders": {
+            "8": {
+              "time_order": 64,
+              "time_nodes_exact": 5376,
+              "minimum_space_nodes_for_forced_width_rule": 2048,
+              "geometry_cap_space_nodes": 1000000,
+              "maximum_space_nodes_that_pass_this_orders_2GiB_estimate": 999616,
+              "minimum_native_space_time_steps_per_deficit": 11010048,
+              "minimum_total_attenuation_trigger_matmul_flop_proxy": 5747245056,
+              "memory_estimate_at_minimum_space_nodes_bytes": 48564224,
+              "memory_formula": "24*Ns*Np+16*Ns+24*Nt*Np+6144*Nt; same declared local allocation proxy as model.py, not measured peak"
+            },
+            "16": {
+              "time_order": 128,
+              "time_nodes_exact": 10752,
+              "minimum_space_nodes_for_forced_width_rule": 8192,
+              "geometry_cap_space_nodes": 4000000,
+              "maximum_space_nodes_that_pass_this_orders_2GiB_estimate": 978432,
+              "minimum_native_space_time_steps_per_deficit": 88080384,
+              "minimum_total_attenuation_trigger_matmul_flop_proxy": 45977960448,
+              "memory_estimate_at_minimum_space_nodes_bytes": 105746432,
+              "memory_formula": "24*Ns*Np+16*Ns+24*Nt*Np+6144*Nt; same declared local allocation proxy as model.py, not measured peak"
+            }
+          }
+        },
+        "test": {
+          "parents": 181,
+          "targets": 94,
+          "unique_internal_event_times": 94,
+          "time_panels": 95,
+          "forced_width_minimum_leaves": 35,
+          "orders": {
+            "8": {
+              "time_order": 64,
+              "time_nodes_exact": 6080,
+              "minimum_space_nodes_for_forced_width_rule": 2240,
+              "geometry_cap_space_nodes": 1000000,
+              "maximum_space_nodes_that_pass_this_orders_2GiB_estimate": 477888,
+              "minimum_native_space_time_steps_per_deficit": 13619200,
+              "minimum_total_attenuation_trigger_matmul_flop_proxy": 14790451200,
+              "memory_estimate_at_minimum_space_nodes_bytes": 73533440,
+              "memory_formula": "24*Ns*Np+16*Ns+24*Nt*Np+6144*Nt; same declared local allocation proxy as model.py, not measured peak"
+            },
+            "16": {
+              "time_order": 128,
+              "time_nodes_exact": 12160,
+              "minimum_space_nodes_for_forced_width_rule": 8960,
+              "geometry_cap_space_nodes": 4000000,
+              "maximum_space_nodes_that_pass_this_orders_2GiB_estimate": 463104,
+              "minimum_native_space_time_steps_per_deficit": 108953600,
+              "minimum_total_attenuation_trigger_matmul_flop_proxy": 118323609600,
+              "memory_estimate_at_minimum_space_nodes_bytes": 166599680,
+              "memory_formula": "24*Ns*Np+16*Ns+24*Nt*Np+6144*Nt; same declared local allocation proxy as model.py, not measured peak"
+            }
+          }
+        }
+      }
+    },
+    {
+      "case_id": "S5_broad_long_imm_seed410501",
+      "history_sha256": "549f4a39b4daaf6b9a7f954b0042d70a34a3bd93927489f1173f6eb865bfdce5",
+      "rows_sha256": "b52129df9940060573ddecb16c3354d5de28d501bcf4104811a3660d1574b9f7",
+      "phases": {
+        "train": {
+          "parents": 17,
+          "targets": 14,
+          "unique_internal_event_times": 14,
+          "time_panels": 15,
+          "forced_width_minimum_leaves": 19,
+          "orders": {
+            "8": {
+              "time_order": 64,
+              "time_nodes_exact": 960,
+              "minimum_space_nodes_for_forced_width_rule": 1216,
+              "geometry_cap_space_nodes": 1000000,
+              "maximum_space_nodes_that_pass_this_orders_2GiB_estimate": 1000000,
+              "minimum_native_space_time_steps_per_deficit": 1167360,
+              "minimum_total_attenuation_trigger_matmul_flop_proxy": 119070720,
+              "memory_estimate_at_minimum_space_nodes_bytes": 6805504,
+              "memory_formula": "24*Ns*Np+16*Ns+24*Nt*Np+6144*Nt; same declared local allocation proxy as model.py, not measured peak"
+            },
+            "16": {
+              "time_order": 128,
+              "time_nodes_exact": 1920,
+              "minimum_space_nodes_for_forced_width_rule": 4864,
+              "geometry_cap_space_nodes": 4000000,
+              "maximum_space_nodes_that_pass_this_orders_2GiB_estimate": 4000000,
+              "minimum_native_space_time_steps_per_deficit": 9338880,
+              "minimum_total_attenuation_trigger_matmul_flop_proxy": 952565760,
+              "memory_estimate_at_minimum_space_nodes_bytes": 14642176,
+              "memory_formula": "24*Ns*Np+16*Ns+24*Nt*Np+6144*Nt; same declared local allocation proxy as model.py, not measured peak"
+            }
+          }
+        },
+        "test": {
+          "parents": 33,
+          "targets": 16,
+          "unique_internal_event_times": 16,
+          "time_panels": 17,
+          "forced_width_minimum_leaves": 25,
+          "orders": {
+            "8": {
+              "time_order": 64,
+              "time_nodes_exact": 1088,
+              "minimum_space_nodes_for_forced_width_rule": 1600,
+              "geometry_cap_space_nodes": 1000000,
+              "maximum_space_nodes_that_pass_this_orders_2GiB_estimate": 1000000,
+              "minimum_native_space_time_steps_per_deficit": 1740800,
+              "minimum_total_attenuation_trigger_matmul_flop_proxy": 344678400,
+              "memory_estimate_at_minimum_space_nodes_bytes": 8839168,
+              "memory_formula": "24*Ns*Np+16*Ns+24*Nt*Np+6144*Nt; same declared local allocation proxy as model.py, not measured peak"
+            },
+            "16": {
+              "time_order": 128,
+              "time_nodes_exact": 2176,
+              "minimum_space_nodes_for_forced_width_rule": 6400,
+              "geometry_cap_space_nodes": 4000000,
+              "maximum_space_nodes_that_pass_this_orders_2GiB_estimate": 2638848,
+              "minimum_native_space_time_steps_per_deficit": 13926400,
+              "minimum_total_attenuation_trigger_matmul_flop_proxy": 2757427200,
+              "memory_estimate_at_minimum_space_nodes_bytes": 20263936,
+              "memory_formula": "24*Ns*Np+16*Ns+24*Nt*Np+6144*Nt; same declared local allocation proxy as model.py, not measured peak"
+            }
+          }
+        }
+      }
+    },
+    {
+      "case_id": "S6_narrow_short_total_seed410601",
+      "history_sha256": "8397deec303c17618117c399476f49737df7142ea8351dbd700ef3b0e6dfb54c",
+      "rows_sha256": "02f202604adec70c886426e18d48eda029eae197b8a70c91dc02393df5b2f981",
+      "phases": {
+        "train": {
+          "parents": 119,
+          "targets": 112,
+          "unique_internal_event_times": 112,
+          "time_panels": 113,
+          "forced_width_minimum_leaves": 32,
+          "orders": {
+            "8": {
+              "time_order": 64,
+              "time_nodes_exact": 7232,
+              "minimum_space_nodes_for_forced_width_rule": 2048,
+              "geometry_cap_space_nodes": 1000000,
+              "maximum_space_nodes_that_pass_this_orders_2GiB_estimate": 725056,
+              "minimum_native_space_time_steps_per_deficit": 14811136,
+              "minimum_total_attenuation_trigger_matmul_flop_proxy": 10575151104,
+              "memory_estimate_at_minimum_space_nodes_bytes": 70969856,
+              "memory_formula": "24*Ns*Np+16*Ns+24*Nt*Np+6144*Nt; same declared local allocation proxy as model.py, not measured peak"
+            },
+            "16": {
+              "time_order": 128,
+              "time_nodes_exact": 14464,
+              "minimum_space_nodes_for_forced_width_rule": 8192,
+              "geometry_cap_space_nodes": 4000000,
+              "maximum_space_nodes_that_pass_this_orders_2GiB_estimate": 702208,
+              "minimum_native_space_time_steps_per_deficit": 118489088,
+              "minimum_total_attenuation_trigger_matmul_flop_proxy": 84601208832,
+              "memory_estimate_at_minimum_space_nodes_bytes": 153703424,
+              "memory_formula": "24*Ns*Np+16*Ns+24*Nt*Np+6144*Nt; same declared local allocation proxy as model.py, not measured peak"
+            }
+          }
+        },
+        "test": {
+          "parents": 213,
+          "targets": 94,
+          "unique_internal_event_times": 94,
+          "time_panels": 95,
+          "forced_width_minimum_leaves": 33,
+          "orders": {
+            "8": {
+              "time_order": 64,
+              "time_nodes_exact": 6080,
+              "minimum_space_nodes_for_forced_width_rule": 2112,
+              "geometry_cap_space_nodes": 1000000,
+              "maximum_space_nodes_that_pass_this_orders_2GiB_estimate": 405376,
+              "minimum_native_space_time_steps_per_deficit": 12840960,
+              "minimum_total_attenuation_trigger_matmul_flop_proxy": 16410746880,
+              "memory_estimate_at_minimum_space_nodes_bytes": 79266816,
+              "memory_formula": "24*Ns*Np+16*Ns+24*Nt*Np+6144*Nt; same declared local allocation proxy as model.py, not measured peak"
+            },
+            "16": {
+              "time_order": 128,
+              "time_nodes_exact": 12160,
+              "minimum_space_nodes_for_forced_width_rule": 8448,
+              "geometry_cap_space_nodes": 4000000,
+              "maximum_space_nodes_that_pass_this_orders_2GiB_estimate": 391936,
+              "minimum_native_space_time_steps_per_deficit": 102727680,
+              "minimum_total_attenuation_trigger_matmul_flop_proxy": 131285975040,
+              "memory_estimate_at_minimum_space_nodes_bytes": 180194304,
+              "memory_formula": "24*Ns*Np+16*Ns+24*Nt*Np+6144*Nt; same declared local allocation proxy as model.py, not measured peak"
+            }
+          }
+        }
+      }
+    },
+    {
+      "case_id": "S6_narrow_short_total_seed410605",
+      "history_sha256": "9e4d639e3d186bf40c2674a8083e325d785bb8d5cfeea42d0ae1170845741e8f",
+      "rows_sha256": "c5c1e715341493813e658b03f4088e637ac02396a38a167b247adfb0308d8b78",
+      "phases": {
+        "train": {
+          "parents": 146,
+          "targets": 137,
+          "unique_internal_event_times": 137,
+          "time_panels": 138,
+          "forced_width_minimum_leaves": 31,
+          "orders": {
+            "8": {
+              "time_order": 64,
+              "time_nodes_exact": 8832,
+              "minimum_space_nodes_for_forced_width_rule": 1984,
+              "geometry_cap_space_nodes": 1000000,
+              "maximum_space_nodes_that_pass_this_orders_2GiB_estimate": 585856,
+              "minimum_native_space_time_steps_per_deficit": 17522688,
+              "minimum_total_attenuation_trigger_matmul_flop_proxy": 15349874688,
+              "memory_estimate_at_minimum_space_nodes_bytes": 92194816,
+              "memory_formula": "24*Ns*Np+16*Ns+24*Nt*Np+6144*Nt; same declared local allocation proxy as model.py, not measured peak"
+            },
+            "16": {
+              "time_order": 128,
+              "time_nodes_exact": 17664,
+              "minimum_space_nodes_for_forced_width_rule": 7936,
+              "geometry_cap_space_nodes": 4000000,
+              "maximum_space_nodes_that_pass_this_orders_2GiB_estimate": 561664,
+              "minimum_native_space_time_steps_per_deficit": 140181504,
+              "minimum_total_attenuation_trigger_matmul_flop_proxy": 122798997504,
+              "memory_estimate_at_minimum_space_nodes_bytes": 198356992,
+              "memory_formula": "24*Ns*Np+16*Ns+24*Nt*Np+6144*Nt; same declared local allocation proxy as model.py, not measured peak"
+            }
+          }
+        },
+        "test": {
+          "parents": 266,
+          "targets": 120,
+          "unique_internal_event_times": 120,
+          "time_panels": 121,
+          "forced_width_minimum_leaves": 35,
+          "orders": {
+            "8": {
+              "time_order": 64,
+              "time_nodes_exact": 7744,
+              "minimum_space_nodes_for_forced_width_rule": 2240,
+              "geometry_cap_space_nodes": 1000000,
+              "maximum_space_nodes_that_pass_this_orders_2GiB_estimate": 320384,
+              "minimum_native_space_time_steps_per_deficit": 17346560,
+              "minimum_total_attenuation_trigger_matmul_flop_proxy": 27685109760,
+              "memory_estimate_at_minimum_space_nodes_bytes": 111352832,
+              "memory_formula": "24*Ns*Np+16*Ns+24*Nt*Np+6144*Nt; same declared local allocation proxy as model.py, not measured peak"
+            },
+            "16": {
+              "time_order": 128,
+              "time_nodes_exact": 15488,
+              "minimum_space_nodes_for_forced_width_rule": 8960,
+              "geometry_cap_space_nodes": 4000000,
+              "maximum_space_nodes_that_pass_this_orders_2GiB_estimate": 305152,
+              "minimum_native_space_time_steps_per_deficit": 138772480,
+              "minimum_total_attenuation_trigger_matmul_flop_proxy": 221480878080,
+              "memory_estimate_at_minimum_space_nodes_bytes": 251377664,
+              "memory_formula": "24*Ns*Np+16*Ns+24*Nt*Np+6144*Nt; same declared local allocation proxy as model.py, not measured peak"
+            }
+          }
+        }
+      }
+    },
+    {
+      "case_id": "S7_broad_long_total_seed410701",
+      "history_sha256": "ab4a8f7e9a0f64f3667f08b00a752539cada9ca1bc3d5961d67f97d72323d9e3",
+      "rows_sha256": "969ad237c7280ca46a1350d4bf42723c37e17381a994d7a5f7a744020e7b6fc7",
+      "phases": {
+        "train": {
+          "parents": 12,
+          "targets": 11,
+          "unique_internal_event_times": 11,
+          "time_panels": 12,
+          "forced_width_minimum_leaves": 19,
+          "orders": {
+            "8": {
+              "time_order": 64,
+              "time_nodes_exact": 768,
+              "minimum_space_nodes_for_forced_width_rule": 1216,
+              "geometry_cap_space_nodes": 1000000,
+              "maximum_space_nodes_that_pass_this_orders_2GiB_estimate": 1000000,
+              "minimum_native_space_time_steps_per_deficit": 933888,
+              "minimum_total_attenuation_trigger_matmul_flop_proxy": 67239936,
+              "memory_estimate_at_minimum_space_nodes_bytes": 5309440,
+              "memory_formula": "24*Ns*Np+16*Ns+24*Nt*Np+6144*Nt; same declared local allocation proxy as model.py, not measured peak"
+            },
+            "16": {
+              "time_order": 128,
+              "time_nodes_exact": 1536,
+              "minimum_space_nodes_for_forced_width_rule": 4864,
+              "geometry_cap_space_nodes": 4000000,
+              "maximum_space_nodes_that_pass_this_orders_2GiB_estimate": 4000000,
+              "minimum_native_space_time_steps_per_deficit": 7471104,
+              "minimum_total_attenuation_trigger_matmul_flop_proxy": 537919488,
+              "memory_estimate_at_minimum_space_nodes_bytes": 11358208,
+              "memory_formula": "24*Ns*Np+16*Ns+24*Nt*Np+6144*Nt; same declared local allocation proxy as model.py, not measured peak"
+            }
+          }
+        },
+        "test": {
+          "parents": 27,
+          "targets": 15,
+          "unique_internal_event_times": 15,
+          "time_panels": 16,
+          "forced_width_minimum_leaves": 24,
+          "orders": {
+            "8": {
+              "time_order": 64,
+              "time_nodes_exact": 1024,
+              "minimum_space_nodes_for_forced_width_rule": 1536,
+              "geometry_cap_space_nodes": 1000000,
+              "maximum_space_nodes_that_pass_this_orders_2GiB_estimate": 1000000,
+              "minimum_native_space_time_steps_per_deficit": 1572864,
+              "minimum_total_attenuation_trigger_matmul_flop_proxy": 254803968,
+              "memory_estimate_at_minimum_space_nodes_bytes": 7974912,
+              "memory_formula": "24*Ns*Np+16*Ns+24*Nt*Np+6144*Nt; same declared local allocation proxy as model.py, not measured peak"
+            },
+            "16": {
+              "time_order": 128,
+              "time_nodes_exact": 2048,
+              "minimum_space_nodes_for_forced_width_rule": 6144,
+              "geometry_cap_space_nodes": 4000000,
+              "maximum_space_nodes_that_pass_this_orders_2GiB_estimate": 3213056,
+              "minimum_native_space_time_steps_per_deficit": 12582912,
+              "minimum_total_attenuation_trigger_matmul_flop_proxy": 2038431744,
+              "memory_estimate_at_minimum_space_nodes_bytes": 17989632,
+              "memory_formula": "24*Ns*Np+16*Ns+24*Nt*Np+6144*Nt; same declared local allocation proxy as model.py, not measured peak"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "geometry_limit": "Successful geometry planner has at most15625 leaves because256*leaves<=4000000; both orders share leaves. Per-order local estimates are necessary admission checks, not a proof of total RSS.",
+  "runtime_boundary": "The operation counts are static lower-bound proxies, not measured wall time. Pilot must measure actual leaf counts, optimizer evaluations and wall time before full admission.",
+  "elapsed_seconds": 0.04310819995589554,
+  "process_rss_bytes_at_end": 35495936
+}
