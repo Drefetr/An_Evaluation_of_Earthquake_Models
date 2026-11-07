@@ -12,6 +12,8 @@ import datetime as dt
 import json
 import math
 import sys
+import hashlib
+import zipfile
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO_ROOT))
@@ -59,123 +61,278 @@ def leaf_differences(actual, expected, path=''):
     if isinstance(actual, list) and isinstance(expected, list):
         require(len(actual) == len(expected), 'Comparison array lengths differ')
         return [row for i,(a,b) in enumerate(zip(actual,expected)) for row in leaf_differences(a,b,path+'/'+str(i))]
-    a,b=numeric(actual),numeric(expected)
-    return [dict(path=path,kind='value',actual=a,expected=b,delta=a-b,absolute_delta=abs(a-b))]
+    row=dict(path=path,kind='value',actual=actual,expected=expected)
+    if type(actual) in (int,float) and type(expected) in (int,float):
+        a,b=numeric(actual),numeric(expected)
+        row.update(delta=a-b,absolute_delta=abs(a-b))
+    return [row]
 
 
-def inspect_gradient_comparison(actual, expected, record, length=8):
-    require(isinstance(actual,list) and isinstance(expected,list) and len(actual)==len(expected)==length,
-            'Operational gradient shape differs')
-    require(record.get('passed') is True and record['epsilon']==sys.float_info.epsilon and record['multiplier']==64 and
-            record['formula']=='64 * float64_epsilon * max(1, abs(actual), abs(expected))',
-            'Operational gradient policy differs')
-    rows=[]
-    for i,(a,b) in enumerate(zip(actual,expected)):
-        a,b=numeric(a),numeric(b);delta=a-b;limit=64*sys.float_info.epsilon*max(1.,abs(a),abs(b))
-        require(math.isfinite(delta) and abs(delta)<=limit, 'Operational gradient difference exceeds declared bound')
-        rows.append(dict(index=i,actual=a,expected=b,delta=delta,absolute_delta=abs(delta),bound=limit,passed=True))
-    exact(record['components'],rows,'Reported gradient component arithmetic differs')
+SCORE_KEYS = ('P','E','C','M','joint','nll')
+SCORE_TOLERANCE = 1e-9
 
 
-def inspect_training_equivalence(record, original, model):
+def score_tuple(value):
+    require(isinstance(value,dict) and set(value)==set(SCORE_KEYS),'Score tuple fields differ')
+    for key in SCORE_KEYS:numeric(value[key])
+    require(value['E']>=-1e-9,'Original model exposure criterion failed')
+    exact(value['C'],-value['E'],'Signed score exposure identity differs')
+    exact(value['joint'],value['P']-value['E']+value['M'],'Score joint identity differs')
+    exact(value['nll'],-value['joint'],'Score NLL identity differs')
+    return value
+
+
+def inspect_score_replay(actual,expected):
+    score_tuple(actual);score_tuple(expected)
+    differences={key:actual[key]-expected[key] for key in SCORE_KEYS}
+    require(all(abs(v)<=SCORE_TOLERANCE for v in differences.values()),'Completed support score exceeds original1e-9 tolerance')
+    return differences
+
+
+def inspect_score_comparison(record,actual,expected):
+    differences=inspect_score_replay(actual,expected)
+    require(record['passed'] is True and record['tolerance']==SCORE_TOLERANCE,'Score comparison scope differs')
+    wanted=[dict(field=k,actual=actual[k],expected=expected[k],delta=differences[k],
+                 absolute_delta=abs(differences[k]),passed=True) for k in SCORE_KEYS]
+    exact(record['components'],wanted,'Score difference census changed')
+    exact(record['identities'],{label:dict(signed_exposure=True,joint=True,negative_joint=True,model_exposure=True)
+          for label in ('actual','expected')},'Score identity census changed')
+
+
+def vector(value,length):
+    require(isinstance(value,list) and len(value)==length,'Gradient/state shape differs')
+    for item in value:numeric(item)
+    return value
+
+
+def projected(theta,gradient,box):
+    vector(theta,len(box));vector(gradient,len(box))
+    return [0. if (x<=lo+1e-8 and g>0) or (x>=hi-1e-8 and g<0) else g
+            for x,g,(lo,hi) in zip(theta,gradient,box)]
+
+
+def selected_criteria(check,model,protocol,raw=None):
+    dims=5 if model=='null' else 8
+    score_tuple(check['coarse']);score_tuple(check['fine'])
+    theta=vector(check['parameters'],8)
+    coarse=vector(check['projected_gradient_coarse'],dims);fine=vector(check['projected_gradient_fine'],dims)
+    delta=abs(check['coarse']['joint']-check['fine']['joint'])
+    scaled=max(abs(x-y)/max(1.,abs(x),abs(y)) for x,y in zip(coarse,fine))
+    kkt=max(map(abs,fine))
+    exact(check['absolute_joint_delta'],delta,'Selected joint discrepancy was not independently derived')
+    exact(check['projected_gradient_scaled_delta'],scaled,'Selected gradient discrepancy was not independently derived')
+    exact(check['projected_kkt_infinity_norm'],kkt,'Selected KKT diagnostic was not independently derived')
+    require(check['passed'] is True and check['fine']['E']>=0 and delta<=protocol['quadrature']['joint_absolute_tolerance'] and
+            scaled<=protocol['quadrature']['selected_training_gradient_scaled_tolerance'],
+            'Original selected-state scientific criterion failed')
+    if model=='null':require(delta<=1e-9,'Original null functional criterion failed')
+    if raw is not None:
+        require(isinstance(raw,list) and len(raw)==2,'Exactly two existing raw selected-check evaluations required')
+        box=protocol['shared_bounds']+([] if model=='null' else protocol['inhibition_bounds'])
+        for row,order,key,pg in zip(raw,(8,16),('coarse','fine'),(coarse,fine)):
+            require(row['model']==model and row['order']==order,'Selected raw evaluation identity differs')
+            exact(row['parameters'],theta,'Selected raw parameters differ')
+            exact(row['score'],check[key],'Selected raw score differs')
+            gradient=vector(row['gradient'],8)
+            exact(projected(theta[:dims],gradient[:dims],box),pg,'Fresh selected projection differs')
+    result=dict(absolute_joint_delta=delta,projected_gradient_scaled_delta=scaled,
+                projected_kkt_infinity_norm=kkt,passed=True,raw_gradient_available=raw is not None,
+                derived_fields_exact=True,original_scientific_pass=True,null_functional_pass=True)
+    if raw is not None:result['fresh_projections_exact']=True
+    return result
+
+
+def inspect_training_equivalence(record,original,model,raw,protocol):
     actual,expected=record['actual'],record['expected']
-    exact(expected,original,'Original training support evidence changed')
-    diff=leaf_differences(actual,expected)
-    exact(record['differences'],diff,'Training support difference census changed')
-    require(record['exact_match'] is (not diff) and record['accepted_check_source']=='original_saved_check',
-            'Training support reuse/equality attribution differs')
-    eq=record['operational_equivalence']
-    require(eq['passed'] is True,'Training support equivalence failed')
-    if model=='null':
-        require(eq['policy']=='exact_saved_training_check' and not diff,'Null support is not exact')
-        return
-    require(model=='LI' and eq['policy']=='reused_LI_training_support_gradient_only_v1' and
-            eq['scientific_criteria_unchanged'] is True and eq['hardware_cause_established'] is False,
-            'Training support scope differs')
-    allowed={'projected_gradient_coarse','projected_gradient_fine','projected_gradient_scaled_delta'}
-    exact({k:v for k,v in actual.items() if k not in allowed},
-          {k:v for k,v in expected.items() if k not in allowed},'Non-gradient support field changed')
-    require(actual['passed'] is True and expected['passed'] is True,'Original quadrature pass required')
-    for key in ('projected_gradient_coarse','projected_gradient_fine'):
-        inspect_gradient_comparison(actual[key],expected[key],eq['gradient_checks'][key])
-    derived={}
-    for label,obj in [('actual',actual),('expected',expected)]:
-        a,b=obj['projected_gradient_coarse'],obj['projected_gradient_fine']
-        value=max(abs(x-y)/max(1.,abs(x),abs(y)) for x,y in zip(a,b))
-        exact(value,obj['projected_gradient_scaled_delta'],'Derived support gradient discrepancy differs')
-        exact(max(map(abs,b)),obj['projected_kkt_infinity_norm'],'Support KKT norm differs')
-        derived[label]=value
-    exact(eq['recomputed_gradient_delta'],derived,'Reported derived gradient discrepancy differs')
-    inspect_gradient_comparison([derived['actual']],[derived['expected']],eq['derived_delta_comparison'],1)
+    exact(expected,original,'Original selected-check evidence changed')
+    exact(record['differences'],leaf_differences(actual,expected),'Selected-check difference census changed')
+    require(record['exact_match'] is (not record['differences']) and
+            record['accepted_check_source']=='original_saved_check','Selected-check reuse attribution differs')
+    mutable={'coarse','fine','absolute_joint_delta','projected_gradient_coarse','projected_gradient_fine',
+             'projected_gradient_scaled_delta','projected_kkt_infinity_norm'}
+    exact({k:v for k,v in actual.items() if k not in mutable},
+          {k:v for k,v in expected.items() if k not in mutable},'Selected-check identity or status changed')
+    for key in ('coarse','fine'):inspect_score_comparison(record['score_comparisons'][key],actual[key],expected[key])
+    actual_criteria=selected_criteria(actual,model,protocol,raw)
+    expected_criteria=selected_criteria(expected,model,protocol)
+    exact(record['actual_criteria'],actual_criteria,'Fresh scientific criteria census differs')
+    exact(record['expected_criteria'],expected_criteria,'Original scientific criteria census differs')
+    require(record['passed'] is True,'Repeated selected check failed')
+    return dict(actual=actual_criteria,expected=expected_criteria,
+                original_raw_fine_gradient_available=False)
 
 
-def inspect_anchor_equivalence(record, original):
-    actual,expected=record['actual'],record['expected']
-    exact(expected,original,'Original Powell anchor evidence changed')
-    diff=leaf_differences(actual,expected)
-    exact(record['differences'],diff,'Powell anchor difference census differs')
-    require(record['exact_match'] is (not diff),'Powell exact-match attribution differs')
-    eq=record['operational_equivalence']
-    require(eq['passed'] is True and eq['policy']=='unused_Powell_anchor_gradient_only_v1' and
-            eq['objective_parameters_and_scores_exact'] is True,'Powell anchor equivalence scope differs')
-    exact({k:v for k,v in actual.items() if k!='gradient'},
-          {k:v for k,v in expected.items() if k!='gradient'},'Powell score or parameter anchor changed')
-    inspect_gradient_comparison(actual['gradient'],expected['gradient'],eq['gradient_comparison'])
+def inspect_replayed_support(record,original,box,start):
+    token=record['token'];actual,expected=record['actual_evaluation'],record['expected_evaluation']
+    require(isinstance(token['id'],str) and bool(token['id']) and token['model']=='LIplus_immigrant' and
+            token['start_index']==start and token['order']==8 and token['require_gradient'] is True,
+            'Completed-return token identity differs')
+    exact(token['parameters'],original['parameters'],'Replay token state changed')
+    wanted=dict(parameters=original['parameters'],score=original['fresh_score'],gradient=original['gradient'],
+                projected_gradient=original['projected_gradient'])
+    exact(expected,wanted,'Original completed-return support changed')
+    exact(actual['parameters'],expected['parameters'],'Actual replay support parameters changed')
+    inspect_score_comparison(record['score_comparison'],actual['score'],expected['score'])
+    for payload in (actual,expected):
+        vector(payload['gradient'],8)
+        exact(projected(payload['parameters'],payload['gradient'],box),payload['projected_gradient'],'Completed-return projection differs')
+    delta=abs(actual['score']['nll']-original['returned_nll'])
+    require(delta<=1e-9,'Actual support fails original solver-return freshness criterion')
+    exact(record['actual_returned_nll_delta'],delta,'Actual returned-NLL delta differs')
+    require(record['passed'] is True and record['finite_gradients'] is True and record['saved_projection_exact'] is True and
+            record['consumed_once'] is True and record['physical_optimizer_active'] is False and
+            record['accepted_source']=='original_completed_return','Support substitution outside declared replay boundary')
+    descriptive=record['gradient_differences']
+    exact(descriptive['actual'],actual['gradient'],'Fresh gradient diagnostic differs')
+    exact(descriptive['expected'],expected['gradient'],'Original gradient diagnostic differs')
+    differences=leaf_differences(actual['gradient'],expected['gradient'])
+    exact(descriptive['differences'],differences,'Gradient difference census differs')
+    require(descriptive['exact_match'] is (not differences),'Gradient exact-match label differs')
+    exact(record['canonical_return'],dict(score=expected['score'],gradient=expected['gradient']),
+          'Candidate construction did not receive immutable completed values')
+    return token['id']
 
 
-def inspect_replayed_support(record, original, box):
-    actual,expected=record['actual'],record['expected']
-    exact(expected,original,'Original completed-start support changed')
-    diff=leaf_differences(actual,expected);exact(record['differences'],diff,'Completed-start difference census differs')
-    require(record['exact_match'] is (not diff) and record['accepted_record_source']=='original_saved_record',
-            'Completed-start support reuse attribution differs')
-    eq=record['operational_equivalence']
-    require(eq['passed'] is True and eq['policy']=='replayed_completed_start_support_gradient_only_v1' and
-            eq['non_gradient_fields_exact'] is True and eq['actual_projection_exact'] is True and eq['expected_projection_exact'] is True,
-            'Completed-start equivalence scope differs')
-    allowed={'gradient','projected_gradient'}
-    exact({k:v for k,v in actual.items() if k not in allowed},{k:v for k,v in expected.items() if k not in allowed},
-          'Completed-start scientific record changed')
-    for key,comparison in [('gradient','raw_gradient_comparison'),('projected_gradient','projected_gradient_comparison')]:
-        inspect_gradient_comparison(actual[key],expected[key],eq[comparison])
-    for obj in (actual,expected):
-        require(len(obj['parameters'])==len(box)==8,'Completed-start projection shape differs')
-        projection=[]
-        for x,g,(lo,hi) in zip(obj['parameters'],obj['gradient'],box):
-            projection.append(0. if (x<=lo+1e-8 and g>0) or (x>=hi-1e-8 and g<0) else g)
-        exact(projection,obj['projected_gradient'],'Completed-start projected gradient differs')
-
-
-def inspect_replayed_candidate(record, original, start):
+def inspect_replayed_candidate(record,original,start,token_id):
     expected=dict(state_index=start+1,kind='optimizer',start_index=start,parameters=original['parameters'],
                   score=original['fresh_score'],gradient=original['gradient'])
-    exact(record['expected'],expected,'Original completed-start candidate changed')
-    actual=record['actual'];diff=leaf_differences(actual,expected)
-    exact(record['differences'],diff,'Replayed candidate difference census differs')
-    require(record['exact_match'] is (not diff) and record['accepted_candidate_gradient_source']=='original_saved_record.gradient',
-            'Replayed candidate reuse attribution differs')
-    eq=record['operational_equivalence']
-    require(eq['passed'] is True and eq['non_gradient_fields_exact'] is True,'Replayed candidate scope differs')
-    exact({k:v for k,v in actual.items() if k!='gradient'},{k:v for k,v in expected.items() if k!='gradient'},
-          'Replayed candidate score or identity changed')
-    inspect_gradient_comparison(actual['gradient'],expected['gradient'],eq['gradient_comparison'])
+    exact(record['expected'],expected,'Original completed candidate differs')
+    exact(record['actual'],expected,'Original candidate was not preserved before selection')
+    require(record['passed'] is True and record['exact_match'] is True and record['differences']==[] and
+            record['accepted_candidate_source']=='original_completed_return_before_selection' and
+            record['source_support_token_id']==token_id,
+            'Candidate lost one-shot support lineage')
     return expected
+
+
+def inspect_floor_replay(record,original,report):
+    """A fresh floor is tested at its original tolerance, never overwritten."""
+    expected=[r for r in original['floor_checks'] if r['phase']=='train']
+    actual=[r for r in report['floor_checks'] if r['phase']=='train']
+    require(len(actual)==len(expected)==3 and record['passed'] is True,'Historical training floor roster differs')
+    exact(record['actual'],actual,'Fresh floor was not retained in the case')
+    exact(record['expected'],expected,'Original floor reference changed')
+    comparisons=[]
+    for a,b in zip(actual,expected):
+        exact({k:v for k,v in a.items() if k not in ('actual_nll','absolute_delta')},
+              {k:v for k,v in b.items() if k not in ('actual_nll','absolute_delta')},'Historical floor identity changed')
+        require(a['tolerance']==1e-9,'Historical floor tolerance changed')
+        for row in (a,b):
+            delta=abs(numeric(row['actual_nll'])-numeric(row['expected_nll']))
+            exact(row['absolute_delta'],delta,'Historical floor discrepancy differs')
+            require(delta<=1e-9,'Historical floor fails original tolerance')
+        difference=a['actual_nll']-b['actual_nll']
+        require(abs(difference)<=1e-9,'Repeated floor exceeds original replay tolerance')
+        comparisons.append(dict(passed=True,actual_nll_difference=difference))
+    exact(record['rows'],comparisons,'Floor replay census differs')
+
+
+def inspect_return_context(ledger,execution,ends,box,report):
+    arm='LIplus_immigrant';wanted=set(map(str,range(5)))
+    require(set(execution['replayed_start_support'])==set(execution['replayed_candidates'])==wanted,
+            'Replayed support/candidate census differs')
+    pending=None;physical=False;created=[];supported=[];consumed=[];canonical=[]
+    for event in ledger:
+        kind=event['event']
+        if kind=='physical_optimizer_start':
+            require(not physical and pending is None,'Replay token overlaps physical optimization')
+            physical=True
+        elif kind=='physical_optimizer_end':
+            require(physical and pending is None,'Unbalanced physical optimizer context')
+            physical=False
+        elif kind=='token_created':
+            require(pending is None and not physical,'Overlapping replay token')
+            token=event['token'];start=token['start_index']
+            require(start==len(created) and start in range(5),'Duplicate or new-start replay token')
+            pending=token;created.append(token['id'])
+            exact(token,execution['replayed_start_support'][str(start)]['token'],'Created token differs from support')
+        elif kind=='completed_return_support':
+            require(pending is not None and not physical and pending['id'] not in supported,'Repeated or misplaced support return')
+            start=pending['start_index'];payload={k:v for k,v in event.items() if k!='event'}
+            exact(payload,execution['replayed_start_support'][str(start)],'Completed support ledger differs')
+            exact(payload['token'],pending,'Completed support token changed')
+            token_id=inspect_replayed_support(payload,ends[(arm,start,'L-BFGS-B')],box,start)
+            supported.append(token_id)
+        elif kind=='token_consumed':
+            require(pending is not None and not physical and supported and supported[-1]==pending['id'],
+                    'Token consumed before actual support or inside optimizer')
+            exact(event['token'],pending,'Consumed token changed')
+            exact(event['canonical_return'],execution['replayed_start_support'][str(pending['start_index'])]['canonical_return'],
+                  'Candidate received changed canonical values')
+            require(event['before_candidate_construction'] is True,'Canonical values supplied after candidate construction')
+            consumed.append(pending['id']);pending=None
+        elif kind=='canonical_completed_record':
+            start=event['start_index'];require(not physical and pending is None and start==len(canonical) and len(consumed)==start+1,
+                'Completed record lacks one-shot preselection support')
+            require(event['model']==arm and event['exact_match'] is True and event['differences']==[],
+                    'Canonical completed record changed')
+            exact(event['actual'],ends[(arm,start,'L-BFGS-B')],'Canonical record actual differs')
+            exact(event['expected'],ends[(arm,start,'L-BFGS-B')],'Canonical record expected differs')
+            canonical.append(start)
+    require(not physical and pending is None and execution['pending_return'] is None and
+            created==supported==consumed and len(set(created))==len(created)==5 and canonical==list(range(5)),
+            'Replay token consumption/canonicalization census differs')
+    candidates=[v for v in ledger if v['event']=='replayed_candidate_preserved']
+    require([v['start_index'] for v in candidates]==list(range(5)),'Preserved candidate census differs')
+    for start,row in enumerate(candidates):
+        require(row['model']==arm,'Replayed candidate model changed')
+        payload={k:v for k,v in row.items() if k not in ('event','model','start_index')}
+        exact(payload,execution['replayed_candidates'][str(start)],'Replayed candidate ledger differs')
+        expected=inspect_replayed_candidate(payload,ends[(arm,start,'L-BFGS-B')],start,consumed[start])
+        selected=[v for v in report['fits'][arm]['candidates'] if v['kind']=='optimizer' and v['start_index']==start]
+        require(len(selected)==1,'Replayed candidate state missing/duplicated')
+        exact(selected[0],expected,'Immutable completed candidate changed')
+    selected=report['fits'][arm]['selected']
+    all_candidates=report['fits'][arm]['candidates']
+    require(selected in all_candidates,'Selected state missing from final candidates')
+    exact(selected,min(all_candidates,key=lambda x:(x['score']['nll'],x['kind']=='optimizer',x['start_index'])),
+          'Selection was changed after immutable candidate reuse')
+
+
+def inspect_reference_snapshots(snapshots,ledger,interrupted,returned_count):
+    require(set(snapshots)=={'return','next_input'},'Powell observation roster differs')
+    for key,event_name,threshold,expected in (
+        ('return','restart_return_reference',2040,{k:v for k,v in interrupted['last_evaluation'].items() if k!='evaluation_count'}),
+        ('next_input','restart_next_input_reference',2041,interrupted['failed_evaluation_parameters'])):
+        snapshot=snapshots[key];events=[v for v in ledger if v['event']==event_name]
+        observed=returned_count>=threshold
+        require(snapshot.get('observed') is observed and len(events)==int(observed),'Powell observation count differs')
+        if not observed:
+            exact(snapshot,{'observed':False},'Unreached Powell observation was fabricated')
+            continue
+        exact(snapshot,{k:v for k,v in events[0].items() if k!='event'},'Powell observation ledger differs')
+        require(snapshot['scope']=='observational_only' and snapshot['reference_count']==threshold,
+                'Powell comparison became an eligibility gate')
+        exact(snapshot['expected'],expected,'Original Powell reference changed')
+        actual=snapshot['actual']
+        if key=='return':
+            vector(actual['parameters'],8);score_tuple(actual['score'])
+            if actual['gradient'] is not None:vector(actual['gradient'],8)
+        else:vector(actual,8)
+        differences=leaf_differences(actual,expected)
+        exact(snapshot['differences'],differences,'Powell descriptive difference census differs')
+        require(snapshot['exact_match'] is (not differences),'Powell exact-match label differs')
 
 
 def inspect_support_policy(policy):
     p=policy['recovery']['support_equivalence']
-    require(p['schema']=='joint_operational_gradient_equivalence_v1' and p['dtype']=='float64' and
-            p['epsilon_multiplier']==64 and p['bound']=='64 * float64_epsilon * max(1, abs(actual), abs(expected))',
-            'Declared operational gradient bound differs')
-    exact(p['reused_LI_training_check'],dict(policy='reused_LI_training_support_gradient_only_v1',model='LI',
-        fields=['projected_gradient_coarse','projected_gradient_fine','projected_gradient_scaled_delta'],
-        recompute_derived_delta=True,other_fields_exact=True,return_original_saved_check=True),'Declared LI support scope differs')
-    exact(p['unused_Powell_anchor_gradient'],dict(policy='unused_Powell_anchor_gradient_only_v1',fields=['gradient'],
-        objective_uses_gradient=False,parameters_scores_counts_options_next_input_exact=True),'Declared Powell support scope differs')
-    exact(p['replayed_completed_start_support'],dict(policy='replayed_completed_start_support_gradient_only_v1',
-        model='LIplus_immigrant',starts=list(range(5)),record_fields=['gradient','projected_gradient'],candidate_fields=['gradient'],
-        projection='frozen fit.projected_gradient at exact parameters and bounds',other_fields_exact=True,
-        preserve_original_record_and_candidate_gradient=True,new_optimizer_gradients_unchanged=True),'Declared completed-start scope differs')
+    require(p['schema']=='joint_original_contract_recovery_v2' and p['score_absolute_tolerance']==1e-9,
+            'Unreviewed recovery replay tolerance')
+    exact(p['score_fields'],list(SCORE_KEYS),'Replay score fields differ')
+    exact(p['score_identities'],['C=-E','joint=P-E+M','nll=-joint'],'Replay identities differ')
+    exact(p['completed_return_support'],dict(model='LIplus_immigrant',starts=list(range(5)),one_shot_token=True,
+        exact_model_start_parameters=True,order=8,require_gradient=True,actual_support_recorded_before_reuse=True,
+        original_returned_nll_freshness_required=True,canonical_saved_score_and_gradient_before_candidate_construction=True,
+        forbidden_in_actual_optimizer_or_new_start=True),'Replay boundary policy differs')
+    exact(p['reused_selected_checks'],dict(models=['null','LI'],capture_existing_raw_coarse_fine_evaluations=True,
+        independently_rederive_original_scientific_criteria=True,actual_and_original_must_pass=True,
+        return_original_saved_check_after_validation=True,original_fine_raw_gradient_not_archived=True),
+        'Selected-state replay policy differs')
+    exact(p['historical_floor'],dict(retain_fresh_actual_nll_and_discrepancy=True,
+        original_absolute_tolerance=1e-9,identifiers_expected_values_exact=True),'Historical floor replay policy differs')
+    exact(p['powell_reference_snapshots'],dict(observational_only=True,record_if_naturally_reached=True,
+        not_reached_allowed=True,no_forced_evaluations=True,initial_bounds_options_caps_unchanged=True),
+        'Powell restart observation policy differs')
 
 
 def source_review(repo, path, pin):
@@ -239,10 +396,7 @@ def inspect_lineage(index, science, policy):
                 'recovery_lineage/failed_supervision.json': p['supervision_sha256'],
                 'recovery_lineage/failed_admission.json': p['admission_sha256'],
                 'recovery_lineage/failed_host.zip': p['archive_sha256']}
-    startup = policy['pre_execution_failure']
-    expected.update({'recovery_lineage/' + filename: startup[key + '_sha256']
-                     for key, filename in STARTUP_FILES.items()})
-    for row,names in [(policy['operational_failures'][1],SUPPORT_FILES),(policy['operational_diagnostics'][0],DIAGNOSTIC_FILES)]:
+    for row,names in operational_rows(policy):
         expected.update({'recovery_lineage/'+filename:row[key+'_sha256'] for key,filename in names.items()})
     require(transition['schema'] == 'joint_interrupted_optimizer_transition_v1' and
             transition['original_status'] == 'failed' and transition['files'] == expected,
@@ -316,69 +470,108 @@ def inspect_startup_failure(index, science, policy):
             'Startup child duration charged again as scientific attempt')
 
 
-def inspect_operational_accounting(index, policy, total):
-    startup = policy['pre_execution_failure']
-    require(type(startup['charge_seconds']) is int and startup['charge_seconds'] == 90,
-            'Startup single charge must be ninety seconds')
-    require([r['charge_seconds'] for r in policy['operational_failures']]==[90,120] and
-            [r['charge_seconds'] for r in policy['operational_diagnostics']]==[80], 'Ordered operational charges differ')
-    expected = dict(scientific_indexed_seconds=total,
-                    known_prior_outer_overhead_seconds=policy['predecessor']['known_outer_overhead_seconds'],
-                    operational_failure_charge_seconds=210,operational_diagnostic_charge_seconds=80,
-                    accounted_seconds=math.fsum([total, policy['predecessor']['known_outer_overhead_seconds'], 210, 80]))
-    require(set(index['operational_accounting']) == set(expected), 'Operational accounting fields changed')
-    for key, value in expected.items():
-        core.close(index['operational_accounting'][key], value, 'Operational accounting ' + key, 1e-8)
-    require(expected['accounted_seconds'] <= 115200, 'Global operational envelope exceeded')
+def operational_rows(policy):
+    failures,diagnostics=policy['operational_failures'],policy['operational_diagnostics']
+    require(isinstance(failures,list) and failures and isinstance(diagnostics,list),'Operational launch lists missing')
+    exact(failures[0],policy['pre_execution_failure'],'Historical failed-launch alias changed')
+    rows=failures+diagnostics;identities=[row['archive_sha256'] for row in rows]
+    require(len(set(identities))==len(identities),'Duplicate operational launch archive')
+    mapping=policy['operational_lineage_files']
+    require(set(mapping)==set(identities),'Operational lineage mapping omitted or added launch')
+    filenames=[];result=[]
+    for row in rows:
+        names=mapping[row['archive_sha256']]
+        require(set(names)=={'archive','review','resource_review','workflow_log'},'Operational evidence roster differs')
+        for name in names.values():
+            require(isinstance(name,str) and name not in ('','.','..') and '/' not in name and chr(92) not in name,
+                    'Unsafe operational evidence basename')
+            filenames.append(name)
+        require(type(row['charge_seconds']) is int and row['charge_seconds']>0 and
+                row['scientific_predecessor_unchanged'] is True,'Invalid operational launch charge/scope')
+        require(0<=numeric(row['nested_scientific_seconds'])<=numeric(row['nested_supervised_seconds'])<=row['charge_seconds'],
+                'Nested operational durations exceed single launch charge')
+        result.append((row,names))
+    require(len(set(filenames))==len(filenames),'Duplicate operational evidence destination')
+    exact(mapping[failures[0]['archive_sha256']],STARTUP_FILES,'Original startup evidence names changed')
+    return result
+
+
+def inspect_operational_accounting(index,policy,total):
+    rows=operational_rows(policy)
+    failure_charge=math.fsum(row['charge_seconds'] for row in policy['operational_failures'])
+    diagnostic_charge=math.fsum(row['charge_seconds'] for row in policy['operational_diagnostics'])
+    overhead=policy['predecessor']['known_outer_overhead_seconds']
+    expected=dict(scientific_indexed_seconds=total,known_prior_outer_overhead_seconds=overhead,
+                  operational_failure_charge_seconds=failure_charge,operational_diagnostic_charge_seconds=diagnostic_charge,
+                  accounted_seconds=math.fsum([total,overhead,failure_charge,diagnostic_charge]))
+    require(set(index['operational_accounting'])==set(expected),'Operational accounting fields differ')
+    for key,value in expected.items():core.close(index['operational_accounting'][key],value,'Operational accounting '+key,1e-8)
+    require(expected['accounted_seconds']<=115200,'Global operational envelope exceeded')
     return expected
 
 
 def inspect_operational_lists(index,science,policy):
-    failures,diagnostics=policy['operational_failures'],policy['operational_diagnostics']
-    require(len(failures)==2 and len(diagnostics)==1,'Operational launch roster differs')
-    exact(failures[0],policy['pre_execution_failure'],'Historical failure alias changed')
-    require([r['charge_seconds'] for r in failures]==[90,120] and diagnostics[0]['charge_seconds']==80,
-            'Operational launch charges differ')
-    require(len({r['archive_sha256'] for r in failures+diagnostics})==3,'Duplicate operational archive')
+    rows=operational_rows(policy)
     for key in ('operational_failures','operational_diagnostics'):
         exact(index[key],policy[key],'Index operational launch list changed')
         exact(index['recovery_transition'][key],policy[key],'Transition operational launch list changed')
-    for row,names in [(failures[1],SUPPORT_FILES),(diagnostics[0],DIAGNOSTIC_FILES)]:
-        require(row['scientific_predecessor_unchanged'] is True and
-                0<=row['nested_scientific_seconds']<=row['nested_supervised_seconds']<=row['charge_seconds'],
-                'Operational launch predecessor or nested time differs')
+    for row,names in rows[1:]:
         for key,filename in names.items():
             require(sha(science/'recovery_lineage'/filename)==row[key+'_sha256'],'Operational evidence bytes changed')
         review=read(science/'recovery_lineage'/names['review'])
         resource=read(science/'recovery_lineage'/names['resource_review'])
         require(review['archive_sha256']==row['archive_sha256'] and review['audit_passed'] is True and
-                review['live_agent_review'] is True and review['reviewer']=='/root/continuation_cpu' and
-                resource['passed'] is True,'Operational launch review linkage differs')
-        if names is SUPPORT_FILES:
-            require(row['status']=='failed_during_training_support' and row['support_evaluation_count']==5 and row['optimizer_call_count']==0,
-                    'Support failure scope differs')
-            require(review['passed'] is False and review['overall_scientific_passed'] is False and
-                    review['accepted_completed_prefix']['count']==40 and review['execution_census']['new_training_support_evaluations']==5 and
-                    review['execution_census']['new_optimizer_invocations']==0,'Support failure relabelled')
-            require(resource['failure']['passed'] is False and resource['failure']['archive_sha256']==row['archive_sha256'] and
-                    resource['independent_failure_audit']['sha256']==row['review_sha256'] and
-                    resource['timing']['conservative_whole_launch_charge_seconds']==120,'Support failure resource scope differs')
-            require(resource['failure']['failed_attempt_id'] not in {v['attempt_id'] for v in index['attempts']},
-                    'Nested support failure charged again as scientific attempt')
+                review['live_agent_review'] is True and review['reviewer']=='/root/continuation_cpu' and resource['passed'] is True,
+                'Operational launch review linkage differs')
+        timing=resource['timing']
+        require(timing['conservative_whole_launch_charge_seconds']==row['charge_seconds'],
+                'Operational charge differs from reviewed whole launch')
+        if row in policy['operational_failures']:
+            failure=resource['failure']
+            review_pin=(resource['independent_failure_audit']['sha256'] if 'independent_failure_audit' in resource
+                        else failure['independent_review_sha256'])
+            require(row['status']==resource['failure']['status'] and review['passed'] is False and
+                    review['overall_scientific_passed'] is False and review['accepted_completed_prefix']['count']==40 and
+                    resource['failure']['passed'] is False and resource['failure']['archive_sha256']==row['archive_sha256'] and
+                    review_pin==row['review_sha256'],'Failed launch relabelled')
+            census=review['execution_census']
+            for key,review_key in [('support_evaluation_count','new_training_support_evaluations'),
+                ('optimizer_call_count','new_optimizer_invocations'),('physical_optimizer_call_count','new_optimizer_invocations'),
+                ('replayed_optimizer_return_count','replayed_immigrant_optimizer_returns'),('held_out_call_count','new_test_evaluations')]:
+                if key in row:
+                    integer(row[key]);require(row[key]==failure[key]==census[review_key],'Failed launch evaluation census differs')
+            if 'failed_attempt_id' in failure:
+                failed_attempt=failure['failed_attempt_id']
+            else:
+                descriptor=review['failed_index']
+                with zipfile.ZipFile(science/'recovery_lineage'/names['archive']) as archive:
+                    require(archive.namelist().count(descriptor['path'])==1,'Failed index archive member missing/duplicated')
+                    raw=archive.read(descriptor['path'])
+                require(hashlib.sha256(raw).hexdigest()==descriptor['sha256']==failure['failed_index_sha256'],
+                        'Failed launch index custody differs')
+                failed_index=json.loads(raw)
+                require(failed_index['last_attempt_passed'] is False and len(failed_index['cases'])==40,
+                        'Operational failure archive claims new accepted case')
+                failed_attempt=failed_index['attempts'][-1]['attempt_id']
+            require(failed_attempt not in {v['attempt_id'] for v in index['attempts']},
+                    'Nested failed launch charged again as scientific attempt')
         else:
             require(row['status']=='diagnostic_complete' and row['passed'] is True and row['equality_passed'] is False and
-                    row['scientific_completion'] is False and row['support_evaluation_count']==5 and
-                    row['optimizer_call_count']==row['held_out_call_count']==0,'Diagnostic accounting scope differs')
+                    row['scientific_completion'] is False,'Diagnostic accounting scope differs')
             require(review['passed'] is True and review['diagnostic_complete'] is True and review['equality_passed'] is False and
                     review['accepted_recovery_case'] is False and review['scientific_completion'] is False,
-                    'Diagnostic relabelled as recovery success')
-            require(resource['diagnostic']['archive_sha256']==row['archive_sha256'] and resource['diagnostic']['independent_review_sha256']==row['review_sha256'] and
-                    resource['timing']['conservative_whole_launch_charge_seconds']==80,'Diagnostic resource scope differs')
-        require(resource['timing']['child_scientific_seconds']==row['nested_scientific_seconds'] and
-                resource['timing']['outer_including_cleanup_seconds']==row['nested_supervised_seconds'] and
-                resource['timing']['nested_intervals_not_additive'] is True,'Operational nested timing linkage differs')
-        inputmap=resource['input_sha256']
-        require(row['workflow_log_sha256'] in inputmap.values(),'Operational log lacks resource binding')
+                    'Diagnostic relabelled as recovered case')
+            census=review['execution']
+            require(row['support_evaluation_count']==census['actual_training_evaluations'] and
+                    row['optimizer_call_count']==census['optimizer_calls']==0 and
+                    row['held_out_call_count']==census['held_out_calls']==0 and census['new_complete_cases']==0,
+                    'Diagnostic evaluation scope differs')
+            require(resource['diagnostic']['archive_sha256']==row['archive_sha256'] and
+                    resource['diagnostic']['independent_review_sha256']==row['review_sha256'],'Diagnostic resource linkage differs')
+        require(timing['child_scientific_seconds']==row['nested_scientific_seconds'] and
+                timing['outer_including_cleanup_seconds']==row['nested_supervised_seconds'] and
+                timing['nested_intervals_not_additive'] is True,'Nested operational timing linkage differs')
+        require(row['workflow_log_sha256'] in resource['input_sha256'].values(),'Operational log lacks resource binding')
 
 
 def inspect_charges(index, science, policy):
@@ -459,7 +652,7 @@ def inspect_recovery_execution(science, report, policy, scientific_protocol=None
     ledger = [json.loads(line) for line in (science / 'recovery_calls.jsonl').read_text().splitlines()]
     scientific_protocol=scientific_protocol or read(REPO_ROOT/'experiments/s04b_joint_nuisance/protocol.json')
     box=scientific_protocol['shared_bounds']+scientific_protocol['inhibition_bounds']
-    require(execution['schema'] == 'joint_partial_optimizer_recovery_calls_v1' and
+    require(execution['schema'] == 'joint_partial_optimizer_recovery_calls_v2' and
             execution['exact_internal_optimizer_resume'] is False and execution['original_physical_attempts_retained'] == 23,
             'Recovery execution scope changed')
     require(execution['arm_calls'] == ['null','LI',arm,'LIplus_inclusive'] and
@@ -467,8 +660,6 @@ def inspect_recovery_execution(science, report, policy, scientific_protocol=None
             'Recovery reuse roster changed')
     exact(execution['original_interrupted_powell'], interrupted, 'Interrupted evidence changed')
     exact(execution['original_primary_error'], old_error, 'Original failure changed')
-    require(execution['anchor_return_verified'] is True and execution['anchor_next_input_verified'] is True,
-            'Unverified Powell anchors')
     require(ledger and ledger[0]['event'] == 'lineage' and ledger[0]['original_failed_physical_attempts'] == 23,
             'Missing physical lineage ledger')
     exact(ledger[0]['interrupted'], interrupted, 'Ledger failed invocation differs')
@@ -476,33 +667,22 @@ def inspect_recovery_execution(science, report, policy, scientific_protocol=None
     require([v['model'] for v in reused] == ['null','LI'] and all(v['optimizer_calls'] == 0 for v in reused),
             'Reused complete arms physically rerun')
     support=[v for v in ledger if v['event']=='repeated_training_check']
-    require([v['model'] for v in support]==['null','LI'] and set(execution['repeated_training_checks'])=={'null','LI'},
-            'Repeated training support census differs')
+    require([v['model'] for v in support]==['null','LI'] and set(execution['repeated_training_checks'])=={'null','LI'} and
+            set(execution['selected_check_evaluations'])=={'null','LI'},'Repeated training support census differs')
+    selected_events=[v for v in ledger if v['event']=='selected_support_evaluation']
+    expected_events=[dict(event='selected_support_evaluation',check_name=name,**v)
+                     for name in ('null','LI') for v in execution['selected_check_evaluations'][name]]
+    exact(selected_events,expected_events,'Selected raw support ledger differs')
     for row in support:
         payload={k:v for k,v in row.items() if k not in ('event','model')}
         exact(payload,execution['repeated_training_checks'][row['model']],'Training support ledger differs')
-        inspect_training_equivalence(payload,original['training_checks'][row['model']],row['model'])
-    replayed=[v for v in ledger if v['event']=='replayed_completed_start_support']
-    candidates=[v for v in ledger if v['event']=='replayed_candidate_preserved']
-    require([v['start_index'] for v in replayed]==list(range(5))==[v['start_index'] for v in candidates] and
-            set(execution['replayed_start_support'])==set(execution['replayed_candidates'])==set(map(str,range(5))),
-            'Replayed support/candidate census differs')
-    for start,(row,candidate_row) in enumerate(zip(replayed,candidates)):
-        require(row['model']==candidate_row['model']==arm,'Replayed support model differs')
-        original_record=ends[(arm,start,'L-BFGS-B')]
-        payload={k:v for k,v in row.items() if k not in ('event','model','start_index')}
-        exact(payload,execution['replayed_start_support'][str(start)],'Replayed support ledger differs')
-        inspect_replayed_support(payload,original_record,box)
-        candidate_payload={k:v for k,v in candidate_row.items() if k not in ('event','model','start_index')}
-        exact(candidate_payload,execution['replayed_candidates'][str(start)],'Replayed candidate ledger differs')
-        original_candidate=inspect_replayed_candidate(candidate_payload,original_record,start)
-        exact(candidate_payload['actual']['gradient'],payload['actual']['gradient'],
-              'Fresh candidate gradient differs from returned support')
-        selected=[v for v in report['fits'][arm]['candidates'] if v['kind']=='optimizer' and v['start_index']==start]
-        require(len(selected)==1,'Replayed candidate state missing/duplicated')
-        exact(selected[0],original_candidate,'Preserved original candidate differs')
-    selected=report['fits'][arm]['selected']
-    require(selected in report['fits'][arm]['candidates'],'Selected state differs after candidate preservation')
+        inspect_training_equivalence(payload,original['training_checks'][row['model']],row['model'],
+                                     execution['selected_check_evaluations'][row['model']],scientific_protocol)
+    floors=[v for v in ledger if v['event']=='historical_floor_replay']
+    require(len(floors)==1,'Historical floor replay ledger missing/duplicated')
+    exact({k:v for k,v in floors[0].items() if k!='event'},execution['historical_floor_replay'],'Floor replay ledger differs')
+    inspect_floor_replay(execution['historical_floor_replay'],original,report)
+    inspect_return_context(ledger,execution,ends,box,report)
     returns = [v for v in ledger if v['event'] == 'replayed_optimizer_return']
     require([v['start_index'] for v in returns] == list(range(5)), 'Replayed successful start roster')
     for v in returns:
@@ -533,21 +713,11 @@ def inspect_recovery_execution(science, report, policy, scientific_protocol=None
         if restart:
             exact(start['options'], policy['recovery']['original_powell_options'], 'Powell restart budget changed')
             exact(start['initial_parameters'], interrupted['initial_parameters'], 'Powell restarted from last iterate')
-            require(2041 <= end['completed_objective_returns'] <= 5000, 'Powell restarted prefix or cap differs')
+            require(end['completed_objective_returns'] <= 5000, 'Powell original per-invocation cap exceeded')
         counters(end['actual_evaluations'])
-    # Actual anchor payloads are retained, rather than relying solely on boolean assertions.
-    anchors = [v for v in ledger if v['event'] == 'restart_return_anchor_verified']
-    comparisons=[v for v in ledger if v['event']=='restart_return_anchor_comparison']
-    next_inputs = [v for v in ledger if v['event'] == 'restart_next_input_anchor_verified']
-    require(len(anchors) == len(next_inputs) == len(comparisons) == 1 and anchors[0]['evaluation_count'] == comparisons[0]['evaluation_count'] == 2040 and
-            next_inputs[0]['evaluation_number'] == 2041, 'Anchor event roster differs')
-    expected_anchor={k:v for k,v in interrupted['last_evaluation'].items() if k!='evaluation_count'}
-    inspect_anchor_equivalence(comparisons[0],expected_anchor)
-    exact(anchors[0]['actual_evaluation'],comparisons[0]['actual'],'Actual completed-return anchor differs')
-    exact(anchors[0]['expected_evaluation'],expected_anchor,'Expected completed-return anchor differs')
-    exact(anchors[0]['operational_equivalence'],comparisons[0]['operational_equivalence'],'Verified anchor equivalence differs')
-    require(anchors[0]['exact_match'] is comparisons[0]['exact_match'],'Verified anchor exact-match label differs')
-    exact(next_inputs[0]['parameters'], interrupted['failed_evaluation_parameters'], 'Actual next-input anchor differs')
+    restart_ends=[v for v in physical_ends if v['kind']=='restarted_interrupted_invocation']
+    require(len(restart_ends)==1,'Interrupted Powell restart count differs')
+    inspect_reference_snapshots(execution['reference_snapshots'],ledger,interrupted,restart_ends[0]['completed_objective_returns'])
     counts = counters(execution['actual_evaluations'])
     physical_returns = {}
     for end in physical_ends:
@@ -571,7 +741,7 @@ def inspect_recovery_execution(science, report, policy, scientific_protocol=None
                 reused_complete_fit_arms=2, replayed_completed_optimizer_returns=5, replayed_primary_errors=1,
                 new_physical_optimizer_invocations=len(physical_starts), restarted_interrupted_invocations=1,
                 actual_evaluations=counts, exact_internal_optimizer_resume=False,
-                anchor_scope='The2040th parameters/full scores and next input are exact; only unused finite gradient may satisfy declared64eps equivalence. Unsaved intermediate evaluations are not independently established.')
+                reference_snapshot_scope='Observational only; restart may finish before either reference count. Original initial state and per-invocation recipe remain exact.')
 
 
 def audit_saved(args):
