@@ -1,0 +1,147 @@
+{
+  "passed": true,
+  "status": "failed_clean_checkout_record_verified",
+  "checkout_passed": false,
+  "task3_accepted": false,
+  "reviewer": "/root/continuation_cpu",
+  "reviewed_utc": "2026-11-07T12:56:31.778907+00:00",
+  "artifact_sha256": "f3c28244afc5ea99aede2bbbd3e6b45de8e46a551c4a1c824502dc40ad099cc6",
+  "commit": "82e2bb42ff3fed6b4be16b2df0c40389358b61c2",
+  "workflow": 42374032016,
+  "artifact_id": 13575096179,
+  "core_passed": true,
+  "source_pins_verified": 87,
+  "built_binary_hashes_verified": 8,
+  "directly_logged_test_counts": {
+    "stage2": 8,
+    "iteration27_cpu": 20,
+    "continuation_controls": 48,
+    "joint_reader_controls": 14
+  },
+  "additional_workflow_step_test_counts": {
+    "tests/test_cpu_portability.py": 3,
+    "scripts/tests/test_supervise_research_linux.py": 10
+  },
+  "additional_count_evidence": "3 portability methods plus10 Linux containment methods; completion inferred from later ordinary workflow steps running successfully. All10 containment result records are retained. Their unittest terminal summary and the portability build log are not in this artifact.",
+  "containment_fixtures": [
+    {
+      "name": "test_early_parent_exit_with_unobserved_child_1d5zvhu5",
+      "status": "failed",
+      "stop_reason": "live_descendants_after_parent",
+      "result_sha256": "85b7cd23e6489665a9b15dc8f3c8aac2f825d6e2d31fddb3bf76f556cdf2fbdc"
+    },
+    {
+      "name": "test_host_headroom_cap_8qthkfw9",
+      "status": "failed",
+      "stop_reason": "host_memory_headroom",
+      "result_sha256": "2c743b027499c57369faaa95dde72ac420aab1963231561154a31322ffd39a49"
+    },
+    {
+      "name": "test_interrupt_cleans_and_retains_failure_ptfenn1h",
+      "status": "failed",
+      "stop_reason": "supervisor_error",
+      "result_sha256": "00551b390515c1024598626ba85f5ba618a7de7f2a903b8f6833b9d562e7bdd0"
+    },
+    {
+      "name": "test_missing_executable_retains_failure_receipt_v7ty5vp8",
+      "status": "failed",
+      "stop_reason": "supervisor_error",
+      "result_sha256": "fdd7db440f532edd84baa41acebc127d28113c951f49022ea0b4c8cd47841ea4"
+    },
+    {
+      "name": "test_orphan_in_separate_session_is_still_owned_fu3l37rx",
+      "status": "failed",
+      "stop_reason": "live_descendants_after_parent",
+      "result_sha256": "a34e3b1fe8b3a45892b6dd3c5e28578e98ecb7b9514a6f111bfcbe4c9d0a8a15"
+    },
+    {
+      "name": "test_sampled_rss_cap_4hsvtaq7",
+      "status": "failed",
+      "stop_reason": "sampled_process_tree_rss_cap",
+      "result_sha256": "f987b1f1b7a6c8ed1ec528ccd9523a4accfef073a6502e35fc2ee99934ade252"
+    },
+    {
+      "name": "test_sampling_error_fails_closed_and_cleans_iv4ds97k",
+      "status": "failed",
+      "stop_reason": "supervisor_error",
+      "result_sha256": "246b8d2cf3a93192da68177dcae782e77ed2e00153a5c3c1fe7b2074c8961380"
+    },
+    {
+      "name": "test_successful_fast_exit_biuamnku",
+      "status": "passed",
+      "stop_reason": null,
+      "result_sha256": "60791c7f6cb78f756392435007751afff03340bf7e2659ac10e4325c5bb206d1"
+    },
+    {
+      "name": "test_termination_resistant_child_is_killed_ig7ey57t",
+      "status": "failed",
+      "stop_reason": "wall_cap",
+      "result_sha256": "6222265f17269a556c9432de5450eae195232ef650ad0ec1032d4bf673b90451"
+    },
+    {
+      "name": "test_timeout_2ujc7vj2",
+      "status": "failed",
+      "stop_reason": "wall_cap",
+      "result_sha256": "35bfa6fecc7a6132e71802e7f34e6a3820ad7d827e959e6edde7f8fbd7b69d0e"
+    }
+  ],
+  "inputs": {
+    "regional_inputs": {
+      "passed": true,
+      "sha256": "dc43ae0a9198cecd100dec51e8916ae3e4b6f7a4d49e8710b04752f5ad864def",
+      "scope": "Input verification only; no scientific likelihood/replay"
+    },
+    "s02_inputs": {
+      "passed": true,
+      "sha256": "2d52da84c7cd85b37007de80ae0cc5b99ab4d9e63d2623874facac50e4830d82",
+      "scope": "Existing input/output verification only; no fitting, simulation or likelihood evaluation"
+    },
+    "historical_fits": {
+      "passed": true,
+      "sha256": "c999fc64bc79cb4a5518891eacab8df979bc2a725936a8f77506250b14118657",
+      "scope": "Archive identity, exact members and projection rosters; no likelihood or optimizer execution."
+    }
+  },
+  "claim_verifier_passed": true,
+  "claim_log_sha256": "0c496227bcce048ffc5926930dfe8d78942e50235e206ed1c6650f07d81b93bb",
+  "repository_checked_files": 9471,
+  "repository_failure": {
+    "unique_missing_files": 1,
+    "diagnostics": [
+      "payload hash: validation/reproductions/score_replay_20261107/california_marks/execution.log",
+      {
+        "coverage_missing": [
+          "validation/reproductions/score_replay_20261107/california_marks/execution.log"
+        ],
+        "coverage_extra": []
+      }
+    ],
+    "manifest_entry": {
+      "path": "validation/reproductions/score_replay_20261107/california_marks/execution.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "omitted_from_reviewed_git_tree": true,
+    "ignored_by_pattern": "*.log"
+  },
+  "repair": {
+    "commit": "87912c3e08921a2d39d52a869ed12a6e8c82ed12",
+    "only_changed_path": "validation/reproductions/score_replay_20261107/california_marks/execution.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "matches_existing_manifest": true,
+    "successful_post_repair_checkout_not_yet_reviewed": true
+  },
+  "working_tree_before_clean": true,
+  "working_tree_after_check": "not_run_after_repository_failure",
+  "cuda_parity": "not_run",
+  "scientific_campaigns_executed": false,
+  "audit_scientific_calls": 0,
+  "findings": [
+    "The checkout failure is a packaging omission of one manifest-pinned empty log,not a failing numerical kernel/input/claim verification.",
+    "The reported portability/containment count is13 (3+10); the separate joint-reader suite has14 tests.",
+    "A fresh repaired checkout must still pass repository verification and the final clean-tree step before Task3 acceptance."
+  ],
+  "scope": "Retained execution/source/byte audit only; no tests, fits, model replays, generators, or builds were rerun by this audit.",
+  "audit_script_sha256": "3c791b2837f023e257fb389ddd1878817d25c1a6bcd35d82d51c5f8e7cdd8caf"
+}

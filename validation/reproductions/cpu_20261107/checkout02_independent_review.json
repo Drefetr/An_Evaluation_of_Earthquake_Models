@@ -1,0 +1,291 @@
+{
+  "schema": "task3_cpu_execution_acceptance_v1",
+  "passed": true,
+  "status": "bounded_linux_cpu_execution_and_clean_checkout_accepted",
+  "reviewer": "/root/continuation_cpu",
+  "reviewed_utc": "2026-11-07T13:04:33.537791+00:00",
+  "live_agent_review": true,
+  "task3_cpu_execution_accepted": true,
+  "all_three_tasks_complete": false,
+  "task1_scientific_completion": false,
+  "task2_scientific_completion": false,
+  "final_publication_custody_refresh_required": true,
+  "entire_repository_ci_passed": false,
+  "scope": "CPU execution and clean research snapshot only. Prior matched actual public-command executions are reused as evidence; no scientific cases were repeated for this audit.",
+  "source_review_independence": "This reviewer authored the CPU implementation; its independent source review was performed by root. This receipt independently checks retained execution/source/byte coverage and does not replace that separate source review.",
+  "checkout": {
+    "commit": "d9ecd50adc1a3ab8b413acd0db4d04846fd81b03",
+    "archive_sha256": "c83b3290a2b71c492b71e2db408382b618c0c5418469f1c6009ba9c4388e17f2",
+    "workflow_run": 42374684170,
+    "job_id": 128409750284,
+    "artifact_id": 13575566281,
+    "workflow_sha256": "1ed645f850355d365b4834ce4de6d72d13cb723272b45873f06a33d016481f64",
+    "workflow_log_sha256": "24a2673c91bd6ac7d0ff3b338faedd99170a3ced09a085308b495ed99dd1e060",
+    "clean_before": true,
+    "clean_after": true,
+    "repository_files_checked": 9472,
+    "repository_log_sha256": "e8a58e4adc198325197da8f72006990aee1637ea129290196e56e64e36ae0658",
+    "claims_log_sha256": "0c496227bcce048ffc5926930dfe8d78942e50235e206ed1c6650f07d81b93bb",
+    "claim_counts": {
+      "withdrawn_historical_records": 503,
+      "json_numeric_verified": 23933,
+      "json_pointer_verified": 24200,
+      "documentary_numeric_verified": 2430,
+      "documentary_metadata_verified": 679,
+      "claims": 26630,
+      "documentary_metadata": 679,
+      "total_records": 27309,
+      "literal_manuscript_display_records": 11066,
+      "missing_declared_manuscript_displays": 0,
+      "json_nonnumeric_verified": 267,
+      "distinct_authorities": 139
+    },
+    "inputs": {
+      "regional_inputs": {
+        "passed": true,
+        "sha256": "dc43ae0a9198cecd100dec51e8916ae3e4b6f7a4d49e8710b04752f5ad864def",
+        "scope": "Input verification only; no scientific likelihood/replay"
+      },
+      "s02_inputs": {
+        "passed": true,
+        "sha256": "2d52da84c7cd85b37007de80ae0cc5b99ab4d9e63d2623874facac50e4830d82",
+        "scope": "Existing input/output verification only; no fitting, simulation or likelihood evaluation"
+      },
+      "historical_fits": {
+        "passed": true,
+        "sha256": "c999fc64bc79cb4a5518891eacab8df979bc2a725936a8f77506250b14118657",
+        "scope": "Archive identity, exact members and projection rosters; no likelihood or optimizer execution."
+      }
+    },
+    "dependencies_log_sha256": "67ec74031c7928e6d118f042f84fb83a8c3aede5a5b5e583f84321b6bb468eba",
+    "requirements_sha256": "043a7668bb5aaa416d5f751337036d0a0412c4a5408af0c3c7a516f7240e4372",
+    "requirements_cpu_sha256": "bcf99640d0c87a8b8e6ce80547cd8e1efaeee60a940ab13ff631bfe475843327"
+  },
+  "core": {
+    "record_sha256": "777ea1f0978e344677ca21551e69cbf970a8570e8a9cc6ee4c74d334ae155daf",
+    "platform": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+    "python": "3.13.18 (main, Oct 26 2026, 14:20:56) [GCC 13.3.0]",
+    "source_pins_verified": 87,
+    "binary_hashes_verified": 8,
+    "counts": {
+      "stage2": 8,
+      "iteration27_cpu": 20,
+      "continuation_controls": 48,
+      "joint_reader_controls": 14,
+      "tests/test_cpu_portability.py": 3,
+      "scripts/tests/test_supervise_research_linux.py": 10
+    },
+    "total_assertions": 103,
+    "resources": {
+      "peak_process_tree_rss_bytes": 197210112,
+      "minimum_available_bytes": 15519711232,
+      "sample_seconds": 0.2,
+      "max_rss_bytes": 6442450944,
+      "minimum_required_available_bytes": 2147483648,
+      "sampling_errors": [],
+      "within_limits": true
+    },
+    "cuda_parity": "not_run; separate historical CUDA assertion preserved",
+    "cpu_equivalence_boundary": "8 original Stage2 assertions plus19 original non-GPU iteration27 assertions and1 CPU16/CPU32 counterpart; no claim that CPU executed GPU parity.",
+    "scientific_campaigns_executed": false
+  },
+  "containment_fixtures": [
+    {
+      "name": "test_early_parent_exit_with_unobserved_child_tbw3b2go",
+      "status": "failed",
+      "stop_reason": "live_descendants_after_parent",
+      "sha256": "fb003c2d7f176544dabfc7869469c9279b6ebe23ab6ce986aeacc5e3ae2bdff3"
+    },
+    {
+      "name": "test_host_headroom_cap_9sp7k0tj",
+      "status": "failed",
+      "stop_reason": "host_memory_headroom",
+      "sha256": "ae285bc84a002267582e726874208d3cc83f37909e127eaf87045fa43e5a4a7c"
+    },
+    {
+      "name": "test_interrupt_cleans_and_retains_failure_lkiare9c",
+      "status": "failed",
+      "stop_reason": "supervisor_error",
+      "sha256": "c9147cc26ca264139cc720bd63a40bb64ec233853efbf5c7356f9ff2b02ab4bf"
+    },
+    {
+      "name": "test_missing_executable_retains_failure_receipt_0qa1_i79",
+      "status": "failed",
+      "stop_reason": "supervisor_error",
+      "sha256": "8a316feda612d697b31a41444c90e315a1782575df320a3ba7eef2700ab32a4f"
+    },
+    {
+      "name": "test_orphan_in_separate_session_is_still_owned_2qbbnecv",
+      "status": "failed",
+      "stop_reason": "live_descendants_after_parent",
+      "sha256": "e7e7392cd98b19d153841d3dac2bbc05ca5c119b12f1a7d7a5a6762579086aa7"
+    },
+    {
+      "name": "test_sampled_rss_cap_689qizxo",
+      "status": "failed",
+      "stop_reason": "sampled_process_tree_rss_cap",
+      "sha256": "838cabafaaee5de2f50435ee01ab062e02850eea46fb5104c3e77a1495afc4e8"
+    },
+    {
+      "name": "test_sampling_error_fails_closed_and_cleans_urpvtjgl",
+      "status": "failed",
+      "stop_reason": "supervisor_error",
+      "sha256": "dbbbe5d5777a358990db8e20032806efbdb61fd4fa92bf80e10d77779ef5eeb6"
+    },
+    {
+      "name": "test_successful_fast_exit_5zxl1wx_",
+      "status": "passed",
+      "stop_reason": null,
+      "sha256": "e3b73ee62b0296feca1c2da1d6c4b31233d99b92a1fcfd98f4f1706bdc0b56b9"
+    },
+    {
+      "name": "test_termination_resistant_child_is_killed_5hbv9r_j",
+      "status": "failed",
+      "stop_reason": "wall_cap",
+      "sha256": "213e30665b5f971e9f0d7da8c34ba56b361f777f3a8210c6fd28fe4a5913177c"
+    },
+    {
+      "name": "test_timeout_1kh5dw0y",
+      "status": "failed",
+      "stop_reason": "wall_cap",
+      "sha256": "155b53dddcfe2c69b3d8710730f727b460cae4585d8c495c1164693e43a02587"
+    }
+  ],
+  "public_selected_state_reader": [
+    {
+      "artifact": "s03_completion",
+      "archive_sha256": "baec5c6358f46536b2e4efc0d6739a3b7eea42c3e3bacbf5df207b68918a62a1",
+      "source_commit": "f21822d626b45572611af188a94adcf7752fe4a4",
+      "route": "s03",
+      "phase": "completion",
+      "requested_actual_passes": 20,
+      "declared_roster": 24,
+      "reader_source_sha256": "ea02a88651ad5edb4d415063898f0d5e678e95d51246bd7d42db62ff447b02b8",
+      "request_sha256": "dc729a1602e9b7c3711fb983bf241888c59caea70dd9a567cf89074f6584324a",
+      "supervision_sha256": "f5911d9022bc629e13847685c77526d4546267600c3db8259cfa908681b5af9a",
+      "independent_output_review_sha256": "9488cb42908c8e8587c43b2850d9a0f556cdba621b0485de5187fa3d420aabd9",
+      "compilation_inside_supervision": true,
+      "scientific_seconds": 10.571988736000009,
+      "supervised_seconds": 12.611847481000012,
+      "sampled_peak_tree_rss_bytes": 142184448
+    },
+    {
+      "artifact": "productivity_profiles_pilot",
+      "archive_sha256": "c72df49ce2c2d370927307f2a6614d7a807084085872a1651d81f12261bcf844",
+      "source_commit": "84ce694e7c4c47bbb2a7a2e79b13cbae70174b85",
+      "route": "productivity_profiles",
+      "phase": "pilot",
+      "requested_actual_passes": 4,
+      "declared_roster": 84,
+      "reader_source_sha256": "ea02a88651ad5edb4d415063898f0d5e678e95d51246bd7d42db62ff447b02b8",
+      "request_sha256": "1dcee30d2a1021a79887b19604eb315c6199593a55aec55dcab95422976c7d3c",
+      "supervision_sha256": "2c7f31e49175d35d5a427527c146129e52bf0e66ea68b86d67b78b3eef3b070e",
+      "independent_output_review_sha256": "3040f1b53276ffc6edfa2339599fb7c3c0092f96060a356d96a1f55e9d259e39",
+      "compilation_inside_supervision": true,
+      "scientific_seconds": 0.18477118299998097,
+      "supervised_seconds": 1.0089215449999926,
+      "sampled_peak_tree_rss_bytes": 73920512
+    }
+  ],
+  "public_joint_reader": {
+    "archive_sha256": "860dd499a2eaae9f14aaf7eff7727c27ca79c46b98f8bcf88c9025127c03e2d8",
+    "review_sha256": "4e63e9fbc6c82680388db2f16a95ac5d0f09a65506fef68c1c232c19de1a8968",
+    "source_commit": "1f8c79623da9af754f9bc557e3f2d2b29c53f84f",
+    "source_sha256": "98b4365a514cd4cbe588cd40d60577d28ffa4cea98d08fa115b3a92778743f5e",
+    "index_sha256": "5aaed085b37848f5987ae7785e3c4e5300b0e4642bf9bbf9567a8dd81b92bc98",
+    "actual_new_histories": 1,
+    "actual_new_fit_arms": 4,
+    "actual_new_optimizer_starts": 32,
+    "prior_completed_histories_preserved": 6,
+    "prior_histories_refitted": 0,
+    "cumulative_histories": 7,
+    "cumulative_outcomes": 35,
+    "cumulative_floor_checks": 42,
+    "science_seconds": 433.12184540500004,
+    "supervision": {
+      "passed": true,
+      "sampled_peak_tree_rss_bytes": 564776960,
+      "execution_wall_seconds": 433.536369221,
+      "sample_count": 860,
+      "minimum_sampled_host_available_bytes": 15198781440,
+      "local_expiry_enforced": true
+    },
+    "native_compilation": "Accepted Linux binary and exact runtime deliberately reused in dated continuation; no new-build claim.",
+    "scope": "A real execution of the next scheduled case through the public command on a fresh Linux runner; not a new80-history restart, untouched scientific holdout or complete campaign."
+  },
+  "source_continuity": {
+    "joint_reader_byte_exact": true,
+    "replay_reader_changed_functions": [
+      "published_review",
+      "evidence_inventory"
+    ],
+    "replay_reader_added_function": "result_archive_members",
+    "scope": "Declared archive-prefix custody support; unchanged numerical execution functions; constructed controls passed in this checkout.",
+    "current_route_proposals": {
+      "cached": {
+        "proposal_sha256": "f0a14a88ed2c5f2fac9d536d0610f9daa8f101cc11b80267c82c7f3b88182359",
+        "source_pins_checked": 6
+      },
+      "cached_supplement": {
+        "proposal_sha256": "748b3c5fd047781a7ea10e257dee5a8818bbd78b562eba58b345e8d191a8e89f",
+        "source_pins_checked": 6
+      },
+      "productivity_profiles": {
+        "proposal_sha256": "bf1c56933322357fde14195c5bf869de4de72bb4b46a0a2acffdcb5822243ef9",
+        "source_pins_checked": 6
+      },
+      "california": {
+        "proposal_sha256": "687428df731c55ae37c9654cb3d7578cb1d2219e34475e19c49f0b3a57e65580",
+        "source_pins_checked": 6
+      },
+      "california_benchmark": {
+        "proposal_sha256": "54873a4bfe5ab065ba58e1144547360a46631ab648a94b09940eee2fc1b56320",
+        "source_pins_checked": 6
+      },
+      "jma": {
+        "proposal_sha256": "bdffeedee16f86d1814ae2ffa48d0810b1d8c3dc9d4e5db2556dc923e30d654f",
+        "source_pins_checked": 4
+      },
+      "s03": {
+        "proposal_sha256": "cb74f0ae9aee7be845f10ff4f4e5de7a6e5093e08968540a1deb71889fbb9fb1",
+        "source_pins_checked": 4
+      },
+      "s06_ca": {
+        "proposal_sha256": "245f742827ce524033eeac00652d9d0654284a2b319972f34b664ec4a6dcba8c",
+        "source_pins_checked": 4
+      },
+      "original_li": {
+        "proposal_sha256": "19673b54ef3281b989670d95894099848f04595b8c933a7faccdb5f2eeb2ff6e",
+        "source_pins_checked": 3
+      },
+      "s04_original": {
+        "proposal_sha256": "6e0aadf7d9616fd97d49389c34891ea8b93741777f3a962f6a779c6c609ae159",
+        "source_pins_checked": 4
+      },
+      "california_blocks": {
+        "proposal_sha256": "b4377f51cda390eeb6830130065fc41672e9527c0974aaad7192157d537bfb1d",
+        "source_pins_checked": 3
+      },
+      "observed_fixedbackbone": {
+        "proposal_sha256": "132ca0902aa126a84f4d90e6e44b30995bc2953aa5a6007bc2eebd5d8343d307",
+        "source_pins_checked": 4
+      }
+    }
+  },
+  "earlier_failed_checkout": {
+    "archive_sha256": "f3c28244afc5ea99aede2bbbd3e6b45de8e46a551c4a1c824502dc40ad099cc6",
+    "audit_sha256": "55574e65462f9e2b333c2b1fda35338e2641d1926f54638d3a907e19bf221c82",
+    "preserved_unchanged": true,
+    "correction": "The same manifest-pinned empty log is now tracked and passed clean-checkout verification."
+  },
+  "limits": [
+    "Task1 remains11/80 independently accepted histories at this review; the originalS04 full replay is pending. CPU acceptance cannot certify either scientific campaign complete.",
+    "The separate deterministic CI website interaction check was reported failing for the newly optional panel; that job is not accepted by this CPU-only review.",
+    "Final manuscript/artifact promotion must refresh custody and verify the resulting final snapshot.",
+    "GNU or Clang C++17 is a system prerequisite; pip does not install a compiler. Linux was executed; macOS and CUDA parity were not.",
+    "The public joint command actually executed one next case while preserving six completed cases. A fresh80-history restart was neither performed nor required."
+  ],
+  "audit_scientific_calls": 0,
+  "audit_test_build_calls": 0,
+  "audit_script_sha256": "2cdf233bd66c749d90b6b9624e1f4b09ecd260ece781c99d5fbc84af22278266"
+}

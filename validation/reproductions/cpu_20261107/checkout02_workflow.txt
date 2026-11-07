@@ -1,0 +1,776 @@
+﻿2026-11-07T12:56:40.4936364Z Current runner version: '2.338.2'
+2026-11-07T12:56:40.4962559Z ##[group]Runner Image Provisioner
+2026-11-07T12:56:40.4964085Z Hosted Compute Agent
+2026-11-07T12:56:40.4964689Z Version: 20261028.624
+2026-11-07T12:56:40.4965829Z Commit: 54898b74c23fde5556c9b3c3a2290865feef0dfe
+2026-11-07T12:56:40.4966571Z Build Date: 2026-10-28T21:51:42Z
+2026-11-07T12:56:40.4967244Z Worker ID: {00835c81-b48f-49df-8881-6330d32d551e}
+2026-11-07T12:56:40.4968049Z Region: westus3
+2026-11-07T12:56:40.4968591Z Cloud: Azure
+2026-11-07T12:56:40.4969151Z ##[endgroup]
+2026-11-07T12:56:40.4971133Z ##[group]Operating System
+2026-11-07T12:56:40.4971805Z Ubuntu
+2026-11-07T12:56:40.4972456Z 24.04.5
+2026-11-07T12:56:40.4972967Z LTS
+2026-11-07T12:56:40.4973911Z ##[endgroup]
+2026-11-07T12:56:40.4974536Z ##[group]Runner Image
+2026-11-07T12:56:40.4975140Z Image: ubuntu-24.04
+2026-11-07T12:56:40.4975840Z Version: 20261101.360.1
+2026-11-07T12:56:40.4977116Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261101.360/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-07T12:56:40.4978828Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261101.360
+2026-11-07T12:56:40.4979809Z ##[endgroup]
+2026-11-07T12:56:40.4981024Z ##[group]GITHUB_TOKEN Permissions
+2026-11-07T12:56:40.4983205Z Contents: read
+2026-11-07T12:56:40.4984279Z Metadata: read
+2026-11-07T12:56:40.4984854Z ##[endgroup]
+2026-11-07T12:56:40.4987079Z Secret source: Actions
+2026-11-07T12:56:40.4988147Z Cache mode: write
+2026-11-07T12:56:40.4988832Z Prepare workflow directory
+2026-11-07T12:56:40.5413880Z Prepare all required actions
+2026-11-07T12:56:40.5463150Z Getting action download info
+2026-11-07T12:56:40.8571982Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-07T12:56:40.9785084Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-11-07T12:56:41.0616359Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-07T12:56:41.2730928Z Complete job name: cpu-core
+2026-11-07T12:56:41.3644008Z ##[group]Run actions/checkout@v4
+2026-11-07T12:56:41.3644964Z with:
+2026-11-07T12:56:41.3645497Z   repository: Drefetr/An_Evaluation_of_Earthquake_Models
+2026-11-07T12:56:41.3649655Z   token: ***
+2026-11-07T12:56:41.3650083Z   ssh-strict: true
+2026-11-07T12:56:41.3650522Z   ssh-user: git
+2026-11-07T12:56:41.3650965Z   persist-credentials: true
+2026-11-07T12:56:41.3651454Z   clean: true
+2026-11-07T12:56:41.3651891Z   sparse-checkout-cone-mode: true
+2026-11-07T12:56:41.3652408Z   fetch-depth: 1
+2026-11-07T12:56:41.3652832Z   fetch-tags: false
+2026-11-07T12:56:41.3653458Z   show-progress: true
+2026-11-07T12:56:41.3653916Z   lfs: false
+2026-11-07T12:56:41.3654326Z   submodules: false
+2026-11-07T12:56:41.3654775Z   set-safe-directory: true
+2026-11-07T12:56:41.3655282Z   allow-unsafe-pr-checkout: false
+2026-11-07T12:56:41.3656051Z env:
+2026-11-07T12:56:41.3656470Z   OMP_NUM_THREADS: 2
+2026-11-07T12:56:41.3656964Z   OPENBLAS_NUM_THREADS: 2
+2026-11-07T12:56:41.3657475Z   MKL_NUM_THREADS: 2
+2026-11-07T12:56:41.3657916Z   NUMEXPR_NUM_THREADS: 2
+2026-11-07T12:56:41.3658402Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-07T12:56:41.3658886Z ##[endgroup]
+2026-11-07T12:56:41.6784210Z Syncing repository: Drefetr/An_Evaluation_of_Earthquake_Models
+2026-11-07T12:56:41.6787264Z ##[group]Getting Git version info
+2026-11-07T12:56:41.6790258Z Working directory is '/home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models'
+2026-11-07T12:56:41.6792668Z [command]/usr/bin/git version
+2026-11-07T12:56:41.6915650Z git version 2.56.0
+2026-11-07T12:56:41.6947213Z ##[endgroup]
+2026-11-07T12:56:41.6971778Z Temporarily overriding HOME='/home/runner/work/_temp/44dead47-7daf-4230-8b45-35516e05e447' before making global git config changes
+2026-11-07T12:56:41.6974865Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-07T12:56:41.6983110Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models
+2026-11-07T12:56:41.7048116Z Deleting the contents of '/home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models'
+2026-11-07T12:56:41.7054819Z ##[group]Initializing the repository
+2026-11-07T12:56:41.7065264Z [command]/usr/bin/git init /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models
+2026-11-07T12:56:41.7187505Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-07T12:56:41.7189360Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-07T12:56:41.7190624Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-07T12:56:41.7191552Z hint: call:
+2026-11-07T12:56:41.7192111Z hint:
+2026-11-07T12:56:41.7192790Z hint: 	git config --global init.defaultBranch <name>
+2026-11-07T12:56:41.7193952Z hint:
+2026-11-07T12:56:41.7194757Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-07T12:56:41.7195921Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-07T12:56:41.7196810Z hint:
+2026-11-07T12:56:41.7197370Z hint: 	git branch -m <name>
+2026-11-07T12:56:41.7197991Z hint:
+2026-11-07T12:56:41.7198764Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-07T12:56:41.7207708Z Initialized empty Git repository in /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/.git/
+2026-11-07T12:56:41.7226765Z [command]/usr/bin/git remote add origin https://github.com/Drefetr/An_Evaluation_of_Earthquake_Models
+2026-11-07T12:56:41.7314212Z ##[endgroup]
+2026-11-07T12:56:41.7315850Z ##[group]Disabling automatic garbage collection
+2026-11-07T12:56:41.7327046Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-07T12:56:41.7406792Z ##[endgroup]
+2026-11-07T12:56:41.7408261Z ##[group]Setting up auth
+2026-11-07T12:56:41.7434942Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-07T12:56:41.7461600Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-07T12:56:41.7952159Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-07T12:56:41.8025841Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-07T12:56:41.8305944Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-07T12:56:41.8357595Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-07T12:56:41.8604382Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-07T12:56:41.8655206Z ##[endgroup]
+2026-11-07T12:56:41.8656567Z ##[group]Fetching the repository
+2026-11-07T12:56:41.8668395Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +d9ecd50adc1a3ab8b413acd0db4d04846fd81b03:refs/remotes/origin/research/joint_replay_20261107T045457Z-integration
+2026-11-07T12:57:30.9857288Z From https://github.com/Drefetr/An_Evaluation_of_Earthquake_Models
+2026-11-07T12:57:30.9858627Z  * [new ref]         d9ecd50adc1a3ab8b413acd0db4d04846fd81b03 -> origin/research/joint_replay_20261107T045457Z-integration
+2026-11-07T12:57:30.9862190Z ##[endgroup]
+2026-11-07T12:57:30.9862672Z ##[group]Determining the checkout info
+2026-11-07T12:57:30.9866346Z ##[endgroup]
+2026-11-07T12:57:30.9873657Z [command]/usr/bin/git sparse-checkout disable
+2026-11-07T12:57:30.9943045Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-07T12:57:30.9986888Z ##[group]Checking out the ref
+2026-11-07T12:57:30.9992029Z [command]/usr/bin/git checkout --progress --force -B research/joint_replay_20261107T045457Z-integration refs/remotes/origin/research/joint_replay_20261107T045457Z-integration
+2026-11-07T12:57:32.5323916Z Updating files:  27% (2619/9473)
+2026-11-07T12:57:33.0214504Z Updating files:  28% (2653/9473)
+2026-11-07T12:57:34.0881947Z Updating files:  28% (2684/9473)
+2026-11-07T12:57:34.8816063Z Updating files:  28% (2705/9473)
+2026-11-07T12:57:34.9249560Z Updating files:  29% (2748/9473)
+2026-11-07T12:57:34.9409172Z Updating files:  30% (2842/9473)
+2026-11-07T12:57:34.9582532Z Updating files:  31% (2937/9473)
+2026-11-07T12:57:34.9704359Z Updating files:  32% (3032/9473)
+2026-11-07T12:57:34.9773643Z Updating files:  33% (3127/9473)
+2026-11-07T12:57:34.9817149Z Updating files:  34% (3221/9473)
+2026-11-07T12:57:34.9861821Z Updating files:  35% (3316/9473)
+2026-11-07T12:57:34.9936722Z Updating files:  36% (3411/9473)
+2026-11-07T12:57:34.9982265Z Updating files:  37% (3506/9473)
+2026-11-07T12:57:35.0028161Z Updating files:  38% (3600/9473)
+2026-11-07T12:57:35.0092619Z Updating files:  39% (3695/9473)
+2026-11-07T12:57:35.0127956Z Updating files:  40% (3790/9473)
+2026-11-07T12:57:35.0232868Z Updating files:  40% (3867/9473)
+2026-11-07T12:57:35.0237924Z Updating files:  41% (3884/9473)
+2026-11-07T12:57:35.0258053Z Updating files:  42% (3979/9473)
+2026-11-07T12:57:35.0300616Z Updating files:  43% (4074/9473)
+2026-11-07T12:57:35.0343309Z Updating files:  44% (4169/9473)
+2026-11-07T12:57:35.0387799Z Updating files:  45% (4263/9473)
+2026-11-07T12:57:35.0431784Z Updating files:  46% (4358/9473)
+2026-11-07T12:57:35.0475611Z Updating files:  47% (4453/9473)
+2026-11-07T12:57:35.0518484Z Updating files:  48% (4548/9473)
+2026-11-07T12:57:35.0558940Z Updating files:  49% (4642/9473)
+2026-11-07T12:57:35.0598897Z Updating files:  50% (4737/9473)
+2026-11-07T12:57:35.0639713Z Updating files:  51% (4832/9473)
+2026-11-07T12:57:35.0681802Z Updating files:  52% (4926/9473)
+2026-11-07T12:57:35.0724510Z Updating files:  53% (5021/9473)
+2026-11-07T12:57:35.0767826Z Updating files:  54% (5116/9473)
+2026-11-07T12:57:35.0809524Z Updating files:  55% (5211/9473)
+2026-11-07T12:57:35.1017433Z Updating files:  56% (5305/9473)
+2026-11-07T12:57:35.1200632Z Updating files:  57% (5400/9473)
+2026-11-07T12:57:35.1284808Z Updating files:  58% (5495/9473)
+2026-11-07T12:57:35.1370064Z Updating files:  59% (5590/9473)
+2026-11-07T12:57:35.1450881Z Updating files:  60% (5684/9473)
+2026-11-07T12:57:35.1533998Z Updating files:  61% (5779/9473)
+2026-11-07T12:57:35.1618460Z Updating files:  62% (5874/9473)
+2026-11-07T12:57:35.1703035Z Updating files:  63% (5968/9473)
+2026-11-07T12:57:35.1786215Z Updating files:  64% (6063/9473)
+2026-11-07T12:57:35.1867233Z Updating files:  65% (6158/9473)
+2026-11-07T12:57:35.1951091Z Updating files:  66% (6253/9473)
+2026-11-07T12:57:35.2035689Z Updating files:  67% (6347/9473)
+2026-11-07T12:57:35.2121046Z Updating files:  68% (6442/9473)
+2026-11-07T12:57:35.2206366Z Updating files:  69% (6537/9473)
+2026-11-07T12:57:35.2304234Z Updating files:  70% (6632/9473)
+2026-11-07T12:57:35.2507286Z Updating files:  71% (6726/9473)
+2026-11-07T12:57:35.2610373Z Updating files:  72% (6821/9473)
+2026-11-07T12:57:35.2702931Z Updating files:  73% (6916/9473)
+2026-11-07T12:57:35.2785462Z Updating files:  74% (7011/9473)
+2026-11-07T12:57:35.2871006Z Updating files:  75% (7105/9473)
+2026-11-07T12:57:35.2955979Z Updating files:  76% (7200/9473)
+2026-11-07T12:57:35.3038344Z Updating files:  77% (7295/9473)
+2026-11-07T12:57:35.3118185Z Updating files:  78% (7389/9473)
+2026-11-07T12:57:35.3187939Z Updating files:  79% (7484/9473)
+2026-11-07T12:57:35.3276659Z Updating files:  80% (7579/9473)
+2026-11-07T12:57:35.3340818Z Updating files:  81% (7674/9473)
+2026-11-07T12:57:35.3385730Z Updating files:  82% (7768/9473)
+2026-11-07T12:57:35.3430434Z Updating files:  83% (7863/9473)
+2026-11-07T12:57:35.3473788Z Updating files:  84% (7958/9473)
+2026-11-07T12:57:35.3515953Z Updating files:  85% (8053/9473)
+2026-11-07T12:57:35.3559457Z Updating files:  86% (8147/9473)
+2026-11-07T12:57:35.3597569Z Updating files:  87% (8242/9473)
+2026-11-07T12:57:35.3638827Z Updating files:  88% (8337/9473)
+2026-11-07T12:57:35.4244830Z Updating files:  89% (8431/9473)
+2026-11-07T12:57:35.4459872Z Updating files:  90% (8526/9473)
+2026-11-07T12:57:35.4755564Z Updating files:  91% (8621/9473)
+2026-11-07T12:57:35.4831401Z Updating files:  92% (8716/9473)
+2026-11-07T12:57:35.4912036Z Updating files:  93% (8810/9473)
+2026-11-07T12:57:35.4987183Z Updating files:  94% (8905/9473)
+2026-11-07T12:57:35.5159748Z Updating files:  95% (9000/9473)
+2026-11-07T12:57:35.5214217Z Updating files:  96% (9095/9473)
+2026-11-07T12:57:35.6003050Z Updating files:  97% (9189/9473)
+2026-11-07T12:57:35.6118398Z Updating files:  98% (9284/9473)
+2026-11-07T12:57:35.6463646Z Updating files:  99% (9379/9473)
+2026-11-07T12:57:35.6464518Z Updating files: 100% (9473/9473)
+2026-11-07T12:57:35.6465305Z Updating files: 100% (9473/9473), done.
+2026-11-07T12:57:35.6626918Z Switched to a new branch 'research/joint_replay_20261107T045457Z-integration'
+2026-11-07T12:57:35.6631720Z branch 'research/joint_replay_20261107T045457Z-integration' set up to track 'origin/research/joint_replay_20261107T045457Z-integration'.
+2026-11-07T12:57:35.7086659Z ##[endgroup]
+2026-11-07T12:57:35.7151217Z [command]/usr/bin/git log -1 --format=%H
+2026-11-07T12:57:35.7192252Z d9ecd50adc1a3ab8b413acd0db4d04846fd81b03
+2026-11-07T12:57:35.7481172Z ##[group]Run actions/setup-python@v5
+2026-11-07T12:57:35.7481481Z with:
+2026-11-07T12:57:35.7481689Z   python-version: 3.13
+2026-11-07T12:57:35.7481912Z   cache: pip
+2026-11-07T12:57:35.7482109Z   check-latest: false
+2026-11-07T12:57:35.7485146Z   token: ***
+2026-11-07T12:57:35.7485371Z   update-environment: true
+2026-11-07T12:57:35.7485621Z   allow-prereleases: false
+2026-11-07T12:57:35.7485860Z   freethreaded: false
+2026-11-07T12:57:35.7486078Z env:
+2026-11-07T12:57:35.7486259Z   OMP_NUM_THREADS: 2
+2026-11-07T12:57:35.7486478Z   OPENBLAS_NUM_THREADS: 2
+2026-11-07T12:57:35.7486702Z   MKL_NUM_THREADS: 2
+2026-11-07T12:57:35.7486923Z   NUMEXPR_NUM_THREADS: 2
+2026-11-07T12:57:35.7487163Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-07T12:57:35.7487398Z ##[endgroup]
+2026-11-07T12:57:35.8859247Z ##[group]Installed versions
+2026-11-07T12:57:35.8975525Z (node:2346) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-07T12:57:35.8976553Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-07T12:57:35.8977342Z Successfully set up CPython (3.13.18)
+2026-11-07T12:57:35.8977980Z ##[endgroup]
+2026-11-07T12:57:36.6136554Z [command]/opt/hostedtoolcache/Python/3.13.18/x64/bin/pip cache dir
+2026-11-07T12:57:38.0646725Z /home/runner/.cache/pip
+2026-11-07T12:57:38.3121443Z Cache hit for: setup-python-Linux-x64-24.04-Ubuntu-python-3.13.18-pip-a1bd06fa1bbdf82681ac917566054635b071af1bc7a263a680c87af6476ed699
+2026-11-07T12:57:38.3237797Z (node:2346) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-07T12:57:39.5450316Z Received 37748736 of 130291886 (29.0%), 36.0 MBs/sec
+2026-11-07T12:57:40.3026660Z Received 130291886 of 130291886 (100.0%), 70.6 MBs/sec
+2026-11-07T12:57:40.3028030Z Cache Size: ~124 MB (130291886 B)
+2026-11-07T12:57:40.3150541Z [command]/usr/bin/tar -xf /home/runner/work/_temp/0f177f43-dc04-4e8a-87f7-da2098912d0b/cache.tzst -P -C /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models --use-compress-program unzstd
+2026-11-07T12:57:40.5166635Z Cache restored successfully
+2026-11-07T12:57:40.5229544Z Cache restored from key: setup-python-Linux-x64-24.04-Ubuntu-python-3.13.18-pip-a1bd06fa1bbdf82681ac917566054635b071af1bc7a263a680c87af6476ed699
+2026-11-07T12:57:40.5719733Z ##[group]Run set -euo pipefail
+2026-11-07T12:57:40.5721068Z [36;1mset -euo pipefail[0m
+2026-11-07T12:57:40.5721511Z [36;1mmkdir -p "$RUNNER_TEMP/cpu-checkout"[0m
+2026-11-07T12:57:40.5722362Z [36;1mgit rev-parse HEAD | tee "$RUNNER_TEMP/cpu-checkout/commit.txt"[0m
+2026-11-07T12:57:40.5723248Z [36;1mgit status --porcelain | tee "$RUNNER_TEMP/cpu-checkout/status_before.txt"[0m
+2026-11-07T12:57:40.5724323Z [36;1mtest ! -s "$RUNNER_TEMP/cpu-checkout/status_before.txt"[0m
+2026-11-07T12:57:40.5725293Z [36;1mpython -m pip install -r requirements-cpu.txt 2>&1 | tee "$RUNNER_TEMP/cpu-checkout/dependencies.log"[0m
+2026-11-07T12:57:40.5754193Z shell: /usr/bin/bash -e {0}
+2026-11-07T12:57:40.5754465Z env:
+2026-11-07T12:57:40.5754663Z   OMP_NUM_THREADS: 2
+2026-11-07T12:57:40.5754920Z   OPENBLAS_NUM_THREADS: 2
+2026-11-07T12:57:40.5755168Z   MKL_NUM_THREADS: 2
+2026-11-07T12:57:40.5755385Z   NUMEXPR_NUM_THREADS: 2
+2026-11-07T12:57:40.5755626Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-07T12:57:40.5756005Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:57:40.5756480Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib/pkgconfig
+2026-11-07T12:57:40.5756933Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:57:40.5757333Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:57:40.5757728Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:57:40.5758125Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib
+2026-11-07T12:57:40.5758460Z ##[endgroup]
+2026-11-07T12:57:40.6015938Z d9ecd50adc1a3ab8b413acd0db4d04846fd81b03
+2026-11-07T12:57:42.8084088Z Collecting numpy==2.2.6 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 1))
+2026-11-07T12:57:42.8098981Z   Using cached numpy-2.2.6-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (62 kB)
+2026-11-07T12:57:42.9339230Z Collecting scipy==1.15.3 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 2))
+2026-11-07T12:57:42.9353165Z   Using cached scipy-1.15.3-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (61 kB)
+2026-11-07T12:57:43.0530743Z Collecting pandas==2.3.3 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 3))
+2026-11-07T12:57:43.0545231Z   Using cached pandas-2.3.3-cp313-cp313-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (91 kB)
+2026-11-07T12:57:43.1383173Z Collecting numexpr==2.14.1 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 4))
+2026-11-07T12:57:43.1396342Z   Using cached numexpr-2.14.1-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.0 kB)
+2026-11-07T12:57:43.2586376Z Collecting matplotlib==3.11.2 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 5))
+2026-11-07T12:57:43.2600393Z   Using cached matplotlib-3.11.2-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (80 kB)
+2026-11-07T12:57:43.2850372Z Collecting mpmath==1.3.0 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 6))
+2026-11-07T12:57:43.2862074Z   Using cached mpmath-1.3.0-py3-none-any.whl.metadata (8.6 kB)
+2026-11-07T12:57:43.3007993Z Collecting sympy==1.14.0 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 7))
+2026-11-07T12:57:43.3019832Z   Using cached sympy-1.14.0-py3-none-any.whl.metadata (12 kB)
+2026-11-07T12:57:43.4285595Z Collecting PyMuPDF==1.28.2 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 8))
+2026-11-07T12:57:43.4300280Z   Using cached pymupdf-1.28.2-cp310-abi3-manylinux_2_28_x86_64.whl.metadata (26 kB)
+2026-11-07T12:57:43.5968111Z Collecting Pillow==12.0.0 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 9))
+2026-11-07T12:57:43.5982138Z   Using cached pillow-12.0.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (8.8 kB)
+2026-11-07T12:57:43.6330633Z Collecting PyYAML==6.0.3 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 10))
+2026-11-07T12:57:43.6344115Z   Using cached pyyaml-6.0.3-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+2026-11-07T12:57:43.6434395Z Collecting threadpoolctl==3.6.0 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 11))
+2026-11-07T12:57:43.6445949Z   Using cached threadpoolctl-3.6.0-py3-none-any.whl.metadata (13 kB)
+2026-11-07T12:57:43.7047731Z Collecting psutil==7.0.0 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 12))
+2026-11-07T12:57:43.7061841Z   Using cached psutil-7.0.0-cp36-abi3-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (22 kB)
+2026-11-07T12:57:43.8006334Z Collecting reportlab==5.1.0 (from -r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 13))
+2026-11-07T12:57:43.8020479Z   Using cached reportlab-5.1.0-py3-none-any.whl.metadata (1.6 kB)
+2026-11-07T12:57:43.8161565Z Collecting python-dateutil>=2.8.2 (from pandas==2.3.3->-r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 3))
+2026-11-07T12:57:43.8173811Z   Using cached python_dateutil-4.0.0-py3-none-any.whl.metadata (7.3 kB)
+2026-11-07T12:57:43.8479592Z Collecting pytz>=2020.1 (from pandas==2.3.3->-r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 3))
+2026-11-07T12:57:43.8491859Z   Using cached pytz-2026.6-py2.py3-none-any.whl.metadata (22 kB)
+2026-11-07T12:57:43.8620055Z Collecting tzdata>=2022.7 (from pandas==2.3.3->-r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 3))
+2026-11-07T12:57:43.8632240Z   Using cached tzdata-2026.6-py2.py3-none-any.whl.metadata (1.4 kB)
+2026-11-07T12:57:43.9236527Z Collecting contourpy>=1.0.1 (from matplotlib==3.11.2->-r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 5))
+2026-11-07T12:57:43.9250481Z   Using cached contourpy-1.4.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (3.8 kB)
+2026-11-07T12:57:43.9347180Z Collecting cycler>=0.10 (from matplotlib==3.11.2->-r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 5))
+2026-11-07T12:57:43.9358893Z   Using cached cycler-0.12.1-py3-none-any.whl.metadata (3.8 kB)
+2026-11-07T12:57:44.0832433Z Collecting fonttools>=4.28.2 (from matplotlib==3.11.2->-r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 5))
+2026-11-07T12:57:44.0846902Z   Using cached fonttools-4.68.0-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (139 kB)
+2026-11-07T12:57:44.1766294Z Collecting kiwisolver>=1.3.1 (from matplotlib==3.11.2->-r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 5))
+2026-11-07T12:57:44.1781985Z   Using cached kiwisolver-1.5.1-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (5.2 kB)
+2026-11-07T12:57:44.1962381Z Collecting packaging>=20.0 (from matplotlib==3.11.2->-r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 5))
+2026-11-07T12:57:44.1974090Z   Using cached packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+2026-11-07T12:57:44.2175449Z Collecting pyparsing>=3 (from matplotlib==3.11.2->-r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 5))
+2026-11-07T12:57:44.2187523Z   Using cached pyparsing-3.3.3-py3-none-any.whl.metadata (5.9 kB)
+2026-11-07T12:57:44.3393919Z Collecting charset-normalizer (from reportlab==5.1.0->-r /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models/requirements.txt (line 13))
+2026-11-07T12:57:44.3408686Z   Using cached charset_normalizer-3.5.2-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (46 kB)
+2026-11-07T12:57:44.3505355Z Using cached numpy-2.2.6-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (16.5 MB)
+2026-11-07T12:57:44.3586882Z Using cached scipy-1.15.3-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (37.3 MB)
+2026-11-07T12:57:44.3745276Z Using cached pandas-2.3.3-cp313-cp313-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (12.3 MB)
+2026-11-07T12:57:44.3805538Z Using cached numexpr-2.14.1-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (446 kB)
+2026-11-07T12:57:44.3819881Z Using cached matplotlib-3.11.2-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (9.9 MB)
+2026-11-07T12:57:44.3870523Z Using cached mpmath-1.3.0-py3-none-any.whl (536 kB)
+2026-11-07T12:57:44.3885220Z Using cached sympy-1.14.0-py3-none-any.whl (6.3 MB)
+2026-11-07T12:57:44.3920293Z Using cached pymupdf-1.28.2-cp310-abi3-manylinux_2_28_x86_64.whl (25.8 MB)
+2026-11-07T12:57:44.4028906Z Using cached pillow-12.0.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (7.0 MB)
+2026-11-07T12:57:44.4069651Z Using cached pyyaml-6.0.3-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (801 kB)
+2026-11-07T12:57:44.4085192Z Using cached threadpoolctl-3.6.0-py3-none-any.whl (18 kB)
+2026-11-07T12:57:44.4098146Z Using cached psutil-7.0.0-cp36-abi3-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (277 kB)
+2026-11-07T12:57:44.4110775Z Using cached reportlab-5.1.0-py3-none-any.whl (2.0 MB)
+2026-11-07T12:57:44.4130406Z Using cached contourpy-1.4.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (384 kB)
+2026-11-07T12:57:44.4143257Z Using cached cycler-0.12.1-py3-none-any.whl (8.3 kB)
+2026-11-07T12:57:44.4155994Z Using cached fonttools-4.68.0-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (5.4 MB)
+2026-11-07T12:57:44.4187680Z Using cached kiwisolver-1.5.1-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (1.5 MB)
+2026-11-07T12:57:44.4204537Z Using cached packaging-26.3-py3-none-any.whl (129 kB)
+2026-11-07T12:57:44.4216710Z Using cached pyparsing-3.3.3-py3-none-any.whl (126 kB)
+2026-11-07T12:57:44.4229018Z Using cached python_dateutil-4.0.0-py3-none-any.whl (92 kB)
+2026-11-07T12:57:44.4241029Z Using cached pytz-2026.6-py2.py3-none-any.whl (506 kB)
+2026-11-07T12:57:44.4254509Z Using cached tzdata-2026.6-py2.py3-none-any.whl (348 kB)
+2026-11-07T12:57:44.4268447Z Using cached charset_normalizer-3.5.2-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (254 kB)
+2026-11-07T12:57:44.8886035Z Installing collected packages: pytz, mpmath, tzdata, threadpoolctl, sympy, PyYAML, pyparsing, PyMuPDF, psutil, Pillow, packaging, numpy, kiwisolver, fonttools, cycler, charset-normalizer, scipy, reportlab, python-dateutil, numexpr, contourpy, pandas, matplotlib
+2026-11-07T12:58:08.2732157Z 
+2026-11-07T12:58:08.2765299Z Successfully installed Pillow-12.0.0 PyMuPDF-1.28.2 PyYAML-6.0.3 charset-normalizer-3.5.2 contourpy-1.4.0 cycler-0.12.1 fonttools-4.68.0 kiwisolver-1.5.1 matplotlib-3.11.2 mpmath-1.3.0 numexpr-2.14.1 numpy-2.2.6 packaging-26.3 pandas-2.3.3 psutil-7.0.0 pyparsing-3.3.3 python-dateutil-4.0.0 pytz-2026.6 reportlab-5.1.0 scipy-1.15.3 sympy-1.14.0 threadpoolctl-3.6.0 tzdata-2026.6
+2026-11-07T12:58:08.2774522Z 
+2026-11-07T12:58:08.2774944Z [notice] A new release of pip is available: 26.2.2 -> 26.3
+2026-11-07T12:58:08.2775392Z [notice] To update, run: pip install --upgrade pip
+2026-11-07T12:58:08.3974070Z ##[group]Run python -c "import importlib.util; assert importlib.util.find_spec('torch') is None"
+2026-11-07T12:58:08.3974860Z [36;1mpython -c "import importlib.util; assert importlib.util.find_spec('torch') is None"[0m
+2026-11-07T12:58:08.3996445Z shell: /usr/bin/bash -e {0}
+2026-11-07T12:58:08.3996710Z env:
+2026-11-07T12:58:08.3996918Z   OMP_NUM_THREADS: 2
+2026-11-07T12:58:08.3997156Z   OPENBLAS_NUM_THREADS: 2
+2026-11-07T12:58:08.3997397Z   MKL_NUM_THREADS: 2
+2026-11-07T12:58:08.3997619Z   NUMEXPR_NUM_THREADS: 2
+2026-11-07T12:58:08.3997875Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-07T12:58:08.3998220Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:08.3998679Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib/pkgconfig
+2026-11-07T12:58:08.3999124Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:08.3999543Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:08.3999990Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:08.4000394Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib
+2026-11-07T12:58:08.4000727Z ##[endgroup]
+2026-11-07T12:58:08.4224517Z ##[group]Run python -B -m engine.cpu_reproduction --stage "$CHECK_STAGE" --output "$RUNNER_TEMP/cpu-core"
+2026-11-07T12:58:08.4225325Z [36;1mpython -B -m engine.cpu_reproduction --stage "$CHECK_STAGE" --output "$RUNNER_TEMP/cpu-core"[0m
+2026-11-07T12:58:08.4245555Z shell: /usr/bin/bash -e {0}
+2026-11-07T12:58:08.4245822Z env:
+2026-11-07T12:58:08.4246026Z   OMP_NUM_THREADS: 2
+2026-11-07T12:58:08.4246260Z   OPENBLAS_NUM_THREADS: 2
+2026-11-07T12:58:08.4246506Z   MKL_NUM_THREADS: 2
+2026-11-07T12:58:08.4246720Z   NUMEXPR_NUM_THREADS: 2
+2026-11-07T12:58:08.4246962Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-07T12:58:08.4247286Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:08.4247748Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib/pkgconfig
+2026-11-07T12:58:08.4248213Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:08.4248622Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:08.4249047Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:08.4249459Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib
+2026-11-07T12:58:08.4249787Z   CHECK_STAGE: all
+2026-11-07T12:58:08.4249993Z ##[endgroup]
+2026-11-07T12:58:20.3275390Z {"passed": true, "stage": "all", "total_cpu_tests": 28, "elapsed_seconds": 11.700743529999997}
+2026-11-07T12:58:20.4170772Z ##[group]Run python -B -m unittest discover -s tests -p test_cpu_portability.py -v
+2026-11-07T12:58:20.4171412Z [36;1mpython -B -m unittest discover -s tests -p test_cpu_portability.py -v[0m
+2026-11-07T12:58:20.4191675Z shell: /usr/bin/bash -e {0}
+2026-11-07T12:58:20.4191944Z env:
+2026-11-07T12:58:20.4192145Z   OMP_NUM_THREADS: 2
+2026-11-07T12:58:20.4192391Z   OPENBLAS_NUM_THREADS: 2
+2026-11-07T12:58:20.4192627Z   MKL_NUM_THREADS: 2
+2026-11-07T12:58:20.4192844Z   NUMEXPR_NUM_THREADS: 2
+2026-11-07T12:58:20.4193103Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-07T12:58:20.4193797Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:20.4194278Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib/pkgconfig
+2026-11-07T12:58:20.4194755Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:20.4195161Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:20.4195601Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:20.4196007Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib
+2026-11-07T12:58:20.4196349Z ##[endgroup]
+2026-11-07T12:58:20.6999577Z test_compiled_export_and_poisson_objective_preserve_source (test_cpu_portability.PortableCpu.test_compiled_export_and_poisson_objective_preserve_source) ... ok
+2026-11-07T12:58:20.7005842Z test_compiler_cannot_write_into_source_tree (test_cpu_portability.PortableCpu.test_compiler_cannot_write_into_source_tree) ... ok
+2026-11-07T12:58:20.9855952Z test_cpu_route_does_not_accept_a_fake_cuda_context (test_cpu_portability.PortableCpu.test_cpu_route_does_not_accept_a_fake_cuda_context) ... ok
+2026-11-07T12:58:20.9856952Z 
+2026-11-07T12:58:20.9857611Z ----------------------------------------------------------------------
+2026-11-07T12:58:20.9858184Z Ran 3 tests in 0.458s
+2026-11-07T12:58:20.9858401Z 
+2026-11-07T12:58:20.9858520Z OK
+2026-11-07T12:58:21.0335753Z ##[group]Run python -B -m unittest discover -s scripts/tests -p test_supervise_research_linux.py -v
+2026-11-07T12:58:21.0336495Z [36;1mpython -B -m unittest discover -s scripts/tests -p test_supervise_research_linux.py -v[0m
+2026-11-07T12:58:21.0357084Z shell: /usr/bin/bash -e {0}
+2026-11-07T12:58:21.0357350Z env:
+2026-11-07T12:58:21.0357550Z   OMP_NUM_THREADS: 2
+2026-11-07T12:58:21.0357776Z   OPENBLAS_NUM_THREADS: 2
+2026-11-07T12:58:21.0358012Z   MKL_NUM_THREADS: 2
+2026-11-07T12:58:21.0358228Z   NUMEXPR_NUM_THREADS: 2
+2026-11-07T12:58:21.0358476Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-07T12:58:21.0358805Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:21.0359256Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib/pkgconfig
+2026-11-07T12:58:21.0359699Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:21.0360142Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:21.0360579Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:21.0360990Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib
+2026-11-07T12:58:21.0361435Z   SUPERVISOR_TEST_OUTPUT: /home/runner/work/_temp/cpu-core/supervisor
+2026-11-07T12:58:21.0361803Z ##[endgroup]
+2026-11-07T12:58:21.4615320Z test_early_parent_exit_with_unobserved_child (test_supervise_research_linux.LinuxSupervisor.test_early_parent_exit_with_unobserved_child) ... ok
+2026-11-07T12:58:21.5765394Z test_host_headroom_cap (test_supervise_research_linux.LinuxSupervisor.test_host_headroom_cap) ... ok
+2026-11-07T12:58:21.6902314Z test_interrupt_cleans_and_retains_failure (test_supervise_research_linux.LinuxSupervisor.test_interrupt_cleans_and_retains_failure) ... ok
+2026-11-07T12:58:21.8049202Z test_missing_executable_retains_failure_receipt (test_supervise_research_linux.LinuxSupervisor.test_missing_executable_retains_failure_receipt) ... ok
+2026-11-07T12:58:22.1202460Z test_orphan_in_separate_session_is_still_owned (test_supervise_research_linux.LinuxSupervisor.test_orphan_in_separate_session_is_still_owned) ... ok
+2026-11-07T12:58:22.2350357Z test_sampled_rss_cap (test_supervise_research_linux.LinuxSupervisor.test_sampled_rss_cap) ... ok
+2026-11-07T12:58:22.3499488Z test_sampling_error_fails_closed_and_cleans (test_supervise_research_linux.LinuxSupervisor.test_sampling_error_fails_closed_and_cleans) ... ok
+2026-11-07T12:58:22.4647354Z test_successful_fast_exit (test_supervise_research_linux.LinuxSupervisor.test_successful_fast_exit) ... ok
+2026-11-07T12:58:23.0808448Z test_termination_resistant_child_is_killed (test_supervise_research_linux.LinuxSupervisor.test_termination_resistant_child_is_killed) ... ok
+2026-11-07T12:58:23.3960361Z test_timeout (test_supervise_research_linux.LinuxSupervisor.test_timeout) ... ok
+2026-11-07T12:58:23.3960909Z 
+2026-11-07T12:58:23.3961143Z ----------------------------------------------------------------------
+2026-11-07T12:58:23.3961611Z Ran 10 tests in 2.250s
+2026-11-07T12:58:23.3961792Z 
+2026-11-07T12:58:23.3961914Z OK
+2026-11-07T12:58:23.4111457Z ##[group]Run set -euo pipefail
+2026-11-07T12:58:23.4111821Z [36;1mset -euo pipefail[0m
+2026-11-07T12:58:23.4112368Z [36;1mpython -B reproduction/regional/inputs.py verify 2>&1 | tee "$RUNNER_TEMP/cpu-checkout/regional_inputs.log"[0m
+2026-11-07T12:58:23.4113135Z [36;1mpython -B reproduction/s02/inputs.py verify 2>&1 | tee "$RUNNER_TEMP/cpu-checkout/s02_inputs.log"[0m
+2026-11-07T12:58:23.4114280Z [36;1mpython -B reproduction/historical_fits/verify.py 2>&1 | tee "$RUNNER_TEMP/cpu-checkout/historical_fits.log"[0m
+2026-11-07T12:58:23.4134414Z shell: /usr/bin/bash -e {0}
+2026-11-07T12:58:23.4134666Z env:
+2026-11-07T12:58:23.4134858Z   OMP_NUM_THREADS: 2
+2026-11-07T12:58:23.4135092Z   OPENBLAS_NUM_THREADS: 2
+2026-11-07T12:58:23.4135323Z   MKL_NUM_THREADS: 2
+2026-11-07T12:58:23.4135758Z   NUMEXPR_NUM_THREADS: 2
+2026-11-07T12:58:23.4135999Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-07T12:58:23.4136328Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:23.4136829Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib/pkgconfig
+2026-11-07T12:58:23.4137277Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:23.4137664Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:23.4138061Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:23.4138471Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib
+2026-11-07T12:58:23.4138810Z ##[endgroup]
+2026-11-07T12:58:29.8300299Z {
+2026-11-07T12:58:29.8300672Z   "passed": true,
+2026-11-07T12:58:29.8301298Z   "scope": "Input verification only; no scientific likelihood/replay",
+2026-11-07T12:58:29.8302072Z   "S05_simulated_paths": 5994,
+2026-11-07T12:58:29.8302526Z   "S05_observed_paths": 6,
+2026-11-07T12:58:29.8302994Z   "S05_states": 6,
+2026-11-07T12:58:29.8303765Z   "S03_selected_arms": 12,
+2026-11-07T12:58:29.8304254Z   "S06_fit_records": 55,
+2026-11-07T12:58:29.8304664Z   "numerical_crosswalk_records": 15093,
+2026-11-07T12:58:29.8305137Z   "members": 6110,
+2026-11-07T12:58:29.8305834Z   "payload_sha256": "fc292cd2252aaead313e40dd80356a3234fc1ad3898651faa6258433399c9ebd"
+2026-11-07T12:58:29.8306402Z }
+2026-11-07T12:58:31.6762614Z {
+2026-11-07T12:58:31.6763104Z   "passed": true,
+2026-11-07T12:58:31.6764282Z   "scope": "Existing input/output verification only; no fitting, simulation or likelihood evaluation",
+2026-11-07T12:58:31.6765041Z   "histories": 300,
+2026-11-07T12:58:31.6765354Z   "methods": 600,
+2026-11-07T12:58:31.6765676Z   "retained_attempts": 9606,
+2026-11-07T12:58:31.6766027Z   "events": 226764,
+2026-11-07T12:58:31.6766343Z   "paired_forests": 100,
+2026-11-07T12:58:31.6766685Z   "members": 1615,
+2026-11-07T12:58:31.6767237Z   "archive_sha256": "c5fac59ddb457765428250197f9cfe981e8a6702f6705bb4f85d819e4561e798"
+2026-11-07T12:58:31.6767902Z }
+2026-11-07T12:58:33.5700174Z {
+2026-11-07T12:58:33.5700721Z   "passed": true,
+2026-11-07T12:58:33.5701819Z   "scope": "Archive identity, exact members and projection rosters; no likelihood or optimizer execution.",
+2026-11-07T12:58:33.5702984Z   "archives": [
+2026-11-07T12:58:33.5703755Z     {
+2026-11-07T12:58:33.5704255Z       "archive": "historical_fit_package.zip",
+2026-11-07T12:58:33.5705135Z       "sha256": "79ae909337b5fa7ac0e2fa13dfecf5a0c3e4c071be387a84b67bd6655aa30c22",
+2026-11-07T12:58:33.5705644Z       "members": 2824
+2026-11-07T12:58:33.5705889Z     },
+2026-11-07T12:58:33.5706107Z     {
+2026-11-07T12:58:33.5706376Z       "archive": "historical_diagnostic_package.zip",
+2026-11-07T12:58:33.5706907Z       "sha256": "18e4e2e1b341b0b050246b1ddf6c0160891c4d67117caa5bc0199e15caa32558",
+2026-11-07T12:58:33.5707397Z       "members": 37
+2026-11-07T12:58:33.5707633Z     }
+2026-11-07T12:58:33.5707844Z   ]
+2026-11-07T12:58:33.5708046Z }
+2026-11-07T12:58:33.5836574Z ##[group]Run set -euo pipefail
+2026-11-07T12:58:33.5836930Z [36;1mset -euo pipefail[0m
+2026-11-07T12:58:33.5837401Z [36;1mpython -B scripts/reproduce_cpu.py --help 2>&1 | tee "$RUNNER_TEMP/cpu-checkout/replay_help.log"[0m
+2026-11-07T12:58:33.5838090Z [36;1mpython -B scripts/fit_joint_cpu.py --help 2>&1 | tee "$RUNNER_TEMP/cpu-checkout/joint_help.log"[0m
+2026-11-07T12:58:33.5838925Z [36;1mpython -B -m unittest discover -s tests -p test_continuation_controller.py -v 2>&1 | tee "$RUNNER_TEMP/cpu-checkout/continuation_controls.log"[0m
+2026-11-07T12:58:33.5839865Z [36;1mpython -B -m unittest discover -s tests -p test_joint_cpu_reader.py -v 2>&1 | tee "$RUNNER_TEMP/cpu-checkout/joint_reader_controls.log"[0m
+2026-11-07T12:58:33.5860177Z shell: /usr/bin/bash -e {0}
+2026-11-07T12:58:33.5860441Z env:
+2026-11-07T12:58:33.5860631Z   OMP_NUM_THREADS: 2
+2026-11-07T12:58:33.5860857Z   OPENBLAS_NUM_THREADS: 2
+2026-11-07T12:58:33.5861083Z   MKL_NUM_THREADS: 2
+2026-11-07T12:58:33.5861331Z   NUMEXPR_NUM_THREADS: 2
+2026-11-07T12:58:33.5861575Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-07T12:58:33.5862067Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:33.5862524Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib/pkgconfig
+2026-11-07T12:58:33.5862965Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:33.5863680Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:33.5864091Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:33.5864497Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib
+2026-11-07T12:58:33.5864834Z ##[endgroup]
+2026-11-07T12:58:33.6750642Z usage: reproduce_cpu.py [-h] {list,run,_worker} ...
+2026-11-07T12:58:33.6751139Z 
+2026-11-07T12:58:33.6751501Z Offline Linux reader entry point for frozen selected-state score replays.
+2026-11-07T12:58:33.6752367Z Builds and evaluations run inside one externally supervised resource envelope.
+2026-11-07T12:58:33.6753207Z Local integrity checks are not independent scientific acceptance.
+2026-11-07T12:58:33.6754122Z 
+2026-11-07T12:58:33.6754275Z positional arguments:
+2026-11-07T12:58:33.6754640Z   {list,run,_worker}
+2026-11-07T12:58:33.6755108Z     list              Inspect local published evidence; no numerical calls
+2026-11-07T12:58:33.6755796Z     run               Compile and replay under one Linux process supervisor
+2026-11-07T12:58:33.6756389Z     _worker           ==SUPPRESS==
+2026-11-07T12:58:33.6756679Z 
+2026-11-07T12:58:33.6756814Z options:
+2026-11-07T12:58:33.6757225Z   -h, --help          show this help message and exit
+2026-11-07T12:58:33.7378102Z usage: fit_joint_cpu.py [-h] {run,_worker} ...
+2026-11-07T12:58:33.9968724Z 
+2026-11-07T12:58:33.9969465Z Public Linux CPU joint-fit runner; local checks are not independent review.
+2026-11-07T12:58:33.9970086Z 
+2026-11-07T12:58:33.9970275Z positional arguments:
+2026-11-07T12:58:33.9970687Z   {run,_worker}
+2026-11-07T12:58:33.9971075Z     _worker      ==SUPPRESS==
+2026-11-07T12:58:33.9971409Z 
+2026-11-07T12:58:33.9971563Z options:
+2026-11-07T12:58:33.9971996Z   -h, --help     show this help message and exit
+2026-11-07T12:58:33.9973810Z test_completion_requires_accepted_pilot_and_exact_remaining_rows (test_continuation_controller.AdmissionControls.test_completion_requires_accepted_pilot_and_exact_remaining_rows) ... ok
+2026-11-07T12:58:33.9976077Z test_inhibition_route_requires_its_own_evaluator_and_build_pins (test_continuation_controller.AdmissionControls.test_inhibition_route_requires_its_own_evaluator_and_build_pins) ... ok
+2026-11-07T12:58:33.9994270Z test_initial_mark_binds_own_protocol_and_shared_original_oracle (test_continuation_controller.AdmissionControls.test_initial_mark_binds_own_protocol_and_shared_original_oracle) ... ok
+2026-11-07T12:58:34.0001859Z test_nested_registry_and_proposal_are_both_mandatory_pins (test_continuation_controller.AdmissionControls.test_nested_registry_and_proposal_are_both_mandatory_pins) ... ok
+2026-11-07T12:58:34.0006643Z test_original_li_binds_its_dedicated_evaluator (test_continuation_controller.AdmissionControls.test_original_li_binds_its_dedicated_evaluator) ... ok
+2026-11-07T12:58:34.0010625Z test_partition_artifacts_and_interval_source_are_mandatory (test_continuation_controller.AdmissionControls.test_partition_artifacts_and_interval_source_are_mandatory) ... ok
+2026-11-07T12:58:34.0063592Z test_partition_dependencies_require_actual_passed_rows_and_array_hashes (test_continuation_controller.AdmissionControls.test_partition_dependencies_require_actual_passed_rows_and_array_hashes) ... ok
+2026-11-07T12:58:34.0065417Z test_pilot_must_keep_predeclared_order_and_members (test_continuation_controller.AdmissionControls.test_pilot_must_keep_predeclared_order_and_members) ... ok
+2026-11-07T12:58:34.0066949Z test_registry_duplicates_and_unknown_pilot_are_rejected (test_continuation_controller.AdmissionControls.test_registry_duplicates_and_unknown_pilot_are_rejected) ... ok
+2026-11-07T12:58:34.0072439Z test_s02_binds_original_oracle_and_new_component_wrapper (test_continuation_controller.AdmissionControls.test_s02_binds_original_oracle_and_new_component_wrapper) ... ok
+2026-11-07T12:58:34.0108668Z test_budgeted_route_is_explicit_and_reuses_opaque_native_bytes (test_continuation_controller.BudgetedDispatchControls.test_budgeted_route_is_explicit_and_reuses_opaque_native_bytes) ... ok
+2026-11-07T12:58:34.0132849Z test_exact_predecessor_review_is_required (test_continuation_controller.BudgetedDispatchControls.test_exact_predecessor_review_is_required) ... ok
+2026-11-07T12:58:34.0160852Z test_new_stage_pins_its_own_protocol_review_and_driver_controls (test_continuation_controller.BudgetedDispatchControls.test_new_stage_pins_its_own_protocol_review_and_driver_controls) ... ok
+2026-11-07T12:58:34.0179713Z test_no_forecast_relabelling_slot_growth_or_multiple_cases (test_continuation_controller.BudgetedDispatchControls.test_no_forecast_relabelling_slot_growth_or_multiple_cases) ... ok
+2026-11-07T12:58:34.0191375Z test_host_route_pins_checker_config_and_original_driver (test_continuation_controller.HostBatchDispatchControls.test_host_route_pins_checker_config_and_original_driver) ... ok
+2026-11-07T12:58:34.3484583Z test_preparation_uses_local_predecessor_and_requires_host_timeout_marker (test_continuation_controller.HostBatchDispatchControls.test_preparation_uses_local_predecessor_and_requires_host_timeout_marker) ... ok
+2026-11-07T12:58:34.3487672Z test_workflow_is_host_specific_and_retains_every_child (test_continuation_controller.HostBatchDispatchControls.test_workflow_is_host_specific_and_retains_every_child) ... ok
+2026-11-07T12:58:34.3549362Z test_campaign_requires_accepted_pilot_and_explicit_projection (test_continuation_controller.JointContinuationControls.test_campaign_requires_accepted_pilot_and_explicit_projection) ... ok
+2026-11-07T12:58:34.3594871Z test_failed_partial_and_unaccepted_index_block_continuation (test_continuation_controller.JointContinuationControls.test_failed_partial_and_unaccepted_index_block_continuation) ... ok
+2026-11-07T12:58:34.3645933Z test_first_resume_keeps_original_binary_and_all_five_training_evidence_pins (test_continuation_controller.JointContinuationControls.test_first_resume_keeps_original_binary_and_all_five_training_evidence_pins) ... ok
+2026-11-07T12:58:34.3697450Z test_later_index_uses_exact_next_case_without_original_training_resume (test_continuation_controller.JointContinuationControls.test_later_index_uses_exact_next_case_without_original_training_resume) ... ok
+2026-11-07T12:58:34.3710424Z test_new_route_requires_driver_scheduler_frozen_archive_and_review_pins (test_continuation_controller.JointContinuationControls.test_new_route_requires_driver_scheduler_frozen_archive_and_review_pins) ... ok
+2026-11-07T12:58:34.3766817Z test_substituted_repeated_or_phase_crossing_case_is_rejected (test_continuation_controller.JointContinuationControls.test_substituted_repeated_or_phase_crossing_case_is_rejected) ... ok
+2026-11-07T12:58:34.3854030Z test_tampered_artifact_and_review_or_missing_new_envelope_fail (test_continuation_controller.JointContinuationControls.test_tampered_artifact_and_review_or_missing_new_envelope_fail) ... ok
+2026-11-07T12:58:34.3873925Z test_zero_exit_cannot_pass_failed_or_incomplete_batch (test_continuation_controller.JointContinuationControls.test_zero_exit_cannot_pass_failed_or_incomplete_batch) ... ok
+2026-11-07T12:58:34.3954846Z test_dispatch_retains_original_bytes_and_supervises_only_one_pilot_row (test_continuation_controller.LIConstructorRepairControls.test_dispatch_retains_original_bytes_and_supervises_only_one_pilot_row) ... ok
+2026-11-07T12:58:34.3993149Z test_exact_retry_and_unchanged_ordinary_pilot_completion_rosters (test_continuation_controller.LIConstructorRepairControls.test_exact_retry_and_unchanged_ordinary_pilot_completion_rosters) ... ok
+2026-11-07T12:58:34.4061841Z test_failed_row_with_actuals_or_passed_row_with_wrong_inputs_is_rejected (test_continuation_controller.LIConstructorRepairControls.test_failed_row_with_actuals_or_passed_row_with_wrong_inputs_is_rejected) ... ok
+2026-11-07T12:58:34.4086800Z test_repair_requires_original_partial_archive_and_both_reviews_as_source_pins (test_continuation_controller.LIConstructorRepairControls.test_repair_requires_original_partial_archive_and_both_reviews_as_source_pins) ... ok
+2026-11-07T12:58:34.4153588Z test_tampered_archive_row_or_array_is_rejected (test_continuation_controller.LIConstructorRepairControls.test_tampered_archive_row_or_array_is_rejected) ... ok
+2026-11-07T12:58:34.4242995Z test_unaccepted_or_substituted_source_review_is_rejected (test_continuation_controller.LIConstructorRepairControls.test_unaccepted_or_substituted_source_review_is_rejected) ... ok
+2026-11-07T12:58:34.4468231Z test_acceptance_index_pins_archive_result_and_actual_review (test_continuation_controller.LocalCpuReaderControls.test_acceptance_index_pins_archive_result_and_actual_review) ... ok
+2026-11-07T12:58:34.4497949Z test_bad_caps_and_changed_source_fail_before_launch (test_continuation_controller.LocalCpuReaderControls.test_bad_caps_and_changed_source_fail_before_launch) ... ok
+2026-11-07T12:58:34.4525300Z test_nested_reader_result_preserves_zip_and_uses_matching_admission (test_continuation_controller.LocalCpuReaderControls.test_nested_reader_result_preserves_zip_and_uses_matching_admission) ... ok
+2026-11-07T12:58:34.4550985Z test_plan_only_has_no_processes_or_scientific_acceptance (test_continuation_controller.LocalCpuReaderControls.test_plan_only_has_no_processes_or_scientific_acceptance) ... ok
+2026-11-07T12:58:34.4554312Z test_science_result_member_rejects_noncanonical_paths (test_continuation_controller.LocalCpuReaderControls.test_science_result_member_rejects_noncanonical_paths) ... ok
+2026-11-07T12:58:34.4580695Z test_subset_is_explicit_and_not_silently_full (test_continuation_controller.LocalCpuReaderControls.test_subset_is_explicit_and_not_silently_full) ... ok
+2026-11-07T12:58:34.4599893Z test_terminal_checks_retained_row_bytes (test_continuation_controller.LocalCpuReaderControls.test_terminal_checks_retained_row_bytes) ... ok
+2026-11-07T12:58:34.4605206Z test_zero_exit_missing_science_is_failure (test_continuation_controller.LocalCpuReaderControls.test_zero_exit_missing_science_is_failure) ... ok
+2026-11-07T12:58:34.4660199Z test_observed_exact_remaining_roster_and_frozen_caps (test_continuation_controller.ObservedContinuationControls.test_observed_exact_remaining_roster_and_frozen_caps) ... ok
+2026-11-07T12:58:34.4711309Z test_observed_route_pins_sources_and_fresh_evidence_without_builder (test_continuation_controller.ObservedContinuationControls.test_observed_route_pins_sources_and_fresh_evidence_without_builder) ... ok
+2026-11-07T12:58:34.4745543Z test_observed_zero_exit_still_requires_actual_complete_result (test_continuation_controller.ObservedContinuationControls.test_observed_zero_exit_still_requires_actual_complete_result) ... ok
+2026-11-07T12:58:34.4762830Z test_actual_reader_result_and_supervision_hashes_required (test_continuation_controller.PublicReaderDispatchControls.test_actual_reader_result_and_supervision_hashes_required) ... ok
+2026-11-07T12:58:34.4845903Z test_exact_remaining_reader_plan_and_mandatory_sources (test_continuation_controller.PublicReaderDispatchControls.test_exact_remaining_reader_plan_and_mandatory_sources) ... ok
+2026-11-07T12:58:34.4865287Z test_one_reader_child_without_credentials_or_nested_supervision (test_continuation_controller.PublicReaderDispatchControls.test_one_reader_child_without_credentials_or_nested_supervision) ... ok
+2026-11-07T12:58:34.4881294Z test_repeated_rows_or_missing_pins_block_reader (test_continuation_controller.PublicReaderDispatchControls.test_repeated_rows_or_missing_pins_block_reader) ... ok
+2026-11-07T12:58:34.4883897Z test_workflow_retains_outputs_without_copied_reader_inputs (test_continuation_controller.PublicReaderDispatchControls.test_workflow_retains_outputs_without_copied_reader_inputs) ... ok
+2026-11-07T12:58:34.4896410Z test_zero_exit_with_missing_result_retains_failed_dispatch (test_continuation_controller.PublicReaderDispatchControls.test_zero_exit_with_missing_result_retains_failed_dispatch) ... ok
+2026-11-07T12:58:34.4897601Z 
+2026-11-07T12:58:34.4898213Z ----------------------------------------------------------------------
+2026-11-07T12:58:34.4898861Z Ran 48 tests in 0.493s
+2026-11-07T12:58:34.4899134Z 
+2026-11-07T12:58:34.4899276Z OK
+2026-11-07T12:58:35.1380471Z test_bounded_prefix_does_not_claim_all80 (test_joint_cpu_reader.FreshExecutionControls.test_bounded_prefix_does_not_claim_all80) ... ok
+2026-11-07T12:58:35.3346681Z test_constructed_full80_has_exact320_arms_and400_outcomes (test_joint_cpu_reader.FreshExecutionControls.test_constructed_full80_has_exact320_arms_and400_outcomes) ... ok
+2026-11-07T12:58:35.3423813Z test_failure_retains_partial_and_does_not_replace_or_continue (test_joint_cpu_reader.FreshExecutionControls.test_failure_retains_partial_and_does_not_replace_or_continue) ... ok
+2026-11-07T12:58:35.3538354Z test_actual_published_roster_metadata_without_scientific_calls (test_joint_cpu_reader.PlanningControls.test_actual_published_roster_metadata_without_scientific_calls) ... ok
+2026-11-07T12:58:35.3545878Z test_fresh_caps_and_no_historical_expiry_or_review_claim (test_joint_cpu_reader.PlanningControls.test_fresh_caps_and_no_historical_expiry_or_review_claim) ... ok
+2026-11-07T12:58:35.3565049Z test_optional_genuine_record_binds_sources_predecessor_and_caps (test_joint_cpu_reader.PlanningControls.test_optional_genuine_record_binds_sources_predecessor_and_caps) ... ok
+2026-11-07T12:58:35.3574424Z test_published_fixed_slot_and_fresh_mode_are_distinct (test_joint_cpu_reader.PlanningControls.test_published_fixed_slot_and_fresh_mode_are_distinct) ... ok
+2026-11-07T12:58:35.3589396Z test_worker_source_pin_failure_precedes_science (test_joint_cpu_reader.PlanningControls.test_worker_source_pin_failure_precedes_science) ... ok
+2026-11-07T12:58:35.3677236Z test_zip_restoration_checks_paths_and_preserves_original_bytes (test_joint_cpu_reader.PlanningControls.test_zip_restoration_checks_paths_and_preserves_original_bytes) ... ok
+2026-11-07T12:58:35.3747270Z test_own_complete_prefix_copy_is_exact_and_hash_checked (test_joint_cpu_reader.ResumeAndTerminalControls.test_own_complete_prefix_copy_is_exact_and_hash_checked) ... ok
+2026-11-07T12:58:35.3794456Z test_partial_or_changed_runtime_cannot_be_reused (test_joint_cpu_reader.ResumeAndTerminalControls.test_partial_or_changed_runtime_cannot_be_reused) ... ok
+2026-11-07T12:58:35.3815874Z test_terminal_requires_successful_supervision_and_index_pin (test_joint_cpu_reader.ResumeAndTerminalControls.test_terminal_requires_successful_supervision_and_index_pin) ... ok
+2026-11-07T12:58:36.4185968Z test_delegated_full_case_matches_serial_science_exactly (test_joint_cpu_reader.ScientificDelegateControls.test_delegated_full_case_matches_serial_science_exactly) ... ok
+2026-11-07T12:58:36.4321072Z test_factory_is_local_and_preserves_original_constructor_inputs (test_joint_cpu_reader.ScientificDelegateControls.test_factory_is_local_and_preserves_original_constructor_inputs) ... ok
+2026-11-07T12:58:36.4322416Z 
+2026-11-07T12:58:36.4323011Z ----------------------------------------------------------------------
+2026-11-07T12:58:36.4323961Z Ran 14 tests in 1.322s
+2026-11-07T12:58:36.4324189Z 
+2026-11-07T12:58:36.4324313Z OK
+2026-11-07T12:58:36.4806029Z ##[group]Run set -euo pipefail
+2026-11-07T12:58:36.4806472Z [36;1mset -euo pipefail[0m
+2026-11-07T12:58:36.4806941Z [36;1mpython -B scripts/verify_claims.py 2>&1 | tee "$RUNNER_TEMP/cpu-checkout/claims.log"[0m
+2026-11-07T12:58:36.4807616Z [36;1mpython -B scripts/verify_repository.py 2>&1 | tee "$RUNNER_TEMP/cpu-checkout/repository.log"[0m
+2026-11-07T12:58:36.4828018Z shell: /usr/bin/bash -e {0}
+2026-11-07T12:58:36.4828292Z env:
+2026-11-07T12:58:36.4828490Z   OMP_NUM_THREADS: 2
+2026-11-07T12:58:36.4828729Z   OPENBLAS_NUM_THREADS: 2
+2026-11-07T12:58:36.4828970Z   MKL_NUM_THREADS: 2
+2026-11-07T12:58:36.4829196Z   NUMEXPR_NUM_THREADS: 2
+2026-11-07T12:58:36.4829446Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-07T12:58:36.4829795Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:36.4830258Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib/pkgconfig
+2026-11-07T12:58:36.4830906Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:36.4831346Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:36.4831755Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:36.4832152Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib
+2026-11-07T12:58:36.4832482Z ##[endgroup]
+2026-11-07T12:58:46.3158130Z {
+2026-11-07T12:58:46.3161166Z   "schema": "typed_claim_reconciliation_v3",
+2026-11-07T12:58:46.3163125Z   "scope": "Manuscript bindings and separately identified scientific source inventory; both are verified by default. Historical process-control inventory is indexed in provenance/historical_archive.json.",
+2026-11-07T12:58:46.3164599Z   "authority_only": false,
+2026-11-07T12:58:46.3164923Z   "passed": true,
+2026-11-07T12:58:46.3165202Z   "release_ready": true,
+2026-11-07T12:58:46.3165496Z   "counts": {
+2026-11-07T12:58:46.3165775Z     "withdrawn_historical_records": 503,
+2026-11-07T12:58:46.3166170Z     "json_numeric_verified": 23933,
+2026-11-07T12:58:46.3166529Z     "json_pointer_verified": 24200,
+2026-11-07T12:58:46.3166885Z     "documentary_numeric_verified": 2430,
+2026-11-07T12:58:46.3167270Z     "documentary_metadata_verified": 679,
+2026-11-07T12:58:46.3167626Z     "claims": 26630,
+2026-11-07T12:58:46.3167922Z     "documentary_metadata": 679,
+2026-11-07T12:58:46.3168251Z     "total_records": 27309,
+2026-11-07T12:58:46.3168597Z     "literal_manuscript_display_records": 11066,
+2026-11-07T12:58:46.3169021Z     "missing_declared_manuscript_displays": 0,
+2026-11-07T12:58:46.3169417Z     "json_nonnumeric_verified": 267,
+2026-11-07T12:58:46.3169768Z     "distinct_authorities": 139
+2026-11-07T12:58:46.3170077Z   },
+2026-11-07T12:58:46.3170334Z   "failures": [],
+2026-11-07T12:58:46.3170835Z   "ledger_sha256": "f00b0769ebd2877df7abae2a9e96e2ec7103c47bdc76214d7f46f1307cfb1009",
+2026-11-07T12:58:46.3171633Z   "verifier_sha256": "11e189dea791a6ad228ca85d52f0c6b25a4e609c585e64885795ccb2f21c7746",
+2026-11-07T12:58:46.3172221Z   "source_hashes": {
+2026-11-07T12:58:46.3172928Z     "paper/source/chapters/09_temporal_mark_extensions.tex": "5fa67d1559f3db8c736f169f2fdd5681070097b5786d8bc068a19767778d6868",
+2026-11-07T12:58:46.3174353Z     "paper/source/appendix_tables/ch09_audit.tex": "1f0ba02b7d93b19b27269f9df8d8090724a808e2c3d9869f8b74814c5b86932f",
+2026-11-07T12:58:46.3175326Z     "paper/source/chapters/03_stability.tex": "2481366d75252c697dc017b159f084ad9c00c005f9000b0be4c6b0a094658e34",
+2026-11-07T12:58:46.3176161Z     "paper/source/chapters/04_identifiability.tex": "3e59e227f603dde456a79f25ea4ada2bef4a20c9a62a82946009a5f2008a7513",
+2026-11-07T12:58:46.3176984Z     "paper/source/chapters/05_inference.tex": "037716be5ee767ba064910359b9f8ebe943e18279be08629bcd2b7c2bdae5097",
+2026-11-07T12:58:46.3177758Z     "paper/source/chapters/07_synthetic.tex": "d94c5b3e5430a61160bbdc1f4e1f6e02c9fba2a868e2cfa66ea669d235d7f9d5",
+2026-11-07T12:58:46.3178546Z     "paper/source/chapters/08_observed_baseline.tex": "4213058e9d7f68d0b59a78f7309b4ae84602691204c87423bb80c2c21595db67",
+2026-11-07T12:58:46.3179685Z     "paper/source/chapters/10_nz_spatial_background.tex": "03077d59b18cc96e0c95fce04bafd770e04d6b979fd29db40cb6503353473e08",
+2026-11-07T12:58:46.3180537Z     "paper/source/appendix_tables/ch10_audit.tex": "dd1ea82af0d2451b6fc2139f1ae8034d2d64ecf260603234dff255e8b6529110",
+2026-11-07T12:58:46.3181393Z     "paper/source/chapters/11_external_transfer_benchmarks.tex": "e303ca03d84a8658587683e427863d9f07f0d03352317aabebf497c5ab973230",
+2026-11-07T12:58:46.3182243Z     "paper/source/appendix_tables/ch11_backup.tex": "0e91e83ac35c89585bea4cfd2d1965713045289139a49655012017564706944d",
+2026-11-07T12:58:46.3183117Z     "paper/source/chapters/12_conditional_calibration.tex": "4a64ec5d0b2d1ce937bac7fb32df50fc2459f0376e34f11049fbc5dc3abdaf18",
+2026-11-07T12:58:46.3184591Z     "paper/source/appendix_tables/ch12_audit.tex": "adac18fd1691da11695af4ec2cc76bdd36f44dcbf452fda5277873fd6d509a78",
+2026-11-07T12:58:46.3185511Z     "paper/source/chapters/13_continuous_local_inhibition.tex": "2fc66185cf42ca209dfd7f1851594a7ecefd176944ae2e525751588e7ab433f7",
+2026-11-07T12:58:46.3186581Z     "paper/source/chapters/01_introduction.tex": "94339da8f9b3774c5c856fa4b0b83be27dc1b847c17c6b3f9103f360b69d90da",
+2026-11-07T12:58:46.3187365Z     "paper/source/chapters/06_design.tex": "d7d51a043d7bdd0b065b17d4972892a7b8d12f33cebbb2024ed5278c98c793d0",
+2026-11-07T12:58:46.3188103Z     "paper/source/appendices.tex": "e720ee84dd29bc80c98fa9e3fab4ed188adba64518503b0a4bb8295dbbc22c00",
+2026-11-07T12:58:46.3188900Z     "paper/source/chapters/14_discussion_conclusion.tex": "049d97815c9bcc0353d82654cb623dc5bd47860dcc595fa283a34cc19706ceec",
+2026-11-07T12:58:46.3189707Z     "paper/source/chapters/02_models.tex": "6d307811361f54cff3c4a5bed68d64a556862d25dd5437eb92d54c6df34c860a",
+2026-11-07T12:58:46.3190469Z     "paper/source/chapters/13_s04_expanded.tex": "8deb78009f33cd237bc21cf17b924057ec040ff14d8ae232bf957706c18139b8",
+2026-11-07T12:58:46.3191266Z     "paper/source/chapters/09_s02_completed.tex": "efd6bc00782bc9efd5c0480dbc5c35e0d11dee763d370426810b8e4bf09c01d3",
+2026-11-07T12:58:46.3192057Z     "paper/source/chapters/11_s03_completed.tex": "7524947cd77199a0441298996a8a343910d7fc65e16cbb92d89a0fac9e3a1386",
+2026-11-07T12:58:46.3192823Z     "paper/source/chapters/11_s06_completed.tex": "e62bd2080e0d513d289ac98dc77ef8142f34497a0865ae59283571a72297bed8",
+2026-11-07T12:58:46.3193958Z     "paper/source/chapters/13_s04_observed_completed.tex": "6a44282d290917a823602296f50bd670a54755e1afab4ac2ca51b02958dbc95c",
+2026-11-07T12:58:46.3194766Z     "paper/source/chapters/12_s05_completed.tex": "82999f19228119d5529fc2375a8c22393a0653eed7e9f7ed6a6f2c09a72e9aeb",
+2026-11-07T12:58:46.3195562Z     "paper/source/chapters/13_s04_diagnostics.tex": "ddfd4c28e5be70ef2792e42ff42c5e87d754febc9ed10c57f0fb13bb648dbece",
+2026-11-07T12:58:46.3196307Z     "paper/source/abstract.tex": "179a4a834f99c4495a300155803669ebb7c1c6f8352b863b539ff5c007de3c18",
+2026-11-07T12:58:46.3197060Z     "paper/source/chapters/13_s04_refitted_floor.tex": "7d06251c1bdd1f560b25c58f3d9b2e8c55249dbdb3409d7bdf865893bbca0605"
+2026-11-07T12:58:46.3197599Z   },
+2026-11-07T12:58:46.3197777Z   "ledgers": [
+2026-11-07T12:58:46.3197969Z     {
+2026-11-07T12:58:46.3198199Z       "path": "validation/MASTER_CLAIM_LEDGER.json",
+2026-11-07T12:58:46.3198646Z       "sha256": "f00b0769ebd2877df7abae2a9e96e2ec7103c47bdc76214d7f46f1307cfb1009",
+2026-11-07T12:58:46.3199056Z       "counts": {
+2026-11-07T12:58:46.3199281Z         "withdrawn_historical_records": 503,
+2026-11-07T12:58:46.3199582Z         "json_numeric_verified": 9163,
+2026-11-07T12:58:46.3199855Z         "json_pointer_verified": 9163,
+2026-11-07T12:58:46.3200138Z         "documentary_numeric_verified": 2406,
+2026-11-07T12:58:46.3200437Z         "documentary_metadata_verified": 679,
+2026-11-07T12:58:46.3200730Z         "claims": 11569,
+2026-11-07T12:58:46.3200966Z         "documentary_metadata": 679,
+2026-11-07T12:58:46.3201301Z         "total_records": 12248,
+2026-11-07T12:58:46.3201594Z         "distinct_authorities": 132,
+2026-11-07T12:58:46.3202056Z         "literal_manuscript_display_records": 11066,
+2026-11-07T12:58:46.3202392Z         "missing_declared_manuscript_displays": 0
+2026-11-07T12:58:46.3202678Z       },
+2026-11-07T12:58:46.3202868Z       "passed": true
+2026-11-07T12:58:46.3203075Z     },
+2026-11-07T12:58:46.3203414Z     {
+2026-11-07T12:58:46.3203640Z       "path": "validation/SOURCE_INVENTORY.json",
+2026-11-07T12:58:46.3204068Z       "sha256": "8b75061c0a30e6f4988410f58bfbc6049aa16bf07b0a9d5f069e686f4951d6cc",
+2026-11-07T12:58:46.3204474Z       "counts": {
+2026-11-07T12:58:46.3204686Z         "json_numeric_verified": 14770,
+2026-11-07T12:58:46.3204959Z         "json_pointer_verified": 15037,
+2026-11-07T12:58:46.3205226Z         "json_nonnumeric_verified": 267,
+2026-11-07T12:58:46.3205511Z         "documentary_numeric_verified": 24,
+2026-11-07T12:58:46.3205801Z         "claims": 15061,
+2026-11-07T12:58:46.3206031Z         "documentary_metadata": 0,
+2026-11-07T12:58:46.3206284Z         "total_records": 15061,
+2026-11-07T12:58:46.3206760Z         "distinct_authorities": 41,
+2026-11-07T12:58:46.3207047Z         "literal_manuscript_display_records": 0,
+2026-11-07T12:58:46.3207361Z         "missing_declared_manuscript_displays": 0
+2026-11-07T12:58:46.3207642Z       },
+2026-11-07T12:58:46.3207822Z       "passed": true
+2026-11-07T12:58:46.3208034Z     }
+2026-11-07T12:58:46.3208204Z   ],
+2026-11-07T12:58:46.3208971Z   "completeness_limit": "Only enumerated claims are checked. Source inventory and documentary metadata are separate from literal manuscript bindings. Identity checks do not certify semantic completeness."
+2026-11-07T12:58:46.3209811Z }
+2026-11-07T12:58:50.1029633Z {
+2026-11-07T12:58:50.1030205Z   "checked_files": 9472,
+2026-11-07T12:58:50.1030834Z   "passed": true,
+2026-11-07T12:58:50.1031355Z   "errors": []
+2026-11-07T12:58:50.1031843Z }
+2026-11-07T12:58:50.1161891Z ##[group]Run set -euo pipefail
+2026-11-07T12:58:50.1162270Z [36;1mset -euo pipefail[0m
+2026-11-07T12:58:50.1162686Z [36;1mgit status --porcelain | tee "$RUNNER_TEMP/cpu-checkout/status_after.txt"[0m
+2026-11-07T12:58:50.1163215Z [36;1mtest ! -s "$RUNNER_TEMP/cpu-checkout/status_after.txt"[0m
+2026-11-07T12:58:50.1183925Z shell: /usr/bin/bash -e {0}
+2026-11-07T12:58:50.1184202Z env:
+2026-11-07T12:58:50.1184404Z   OMP_NUM_THREADS: 2
+2026-11-07T12:58:50.1184639Z   OPENBLAS_NUM_THREADS: 2
+2026-11-07T12:58:50.1184871Z   MKL_NUM_THREADS: 2
+2026-11-07T12:58:50.1185082Z   NUMEXPR_NUM_THREADS: 2
+2026-11-07T12:58:50.1185325Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-07T12:58:50.1185652Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:50.1186117Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib/pkgconfig
+2026-11-07T12:58:50.1186563Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:50.1187002Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:50.1187394Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:50.1187798Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib
+2026-11-07T12:58:50.1188133Z ##[endgroup]
+2026-11-07T12:58:50.1545520Z ##[group]Run actions/upload-artifact@v4
+2026-11-07T12:58:50.1545829Z with:
+2026-11-07T12:58:50.1546103Z   name: cpu-core-d9ecd50adc1a3ab8b413acd0db4d04846fd81b03-1
+2026-11-07T12:58:50.1546588Z   path: /home/runner/work/_temp/cpu-core
+/home/runner/work/_temp/cpu-checkout
+
+2026-11-07T12:58:50.1547005Z   if-no-files-found: error
+2026-11-07T12:58:50.1547249Z   compression-level: 6
+2026-11-07T12:58:50.1547470Z   overwrite: false
+2026-11-07T12:58:50.1547688Z   include-hidden-files: false
+2026-11-07T12:58:50.1547925Z env:
+2026-11-07T12:58:50.1548119Z   OMP_NUM_THREADS: 2
+2026-11-07T12:58:50.1548334Z   OPENBLAS_NUM_THREADS: 2
+2026-11-07T12:58:50.1548559Z   MKL_NUM_THREADS: 2
+2026-11-07T12:58:50.1548771Z   NUMEXPR_NUM_THREADS: 2
+2026-11-07T12:58:50.1549014Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-07T12:58:50.1549324Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:50.1549770Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib/pkgconfig
+2026-11-07T12:58:50.1550235Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:50.1550626Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:50.1551018Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-07T12:58:50.1551426Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib
+2026-11-07T12:58:50.1551769Z ##[endgroup]
+2026-11-07T12:58:50.3339927Z (node:2622) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-07T12:58:50.3340859Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-07T12:58:50.3815398Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-11-07T12:58:50.3816433Z The least common ancestor is /home/runner/work/_temp. This will be the root directory of the artifact
+2026-11-07T12:58:50.3817003Z With the provided path, there will be 101 files uploaded
+2026-11-07T12:58:50.3817874Z Artifact name is valid!
+2026-11-07T12:58:50.3818125Z Root directory input is valid!
+2026-11-07T12:58:50.7442075Z Beginning upload of artifact content to blob storage
+2026-11-07T12:58:50.8604926Z (node:2622) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-07T12:58:51.1985519Z Uploaded bytes 190114
+2026-11-07T12:58:51.2564414Z Finished uploading artifact content to blob storage!
+2026-11-07T12:58:51.2565652Z SHA256 digest of uploaded artifact zip is c83b3290a2b71c492b71e2db408382b618c0c5418469f1c6009ba9c4388e17f2
+2026-11-07T12:58:51.2567066Z Finalizing artifact upload
+2026-11-07T12:58:51.6780029Z Artifact cpu-core-d9ecd50adc1a3ab8b413acd0db4d04846fd81b03-1.zip successfully finalized. Artifact ID 13575566281
+2026-11-07T12:58:51.6782160Z Artifact cpu-core-d9ecd50adc1a3ab8b413acd0db4d04846fd81b03-1 has been successfully uploaded! Final size is 190114 bytes. Artifact ID is 13575566281
+2026-11-07T12:58:51.6786610Z Artifact download URL: https://github.com/Drefetr/An_Evaluation_of_Earthquake_Models/actions/runs/42374684170/artifacts/13575566281
+2026-11-07T12:58:51.6997646Z Post job cleanup.
+2026-11-07T12:58:51.8237195Z Cache hit occurred on the primary key setup-python-Linux-x64-24.04-Ubuntu-python-3.13.18-pip-a1bd06fa1bbdf82681ac917566054635b071af1bc7a263a680c87af6476ed699, not saving cache.
+2026-11-07T12:58:51.8238984Z (node:2634) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-07T12:58:51.8239904Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-07T12:58:51.8388142Z Post job cleanup.
+2026-11-07T12:58:51.9451233Z [command]/usr/bin/git version
+2026-11-07T12:58:51.9501789Z git version 2.56.0
+2026-11-07T12:58:51.9547319Z Temporarily overriding HOME='/home/runner/work/_temp/ee757080-189e-4568-9c4b-8a7979856f04' before making global git config changes
+2026-11-07T12:58:51.9549912Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-07T12:58:51.9555102Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/An_Evaluation_of_Earthquake_Models/An_Evaluation_of_Earthquake_Models
+2026-11-07T12:58:51.9616242Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-07T12:58:51.9671374Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-07T12:58:52.0011584Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-07T12:58:52.0042960Z http.https://github.com/.extraheader
+2026-11-07T12:58:52.0067088Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-07T12:58:52.0103984Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-07T12:58:52.0400818Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-07T12:58:52.0457846Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-07T12:58:52.0884344Z Cleaning up orphan processes
+2026-11-07T12:58:52.1269077Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+

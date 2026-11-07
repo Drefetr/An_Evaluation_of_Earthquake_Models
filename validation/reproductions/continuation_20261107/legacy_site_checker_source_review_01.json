@@ -1,0 +1,66 @@
+{
+  "passed": false,
+  "status": "changes_requested",
+  "reviewer": "/root/continuation_cpu",
+  "reviewed_utc": "2026-11-07T13:14:51.132643+00:00",
+  "commit": "51d3608c0516dcafe14dc5fe672e50b0f3d6df26",
+  "checker_sha256": "6dcfc260ff3bf8788f209677a5fef9db1f6a9dd2ec0c3d16640109afd5fddd4c",
+  "constructed_tests": {
+    "independently_executed": 13,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "seconds": 12.429
+  },
+  "counterexamples": [
+    {
+      "name": "data_id_only",
+      "actual_required_id_absent": true,
+      "checker_exit_code": 0,
+      "incorrectly_passed": true,
+      "stdout": {
+        "passed": true,
+        "selector_combinations": 30,
+        "simulation_selector_cases": 10,
+        "simulation_summary_rows": 20,
+        "joint_selector_cases": 10,
+        "joint_summary_rows": 20,
+        "independent_histories_per_row": 20,
+        "no_simulation_pooling": true,
+        "no_simulation_target_conversion": true,
+        "observed_S04_targets": 315
+      },
+      "html_sha256": "4292daa9bd9404c0dd85d4d5991ba0c5e2fc65db001c60198abb6b14222945f5"
+    },
+    {
+      "name": "comment_only",
+      "actual_required_id_absent": true,
+      "checker_exit_code": 0,
+      "incorrectly_passed": true,
+      "stdout": {
+        "passed": true,
+        "selector_combinations": 30,
+        "simulation_selector_cases": 10,
+        "simulation_summary_rows": 20,
+        "joint_selector_cases": 10,
+        "joint_summary_rows": 20,
+        "independent_histories_per_row": 20,
+        "no_simulation_pooling": true,
+        "no_simulation_target_conversion": true,
+        "observed_S04_targets": 315
+      },
+      "html_sha256": "7f48592147586dffa56977100775a21419e4039a16e1147ad273374d734a17bd"
+    }
+  ],
+  "must_fix": [
+    {
+      "id": "W1",
+      "finding": "The actual-node regex uses a word boundary before id, so data-id satisfies it; comments are also scanned as if they contain nodes. Missing required DOM elements can therefore be synthesized by the VM stub despite the new gate.",
+      "required": "Recognize a genuine id attribute on an uncommented start tag and reject data-id-only/comment-only fixtures. Retain legacy behavior and existing joint content/visibility assertions."
+    }
+  ],
+  "source_only": true,
+  "scientific_calls": 0,
+  "actual_publication_changed": false,
+  "audit_script_sha256": "d0bdb5a10bcfe9339d76d3ec6d5c85930c285bfee45799291b5737aabcb8dc31"
+}

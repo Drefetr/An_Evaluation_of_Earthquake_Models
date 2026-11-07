@@ -1,0 +1,99 @@
+{
+  "passed": true,
+  "status": "passed_source_only_legacy_checker_review",
+  "reviewer": "/root/continuation_cpu",
+  "reviewed_utc": "2026-11-07T13:17:34.079875+00:00",
+  "commit": "7088c1734eca7f9e13fbaf68f9ef7469948a7530",
+  "predecessor_commit": "51d3608c0516dcafe14dc5fe672e50b0f3d6df26",
+  "checker_sha256": "2e7ddf0de7788ac7d01e5aa690c9174bd0b890d7967ce1613b91db7655e8cfc1",
+  "tests_sha256": "b80e59b32ef426b6ccb6f1ecb65c4f5ff518f4ea262fe1c8c8e26e2eff6484b0",
+  "prior_changes_requested_review_sha256": "b2d35dc1ebb22962e572ae81276497acf82e49a786bde8a638ba8cd77250e086",
+  "resolved_findings": [
+    "W1"
+  ],
+  "source_delta": "Only pre-VM actual-node recognition changed: remove comments, tokenize complete quoted attribute values, compare exact id attribute names, require exactly one matching node. Existing controlled HTML renderer and all interaction assertions remain unchanged.",
+  "existing_interaction_checks_byte_exact": true,
+  "actual_legacy_site": {
+    "passed": true,
+    "selector_combinations": 70,
+    "simulation_selector_cases": 10,
+    "simulation_summary_rows": 20,
+    "joint_selector_cases": 0,
+    "joint_summary_rows": 0,
+    "independent_histories_per_row": 20,
+    "no_simulation_pooling": true,
+    "no_simulation_target_conversion": true,
+    "observed_S04_targets": 315
+  },
+  "invented_joint_selector_result": {
+    "passed": true,
+    "selector_combinations": 30,
+    "simulation_selector_cases": 10,
+    "simulation_summary_rows": 20,
+    "joint_selector_cases": 10,
+    "joint_summary_rows": 20,
+    "independent_histories_per_row": 20,
+    "no_simulation_pooling": true,
+    "no_simulation_target_conversion": true,
+    "observed_S04_targets": 315
+  },
+  "independent_mutation_controls": [
+    {
+      "node": "joint-diagnostics",
+      "mutation": "data_id_only",
+      "rejected": true
+    },
+    {
+      "node": "joint-diagnostics",
+      "mutation": "comment_only",
+      "rejected": true
+    },
+    {
+      "node": "joint-diagnostics",
+      "mutation": "duplicate_id",
+      "rejected": true
+    },
+    {
+      "node": "joint-search-rows",
+      "mutation": "data_id_only",
+      "rejected": true
+    },
+    {
+      "node": "joint-search-rows",
+      "mutation": "comment_only",
+      "rejected": true
+    },
+    {
+      "node": "joint-search-rows",
+      "mutation": "duplicate_id",
+      "rejected": true
+    },
+    {
+      "node": "joint-floor-rows",
+      "mutation": "data_id_only",
+      "rejected": true
+    },
+    {
+      "node": "joint-floor-rows",
+      "mutation": "comment_only",
+      "rejected": true
+    },
+    {
+      "node": "joint-floor-rows",
+      "mutation": "duplicate_id",
+      "rejected": true
+    }
+  ],
+  "constructed_suite": {
+    "tests": 13,
+    "passed": true,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0
+  },
+  "scope": "Controlled published HTML compatibility and missing-node correctness, not a general-purpose HTML parser/security review. No generated publication, scientific data or completion gate changed.",
+  "actual_result_rendered": false,
+  "scientific_calls": 0,
+  "publication_installed": false,
+  "audit_script_sha256": "06c46c5402a48d59c1bc2d903d003e1f786e9d4a85479f0947fa2e0c027890de"
+}
