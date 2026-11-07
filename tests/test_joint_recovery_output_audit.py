@@ -93,6 +93,12 @@ class OriginalContractSupport(unittest.TestCase):
         record=training_payload(fresh,old,raw,'LI')
         c.inspect_training_equivalence(record,old,'LI',raw,protocol())
 
+    def test_finite_cross_run_gradient_difference_overflow_is_only_descriptive(self):
+        old,unused=selected_record(g=1e308);fresh,raw=selected_record(g=-1e308)
+        record=training_payload(fresh,old,raw,'LI')
+        self.assertTrue(any(row['delta'] is None for row in record['differences']))
+        c.inspect_training_equivalence(record,old,'LI',raw,protocol())
+
     def test_changed_selected_parameter_rejected(self):
         old,raw=selected_record();record=training_payload(old,old,raw,'LI')
         record['actual']['parameters'][0]=.1;record['differences']=c.leaf_differences(record['actual'],old);record['exact_match']=False

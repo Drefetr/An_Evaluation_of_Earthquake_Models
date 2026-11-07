@@ -64,7 +64,9 @@ def leaf_differences(actual, expected, path=''):
     row=dict(path=path,kind='value',actual=actual,expected=expected)
     if type(actual) in (int,float) and type(expected) in (int,float):
         a,b=numeric(actual),numeric(expected)
-        row.update(delta=a-b,absolute_delta=abs(a-b))
+        delta=a-b
+        row.update(delta=delta if math.isfinite(delta) else None,
+                   absolute_delta=abs(delta) if math.isfinite(delta) else None)
     return [row]
 
 
