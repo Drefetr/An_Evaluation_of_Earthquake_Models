@@ -7,15 +7,18 @@ import argparse
 import datetime as dt
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import secrets
+import shutil
 import subprocess
 import sys
 import urllib.request
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
+JOINT_CONTINUATION_STAGES = ('joint-continuation-pilot', 'joint-continuation-campaign')
 
 
 def sha(path):
@@ -78,11 +81,19 @@ def mandatory_sources(stage, review=None):
              'tests/test_continuation_controller.py',
              'engine/cpu_build.py','engine/stage2_followup/native_build.py',
              '.github/workflows/research-continuation.yml','requirements.txt','requirements-cpu.txt'}
-    if stage in ('joint-pilot','joint-full'):
+    if stage in ('joint-pilot','joint-full') + JOINT_CONTINUATION_STAGES:
         paths.add('tests/test_s04b_joint_nuisance.py')
         package = ROOT/'experiments/s04b_joint_nuisance'
         paths.update(p.relative_to(ROOT).as_posix() for p in package.iterdir()
                      if p.is_file() and p.suffix in ('.py','.cpp','.json'))
+        if stage in JOINT_CONTINUATION_STAGES:
+            execution = ROOT/'experiments/s04b_joint_execution'
+            paths.update(p.relative_to(ROOT).as_posix() for p in execution.iterdir()
+                         if p.is_file() and p.suffix in ('.py','.json'))
+            paths.update(('tests/test_joint_execution_driver.py','tests/test_joint_parallel_chunks.py',
+                          'experiments/s04b_joint_nuisance/pre_repair_source.zip'))
+            paths.add(review['failed_archive'])
+            paths.add(review['prior_index_review'] if 'prior_artifact_id' in review else review['training_review'])
     elif stage in ('s02-pilot','s02-completion','initialmark-pilot','initialmark-completion'):
         paths.update(('reproduction/score_replay/s02_replay.py','tests/test_s02_score_replay.py'))
         package = ROOT/'reproduction/score_replay/s02'
@@ -193,6 +204,116 @@ def prior_artifact(review, output):
     return destination
 
 
+def joint_continuation(review, output, token, prior):
+    """Prepare the unchanged driver; this function never builds or evaluates."""
+    from experiments.s04b_joint_execution import driver
+    package = ROOT/'experiments/s04b_joint_execution'
+    science = ROOT/'experiments/s04b_joint_nuisance'
+    op, _ = driver.verify_protocol()
+    resources = op['resources']
+    if review.get('driver_source_review_passed') is not True or review.get('scheduler_source_review_passed') is not True:
+        raise ValueError('Joint continuation requires independent driver and scheduler review')
+    run_id = review.get('operational_run_id')
+    config_hash = review.get('operational_run_config_sha256')
+    if not isinstance(run_id,str) or not run_id.strip() or not isinstance(config_hash,str) or len(config_hash)!=64 or any(c not in '0123456789abcdef' for c in config_hash):
+        raise ValueError('Separate operational run identity/config attestation is required')
+    wall = review['wall_cap_seconds']
+    if isinstance(wall,bool) or not isinstance(wall,(int,float)) or not math.isfinite(wall) or not 0 < wall <= resources['batch_wall_seconds']:
+        raise ValueError('Joint batch wall allowance differs from frozen operational envelope')
+    if review['rss_cap_bytes'] != resources['sampled_process_tree_rss_cap_bytes'] or review['host_headroom_bytes'] < resources['minimum_host_free_bytes']:
+        raise ValueError('Joint continuation memory/headroom envelope differs')
+    if bool(prior) != ('prior_artifact_id' in review) or 'pilot_artifact_id' in review:
+        raise ValueError('Joint continuation requires its own exact prior-artifact route')
+    phase = review['stage'].removeprefix('joint-continuation-')
+    current = driver.source_identity()
+    admission = dict(phase=phase,independent_review_passed=True,scheduler_review_passed=True,
+                     external_supervision=True,source_sha256=current,
+                     operational_protocol_sha256=sha(package/'operational_protocol.json'),
+                     operational_run_id=run_id,operational_run_config_sha256=config_hash,
+                     expires_utc=review['expires_utc'],numerical_attempt_id=review['numerical_attempt_id'],
+                     lease_token_sha256=hashlib.sha256(token.encode()).hexdigest(),
+                     threads=2,workers=1,sampled_process_tree_rss_cap_bytes=review['rss_cap_bytes'],
+                     wall_seconds=wall,case_ids=review['case_ids'],
+                     case_reservations_seconds=review['case_reservations_seconds'])
+    command = [sys.executable,'-B',str(package/'driver.py'),'--output',str(output/'science'),
+               '--admission',str(output/'admission.json')]
+    if prior:
+        index_path = inside(prior,review['prior_index_path'])
+        index_review = inside(ROOT,review['prior_index_review'])
+        accepted = read(index_review)
+        if accepted.get('passed') is not True or sha(index_path) != review['prior_index_sha256'] or accepted.get('index_sha256') != sha(index_path):
+            raise ValueError('Prior index lacks exact independent acceptance')
+        index = read(index_path)
+        if index['partial_case'] is not None:
+            raise ValueError('A failed partial case requires separate reviewed disposition')
+        if index['source_sha256'] != current or index['operational_protocol_sha256'] != admission['operational_protocol_sha256']:
+            raise ValueError('Prior index source/envelope changed')
+        driver.charged(index,op)
+        if [r['case_id'] for r in index['cases']] != op['sequence'][:len(index['cases'])]:
+            raise ValueError('Prior index is not the fixed completed prefix')
+        admission.update(prior_index_sha256=sha(index_path),prior_review_sha256=sha(index_review))
+        command += ['--prior-index',str(index_path),'--prior-review',str(index_review)]
+    else:
+        index = {'cases':[]}
+    if driver.next_batch(index,op,review['case_ids']) != phase:
+        raise ValueError('Joint batch phase differs from the exact next prefix')
+    reservations = review['case_reservations_seconds']
+    if set(reservations) != set(review['case_ids']) or any(isinstance(v,bool) or not isinstance(v,(int,float)) or not math.isfinite(v) or v<=0 for v in reservations.values()) or math.fsum(reservations.values()) > wall:
+        raise ValueError('Invalid joint case reservations')
+    if phase == 'campaign':
+        if review.get('pilot_projection_review_passed') is not True:
+            raise ValueError('Joint campaign requires an independently reviewed measured-pilot projection')
+        admission.update(pilot_projection_review_passed=True,projection_sha256=review['projection_sha256'])
+    archive = inside(ROOT,review['failed_archive'])
+    policy = read(science/'checkpoint_repair.json')
+    if sha(archive) != policy['failed_archive_sha256'] or sha(archive) != op['original_failure']['failed_archive_sha256']:
+        raise ValueError('Original failed artifact changed')
+    copied_archive = output/'original_failure.zip'
+    shutil.copy2(archive,copied_archive)
+    original = output/'original_failure'
+    original.mkdir()
+    with zipfile.ZipFile(copied_archive) as source:
+        infos = source.infolist()
+        if len({i.filename for i in infos}) != len(infos) or sum(i.file_size for i in infos)>2**30:
+            raise ValueError('Invalid original-artifact member roster or size')
+        for info in infos:
+            inside(original,info.filename)
+            if (info.external_attr>>16)&0o170000 == 0o120000:
+                raise ValueError('Original-artifact symlinks are not accepted')
+        source.extractall(original)
+    build = output/'build'
+    shutil.copytree(original/'build',build)
+    library, receipt = build/'attenuation.so',build/'build_receipt.json'
+    failed = read(original/'science/result.json')
+    if sha(library) != failed['library_sha256'] or sha(receipt) != failed['build_receipt_sha256']:
+        raise ValueError('Original native binary/build identity differs')
+    admission.update(library_sha256=sha(library),build_receipt_sha256=sha(receipt))
+    command += ['--library',str(library),'--build-receipt',str(receipt)]
+    if not prior:
+        audit = inside(ROOT,review['training_review'])
+        evidence = {'failed_result_sha256':original/'science/result.json',
+                    'checkpoint_sha256':original/'science'/(policy['case_id']+'.json'),
+                    'attempts_sha256':original/'science'/(policy['case_id']+'.attempts.jsonl'),
+                    'failed_archive_sha256':copied_archive,'audit_sha256':audit}
+        if any(sha(path) != policy[key] for key,path in evidence.items()):
+            raise ValueError('Original frozen training or review identity differs')
+        checked = read(audit)
+        if checked.get('passed') is not True or checked.get('scientific_pilot_passed') is not False:
+            raise ValueError('Original review must accept partial training, not a completed pilot')
+        admission['training_resume'] = dict(independent_review_passed=True,**{key:policy[key] for key in evidence})
+        command += ['--resume-training',str(original/'science'),'--resume-review',str(audit),
+                    '--resume-archive',str(copied_archive)]
+    return admission,command
+
+
+def joint_batch_passed(output, review):
+    result = read(output/'science/result.json')
+    if result.get('passed') is not True or result.get('status') != 'batch_complete' or [r['case_id'] for r in result.get('cases',[])] != review['case_ids']:
+        raise ValueError('Zero child exit did not certify the exact requested joint batch')
+    if result.get('index_sha256') != sha(output/'science/index.json'):
+        raise ValueError('Completed joint index identity differs')
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--admission', type=Path, required=True)
@@ -228,10 +349,16 @@ def main():
     environment['JOINT_NUMERICAL_LEASE_TOKEN'] = token
     environment['NUMERICAL_LEASE_TOKEN'] = token
     os.environ.update(environment)
-    prior = prior_artifact(review, output) if 'pilot_artifact_id' in review else None
+    if stage in JOINT_CONTINUATION_STAGES:
+        prior = prior_artifact(dict(pilot_artifact_id=review['prior_artifact_id'],
+                                   pilot_archive_sha256=review['prior_archive_sha256']), output) if 'prior_artifact_id' in review else None
+    else:
+        prior = prior_artifact(review, output) if 'pilot_artifact_id' in review else None
     # Download credentials are unnecessary in compilers or numerical children.
     os.environ.pop('GITHUB_TOKEN', None)
-    if stage in ('joint-pilot', 'joint-full'):
+    if stage in JOINT_CONTINUATION_STAGES:
+        admission,command = joint_continuation(review,output,token,prior)
+    elif stage in ('joint-pilot', 'joint-full'):
         package = ROOT / 'experiments/s04b_joint_nuisance'
         sys.path.insert(0, str(package))
         import run as joint
@@ -340,6 +467,8 @@ def main():
     write(output/'supervisor_spec.json',spec)
     result = subprocess.run([sys.executable,'-B',str(ROOT/'scripts/supervise_research.py'),
                              str(output/'supervisor_spec.json')],cwd=ROOT)
+    if stage in JOINT_CONTINUATION_STAGES and result.returncode == 0:
+        joint_batch_passed(output,review)
     return result.returncode
 
 
