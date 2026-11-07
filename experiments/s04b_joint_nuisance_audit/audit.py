@@ -345,11 +345,86 @@ def inspect_roster(result, protocol):
     require(result['unknown_case_ids'] == [], 'Unknown cases remain')
     require(result['not_run_case_ids'] == [c for c in protocol['roster'] if c not in expected], 'Not-run census')
     count = len(expected)
-    for key, wanted in dict(new_fit_count=20 if phase == 'pilot' else 300, cumulative_fit_count=4*count,
+    resumed = 'training_resume' in result
+    for key, wanted in dict(new_fit_count=(16 if resumed else 20) if phase == 'pilot' else 300, cumulative_fit_count=4*count,
                             outcome_count=5*count, historical_floor_checks=6*count,
                             historical_comparison_rows=5*count).items():
         require(type(result[key]) is int and result[key] == wanted, 'Campaign count: ' + key)
+    if resumed or 'reused_fit_count' in result:
+        wanted = (4 if resumed else 0) if phase == 'pilot' else 20
+        require(type(result['reused_fit_count']) is int and result['reused_fit_count'] == wanted, 'Reused fit census')
     return expected
+
+
+def inspect_training_resume(result, results, source, admission, reports):
+    """Validate an immutable failed-run training checkpoint without author imports."""
+    import zipfile
+    provenance = result['training_resume']
+    policy = read(source / 'checkpoint_repair.json')
+    expected_files = {
+        'failed_result_sha256': 'training_resume/failed_result.json',
+        'checkpoint_sha256': 'training_resume/frozen_training.json',
+        'attempts_sha256': 'training_resume/frozen_training.attempts.jsonl',
+        'audit_sha256': 'training_resume/independent_partial_review.json',
+        'failed_archive_sha256': 'training_resume/failed_pilot_original.zip'}
+    require(provenance['evidence_files'] == expected_files, 'Resume evidence roster')
+    for key, relative in expected_files.items():
+        require(sha(safe(results, relative)) == provenance[key] == policy[key], 'Resume evidence pin: ' + key)
+    if result['phase'] == 'pilot':
+        grant = admission['training_resume']
+        require(grant['independent_review_passed'] is True and all(grant[k] == policy[k] for k in expected_files), 'Resume admission pin')
+    require(read(results/'training_resume/provenance.json') == provenance, 'Retained resume provenance')
+    old = read(results/'training_resume/failed_result.json')
+    frozen = read(results/'training_resume/frozen_training.json')
+    review = read(results/'training_resume/independent_partial_review.json')
+    require(old['passed'] is False and old['phase'] == 'pilot' and old['cases'] == [], 'Original run was not the specified failed pilot')
+    require(review['passed'] is True and review['scientific_pilot_passed'] is False, 'Partial review status')
+    require(old['source_sha256'] == policy['predecessor_source_sha256'] == provenance['predecessor_source_sha256'], 'Predecessor source map')
+    for name, digest in old['source_sha256'].items():
+        if name != 'run.py':
+            require(sha(safe(source, name)) == digest, 'Resume changed mathematical source, protocol, or inputs')
+    source_archive = source/'pre_repair_source.zip'
+    require(sha(source_archive) == policy['source_archive_sha256'], 'Predecessor source archive pin')
+    with zipfile.ZipFile(source_archive) as archive:
+        require(len(archive.namelist()) == len(old['source_sha256']) and set(archive.namelist()) == set(old['source_sha256']), 'Predecessor source archive roster')
+        for name, digest in old['source_sha256'].items():
+            require(hashlib.sha256(archive.read(name)).hexdigest() == digest, 'Predecessor source archive bytes')
+    with zipfile.ZipFile(results/'training_resume/failed_pilot_original.zip') as archive:
+        for name, relative in [('result.json', 'failed_result.json'),
+                               (policy['case_id']+'.json', 'frozen_training.json'),
+                               (policy['case_id']+'.attempts.jsonl', 'frozen_training.attempts.jsonl')]:
+            candidates = [member for member in archive.namelist() if member == 'science/'+name or member.endswith('/science/'+name)]
+            require(len(candidates) == 1 and archive.read(candidates[0]) == (results/'training_resume'/relative).read_bytes(), 'Original archive/checkpoint bytes')
+    require(old['runtime'] == provenance['predecessor_runtime'] and old['runtime']['essential'] == result['runtime']['essential'], 'Resume runtime identity')
+    for key in ('library_sha256', 'build_receipt_sha256'):
+        require(old[key] == result[key], 'Resume native identity: ' + key)
+    require(provenance['reused_fit_arms'] == 4 and provenance['repeated_training_evaluations'] == 0, 'Resume repeated training work')
+    require(frozen['training_selections_frozen'] is True and frozen['passed'] is False and frozen['outcomes'] == [], 'Frozen checkpoint scope')
+    key = policy['case_id']
+    require(frozen['case_id'] == provenance['case_id'] == key, 'Resume case identity')
+    current = next(row for row in reports if row['case_id'] == key)
+    require(current['resume_provenance'] == provenance, 'Case resume provenance')
+    protected = {name: current[name] for name in policy['training_payload_keys']}
+    protected['floor_checks'] = [row for row in current['floor_checks'] if row['phase'] == 'train']
+    protected['plan_dimensions'] = {'train': current['plan_dimensions']['train']}
+    original = {name: frozen[name] for name in policy['training_payload_keys']}
+    require(protected == original, 'Frozen training payload changed')
+    canonical = json.dumps(original, sort_keys=True, separators=(',', ':'), allow_nan=False).encode('utf-8')
+    require(hashlib.sha256(canonical).hexdigest() == policy['training_payload_canonical_sha256'] == provenance['training_payload_canonical_sha256'], 'Canonical frozen payload')
+    require(sha(results/(key+'.attempts.jsonl')) == policy['attempts_sha256'] == current['attempts_sha256'], 'Training trace replay changed')
+    prior = number(old['wall_seconds'])
+    close(prior, policy['prior_scientific_seconds'], 'Original attempt wall charge')
+    close(prior, provenance['prior_scientific_seconds'], 'Provenance prior wall charge')
+    close(current['prior_training_attempt_seconds'], prior, 'Case prior wall charge')
+    close(current['wall_seconds'], number(current['current_attempt_wall_seconds'])+prior, 'Case cumulative wall')
+    close(result['cumulative_scientific_seconds'], number(result['wall_seconds'])+number(result['prior_scientific_seconds']), 'Campaign cumulative wall')
+    if result['phase'] == 'pilot':
+        close(result['prior_scientific_seconds'], prior, 'Pilot prior wall charge')
+        require(result['cumulative_scientific_seconds'] <= 1800 and admission['wall_seconds'] <= 1800-prior, 'Cumulative pilot wall cap')
+    else:
+        require(result['cumulative_scientific_seconds'] <= 14400, 'Cumulative full wall cap')
+    return dict(case_id=key, reused_training_fits=4, repeated_training_evaluations=0,
+                prior_scientific_seconds=prior, frozen_checkpoint_sha256=policy['checkpoint_sha256'])
 
 
 def inspect_trace(path, report):
@@ -414,6 +489,11 @@ def inspect_pilot_reuse(result, pilot, results, protocol, admission):
     for key in ('source_sha256', 'library_sha256'):
         require(result[key] == prior[key], 'Pilot/full identity: ' + key)
     require(result['runtime']['essential'] == prior['runtime']['essential'] and result['pilot_runtime'] == prior['runtime'], 'Pilot/full essential runtime changed')
+    if 'training_resume' in prior:
+        require(result['training_resume'] == prior['training_resume'], 'Pilot/full resumed-training provenance changed')
+        close(result['prior_scientific_seconds'], prior['cumulative_scientific_seconds'], 'Full campaign prior wall charge')
+        for relative in prior['training_resume']['evidence_files'].values():
+            require(sha(safe(pilot, relative)) == sha(safe(results, relative)), 'Pilot/full resume evidence changed')
     for entry in prior['cases']:
         reused = next(r for r in result['cases'] if r['case_id'] == entry['case_id'])
         require(reused['source'] == 'exact pilot reuse' and reused['sha256'] == entry['sha256'], 'Pilot case not reused exactly')
@@ -479,6 +559,8 @@ def audit_files(results, protocol_path, admission_path, build_path, library_path
             for key in ('case_id', 'regime', 'seed', 'n_train', 'n_test'):
                 require(report[key] == case[key], 'Input/output case field: ' + key)
             expected_source = 'exact pilot reuse' if result['phase'] == 'full' and case['case_id'] in protocol['pilot'] else 'new joint fit'
+            if result['phase'] == 'pilot' and result.get('training_resume', {}).get('case_id') == case['case_id']:
+                expected_source = 'exact frozen training reuse; missing test scoring only'
             require(entry['source'] == expected_source, 'Fit/reuse provenance')
             inspect_case(report, protocol)
             inspect_trace(safe(results, case['case_id'] + '.attempts.jsonl'), report)
@@ -488,6 +570,7 @@ def audit_files(results, protocol_path, admission_path, build_path, library_path
             errors.append({'case_id': entry['case_id'], 'error_type': type(exc).__name__, 'error': str(exc)})
     require(not errors, 'Per-case errors: ' + json.dumps(errors))
     require(len(reports) == len(roster), 'Not all cases audited')
+    resume = inspect_training_resume(result, results, source, admission, reports) if 'training_resume' in result else None
     summary = aggregate(reports, protocol)
     if result['phase'] == 'full':
         require(pilot is not None, 'Full audit requires retained pilot directory')
@@ -503,6 +586,7 @@ def audit_files(results, protocol_path, admission_path, build_path, library_path
                 historical_comparison_rows=5*len(reports), verified_input_files=len(pins),
                 source_sha256=identities, execution_result_sha256=sha(results/'result.json'),
                 independent_summary=summary, attempt_census=attempt_census(reports, protocol), errors=[],
+                training_resume=resume,
                 scope='Independent output arithmetic, selections, roster, source/input and replay custody audit. No likelihood or fit re-executed; runtime/resources are reported evidence, not independently measured here.',
                 scientific_likelihood_calls=0, scientific_fit_calls=0)
 

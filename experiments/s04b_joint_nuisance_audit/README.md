@@ -55,3 +55,5 @@ python -B -m unittest discover -s tests -p test_joint_output_audit.py -v
 These controls use fabricated records and opaque non-executable library/history
 fixtures. They perform no scientific computation and are not additional
 earthquake-model experiments.
+
+A reviewed serialization-failure resume is audited separately: four immutable training fits, the complete failed-run archive, original runtime/native/build identities, unchanged training payload and trace, and cumulative wall time must match the pinned amendment. A resumed pilot has 16 new fits plus 4 reused fits; it still has only five histories and cannot satisfy full-campaign acceptance.

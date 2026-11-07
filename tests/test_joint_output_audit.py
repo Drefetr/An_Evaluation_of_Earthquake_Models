@@ -1,11 +1,13 @@
 """Constructed output-corruption controls; no scientific likelihood or fitting."""
 import copy
+import hashlib
 import importlib.util
 import json
 import math
 from pathlib import Path
 import tempfile
 import unittest
+import zipfile
 
 SPEC = importlib.util.spec_from_file_location('independent_joint_audit', Path(__file__).resolve().parents[1] /
                                             'experiments/s04b_joint_nuisance_audit/audit.py')
@@ -223,6 +225,60 @@ def artifact_fixture(tmp, full=False):
     return args
 
 
+def resume_fixture(tmp):
+    args = artifact_fixture(tmp)
+    output, source = args['results'], args['protocol_path'].parent
+    result = A.read(output/'result.json')
+    entry = result['cases'][0]
+    report = A.read(output/entry['file'])
+    report['plan_dimensions'] = {'train': {'fixture': 1}, 'test': {'fixture': 2}}
+    frozen = copy.deepcopy(report)
+    frozen.update(passed=False, status='running', outcomes=[])
+    frozen['floor_checks'] = [r for r in frozen['floor_checks'] if r['phase'] == 'train']
+    frozen['plan_dimensions'] = {'train': report['plan_dimensions']['train']}
+    keys = ['case_id', 'fits', 'training_checks', 'floor_checks', 'plan_dimensions', 'training_selections_frozen']
+    canonical = json.dumps({k: frozen[k] for k in keys}, sort_keys=True, separators=(',', ':'), allow_nan=False).encode()
+    original_sources = {p.name: A.sha(p) for p in source.iterdir()}
+    with zipfile.ZipFile(source/'pre_repair_source.zip', 'w') as archive:
+        for name in original_sources: archive.write(source/name, name)
+    old = dict(passed=False, phase='pilot', cases=[], source_sha256=original_sources,
+               runtime=result['runtime'], library_sha256=result['library_sha256'],
+               build_receipt_sha256=result['build_receipt_sha256'], wall_seconds=17.)
+    evidence = output/'training_resume'; evidence.mkdir()
+    dump(evidence/'failed_result.json', old); dump(evidence/'frozen_training.json', frozen)
+    dump(evidence/'independent_partial_review.json', dict(passed=True, scientific_pilot_passed=False))
+    (evidence/'frozen_training.attempts.jsonl').write_bytes((output/(report['case_id']+'.attempts.jsonl')).read_bytes())
+    with zipfile.ZipFile(evidence/'failed_pilot_original.zip', 'w') as archive:
+        for file, member in [('failed_result.json', 'result.json'), ('frozen_training.json', report['case_id']+'.json'),
+                             ('frozen_training.attempts.jsonl', report['case_id']+'.attempts.jsonl')]:
+            archive.write(evidence/file, 'science/'+member)
+    files = {'failed_result_sha256': 'failed_result.json', 'checkpoint_sha256': 'frozen_training.json',
+             'audit_sha256': 'independent_partial_review.json', 'attempts_sha256': 'frozen_training.attempts.jsonl',
+             'failed_archive_sha256': 'failed_pilot_original.zip'}
+    policy = dict(case_id=report['case_id'], predecessor_source_sha256=original_sources,
+                  source_archive_sha256=A.sha(source/'pre_repair_source.zip'), training_payload_keys=keys,
+                  training_payload_canonical_sha256=hashlib.sha256(canonical).hexdigest(), prior_scientific_seconds=17.,
+                  **{key: A.sha(evidence/value) for key, value in files.items()})
+    dump(source/'checkpoint_repair.json', policy)
+    provenance = dict(case_id=report['case_id'], predecessor_source_sha256=original_sources,
+                      predecessor_runtime=old['runtime'], reused_fit_arms=4, repeated_training_evaluations=0,
+                      prior_scientific_seconds=17., training_payload_canonical_sha256=policy['training_payload_canonical_sha256'],
+                      evidence_files={key: 'training_resume/'+value for key, value in files.items()},
+                      **{key: policy[key] for key in files})
+    dump(evidence/'provenance.json', provenance)
+    report.update(resume_provenance=provenance, current_attempt_wall_seconds=.2, prior_training_attempt_seconds=17., wall_seconds=17.2)
+    dump(output/entry['file'], report)
+    entry.update(sha256=A.sha(output/entry['file']), source='exact frozen training reuse; missing test scoring only')
+    identities = {p.name: A.sha(p) for p in source.iterdir() if p.suffix in ('.py', '.cpp', '.json')}
+    admission = A.read(args['admission_path'])
+    admission.update(source_sha256=identities, wall_seconds=1783., training_resume=dict(independent_review_passed=True, **{k: policy[k] for k in files}))
+    dump(args['admission_path'], admission)
+    result.update(training_resume=provenance, new_fit_count=16, reused_fit_count=4, prior_scientific_seconds=17.,
+                  cumulative_scientific_seconds=18., source_sha256=identities, admission_sha256=A.sha(args['admission_path']))
+    dump(output/'result.json', result)
+    return args
+
+
 class TestJointOutputAudit(unittest.TestCase):
     def test_valid_constructed_case(self):
         p, case = fixture()
@@ -392,6 +448,39 @@ class TestJointOutputAudit(unittest.TestCase):
             full['runtime'] = dict(essential=dict(fixture=False))
             with self.assertRaisesRegex(A.AuditError, 'runtime changed'):
                 A.inspect_pilot_reuse(full, args['results'], args['results'], p, admission)
+
+    def test_resumed_pilot_retains_four_fits_and_charges_failed_attempt(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            args = resume_fixture(tmp)
+            report = A.audit_files(**args)
+            self.assertTrue(report['passed']); self.assertFalse(report['full_complete'])
+            self.assertEqual(report['training_resume']['reused_training_fits'], 4)
+            self.assertEqual(report['training_resume']['prior_scientific_seconds'], 17.)
+
+    def test_resumed_pilot_cannot_omit_failed_attempt_time(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            args = resume_fixture(tmp)
+            path = args['results']/'result.json'; result = A.read(path)
+            result['cumulative_scientific_seconds'] = result['wall_seconds']; dump(path, result)
+            with self.assertRaisesRegex(A.AuditError, 'cumulative wall'):
+                A.audit_files(**args)
+
+    def test_resumed_training_payload_cannot_be_rewritten(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            args = resume_fixture(tmp)
+            path = args['results']/'result.json'; result = A.read(path); entry = result['cases'][0]
+            row_path = args['results']/entry['file']; row = A.read(row_path)
+            row['plan_dimensions']['train']['fixture'] += 1; dump(row_path, row)
+            entry['sha256'] = A.sha(row_path); dump(path, result)
+            with self.assertRaisesRegex(A.AuditError, 'Frozen training payload changed'):
+                A.audit_files(**args)
+
+    def test_resumed_pilot_must_count_only_sixteen_new_fits(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            args = resume_fixture(tmp)
+            path = args['results']/'result.json'; result = A.read(path); result['new_fit_count'] = 20; dump(path, result)
+            with self.assertRaisesRegex(A.AuditError, 'new_fit_count'):
+                A.audit_files(**args)
 
 
 if __name__ == '__main__':
