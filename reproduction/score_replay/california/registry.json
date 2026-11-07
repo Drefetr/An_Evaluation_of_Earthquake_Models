@@ -2,13 +2,13 @@
   "schema": "score_replay_registry_v1",
   "execution_status": "not_run",
   "adapters": {
-    "c1f2e7774235459f": {
+    "8e65b45e4df2ea5e": {
       "kind": "original_cached_native",
       "python": {
-        "archive": "inputs/cached_01.zip",
-        "member": "source/c1f2e7774235459f92aeea0611a168e2e47c0120915807929999b01fb91e804f",
-        "sha256": "c1f2e7774235459f92aeea0611a168e2e47c0120915807929999b01fb91e804f",
-        "bytes": 7888
+        "archive": "inputs/portability_01.zip",
+        "member": "adapter/8e65b45e4df2ea5e7dd9b2431655f140a6aae0e05a4d63aea1eccd92931dafcb",
+        "sha256": "8e65b45e4df2ea5e7dd9b2431655f140a6aae0e05a4d63aea1eccd92931dafcb",
+        "bytes": 465176
       },
       "native": {
         "archive": "inputs/cached_01.zip",
@@ -46,10 +46,22 @@
           "member": "source/96e56fea145f8a0857f962129a483efbc2bee9e0e43c17d8d09218ece751b2d3",
           "sha256": "96e56fea145f8a0857f962129a483efbc2bee9e0e43c17d8d09218ece751b2d3",
           "bytes": 5240
+        },
+        "original_python": {
+          "archive": "inputs/cached_01.zip",
+          "member": "source/c1f2e7774235459f92aeea0611a168e2e47c0120915807929999b01fb91e804f",
+          "sha256": "c1f2e7774235459f92aeea0611a168e2e47c0120915807929999b01fb91e804f",
+          "bytes": 7888
         }
       },
       "entry_point": "Objective(cache_path, dll_path).evaluate(model, parameters)",
-      "source_scope": "Original California evaluator; no optimizer invoked."
+      "source_scope": "Byte-identical original evaluator executed with a strict path-to-byte resolver for all original production pins; current native library is independently hashed and remains distinct from historical DLL bytes.",
+      "historical_pin_manifest": {
+        "archive": "inputs/portability_01.zip",
+        "member": "manifest/cf159831d26e0b7a8fefaa340af47f77e4380d176510295d3f38c02b9486795d",
+        "sha256": "cf159831d26e0b7a8fefaa340af47f77e4380d176510295d3f38c02b9486795d",
+        "bytes": 80958
+      }
     }
   },
   "rows": [
@@ -60,7 +72,7 @@
       "model": "E_fixed",
       "procedure_key": "fixedML_smooth_cont",
       "phase": "train",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_01.zip",
         "member": "state/936c3fc00d6c1cd08f21d657e65db858bdbd8d7ffce854b953af981107287d2f",
@@ -100,7 +112,7 @@
       "model": "E_fixed",
       "procedure_key": "fixedML_smooth_cont",
       "phase": "test",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_01.zip",
         "member": "state/de1cc954195226437302913317752a0d4c2d7921aaf8604ea89f6a5175a3275c",
@@ -140,7 +152,7 @@
       "model": "E_fixed",
       "procedure_key": "fixedML_smooth_lift",
       "phase": "train",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_01.zip",
         "member": "state/39f024d7bfeeb7702773663108a6bda03e2a4346b3d127988887060f4a591708",
@@ -180,7 +192,7 @@
       "model": "E_fixed",
       "procedure_key": "fixedML_smooth_lift",
       "phase": "test",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_01.zip",
         "member": "state/d1817de1845f96623fc7eb7970d7f847295a96ab9a72bf8ab77459ea71e873dd",
@@ -220,7 +232,7 @@
       "model": "E_free",
       "procedure_key": "commonML_smooth_cont",
       "phase": "train",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_01.zip",
         "member": "state/72d22ed12cec00443704878e31105e005a6764c98da1f19870186087bfc21034",
@@ -260,7 +272,7 @@
       "model": "E_free",
       "procedure_key": "commonML_smooth_cont",
       "phase": "test",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_01.zip",
         "member": "state/1e665445a6859d758d2730183f9551655cf913261c58734274b8e886f7b22805",
@@ -300,7 +312,7 @@
       "model": "E_omori",
       "procedure_key": "Omori_smooth_cont",
       "phase": "train",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_01.zip",
         "member": "state/a392b1f470cd5ce77889d2ee9b09cb191f572e3920960e48c729558523f9ad78",
@@ -340,7 +352,7 @@
       "model": "E_omori",
       "procedure_key": "Omori_smooth_cont",
       "phase": "test",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_01.zip",
         "member": "state/d454d88e279ba4191478e79b2d5cfef7026787850fae1952355346c42806f6a3",
@@ -380,7 +392,7 @@
       "model": "E_omori",
       "procedure_key": "Omori_smooth_lift",
       "phase": "train",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_01.zip",
         "member": "state/142038432e1e70912233b46669aa801c6b37d8d4b2a47adfccf962013f62cdcc",
@@ -420,7 +432,7 @@
       "model": "E_omori",
       "procedure_key": "Omori_smooth_lift",
       "phase": "test",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_01.zip",
         "member": "state/0707faa8c45b26e0f209a9e6e2effb2faea6fd6fc1d57a9f3ce30a98ea54b8a3",
@@ -460,7 +472,7 @@
       "model": "E_fixed",
       "procedure_key": "fixedML_smooth_cont",
       "phase": "train",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_01.zip",
         "member": "state/60bc8f452473df96c5ce9c2d8b732fa19128e36d7df07f53a8041771b2949d3c",
@@ -500,7 +512,7 @@
       "model": "E_fixed",
       "procedure_key": "fixedML_smooth_cont",
       "phase": "test",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_01.zip",
         "member": "state/e5e750335aa4ea192b5046e65ce33224302bfd322cfcd22e5f16226fdada0539",
@@ -540,7 +552,7 @@
       "model": "E_fixed",
       "procedure_key": "fixedML_smooth_lift",
       "phase": "train",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_01.zip",
         "member": "state/8d6cda81c3d3deff71789da83cbc3835148235edd22cb4fac5f4259b75534d9b",
@@ -580,7 +592,7 @@
       "model": "E_fixed",
       "procedure_key": "fixedML_smooth_lift",
       "phase": "test",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_01.zip",
         "member": "state/64da0baeb8746877d72eae4a716a428b8911ad547ff2a915854c76072ac6efce",
@@ -620,7 +632,7 @@
       "model": "E_free",
       "procedure_key": "commonML_smooth_cont",
       "phase": "train",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_01.zip",
         "member": "state/8c81f3861c6ee9a5c8c609b38edc1276d0668f05b3734f839f16f76d0f78c574",
@@ -660,7 +672,7 @@
       "model": "E_free",
       "procedure_key": "commonML_smooth_cont",
       "phase": "test",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_01.zip",
         "member": "state/9b7f40a749a1270113bb0bf0b2387d67903eb6e8c89d760e8d8410ed465fbea1",
@@ -700,7 +712,7 @@
       "model": "E_omori",
       "procedure_key": "Omori_smooth_cont",
       "phase": "train",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_01.zip",
         "member": "state/b20064b552af7f810bac89ba825af717358c68b9fd14e69ea233c94ce4ce7dbb",
@@ -740,7 +752,7 @@
       "model": "E_omori",
       "procedure_key": "Omori_smooth_cont",
       "phase": "test",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_01.zip",
         "member": "state/21fb1dfd464d63ae13af34b2b06aaad3530177286488b3c21964f1a9c2c073bb",
@@ -780,7 +792,7 @@
       "model": "E_omori",
       "procedure_key": "Omori_smooth_lift",
       "phase": "train",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_01.zip",
         "member": "state/50a9426a1c4edf7b368e86303c7b3961245da92c77521e4c58169768741a33f5",
@@ -820,7 +832,7 @@
       "model": "E_omori",
       "procedure_key": "Omori_smooth_lift",
       "phase": "test",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_01.zip",
         "member": "state/0da69e244c7fb9472a8f82e9a5675e23fb039b2fa9575916780592bf9ea812f3",
@@ -860,7 +872,7 @@
       "model": "E_fixed",
       "procedure_key": "fixedML_smooth_cont",
       "phase": "train",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_01.zip",
         "member": "state/ec264bbf53931c196b9171d9aa3a0dae67fcdd4d0e0498f0e6a8477d41358203",
@@ -900,7 +912,7 @@
       "model": "E_fixed",
       "procedure_key": "fixedML_smooth_cont",
       "phase": "test",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_01.zip",
         "member": "state/1b0fff890bde9d92fae047ddab9ce2f39f9f06bb69413f4c652e71d327983a39",
@@ -940,7 +952,7 @@
       "model": "E_fixed",
       "procedure_key": "fixedML_smooth_lift",
       "phase": "train",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/b2901624d28a43bc1aba47bd4da28533198237e078a652a9003218318893ae5a",
@@ -980,7 +992,7 @@
       "model": "E_fixed",
       "procedure_key": "fixedML_smooth_lift",
       "phase": "test",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/603fca2b5063bc116cf24bff016b0c12ebb1d722ddbabc049bff082bbb6f24fc",
@@ -1020,7 +1032,7 @@
       "model": "E_free",
       "procedure_key": "commonML_smooth_cont",
       "phase": "train",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/f5e9f77a2cd574f2a6a1ab26e878fda2f500d51843d3854437feabf164c3b1f4",
@@ -1060,7 +1072,7 @@
       "model": "E_free",
       "procedure_key": "commonML_smooth_cont",
       "phase": "test",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/61967eb4842275e66d9036dd7d9b7a55f11a4f5447658baf51b51faedb60aa26",
@@ -1100,7 +1112,7 @@
       "model": "E_omori",
       "procedure_key": "Omori_smooth_cont",
       "phase": "train",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/d830c8d3f6b3d61119e5cd7d92f724fb5e52a6499ad190e535186c2f5efea366",
@@ -1140,7 +1152,7 @@
       "model": "E_omori",
       "procedure_key": "Omori_smooth_cont",
       "phase": "test",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/2fa861a91f55954b93237869f6166a5bfdbdb0225fe449fc41f77e89cdade378",
@@ -1180,7 +1192,7 @@
       "model": "E_omori",
       "procedure_key": "Omori_smooth_lift",
       "phase": "train",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/67a9d8f5045b47c590f36872ea3219989cf843048656268d891c04e5a631ae43",
@@ -1220,7 +1232,7 @@
       "model": "E_omori",
       "procedure_key": "Omori_smooth_lift",
       "phase": "test",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/b7db7418e2f51e21026ce7f9da2a6ef3058123f0c41ccabadddef5a0eaf5d658",
@@ -1260,7 +1272,7 @@
       "model": "E_fixed",
       "procedure_key": "fixedML_smooth_cont",
       "phase": "train",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/316d83c42942594670e385ff39f01b4c2c167a2090211f10751e11a1937f341b",
@@ -1300,7 +1312,7 @@
       "model": "E_fixed",
       "procedure_key": "fixedML_smooth_cont",
       "phase": "test",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/e38e48fdd8fb9444e9e87cd7e7c7d48539cadbd652e3b33c213ca38c54795c16",
@@ -1340,7 +1352,7 @@
       "model": "E_fixed",
       "procedure_key": "fixedML_smooth_lift",
       "phase": "train",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/51b8e22a2a0982606d63c2237fe649fcfc6f2d41f1b693242e0dc07b8030d488",
@@ -1380,7 +1392,7 @@
       "model": "E_fixed",
       "procedure_key": "fixedML_smooth_lift",
       "phase": "test",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/6ddc1eb7de281e715b87fe9b64a032fe54be2b2100574b88aae3d8ef45e476ed",
@@ -1420,7 +1432,7 @@
       "model": "E_free",
       "procedure_key": "commonML_smooth_cont",
       "phase": "train",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/e3709cfaeebacffecc933040fca95193d210e06870e2f09fb92e47ebdb040c78",
@@ -1460,7 +1472,7 @@
       "model": "E_free",
       "procedure_key": "commonML_smooth_cont",
       "phase": "test",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/e578d646835d2562c16ce02bb598382d919cfb73a21431eaf5dd16a0441e7ed7",
@@ -1500,7 +1512,7 @@
       "model": "E_omori",
       "procedure_key": "Omori_smooth_cont",
       "phase": "train",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/85297b0e03604c5cd90ac036ff4bfbba96176b2f001523b8dbfa1b4fff164505",
@@ -1540,7 +1552,7 @@
       "model": "E_omori",
       "procedure_key": "Omori_smooth_cont",
       "phase": "test",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/d89cdab5f60491b187595192ad5c6d0dcf652ec9c0ca92292d9f9025a607a36b",
@@ -1580,7 +1592,7 @@
       "model": "E_omori",
       "procedure_key": "Omori_smooth_lift",
       "phase": "train",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/46750b607a30c99a922c4274fb46d28fbe86b13f1d170f3daaef021419ab12fd",
@@ -1620,7 +1632,7 @@
       "model": "E_omori",
       "procedure_key": "Omori_smooth_lift",
       "phase": "test",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/4f27947086e608ea913c632a63930a196add121946bedbe5b39b9379fc6005ef",
@@ -1660,7 +1672,7 @@
       "model": "E_fixed",
       "procedure_key": "fixedML_smooth_cont",
       "phase": "train",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/72b1c1dcea9b2839252f84482bb021d8acf6952d66aeb5bb7ae8c486b58911a5",
@@ -1700,7 +1712,7 @@
       "model": "E_fixed",
       "procedure_key": "fixedML_smooth_cont",
       "phase": "test",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/c394544ec9ebb016bde1b79e00dec69540908822bd5761f5f3616fb7c9cc1043",
@@ -1740,7 +1752,7 @@
       "model": "E_fixed",
       "procedure_key": "fixedML_smooth_lift",
       "phase": "train",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/aa58e28cb3ccb2df15e76813f345033e695fad5bccf1f9e77583fc53e4947798",
@@ -1780,7 +1792,7 @@
       "model": "E_fixed",
       "procedure_key": "fixedML_smooth_lift",
       "phase": "test",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/317476001b3a96f2dc64146f66765c911e40ac2d34287bdd05a3c8dd56c2c7d0",
@@ -1820,7 +1832,7 @@
       "model": "E_free",
       "procedure_key": "commonML_smooth_cont",
       "phase": "train",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/e08de694c8f1ef14e126105e71057c40b47e8aaca96fda6c5f23f15084052d3c",
@@ -1860,7 +1872,7 @@
       "model": "E_free",
       "procedure_key": "commonML_smooth_cont",
       "phase": "test",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/47b85a1ef2c6ec9ac741d5ba346a85a2892e7faef3d2687aa7a824413642a1a6",
@@ -1900,7 +1912,7 @@
       "model": "E_omori",
       "procedure_key": "Omori_smooth_cont",
       "phase": "train",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/98fa859d8d950e565f8dec0206e9abc684e33ce97700932e39a9ff14eae154bb",
@@ -1940,7 +1952,7 @@
       "model": "E_omori",
       "procedure_key": "Omori_smooth_cont",
       "phase": "test",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/93a77177d57777fe8808fac920471c51b420645a0f90c7206081827c140e92ea",
@@ -1980,7 +1992,7 @@
       "model": "E_omori",
       "procedure_key": "Omori_smooth_lift",
       "phase": "train",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/d838bb25654c3b534bc2a500735cb0580d78b241f76dc3bad7e978b2733c2846",
@@ -2020,7 +2032,7 @@
       "model": "E_omori",
       "procedure_key": "Omori_smooth_lift",
       "phase": "test",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/6e5a890c847272035432eec2b302bba55dcf88ac2d4a223b5b26e80aad4001dc",
@@ -2060,7 +2072,7 @@
       "model": "E_fixed",
       "procedure_key": "fixedML_smooth_cont",
       "phase": "train",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/ee52c7aa035e5f3268308ef049e35f6c90cbf70f39aa4749417f8492b7a3cacd",
@@ -2100,7 +2112,7 @@
       "model": "E_fixed",
       "procedure_key": "fixedML_smooth_cont",
       "phase": "test",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/e92fe9af8050c41d36f8436ae3777abca5c9a170e0b4e227ed29bd4f705a4bb1",
@@ -2140,7 +2152,7 @@
       "model": "E_fixed",
       "procedure_key": "fixedML_smooth_lift",
       "phase": "train",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/bb91b3d20a319ea719db022d13d8c6921adf10056632740d56e7d6c815184a6d",
@@ -2180,7 +2192,7 @@
       "model": "E_fixed",
       "procedure_key": "fixedML_smooth_lift",
       "phase": "test",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/6ee331616adc6adead8ab72d7b3f80da5e3c4d008a922a8964ea5bdd762332a3",
@@ -2220,7 +2232,7 @@
       "model": "E_free",
       "procedure_key": "commonML_smooth_cont",
       "phase": "train",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/efbc579901871403696339e7d34437d50ac8fa9e2e9d7aa57e0a73fee0a1f527",
@@ -2260,7 +2272,7 @@
       "model": "E_free",
       "procedure_key": "commonML_smooth_cont",
       "phase": "test",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/e61ebddfd86b7911da20b1e41b65521bdfe509fb125a8a6e07b65e83a444f659",
@@ -2300,7 +2312,7 @@
       "model": "E_omori",
       "procedure_key": "Omori_smooth_cont",
       "phase": "train",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/70c18a91f7978c9a1cd1bc6671f0bc10d6a529cd5d9212d78b61938a40c91ad9",
@@ -2340,7 +2352,7 @@
       "model": "E_omori",
       "procedure_key": "Omori_smooth_cont",
       "phase": "test",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/be158542fd9160be4875225edc958d269064e6a5885177bc276f0238e4af0e0b",
@@ -2380,7 +2392,7 @@
       "model": "E_omori",
       "procedure_key": "Omori_smooth_lift",
       "phase": "train",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/6a85c4a3f7e4c89d2820315253a86d60a47941d5e6c9eb16da023306453b2adc",
@@ -2420,7 +2432,7 @@
       "model": "E_omori",
       "procedure_key": "Omori_smooth_lift",
       "phase": "test",
-      "adapter": "c1f2e7774235459f",
+      "adapter": "8e65b45e4df2ea5e",
       "state": {
         "archive": "inputs/cached_02.zip",
         "member": "state/0e31264b97b7e4309f3bc7efc07e6ae1e99b8919d003bb2c8b8602aa5db36139",

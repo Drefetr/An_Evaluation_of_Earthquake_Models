@@ -262,6 +262,35 @@ class TestScoreReplay(unittest.TestCase):
 
 
 class CaliforniaPartitionTests(unittest.TestCase):
+    def test_california_historical_paths_resolve_exact_bundled_bytes(self):
+        import base64,io,types,numpy as np
+        from unittest.mock import patch
+        base=Path(__file__).resolve().parents[1]/'reproduction/score_replay/california'
+        registry=json.loads((base/'registry.json').read_text());inputs=Inputs(base)
+        adapter=next(iter(registry['adapters'].values()))
+        module=types.ModuleType('tiny_portable_california')
+        exec(compile(inputs.read(adapter['python']),'portable_adapter.py','exec'),module.__dict__)
+        pins=inputs.json(adapter['historical_pin_manifest'])
+        self.assertEqual(len(pins['paths']),21)
+        self.assertEqual(len(pins['cache_source_pin_sets']),24)
+        for path,spec in pins['paths'].items():
+            self.assertEqual(module.digest(path),spec['sha256'])
+            self.assertEqual(base64.b64decode(module._HISTORICAL_PIN_BYTES[path]['base64']),inputs.read(spec))
+        for sourcepins in pins['cache_source_pin_sets'].values():module.verify_historical_pins(sourcepins)
+        with self.assertRaisesRegex(ValueError,'unresolved'):
+            module.verify_historical_pins({'Z:\\not_recovered\\objective.dll':'0'*64})
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);binary=root/'current.so';binary.write_bytes(b'current build is a distinct artifact')
+            self.assertEqual(module.digest(binary),digest(binary.read_bytes()))
+            cache=root/'tiny.npz';sourcepins=next(iter(pins['cache_source_pin_sets'].values()))
+            np.savez(cache,metadata_json=json.dumps({'production_source_pins':sourcepins}))
+            with patch.object(module,'library',side_effect=RuntimeError('hand-authored construction stop')) as mocked:
+                with self.assertRaisesRegex(RuntimeError,'construction stop'):module.Objective(cache,dll_path=binary)
+                mocked.assert_called_once_with(binary)
+        first=next(iter(module._HISTORICAL_PIN_BYTES));module._HISTORICAL_PIN_BYTES[first]['base64']=base64.b64encode(b'tampered').decode()
+        with self.assertRaisesRegex(ValueError,'historical pin byte length'):
+            module.digest(first)
+
     def test_complete_partition_roster_and_original_sources_load_without_dll(self):
         from reproduction.score_replay.california_blocks_replay import load_modules
         base = Path(__file__).resolve().parents[1]/'reproduction/score_replay/california_blocks'
