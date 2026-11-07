@@ -1,0 +1,60 @@
+{
+  "schema": "independent_joint_budget_allocation_protocol_review_v1",
+  "passed": true,
+  "status": "accepted_for_new_package_implementation_only",
+  "scope": "Frozen proposal and input/output arithmetic; no new scientific evaluation or numerical admission.",
+  "reviewer": "continuation_cpu independent source/output audit lane",
+  "proposal_sha256": "b4fb559f6be7371bedde9e197e248b79389155d2cb7da52183ddec7cdc5f1155",
+  "analysis_sha256": "ac022e68b8cb8f9cd0eb746839f3fca6c574eaf6f3396fab873ba1f5e5822ae4",
+  "analysis_source_sha256": "d26b50ca0887c8e5196e26aea3fb8f585fef5ea749a67de8116e84758cbdc9e9",
+  "reviewer_script_sha256": "e436f2f762dde7a491e288de5ac68ba49f6dc5bc23871bc28e139603c09fd0fe",
+  "prior_index_sha256": "19f6e808bc992049ced819ce20e69ab4e543e04ccffed04587ffb75d9d2aebf8",
+  "prior_output_review_sha256": "a4cee87acc3616bde28a04695e85f4632c16c7b8c5caf6f1a248cddcfe367fa9",
+  "prior_failed_projection_review_sha256": "d88fce1342d4f5021881b083a05e823dc35ac8f744c235a2ac14217e49b73811",
+  "checks": {
+    "all80_histories_hash_checked": true,
+    "pilot5_report_bytes_checked": true,
+    "exact_remaining_roster": 75,
+    "unchanged_case_order": true,
+    "dense_cases": 37,
+    "broad_cases": 38,
+    "dense_slot_seconds": 2520,
+    "broad_slot_seconds": 420,
+    "sum_slot_seconds": 109200,
+    "prior_charged_seconds": 3321.086780193,
+    "maximum_scientific_index_charge": 112521.086780193,
+    "unchanged_campaign_cap_seconds": 115200,
+    "unallocated_margin_seconds": 2678.913219807,
+    "allslots_below_4h": true,
+    "input_counts_and_runtime_only_used": true,
+    "failed_forecasts_preserved": true
+  },
+  "findings": [],
+  "implementation_acceptance_requirements": [
+    "New package and new index schema only. Do not alter frozen science/old execution/protocol/scheduler or falsify the old failed projection.",
+    "First transition must call old accepted_index with actual OLD source identity, archive the byte-exact parent index and all copied case/trace/attempt/review/resume evidence, then separately record the new source/protocol identities. Preserve transition evidence hash-bound in all descendants.",
+    "After transition validate exact new source/runtime/native/protocol identity, original failure charged once, every unique attempt receipt, complete exact case prefix, no partial case, and exact independent review of parent index.",
+    "Admit exactly the next fixed case with its frozen full wall cap. Require actual charged plus all unspent fixed caps <=115200. No savings-based cap inflation, automatic retry, replacement or skip.",
+    "Treat 30 seconds as explicit total startup/finalization allowance, not permission to extend the external wall cap. Check deadlines after final index/summary serialization. Source review must verify command-start imports and complete process lifetime are bounded externally; a driver-only clock is not proof of that.",
+    "On failure/timeout retain incomplete checkpoint and attempts, charge available actual elapsed evidence and stop progression. External killed-process evidence must remain in the conductor ledger even if the child cannot update its own index.",
+    "All80 completion requires original scientific checks and independent400-outcome aggregation, never merely 75 allocated slots. Preserve unchanged starts/bounds/tolerances/quadrature/gates and no repetition of completed training.",
+    "Constructed controls must cover old-to-new byte identity, subsequent new prefix, identity tampering, duplicate/order/wrong caps, all-remaining-slot arithmetic, final-serialization expiry, partial retention and truthful completion."
+  ],
+  "limitations": [
+    "This accepts a finite opportunity under hard limits, not a new estimate that all remaining cases will complete. Runtime and adaptive quadrature/optimizer tails remain uncertain.",
+    "Multipliers two and four are explicit engineering allocations after observing runtimes; they are not calibrated confidence factors or scientific protocol changes.",
+    "The largest dense training product bound does not bound all test sizes, adaptive spatial refinement, optimizer iterations or rescue work.",
+    "No implementation exists yet in this reviewed proposal; final source/controls/controller and numerical admission require separate reviews."
+  ],
+  "authorization": {
+    "new_package_implementation": true,
+    "owned_paths": [
+      "experiments/s04b_joint_budgeted/",
+      "tests/test_joint_budgeted_driver.py"
+    ],
+    "controller_owner": "root",
+    "scientific_execution": false,
+    "cap_extension": false,
+    "full_completion_guarantee": false
+  }
+}
