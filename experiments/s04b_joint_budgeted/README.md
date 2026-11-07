@@ -59,6 +59,9 @@ hashes, `independent_review_passed`, `scheduler_review_passed`,
 `wall_seconds`. An optional `case_ids` must equal `[case_id]`. Operational run
 and configuration fields remain conductor attestations. The first transition
 also requires the frozen `transition_review_sha256`.
+The allocation protocol pins the unchanged shared-run expiry,
+`2026-11-09T07:15:00+00:00`; the child rejects any admission beyond it, and the
+supervisor must enforce that same or an earlier expiry.
 
 The first transition validates the original index using the original driver's
 actual source identity. It then records a distinct `joint_budgeted_case_index_v2`
@@ -68,6 +71,9 @@ byte. Subsequent batches must preserve that directory and the exact accepted
 prefix, satisfy independent review of the parent index, and charge all unique
 attempts plus the original failure exactly once. No old artifact is relabelled
 as having been produced by the new driver.
+The original reviews prefix and the complete `training_resume/` directory are
+mandatory. Its provenance bytes and evidence are checked against both the frozen
+protocol and the first accepted case's recorded resume provenance.
 
 A successful one-case result has `passed: true`, `status: batch_complete`, one
 new entry in `cases`, and the hash of `index.json`. This is not full scientific

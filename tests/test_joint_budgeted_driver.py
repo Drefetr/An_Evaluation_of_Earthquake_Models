@@ -34,8 +34,13 @@ class Fixture:
         self.index=dict(schema='joint_accepted_case_index_v1',source_sha256=self.oldsource,operational_protocol_sha256=d.sha(self.oldhome/'operational_protocol.json'),science_protocol_sha256='science',runtime=self.runtime,library_sha256='library',build_receipt_sha256='build',original_failure=self.op['original_failure'],cases=entries,attempts=[dict(attempt_id='old',phase='pilot',seconds=3.,file='attempts/old.json',sha256=d.sha(self.prior/'attempts/old.json'))],reviews=[],partial_case=None,budget=dict(total_seconds=20.,pilot_seconds=20.))
         resume=self.prior/'training_resume';resume.mkdir();(resume/'checkpoint').write_bytes(b'original invented partial training bytes')
         d.write(resume/'provenance.json',dict(checkpoint_sha256=d.sha(resume/'checkpoint'),evidence_files={'checkpoint_sha256':'training_resume/checkpoint'}))
+        first=d.read(self.prior/entries[0]['file']);first['resume_provenance']=d.read(resume/'provenance.json');d.write(self.prior/entries[0]['file'],first);entries[0]['sha256']=d.sha(self.prior/entries[0]['file'])
+        (self.prior/'reviews').mkdir();d.write(self.prior/'reviews/original.json',{'invented_original_review':True})
+        self.index['reviews']=[dict(file='reviews/original.json',sha256=d.sha(self.prior/'reviews/original.json'),accepted_index_sha256='older')]
         d.write(self.prior/'index.json',self.index);self.review=root/'review.json';d.write(self.review,dict(passed=True,index_sha256=d.sha(self.prior/'index.json')))
         self.policy=dict(predecessor=dict(accepted_index_sha256=d.sha(self.prior/'index.json'),accepted_review_sha256=d.sha(self.review),source_sha256=self.oldsource,operational_protocol_sha256=d.sha(self.oldhome/'operational_protocol.json'),already_charged_seconds=20.),scientific_protocol_sha256='science',sequence=self.sequence,transition_review_sha256='proposal-review',fixed_slots=[dict(case_id=n,wall_seconds=420,scientific_reservation_seconds=390,input={'case_id':n})for n in self.sequence[5:]],resources=dict(campaign_aggregate_seconds=115200),evidence_sha256={'evidence/proposal.json':d.sha(self.package/'evidence/proposal.json')})
+        self.policy['predecessor']['training_resume_provenance_sha256']=d.sha(resume/'provenance.json')
+        self.policy['shared_run']={'expires_utc':'2099-01-02T00:00:00+00:00'}
         d.write(self.package/'allocation_protocol.json',self.policy)
         self.current=dict(source_sha256=self.newsource,allocation_protocol_sha256=d.sha(self.package/'allocation_protocol.json'),runtime=self.runtime,library_sha256='library',build_receipt_sha256='build')
         self.args=SimpleNamespace(prior_index=self.prior/'index.json',prior_review=self.review)
@@ -84,7 +89,7 @@ class TransitionControls(unittest.TestCase):
                 new=d.accepted_index(args,a,f.policy,f.current,f.cases,second)
             runner.assert_not_called();self.assertEqual(new['transition'],index['transition'])
             for name in index['transition']['files']:self.assertEqual((first/name).read_bytes(),(second/name).read_bytes())
-            self.assertEqual(new['cases'],index['cases']);self.assertEqual(len(new['reviews']),2)
+            self.assertEqual(new['cases'],index['cases']);self.assertEqual(len(new['reviews']),3)
 
     def test_source_runtime_native_schema_and_protocol_tampering_rejected(self):
         with tempfile.TemporaryDirectory()as temp,ExitStack()as stack:
@@ -107,6 +112,16 @@ class TransitionControls(unittest.TestCase):
                 f=Fixture(Path(temp));f.patch(stack);first=f.root/'one';index=f.migrate(first);index[key]=value
                 args,a=f.new_parent(index,first);out=f.root/'two';out.mkdir()
                 with self.assertRaisesRegex(ValueError,'Failed/partial'):d.accepted_index(args,a,f.policy,f.current,f.cases,out)
+
+    def test_missing_resume_and_removed_original_review_are_rejected(self):
+        for kind in ('missing_resume','removed_review','provenance'):
+            with self.subTest(kind=kind),tempfile.TemporaryDirectory()as temp,ExitStack()as stack:
+                f=Fixture(Path(temp));f.patch(stack);first=f.root/'one';index=f.migrate(first)
+                if kind=='missing_resume':(first/'training_resume').rename(first/'retained_but_missing')
+                elif kind=='removed_review':index['reviews']=index['reviews'][1:]
+                else:d.write(first/'training_resume/provenance.json',{'invented_changed_provenance':True})
+                args,a=f.new_parent(index,first);out=f.root/'two';out.mkdir()
+                with self.assertRaises(ValueError):d.accepted_index(args,a,f.policy,f.current,f.cases,out)
 
     def test_only_pinned_old_index_and_transition_review_are_eligible(self):
         for field in ('prior_index_sha256','transition_review_sha256'):
@@ -175,12 +190,12 @@ class AdmissionControls(unittest.TestCase):
             build=root/'build.json';d.write(build,dict(passed=True,source_sha256=d.sha(d.legacy.SCIENCE/'attenuation.cpp'),library_sha256=d.sha(library)))
             runtime={'essential':{'fixture':True}}
             current=dict(source_sha256={'fixture':'pin'},allocation_protocol_sha256='allocation',runtime=runtime,library_sha256=d.sha(library),build_receipt_sha256=d.sha(build))
-            policy=dict(predecessor={**current,'runtime_essential':runtime['essential']},resources=dict(batch_wall_seconds=14400,sampled_process_tree_rss_cap_bytes=6442450944))
+            policy=dict(predecessor={**current,'runtime_essential':runtime['essential']},resources=dict(batch_wall_seconds=14400,sampled_process_tree_rss_cap_bytes=6442450944),shared_run={'expires_utc':'2099-01-02T00:00:00+00:00'})
             grant=dict(mode='budgeted_campaign',independent_review_passed=True,scheduler_review_passed=True,external_supervision=True,source_sha256=current['source_sha256'],allocation_protocol_sha256='allocation',expires_utc='2099-01-01T00:00:00+00:00',lease_token_sha256=hashlib.sha256(b'fixture').hexdigest(),threads=2,workers=1,sampled_process_tree_rss_cap_bytes=6442450944,library_sha256=d.sha(library),build_receipt_sha256=d.sha(build),numerical_attempt_id='fixture-id',wall_seconds=420,case_id='f',case_ids=['f'])
             args=SimpleNamespace(admission=root/'admission.json',library=library,build_receipt=build)
             with patch.dict(os.environ,{'JOINT_NUMERICAL_LEASE_TOKEN':'fixture'}):
                 d.write(args.admission,grant);self.assertEqual(d.check_admission(args,policy,current),grant)
-                for field,value in [('mode','campaign'),('source_sha256',{}),('allocation_protocol_sha256','wrong'),('external_supervision',False),('library_sha256','wrong'),('build_receipt_sha256','wrong'),('threads',3),('wall_seconds',True),('wall_seconds',14401),('case_ids',['g']),('lease_token_sha256','wrong')]:
+                for field,value in [('mode','campaign'),('source_sha256',{}),('allocation_protocol_sha256','wrong'),('external_supervision',False),('library_sha256','wrong'),('build_receipt_sha256','wrong'),('threads',3),('wall_seconds',True),('wall_seconds',14401),('case_ids',['g']),('lease_token_sha256','wrong'),('expires_utc','2100-01-01T00:00:00+00:00')]:
                     with self.subTest(field=field):
                         d.write(args.admission,{**grant,field:value})
                         with self.assertRaises(ValueError):d.check_admission(args,policy,current)

@@ -50,7 +50,8 @@ def check_admission(args,policy,current):
     require(a['mode']=='budgeted_campaign','Explicit budgeted mode required')
     require(a['independent_review_passed']is True and a['scheduler_review_passed']is True and a['external_supervision']is True,'Independent source/scheduler/supervision admission required')
     require(a['source_sha256']==current['source_sha256']and a['allocation_protocol_sha256']==current['allocation_protocol_sha256'],'Admitted source/allocation differs')
-    require(datetime.datetime.fromisoformat(a['expires_utc'])>datetime.datetime.now(datetime.timezone.utc),'Expired admission')
+    expiry=datetime.datetime.fromisoformat(a['expires_utc'])
+    require(datetime.datetime.now(datetime.timezone.utc)<expiry<=datetime.datetime.fromisoformat(policy['shared_run']['expires_utc']),'Expired admission or expiry exceeds unchanged shared run')
     token=os.environ.get('JOINT_NUMERICAL_LEASE_TOKEN','')
     require(token and hashlib.sha256(token.encode()).hexdigest()==a['lease_token_sha256'],'Numerical lease attestation mismatch')
     require(a['threads']==2 and a['workers']==1 and a['sampled_process_tree_rss_cap_bytes']==r['sampled_process_tree_rss_cap_bytes'],'Execution resources differ')
@@ -88,13 +89,26 @@ def validate_transition(index,policy,root):
     for name,pin in expected.items():require(sha(frozen.safe(root,name))==pin,'Transition evidence changed: '+name)
     predecessor=read(root/'transition/predecessor_index.json')
     require(index['cases'][:5]==predecessor['cases']and index['attempts'][:len(predecessor['attempts'])]==predecessor['attempts'],'Original accepted cases/charged attempts changed')
+    require(index['reviews'][:len(predecessor['reviews'])]==predecessor['reviews'],'Original review prefix changed')
+    validate_resume(root,index,policy)
 
 
-def copy_resume(root,out):
-    if (root/'training_resume').exists():
-        provenance=read(root/'training_resume/provenance.json')
-        for key,relative in provenance['evidence_files'].items():require(sha(frozen.safe(root,relative))==provenance[key],'Original resume evidence changed')
-        shutil.copytree(root/'training_resume',out/'training_resume')
+def validate_resume(root,index,policy):
+    require((root/'training_resume').is_dir(),'Original training_resume directory is required')
+    first=index['cases'][0];path=frozen.safe(root,first['file'])
+    require(sha(path)==first['sha256'],'Frozen first-case report changed')
+    provenance_path=root/'training_resume/provenance.json'
+    require(sha(provenance_path)==policy['predecessor']['training_resume_provenance_sha256'],'Original resume provenance bytes changed')
+    provenance=read(provenance_path)
+    require(provenance==read(path)['resume_provenance'],'Resume provenance differs from frozen first case')
+    expected={'training_resume/provenance.json',*provenance['evidence_files'].values()}
+    require({p.relative_to(root).as_posix()for p in (root/'training_resume').rglob('*')if p.is_file()}==expected,'Original resume evidence roster differs')
+    for key,relative in provenance['evidence_files'].items():require(sha(frozen.safe(root,relative))==provenance[key],'Original resume evidence changed')
+
+
+def copy_resume(root,out,index,policy):
+    validate_resume(root,index,policy)
+    shutil.copytree(root/'training_resume',out/'training_resume')
 
 
 def copy_new_index(args,admission,policy,current,cases,out):
@@ -125,7 +139,7 @@ def copy_new_index(args,admission,policy,current,cases,out):
         legacy.copy_bound(root,out,entry['file'],entry['sha256'])
     for entry in index['reviews']:legacy.copy_bound(root,out,entry['file'],entry['sha256'])
     for name,pin in index['transition']['files'].items():legacy.copy_bound(root,out,name,pin)
-    copy_resume(root,out);shutil.copy2(path,out/'parent_index.json')
+    copy_resume(root,out,index,policy);shutil.copy2(path,out/'parent_index.json')
     name='reviews/'+sha(review_path)+'.json';(out/'reviews').mkdir(exist_ok=True)
     require(not(out/name).exists(),'Repeated acceptance review');shutil.copy2(review_path,out/name)
     index['reviews'].append(dict(file=name,sha256=sha(review_path),accepted_index_sha256=sha(path)))
