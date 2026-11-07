@@ -1,0 +1,142 @@
+{
+  "schema": "independent_original_s04_pilot_output_review_v1",
+  "passed": true,
+  "status": "passed_independent_output_review",
+  "reviewer": "/root/continuation_cpu",
+  "artifact_sha256": "876c152e0e19ebcac970da8b43b19f4d3f4b31421346969c88ad0764eb7a6764",
+  "source_commit": "4ffb04fa6959ae3dac612138cb5f21acd168c1c3",
+  "result_sha256": "a95b84929bd929bb9c76999b7ef78f8e3b6fc68a207999f94d11f4ab94204fa8",
+  "registry_sha256": "81d9e733d0b83f6d8c0c7b12c71bb92ccac9d40d379e145b3d2a3feebc840349",
+  "input_manifest_sha256": "c798386e13df2d7607bb067681358112eb111fb9f25176b1ccd71871e2a28869",
+  "source_sha256": {
+    "__init__.py": "66dc04f1795b3ecf23d3a6dc7e3570d9c0592cd0cd214d981fdf179efe246f56",
+    "core.py": "e40c3a4ab5e2b8017edec91c7eac60ee4c5d4b7dd7c1cc9817e9d293d7744108",
+    "inhibition_build.py": "e76bc71041c4e09d0d464280a75e1a5bc8c86132a07bfcbab3eec870cc7905ad",
+    "inhibition_replay.py": "ae0a3a0b67bc8b94fd91bc95a35f12ed342df6884ecc5f33fc13628ac02bc8b0"
+  },
+  "row_ids": [
+    "S04_R0_S410012",
+    "S04_R0_S410005",
+    "S04_R1_S410114",
+    "S04_R3_S410320"
+  ],
+  "passed_rows": 4,
+  "full_registry": false,
+  "entire_task_complete": false,
+  "controls": {
+    "six_combinations_passed": true,
+    "maximum_split_delta": 8.881784197001252e-16,
+    "analytic_floor_max": 8.881784197001252e-16
+  },
+  "selected_nll_checks": 24,
+  "floor_nll_checks": 24,
+  "selected_nll_max_absolute_delta": 2.874003257602453e-10,
+  "floor_nll_max_absolute_delta": 2.2737367544323206e-13,
+  "deficit_and_point_component_checks": 96,
+  "component_max_absolute_delta": 2.881108684960054e-10,
+  "gradient_diagnostic_count": 144,
+  "gradient_max_absolute_delta": 4.7452272156078834e-07,
+  "gradient_acceptance_scope": "Retained diagnostics, not asserted as a separate gradient acceptance gate.",
+  "procedure_gain_checks": 20,
+  "gain_max_absolute_delta": 2.874003257602453e-10,
+  "mark_terms_independently_reconstructed": 8,
+  "mark_max_absolute_delta": 0.0,
+  "rows": [
+    {
+      "id": "S04_R0_S410012",
+      "stage": "first_pass",
+      "phase_orders": {
+        "train": 8,
+        "test": 16
+      },
+      "n_train": 137,
+      "n_test": 129,
+      "chunks": {
+        "train": 1,
+        "test": 5
+      },
+      "historical_grid_digest_matches": {
+        "train": false,
+        "test": false
+      }
+    },
+    {
+      "id": "S04_R0_S410005",
+      "stage": "fixed_state_refinement",
+      "phase_orders": {
+        "train": 32,
+        "test": 32
+      },
+      "n_train": 78,
+      "n_test": 134,
+      "chunks": {
+        "train": 22,
+        "test": 39
+      },
+      "historical_grid_digest_matches": {
+        "train": false,
+        "test": false
+      }
+    },
+    {
+      "id": "S04_R1_S410114",
+      "stage": "order16_refit",
+      "phase_orders": {
+        "train": 16,
+        "test": 32
+      },
+      "n_train": 85,
+      "n_test": 206,
+      "chunks": {
+        "train": 3,
+        "test": 52
+      },
+      "historical_grid_digest_matches": {
+        "train": false,
+        "test": false
+      }
+    },
+    {
+      "id": "S04_R3_S410320",
+      "stage": "order16_refit",
+      "phase_orders": {
+        "train": 16,
+        "test": 32
+      },
+      "n_train": 140,
+      "n_test": 27,
+      "chunks": {
+        "train": 4,
+        "test": 7
+      },
+      "historical_grid_digest_matches": {
+        "train": false,
+        "test": false
+      }
+    }
+  ],
+  "native_builds": {
+    "cpu": {
+      "library_sha256": "dfb9cca0517b9df51c7f019d847b5b68fa072fca2c17a54af2075ea9ed99f464",
+      "build_receipt_sha256": "c3b498961d224921b69e6231442f29f15ea3254ac2320df8d5b566104e7c534e"
+    },
+    "radial": {
+      "library_sha256": "415ba4ea9c4e362535022122ce0c509d53323ecff6ff9af75825f6c04d95f748",
+      "build_receipt_sha256": "8c5ddbbec7636cf3e02e259f93a2f91738e7d7517255f6abba183e6b1f9dc7e9"
+    }
+  },
+  "supervision": {
+    "status": "passed",
+    "execution_wall_seconds": 1015.1171758490001,
+    "sampled_peak_tree_rss_bytes": 650911744,
+    "minimum_sampled_host_available_bytes": 14852943872
+  },
+  "science_elapsed_seconds": 1014.4878650070001,
+  "prior_failed_execution_preserved": {
+    "receipt_sha256": "b4ab4e90b5bf7f9738b9f94b9f6c5bad34a5abfe26aab839fd92bcc6bc06ad29",
+    "historical_rows": 0
+  },
+  "audit_script_sha256": "6164dd8e3dfd773ea021a3734e9f7282bf1b5dc2922098e6d74a67ed4b88dc2d",
+  "scientific_calls_in_audit": 0,
+  "scope": "Independent retained-output arithmetic and custody: original selected/floor vectors, all original stage-specific orders, training-only BIC choices, strict wins and joint P/E/C/M values checked. No optimizer, generator, native likelihood or feature construction rerun by reviewer. Grid byte identity is diagnostic and is not falsely asserted when platform reconstruction hashes differ. This accepts4 fixed pilot cases, not the remaining76 or all manuscript tables."
+}
