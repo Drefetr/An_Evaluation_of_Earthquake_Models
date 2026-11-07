@@ -1,0 +1,28 @@
+{
+  "schema": "independent_source_review_v1",
+  "passed": true,
+  "reviewer": "/root",
+  "author": "/root/recover_jma",
+  "author_commit": "dd07331c9fad3236527be92124576208bd450d6d",
+  "source_sha256": {
+    "scripts/run_continuation.py": "17dc7038b5f72585baff9d7584c09eb666287b1173ba14d26ce94e83188b9280",
+    ".github/workflows/research-continuation.yml": "bd0fc2c9039c8ba4f2a79caea8112b7a6c4407439823147a26e495a8731d326e",
+    "tests/test_continuation_controller.py": "9631a6da80a638e77941b1062d651f91904a34520bcb6d47e056d6f6854232d4",
+    "scripts/reproduce_cpu.py": "ea02a88651ad5edb4d415063898f0d5e678e95d51246bd7d42db62ff447b02b8"
+  },
+  "scope": "Source review and33 constructed controls only; no native build, history generation, likelihood evaluation or fitted-state search.",
+  "checks": [
+    "Only declared productivity-profile pilot4 or S03 remaining20 admitted",
+    "Exact roster, planpins, registry/proposal and accepted execution inventory required",
+    "Published accepted rows cannot be repeated by this dispatch",
+    "Public reader controls build and evaluation under one bounded supervisor",
+    "Exact requested result roster, result hash, reader result and supervisor success required",
+    "Default joint scientific path unchanged",
+    "Metadata/build/report/native-components retained; duplicate input caches excluded"
+  ],
+  "test_command": "python -B -m unittest discover -s tests -p test_continuation_controller.py -q",
+  "tests": 33,
+  "failures": 0,
+  "errors": 0,
+  "numerical_calls": 0
+}

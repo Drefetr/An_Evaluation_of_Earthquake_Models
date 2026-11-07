@@ -1,0 +1,75 @@
+{
+  "schema": "independent_cached_reconciliation_source_review_v1",
+  "passed": true,
+  "status": "source_review_passed_ready_for_separately_admitted_arithmetic",
+  "reviewer": "/root/continuation_cpu",
+  "task": "joint_output_and_replay_acceptance",
+  "attempt_id": "0fda2530-b9a7-4f44-a2eb-190693fbf9c0",
+  "reviewed_utc": "2026-11-07T07:49:08.279869+00:00",
+  "source_commits": [
+    "4f2c1cb112ba287640ea12701cb0819d4959b15f",
+    "d8273a835a0ab60841cd2792384d21ebdb821bea"
+  ],
+  "predecessor_commit": "152b270deb0e4cc4b3231e8cfbeba0047b883273",
+  "current_files_sha256": {
+    "reproduction/score_replay/reconcile_cached_tables.py": "0947e4b28ca6bce8287dd6e1c472d7c41bcd3f4c1bc5a56011b1271231b2be4d",
+    "reproduction/score_replay/table_links_cached.json": "688b05667f1621f0271c8678c6bfad741fa4efabba1884bb0b444497b7f7ac0a",
+    "tests/test_score_replay.py": "fdb264e896c171b133d4dc315cea2276f48678cd460d06391c7343f84a7734d3",
+    "reproduction/score_replay/cached_registry.json": "168243c53c22fd6e043d3b7a1cfc54b08f9ca20ded11b5270646ef2f32b8e671",
+    "reproduction/score_replay/cached_supplement/cached_registry.json": "07a4a27d0f8e607b7d32f6efdbb6976a8e572c8f561d8afe04688c91cee5bbac",
+    "reproduction/score_replay/productivity_profiles/cached_registry.json": "83ca48cb3b380c087bd9641abb71d251c97638ad145c4a79ae424959e294d496"
+  },
+  "scope": "Independent source, cell-expression and invented-input control review only. No historical likelihood, fit, simulation, actual table reconciliation or new scientific output aggregation was executed in this review.",
+  "must_fix_findings": [],
+  "checks": {
+    "prior_4604_cell_records_and_expressions_unchanged": true,
+    "prior_table_source_rows_unchanged": true,
+    "prior_array_and_refinement_AST_unchanged": true,
+    "prior_evaluate_arithmetic_AST_unchanged_after_new_profile_branch": true,
+    "prior_base_510_registry_unchanged": true,
+    "new_supplement_cells": 94,
+    "new_profile_cells": 12,
+    "new_profile_support_string_cells": 6,
+    "new_supplement_unique_rows": 56,
+    "new_supplement_registry_rows": 44,
+    "supplement_cells_by_table": {
+      "09_temporal_mark_extensions:table:6": 3,
+      "10_nz_spatial_background:table:5": 15,
+      "ch09_audit:table:22": 40,
+      "ch10_audit:table:9": 36
+    },
+    "independent_mapping_basis": "Explicit manuscript row headings/contrast direction/fold and phase; semantic formulas constructed independently, then compared to every new expression and author crosswalk. Displayed numeric scores were not expression operands.",
+    "new_expression_leaves": "Only actual components joint/timing/M/n_events; fixed sum/scale and target-count divisors. No expected-score or ledger-score operands.",
+    "profile_rule": "All seven predeclared nodes per case/model; actual training NLL minus actual selected training NLL <= 2.0; selected coordinate and sparse included nodes formatted; exact threshold included. Test NLL is diagnostic only and test vectors must equal training vectors.",
+    "profile_failure_controls": "Missing rows propagate uncovered, malformed/nonfinite/state-mismatched rows fail; actual joint/NLL signs checked; empty support derived from all nodes, never copied from display.",
+    "evidence_checks": "Additional registry SHA, row file/ZIP/member SHA, passed/replayed/id and state/cache/Python/native-source identity required. Additional rows cannot replace base rows. Missing mapped actuals remain uncovered and are not replaced by expected values.",
+    "author_constructed_tests": {
+      "run": 8,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    "independent_invented_I0_controls": 2
+  },
+  "retained_regression_record_inspected": {
+    "path": "validation/reproductions/score_replay_20261107/cached/table_deltas.json",
+    "sha256": "8439c699fda83c3f21562257e711c17572ca1ea62df4a55ae743cbeccd5c6937",
+    "mapped_cells": 4604,
+    "display_roundoff_flags": 2,
+    "passed": true,
+    "rerun_in_this_review": false,
+    "basis_for_preservation": "Exact old cell records and old arithmetic AST are unchanged; actual arithmetic rerun belongs to conductor admission."
+  },
+  "artifacts": {
+    "audit_cached_reconciliation_source.py": "f6ea425c5ed1e0a3f2c24402520e2d3e1f259dfda17029c248d768d96eb75d29",
+    "cached_reconciliation_constructed_tests.log": "368200c874e91980a3ee5b31406c5e7dc89b32401d935e15bac673bb1a51f1c9",
+    "supplement_operand_crosswalk.json": "806b2ff061337ab2577a12e55655045f868b1a952ca2a66cc16663f162229964"
+  },
+  "limitations": [
+    "This approval is for the source and expression map, not acceptance of yet-unperformed additional table arithmetic.",
+    "The module documents passed as all mapped supplied cells reconcile; it does not mean all chapter tables are covered. Missing actual evidence is visible as uncovered.",
+    "Sparse profile support is a descriptive training-score set, not a confidence interval; membership stability relative to replay tolerances is explicitly diagnostic."
+  ],
+  "scientific_evaluations": 0,
+  "repository_files_modified": []
+}
