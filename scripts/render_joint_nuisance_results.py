@@ -196,25 +196,25 @@ def render(summary,summary_path,summary_sha,tex_location):
         row=summary[index];text=LABELS[row['model']]+' ('+row['gate']+')'
         return text+(r'$^{\dagger}$' if row['primary'] else '')
     lines=[r'% Staged from the accepted joint study; this file is not installed automatically.',
-        r'\begin{table}[htbp]',r'\centering',
+        r'\begin{table}[htbp]',r'\centering',r'\setlength{\tabcolsep}{3pt}',
         r'\caption{Held-out joint-score gains against the jointly fitted uninhibited floor, with the common spatial and mark laws held fixed. Means and medians are in nats. Wins use the saved strict-positive criterion; near-zero flags remain separate. Wilson intervals are pointwise win-rate intervals, not simultaneous intervals or uncertainty intervals for mean gains. Marked rows are the prespecified primary contrasts; other rows are descriptive. Off-floor counts use the saved positive-inhibition indicators.}',
-        r'\label{tab:s04b-joint-nuisance-scores}',r'\begin{tabular}{llrrrrr}',r'\toprule',
-        r'Regime & Procedure & Mean & Median & Wins & Wilson interval & Off-floor \\',r'\midrule']
+        r'\label{tab:s04b-joint-nuisance-scores}',r'\begin{tabular}{@{}llrrrrr@{}}',r'\toprule',
+        r'Regime & Procedure & Mean & Median & Wins & \shortstack[r]{Wilson\\interval} & Off-floor \\',r'\midrule']
     for i in order:
         lines.append('S'+cell(i,'regime')+' & '+label(i)+' & '+cell(i,'mean_gain',4)+' & '+cell(i,'median_gain',4)+
             ' & '+cell(i,'wins')+'/'+cell(i,'N')+' & ['+cell(i,'wilson95/0',4)+', '+cell(i,'wilson95/1',4)+'] & '+cell(i,'off_floor')+r' \\')
-    lines.extend([r'\bottomrule',r'\end{tabular}',r'\end{table}','',r'\begin{table}[htbp]',r'\centering',
+    lines.extend([r'\bottomrule',r'\end{tabular}',r'\end{table}','',r'\begin{table}[htbp]',r'\centering',r'\setlength{\tabcolsep}{3pt}',
         r'\caption{Selected-state boundary and search diagnostics for the same procedures. Boundary pairs give lower/upper counts for the background intercept and inhibition strength. Failed attempts count unsuccessful optimizer returns for the shared null and named alternative; raw and gated rows reuse searches, so these counts must not be added across rows. Unknowns, null-search gaps, and coarse/fine gate disagreements remain explicit. A null-search gap prevents attributing a procedure contrast to inhibition.}',
-        r'\label{tab:s04b-joint-nuisance-diagnostics}',r'\begin{tabular}{llrrrrrr}',r'\toprule',
-        r'Regime & Procedure & $a$ bounds & $\eta$ bounds & Failed attempts & Unknown & Null gaps & Gate differences \\',r'\midrule'])
+        r'\label{tab:s04b-joint-nuisance-diagnostics}',r'\begin{tabular}{@{}llrrrrrr@{}}',r'\toprule',
+        r'Regime & Procedure & \shortstack[r]{$a$\\bounds} & \shortstack[r]{$\eta$\\bounds} & \shortstack[r]{Failed\\attempts} & Unknown & \shortstack[r]{Null\\gaps} & \shortstack[r]{Gate\\differences} \\',r'\midrule'])
     for i in order:
         lines.append('S'+cell(i,'regime')+' & '+label(i)+' & '+cell(i,'coordinate_boundaries/a/lower')+'/'+cell(i,'coordinate_boundaries/a/upper')+
             ' & '+cell(i,'eta_lower')+'/'+cell(i,'eta_upper')+' & '+cell(i,'optimizer_failed_attempts')+' & '+cell(i,'unknowns')+
             ' & '+cell(i,'null_search_gap_cases')+' & '+cell(i,'coarse_fine_gate_disagreements')+r' \\')
-    lines.extend([r'\bottomrule',r'\end{tabular}',r'\end{table}','',r'\begin{table}[htbp]',r'\centering',
+    lines.extend([r'\bottomrule',r'\end{tabular}',r'\end{table}','',r'\begin{table}[htbp]',r'\centering',r'\setlength{\tabcolsep}{3pt}',
         r'\caption{Floor-return and numerical-near-zero census for the same comparisons. The robust-positive and robust-negative categories use the frozen numerical tolerance; they are not statistical significance claims. Positive near-zero gains still count as strict wins. An alternative can return to zero inhibition with a better nuisance solution than the separately optimized null: such a gain is a procedure and optimizer contrast, not evidence of inhibition. The null-search-gap census is reported in Table~\ref{tab:s04b-joint-nuisance-diagnostics}.}',
-        r'\label{tab:s04b-joint-nuisance-floor-census}',r'\begin{tabular}{llrrrrr}',r'\toprule',
-        r'Regime & Procedure & Floor returns & Near zero & Positive near zero & Robust positive & Robust negative \\',r'\midrule'])
+        r'\label{tab:s04b-joint-nuisance-floor-census}',r'\begin{tabular}{@{}llrrrrr@{}}',r'\toprule',
+        r'Regime & Procedure & \shortstack[r]{Floor\\returns} & \shortstack[r]{Near\\zero} & \shortstack[r]{Positive\\near zero} & \shortstack[r]{Robust\\positive} & \shortstack[r]{Robust\\negative} \\',r'\midrule'])
     for i in order:
         lines.append('S'+cell(i,'regime')+' & '+label(i)+' & '+cell(i,'floor_returns')+' & '+cell(i,'near_zero')+
             ' & '+cell(i,'positive_near_zero')+' & '+cell(i,'robust_positive')+' & '+cell(i,'robust_negative')+r' \\')
