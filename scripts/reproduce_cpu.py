@@ -11,7 +11,7 @@ import hashlib
 import json
 import math
 import os
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 import secrets
 import subprocess
 import sys
@@ -76,6 +76,20 @@ def route_files(route):
     return family, registry, proposal, builder, runner
 
 
+def result_archive_members(member):
+    """Keep the declared ZIP prefix; never normalize or relocate its bytes."""
+    require(isinstance(member, str) and member and '\\' not in member
+            and ':' not in member and '\x00' not in member, 'Invalid science-result archive member')
+    parts = member.split('/')
+    require(all(part not in ('', '.', '..') for part in parts)
+            and len(parts) >= 2 and parts[-2:] == ['science', 'result.json'],
+            'Science-result member must be an exact portable science/result.json path')
+    path = PurePosixPath(member)
+    require(not path.is_absolute() and path.as_posix() == member, 'Noncanonical archive member')
+    admission = (path.parent.parent/'admission.json').as_posix()
+    return member, admission
+
+
 def published_review(route, phase='pilot'):
     """Bind a local ZIP to an actual published review, without inventing one."""
     archive = PUBLISHED/route/(phase+'.zip')
@@ -85,6 +99,7 @@ def published_review(route, phase='pilot'):
     index_pin = None
     index_path = PUBLISHED/'accepted_execution_index.json'
     index_result_hash = None
+    result_member, admission_member = result_archive_members('science/result.json')
     if index_path.is_file():
         index = read(index_path)
         matches = [r for r in index['entries'] if r['route'] == route and r['phase'] == phase]
@@ -100,6 +115,7 @@ def published_review(route, phase='pilot'):
                 'passed_independent_output_review', 'passed_independent_complete_registry_output_audit'), 'Referenced review is not passed')
             reviews.append(dict(path=entry['review_path'], sha256=entry['review_sha256'], scope=review.get('scope')))
             index_result_hash = entry['science_result_sha256']
+            result_member, admission_member = result_archive_members(entry.get('science_result_member', 'science/result.json'))
             index_pin = dict(path=index_path.relative_to(ROOT).as_posix(), sha256=sha(index_path),
                              scope=index.get('scope', 'Published archive/review custody index'))
     for path in sorted((PUBLISHED/route).glob('*.json')):
@@ -111,7 +127,8 @@ def published_review(route, phase='pilot'):
     require(reviews, 'No passed published review pins these archive bytes')
     with zipfile.ZipFile(archive) as source:
         require(len(source.namelist()) == len(set(source.namelist())), 'Duplicate archive member')
-        result_bytes = source.read('science/result.json')
+        require(result_member in source.namelist(), 'Declared science-result archive member is absent')
+        result_bytes = source.read(result_member)
         result_hash = hashlib.sha256(result_bytes).hexdigest()
         require(index_result_hash is None or index_result_hash == result_hash, 'Acceptance-index result mismatch')
         result = json.loads(result_bytes)
@@ -120,9 +137,11 @@ def published_review(route, phase='pilot'):
             record = read(ROOT/item['path'])
             if 'result_sha256' in record:
                 require(record['result_sha256'] == result_hash, 'Published result/review pin mismatch')
-        admission = json.loads(source.read('admission.json')) if 'admission.json' in source.namelist() else None
+        admission = json.loads(source.read(admission_member)) if admission_member in source.namelist() else None
     return dict(archive=archive.relative_to(ROOT).as_posix(), sha256=archive_hash,
-                reviews=reviews, acceptance_index=index_pin, result_sha256=result_hash, result=result, admission=admission)
+                reviews=reviews, acceptance_index=index_pin, result_sha256=result_hash,
+                science_result_member=result_member, admission_member=admission_member if admission is not None else None,
+                result=result, admission=admission)
 
 
 def evidence_inventory():
@@ -142,7 +161,7 @@ def evidence_inventory():
                     published_review_pins_pass=True, actual_mode=actual.get('mode'),
                     actual_requested_rows=actual.get('requested_rows'), actual_passed_rows=actual.get('passed_rows'),
                     actual_catalogues=actual.get('catalogues'), actual_full_complete=actual.get('full_complete'),
-                    result_sha256=record['result_sha256']))
+                    result_sha256=record['result_sha256'],science_result_member=record['science_result_member']))
             except (ValueError, KeyError) as exc:
                 item['executions'].append(dict(archive=archive.relative_to(ROOT).as_posix(), sha256=sha(archive),
                                                 published_review_pins_pass=False, reason=str(exc)))

@@ -423,6 +423,42 @@ class LocalCpuReaderControls(unittest.TestCase):
                 review_path.write_text('{}')
                 with self.assertRaises(ValueError):self.reader.published_review('fake','completion')
 
+    def test_nested_reader_result_preserves_zip_and_uses_matching_admission(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);published=root/'published';(published/'fake').mkdir(parents=True)
+            archive=published/'fake/pilot.zip';raw=json.dumps(dict(passed=True,mode='pilot',rows=[dict(id='invented')])).encode()
+            with zipfile.ZipFile(archive,'w') as stream:
+                stream.writestr('reader/science/result.json',raw)
+                stream.writestr('reader/admission.json',json.dumps(dict(scope='nested exact admission')))
+                stream.writestr('science/result.json',json.dumps(dict(passed=False)))
+                stream.writestr('admission.json',json.dumps(dict(scope='wrong outer admission')))
+            archive_hash=self.reader.sha(archive);result_hash=hashlib.sha256(raw).hexdigest()
+            review_path=published/'fake/review.json'
+            self.reader.write(review_path,dict(passed=True,scope='invented independent output review',result_sha256=result_hash))
+            entry=dict(route='fake',phase='pilot',passed=True,archive='published/fake/pilot.zip',
+                archive_sha256=archive_hash,science_result_sha256=result_hash,science_result_member='reader/science/result.json',
+                review_path='published/fake/review.json',review_sha256=self.reader.sha(review_path))
+            index=published/'accepted_execution_index.json';self.reader.write(index,dict(entries=[entry]))
+            with patch.object(self.reader,'ROOT',root),patch.object(self.reader,'PUBLISHED',published):
+                result=self.reader.published_review('fake','pilot')
+                self.assertEqual(result['science_result_member'],'reader/science/result.json')
+                self.assertEqual(result['admission_member'],'reader/admission.json')
+                self.assertEqual(result['admission']['scope'],'nested exact admission')
+                self.assertEqual(result['result_sha256'],result_hash)
+                self.assertEqual(self.reader.sha(archive),archive_hash)
+                entry['science_result_sha256']='wrong';index.write_text(json.dumps(dict(entries=[entry])))
+                with self.assertRaises(ValueError):self.reader.published_review('fake','pilot')
+
+    def test_science_result_member_rejects_noncanonical_paths(self):
+        for member in ('../reader/science/result.json','/reader/science/result.json',
+                       'reader\\science\\result.json','reader//science/result.json',
+                       'reader/./science/result.json','C:/reader/science/result.json',
+                       'reader/science/result.json/','reader/result.json','',None):
+            with self.subTest(member=member),self.assertRaises(ValueError):
+                self.reader.result_archive_members(member)
+        self.assertEqual(self.reader.result_archive_members('science/result.json'),('science/result.json','admission.json'))
+        self.assertEqual(self.reader.result_archive_members('reader/science/result.json'),('reader/science/result.json','reader/admission.json'))
+
 
 class PublicReaderDispatchControls(unittest.TestCase):
     """Invented dispatch metadata; the public reader is never executed."""
