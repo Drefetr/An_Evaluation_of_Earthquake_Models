@@ -351,6 +351,40 @@ class CachedProfileTableTests(unittest.TestCase):
         self.assertEqual([c['display']for c in support],['0.35, 0.50','0.35, 0.50','none','none','none','none'])
         self.assertEqual(len({c['expression']['group']for c in support}),6)
 
+    def test_all94_supplemental_expressions_use_declared_actual_component_rows(self):
+        root=Path(__file__).resolve().parents[1]/'reproduction/score_replay'
+        links=json.loads((root/'table_links_cached.json').read_text())
+        base=json.loads((root/'cached_registry.json').read_text());supp=json.loads((root/'cached_supplement/cached_registry.json').read_text())
+        byid={r['id']:r for r in base['rows']+supp['rows']};ids=set();count=0
+        def check(expr,phase):
+            if expr['op']=='sum':
+                for child in expr['terms']:check(child,phase)
+            elif expr['op']=='scale':check(expr['value'],phase)
+            else:
+                self.assertEqual((expr['op'],expr['kind']),('atom','components'))
+                self.assertIn(expr['field'],('joint','timing','M','n_events'));self.assertEqual(byid[expr['row']]['phase'],phase);ids.add(expr['row'])
+        for table in links['tables']:
+            for cell in table['cells']:
+                self.assertNotIn('pending_expression',cell)
+                if 'supplement_registry'in cell:
+                    count+=1;check(cell['expression'],'train'if table['id']=='09_temporal_mark_extensions:table:6'else'test')
+        self.assertEqual(count,94);self.assertEqual(len(ids),56)
+        self.assertEqual(len(ids&{r['id']for r in supp['rows']}),44)
+
+    def test_supplemental_contrast_ignores_expected_payload_and_missing_is_not_zero(self):
+        from reproduction.score_replay.reconcile_cached_tables import Evidence,MissingEvidence
+        data=Evidence.__new__(Evidence)
+        values={'free':{'components':{'joint':4.},'expected':{'joint':-999.}},'fixed':{'components':{'joint':1.},'expected':{'joint':999.}}}
+        def actual(name):
+            if name not in values:raise MissingEvidence(name)
+            return values[name]
+        data.row=actual
+        expr={'op':'sum','terms':[{'op':'atom','row':'free','kind':'components','field':'joint'},
+                                 {'op':'scale','weight':-1,'value':{'op':'atom','row':'fixed','kind':'components','field':'joint'}}]}
+        self.assertEqual(data.evaluate(expr),3.)
+        del values['fixed']
+        with self.assertRaises(MissingEvidence):data.evaluate(expr)
+
 
 class CaliforniaPartitionTests(unittest.TestCase):
     def test_observed_blas_matches_scalar_strict_past_and_tiling_controls(self):

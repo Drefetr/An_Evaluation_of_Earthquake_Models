@@ -6,8 +6,8 @@ from the two immutable execution artifacts. Cache access is limited to already
 stored event labels, times, and training-count metadata.
 
 Usage: python -B reproduction/score_replay/reconcile_cached_tables.py --output NEW.json
-Optional --additional-evidence supplies hash-bound actual rows for profile
-support lists. Other pending supplemental expressions remain documentary.
+Optional --additional-evidence supplies hash-bound actual rows for supplemental
+score expressions and profile support lists. Missing rows remain uncovered.
 ``passed`` means all mapped cells reconcile, not that every table is covered.
 """
 from pathlib import Path

@@ -18,20 +18,6 @@
     "source_sha256": "37116ee035e913afc97c485f75ac01086c3c8f6b03a12c160d23ff815bc555af",
     "alignment": "Exact cached event time/excess/order and cell-to-zone labels checked before refinement."
   },
-  "missing_replay_row_ids": [
-    "continuous_location/primary_fold_0/E_global/test",
-    "continuous_location/primary_fold_0/E_oldD_lift/test",
-    "continuous_location/primary_fold_1/E_global/test",
-    "continuous_location/primary_fold_1/E_oldD_lift/test",
-    "continuous_location/primary_fold_2/E_global/test",
-    "continuous_location/primary_fold_2/E_oldD_lift/test",
-    "productivity/primary_fold_0/E0_fixed/train",
-    "productivity/primary_fold_0/E0_free/train",
-    "productivity/primary_fold_1/E0_fixed/train",
-    "productivity/primary_fold_1/E0_free/train",
-    "productivity/primary_fold_2/E0_fixed/train",
-    "productivity/primary_fold_2/E0_free/train"
-  ],
   "row_source_bindings": {
     "mark_prediction/constant_background_fold_0/E0/test": {
       "state_sha256": "7ad4a99b6635c094f2d776a5ce237bf5ef485be0cf17eb55d8c2efc645d7aa3e",
@@ -3630,58 +3616,6 @@
       "result_member": "science/rows/00490/result.json",
       "result_sha256": "7391b1dcb87e690bcf07cfa47ca114dc5ce7dc113df531d5ce17683d1960df18"
     }
-  },
-  "pending_supplement": {
-    "registry": "reproduction/score_replay/cached_supplement/cached_registry.json",
-    "registry_sha256": "07a4a27d0f8e607b7d32f6efdbb6976a8e572c8f561d8afe04688c91cee5bbac",
-    "execution_status": "not_run_at_mapping",
-    "pending_cells": 94,
-    "row_ids": [
-      "background_small_scale/primary_fold_0/primary_fold_0__sensitivity_fixedML_cell_cont_sigma1/test",
-      "background_small_scale/primary_fold_0/primary_fold_0__sensitivity_fixedML_cell_cont_sigma2/test",
-      "background_small_scale/primary_fold_0/primary_fold_0__sensitivity_fixedML_smooth_cont_sigma1/test",
-      "background_small_scale/primary_fold_0/primary_fold_0__sensitivity_fixedML_smooth_cont_sigma2/test",
-      "background_small_scale/primary_fold_1/primary_fold_1__sensitivity_fixedML_cell_cont_sigma1/test",
-      "background_small_scale/primary_fold_1/primary_fold_1__sensitivity_fixedML_cell_cont_sigma2/test",
-      "background_small_scale/primary_fold_1/primary_fold_1__sensitivity_fixedML_smooth_cont_sigma1/test",
-      "background_small_scale/primary_fold_1/primary_fold_1__sensitivity_fixedML_smooth_cont_sigma2/test",
-      "background_small_scale/primary_fold_2/primary_fold_2__sensitivity_fixedML_cell_cont_sigma1/test",
-      "background_small_scale/primary_fold_2/primary_fold_2__sensitivity_fixedML_cell_cont_sigma2/test",
-      "background_small_scale/primary_fold_2/primary_fold_2__sensitivity_fixedML_smooth_cont_sigma1/test",
-      "background_small_scale/primary_fold_2/primary_fold_2__sensitivity_fixedML_smooth_cont_sigma2/test",
-      "continuous_references/primary_fold_0/E_global/test",
-      "continuous_references/primary_fold_0/E_oldD_lift/test",
-      "continuous_references/primary_fold_1/E_global/test",
-      "continuous_references/primary_fold_1/E_oldD_lift/test",
-      "continuous_references/primary_fold_2/E_global/test",
-      "continuous_references/primary_fold_2/E_oldD_lift/test",
-      "mark_prediction_engineering/control_E0_control_00/E0/test",
-      "mark_prediction_engineering/control_E0_control_00/E1/test",
-      "mark_prediction_engineering/control_E0_control_01/E0/test",
-      "mark_prediction_engineering/control_E0_control_01/E1/test",
-      "mark_prediction_engineering/control_E0_control_02/E0/test",
-      "mark_prediction_engineering/control_E0_control_02/E1/test",
-      "mark_prediction_engineering/control_E1_active_00/E0/test",
-      "mark_prediction_engineering/control_E1_active_00/E1/test",
-      "mark_prediction_engineering/control_E1_active_01/E0/test",
-      "mark_prediction_engineering/control_E1_active_01/E1/test",
-      "mark_prediction_engineering/control_E1_active_02/E0/test",
-      "mark_prediction_engineering/control_E1_active_02/E1/test",
-      "productivity_engineering/control_E0_r035_00/E0_fixed/test",
-      "productivity_engineering/control_E0_r035_00/E0_free/test",
-      "productivity_engineering/control_E0_r035_01/E0_fixed/test",
-      "productivity_engineering/control_E0_r035_01/E0_free/test",
-      "productivity_engineering/control_E0_r070_00/E0_fixed/test",
-      "productivity_engineering/control_E0_r070_00/E0_free/test",
-      "productivity_engineering/control_E0_r070_01/E0_fixed/test",
-      "productivity_engineering/control_E0_r070_01/E0_free/test",
-      "productivity_training/primary_fold_0/E0_fixed/train",
-      "productivity_training/primary_fold_0/E0_free/train",
-      "productivity_training/primary_fold_1/E0_fixed/train",
-      "productivity_training/primary_fold_1/E0_free/train",
-      "productivity_training/primary_fold_2/E0_fixed/train",
-      "productivity_training/primary_fold_2/E0_free/train"
-    ]
   },
   "rounding_authorities": [
     {
@@ -8510,8 +8444,7 @@
           "display_value": 8.622,
           "rounding_half_unit": 0.0005,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -8533,7 +8466,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "2:6",
@@ -8691,8 +8624,7 @@
           "display_value": 2.296,
           "rounding_half_unit": 0.0005,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -8714,7 +8646,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "3:6",
@@ -8872,8 +8804,7 @@
           "display_value": 5.228,
           "rounding_half_unit": 0.0005,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -8895,7 +8826,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "4:6",
@@ -34670,8 +34601,7 @@
           "display_value": 549.307187,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -34697,7 +34627,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "3:2",
@@ -34707,8 +34637,7 @@
           "display_value": 462.729938,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -34734,7 +34663,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "3:3",
@@ -34744,8 +34673,7 @@
           "display_value": 451.046777,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -34771,7 +34699,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "3:4",
@@ -34781,8 +34709,7 @@
           "display_value": 1463.083902,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -34866,7 +34793,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "3:5",
@@ -34876,8 +34803,7 @@
           "display_value": 2.39065997,
           "rounding_half_unit": 5e-10,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -34961,7 +34887,7 @@
             ],
             "divisor": 612
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "4:1",
@@ -34971,8 +34897,7 @@
           "display_value": 657.856745,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -34998,7 +34923,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "4:2",
@@ -35008,8 +34933,7 @@
           "display_value": 614.999257,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -35035,7 +34959,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "4:3",
@@ -35045,8 +34969,7 @@
           "display_value": 614.858124,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -35072,7 +34995,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "4:4",
@@ -35082,8 +35005,7 @@
           "display_value": 1887.714125,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -35167,7 +35089,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "4:5",
@@ -35177,8 +35099,7 @@
           "display_value": 3.084500205,
           "rounding_half_unit": 5e-10,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -35262,7 +35183,7 @@
             ],
             "divisor": 612
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "5:1",
@@ -35854,8 +35775,7 @@
           "display_value": -0.559734,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -35881,7 +35801,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "7:2",
@@ -35891,8 +35811,7 @@
           "display_value": 5.266381,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -35918,7 +35837,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "7:3",
@@ -35928,8 +35847,7 @@
           "display_value": -0.42663,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -35955,7 +35873,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "7:4",
@@ -35965,8 +35883,7 @@
           "display_value": 4.280018,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -36050,7 +35967,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "7:5",
@@ -36060,8 +35977,7 @@
           "display_value": 0.006993493,
           "rounding_half_unit": 5e-10,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -36145,7 +36061,7 @@
             ],
             "divisor": 612
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         }
       ]
     },
@@ -98340,14 +98256,13 @@
           "display_value": 612.0,
           "rounding_half_unit": 0.0,
           "display_type": "integer",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "atom",
             "row": "mark_prediction_engineering/control_E0_control_00/E1/test",
             "kind": "components",
             "field": "n_events"
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "2:3",
@@ -98357,8 +98272,7 @@
           "display_value": -0.574423,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -98384,7 +98298,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "2:4",
@@ -98394,8 +98308,7 @@
           "display_value": -3.729507,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -98421,7 +98334,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "2:5",
@@ -98431,8 +98344,7 @@
           "display_value": -4.30393,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -98458,7 +98370,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "3:2",
@@ -98468,14 +98380,13 @@
           "display_value": 405.0,
           "rounding_half_unit": 0.0,
           "display_type": "integer",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "atom",
             "row": "mark_prediction_engineering/control_E0_control_01/E1/test",
             "kind": "components",
             "field": "n_events"
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "3:3",
@@ -98485,8 +98396,7 @@
           "display_value": 0.441037,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -98512,7 +98422,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "3:4",
@@ -98522,8 +98432,7 @@
           "display_value": -0.178469,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -98549,7 +98458,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "3:5",
@@ -98559,8 +98468,7 @@
           "display_value": 0.262568,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -98586,7 +98494,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "4:2",
@@ -98596,14 +98504,13 @@
           "display_value": 372.0,
           "rounding_half_unit": 0.0,
           "display_type": "integer",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "atom",
             "row": "mark_prediction_engineering/control_E0_control_02/E1/test",
             "kind": "components",
             "field": "n_events"
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "4:3",
@@ -98613,8 +98520,7 @@
           "display_value": 0.407162,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -98640,7 +98546,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "4:4",
@@ -98650,8 +98556,7 @@
           "display_value": -0.574953,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -98677,7 +98582,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "4:5",
@@ -98687,8 +98592,7 @@
           "display_value": -0.16779,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -98714,7 +98618,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "5:2",
@@ -98724,14 +98628,13 @@
           "display_value": 339.0,
           "rounding_half_unit": 0.0,
           "display_type": "integer",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "atom",
             "row": "mark_prediction_engineering/control_E1_active_00/E1/test",
             "kind": "components",
             "field": "n_events"
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "5:3",
@@ -98741,8 +98644,7 @@
           "display_value": 0.369123,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -98768,7 +98670,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "5:4",
@@ -98778,8 +98680,7 @@
           "display_value": 7.331815,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -98805,7 +98706,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "5:5",
@@ -98815,8 +98716,7 @@
           "display_value": 7.700938,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -98842,7 +98742,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "6:2",
@@ -98852,14 +98752,13 @@
           "display_value": 386.0,
           "rounding_half_unit": 0.0,
           "display_type": "integer",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "atom",
             "row": "mark_prediction_engineering/control_E1_active_01/E1/test",
             "kind": "components",
             "field": "n_events"
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "6:3",
@@ -98869,8 +98768,7 @@
           "display_value": 0.7551,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -98896,7 +98794,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "6:4",
@@ -98906,8 +98804,7 @@
           "display_value": 24.400509,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -98933,7 +98830,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "6:5",
@@ -98943,8 +98840,7 @@
           "display_value": 25.15561,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -98970,7 +98866,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "7:2",
@@ -98980,14 +98876,13 @@
           "display_value": 363.0,
           "rounding_half_unit": 0.0,
           "display_type": "integer",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "atom",
             "row": "mark_prediction_engineering/control_E1_active_02/E1/test",
             "kind": "components",
             "field": "n_events"
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "7:3",
@@ -98997,8 +98892,7 @@
           "display_value": 0.669956,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -99024,7 +98918,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "7:4",
@@ -99034,8 +98928,7 @@
           "display_value": 15.16225,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -99061,7 +98954,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "7:5",
@@ -99071,8 +98964,7 @@
           "display_value": 15.832205,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -99098,7 +98990,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "8:2",
@@ -99108,14 +99000,13 @@
           "display_value": 67.0,
           "rounding_half_unit": 0.0,
           "display_type": "integer",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "atom",
             "row": "productivity_engineering/control_E0_r070_00/E0_free/test",
             "kind": "components",
             "field": "n_events"
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "8:3",
@@ -99125,8 +99016,7 @@
           "display_value": 0.114099,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -99152,7 +99042,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "8:4",
@@ -99162,8 +99052,7 @@
           "display_value": 0.0,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -99189,7 +99078,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "8:5",
@@ -99199,8 +99088,7 @@
           "display_value": 0.114099,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -99226,7 +99114,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "9:2",
@@ -99236,14 +99124,13 @@
           "display_value": 93.0,
           "rounding_half_unit": 0.0,
           "display_type": "integer",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "atom",
             "row": "productivity_engineering/control_E0_r070_01/E0_free/test",
             "kind": "components",
             "field": "n_events"
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "9:3",
@@ -99253,8 +99140,7 @@
           "display_value": 0.085151,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -99280,7 +99166,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "9:4",
@@ -99290,8 +99176,7 @@
           "display_value": 0.0,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -99317,7 +99202,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "9:5",
@@ -99327,8 +99212,7 @@
           "display_value": 0.085151,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -99354,7 +99238,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "10:2",
@@ -99364,14 +99248,13 @@
           "display_value": 82.0,
           "rounding_half_unit": 0.0,
           "display_type": "integer",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "atom",
             "row": "productivity_engineering/control_E0_r035_00/E0_free/test",
             "kind": "components",
             "field": "n_events"
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "10:3",
@@ -99381,8 +99264,7 @@
           "display_value": 4.994451,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -99408,7 +99290,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "10:4",
@@ -99418,8 +99300,7 @@
           "display_value": 0.0,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -99445,7 +99326,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "10:5",
@@ -99455,8 +99336,7 @@
           "display_value": 4.994451,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -99482,7 +99362,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "11:2",
@@ -99492,14 +99372,13 @@
           "display_value": 87.0,
           "rounding_half_unit": 0.0,
           "display_type": "integer",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "atom",
             "row": "productivity_engineering/control_E0_r035_01/E0_free/test",
             "kind": "components",
             "field": "n_events"
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "11:3",
@@ -99509,8 +99388,7 @@
           "display_value": 11.847512,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -99536,7 +99414,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "11:4",
@@ -99546,8 +99424,7 @@
           "display_value": 0.0,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -99573,7 +99450,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "11:5",
@@ -99583,8 +99460,7 @@
           "display_value": 11.847512,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -99610,7 +99486,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         }
       ]
     },
@@ -185354,8 +185230,7 @@
           "display_value": -252.691,
           "rounding_half_unit": 0.0005,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -185377,7 +185252,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "2:5",
@@ -185387,8 +185262,7 @@
           "display_value": -4.91036,
           "rounding_half_unit": 5e-06,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -185410,7 +185284,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "2:6",
@@ -185420,8 +185294,7 @@
           "display_value": -1.24479,
           "rounding_half_unit": 5e-06,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -185443,7 +185316,7 @@
             ],
             "divisor": 203
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "3:2",
@@ -185473,8 +185346,7 @@
           "display_value": -114.734,
           "rounding_half_unit": 0.0005,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -185496,7 +185368,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "3:5",
@@ -185506,8 +185378,7 @@
           "display_value": -2.58132,
           "rounding_half_unit": 5e-06,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -185529,7 +185400,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "3:6",
@@ -185539,8 +185410,7 @@
           "display_value": -0.565193,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -185562,7 +185432,7 @@
             ],
             "divisor": 203
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "4:2",
@@ -185592,8 +185462,7 @@
           "display_value": -248.566,
           "rounding_half_unit": 0.0005,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -185615,7 +185484,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "4:5",
@@ -185625,8 +185494,7 @@
           "display_value": -8.51238,
           "rounding_half_unit": 5e-06,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -185648,7 +185516,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "4:6",
@@ -185658,8 +185526,7 @@
           "display_value": -1.22447,
           "rounding_half_unit": 5e-06,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -185681,7 +185548,7 @@
             ],
             "divisor": 203
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "5:2",
@@ -185711,8 +185578,7 @@
           "display_value": -111.301,
           "rounding_half_unit": 0.0005,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -185734,7 +185600,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "5:5",
@@ -185744,8 +185610,7 @@
           "display_value": -3.90217,
           "rounding_half_unit": 5e-06,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -185767,7 +185632,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "5:6",
@@ -185777,8 +185642,7 @@
           "display_value": -0.548279,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -185800,7 +185664,7 @@
             ],
             "divisor": 203
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "6:2",
@@ -185830,8 +185694,7 @@
           "display_value": -207.359,
           "rounding_half_unit": 0.0005,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -185853,7 +185716,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "6:5",
@@ -185863,8 +185726,7 @@
           "display_value": 2.87971,
           "rounding_half_unit": 5e-06,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -185886,7 +185748,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "6:6",
@@ -185896,8 +185758,7 @@
           "display_value": -1.3378,
           "rounding_half_unit": 5e-05,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -185919,7 +185780,7 @@
             ],
             "divisor": 155
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "7:2",
@@ -185949,8 +185810,7 @@
           "display_value": -100.135,
           "rounding_half_unit": 0.0005,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -185972,7 +185832,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "7:5",
@@ -185982,8 +185842,7 @@
           "display_value": 2.52249,
           "rounding_half_unit": 5e-06,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -186005,7 +185864,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "7:6",
@@ -186015,8 +185874,7 @@
           "display_value": -0.646035,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -186038,7 +185896,7 @@
             ],
             "divisor": 155
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "8:2",
@@ -186068,8 +185926,7 @@
           "display_value": -201.315,
           "rounding_half_unit": 0.0005,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -186091,7 +185948,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "8:5",
@@ -186101,8 +185958,7 @@
           "display_value": 0.647017,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -186124,7 +185980,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "8:6",
@@ -186134,8 +185990,7 @@
           "display_value": -1.2988,
           "rounding_half_unit": 5e-05,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -186157,7 +186012,7 @@
             ],
             "divisor": 155
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "9:2",
@@ -186187,8 +186042,7 @@
           "display_value": -96.988,
           "rounding_half_unit": 0.0005,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -186210,7 +186064,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "9:5",
@@ -186220,8 +186074,7 @@
           "display_value": 0.821518,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -186243,7 +186096,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "9:6",
@@ -186253,8 +186106,7 @@
           "display_value": -0.625729,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -186276,7 +186128,7 @@
             ],
             "divisor": 155
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "10:2",
@@ -186306,8 +186158,7 @@
           "display_value": -308.064,
           "rounding_half_unit": 0.0005,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -186329,7 +186180,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "10:5",
@@ -186339,8 +186190,7 @@
           "display_value": 15.0179,
           "rounding_half_unit": 5e-05,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -186362,7 +186212,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "10:6",
@@ -186372,8 +186222,7 @@
           "display_value": -1.21285,
           "rounding_half_unit": 5e-06,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -186395,7 +186244,7 @@
             ],
             "divisor": 254
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "11:2",
@@ -186425,8 +186274,7 @@
           "display_value": -167.638,
           "rounding_half_unit": 0.0005,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -186448,7 +186296,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "11:5",
@@ -186458,8 +186306,7 @@
           "display_value": 11.0334,
           "rounding_half_unit": 5e-05,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -186481,7 +186328,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "11:6",
@@ -186491,8 +186338,7 @@
           "display_value": -0.659992,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -186514,7 +186360,7 @@
             ],
             "divisor": 254
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "12:2",
@@ -186544,8 +186390,7 @@
           "display_value": -290.547,
           "rounding_half_unit": 0.0005,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -186567,7 +186412,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "12:5",
@@ -186577,8 +186422,7 @@
           "display_value": 8.74533,
           "rounding_half_unit": 5e-06,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -186600,7 +186444,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "12:6",
@@ -186610,8 +186454,7 @@
           "display_value": -1.14389,
           "rounding_half_unit": 5e-06,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -186633,7 +186476,7 @@
             ],
             "divisor": 254
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "13:2",
@@ -186663,8 +186506,7 @@
           "display_value": -159.63,
           "rounding_half_unit": 0.005,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -186686,7 +186528,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "13:5",
@@ -186696,8 +186538,7 @@
           "display_value": 5.66373,
           "rounding_half_unit": 5e-06,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -186719,7 +186560,7 @@
             ],
             "divisor": 1
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         },
         {
           "id": "13:6",
@@ -186729,8 +186570,7 @@
           "display_value": -0.628465,
           "rounding_half_unit": 5e-07,
           "display_type": "decimal",
-          "uncovered_reason": "Exact supplemental dependencies identified, but that roster has not yet executed and is not certified by completed510.",
-          "pending_expression": {
+          "expression": {
             "op": "sum",
             "terms": [
               {
@@ -186752,7 +186592,7 @@
             ],
             "divisor": 254
           },
-          "pending_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
+          "supplement_registry": "reproduction/score_replay/cached_supplement/cached_registry.json"
         }
       ]
     }
@@ -186768,6 +186608,73 @@
     "nll_from": "minus /actual/components/joint, checked against /actual/native_scalar_components/joint_nll",
     "display_rule": "Format included grid coordinates in original order to two decimal places, comma-space separated; emit none only for an empty actual support set.",
     "score_source": "Only passed actual replay rows; neither historical expected scores nor displayed support strings are arithmetic operands.",
-    "additional_evidence": "Optional JSON records map: row ID -> {path,sha256}, or {archive,archive_sha256,member,sha256}; paths are relative to that manifest. Missing mapped rows stay uncovered."
-  }
+    "additional_evidence": "Optional JSON records map: row ID -> {path,sha256}, or {archive,archive_sha256,member,sha256}; paths relative to that manifest. Enables profile support and all94 declared supplemental score cells. Missing mapped rows stay uncovered."
+  },
+  "supplement_execution_links": {
+    "registry": "reproduction/score_replay/cached_supplement/cached_registry.json",
+    "registry_sha256": "07a4a27d0f8e607b7d32f6efdbb6976a8e572c8f561d8afe04688c91cee5bbac",
+    "execution_status": "evidence_required_not_inferred_from_source_mapping",
+    "row_ids": [
+      "background_small_scale/primary_fold_0/primary_fold_0__sensitivity_fixedML_cell_cont_sigma1/test",
+      "background_small_scale/primary_fold_0/primary_fold_0__sensitivity_fixedML_cell_cont_sigma2/test",
+      "background_small_scale/primary_fold_0/primary_fold_0__sensitivity_fixedML_smooth_cont_sigma1/test",
+      "background_small_scale/primary_fold_0/primary_fold_0__sensitivity_fixedML_smooth_cont_sigma2/test",
+      "background_small_scale/primary_fold_1/primary_fold_1__sensitivity_fixedML_cell_cont_sigma1/test",
+      "background_small_scale/primary_fold_1/primary_fold_1__sensitivity_fixedML_cell_cont_sigma2/test",
+      "background_small_scale/primary_fold_1/primary_fold_1__sensitivity_fixedML_smooth_cont_sigma1/test",
+      "background_small_scale/primary_fold_1/primary_fold_1__sensitivity_fixedML_smooth_cont_sigma2/test",
+      "background_small_scale/primary_fold_2/primary_fold_2__sensitivity_fixedML_cell_cont_sigma1/test",
+      "background_small_scale/primary_fold_2/primary_fold_2__sensitivity_fixedML_cell_cont_sigma2/test",
+      "background_small_scale/primary_fold_2/primary_fold_2__sensitivity_fixedML_smooth_cont_sigma1/test",
+      "background_small_scale/primary_fold_2/primary_fold_2__sensitivity_fixedML_smooth_cont_sigma2/test",
+      "continuous_references/primary_fold_0/E_global/test",
+      "continuous_references/primary_fold_0/E_oldD_lift/test",
+      "continuous_references/primary_fold_1/E_global/test",
+      "continuous_references/primary_fold_1/E_oldD_lift/test",
+      "continuous_references/primary_fold_2/E_global/test",
+      "continuous_references/primary_fold_2/E_oldD_lift/test",
+      "mark_prediction_engineering/control_E0_control_00/E0/test",
+      "mark_prediction_engineering/control_E0_control_00/E1/test",
+      "mark_prediction_engineering/control_E0_control_01/E0/test",
+      "mark_prediction_engineering/control_E0_control_01/E1/test",
+      "mark_prediction_engineering/control_E0_control_02/E0/test",
+      "mark_prediction_engineering/control_E0_control_02/E1/test",
+      "mark_prediction_engineering/control_E1_active_00/E0/test",
+      "mark_prediction_engineering/control_E1_active_00/E1/test",
+      "mark_prediction_engineering/control_E1_active_01/E0/test",
+      "mark_prediction_engineering/control_E1_active_01/E1/test",
+      "mark_prediction_engineering/control_E1_active_02/E0/test",
+      "mark_prediction_engineering/control_E1_active_02/E1/test",
+      "productivity_engineering/control_E0_r035_00/E0_fixed/test",
+      "productivity_engineering/control_E0_r035_00/E0_free/test",
+      "productivity_engineering/control_E0_r035_01/E0_fixed/test",
+      "productivity_engineering/control_E0_r035_01/E0_free/test",
+      "productivity_engineering/control_E0_r070_00/E0_fixed/test",
+      "productivity_engineering/control_E0_r070_00/E0_free/test",
+      "productivity_engineering/control_E0_r070_01/E0_fixed/test",
+      "productivity_engineering/control_E0_r070_01/E0_free/test",
+      "productivity_training/primary_fold_0/E0_fixed/train",
+      "productivity_training/primary_fold_0/E0_free/train",
+      "productivity_training/primary_fold_1/E0_fixed/train",
+      "productivity_training/primary_fold_1/E0_free/train",
+      "productivity_training/primary_fold_2/E0_fixed/train",
+      "productivity_training/primary_fold_2/E0_free/train"
+    ],
+    "mapped_cells": 94,
+    "arithmetic": "Actual passed replay components only; missing outputs remain uncovered."
+  },
+  "historical_missing_replay_row_ids": [
+    "continuous_location/primary_fold_0/E_global/test",
+    "continuous_location/primary_fold_0/E_oldD_lift/test",
+    "continuous_location/primary_fold_1/E_global/test",
+    "continuous_location/primary_fold_1/E_oldD_lift/test",
+    "continuous_location/primary_fold_2/E_global/test",
+    "continuous_location/primary_fold_2/E_oldD_lift/test",
+    "productivity/primary_fold_0/E0_fixed/train",
+    "productivity/primary_fold_0/E0_free/train",
+    "productivity/primary_fold_1/E0_fixed/train",
+    "productivity/primary_fold_1/E0_free/train",
+    "productivity/primary_fold_2/E0_fixed/train",
+    "productivity/primary_fold_2/E0_free/train"
+  ]
 }
