@@ -173,6 +173,44 @@ def selected_states(fit):
     return fit['selected']['pars'], fit['floor']
 
 
+def tiny_native_control(native):
+    """Invented two-location control: full versus forced split, all modes."""
+    import numpy as np
+    data = dict(parents=np.array([[.2,0.,0.,.1,1.,1.]]),
+        events=np.array([[1.,.2,.1,.1,.03,.1]]),
+        space=np.array([[0.,0.,.5,.1,.1],[1.,1.,.5,.1,.1]]),
+        times=np.array([.5,1.5]),weights=np.array([1.,1.]),
+        meta=np.array([-2.,.1,.3,.05,1.3,2.,.8,-.2,10.]))
+    # Same memory formula as chunks, chosen to force exactly one spatial row.
+    shared=8*(9+10+5*2+2)+4*3
+    budget=shared+8*(9+2+2*2)
+    reports=[]
+    for name,plus,inclusive in MODES:
+        for eta in (0.,.4):
+            pars=[eta,math.log(10),math.log(2)]
+            handle=native.create(data)
+            try: whole=native.evaluate(handle,pars,plus,inclusive)
+            finally: native.free(handle)
+            total=np.zeros(6); pieces=0
+            for piece in chunks(data,budget):
+                handle=native.create(piece)
+                try: total+=native.evaluate(handle,pars,plus,inclusive)
+                finally: native.free(handle)
+                pieces+=1
+            error=float(np.max(np.abs(total-whole)))
+            floor_error=None
+            if eta==0:
+                event=data['events'][0]
+                point=math.log(math.exp(data['meta'][0]+data['meta'][1]*(2*event[0]/data['meta'][5]-1))*event[3]+event[4])
+                expected=data['meta'][6]-point-data['meta'][7]
+                floor_error=abs(float(whole[0])-expected)
+            passed=pieces==2 and error<=1e-12 and (floor_error is None or floor_error<=1e-12)
+            reports.append(dict(model=name,eta=eta,pieces=pieces,maximum_split_delta=error,
+                analytic_floor_nll_error=floor_error,absolute_tolerance=1e-12,passed=passed))
+    return dict(passed=all(r['passed'] for r in reports),controls=reports,
+        scope='Hand-authored one-parent/one-event/two-location example only; no historical likelihood.')
+
+
 def joint_components(value, metadata):
     nll, _, _, _, deficit, point = map(float, value)
     exposure, marks = float(metadata[6])-deficit, float(metadata[7])
@@ -314,6 +352,11 @@ def run(registry_path, libraries_path, admission_path, output, selected, mode):
                      numeric_threads=threads,chunk_bytes=budget)))
     c = scientific_modules(inputs, registry, output/'source')
     native = Native(paths['cpu']); geometry = c.S.Geometry(paths['radial'])
+    with threadpool_limits(limits=threads):
+        controls=tiny_native_control(native)
+    write_new(output/'tiny_controls.json',controls)
+    if not controls['passed']:
+        raise ArithmeticError('Hand-authored native split/floor controls failed')
     results = []; began = time.monotonic()
     for index, identity in enumerate(selected):
         case = by_id[identity]; folder=output/'rows'/f'{index:05d}'; folder.mkdir(parents=True)
@@ -332,6 +375,9 @@ def run(registry_path, libraries_path, admission_path, output, selected, mode):
                 feature_scope=case['feature_scope'],fit_scope=case['fit_scope'])
         except Exception as error:
             report.update(error_type=type(error).__name__,error=str(error),traceback=traceback.format_exc())
+        report['phase_records']={phase:dict(path=(folder/(phase+'.json')).relative_to(output).as_posix(),
+            sha256=digest((folder/(phase+'.json')).read_bytes())) for phase in ('train','test')
+            if (folder/(phase+'.json')).is_file()}
         report['elapsed_seconds']=time.monotonic()-start
         write_new(folder/'result.json',report)
         row=dict(id=identity,passed=report['passed'],status=report['status'],
@@ -343,6 +389,7 @@ def run(registry_path, libraries_path, admission_path, output, selected, mode):
     result=dict(schema='original_s04_replay_result_v1',passed=all(r['passed'] for r in results),
         rows=results,requested_rows=len(selected),completed_rows=len(results),passed_rows=sum(r['passed'] for r in results),
         full_registry=selected==list(by_id),entire_task_complete=False,elapsed_seconds=time.monotonic()-began,
+        controls_record=dict(path='tiny_controls.json',sha256=digest((output/'tiny_controls.json').read_bytes())),
         scope='Original selected/floor held-out joint-intensity scores and training BIC gates only; no refits, generation or optimizer-search replay.')
     write_new(output/'result.json',result)
     return result

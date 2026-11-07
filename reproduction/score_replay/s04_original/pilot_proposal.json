@@ -1,5 +1,5 @@
 {
-  "schema": "original_s04_replay_pilot_v1",
+  "schema": "original_s04_replay_pilot_v2",
   "passed": false,
   "status": "proposed_requires_independent_source_review_and_numerical_lease",
   "mode": "pilot",
@@ -9,7 +9,7 @@
     "__init__.py": "66dc04f1795b3ecf23d3a6dc7e3570d9c0592cd0cd214d981fdf179efe246f56",
     "core.py": "e40c3a4ab5e2b8017edec91c7eac60ee4c5d4b7dd7c1cc9817e9d293d7744108",
     "inhibition_build.py": "e76bc71041c4e09d0d464280a75e1a5bc8c86132a07bfcbab3eec870cc7905ad",
-    "inhibition_replay.py": "be547c402d1d0a8cbd2a63178f9491f229c6dfbbbf9b8f09ed4e86b48b51684c"
+    "inhibition_replay.py": "e37f095362642f505c46f0e10b4695ef481f9cd86bdfe2e74c829b04d2263f38"
   },
   "row_ids": [
     "S04_R0_S410012",
@@ -84,5 +84,7 @@
     "errors": 0,
     "skips": 0,
     "scope": "Hand-authored controls and saved-input identities only; no native build or scientific likelihood evaluation."
-  }
+  },
+  "mandatory_native_control": "Six hand-authored full-vs-two-spatial-chunk tests, including three analytic eta-zero floor checks, must pass at1e-12 before any historical row.",
+  "supersedes": "v1 retained privately; phase output custody and invented native split/floor controls added. No scientific evaluations occurred."
 }
