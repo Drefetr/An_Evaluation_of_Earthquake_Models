@@ -111,6 +111,9 @@ def main():
     write(output/'admission.json', review)
     spec = plan(review, output)
     write(output/'supervisor_spec.json', spec)
+    if (dt.datetime.fromisoformat(review['expires_utc']) -
+            dt.datetime.now(dt.timezone.utc)).total_seconds() < 60:
+        raise ValueError('Setup consumed the remaining diagnostic allowance')
     return subprocess.run([sys.executable, '-B', str(ROOT/'scripts/supervise_research.py'),
                            str(output/'supervisor_spec.json')], cwd=ROOT).returncode
 
