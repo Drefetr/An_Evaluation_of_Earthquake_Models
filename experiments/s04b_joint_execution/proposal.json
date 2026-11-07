@@ -1,0 +1,26 @@
+{
+  "schema": "joint_ordered_parallel_candidate_v1",
+  "status": "inactive_candidate_no_historical_execution",
+  "scope": "Scheduling only; independent review and explicit separate operational admission required before scientific use.",
+  "frozen_dependencies_sha256": {
+    "experiments/s04b_joint_nuisance/model.py": "cc891181e51251247b9668fb6213642f0884deb288050efb2586cf179c6e8898",
+    "experiments/s04b_joint_nuisance/attenuation.cpp": "d47a85c5ed899a952b315977a700487c54bd79b90eddc88f62feef7001d2751e",
+    "experiments/s04b_joint_nuisance/fit.py": "878dbf6a71bbc1b9e934f190d3ad0a1c3663097610edf5a42c8aab89b62775bb",
+    "experiments/s04b_joint_nuisance/protocol.json": "8f31b9f28d830eeffa30bdbf3e0fcf1295087411869fa301b91333c95fa445e9",
+    "experiments/s04b_joint_nuisance/input_pins.json": "636e2f6ebd1db404a04155acef1979f36931338cbfa0e4c24351a80378924dad"
+  },
+  "candidate_source_sha256": "95faba952002e9eb737e303cb2c771a123d53546fe73fcacd559aa2a2b344a8b",
+  "constructed_controls_sha256": "4a7c6956f65844a60eb75daecf1792c20b065912f5985006ef07cb030298aace",
+  "chunk_rows": 256,
+  "max_native_calls": 2,
+  "blas_threads": 2,
+  "concurrent_phase_evaluations": 1,
+  "preparation": "Two separate original-sized products sequentially before native submission; no BLAS/native overlap",
+  "reduction": "Original spatial-chunk order; same operations inside each unchanged native call",
+  "extra_H_buffer_bytes": "At most256*n_time*3*8 beyond serial; no hard OS memory-reservation claim",
+  "failure_policy": "Drain all submitted work, propagate first error in original chunk order, never start another batch after failure.",
+  "scientific_changes": [],
+  "new_history_or_fit_calls": 0,
+  "measured_performance_claim": null,
+  "resource_policy": "Original failed pilot and all elapsed time remain retained. Original caps are not changed here. Any new envelope requires a separately frozen conductor amendment."
+}
