@@ -78,7 +78,7 @@ def pre_execution_charge(policy, recovery):
 
 
 def operational_failure_charge(policy, recovery):
-    """Prepared ordered accounting; the historical singleton is an uncharged alias."""
+    """Ordered accounting; the historical singleton is an uncharged alias."""
     failures = recovery['operational_failures']
     require(isinstance(failures,list) and len(failures) == 2 and
             failures[0] == recovery['pre_execution_failure'],
@@ -111,6 +111,52 @@ def operational_failure_charge(policy, recovery):
     require(0 <= second['nested_scientific_seconds'] <= second['nested_supervised_seconds'] <= 120,
             'Nested second-launch time exceeds its one workflow bound')
     return first+second['charge_seconds']
+
+
+def operational_diagnostic_charge(recovery):
+    """Retain the successful support diagnostic separately from failed launches."""
+    diagnostics = recovery['operational_diagnostics']
+    require(isinstance(diagnostics,list) and len(diagnostics) == 1,
+            'Exactly the reviewed support diagnostic must be retained')
+    diagnostic = diagnostics[0]
+    require(diagnostic['archive_sha256'] not in
+            {row['archive_sha256'] for row in recovery['operational_failures']},
+            'Diagnostic duplicates a failed operational launch')
+    require(diagnostic['charge_seconds'] == 80 and diagnostic['status'] == 'diagnostic_complete' and
+            diagnostic['passed'] is True and diagnostic['equality_passed'] is False and
+            diagnostic['scientific_completion'] is False and
+            diagnostic['scientific_predecessor_unchanged'] is True and
+            diagnostic['support_evaluation_count'] == 5 and diagnostic['optimizer_call_count'] == 0 and
+            diagnostic['held_out_call_count'] == 0,
+            'Retained diagnostic charge or execution scope differs')
+    for key in ('archive','review','resource_review','workflow_log'):
+        require(sha(repo_path(diagnostic[key])) == diagnostic[key+'_sha256'],
+                'Retained diagnostic evidence changed: '+key)
+    audit = read(repo_path(diagnostic['review']))
+    resource = read(repo_path(diagnostic['resource_review']))
+    require(audit.get('passed') is True and audit.get('audit_passed') is True and
+            audit.get('diagnostic_complete') is True and audit.get('equality_passed') is False and
+            audit.get('scientific_completion') is False and audit.get('accepted_recovery_case') is False and
+            audit['archive_sha256'] == diagnostic['archive_sha256'] and
+            audit['execution']['actual_training_evaluations'] == 5 and
+            audit['execution']['optimizer_calls'] == audit['execution']['held_out_calls'] == 0 and
+            audit['execution']['new_complete_cases'] == 0 and
+            audit['execution']['accepted_complete_cases_unchanged'] == 40,
+            'Diagnostic audit cannot certify a recovered case or new optimizer work')
+    require(resource.get('passed') is True and
+            resource['timing']['conservative_whole_launch_charge_seconds'] == 80 and
+            resource['accounting']['operational_failure_charge_seconds'] == 210 and
+            resource['accounting']['operational_diagnostic_charge_seconds'] == 80 and
+            resource['accounting']['combined_additional_operational_charge_seconds'] == 290 and
+            resource['diagnostic']['independent_review_sha256'] == diagnostic['review_sha256'],
+            'Diagnostic resource accounting differs')
+    require(0 <= diagnostic['nested_scientific_seconds'] <= diagnostic['nested_supervised_seconds'] <= 80 and
+            diagnostic['nested_scientific_seconds'] == audit['execution']['science_seconds'] ==
+            resource['timing']['child_scientific_seconds'] and
+            diagnostic['nested_supervised_seconds'] == audit['execution']['supervised_seconds'] ==
+            resource['timing']['outer_including_cleanup_seconds'],
+            'Nested diagnostic durations must agree and remain within their single workflow charge')
+    return diagnostic['charge_seconds']
 
 
 def verify_policy():
@@ -157,8 +203,9 @@ def verify_policy():
                 group['remaining_preparation_margin_seconds'] == 1800-600-30-120*len(selected) >= 0,
                 'Host reserves no longer cover the full fixed group')
     require(sum(r['wall_seconds'] for r in slots) == 71760, 'Future case allocation differs')
-    startup_charge = pre_execution_charge(policy, recovery)
-    require(recovery['predecessor']['known_outer_charged_seconds']+startup_charge+71760+8*1800+1800 <= 115200,
+    failure_charge = operational_failure_charge(policy, recovery)
+    diagnostic_charge = operational_diagnostic_charge(recovery)
+    require(recovery['predecessor']['known_outer_charged_seconds']+failure_charge+diagnostic_charge+71760+8*1800+1800 <= 115200,
             'Known outer time and conservative reserves exceed unchanged allowance')
     for relative, pin in policy['historical_sources'].items():
         require(sha(repo_path(relative)) == pin, 'Historical helper source changed')

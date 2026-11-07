@@ -24,8 +24,9 @@ class RecoveryHostControls(unittest.TestCase):
             shared_run=policy['shared_run'],predecessor=dict(case_id=old['sequence'][40],
                 index_sha256='failed-index',review_sha256='failed-review',original_index_charged_seconds=21663.863217721,
                 known_outer_charged_seconds=21714.885916780))
-        recovery['pre_execution_failure']=copy.deepcopy(batch.read(
-            batch.REPO/'experiments/s04b_joint_recovery/recovery_protocol.json')['pre_execution_failure'])
+        actual=batch.read(batch.REPO/'experiments/s04b_joint_recovery/recovery_protocol.json')
+        for key in ('pre_execution_failure','operational_failures','operational_diagnostics'):
+            recovery[key]=copy.deepcopy(actual[key])
         return policy,recovery
 
     def prefix(self,host=1):
@@ -133,12 +134,79 @@ class RecoveryHostControls(unittest.TestCase):
                 recovery['operational_failures'][1]['review_sha256']=batch.sha(path)
                 with self.assertRaises(ValueError):batch.operational_failure_charge(policy,recovery)
 
+    def diagnostic_fixture(self,root):
+        policy,recovery=self.ordered_failure_fixture(root)
+        row=dict(status='diagnostic_complete',passed=True,equality_passed=False,scientific_completion=False,
+            scientific_predecessor_unchanged=True,charge_seconds=80,nested_scientific_seconds=.25,
+            nested_supervised_seconds=.5,support_evaluation_count=5,optimizer_call_count=0,held_out_call_count=0)
+        for key in ('archive','review','resource_review','workflow_log'):
+            relative=f'diagnostic_{key}.json';path=root/relative
+            if key=='review':
+                value=dict(passed=True,audit_passed=True,diagnostic_complete=True,equality_passed=False,
+                    scientific_completion=False,accepted_recovery_case=False,archive_sha256=row['archive_sha256'],
+                    execution=dict(actual_training_evaluations=5,optimizer_calls=0,held_out_calls=0,
+                        new_complete_cases=0,accepted_complete_cases_unchanged=40,science_seconds=.25,supervised_seconds=.5))
+            elif key=='resource_review':
+                value=dict(passed=True,timing=dict(conservative_whole_launch_charge_seconds=80,
+                    child_scientific_seconds=.25,outer_including_cleanup_seconds=.5),
+                    accounting=dict(operational_failure_charge_seconds=210,operational_diagnostic_charge_seconds=80,
+                        combined_additional_operational_charge_seconds=290),
+                    diagnostic=dict(independent_review_sha256=row['review_sha256']))
+            else:value={'invented':True,'kind':key}
+            batch.write(path,value);row[key]=relative;row[key+'_sha256']=batch.sha(path)
+        recovery['operational_diagnostics']=[row]
+        return policy,recovery
+
+    def test_diagnostic_charged_once_separate_from_failures_and_original_alias(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);policy,recovery=self.diagnostic_fixture(root)
+            with patch.object(batch,'REPO',root):
+                self.assertEqual(batch.pre_execution_charge(policy,recovery),90)
+                failure=batch.operational_failure_charge(policy,recovery)
+                diagnostic=batch.operational_diagnostic_charge(recovery)
+                self.assertEqual((failure,diagnostic,failure+diagnostic),(210,80,290))
+
+    def test_diagnostic_omission_duplication_and_scientific_relabelling_rejected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);policy,recovery=self.diagnostic_fixture(root);mutations=[]
+            for replacement in ([],recovery['operational_diagnostics']*2):
+                changed=copy.deepcopy(recovery);changed['operational_diagnostics']=replacement;mutations.append(changed)
+            for key,value in [('charge_seconds',80.5),('passed',False),('equality_passed',True),
+                              ('scientific_completion',True),('scientific_predecessor_unchanged',False),
+                              ('support_evaluation_count',0),('optimizer_call_count',1),('held_out_call_count',1),
+                              ('nested_scientific_seconds',.3),('nested_supervised_seconds',81),
+                              ('archive_sha256',recovery['operational_failures'][0]['archive_sha256'])]:
+                changed=copy.deepcopy(recovery);changed['operational_diagnostics'][0][key]=value;mutations.append(changed)
+            with patch.object(batch,'REPO',root):
+                for changed in mutations:
+                    with self.subTest(value=changed),self.assertRaises(ValueError):
+                        batch.operational_diagnostic_charge(changed)
+
+    def test_diagnostic_evidence_and_independent_scope_cannot_be_bypassed(self):
+        for change in ('hash','case','accounting'):
+            with self.subTest(change=change),tempfile.TemporaryDirectory() as directory:
+                root=Path(directory);policy,recovery=self.diagnostic_fixture(root);row=recovery['operational_diagnostics'][0]
+                if change=='hash':row['workflow_log_sha256']='0'*64
+                elif change=='case':
+                    path=root/row['review'];value=batch.read(path);value['accepted_recovery_case']=True
+                    batch.write(path,value);row['review_sha256']=batch.sha(path)
+                else:
+                    path=root/row['resource_review'];value=batch.read(path)
+                    value['accounting']['combined_additional_operational_charge_seconds']=380
+                    batch.write(path,value);row['resource_review_sha256']=batch.sha(path)
+                with patch.object(batch,'REPO',root),self.assertRaises(ValueError):
+                    batch.operational_diagnostic_charge(recovery)
+
     def test_actual_frozen_recovery_protocol_integrates_without_scientific_calls(self):
         policy,recovery=batch.verify_policy()
         self.assertEqual(batch.sha(batch.REPO/'experiments/s04b_joint_recovery/recovery_protocol.json'),
                          policy['recovery_protocol_sha256'])
         self.assertEqual([row['regime'] for row in recovery['fixed_slots']], [5]*3+[6]*18+[7]*19)
         self.assertEqual(len(policy['actual_hosts']),8)
+        self.assertEqual(batch.operational_failure_charge(policy,recovery),210)
+        self.assertEqual(batch.operational_diagnostic_charge(recovery),80)
+        margin=115200-recovery['predecessor']['known_outer_charged_seconds']-290-71760-8*1800-1800
+        self.assertAlmostEqual(margin,5235.114083220,places=8)
 
     def test_policy_rejects_repinning_different_caps_or_incomplete_roster(self):
         original_here=batch.HERE
@@ -146,10 +214,11 @@ class RecoveryHostControls(unittest.TestCase):
             with self.subTest(mutation=mutation),tempfile.TemporaryDirectory() as directory:
                 repo=Path(directory);here=repo/'experiments/s04b_joint_recovery_host';(here/'evidence').mkdir(parents=True)
                 policy,recovery=self.metadata()
-                for key in ('archive','review','resource_review','workflow_log'):
-                    relative=recovery['pre_execution_failure'][key];target=repo/relative
-                    target.parent.mkdir(parents=True,exist_ok=True)
-                    target.write_bytes((batch.REPO/relative).read_bytes())
+                for row in recovery['operational_failures']+recovery['operational_diagnostics']:
+                    for key in ('archive','review','resource_review','workflow_log'):
+                        relative=row[key];target=repo/relative
+                        target.parent.mkdir(parents=True,exist_ok=True)
+                        target.write_bytes((batch.REPO/relative).read_bytes())
                 (here/'evidence/resource_review.json').write_bytes((original_here/'evidence/resource_review.json').read_bytes())
                 helper=repo/'experiments/s04b_joint_host_batch/batch.py';helper.parent.mkdir(parents=True)
                 helper.write_text('invented historical source')
