@@ -77,86 +77,113 @@ def pre_execution_charge(policy, recovery):
     return failure['charge_seconds']
 
 
-def operational_failure_charge(policy, recovery):
-    """Ordered accounting; the historical singleton is an uncharged alias."""
-    failures = recovery['operational_failures']
-    require(isinstance(failures,list) and len(failures) == 2 and
+def reviewed_operational_records(recovery):
+    """The admitted protocol is the exact roster; no dynamic record discovery."""
+    failures, diagnostics = recovery['operational_failures'], recovery['operational_diagnostics']
+    require(isinstance(failures,list) and failures and isinstance(diagnostics,list) and
             failures[0] == recovery['pre_execution_failure'],
-            'Operational failures must preserve the exact first historical alias')
-    require(len({row['archive_sha256'] for row in failures}) == len(failures),
-            'Duplicate failed operational launch')
-    require([row['charge_seconds'] for row in failures] == [90,120],
-            'Reviewed ordered operational charges differ')
-    # This validates the original90s evidence once; it does not add the alias separately.
-    first = pre_execution_charge(policy,recovery)
-    second = failures[1]
-    require(second['status'] == 'failed_during_training_support' and
-            second['scientific_predecessor_unchanged'] is True and
-            second['support_evaluation_count'] == 5 and second['optimizer_call_count'] == 0,
-            'Second failure execution scope differs')
-    for key in ('archive','review','resource_review','workflow_log'):
-        require(sha(repo_path(second[key])) == second[key+'_sha256'],
-                'Second failed-launch evidence changed: '+key)
-    audit = read(repo_path(second['review']))
-    resource = read(repo_path(second['resource_review']))
-    require(audit.get('audit_passed') is True and audit.get('passed') is False and
-            audit.get('overall_scientific_passed') is False and
-            audit['archive_sha256'] == second['archive_sha256'],
-            'Second failed launch cannot be relabelled successful')
-    require(resource.get('passed') is True and
-            resource['timing']['conservative_whole_launch_charge_seconds'] == 120 and
-            resource['failure']['support_evaluation_count'] == 5 and
-            resource['failure']['optimizer_call_count'] == 0,
-            'Second failure resource/scope evidence differs')
-    require(0 <= second['nested_scientific_seconds'] <= second['nested_supervised_seconds'] <= 120,
-            'Nested second-launch time exceeds its one workflow bound')
-    return first+second['charge_seconds']
+            'Operational roster must retain the exact historical alias')
+    rows = failures+diagnostics
+    archives = [row['archive_sha256'] for row in rows]
+    require(len(set(archives)) == len(archives), 'Duplicate operational launch archive')
+    mapping = recovery['operational_lineage_files']
+    require(isinstance(mapping,dict) and set(mapping) == set(archives),
+            'Explicit lineage mapping must cover exactly the admitted launch roster')
+    destinations = []
+    for row in rows:
+        charge = row['charge_seconds']
+        require(type(charge) in (int,float) and math.isfinite(charge) and charge > 0 and
+                row['scientific_predecessor_unchanged'] is True and
+                0 <= row['nested_scientific_seconds'] <= row['nested_supervised_seconds'] <= charge,
+                'Invalid reviewed whole-launch charge or nested timing')
+        names = mapping[row['archive_sha256']]
+        require(set(names) == {'archive','review','resource_review','workflow_log'},
+                'Incomplete operational lineage mapping')
+        for name in names.values():
+            require(isinstance(name,str) and name not in ('','.','..') and
+                    len(PurePosixPath(name).parts) == 1 and not PurePosixPath(name).is_absolute() and
+                    ':' not in name and '\\' not in name, 'Lineage destination must be an explicit safe basename')
+            destinations.append(name)
+    require(len(destinations) == len(set(destinations)), 'Operational lineage destination collision')
+    return failures, diagnostics
+
+
+def operational_failure_charge(policy, recovery):
+    """Sum the exact reviewed failure roster once; the singleton remains an alias."""
+    failures, _ = reviewed_operational_records(recovery)
+    charges = [pre_execution_charge(policy,recovery)]
+    for row in failures[1:]:
+        for key in ('archive','review','resource_review','workflow_log'):
+            require(sha(repo_path(row[key])) == row[key+'_sha256'],
+                    'Failed-launch evidence changed: '+key)
+        audit = read(repo_path(row['review']))
+        resource = read(repo_path(row['resource_review']))
+        require(audit.get('audit_passed') is True and audit.get('passed') is False and
+                audit.get('overall_scientific_passed') is False and
+                audit['archive_sha256'] == row['archive_sha256'],
+                'Failed launch cannot be relabelled successful')
+        require(resource.get('passed') is True and
+                resource['timing']['conservative_whole_launch_charge_seconds'] == row['charge_seconds'] and
+                resource['failure']['status'] == row['status'] and
+                resource['failure']['archive_sha256'] == row['archive_sha256'],
+                'Failed-launch resource or scope evidence differs')
+        census = audit['execution_census']
+        require(census['new_completed_cases'] == 0, 'Failed launch cannot add a completed case')
+        fields = {'support_evaluation_count':'new_training_support_evaluations',
+                  'optimizer_call_count':'new_optimizer_invocations',
+                  'physical_optimizer_call_count':'new_optimizer_invocations',
+                  'replayed_optimizer_return_count':'replayed_immigrant_optimizer_returns',
+                  'held_out_call_count':'new_test_evaluations'}
+        require('support_evaluation_count' in row and
+                ('optimizer_call_count' in row or 'physical_optimizer_call_count' in row),
+                'Failed-launch evaluation/optimizer census is missing')
+        for key, pointer in fields.items():
+            if key in row:
+                require(type(row[key]) is int and row[key] >= 0 and
+                        row[key] == census[pointer] == resource['failure'][key],
+                        'Failed-launch census differs: '+key)
+            elif key not in ('optimizer_call_count','physical_optimizer_call_count'):
+                require(census[pointer] == 0, 'Undeclared failed-launch work: '+key)
+        require(resource['timing']['child_scientific_seconds'] == row['nested_scientific_seconds'] and
+                resource['timing']['outer_including_cleanup_seconds'] == row['nested_supervised_seconds'],
+                'Failed-launch nested timing differs')
+        charges.append(row['charge_seconds'])
+    return math.fsum(charges)
 
 
 def operational_diagnostic_charge(recovery):
-    """Retain the successful support diagnostic separately from failed launches."""
-    diagnostics = recovery['operational_diagnostics']
-    require(isinstance(diagnostics,list) and len(diagnostics) == 1,
-            'Exactly the reviewed support diagnostic must be retained')
-    diagnostic = diagnostics[0]
-    require(diagnostic['archive_sha256'] not in
-            {row['archive_sha256'] for row in recovery['operational_failures']},
-            'Diagnostic duplicates a failed operational launch')
-    require(diagnostic['charge_seconds'] == 80 and diagnostic['status'] == 'diagnostic_complete' and
-            diagnostic['passed'] is True and diagnostic['equality_passed'] is False and
-            diagnostic['scientific_completion'] is False and
-            diagnostic['scientific_predecessor_unchanged'] is True and
-            diagnostic['support_evaluation_count'] == 5 and diagnostic['optimizer_call_count'] == 0 and
-            diagnostic['held_out_call_count'] == 0,
-            'Retained diagnostic charge or execution scope differs')
-    for key in ('archive','review','resource_review','workflow_log'):
-        require(sha(repo_path(diagnostic[key])) == diagnostic[key+'_sha256'],
-                'Retained diagnostic evidence changed: '+key)
-    audit = read(repo_path(diagnostic['review']))
-    resource = read(repo_path(diagnostic['resource_review']))
-    require(audit.get('passed') is True and audit.get('audit_passed') is True and
-            audit.get('diagnostic_complete') is True and audit.get('equality_passed') is False and
-            audit.get('scientific_completion') is False and audit.get('accepted_recovery_case') is False and
-            audit['archive_sha256'] == diagnostic['archive_sha256'] and
-            audit['execution']['actual_training_evaluations'] == 5 and
-            audit['execution']['optimizer_calls'] == audit['execution']['held_out_calls'] == 0 and
-            audit['execution']['new_complete_cases'] == 0 and
-            audit['execution']['accepted_complete_cases_unchanged'] == 40,
-            'Diagnostic audit cannot certify a recovered case or new optimizer work')
-    require(resource.get('passed') is True and
-            resource['timing']['conservative_whole_launch_charge_seconds'] == 80 and
-            resource['accounting']['operational_failure_charge_seconds'] == 210 and
-            resource['accounting']['operational_diagnostic_charge_seconds'] == 80 and
-            resource['accounting']['combined_additional_operational_charge_seconds'] == 290 and
-            resource['diagnostic']['independent_review_sha256'] == diagnostic['review_sha256'],
-            'Diagnostic resource accounting differs')
-    require(0 <= diagnostic['nested_scientific_seconds'] <= diagnostic['nested_supervised_seconds'] <= 80 and
-            diagnostic['nested_scientific_seconds'] == audit['execution']['science_seconds'] ==
-            resource['timing']['child_scientific_seconds'] and
-            diagnostic['nested_supervised_seconds'] == audit['execution']['supervised_seconds'] ==
-            resource['timing']['outer_including_cleanup_seconds'],
-            'Nested diagnostic durations must agree and remain within their single workflow charge')
-    return diagnostic['charge_seconds']
+    """Keep completed diagnostics separate from failures and scientific completion."""
+    _, diagnostics = reviewed_operational_records(recovery)
+    for row in diagnostics:
+        require(row['status'] == 'diagnostic_complete' and row['passed'] is True and
+                row['scientific_completion'] is False and row['optimizer_call_count'] == 0 and
+                row['held_out_call_count'] == 0,
+                'Retained diagnostic execution scope differs')
+        for key in ('archive','review','resource_review','workflow_log'):
+            require(sha(repo_path(row[key])) == row[key+'_sha256'], 'Diagnostic evidence changed: '+key)
+        audit = read(repo_path(row['review']))
+        resource = read(repo_path(row['resource_review']))
+        require(audit.get('passed') is True and audit.get('audit_passed') is True and
+                audit.get('diagnostic_complete') is True and
+                audit.get('equality_passed') is row['equality_passed'] and
+                audit.get('scientific_completion') is False and audit.get('accepted_recovery_case') is False and
+                audit['archive_sha256'] == row['archive_sha256'] and
+                audit['execution']['actual_training_evaluations'] == row['support_evaluation_count'] and
+                audit['execution']['optimizer_calls'] == audit['execution']['held_out_calls'] == 0 and
+                audit['execution']['new_complete_cases'] == 0 and
+                audit['execution']['accepted_complete_cases_unchanged'] == recovery['predecessor']['complete_cases'],
+                'Diagnostic audit cannot certify a recovered case or new optimizer work')
+        require(resource.get('passed') is True and
+                resource['timing']['conservative_whole_launch_charge_seconds'] == row['charge_seconds'] and
+                resource['diagnostic']['independent_review_sha256'] == row['review_sha256'] and
+                resource['diagnostic']['scientific_completion'] is False,
+                'Diagnostic resource accounting differs')
+        require(row['nested_scientific_seconds'] == audit['execution']['science_seconds'] ==
+                resource['timing']['child_scientific_seconds'] and
+                row['nested_supervised_seconds'] == audit['execution']['supervised_seconds'] ==
+                resource['timing']['outer_including_cleanup_seconds'],
+                'Nested diagnostic timing differs')
+    return math.fsum(row['charge_seconds'] for row in diagnostics)
 
 
 def verify_policy():

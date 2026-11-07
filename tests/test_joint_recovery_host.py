@@ -22,10 +22,10 @@ class RecoveryHostControls(unittest.TestCase):
                       regime=r['regime']) for r in resource['remaining_roster']]
         recovery = dict(sequence=old['sequence'],fixed_slots=slots,actual_hosts=policy['actual_hosts'],
             shared_run=policy['shared_run'],predecessor=dict(case_id=old['sequence'][40],
-                index_sha256='failed-index',review_sha256='failed-review',original_index_charged_seconds=21663.863217721,
+                index_sha256='failed-index',review_sha256='failed-review',complete_cases=40,original_index_charged_seconds=21663.863217721,
                 known_outer_charged_seconds=21714.885916780))
         actual=batch.read(batch.REPO/'experiments/s04b_joint_recovery/recovery_protocol.json')
-        for key in ('pre_execution_failure','operational_failures','operational_diagnostics'):
+        for key in ('pre_execution_failure','operational_failures','operational_diagnostics','operational_lineage_files'):
             recovery[key]=copy.deepcopy(actual[key])
         return policy,recovery
 
@@ -86,15 +86,22 @@ class RecoveryHostControls(unittest.TestCase):
                 relative=f'failure{number}_{key}.json';path=root/relative
                 if key=='review':
                     value=dict(audit_passed=True,passed=False,overall_scientific_passed=False,
-                               archive_sha256=row['archive_sha256'])
+                               archive_sha256=row['archive_sha256'],execution_census=dict(new_completed_cases=0,
+                                   new_training_support_evaluations=count,new_optimizer_invocations=0,
+                                   replayed_immigrant_optimizer_returns=0,new_test_evaluations=0))
                 elif key=='resource_review':
                     value=(dict(passed=True,amendment={'explicit_new_charge_bound_seconds':charge}) if number==1 else
-                           dict(passed=True,timing={'conservative_whole_launch_charge_seconds':charge},
-                                failure={'support_evaluation_count':5,'optimizer_call_count':0}))
+                           dict(passed=True,timing=dict(conservative_whole_launch_charge_seconds=charge,
+                                child_scientific_seconds=.25,outer_including_cleanup_seconds=.5),
+                                failure=dict(status=status,archive_sha256=row['archive_sha256'],
+                                    support_evaluation_count=count,optimizer_call_count=0)))
                 else:value={'invented':True,'identity':number,'kind':key}
                 batch.write(path,value);row[key]=relative;row[key+'_sha256']=batch.sha(path)
             failures.append(row)
-        recovery={'pre_execution_failure':copy.deepcopy(failures[0]),'operational_failures':failures}
+        recovery={'pre_execution_failure':copy.deepcopy(failures[0]),'operational_failures':failures,
+                  'operational_diagnostics':[],'predecessor':{'complete_cases':40},
+                  'operational_lineage_files':{r['archive_sha256']:{k:f'lineage{n}_{k}.json'
+                      for k in ('archive','review','resource_review','workflow_log')} for n,r in enumerate(failures)}}
         policy={'pre_execution_failure_charge_seconds':90,
                 'pre_execution_failure_resource_review_sha256':failures[0]['resource_review_sha256']}
         return policy,recovery
@@ -106,7 +113,7 @@ class RecoveryHostControls(unittest.TestCase):
                 self.assertEqual(batch.operational_failure_charge(policy,recovery),210)
                 changed=copy.deepcopy(recovery)
                 changed['operational_failures'][1]['nested_scientific_seconds']=.3
-                self.assertEqual(batch.operational_failure_charge(policy,changed),210)
+                with self.assertRaises(ValueError):batch.operational_failure_charge(policy,changed)
 
     def test_order_alias_unique_archive_and_scope_cannot_be_changed(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -151,10 +158,12 @@ class RecoveryHostControls(unittest.TestCase):
                     child_scientific_seconds=.25,outer_including_cleanup_seconds=.5),
                     accounting=dict(operational_failure_charge_seconds=210,operational_diagnostic_charge_seconds=80,
                         combined_additional_operational_charge_seconds=290),
-                    diagnostic=dict(independent_review_sha256=row['review_sha256']))
+                    diagnostic=dict(independent_review_sha256=row['review_sha256'],scientific_completion=False))
             else:value={'invented':True,'kind':key}
             batch.write(path,value);row[key]=relative;row[key+'_sha256']=batch.sha(path)
         recovery['operational_diagnostics']=[row]
+        recovery['operational_lineage_files'][row['archive_sha256']]={k:f'lineage_diagnostic_{k}.json'
+            for k in ('archive','review','resource_review','workflow_log')}
         return policy,recovery
 
     def test_diagnostic_charged_once_separate_from_failures_and_original_alias(self):
@@ -192,10 +201,71 @@ class RecoveryHostControls(unittest.TestCase):
                     batch.write(path,value);row['review_sha256']=batch.sha(path)
                 else:
                     path=root/row['resource_review'];value=batch.read(path)
-                    value['accounting']['combined_additional_operational_charge_seconds']=380
+                    value['timing']['conservative_whole_launch_charge_seconds']=81
                     batch.write(path,value);row['resource_review_sha256']=batch.sha(path)
                 with patch.object(batch,'REPO',root),self.assertRaises(ValueError):
                     batch.operational_diagnostic_charge(recovery)
+
+    def test_reviewed_extra_failure_uses_protocol_records_not_hardcoded_list_length(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);policy,recovery=self.diagnostic_fixture(root)
+            row=copy.deepcopy(recovery['operational_failures'][1])
+            row.update(charge_seconds=80,status='failed_during_replayed_return_support',
+                       support_evaluation_count=8,replayed_optimizer_return_count=2,held_out_call_count=0)
+            for key in ('archive','review','resource_review','workflow_log'):
+                path=root/f'third_{key}.json'
+                if key=='review':
+                    value=dict(passed=False,audit_passed=True,overall_scientific_passed=False,
+                        archive_sha256=row['archive_sha256'],execution_census=dict(new_completed_cases=0,
+                        new_training_support_evaluations=8,new_optimizer_invocations=0,
+                        replayed_immigrant_optimizer_returns=2,new_test_evaluations=0))
+                elif key=='resource_review':
+                    value=dict(passed=True,timing=dict(conservative_whole_launch_charge_seconds=80,
+                        child_scientific_seconds=.25,outer_including_cleanup_seconds=.5),
+                        failure=dict(status=row['status'],archive_sha256=row['archive_sha256'],
+                        support_evaluation_count=8,optimizer_call_count=0,replayed_optimizer_return_count=2,held_out_call_count=0))
+                else:value={'invented':True,'third':key}
+                batch.write(path,value);row[key]=path.name;row[key+'_sha256']=batch.sha(path)
+            recovery['operational_failures'].append(row)
+            with patch.object(batch,'REPO',root):
+                with self.assertRaises(ValueError):batch.operational_failure_charge(policy,recovery)
+                recovery['operational_lineage_files'][row['archive_sha256']]={k:f'third_lineage_{k}.json'
+                    for k in ('archive','review','resource_review','workflow_log')}
+                self.assertEqual(batch.operational_failure_charge(policy,recovery),290)
+                self.assertEqual(batch.operational_diagnostic_charge(recovery),80)
+                # A changed execution census cannot be concealed with matching file hashes.
+                path=root/row['review'];value=batch.read(path);value['execution_census']['new_optimizer_invocations']=1
+                batch.write(path,value);row['review_sha256']=batch.sha(path)
+                with self.assertRaises(ValueError):batch.operational_failure_charge(policy,recovery)
+
+    def test_lineage_map_rejects_omission_unsafe_names_collisions_and_unlisted_rows(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);policy,recovery=self.diagnostic_fixture(root)
+            digest=recovery['operational_diagnostics'][0]['archive_sha256']
+            for mutation in ('missing','extra','traversal','absolute','backslash','colon','collision'):
+                changed=copy.deepcopy(recovery);mapping=changed['operational_lineage_files']
+                if mutation=='missing':del mapping[digest]
+                elif mutation=='extra':mapping['unreviewed']={}
+                elif mutation=='collision':mapping[digest]['archive']=mapping[digest]['review']
+                else:mapping[digest]['archive']={'traversal':'../x','absolute':'/x','backslash':'x\\y','colon':'C:x'}[mutation]
+                with self.subTest(mutation=mutation),self.assertRaises(ValueError):
+                    batch.reviewed_operational_records(changed)
+
+    def test_unreviewed_protocol_roster_mutation_fails_before_evidence_or_execution(self):
+        actual=batch.read(batch.REPO/'experiments/s04b_joint_recovery/recovery_protocol.json')
+        policy=batch.read(batch.HERE/'batch_policy.json')
+        for mutation in ('append','omit','reorder','charge'):
+            with self.subTest(mutation=mutation),tempfile.TemporaryDirectory() as directory:
+                repo=Path(directory);here=repo/'experiments/s04b_joint_recovery_host';here.mkdir(parents=True)
+                path=repo/'experiments/s04b_joint_recovery/recovery_protocol.json';path.parent.mkdir(parents=True)
+                changed=copy.deepcopy(actual)
+                if mutation=='append':changed['operational_failures'].append(copy.deepcopy(changed['operational_failures'][-1]))
+                elif mutation=='omit':changed['operational_failures'].pop()
+                elif mutation=='reorder':changed['operational_failures'].reverse()
+                else:changed['operational_failures'][-1]['charge_seconds']+=1
+                batch.write(path,changed);batch.write(here/'batch_policy.json',policy)
+                with patch.object(batch,'REPO',repo),patch.object(batch,'HERE',here),self.assertRaisesRegex(ValueError,'Recovery protocol changed'):
+                    batch.verify_policy()
 
     def test_actual_frozen_recovery_protocol_integrates_without_scientific_calls(self):
         policy,recovery=batch.verify_policy()
@@ -203,10 +273,10 @@ class RecoveryHostControls(unittest.TestCase):
                          policy['recovery_protocol_sha256'])
         self.assertEqual([row['regime'] for row in recovery['fixed_slots']], [5]*3+[6]*18+[7]*19)
         self.assertEqual(len(policy['actual_hosts']),8)
-        self.assertEqual(batch.operational_failure_charge(policy,recovery),210)
+        self.assertEqual(batch.operational_failure_charge(policy,recovery),290)
         self.assertEqual(batch.operational_diagnostic_charge(recovery),80)
-        margin=115200-recovery['predecessor']['known_outer_charged_seconds']-290-71760-8*1800-1800
-        self.assertAlmostEqual(margin,5235.114083220,places=8)
+        margin=115200-recovery['predecessor']['known_outer_charged_seconds']-370-71760-8*1800-1800
+        self.assertAlmostEqual(margin,5155.114083220,places=8)
 
     def test_policy_rejects_repinning_different_caps_or_incomplete_roster(self):
         original_here=batch.HERE
