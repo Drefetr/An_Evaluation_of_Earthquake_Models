@@ -101,6 +101,14 @@ cases are required before final aggregation can state scientific execution
 completion: 320 distinct fit arms, 400 outcomes, 480 historical floor checks
 and 400 historical comparison identities. The aggregate preserves the original
 score/gating definitions and does not claim global optimization or inference.
+The final deadline is checked again after aggregate construction and summary
+serialization. Late finalization retains its artifacts but cannot mark the
+batch passed; the external supervisor remains authoritative for process time.
+The `completed_case_fit_arms` census counts only completed cases. A separate
+`partial_fit_checkpoint` lists fit records actually retained in a failed case,
+including completed arms within that incomplete case. Missing/unreadable
+partial evidence is unknown, not zero; additional in-progress work remains in
+the preserved attempt trace.
 
 Constructed controls, including native full-case serial/scheduled record
 equivalence, first training reuse, complete-case reuse and failure/budget

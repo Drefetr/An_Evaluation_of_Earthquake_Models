@@ -117,6 +117,25 @@ class IndexAndBudgetControls(unittest.TestCase):
             estimate=driver.remaining_projection(cases,{'cases':records},{'pilot':names[:5]},output)
             self.assertEqual(estimate['remaining_seconds'],60.)
             self.assertNotEqual(estimate['remaining_seconds'],6.)
+    def test_final_serialization_deadline_is_checked_after_writing(self):
+        with tempfile.TemporaryDirectory()as temp:
+            output=Path(temp);records=[]
+            for i in range(80):
+                file=str(i)+'.json';checkpoint.write(output/file,dict(floor_checks=[{}]*6,historical_comparisons=[{}]*5));records.append({'file':file})
+            now={'value':0.};original=driver.write
+            def late_write(path,value):
+                original(path,value)
+                if Path(path).name=='summary.json':now['value']=2.
+            with patch.object(frozen,'aggregate',return_value=[{'constructed':True}]),patch.object(driver,'write',side_effect=late_write),patch.object(driver.time,'monotonic',side_effect=lambda:now['value']):
+                with self.assertRaisesRegex(ValueError,'summary serialization'):driver.final_summary({'cases':records},{},output,1.)
+            self.assertTrue((output/'summary.json').exists())
+            with patch.object(frozen,'aggregate',return_value=[{'constructed':True}]),patch.object(driver.time,'monotonic',return_value=0.):
+                self.assertEqual(driver.final_summary({'cases':records},{},output,1.),driver.sha(output/'summary.json'))
+    def test_unavailable_partial_checkpoint_is_unknown_not_zero(self):
+        with tempfile.TemporaryDirectory()as temp:
+            index={'cases':[],'partial_case':{'case_id':'a','file':'missing.json'}}
+            value=driver.fit_census(index,Path(temp));self.assertEqual(value['completed_case_fit_arms'],0)
+            self.assertIsNone(value['partial_fit_checkpoint']['recorded_fit_arms']);self.assertIsNone(value['partial_fit_checkpoint']['recorded_completed_fit_arm_names'])
 
 
 class BatchControls(unittest.TestCase):
@@ -161,6 +180,10 @@ class BatchControls(unittest.TestCase):
             self.assertEqual(code,1);index=driver.read(output/'index.json');self.assertEqual(index['cases'],[])
             self.assertEqual(index['partial_case']['case_id'],'a');self.assertGreater(index['budget']['total_seconds'],17.)
             self.assertFalse(driver.read(output/'attempts/failed.json')['passed']);self.assertEqual(calls,[('a',True)])
+            result=driver.read(output/'result.json');self.assertEqual(result['completed_case_fit_arms'],0)
+            self.assertEqual(result['partial_fit_checkpoint']['recorded_fit_arms'],4)
+            self.assertEqual(len(result['partial_fit_checkpoint']['recorded_completed_fit_arm_names']),4)
+            self.assertNotIn('cumulative_distinct_fit_arms',result)
     def test_exhausted_budget_stops_before_any_case_call(self):
         with tempfile.TemporaryDirectory()as temp:
             code,output,calls=self.exercise(Path(temp),'cap',cap=18.,wall=30.)

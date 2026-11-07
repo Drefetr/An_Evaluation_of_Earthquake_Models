@@ -133,6 +133,35 @@ def remaining_projection(cases,index,science,out):
     return estimate
 
 
+def final_summary(index,science,out,deadline):
+    require(len(index['cases'])==80,'All80 cases required for final summary')
+    reports=[read(out/r['file'])for r in index['cases']]
+    summary=frozen.aggregate(reports,science);write(out/'summary.json',summary)
+    require(sum(len(r['floor_checks'])for r in reports)==480 and sum(len(r['historical_comparisons'])for r in reports)==400,'Final scientific accounting incomplete')
+    require(time.monotonic()<deadline,'Final aggregate/summary serialization completed after wall allowance')
+    return sha(out/'summary.json')
+
+
+def fit_census(index,out):
+    census=dict(completed_case_fit_arms=4*len(index['cases']),
+        completed_case_new_fit_arms=sum(r['new_fit_arms']for r in index['cases']),
+        completed_case_reused_fit_arms=sum(r['reused_fit_arms']for r in index['cases']),
+        completed_outcomes=5*len(index['cases']),partial_fit_checkpoint=None)
+    partial=index['partial_case']
+    if partial is not None:
+        detail=dict(case_id=partial['case_id'],case_complete=False,recorded_fit_arms=None,recorded_completed_fit_arm_names=None,
+            scope='Only fit records in the retained partial checkpoint; additional in-progress work remains in its trace and is not inferred complete.')
+        try:
+            path=frozen.safe(out,partial['file']);report=read(path);fits=report.get('fits',{})
+            detail.update(checkpoint_sha256=sha(path),recorded_fit_arms=len(fits),
+                recorded_completed_fit_arm_names=[name for name,fit in fits.items()if fit.get('passed')is True],
+                recorded_incomplete_fit_arm_names=[name for name,fit in fits.items()if fit.get('passed')is not True])
+        except (OSError,ValueError,KeyError,TypeError)as exc:
+            detail.update(status='checkpoint_unavailable_or_unreadable',error=str(exc))
+        census['partial_fit_checkpoint']=detail
+    return census
+
+
 def check_admission(args,op,current):
     a=read(args.admission);now=datetime.datetime.now(datetime.timezone.utc)
     require(a['independent_review_passed']is True and a['scheduler_review_passed']is True,'Unreviewed source/scheduler admission')
@@ -197,9 +226,7 @@ def run(args):
                 print(checkpoint.dumps(dict(event='case_complete',case_id=name,complete_cases=len(index['cases']))),flush=True)
         require(time.monotonic()<deadline,'Batch completed after wall allowance')
         if len(index['cases'])==80:
-            reports=[read(out/r['file'])for r in index['cases']];summary=frozen.aggregate(reports,science);write(out/'summary.json',summary)
-            require(sum(len(r['floor_checks'])for r in reports)==480 and sum(len(r['historical_comparisons'])for r in reports)==400,'Final scientific accounting incomplete')
-            result.update(scientific_completion=True,summary_sha256=sha(out/'summary.json'))
+            result.update(scientific_completion=True,summary_sha256=final_summary(index,science,out,deadline))
         result.update(passed=True,status='batch_complete',new_fit_arms=sum(r['new_fit_arms']for r in result['cases']),reused_fit_arms=sum(r['reused_fit_arms']for r in result['cases']))
     except BaseException as exc:
         result.update(passed=False,status='failed_requires_review',error_type=type(exc).__name__,error=str(exc))
@@ -216,8 +243,7 @@ def run(args):
             original=op['original_failure']['prior_scientific_seconds']
             index['budget']=dict(total_seconds=math.fsum([original,*[r['seconds']for r in index['attempts']]]),pilot_seconds=math.fsum([original,*[r['seconds']for r in index['attempts']if r['phase']=='pilot']]))
             write(out/'index.json',index);result.update(index_sha256=sha(out/'index.json'),complete_cases=len(index['cases']),budget=index['budget'],independent_index_review_required=True,
-                cumulative_distinct_fit_arms=4*len(index['cases']),cumulative_new_fit_arms=sum(r['new_fit_arms']for r in index['cases']),
-                cumulative_reused_fit_arms=sum(r['reused_fit_arms']for r in index['cases']),completed_outcomes=5*len(index['cases']))
+                **fit_census(index,out))
         else:result['unindexed_attempt_requires_conductor_accounting']=True
         write(out/'result.json',result)
     return 0 if result['passed']else 1
