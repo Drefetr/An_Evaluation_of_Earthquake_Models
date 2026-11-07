@@ -35,8 +35,15 @@ def plan(review, output):
         raise ValueError('Diagnostic scope differs from the five frozen training evaluations')
     if review['independent_source_review'] != 'passed':
         raise ValueError('Diagnostic source has not been independently reviewed')
-    if dt.datetime.now(dt.timezone.utc) >= dt.datetime.fromisoformat(review['expires_utc']):
-        raise ValueError('Expired diagnostic admission')
+    shared_path = ROOT/'validation/reproductions/continuation_20261107/shared_run_config.json'
+    shared = read(shared_path)
+    if (sha(shared_path) != review['shared_run_config_sha256'] or
+            review['expires_utc'] != shared['deadline_utc']):
+        raise ValueError('Diagnostic cannot change the shared run or its deadline')
+    remaining = (dt.datetime.fromisoformat(review['expires_utc']) -
+                 dt.datetime.now(dt.timezone.utc)).total_seconds()
+    if remaining < 60:
+        raise ValueError('Insufficient shared deadline for the full diagnostic allowance')
     if int(os.environ.get('GITHUB_RUN_ATTEMPT', '1')) != 1:
         raise ValueError('A retry requires a new admission')
     required = {'scripts/run_joint_support_diagnostic.py',
@@ -44,11 +51,19 @@ def plan(review, output):
                 'experiments/s04b_joint_recovery/support_diagnostic.py',
                 'tests/test_joint_support_diagnostic.py',
                 'scripts/supervise_research.py',
-                'requirements-cpu.txt', 'requirements.txt'}
+                'requirements-cpu.txt', 'requirements.txt',
+                'validation/reproductions/continuation_20261107/shared_run_config.json'}
     sys.path.insert(0, str(ROOT))
     from experiments.s04b_joint_recovery import driver
     required.update(driver.source_identity())
     pins = review['source_sha256']
+    source_path = (ROOT/review['source_review']).resolve()
+    if not source_path.is_relative_to(ROOT) or sha(source_path) != review['source_review_sha256']:
+        raise ValueError('Independent diagnostic review identity changed')
+    source_review = read(source_path)
+    if (source_review.get('passed') is not True or source_review.get('live_agent_review') is not True or
+            source_review.get('source_sha256') != pins):
+        raise ValueError('Independent diagnostic source review does not cover this exact source map')
     if not required.issubset(pins):
         raise ValueError('Incomplete diagnostic source coverage')
     for name, expected in pins.items():
