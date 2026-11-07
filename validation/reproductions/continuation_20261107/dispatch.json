@@ -1,25 +1,29 @@
 {
   "schema": "conductor_scientific_admission_v1",
-  "stage": "cached-pilot",
+  "stage": "cached-completion",
   "registry": "reproduction/score_replay/california_benchmark/registry.json",
   "proposal": "reproduction/score_replay/california_benchmark/pilot_proposal.json",
   "independent_source_review": "passed",
   "reviewer": "Root independent source review",
   "baseline": "5374140404130421d878152a952024b43c1fbcc4",
-  "numerical_attempt_id": "1a1a69d9-5e37-4b25-8a90-538386fb7371",
+  "numerical_attempt_id": "5ce829e4-c442-48b7-b512-f8c9a8ca47a8",
   "allowed_github_run_attempt": 1,
   "expires_utc": "2026-11-07T16:54:57.252861+00:00",
   "wall_cap_seconds": 900,
   "rss_cap_bytes": 6442450944,
   "host_headroom_bytes": 2147483648,
   "execution_status": "not_run_at_source_review",
-  "scope": "Predeclared california_benchmark pilot; fitted states unchanged; no optimizer or new histories.",
+  "scope": "Exact remaining california_benchmark rows; independent accepted pilot union, no pilot repetition",
   "source_review_record": "validation/reproductions/continuation_20261107/california_benchmark_source_review.json",
   "row_ids": [
-    "california_benchmark/california_fold_2/EP/train",
-    "california_benchmark/california_fold_2/EP/test",
-    "california_benchmark/california_fold_2/N0/train",
-    "california_benchmark/california_fold_2/N0/test"
+    "california_benchmark/california_fold_0/EP/train",
+    "california_benchmark/california_fold_0/EP/test",
+    "california_benchmark/california_fold_0/N0/train",
+    "california_benchmark/california_fold_0/N0/test",
+    "california_benchmark/california_fold_1/EP/train",
+    "california_benchmark/california_fold_1/EP/test",
+    "california_benchmark/california_fold_1/N0/train",
+    "california_benchmark/california_fold_1/N0/test"
   ],
   "source_review_sha256": "bf3d4c36c8aa6e19c5e6d19db7044cd989db0fcd5892c57f4cb49536388780c2",
   "reviewed_files_sha256": {
@@ -43,5 +47,7 @@
     "scripts/supervise_research.py": "e8aaca56bb4bccf81aa9687a841d09d28bc5b2ff286de3c396ac37bd09324fcb",
     "scripts/tests/test_supervise_research_linux.py": "75ef9fd1643a850794e3e7ab6853f9998e91f769815d37e7a0b9579d45d88e83",
     "tests/test_continuation_controller.py": "0fc1c348c6cf0c4af6a7bde37d1d66d635140f97f0363b30dd25ac137e256c15"
-  }
+  },
+  "pilot_output_review_passed": true,
+  "pilot_output_review_sha256": "8d9278bd13e90e0098edbc974c39afe9994071ee2b664edaf8c7e4b887a78de3"
 }
