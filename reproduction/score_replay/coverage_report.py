@@ -8,6 +8,8 @@ Each cached/regional route requires delta, links, evidence and producer resource
 cached additional evidence requires an `additional` resource. Case routes require
 delta, execution, protocol and producer. Optional review resources are retained
 as attributed evidence, never turned into an invented independent acceptance.
+Optional metadata_dispositions pins explicit per-cell identity/count evidence;
+its accepted records are labelled metadata_checked, never score replay.
 Prior resources map the exact coverage-plan evidence string to its pinned bytes.
 This report is not a likelihood replay and does not upgrade prior scope.
 """
@@ -27,7 +29,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 from reproduction.score_replay.inventory import tables as parse_tables
 
-NUMBER = re.compile(r'(?<![A-Za-z])[-+]?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?')
+NUMBER = re.compile(r'(?<![A-Za-z])[-+]?\d+(?:,\d{3})*(?:\.\d+)?(?:[eE][-+]?\d+)?')
 
 
 def require(value, message):
@@ -50,14 +52,16 @@ def portable(base, name):
 
 class Resources:
     def __init__(self, repo, manifest_path):
-        self.repo = repo.resolve(); self.base = manifest_path.resolve().parent; self.used = {}
+        self.repo = repo.resolve(); self.base = manifest_path.resolve().parent; self.used = {}; self.archive_pins = {}
 
     def raw(self, spec, role):
         base = self.repo if spec.get('base', 'repository') == 'repository' else self.base
         require(spec.get('base', 'repository') in ('repository', 'manifest'), 'Unknown resource base')
         if 'archive' in spec:
             archive = portable(base, spec['archive'])
-            require(digest(archive.read_bytes()) == spec['archive_sha256'], 'Archive identity: '+role)
+            identity=(str(archive),archive.stat().st_size,archive.stat().st_mtime_ns)
+            if identity not in self.archive_pins:self.archive_pins[identity]=digest(archive.read_bytes())
+            require(self.archive_pins[identity] == spec['archive_sha256'], 'Archive identity: '+role)
             member = spec['member']; portable(Path('.').resolve(), member)
             with zipfile.ZipFile(archive) as source:
                 require(source.namelist().count(member) == 1, 'Missing/duplicate ZIP member: '+role)
@@ -87,18 +91,90 @@ def no_reference_operand(expr):
         for value in expr: no_reference_operand(value)
     elif isinstance(expr, dict):
         if 'pointer' in expr:
-            require(expr['pointer'].startswith('/actual/'), 'Reference pointer cannot be a score operand')
+            op=expr.get('op');path=expr['pointer']
+            require(isinstance(path,str),'Operand pointer must be a string')
+            forbidden=lambda name: name in ('expected','reference','original_gain') or name.startswith(('expected_','reference_'))
+            require(not any(forbidden(part) for p in path.split('/')
+                            for part in p.replace('~1','/').replace('~0','~').split('/')),
+                    'Reference pointer cannot be a score operand')
+            if op=='field':
+                require(path.startswith('/actual/'),'Field must select an actual evaluated result')
+            elif op=='state':
+                require(path=='/nuisance/N' and expr.get('absolute_tolerance')==0
+                        and isinstance(expr.get('row'),str) and expr['row']
+                        and isinstance(expr.get('registry'),str) and expr['registry'],
+                        'Only exact replay-bound state count metadata is admitted')
+            elif op=='select':
+                fields={'/absolute_rows':{'conditional_location','duration_microseconds','inherited_mark','joint','n_anchor_target','n_target','timing','timing_compensator','timing_event'},
+                        '/contrasts':{'conditional_location_logscore','joint_logscore','signed_share','target_count','timing_logscore'},
+                        '/comparison/comparisons':{'gain'}}
+                require(path in fields and expr.get('field') in fields[path]
+                        and isinstance(expr.get('record'),str) and expr['record']
+                        and isinstance(expr.get('where'),dict) and expr['where'],
+                        'Select must use a declared actual aggregate array/field and semantic key')
+            else:raise ValueError('Pointer requires a supported operand operation')
         if 'field' in expr:
             require(expr['field'] not in ('expected', 'reference', 'original_gain')
                     and not expr['field'].startswith(('expected_', 'reference_')), 'Reference field cannot be a score operand')
         for value in expr.values(): no_reference_operand(value)
 
 
+def numeric_text(text):
+    # Collapse the paper's wrapped mantissa-times-ten displays before treating
+    # the TeX linebreak as the end of a data row. Exponents are not extra cells.
+    text=re.sub(r'([-+]?\d+(?:\.\d+)?)\s*\$?\s*(?:\\\\)?\s*\$?\s*\\times\s*10\s*\^\s*\{?([-+]?\d+)\}?',
+                lambda m:m[1]+'e'+m[2],text)
+    text=re.sub(r'\\shortstack(?:\[[^\]]*\])?\s*\{','{',text)
+    # A calendar range dash separates positive year labels, unlike a score sign.
+    return re.sub(r'(?<!\d)(\d{4})-(?=\d{4}(?:\D|$))',r'\1 ',text)
+
+
+def inventory_numeric_fields(table):
+    """Inventory literal numeric data cells independently of expression maps.
+
+Textual labels (M1, fold_0, headings and equations containing named variables)
+are not numeric data cells. Plain scalars, counts, intervals and numeric lists
+are; every token in such a cell is required, including a fraction denominator.
+Existing explicitly mapped semantic/complex fields are added separately.
+"""
+    fields=set()
+    for row,line in enumerate(table['source_rows']):
+        for column,raw in enumerate(line.split('&')):
+            text=re.split(r'\\\\',numeric_text(raw))[0].strip()
+            text=text.replace('\\%','%').replace('\\pm','±')
+            text=re.sub(r'\\(?:num|texttt|mathrm|textbf|mathbf|ensuremath|textrm|mathsf|mathit)\s*\{([^{}]*)\}',r'\1',text)
+            text=text.replace('$','').strip()
+            text=numeric_text(text)
+            if not NUMBER.search(text):continue
+            residue=NUMBER.sub('',text)
+            if re.search(r'[^\s\[\](){},;/+%±\-]',residue):continue
+            for token,_ in enumerate(NUMBER.finditer(text)):
+                fields.add(f'{row}:{column}:{token}')
+    return fields
+
+
+def case_records(resources, execution_spec, execution, role):
+    """Verify every retained case, not merely its completion index."""
+    records={}
+    for entry in execution['cases']:
+        identity=entry['case_id'];name=entry['file']
+        require(identity not in records and entry.get('passed',True) is True,'Duplicate/failed indexed case')
+        require(isinstance(name,str) and name and '/' not in name and '\\' not in name
+                and name not in ('.','..') and ':' not in name,'Case report filename is not portable')
+        spec=dict(execution_spec,sha256=entry['sha256'])
+        key='member' if 'archive' in spec else 'path'
+        spec[key]=(PurePosixPath(spec[key]).parent/name).as_posix()
+        record=resources.json(spec,role+'/'+identity)
+        require(record.get('passed') is True and record.get('case_id')==identity,'Retained case did not pass')
+        records[identity]=record
+    return records
+
+
 def source_number(table, row, column, token=0):
     text = table['source_rows'][row].split('&')[column]
-    matches = list(NUMBER.finditer(text))
+    matches = list(NUMBER.finditer(numeric_text(text)))
     require(token < len(matches), 'Cell numeric token missing')
-    literal = matches[token].group(); value = float(literal)
+    literal = matches[token].group(); value = float(literal.replace(',', ''))
     mantissa = literal.lower().split('e')[0]
     exponent = int(literal.lower().split('e')[1]) if 'e' in literal.lower() else 0
     places = len(mantissa.split('.')[1]) if '.' in mantissa else None
@@ -128,7 +204,11 @@ def checked_cell(table, mapped, evidence, route, kind):
                       semantic=True, exact_display_match=passed)
         return result
     literal, display, half = source_number(table,mapped['source_row_index'],mapped['column_index'],mapped.get('numeric_token_index',0))
-    require(display == finite(mapped['display_value']), 'Mapping does not identify current manuscript display')
+    mapped_display=finite(mapped['display_value'])
+    # Equivalent mantissa-times-power and scientific-string parsing can differ
+    # by one IEEE-754 unit; this is not an additional score tolerance.
+    require(abs(display-mapped_display)<=max(math.ulp(display),math.ulp(mapped_display)),
+            'Mapping does not identify current manuscript display')
     actual = finite(actual)
     allowance = finite(evidence.get('arithmetic_allowance_nats', 0.) if kind == 'cached' else evidence['functional_tolerance'])
     require(allowance >= 0, 'Negative functional allowance')
@@ -138,6 +218,56 @@ def checked_cell(table, mapped, evidence, route, kind):
                   actual=actual, display=literal, absolute_delta=delta, functional_tolerance=allowance,
                   rounding_half_unit=half, allowed_absolute_delta=limit, exact_display_match=delta <= half+1e-12)
     return result
+
+
+def companion_fields(table, mapped, result):
+    """Derive only whole-display tokens and actual wins-roster denominators.
+
+A checked semantic support display covers every token of that very display.
+A win denominator is the cardinality of the distinct evaluated contrasts, never
+copied from the manuscript numerator or denominator. Unsuccessful source fields
+cannot confer successful coverage on their companions.
+"""
+    row=mapped['source_row_index'];column=mapped['column_index']
+    derived=[]
+    if result.get('semantic') and result['status']=='reconciled':
+        for token,match in enumerate(NUMBER.finditer(result['actual'])):
+            literal,display,_=source_number(table,row,column,token)
+            actual=finite(float(match.group().replace(',','')))
+            require(actual==display,'Semantic token differs from exact display')
+            derived.append(dict(field=f'{row}:{column}:{token}',route=result['route'],status='reconciled',
+                scope='numeric token of exact recomputed profile-support display',derived_from=result['field'],
+                actual=actual,display=literal,absolute_delta=0.,functional_tolerance=0.,
+                exact_display_match=True))
+    expression=mapped.get('expression',{})
+    raw=re.split(r'\\\\',table['source_rows'][row].split('&')[column])[0].strip()
+    if expression.get('op')=='wins' and re.fullmatch(r'\d+\s*/\s*\d+',raw):
+        contrasts=expression.get('contrasts',[])
+        case_ids=[];operand_rows=[]
+        def rows(value):
+            if isinstance(value,dict):
+                for key,item in value.items():
+                    if key in ('row','d_row','w_row','train_row'):
+                        require(isinstance(item,str) and len(item.split('/'))==4,'Win operand row identity is incomplete')
+                        yield item
+                    else:yield from rows(item)
+            elif isinstance(value,list):
+                for item in value:yield from rows(item)
+        for contrast in contrasts:
+            members=sorted(set(rows(contrast)));cases={item.split('/')[1] for item in members}
+            require(len(cases)==1,'Win contrast needs one actually evaluated case identity')
+            case_ids.append(next(iter(cases)));operand_rows.append(members)
+        require(len(set(case_ids))==len(case_ids),'Win denominator repeats a case identity')
+        require(contrasts and len({json.dumps(x,sort_keys=True) for x in contrasts})==len(contrasts),
+                'Win roster is empty or duplicates a contrast')
+        literal,display,_=source_number(table,row,column,1)
+        status=result['status']
+        if status=='reconciled':status='contract_checked' if display==len(contrasts) else 'failed'
+        derived.append(dict(field=f'{row}:{column}:1',route=result['route'],status=status,
+            scope='cardinality of distinct actually reconciled win contrasts; metadata, not a score',
+            derived_from=result['field'],actual=len(case_ids),display=literal,
+            distinct_case_ids=case_ids,actual_operand_rows=operand_rows))
+    return derived
 
 
 def case_bindings(kind):
@@ -178,12 +308,18 @@ def case_bindings(kind):
     return bindings,contracts
 
 
-def add_case_route(kind, delta, execution, protocol, inventory, observations, required, route):
+def add_case_route(kind, delta, execution, protocol, inventory, observations, required, route, checked_cases=None):
     require(execution.get('passed') is True and execution.get('full_complete') is True
             and execution.get('mode') == 'completion', 'Case table delta needs actual complete output')
+    require(len(set(protocol['roster']))==len(protocol['roster']),'Duplicate protocol case identity')
     require([x['case_id'] for x in execution['cases']] and
             len(execution['cases']) == len(protocol['roster']) and
             {x['case_id'] for x in execution['cases']} == set(protocol['roster']), 'Incomplete/duplicate case roster')
+    for entry in execution['cases']:
+        require(entry.get('passed',True) is True,'An indexed case explicitly failed')
+        record=checked_cases.get(entry['case_id'],{}) if checked_cases is not None else entry
+        require(record.get('passed') is True and record.get('case_id')==entry['case_id'],
+                'Individual passed case evidence is required')
     wanted = 60 if kind == 'initial_mark' else 300
     require(len(protocol['roster']) == wanted, 'Case contract size changed')
     hvalues=[]
@@ -233,13 +369,61 @@ def add_case_route(kind, delta, execution, protocol, inventory, observations, re
             scope=scope+'; metadata only, not likelihood replay'))
 
 
+def json_pointer(value, pointer):
+    require(isinstance(pointer,str) and (pointer=='' or pointer.startswith('/')),'Invalid metadata pointer')
+    for part in pointer.split('/')[1:]:
+        name=part.replace('~1','/').replace('~0','~')
+        require(not any(x in ('expected','reference','original_gain') or x.startswith(('expected_','reference_'))
+                        for x in name.split('/')),'Expected/reference metadata operand is forbidden')
+        value=value[int(name)] if isinstance(value,list) else value[name]
+    return value
+
+
+def add_metadata_dispositions(resources, spec, inventory, observations, required):
+    """Explicit checked identities/counts, never implicit numeric exemptions.
+
+The resource has schema score_table_metadata_dispositions_v1 and entries with
+current table_id/source_body_sha256/source_row_index/column_index/token index,
+source_token, role and evidence. Evidence pins a JSON resource, record_pointer,
+identity_pointer/identity and value_pointer. The resolved record itself must
+have passed=true. Values are primitive numeric metadata derived in that retained
+record; this layer verifies its identity and exact display, not its derivation.
+"""
+    document=resources.json(spec,'metadata_dispositions')
+    require(document.get('schema')=='score_table_metadata_dispositions_v1','Unknown metadata disposition schema')
+    seen=set()
+    for i,entry in enumerate(document['entries']):
+        tid=entry['table_id'];require(tid in inventory,'Metadata table identity unknown')
+        table=inventory[tid]
+        require(entry['source_body_sha256']==table['body_sha256'],'Metadata source identity differs')
+        role=entry['role']
+        require(role in ('fold_id','seed','year','interval_endpoint','count','contrast_arm_label'),
+                'Metadata disposition cannot excuse a scientific score')
+        row=entry['source_row_index'];column=entry['column_index'];token=entry['numeric_token_index']
+        field=f'{row}:{column}:{token}'
+        require((tid,field) not in seen,'Duplicate metadata disposition');seen.add((tid,field))
+        require(field in inventory_numeric_fields(table),'Metadata must identify a literal numeric source field')
+        literal,display,_=source_number(table,row,column,token)
+        require(literal==entry['source_token'],'Metadata source token differs')
+        evidence=entry['evidence'];doc=resources.json(evidence['resource'],f'metadata/{i}')
+        record=json_pointer(doc,evidence['record_pointer'])
+        require(isinstance(record,dict) and record.get('passed') is True,'Metadata evidence record did not pass')
+        require(json_pointer(record,evidence['identity_pointer'])==evidence['identity'],'Metadata evidence identity differs')
+        actual=finite(json_pointer(record,evidence['value_pointer']))
+        required[tid].add(field)
+        observations[tid].setdefault(field,[]).append(dict(field=field,route='explicit_metadata',
+            status='metadata_checked' if actual==display else 'failed',display=literal,actual=actual,
+            role=role,scope='exact retained identity/count metadata; not a freshly replayed score',
+            evidence=entry['evidence']))
+
+
 def merge_fields(requirements, observations):
     result=[]
     for field in sorted(requirements):
         evidence=observations.get(field,[])
         failed=[x for x in evidence if x['status']=='failed']
-        passed=[x for x in evidence if x['status'] in ('reconciled','contract_checked')]
-        status='failed' if failed else ('reconciled' if any(x['status']=='reconciled' for x in passed) else 'contract_checked') if passed else 'not_run'
+        passed=[x for x in evidence if x['status'] in ('reconciled','contract_checked','metadata_checked')]
+        status='failed' if failed else ('reconciled' if any(x['status']=='reconciled' for x in passed) else 'metadata_checked' if any(x['status']=='metadata_checked' for x in passed) else 'contract_checked') if passed else 'not_run'
         result.append(dict(field=field,status=status,evidence=evidence,
             gap=None if passed or failed else 'No successful actual table-cell mapping; route completion alone is insufficient'))
     return result
@@ -261,7 +445,8 @@ def build(repo, manifest_path, output):
         item=current[rel][int(identity.rsplit(':',1)[1])-1]
         require(item['body_sha256']==table['body_sha256'] and dependencies[identity]['source_file']==rel,'Current source/table body changed: '+identity)
         require(item['source_rows']==table['source_rows'],'Current table rows changed')
-    required={k:set() for k in inventory};observations={k:{} for k in inventory};route_records=[]
+    required={k:inventory_numeric_fields(table) for k,table in inventory.items()}
+    observations={k:{} for k in inventory};route_records=[]
     route_ids=set()
     for route in manifest.get('routes',[]):
         rid=route['id'];kind=route['kind'];require(rid not in route_ids,'Duplicate route identity');route_ids.add(rid)
@@ -289,13 +474,19 @@ def build(repo, manifest_path, output):
                     field=field_key(cell);required[tid].add(field)
                     result=checked_cell(inventory[tid],cell,cells.get(field),rid,kind)
                     observations[tid].setdefault(field,[]).append(result)
+                    for companion in companion_fields(inventory[tid],cell,result):
+                        required[tid].add(companion['field'])
+                        observations[tid].setdefault(companion['field'],[]).append(companion)
         elif kind in ('initial_mark','s02'):
             execution=resources.json(route['execution'],rid+'/execution');protocol=resources.json(route['protocol'],rid+'/protocol')
             require(execution['table_deltas_sha256']==route['delta']['sha256'] and execution['protocol_sha256']==route['protocol']['sha256'],'Case result/delta/protocol identity')
             producer_path=route['producer']['path']
             require(execution['source_sha256'].get(producer_path)==digest(producer_raw),'Case producer identity')
-            add_case_route(kind,delta,execution,protocol,inventory,observations,required,rid)
+            checked=case_records(resources,route['execution'],execution,rid+'/case')
+            add_case_route(kind,delta,execution,protocol,inventory,observations,required,rid,checked)
         else:raise ValueError('Unknown reconciliation route')
+    if 'metadata_dispositions' in manifest:
+        add_metadata_dispositions(resources,manifest['metadata_dispositions'],inventory,observations,required)
     prior_specs=manifest.get('prior_evidence',{});prior_checked={}
     for name,spec in prior_specs.items():
         parts=name.split('#',1)
@@ -324,14 +515,15 @@ def build(repo, manifest_path, output):
             maximum_functional_tolerance=max((x['functional_tolerance'] for x in numeric),default=None),
             display_rounding_differences=[c['field'] for c in fields if any(x.get('exact_display_match') is False for x in c['evidence'])],
             prior_evidence=[dict(identity=n,sha256=prior_checked.get(n)) for n in dep['prior_evidence']],missing_prior_evidence=missing_prior,
-            fields=fields,gap='No executable table-cell mapping supplied' if status=='unmapped' else None))
+            fields=fields,gap=('No executable table-cell mapping supplied' if status=='unmapped' else
+                'One or more source numeric fields lack successful mapped score or explicit metadata evidence' if status in ('partial','not_run') else None)))
     accepted={'mapped_fields_reconciled','prior_replay_retained','no_likelihood_required'}
     complete=all(t['status'] in accepted for t in reports)
     result=dict(schema='terminal_score_table_coverage_v1',passed=complete,census_verified=True,table_count=len(reports),
         status_counts=dict(Counter(t['status'] for t in reports)),manifest_sha256=digest(manifest_raw),producer_sha256=digest(Path(__file__).read_bytes()),
         resources=resources.used,routes=route_records,tables=reports,previously_withdrawn=plan['previously_withdrawn'],
         missing_tables=[t['table_id'] for t in reports if t['status'] not in accepted],
-        scope='Only exact mapped table fields plus separately labelled pinned prior and non-likelihood scopes. No route-to-table promotion, model evaluation, fit, generation or independent scientific acceptance. Display rounding differences remain explicit.')
+        scope='Every literal numeric source data field requires exact mapped score or explicit metadata evidence, alongside separately labelled pinned prior and non-likelihood scopes. No route-to-table promotion, model evaluation, fit, generation or independent scientific acceptance. Display rounding differences remain explicit.')
     output.parent.mkdir(parents=True,exist_ok=True)
     with output.open('x',encoding='utf-8',newline='\n') as stream:json.dump(result,stream,indent=2,allow_nan=False);stream.write('\n')
     return result
