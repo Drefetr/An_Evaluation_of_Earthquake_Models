@@ -1,0 +1,52 @@
+{
+  "schema": "independent_li_retry_controller_review_v1",
+  "passed": true,
+  "reviewer": "/root",
+  "scope": "Source diff inspection,45 constructed tests and read-only exact partial evidence verification; no model execution",
+  "source_sha256": {
+    "scripts/run_continuation.py": "352486b6eb6fcb7c7f154df9bc220b4628a618222ba2e99afab008a491284a11",
+    "tests/test_continuation_controller.py": "55e4b2b870645a7939d90bf360b2c0a5295fee61561fe3619284c3650e3a2918"
+  },
+  "checks": {
+    "constructed_tests": 45,
+    "failures": 0,
+    "errors": 0,
+    "exact_retained_rows": 2,
+    "retry_rows": 1,
+    "full_failed_pilot_stays_failed": true,
+    "original_roster_unchanged": true,
+    "ordinary_remaining_rows": 35
+  },
+  "actual_evidence": {
+    "schema": "original_li_constructor_retry_evidence_v1",
+    "original_pilot_passed": false,
+    "complete_pilot_union_accepted": false,
+    "partial_archive_sha256": "c7e614b4c1b1763c55fa6a29985a7daccbac2a54eca42dcf3404f6abc73572af",
+    "partial_output_review_sha256": "e62c10280953ec89c19a75d6bc26e9a7536685e46c42dfe604855487f4009217",
+    "source_review_sha256": "bfbfdc197d8839a651cd0e953563c596f65a4479b49e4f32506c38c751ad642d",
+    "retained_passed_rows": [
+      {
+        "id": "original_li/S0_uniform_null_seed410002/LI/test",
+        "result_member": "science/rows/00001/result.json",
+        "result_sha256": "859ba0ab53b28f109f695bbaaee5ad6153f00526a792eede1488f7d31cde0311",
+        "native_arrays_member": "science/rows/00001/native_components.npz",
+        "native_arrays_sha256": "93dd4049dcd4bc0eb14c28362da6deef230d2af62a34bc2088f91b1b3e1ac26d"
+      },
+      {
+        "id": "original_li/S0_uniform_null_seed410002/OC/test",
+        "result_member": "science/rows/00002/result.json",
+        "result_sha256": "a08d75e1706b2107e22f363af832136ae6b6205e2065c9e779601522de82f60e",
+        "native_arrays_member": "science/rows/00002/native_components.npz",
+        "native_arrays_sha256": "b6f7cbfe9a99b7ceae26857ed098d1d404c3fbb926360a5f045f7192a85e784d"
+      }
+    ],
+    "retry_row_ids": [
+      "original_li/LI_CA_M4_F2/LI/train"
+    ],
+    "original_pilot_row_ids": [
+      "original_li/LI_CA_M4_F2/LI/train",
+      "original_li/S0_uniform_null_seed410002/LI/test",
+      "original_li/S0_uniform_null_seed410002/OC/test"
+    ]
+  }
+}
