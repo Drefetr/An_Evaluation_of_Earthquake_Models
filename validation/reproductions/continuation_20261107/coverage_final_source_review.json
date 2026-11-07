@@ -1,0 +1,63 @@
+{
+  "schema": "independent_coverage_source_review_v2",
+  "passed": true,
+  "status": "accepted_source_and_constructed_controls",
+  "commit": "9b3210e473b81c52636202e3a59004062aebe50e",
+  "integration_source_acceptance": "Exact source hash required on integration; reviewed author commit identified separately",
+  "source_sha256": "fcf53c1a36558a3e929b1380faecc4018aa49b1480f00524dbd9b8cbcc531d03",
+  "tests_sha256": "5894c7243797710bf4959173cdd5826c6c006b72861e22f250373c85e3a18f9e",
+  "controls": {
+    "author_constructed_tests": 18,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "log_sha256": "acc7b65c05b1d6608498f749ec88995f787ae71ab5a7010c28eea0769610112a",
+    "own_counterexamples_passed": true
+  },
+  "static_checks": {
+    "guarded_current_expressions": 5667,
+    "parsed_current_numeric_mappings": 5903,
+    "scientific_displays_required_even_without_mapping": 146,
+    "accepted_cached_checkpoint_cells_rechecked": 4734,
+    "preserved_rounding_flags": [
+      {
+        "table_id": "10_nz_spatial_background:table:1",
+        "field": "5:2:0",
+        "actual": -4.547473508864641e-13,
+        "display": "-5.11591e-13",
+        "absolute_delta": 5.68436491135359e-14,
+        "rounding_half_unit": 5e-19,
+        "functional_tolerance": 1e-09,
+        "exact_display_match": false
+      },
+      {
+        "table_id": "ch10_audit:table:1",
+        "field": "5:6:0",
+        "actual": -5.684341886080802e-14,
+        "display": "-1.13687e-13",
+        "absolute_delta": 5.684358113919199e-14,
+        "rounding_half_unit": 5e-19,
+        "functional_tolerance": 1e-09,
+        "exact_display_match": false
+      }
+    ]
+  },
+  "resolved_findings": [
+    "COV1 operation-specific actual-result/state-count pointers",
+    "COV2 unique complete roster plus every hash-pinned passed individual case",
+    "COV3 numeric source census independent of mappings; absent evidence remains nonpass",
+    "Wrapped scientific notation parsed as one exponent-aware value and independently required",
+    "Blanket absolute rounding slack removed; producer disagreement retained",
+    "Explicit source-matched six-significant-digit convention distinguishes rounded scores from exact integer metadata"
+  ],
+  "scope": "Source review, invented controls, and rechecking already accepted cached arithmetic only. No likelihood, optimizer, generation or new route execution. This accepts the coverage tool, not a terminal coverage result.",
+  "requirements_for_actual_acceptance": [
+    "Each actual manifest must pin exact current source, mapping, delta and evidence resources.",
+    "Explicit metadata entries require independent semantic linkage to retained passed row/interval identities; allowed role labels alone do not establish scientific meaning.",
+    "Previously replayed and no-likelihood categories remain separately labelled and must retain their declared pinned evidence.",
+    "Missing/failed/unmapped current numeric fields prevent entire-task completion."
+  ],
+  "scientific_model_calls": 0,
+  "terminal_task2_accepted": false,
+  "reviewer_script_sha256": "abdbc7e9e7446a847b13fef039d2eb218e7020697133c8c3dfd131bc090d9b64"
+}
