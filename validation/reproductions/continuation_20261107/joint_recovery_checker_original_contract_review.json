@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "reviewer": "/root",
+  "author": "/root/continuation_cpu",
+  "review_kind": "independent_source_review",
+  "previous_review_sha256": "d5227c9bab9b9d9f59edae6a98037f4122c66213434991740c346410b06ae740",
+  "reviewed_files_sha256": {
+    "experiments/s04b_joint_recovery_audit/check.py": "9fb9032fceb4d0c8ab78ae9bbdbe24c2f90e2c1da4170102db76920327fb6e72",
+    "experiments/s04b_joint_audit/check.py": "839c67fd3dca65294b457cb6511a66c1800fa422712fc13e302e4f4495ddaa13",
+    "experiments/s04b_joint_nuisance_audit/audit.py": "47e38c68ff613f5dae1ac80da3713f03a673dc1a31553bf2a8ca3a27773231c3",
+    "tests/test_joint_recovery_output_audit.py": "6ea1446bd6528e628cbed2e2d13f318ed517f4001ddccbfb7465459649e533d2"
+  },
+  "checks": [
+    "Read the complete substantive checker changes and independently ran all 52 constructed controls in the integration checkout.",
+    "Only saved bytes and scalar arithmetic are checked; no producer comparison, optimizer, likelihood, generator or native library is imported. Existing independent custody and case arithmetic helpers remain unchanged.",
+    "Completed-state support uses the original absolute 1e-9 score tolerance, exact within-payload score identities, finite gradients and independently recomputed projections and original selected coarse/fine criteria. No cross-run epsilon or bitwise gradient gate remains.",
+    "One-shot completed-return support is bound to model, start, exact parameters and support context. Immutable completed score/gradient values enter candidate construction before selection; the checker verifies token order, retained candidates, near-tie selection and exclusion from physical optimizer evaluations.",
+    "Actual historical-floor NLL and its recomputed discrepancy remain visible; original expected values and tolerances remain exact. Completed fit objects and original failed attempts are retained.",
+    "The restarted Powell invocation retains its original initial state, bounds, solver options and per-invocation cap. Old trajectory snapshots are observational only; early success or a different reached snapshot does not constitute failure. Original scientific eligibility and failed/capped handling remain unchanged.",
+    "The exact source-pinned operational roster retains three failures and one diagnostic, charges 290 plus 80 seconds once, and keeps the original 90-second alias uncharged separately. Original 40-case prefix and physical versus logical work remain distinguished.",
+    "The actual recovery pilot must pass a separate live saved-output review before the remaining fixed hosts proceed."
+  ],
+  "tests": {
+    "command": "python -B -m unittest discover -s tests -p test_joint_recovery_output_audit.py -q",
+    "run": 52,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0
+  },
+  "other_focused_controls": {
+    "producer": 42,
+    "host": 25,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0
+  },
+  "scientific_calls": 0,
+  "execution_admitted": false,
+  "scope": "Checker source approval only. No new recovery fit, scientific output or completed campaign is accepted by this record."
+}
