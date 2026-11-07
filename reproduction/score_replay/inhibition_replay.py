@@ -206,7 +206,8 @@ def tiny_native_control(native):
                 floor_error=abs(float(whole[0])-expected)
             passed=pieces==2 and error<=1e-12 and (floor_error is None or floor_error<=1e-12)
             reports.append(dict(model=name,eta=eta,pieces=pieces,maximum_split_delta=error,
-                analytic_floor_nll_error=floor_error,absolute_tolerance=1e-12,passed=passed))
+                analytic_floor_nll_error=None if floor_error is None else float(floor_error),
+                absolute_tolerance=1e-12,passed=bool(passed)))
     return dict(passed=all(r['passed'] for r in reports),controls=reports,
         scope='Hand-authored one-parent/one-event/two-location example only; no historical likelihood.')
 
