@@ -97,6 +97,10 @@ def validate(repository,paths):
     require(result.get('index_sha256')==pins[paths['index']] and result.get('summary_sha256')==pins[paths['summary']],
             'Final result/index/summary identity differs')
     require(index.get('partial_case') is None and index.get('last_attempt_passed') is True,'Unresolved final index')
+    require(audit.get('review_kind')=='live_agent_saved_output_review' and audit.get('live_agent_review') is True and
+            audit.get('live_agent_review_performed',True) is True and
+            audit.get('final_batch_agent_review_required',False) is False,
+            'The bound final audit must itself be a completed live independent review')
     require(audit.get('passed') is True and audit.get('scientific_completion') is True and
             audit.get('complete_cases')==80 and audit.get('outcomes')==400 and audit.get('historical_floor_checks')==480 and
             audit.get('historical_comparison_rows')==400,'Incomplete independent scientific audit')

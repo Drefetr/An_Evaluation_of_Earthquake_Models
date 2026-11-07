@@ -46,7 +46,8 @@ class InventedEvidence:
             primary=(r,m,g)in formatter.PRIMARY)
             for r in range(4,8)for m,g in formatter.PROCEDURES]
         self.result=dict(passed=True,scientific_completion=True,complete_cases=80,status='batch_complete')
-        self.audit=dict(passed=True,scientific_completion=True,complete_cases=80,outcomes=400,
+        self.audit=dict(passed=True,review_kind='live_agent_saved_output_review',live_agent_review=True,
+            scientific_completion=True,complete_cases=80,outcomes=400,
             historical_floor_checks=480,historical_comparison_rows=400,independent_summary=deepcopy(self.summary))
         self.completion=dict(schema='joint_nuisance_publication_acceptance_v1',passed=True,
             live_independent_review=True,scientific_completion=True,counts=deepcopy(formatter.COUNTS),tasks={})
@@ -133,6 +134,17 @@ class TestJointPublicationFormatter(unittest.TestCase):
         path.write_bytes(path.read_bytes()+b' ')
         with self.assertRaisesRegex(ValueError,'does not bind summary'):self.stage()
         self.assertFalse((self.root/'staging').exists())
+
+    def test_automated_or_pending_audit_cannot_replace_final_live_review(self):
+        self.fixture.audit.update(review_kind='automated_saved_output_check',live_agent_review=False,
+            live_agent_review_performed=False,final_batch_agent_review_required=True)
+        self.rejects('bound final audit must itself')
+        self.fixture.audit.update(review_kind='live_agent_saved_output_review',live_agent_review=True,
+            live_agent_review_performed=True)
+        self.rejects('bound final audit must itself')
+        self.fixture.audit['final_batch_agent_review_required']=False
+        self.fixture.audit['live_agent_review_performed']=False
+        self.rejects('bound final audit must itself')
 
     def test_missing_and_duplicate_case_roster_are_rejected_even_when_repinned(self):
         removed=self.fixture.index['cases'].pop()
