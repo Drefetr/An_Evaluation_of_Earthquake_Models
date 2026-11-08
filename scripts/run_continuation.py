@@ -208,6 +208,7 @@ def mandatory_sources(stage, review=None):
                       'tests/test_joint_parallel_chunks.py',
                       'experiments/s04b_joint_audit/check.py',
                       'experiments/s04b_joint_nuisance_audit/audit.py',
+                      'tests/test_joint_output_audit.py',
                       'tests/test_joint_remaining_controller.py',
                       review['source_review_record'], review['checker_source_review'],
                       review['operational_run_config_path'], review['prior_index_review']))
