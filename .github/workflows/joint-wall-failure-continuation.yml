@@ -27,8 +27,12 @@ jobs:
           python-version: '3.13.18'
           cache: pip
       - run: python -m pip install -r requirements-cpu.txt
-      - name: Constructed operational bridge and independent checker controls
-        run: python -B -m unittest discover -s tests -p 'test_joint_wall_failure*.py' -v
+      # The full saved-output checker suite remains in source review and ordinary
+      # main-suite CI. Every actual child also receives its independent audit.
+      - name: Fast operational bridge and launcher controls
+        run: |
+          python -B -m unittest discover -s tests -p 'test_joint_wall_failure_continuation.py' -v
+          python -B -m unittest discover -s tests -p 'test_joint_wall_failure_launcher.py' -v
       - name: Process containment controls
         env:
           SUPERVISOR_TEST_OUTPUT: ${{ runner.temp }}/refinement-preflight
