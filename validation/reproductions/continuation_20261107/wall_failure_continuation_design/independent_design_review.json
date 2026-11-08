@@ -1,0 +1,82 @@
+{
+  "schema": "joint_wall_failure_disposition_independent_design_review_v1",
+  "passed": true,
+  "audit_passed": true,
+  "status": "completed",
+  "reviewer": "/root/disposition_reporting",
+  "live_agent_review": true,
+  "review_kind": "live_agent_source_only_design_review",
+  "task_id": "joint_wall_failure_disposition_design_review",
+  "attempt_id": "06d41fd9-4dfe-4dc3-95ab-b9a31bd4df49",
+  "created_utc": "2026-11-08T07:00:14.252024+00:00",
+  "root_head_at_finish": "22278421ad83935dbe61641af5ff14304bb6efbc",
+  "design": {
+    "plan_path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_wall_failure_disposition_design\\plan.md",
+    "plan_sha256": "8cf7114b127533ba14355d8e17c75e7c215d7a07434a5b7617f71d4b1f51a4fe",
+    "result_path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_wall_failure_disposition_design\\result.json",
+    "result_sha256": "ab31af83b50ac9b3db663457b2a71b7342aa0c03a927bd6bf904e95881c761d0"
+  },
+  "failure_evidence": {
+    "archive": {
+      "path": "validation/reproductions/joint_nuisance_20261107/continuation/exposure_refinement_host04_wall_failure.zip",
+      "sha256": "d95f7321ca76c4f4a5044c4ad27ae967154511243c72daf13e32fa5b88a7be87"
+    },
+    "review": {
+      "path": "validation/reproductions/joint_nuisance_20261107/continuation/exposure_refinement_host04_wall_failure_review.json",
+      "sha256": "0ea5512e94d1c9bb2e0b42fca052621fd0f1072588685d970ed92b0de506e413"
+    }
+  },
+  "accepted_scope": "Singular wall-time-failure operational accounting and fixed untouched-host continuation design, not implementation or numerical admission.",
+  "source_sha256": {
+    "experiments/s04b_exposure_refinement/host.py": "2badce70050df8ff94520de12ef7220650304d5082877b1ff9ee97ac9e5557e3",
+    "experiments/s04b_exposure_refinement/case_driver.py": "38537a461fb2693a32f52ee5f2b30709182d0ecd2f039240c1f53e883004cf08",
+    "experiments/s04b_exposure_refinement/protocol.json": "9b419d004ee3a075abdc3059bcc06fa037281cf5af7ea031d0c209be5687c982",
+    "experiments/s04b_exposure_refinement_audit/check.py": "43b87881ed19970e420a4db7e5325e45302fae7d87381483e2700f07065bfb02",
+    "experiments/s04b_refined_cpu_bridge/host.py": "36321b9a6b3b2a2a91ab15859018b8bac254d5129c405cc3daef1624c2650d11",
+    "experiments/s04b_refined_cpu_bridge/contract.py": "9cc607773de4bfcf9f4d66765df881081983631d20723327e2aaa53376f6846e",
+    "experiments/s04b_joint_remaining/host.py": "75ac8ff689fc79878134cf64e1ba10af4d5c8fcf373924bf1ea072c0c8cf4d83",
+    "experiments/s04b_joint_remaining_audit/check.py": "6600b55612d665a1255fcfc5261275452d15abd8b63828f1feda0c38386f51d2",
+    "scripts/run_joint_exposure_refinement.py": "8af5e0a90a03514f2d41f7f1814a9af9d4c18aa7e421ee8549852686de871623",
+    "scripts/build_joint_disposition_report.py": "7b597675f16e49ae37e9358ebe7d0b173471fe66bc7fd04a54deb881fa3c57fd",
+    "scripts/render_joint_disposition_results.py": "f8dcdffe5eda49e2c96fa4b59ba276816a8d3297758a56bb7cf7a2c907575cfc",
+    "scripts/render_joint_nuisance_results.py": "0ce865ec630b769c7580829453115790efed292a91ce23de3deea6d03e89c20a",
+    "website/build_findings.py": "c2ea8d4f395a98cfbb1bc81db1038c4b478a7dea39d32e8ef8f3b482f89e8873",
+    "website/findings.html": "97a1218c63583aeb0356fd7d286679187d2f692180042b1101b2fc23780ab2a4"
+  },
+  "metadata_checks": {
+    "path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_wall_failure_disposition_design_review\\metadata_checks.json",
+    "sha256": "4694fcf2ab674999f3a9560d5a266e1776d6b723459491cf37a1f1a339f99af8"
+  },
+  "review": {
+    "path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_wall_failure_disposition_design_review\\review.md",
+    "sha256": "ee8b492e95ffcbc1cd45338a406273999112ba5275b840acf1bdda67877d4b40"
+  },
+  "resolved_findings": [
+    "Expanded actual orchestration source_identity made explicit.",
+    "Raw ZIP55 versus sealed public index56 separated by explicit custody fields.",
+    "Transition review has no forged execution ID; no ambiguous second passed host04 review.",
+    "Overhead is bound to unique audited host identities and consumes original reservation once."
+  ],
+  "open_defects": [],
+  "required_future_gates": [
+    "D independent design review",
+    "exact failure seal plus independent live transition review",
+    "independent producer/checker/launcher source review with constructed interface controls",
+    "root numerical lease and existing fixed shared resource/deadline admission",
+    "live output review at every subsequent fixed host boundary"
+  ],
+  "implementation_approved": false,
+  "numerical_execution_admitted": false,
+  "scientific_completion": false,
+  "original_full_success_gate_satisfied": false,
+  "publication_promoted": false,
+  "execution_scope": {
+    "tests": 0,
+    "scientific_calls": 0,
+    "native_calls": 0,
+    "optimizer_calls": 0,
+    "repository_edits": 0,
+    "seal_generation": 0,
+    "actual_reports": 0
+  }
+}
