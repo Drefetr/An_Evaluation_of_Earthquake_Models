@@ -176,5 +176,39 @@ class TestDispositionFindings(unittest.TestCase):
         study,_=self.load_fixture();study['outcomes']=[r for r in study['outcomes'] if r['availability']=='computed']
         output,_=self.render_fixture(study,'dropped_slots');self.assertNotEqual(self.node(output,False).returncode,0)
 
+    def actual_validator_fixture(self,extra_unknown=False):
+        spec=importlib.util.spec_from_file_location('disposition_saved_evidence_fixture',
+            Path(__file__).with_name('test_joint_disposition_reporting.py'))
+        module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+        fixture=module.InventedDispositionEvidence(self.root/'actual_gate',extra_unknown=extra_unknown)
+        fixture.public=dict(self.paths)
+        documents=fixture.accept()
+        return module,fixture,documents
+
+    def test_real_saved_evidence_validator_to_browser(self):
+        module,fixture,(report,audit,acceptance)=self.actual_validator_fixture(extra_unknown=True)
+        before={p.relative_to(fixture.repo).as_posix():p.read_bytes() for p in fixture.repo.rglob('*') if p.is_file()}
+        study,sources=findings.load_joint_disposition_study(fixture.repo)
+        self.assertEqual(study['counts']['complete_histories'],78)
+        self.assertEqual(study['counts']['unavailable_outcomes'],10)
+        self.assertEqual(study['summary'],report['regime_summary'])
+        self.assertEqual(sum(row['statistics_available'] for row in study['summary']),10)
+        for row in sources:self.assertEqual(module.builder.sha(fixture.repo/row['path']),row['sha256'])
+        output,_=self.render_fixture(study,'actual_gate_browser')
+        result=json.loads(self.node(output).stdout);self.assertEqual(result['disposition_selector_cases'],10)
+        self.assertEqual(before,{p.relative_to(fixture.repo).as_posix():p.read_bytes() for p in fixture.repo.rglob('*') if p.is_file()})
+
+    def test_real_reporting_acceptance_and_task_acceptances_are_required(self):
+        module,fixture,(report,audit,acceptance)=self.actual_validator_fixture()
+        findings.load_joint_disposition_study(fixture.repo)
+        target=fixture.repo/fixture.public['completion_review']
+        for task in ('task2','task3'):
+            changed=deepcopy(acceptance);changed['tasks'][task]['passed']=False;module.write(target,changed)
+            with self.assertRaisesRegex(ValueError,'Incomplete '+task):findings.load_joint_disposition_study(fixture.repo)
+        changed=deepcopy(acceptance);changed['live_independent_review']=False;module.write(target,changed)
+        with self.assertRaisesRegex(ValueError,'Genuine live independent'):findings.load_joint_disposition_study(fixture.repo)
+        changed=deepcopy(acceptance);changed['scientific_completion']=True;module.write(target,changed)
+        with self.assertRaisesRegex(ValueError,'Genuine live independent'):findings.load_joint_disposition_study(fixture.repo)
+
 
 if __name__=='__main__':unittest.main()
