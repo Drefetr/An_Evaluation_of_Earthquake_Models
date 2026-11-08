@@ -1,0 +1,193 @@
+{
+  "total_count": 1,
+  "jobs": [
+    {
+      "id": 128722868482,
+      "run_id": 42477784063,
+      "workflow_name": "Deterministic CPU checks",
+      "head_branch": "research/joint_replay_20261107T045457Z-integration",
+      "run_url": "https://api.github.com/repos/Drefetr/An_Evaluation_of_Earthquake_Models/actions/runs/42477784063",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOVOPRGc8AAAAd-HsZAg",
+      "head_sha": "5a8a1f027f00cd15bb57f363cf499670725ef141",
+      "url": "https://api.github.com/repos/Drefetr/An_Evaluation_of_Earthquake_Models/actions/jobs/128722868482",
+      "html_url": "https://github.com/Drefetr/An_Evaluation_of_Earthquake_Models/actions/runs/42477784063/job/128722868482",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-08T11:54:29Z",
+      "started_at": "2026-11-08T11:54:32Z",
+      "completed_at": "2026-11-08T11:58:22Z",
+      "name": "checks",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-08T11:54:33Z",
+          "completed_at": "2026-11-08T11:54:33Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-08T11:54:33Z",
+          "completed_at": "2026-11-08T11:55:28Z"
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-08T11:55:28Z",
+          "completed_at": "2026-11-08T11:55:34Z"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-08T11:55:34Z",
+          "completed_at": "2026-11-08T11:55:35Z"
+        },
+        {
+          "name": "Run python -m pip install -r requirements.txt",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-08T11:55:35Z",
+          "completed_at": "2026-11-08T11:56:03Z"
+        },
+        {
+          "name": "Run python -B -m unittest discover -s tests -v",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-08T11:56:03Z",
+          "completed_at": "2026-11-08T11:57:40Z"
+        },
+        {
+          "name": "Run python -B -m unittest discover -s reproduction/regional/tests -v",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-08T11:57:40Z",
+          "completed_at": "2026-11-08T11:57:42Z"
+        },
+        {
+          "name": "Run python -B reproduction/regional/inputs.py verify",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-08T11:57:42Z",
+          "completed_at": "2026-11-08T11:57:48Z"
+        },
+        {
+          "name": "Run python -B -m unittest discover -s reproduction/s02 -p test_inputs.py -v",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-08T11:57:48Z",
+          "completed_at": "2026-11-08T11:57:49Z"
+        },
+        {
+          "name": "Run python -B reproduction/s02/inputs.py verify",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-08T11:57:49Z",
+          "completed_at": "2026-11-08T11:57:50Z"
+        },
+        {
+          "name": "Run python -B reproduction/historical_fits/verify.py",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-08T11:57:50Z",
+          "completed_at": "2026-11-08T11:57:52Z"
+        },
+        {
+          "name": "Run python -B -m unittest discover -s engine/stage2_followup/tests -v",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-11-08T11:57:52Z",
+          "completed_at": "2026-11-08T11:58:02Z"
+        },
+        {
+          "name": "Run python -B scripts/check_mathematics.py --output build/mathematics.json",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-11-08T11:58:02Z",
+          "completed_at": "2026-11-08T11:58:04Z"
+        },
+        {
+          "name": "Run python -B scripts/verify_claims.py",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-11-08T11:58:04Z",
+          "completed_at": "2026-11-08T11:58:14Z"
+        },
+        {
+          "name": "Run python -B scripts/verify_repository.py",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-11-08T11:58:14Z",
+          "completed_at": "2026-11-08T11:58:18Z"
+        },
+        {
+          "name": "Run node website/check_interactions.cjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-11-08T11:58:18Z",
+          "completed_at": "2026-11-08T11:58:19Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 30,
+          "started_at": "2026-11-08T11:58:19Z",
+          "completed_at": "2026-11-08T11:58:19Z"
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 31,
+          "started_at": "2026-11-08T11:58:19Z",
+          "completed_at": "2026-11-08T11:58:19Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 32,
+          "started_at": "2026-11-08T11:58:19Z",
+          "completed_at": "2026-11-08T11:58:19Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 33,
+          "started_at": "2026-11-08T11:58:19Z",
+          "completed_at": "2026-11-08T11:58:19Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Drefetr/An_Evaluation_of_Earthquake_Models/check-runs/128722868482",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000000287,
+      "runner_name": "GitHub Actions 1000000287",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}

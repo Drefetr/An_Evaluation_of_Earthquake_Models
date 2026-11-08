@@ -9,3 +9,5 @@ The [current checks](../../checks.json) report 981 distinct tests, with the hist
 All reviews here are internal computational-agent reviews, not external human academic peer review.
 
 The [first publication CI audit](ci_candidate_779058b/result.json) retains the failed Linux site-import test and the separate passing CPU job at `779058b`. The [independent correction review](site_import_correction/independent_review/result.json) verifies the standalone CLI import fix, nine repeated workflow tests and byte-identical publication output. Fresh Linux CI is recorded separately in the current checks; the earlier custody review covers its named candidate snapshot.
+
+The [corrected candidate Linux review](ci_candidate_5a8a1f0/result.json) records the actual ordinary and CPU workflows at `5a8a1f0`. Both passed. The earlier failure remains archived. Receipt-only commits after that candidate do not imply that those later commits were the ones tested; their branch and main CI runs remain separately visible in GitHub Actions.

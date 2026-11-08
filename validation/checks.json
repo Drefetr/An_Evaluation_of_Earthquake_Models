@@ -1,9 +1,9 @@
 {
   "schema": "bounded_repository_checks_v2",
-  "status": "local_checks_passed_corrected_linux_ci_pending",
+  "status": "passed",
   "baseline_commit": "f1eb1606ed75f90d1a88912bdd64ded49b106a66",
-  "checked_at_utc": "2026-11-08T11:53:24.935797+00:00",
-  "snapshot": "Publication candidate 779058b followed by a standalone site CLI import correction. Artifact bytes are unchanged; fresh Linux CI for the correction is pending.",
+  "checked_at_utc": "2026-11-08T12:02:06.051652+00:00",
+  "snapshot": "Actual local publication checks plus passing clean Linux workflows at 5a8a1f027f00cd15bb57f363cf499670725ef141. Later changes only retain CI evidence and this metadata; the tested source commit is explicit.",
   "environment": {
     "python": "3.13.4",
     "local": "Windows x64; actual native fixture and CPU execution records retained",
@@ -213,9 +213,9 @@
   },
   "scope": "Bounded tests and production verification. The 981 distinct tests are not 981 scientific experiments; custody release_ready does not satisfy the failed original all80-success gate.",
   "historical_checks": {
-    "path": "validation/checks_before_site_import_20261108.json",
-    "sha256": "ee4f0037f272da710aa87607c11280f46a368c01df06bac3eed6bd652c7ffd5c",
-    "scope": "Exact publication checks before the site import correction, retaining its earlier history chain."
+    "path": "validation/checks_before_linux_acceptance_20261108.json",
+    "sha256": "a57dab1ca6bde26f759bec2266c894dc71dd8496e6bfbd63286b5440e192fe49",
+    "scope": "Exact pending-CI snapshot; earlier failed CI and the full historical checks chain remain retained."
   },
   "site_import_followup": {
     "baseline_commit": "779058b55208f0195091ee86ac970eff3c22d545",
@@ -243,8 +243,14 @@
       "path": "validation/reproductions/publication_joint_20261108/site_import_correction/byte_identity.json",
       "sha256": "c3e962b2318ce6d5a31eecc4bf53cf42af7b972a733bb49a0adfe61ce2bc19c0"
     },
-    "linux_ci_status": "pending_actual_execution",
+    "linux_ci_status": "passed_actual_execution",
     "scientific_calls": 0,
-    "artifact_scope": "All nine generated site files are byte-identical; paper, guide, numerical validators, scientific results and manuscript bindings are unchanged."
+    "artifact_scope": "All nine generated site files are byte-identical; paper, guide, numerical validators, scientific results and manuscript bindings are unchanged.",
+    "linux_ci_review": {
+      "path": "validation/reproductions/publication_joint_20261108/ci_candidate_5a8a1f0/result.json",
+      "sha256": "743ffe5ffdc52a98237458bb7e01dbe1f9fa681b8ebb3c355256b40b03574020"
+    },
+    "linux_tested_commit": "5a8a1f027f00cd15bb57f363cf499670725ef141",
+    "test_count_scope": "Linux re-execution is cross-platform verification, not an addition to the 981 distinct local tests. Ordinary CI and CPU-core fixture coverage are recorded separately in the review."
   }
 }
