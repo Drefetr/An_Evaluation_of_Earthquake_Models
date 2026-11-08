@@ -117,5 +117,14 @@ class RemainingController(unittest.TestCase):
             'experiments/s04b_joint_nuisance/fit.py','experiments/s04b_joint_execution/parallel_chunks.py',
             'tests/test_joint_remaining_controller.py'}.issubset(pins))
 
+    def test_source_map_covers_actual_case_and_host_dependencies(self):
+        from experiments.s04b_joint_remaining import case_driver, host
+        grant=dict(source_review_record='source.json',checker_source_review='checker.json',
+            operational_run_config_path='config.json',prior_index_review='failure.json',remaining_evidence_sha256={})
+        pins=c.mandatory_sources(c.REMAINING_HOST_STAGE,grant)
+        self.assertTrue(set(case_driver.source_identity()).issubset(pins))
+        self.assertTrue(set(host.source_identity()).issubset(pins))
+        self.assertIn('tests/test_joint_recovery.py',pins)
+
 
 if __name__=='__main__':unittest.main()

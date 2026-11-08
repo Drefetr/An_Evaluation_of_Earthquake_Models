@@ -209,12 +209,19 @@ def mandatory_sources(stage, review=None):
                       'experiments/s04b_joint_audit/check.py',
                       'experiments/s04b_joint_nuisance_audit/audit.py',
                       'tests/test_joint_output_audit.py',
+                      'tests/test_joint_recovery.py',
+                      'tests/test_joint_execution_driver.py',
+                      'tests/test_joint_saved_output_audit.py',
                       'tests/test_joint_remaining_controller.py',
                       review['source_review_record'], review['checker_source_review'],
                       review['operational_run_config_path'], review['prior_index_review']))
         for name in ('s04b_joint_remaining', 's04b_joint_remaining_audit'):
             paths.update(p.relative_to(ROOT).as_posix() for p in (ROOT/'experiments'/name).rglob('*')
                          if p.is_file() and p.suffix in ('.py', '.json', '.md'))
+        for name in ('s04b_joint_execution', 's04b_joint_budgeted', 's04b_joint_recovery'):
+            paths.update(p.relative_to(ROOT).as_posix() for p in (ROOT/'experiments'/name).glob('*.py'))
+        paths.update(('experiments/s04b_joint_execution/operational_protocol.json',
+                      'experiments/s04b_joint_execution/proposal.json'))
         paths.update(p.relative_to(ROOT).as_posix() for p in (ROOT/'tests').glob('test_joint_remaining*.py'))
         paths.update(review['remaining_evidence_sha256'])
     elif stage == RECOVERY_HOST_STAGE:
