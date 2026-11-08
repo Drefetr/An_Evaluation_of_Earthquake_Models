@@ -1,0 +1,131 @@
+{
+  "schema": "joint_wall_failure_reporting_portable_refs_independent_review_v1",
+  "task_id": "joint_wall_failure_reporting_portable_refs_review",
+  "attempt_id": "8942c7cb-61d6-4930-9614-9e413a29692f",
+  "reviewer": "/root/disposition_reporting",
+  "created_utc": "2026-11-08T08:03:42.425823+00:00",
+  "status": "accepted",
+  "passed": true,
+  "audit_passed": true,
+  "review_kind": "live_agent_source_review",
+  "live_agent_review": true,
+  "live_agent_review_performed": true,
+  "final_batch_agent_review_required": false,
+  "source_only": true,
+  "candidate_commit": "9ccf0f20a29733a7e0f2ea25ad972fbb49e84fa0",
+  "followup_commit": "4ef1a3adea954ba936bc90249f7300304fde6bcc",
+  "reviewed_files_sha256": {
+    "scripts/build_joint_disposition_report.py": "e4cb8d2c489ceab645e9654d8029c487fe402bdf0dd20ca6a1aad3a4384eb780",
+    "scripts/render_joint_disposition_results.py": "a535ec529dc3887b04b3ad97448272b4842d664d8498ce818d8d6ef714cdcc6a",
+    "tests/test_joint_disposition_reporting.py": "3f34088f74728feb3cb6bbc5b1366fa0d9607a5f0a4efc37d41eb710954c0981",
+    "tests/test_joint_disposition_wall_failure.py": "09b2c6e67660e9ff6f6e802ea8a4bf5ef20676fbfbd9f93d6e3373d33e710f55",
+    "website/build_findings.py": "3b8aca134a5ee68938880af36b73c5b1f3929bc9ead19065d281007349a6dce1",
+    "website/check_interactions.cjs": "1600177599a7e2c4d845cd8a00cf12560408487d008bae184ab7d6f1616a667c",
+    "website/findings.html": "7dc8a731ff17ef5423e0b208e36cf8f07ff98a12dbea5b5bead39367e3633ca7"
+  },
+  "helper": {
+    "path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_wall_failure_reporting_portable_refs\\assemble_registry.py",
+    "sha256": "a957d7e7df436fedf8fa587c6ba8476d22a52d390a9f2409447566c4d5acd56b"
+  },
+  "implementation_receipt": {
+    "path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_wall_failure_reporting_portable_refs\\result.json",
+    "sha256": "0c3feb58afc6a95f005dfe96131dd9d35aa45f1b46193372f01f079f79d97544"
+  },
+  "prior_review": {
+    "path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_wall_failure_reporting_review\\result.json",
+    "sha256": "456d962b158f8eee951e8bf330824c0831e4a952237c1648b17f7db29fbadb0e"
+  },
+  "resolved_findings": [
+    {
+      "id": "WR1",
+      "status": "resolved",
+      "finding_path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_wall_failure_reporting_review\\finding01.json",
+      "guard": "All three new operational references require canonical safe public validation paths outside authorities; existing protocol and comparator exceptions preserved.",
+      "independent_counterexamples_now_reject": true
+    }
+  ],
+  "outstanding_findings": [],
+  "source_boundary": "Public diff is seven guard lines plus focused controls. Private helper executable AST changes only its exact builder pin; explanatory comment added. Original scientific, producer, checker and full-success formatter files are unchanged.",
+  "validation": {
+    "reporting": {
+      "tests": 12,
+      "passed": true,
+      "unittest_seconds": 34.185,
+      "captured_wall_seconds": 34.56584420008585,
+      "command": [
+        "C:\\Users\\Drefetr\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "tests.test_joint_disposition_wall_failure",
+        "-v"
+      ],
+      "log_sha256": "77dfa557c2e5730ae17634b1438653d13be0e8562745e86eb15086724e38b6e9"
+    },
+    "assembler": {
+      "tests": 16,
+      "passed": true,
+      "unittest_seconds": 21.289,
+      "captured_wall_seconds": 21.590974500169978,
+      "command": [
+        "C:\\Users\\Drefetr\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "C:/Users/Drefetr/work/joint_replay_continuation_20261107T071500Z/joint_wall_failure_reporting_portable_refs/test_assemble_registry.py",
+        "--repository",
+        "C:\\Users\\Drefetr\\work\\joint_replay_20261107T045457Z\\replay",
+        "-v"
+      ],
+      "log_sha256": "f7112d81025722b3f9ae285c01ddd0024a9274dc6bca1ec698b20239c729383e"
+    },
+    "independent": {
+      "tests": 4,
+      "passed": true,
+      "unittest_seconds": 9.372,
+      "captured_wall_seconds": 9.793981400085613,
+      "command": [
+        "C:\\Users\\Drefetr\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_wall_failure_reporting_review\\wr1_followup\\review_controls.py",
+        "C:\\Users\\Drefetr\\work\\joint_replay_20261107T045457Z\\replay",
+        "-v"
+      ],
+      "log_sha256": "2dcefaed0d2f1c977003a810598c3b4f2abfffb3946b4bc5a73a6f33a70bc8bb"
+    }
+  },
+  "targeted_tests_passed": 32,
+  "reused_prior_validation": {
+    "source_review": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_wall_failure_reporting_review\\result.json",
+    "existing_regressions": 84,
+    "passed": true,
+    "unittest_seconds": 76.348,
+    "reason": "No changes outside the new operational reference guard and test. Prior substantive scientific/missing-data/reporting review is retained."
+  },
+  "candidate_git_blob_identity": true,
+  "prior_candidate_private_files_unchanged": true,
+  "original_47e_helper_and_receipts_unchanged": true,
+  "prior_changes_requested_review_unchanged": true,
+  "metadata_checks_sha256": "0815feb8d4d89ca4ddd3571e8fae1943ee425d436696cddfbc4138cce85d533b",
+  "evidence_sha256": {
+    "assembler_controls.json": "8be7e39b75a0ff6c87702e4ac11c0711d98268abfdd0240ea38fb870f36187e2",
+    "assembler_controls.log": "f7112d81025722b3f9ae285c01ddd0024a9274dc6bca1ec698b20239c729383e",
+    "evidence_relocation.json": "42aa0da41fd7e8302e6a4b58c0f74744a7201f2df697f943ec7e0943fc4f3447",
+    "independent_controls.json": "f53fa3eee63104aba8d60f191f0cd22e01807cd68c68689a9472cda09839a68a",
+    "independent_controls.log": "2dcefaed0d2f1c977003a810598c3b4f2abfffb3946b4bc5a73a6f33a70bc8bb",
+    "metadata_checks.json": "0815feb8d4d89ca4ddd3571e8fae1943ee425d436696cddfbc4138cce85d533b",
+    "reporting_controls.json": "8da1d1c9982f28c36fb103dcd366b9ab890e87509d5d380227cdada8e57cca08",
+    "reporting_controls.log": "77dfa557c2e5730ae17634b1438653d13be0e8562745e86eb15086724e38b6e9",
+    "review.md": "15596be3b9d80fe3c722963bb6140cb17e858f0348d5dc5e33fa60b0198efc1f",
+    "review_controls.py": "e66f6fbd744d85db5056bf1c2000a81a06e4666bf0173fa1260064ad7e48ab8d"
+  },
+  "scientific_calls": 0,
+  "native_calls": 0,
+  "optimizer_calls": 0,
+  "repository_edits_by_reviewer": 0,
+  "actual_registry_assembled": false,
+  "actual_report_generated": false,
+  "actual_seal_generated": false,
+  "actual_output_acceptance": false,
+  "scientific_completion": false,
+  "original_publication_gate_satisfied": false,
+  "publication_accepted": false
+}

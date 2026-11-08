@@ -1,0 +1,18 @@
+{
+  "schema": "independent_reporting_source_finding_v1",
+  "candidate_commit": "9ccf0f20a29733a7e0f2ea25ad972fbb49e84fa0",
+  "helper_sha256": "60045f5c583d7a9e386d290b1fa3b53002ab93680d1f58098d4c45ac05794609",
+  "id": "WR1",
+  "status": "open",
+  "severity": "required_contract_fix",
+  "finding": "The three new operational source/seal references may point to private files inside the checkout, contrary to the required public-evidence contract.",
+  "reproduction": "In the invented RegistryControls fixture, copy source_review, sealed_index and sealing_review JSON to private/<key>.json, retain the exact bytes and hashes, and call the actual helper.prepare. It returns registry.operational_continuation containing all three private paths.",
+  "observed": "accepted",
+  "expected": "reject before producing proposed registry metadata",
+  "root_cause": "prepare forwards operational_references to builder.operational_sources; that function checks bytes and source semantics but does not constrain these three paths to public validation evidence.",
+  "requested_fix": "Require safe canonical repository-relative validation/ paths, excluding validation/authorities/, for source_review, sealed_index and sealing_review in the new operational branch. Retain the canonical experiments protocol path and all historical comparator exceptions. Refresh the private helper's builder source pin.",
+  "actual_registry_written": false,
+  "actual_report_generated": false,
+  "scientific_calls": 0,
+  "repository_edits_by_reviewer": 0
+}
