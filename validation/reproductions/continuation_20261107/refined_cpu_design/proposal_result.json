@@ -1,0 +1,56 @@
+{
+  "schema": "joint_refinement_public_reader_design_v1",
+  "passed": true,
+  "status": "source_only_proposal_for_independent_review_not_implementation_or_execution_approval",
+  "attempt_id": "c7d84e88-2707-4303-99f3-f0dac098e2d3",
+  "repository_head": "cb50473f247ede6e2064e8551474fd227c2e7d11",
+  "created_utc": "2026-11-08T03:01:47.006502+00:00",
+  "source_sha256": {
+    "scripts/fit_joint_cpu.py": "98b4365a514cd4cbe588cd40d60577d28ffa4cea98d08fa115b3a92778743f5e",
+    "engine/cpu_build.py": "877fa7beb0be454322be5dcd177a79a3d73de0199eb5a6c20b90fa6d3f12b426",
+    "scripts/supervise_research.py": "e8aaca56bb4bccf81aa9687a841d09d28bc5b2ff286de3c396ac37bd09324fcb",
+    "experiments/s04b_joint_execution/driver.py": "f188cc787c8c62a735e88e34a606dac8b992c6c42d8d1070676df885353aa012",
+    "experiments/s04b_joint_execution/parallel_chunks.py": "94734c667745abf995a89cd386c642127a6dd4ef0029e6f97638c96b9a38db1f",
+    "experiments/s04b_joint_nuisance/run.py": "3f6d9cb3d14a45ea7752c3ab8b011ee1281f59c305c55eda35c36df7dd6ea243",
+    "experiments/s04b_joint_nuisance/fit.py": "878dbf6a71bbc1b9e934f190d3ad0a1c3663097610edf5a42c8aab89b62775bb",
+    "experiments/s04b_joint_nuisance/model.py": "cc891181e51251247b9668fb6213642f0884deb288050efb2586cf179c6e8898",
+    "experiments/s04b_joint_remaining/case_driver.py": "15ea0c895c1ce7295f70954ec72999b30c2bd4ae6b36122c067e3acff4ce4f17",
+    "experiments/s04b_exposure_refinement/protocol.json": "9b419d004ee3a075abdc3059bcc06fa037281cf5af7ea031d0c209be5687c982",
+    "experiments/s04b_exposure_refinement/adapter.py": "47d989b144bbddc1b6072156965d10b76de5723f37688a009fbba6ac8bf7ded8",
+    "experiments/s04b_exposure_refinement/case_driver.py": "38537a461fb2693a32f52ee5f2b30709182d0ecd2f039240c1f53e883004cf08",
+    "experiments/s04b_exposure_refinement/host.py": "2badce70050df8ff94520de12ef7220650304d5082877b1ff9ee97ac9e5557e3",
+    "experiments/s04b_exposure_refinement_audit/check.py": "43b87881ed19970e420a4db7e5325e45302fae7d87381483e2700f07065bfb02",
+    "requirements-cpu.txt": "bcf99640d0c87a8b8e6ce80547cd8e1efaeee60a940ab13ff631bfe475843327"
+  },
+  "proposal_sha256": "5292a5322ab963dc7e359c89a7235232e72dbe0a457685c69e2690b478585eed",
+  "preferred_public_entrypoint": "scripts/fit_joint_refined_cpu.py fit --case-id ID --output FRESH --wall-seconds FINITE --rss-mib FINITE --headroom-mib FINITE",
+  "core_reuse": [
+    "s04b_exposure_refinement.adapter.Adapter(partial=None,trace=None)",
+    "joint_execution.driver.runner_with_scheduler",
+    "joint_nuisance.run.case_run",
+    "joint_remaining.case_driver.classify",
+    "engine.cpu_build.build_shared",
+    "scripts/supervise_research.py"
+  ],
+  "demonstration_candidate": "S6_narrow_short_total_seed410604 only if still untouched and preceding pilot accepted",
+  "author_caps_unchanged": {
+    "scientific_seconds": 2490,
+    "cleanup_inclusive_outer_seconds": 2520,
+    "shared_seconds": 115200,
+    "shared_expiry": "2026-11-09T07:15:00+00:00"
+  },
+  "required_integration": "Explicit source-reviewed entrypoint transition/current-source identity and independent checker binding before author-chain insertion; no pretend old-driver execution",
+  "acceptance_distinction": {
+    "fresh_fit": "One actual untouched-case optimizer run via public shared helper with independent output audit",
+    "score_or_known_point_replay": "No fit evidence; cannot establish fresh-fit execution",
+    "native_reuse": "Must not claim new compilation if original native reused"
+  },
+  "execution_scope": {
+    "repository_edits": 0,
+    "builds": 0,
+    "native_calls": 0,
+    "likelihood_calls": 0,
+    "fits": 0,
+    "tests_run": 0
+  }
+}

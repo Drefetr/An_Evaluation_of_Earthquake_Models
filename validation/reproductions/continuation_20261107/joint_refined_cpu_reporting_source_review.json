@@ -1,0 +1,64 @@
+{
+  "schema": "joint_public_reader_reporting_source_review_v1",
+  "task_id": "joint_public_reader_reporting_review",
+  "attempt_id": "1866725c-4926-4ba0-8af2-44fc067f724b",
+  "reviewer": "/root/disposition_reporting",
+  "owner_of_reviewed_implementation": "/root/recover_jma",
+  "passed": true,
+  "audit_passed": true,
+  "review_kind": "live_agent_source_review",
+  "live_agent_review": true,
+  "live_agent_review_performed": true,
+  "final_batch_agent_review_required": false,
+  "implementation_approved": true,
+  "scientific_completion": false,
+  "reporting_outcome_accepted": false,
+  "numerical_execution_admitted": false,
+  "scope": "Independent source review and invented saved-output controls only; no actual cohort or publication acceptance.",
+  "reviewed_utc": "2026-11-08T03:40:11.586519+00:00",
+  "source_commit": "db56c266f33018c3b7b263a91b88519508fdcd25",
+  "root_integration_commit": "968127c",
+  "reviewed_files_sha256": {
+    "scripts/build_joint_disposition_report.py": "7b597675f16e49ae37e9358ebe7d0b173471fe66bc7fd04a54deb881fa3c57fd",
+    "scripts/render_joint_disposition_results.py": "f8dcdffe5eda49e2c96fa4b59ba276816a8d3297758a56bb7cf7a2c907575cfc",
+    "tests/test_joint_disposition_refined_cpu.py": "eb0050246bb0e12e3befe8655c0fb629076abbf38f1367df32b304c892fb2c5a"
+  },
+  "implementation_receipt": {
+    "path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_public_reader_reporting\\result.json",
+    "sha256": "dba6f4fa1580a255c24be4a97914a3bcf377769669e4ea7f869e8749adb247a6"
+  },
+  "findings": {
+    "path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_public_reader_reporting_review\\findings.md",
+    "sha256": "aa98c558858e387a39789bb9ba319560e7bf2f61690635000c9bed3f43e44834",
+    "blocking": []
+  },
+  "tests": {
+    "command": "python -B -m unittest tests.test_joint_disposition_refined_cpu tests.test_joint_disposition_refinement tests.test_joint_disposition_reporting tests.test_render_joint_nuisance_results -v",
+    "passed": 56,
+    "seconds": 52.729,
+    "log": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_public_reader_reporting_review\\tests.txt",
+    "log_sha256": "119be835d393860a69c5b4690c17a8ac4b9ce9e649a50d86c28242dd21f0e572",
+    "additional_independent_counterexamples": 4,
+    "counterexamples": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_public_reader_reporting_review\\adversarial_controls.json",
+    "counterexamples_sha256": "c8767f3f24817dfae13001a0fb585c0455edcb029725acdc598704f63aef8749"
+  },
+  "preservation": {
+    "frozen_source_pins": 73,
+    "frozen_source_changes": [],
+    "original_full_success_formatter_changed": false,
+    "working_bytes_equal_commit_and_integrated_root": true,
+    "lf_only": true,
+    "numeric_display_and_claim_bindings_changed": false,
+    "original_full80_success_gate_unchanged": true,
+    "full20_summary_boundary_unchanged": true,
+    "both_historical_comparators_unchanged": true
+  },
+  "execution": {
+    "scientific_calls": 0,
+    "native_calls": 0,
+    "fits": 0,
+    "actual_cohort_reports": 0,
+    "repository_edits": 0,
+    "protected_edits": 0
+  }
+}

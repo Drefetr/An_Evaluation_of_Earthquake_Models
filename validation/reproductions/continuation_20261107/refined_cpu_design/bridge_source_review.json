@@ -1,0 +1,52 @@
+{
+  "schema": "public_refined_cpu_bridge_scoped_source_review_v1",
+  "passed": true,
+  "scope": "Root-authored bridge and launcher draft only; not final combined reader/checker source acceptance.",
+  "review_kind": "live_agent_source_review",
+  "live_agent_review": true,
+  "live_agent_review_performed": true,
+  "final_combined_source_acceptance": false,
+  "numerical_execution_admitted": false,
+  "scientific_completion": false,
+  "created_utc": "2026-11-08T03:22:50.662785+00:00",
+  "reviewed_files_sha256": {
+    "experiments/s04b_refined_cpu_bridge/__init__.py": "df808a6c1860d88e44eb3a6b6091c9a7fc1ae916edeac8f69a9faea9eee8eefa",
+    "experiments/s04b_refined_cpu_bridge/contract.py": "9cc607773de4bfcf9f4d66765df881081983631d20723327e2aaa53376f6846e",
+    "experiments/s04b_refined_cpu_bridge/host.py": "36321b9a6b3b2a2a91ab15859018b8bac254d5129c405cc3daef1624c2650d11",
+    "scripts/run_joint_refined_cpu_host.py": "c05b991a104511aabac6e4def7f3db084ec70c2000a043637043be962e7e7dd9",
+    ".github/workflows/joint-refined-cpu.yml": "985e98fa17880b7615034a30ebe162d1a9e0ae3f8d8e10c69b9afac058782c9c",
+    "tests/test_joint_refined_cpu_bridge.py": "3d4c2b8a28d2c084cd3fddb7feef4462b9caac1a6610495594b289f26647b38e"
+  },
+  "controls": {
+    "command": "python -B -m unittest discover -s tests -p test_joint_refined_cpu_bridge.py -v",
+    "passed": 6,
+    "failures": 0,
+    "errors": 0,
+    "scope": "Invented orchestration/payload fixtures; scientific and checker payload production mocked, no real likelihood calls."
+  },
+  "findings": [
+    {
+      "id": "BR1",
+      "status": "resolved_in_current_draft",
+      "problem": "New public metadata module could be imported before new graph membership was required.",
+      "correction": "Explicit14-file PUBLIC_REQUIRED and metadata-only profile roster/hash validation now run before importing the public producer."
+    }
+  ],
+  "accepted_design_properties": [
+    "Frozen host.run bytecode reused with private globals/import hooks; shared module state unchanged.",
+    "Only exact fixed third group is admitted; case solver/wall/memory/expiry gates and group scheduler remain the frozen implementation.",
+    "Source/index compatibility maps remain the old numerical maps; actual public entrypoint and full producer graph are explicit per report/result/compact record.",
+    "The public command receives the genuine execution record; no partial continuation or native/compiler substitution is introduced by bridge dispatch.",
+    "Candidate index is independently checked before promotion; checker failure halts; finite-cap unknown remains unavailable.",
+    "Five-case group boundary remains acceptable to the unchanged host4 gate, preserving previous records and exact budget arithmetic.",
+    "Workflow marker-specific concurrency shares the active science group and does not permit concurrent numerical hosts."
+  ],
+  "pending_combined_checks": [
+    "Final reader/checker commits and complete executable dependency pins.",
+    "Constructed real public-reader/output-checker interface with complete and finite-cap-unknown payloads.",
+    "Reader author-mode finalization must enforce effective expiry deadline and exact grant execution_producer; finding sent to B."
+  ],
+  "numerical_calls": 0,
+  "optimizer_calls": 0,
+  "repository_edits": 0
+}

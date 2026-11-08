@@ -1,0 +1,96 @@
+{
+  "schema": "joint_refinement_public_reader_design_review_v1",
+  "task_id": "joint_refinement_public_reader_design_review",
+  "attempt_id": "1bb5bb58-202e-40c8-8128-977ab18ccb6b",
+  "reviewer": "/root/disposition_reporting",
+  "status": "completed",
+  "passed": true,
+  "review_kind": "live_independent_source_only_design_review",
+  "live_agent_review": true,
+  "live_agent_review_performed": true,
+  "finished_utc": "2026-11-08T03:14:39.706075+00:00",
+  "proposal": {
+    "path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_refinement_public_reader_design\\proposal.md",
+    "sha256": "5292a5322ab963dc7e359c89a7235232e72dbe0a457685c69e2690b478585eed"
+  },
+  "proposal_result": {
+    "path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_refinement_public_reader_design\\result.json",
+    "sha256": "e1981c9eff88116eceb7c00abf5e6035b269cce7bc064f1af443fec00dfa9b4a"
+  },
+  "review": {
+    "path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_refinement_public_reader_review\\review.md",
+    "sha256": "905f55d9678672fdb8f803398bcec92baaf73edc2eedc1e7615e75ce5117803f"
+  },
+  "reviewed_source_sha256": {
+    "scripts/fit_joint_cpu.py": "98b4365a514cd4cbe588cd40d60577d28ffa4cea98d08fa115b3a92778743f5e",
+    "engine/cpu_build.py": "877fa7beb0be454322be5dcd177a79a3d73de0199eb5a6c20b90fa6d3f12b426",
+    "scripts/supervise_research.py": "e8aaca56bb4bccf81aa9687a841d09d28bc5b2ff286de3c396ac37bd09324fcb",
+    "experiments/s04b_joint_execution/driver.py": "f188cc787c8c62a735e88e34a606dac8b992c6c42d8d1070676df885353aa012",
+    "experiments/s04b_joint_execution/parallel_chunks.py": "94734c667745abf995a89cd386c642127a6dd4ef0029e6f97638c96b9a38db1f",
+    "experiments/s04b_joint_nuisance/run.py": "3f6d9cb3d14a45ea7752c3ab8b011ee1281f59c305c55eda35c36df7dd6ea243",
+    "experiments/s04b_joint_nuisance/fit.py": "878dbf6a71bbc1b9e934f190d3ad0a1c3663097610edf5a42c8aab89b62775bb",
+    "experiments/s04b_joint_nuisance/model.py": "cc891181e51251247b9668fb6213642f0884deb288050efb2586cf179c6e8898",
+    "experiments/s04b_joint_remaining/case_driver.py": "15ea0c895c1ce7295f70954ec72999b30c2bd4ae6b36122c067e3acff4ce4f17",
+    "experiments/s04b_exposure_refinement/protocol.json": "9b419d004ee3a075abdc3059bcc06fa037281cf5af7ea031d0c209be5687c982",
+    "experiments/s04b_exposure_refinement/adapter.py": "47d989b144bbddc1b6072156965d10b76de5723f37688a009fbba6ac8bf7ded8",
+    "experiments/s04b_exposure_refinement/case_driver.py": "38537a461fb2693a32f52ee5f2b30709182d0ecd2f039240c1f53e883004cf08",
+    "experiments/s04b_exposure_refinement/host.py": "2badce70050df8ff94520de12ef7220650304d5082877b1ff9ee97ac9e5557e3",
+    "experiments/s04b_exposure_refinement_audit/check.py": "43b87881ed19970e420a4db7e5325e45302fae7d87381483e2700f07065bfb02",
+    "requirements-cpu.txt": "bcf99640d0c87a8b8e6ce80547cd8e1efaeee60a940ab13ff631bfe475843327"
+  },
+  "combined_source_review_sha256": "7011948266596ad1be0119b8311234035fe611bb19fe39b877aa6a3742883e37",
+  "frozen_source_graph_verified": 73,
+  "design_decision": "Accept public fresh-fit concept with mandatory concrete interface refinements in review.md; root decision required before implementation",
+  "implementation_approved": false,
+  "numerical_execution_admitted": false,
+  "scientific_completion": false,
+  "actual_output_acceptance": false,
+  "root_review_status": "pending",
+  "entrypoint": "scripts/fit_joint_refined_cpu.py fit",
+  "default_native": "Automatically extracted exact audited bundled Linux x64 library and historical build receipt; fresh compilation is separate optional evidence",
+  "author_demonstration": {
+    "candidate": "S6_narrow_short_total_seed410606",
+    "requires_actual_pending_status": true,
+    "requires_preceding_live_host_acceptance": true,
+    "group": {
+      "host": 3,
+      "case_ids": [
+        "S6_narrow_short_total_seed410606",
+        "S6_narrow_short_total_seed410607",
+        "S6_narrow_short_total_seed410608",
+        "S6_narrow_short_total_seed410609",
+        "S6_narrow_short_total_seed410610"
+      ],
+      "case_outer_seconds": 12600,
+      "role": "unchanged_remaining_roster_after_pilot_audit",
+      "host_overhead_reserve_seconds": 1800,
+      "whole_host_upper_seconds": 14400
+    },
+    "uniform_public_helper_for_full_group_recommended": true,
+    "scientific_seconds_per_case": 2490,
+    "outer_seconds_per_case": 2520,
+    "shared_seconds": 115200,
+    "shared_expiry": "2026-11-09T07:15:00+00:00"
+  },
+  "required_interface": [
+    "Same public execute_case helper in ordinary and strict optional-author modes",
+    "No author expiry/lease/private-path dependency in ordinary mode; invalid author record fails closed",
+    "Explicit new producer and actual supervisor argv; no old-driver impersonation",
+    "Exact retained core map plus mandatory per-record full execution-producer/source map",
+    "Whole fixed host group through narrow private facade of unchanged group orchestration",
+    "Entrypoint-aware independent audit adapter reusing frozen saved arithmetic without evidence rewriting",
+    "Corresponding explicit reporter profile branch before final report",
+    "Original43 and partial-pilot/source provenance, unknowns, native identity and all author caps preserved"
+  ],
+  "numerical_calls": 0,
+  "optimizer_calls": 0,
+  "native_calls": 0,
+  "builds": 0,
+  "repository_edits": 0,
+  "tests_run": 0,
+  "limitations": [
+    "No implemented-source or actual-fit acceptance is issued.",
+    "Actual next-case eligibility and preceding output review must be verified at admission.",
+    "Bundled-native fresh fitting is distinct from new compilation and does not prove all-history completion."
+  ]
+}
