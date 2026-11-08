@@ -251,6 +251,13 @@ def operational_sources(evidence, registry, index, policy, amendment):
     refs=registry['operational_continuation']
     require(set(refs)=={'protocol','source_review','sealed_index','sealing_review'} and refs['protocol']['path']==OPERATIONAL,
             'Exact operational policy, source review and separate seal required')
+    for key in ('source_review','sealed_index','sealing_review'):
+        name=refs[key]['path'];resolved=safe(evidence.repository,name);relative=PurePosixPath(name)
+        require(str(relative)==name and len(relative.parts)>1 and relative.parts[0]=='validation'
+            and relative.parts[1].casefold()!='authorities'
+            and resolved.is_relative_to(evidence.repository/'validation')
+            and not resolved.is_relative_to(evidence.repository/'validation'/'authorities'),
+            'Operational evidence must use canonical public validation paths outside authorities')
     p,review,sealed,seal_review=(evidence.reference(refs[k]) for k in ('protocol','source_review','sealed_index','sealing_review'))
     require(p['schema']=='joint_wall_failure_continuation_protocol_v1' and p['version']=='wall_failure_continuation_v1'
         and p['numerical_protocol']==amendment['references']['protocol']

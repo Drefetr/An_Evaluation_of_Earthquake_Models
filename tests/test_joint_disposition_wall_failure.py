@@ -137,6 +137,22 @@ class WallReportingControls(unittest.TestCase):
                             ('clock',lambda c,r:r.update(wall_seconds=2490.)),('heldout',lambda c,r:c.update(outcomes=[{'new_gain':0}]))]:
             f=WallEvidence(self.root/name,mutation=change)
             with self.assertRaises(ValueError):B.build(f.repo,f.paths)
+    def test_operational_references_require_canonical_public_validation_paths(self):
+        f=WallEvidence(self.root);original=deepcopy(f.registry['operational_continuation'])
+        for key in ('source_review','sealed_index','sealing_review'):
+            raw=(f.repo/original[key]['path']).read_bytes()
+            for location in ('private/'+key+'.json','validation/authorities/'+key+'.json',
+                             'validation/Authorities/'+key+'.json','validation/../private/'+key+'.json',
+                             'validation//'+key+'.json','validation/./'+key+'.json'):
+                with self.subTest(key=key,location=location):
+                    target=f.repo/location;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(raw)
+                    f.registry['operational_continuation']=deepcopy(original)
+                    f.registry['operational_continuation'][key]['path']=location;f.finish()
+                    with self.assertRaises(ValueError):B.build(f.repo,f.paths)
+        f.registry['operational_continuation']=original;f.finish()
+        self.assertEqual(B.build(f.repo,f.paths)[0]['counts']['wall_time_failure_histories'],1)
+        self.assertTrue(original['protocol']['path'].startswith('experiments/'))
+
     def test_transition_review_cannot_duplicate_failed_host_execution(self):
         f=WallEvidence(self.root);f.seal_review['execution_id']='wall-host04';write(f.repo/f.seal_review_path,f.seal_review)
         f.registry['operational_continuation']['sealing_review']['sha256']=B.sha(f.repo/f.seal_review_path);f.finish()
