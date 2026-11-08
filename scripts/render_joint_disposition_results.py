@@ -131,6 +131,8 @@ def render(report, report_path, report_sha, tex_location=TEX_LOCATION):
         r'Regime & Procedure & Computed/planned & Mean & Median & Wins & Wilson interval \\', r'\midrule']
     if report.get('numerical_amendment'):
         lines[2:2] = ['', 'The separately reviewed numerical amendment applies only within training optimizer callbacks after the original negative-exposure exception, using the original fine value and gradient subject to the original quadrature checks. Accepted original fits and the explicitly identified partial fit prefix remain reused evidence; fresh returned-state, selection and held-out checks retain their original rules. Canonical logical fit-attempt counts in the tables are distinct from physical amended calls, reused records and earlier failed attempts, which remain source-bound in the execution records.', '']
+    if report.get('public_reader'):
+        lines[2:2] = ['', 'Explicitly identified public-reader executions fitted untouched supplied histories through the same amended numerical core, using the bundled audited Linux CPU library and original build receipt. Their actual entrypoint and source maps remain distinct from earlier executions. This is not a fresh compilation claim and does not borrow acceptance from the earlier CPU reader edition.', '']
     for i, row in enumerate(report['regime_summary']):
         prefix = f'/regime_summary/{i}'
         # S4/S5/... are validated regime identifiers, not numeric display tokens.

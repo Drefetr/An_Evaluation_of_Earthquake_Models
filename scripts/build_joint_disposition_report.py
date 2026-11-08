@@ -10,6 +10,9 @@ The genuine live final index review binds the index hash and its actual counts.
 The optional numerical_amendment field holds protocol/source_review references
 for the explicitly reviewed exposure-refinement version; original inputs keep
 their original schema, sources, and acceptance rules.
+The optional public_reader field binds profile/source_review references for
+explicit per-record public entrypoint identities; top-level frozen core maps
+remain compatibility identities rather than claims of old-driver execution.
 """
 import argparse
 from collections import Counter
@@ -30,6 +33,22 @@ except ModuleNotFoundError:  # Direct CLI invocation.
 SCIENCE = 'experiments/s04b_joint_nuisance/protocol.json'
 POLICY = 'experiments/s04b_joint_remaining/protocol.json'
 AMENDMENT = 'experiments/s04b_exposure_refinement/protocol.json'
+READER_PROFILE = 'experiments/s04b_refined_cpu_reader/profile.json'
+READER_ENTRYPOINT = 'scripts/fit_joint_refined_cpu.py'
+READER_SOURCES = {
+    READER_PROFILE, READER_ENTRYPOINT, 'experiments/s04b_refined_cpu_reader/__init__.py',
+    'experiments/s04b_refined_cpu_reader/reader.py', 'tests/test_joint_refined_cpu_reader.py',
+    'experiments/s04b_refined_cpu_bridge/__init__.py', 'experiments/s04b_refined_cpu_bridge/contract.py',
+    'experiments/s04b_refined_cpu_bridge/host.py', 'tests/test_joint_refined_cpu_bridge.py',
+    'scripts/run_joint_refined_cpu_host.py', '.github/workflows/joint-refined-cpu.yml',
+    'scripts/run_joint_exposure_refinement.py', 'scripts/supervise_research.py',
+    'requirements.txt', 'requirements-cpu.txt',
+    'experiments/s04b_refined_cpu_reader_audit/__init__.py',
+    'experiments/s04b_refined_cpu_reader_audit/check.py', 'tests/test_joint_refined_cpu_reader_audit.py',
+    'experiments/s04b_exposure_refinement_audit/__init__.py', 'experiments/s04b_exposure_refinement_audit/check.py',
+    'experiments/s04b_joint_remaining_audit/check.py', 'experiments/s04b_joint_audit/check.py',
+    'experiments/s04b_joint_nuisance_audit/audit.py',
+}
 MANIFEST = 'reproduction/synthetic/input_manifest.json'
 INPUT_PINS = 'experiments/s04b_joint_nuisance/input_pins.json'
 CORE = 'experiments/s04b_joint_nuisance_audit/audit.py'
@@ -257,6 +276,104 @@ def registry_sources(evidence, registry, policy, amendment=None):
     return archives, executions
 
 
+def reader_sources(evidence, registry, amendment):
+    """Bind the explicit entrypoint graph without importing producer code."""
+    if 'public_reader' not in registry:
+        return None
+    require(amendment is not None, 'Reader profile requires the explicit numerical amendment')
+    refs = registry['public_reader']
+    require(set(refs) == {'profile', 'source_review'} and refs['profile']['path'] == READER_PROFILE,
+            'Known public-reader profile/source review required')
+    p, review = evidence.reference(refs['profile']), evidence.reference(refs['source_review'])
+    require(p['schema'] == 'joint_refined_cpu_reader_profile_v1' and p['version'] == 'public_refined_cpu_v1'
+            and p['entrypoint'] == READER_ENTRYPOINT and p['operation'] == 'fit'
+            and p['numerical_version'] == amendment['protocol']['version'], 'Unknown reader producer profile')
+    require(review.get('passed') is True and review.get('live_agent_review') is True
+            and review.get('live_agent_review_performed', True) is True
+            and review.get('final_batch_agent_review_required', False) is False,
+            'Independent reader source review required')
+    require(p['core_source_sha256'] == amendment['driver_sources']
+            and p['amendment_protocol'] == amendment['references']['protocol']
+            and p['scientific_protocol'] == {'path': SCIENCE, 'sha256': evidence.pins[SCIENCE]}
+            and p['case_ids'] == amendment['protocol']['full_sequence'], 'Reader changed frozen core/roster')
+    names = p['producer_source_paths']
+    require(names == sorted(set(names)) and READER_SOURCES <= set(names), 'Reader producer graph is incomplete')
+    extra = {}
+    for name in names:
+        member_name(name)
+        pin = sha(safe(evidence.repository, name))
+        require(review['reviewed_files_sha256'].get(name) == pin, 'Reader source is outside independent review: '+name)
+        extra[name] = pin; evidence.pins[name] = pin
+    full = dict(p['core_source_sha256'])
+    for name, pin in extra.items():
+        require(name not in full or full[name] == pin, 'Reader/core source conflict')
+        full[name] = pin
+    require(all(review['reviewed_files_sha256'].get(k) == v for k,v in full.items()), 'Reader review omits frozen core')
+    old = amendment['protocol']['permanent_unknown']; native = p['bundled_native']
+    require(native['archive_reference'] == {'path': old['archive'], 'sha256': old['archive_sha256']}
+            and native['review_reference'] == {'path': old['review'], 'sha256': old['review_sha256']}
+            and all(native[k] == amendment['protocol']['original_native'][k]
+                    for k in ('library_sha256','build_receipt_sha256')), 'Reader substituted bundled native identity')
+    for key in ('library_member','build_receipt_member'):
+        member_name(native[key])
+        if key in old:
+            require(native[key] == old[key], 'Reader native member differs from original artifact')
+    expected = dict(schema='joint_refined_cpu_producer_v1', kind='public_refined_cpu', entrypoint=READER_ENTRYPOINT,
+        operation='fit', profile_reference=refs['profile'], core_source_sha256=p['core_source_sha256'],
+        producer_source_sha256=extra, execution_source_sha256=full, source_review=refs['source_review'])
+    return dict(profile=p, references=refs, producer=expected)
+
+
+def reader_computation(evidence, record, report, result, review, executions, reader):
+    expected = reader['producer']
+    require(result['passed'] is result['scientific_passed'] is record['scientific_passed'],
+            'Reader unknown cannot be relabeled passed')
+    require(record['execution_producer'] == report.get('execution_producer') == result['execution_producer']
+            == review.get('execution_producer') == expected, 'Public reader producer identity differs')
+    require(result['source_sha256'] == review['source_sha256'] == expected['execution_source_sha256'],
+            'Reader actual source map differs from reviewed graph')
+    entry, _ = executions[record['source']['execution_id']]
+    archive = entry['archive']['sha256']; parent = PurePosixPath(record['source']['result_path']).parent
+    def saved(name, pin):
+        member = entry['member_prefix']+str(parent/name)
+        value = evidence.member(archive, member, pin)
+        return value, evidence.locator(archive,member,pin)
+    request, request_ref = saved('reader_request.json', result['reader_request_sha256'])
+    bundle, bundle_ref = saved('bundled_native.json', result['bundled_native_sha256'])
+    require(request['schema'] == 'joint_refined_cpu_request_v1'
+            and request['mode'] == result['execution_mode'] == 'author_envelope'
+            and request['case_id'] == record['case_id']
+            and request['source_sha256'] == expected['execution_source_sha256']
+            and request['execution_producer'] == expected
+            and request['actual_command'] == result['actual_command'], 'Reader request/actual command differs')
+    argv = result['actual_command']
+    require(isinstance(argv,list) and len(argv) == 16 and argv[1] == '-B' and argv[3] == 'fit'
+            and (argv[2].replace('\\','/') == READER_ENTRYPOINT or argv[2].replace('\\','/').endswith('/'+READER_ENTRYPOINT)),
+            'Actual command is not the public fit entrypoint')
+    keys = argv[4::2]; flags = dict(zip(keys,argv[5::2]))
+    require(len(set(keys)) == 6 and set(keys) == {'--case-id','--output','--wall-seconds','--rss-mib','--headroom-mib','--execution-record'}
+            and flags['--case-id'] == record['case_id'] and flags['--output'] == request['output']
+            and flags['--execution-record'] == request['execution_record']
+            and float(flags['--wall-seconds']) == request['wall_seconds']
+            and float(flags['--rss-mib'])*2**20 == request['rss_cap_bytes']
+            and float(flags['--headroom-mib'])*2**20 == request['headroom_bytes'], 'Reader argv/request values differ')
+    require(request['execution_record_sha256'] == result['admission_sha256'], 'Reader admission identity differs')
+    member = entry['member_prefix']+str(parent.parent/'admission.json')
+    admission = evidence.member(archive,member,result['admission_sha256'])
+    require(admission['execution_producer'] == expected and admission['source_sha256'] == expected['execution_source_sha256']
+            and admission['reader_source_review'] == expected['source_review']
+            and admission['case_ids'] == [record['case_id']] and admission['case_id'] == record['case_id']
+            and admission['mode'] == 'exposure_refinement_case' and admission['external_supervision'] is True
+            and admission['independent_review_passed'] is True, 'Reader genuine author envelope differs')
+    expected_bundle = dict(reader['profile']['bundled_native'],library_path='native/attenuation.so',build_receipt_path='native/build_receipt.json')
+    require(bundle == result['bundled_native'] == expected_bundle and
+            all(result[k] == admission[k] == bundle[k] for k in ('library_sha256','build_receipt_sha256')),
+            'Reader extracted native receipt differs')
+    return dict(execution_producer=deepcopy(expected), request=request_ref, bundled_native=bundle_ref,
+                actual_command=argv, operation='fresh_fit',
+                native_scope='Bundled audited Linux x86-64 native and original receipt; no fresh compilation claim. Actual bytes/runtime are bound by the independent execution audit.')
+
+
 def projection(report):
     fits = report['fits']
     return dict(case_id=report['case_id'], regime=report['regime'], seed=report['seed'],
@@ -267,7 +384,7 @@ def projection(report):
                                if name in fits and fits[name]['passed'] is True})
 
 
-def resolve_case(evidence, record, archives, executions, policy, amendment=None):
+def resolve_case(evidence, record, archives, executions, policy, amendment=None, reader=None):
     source = record['source']
     if source['kind'] == 'immutable_archive':
         require(source['archive_sha256'] in archives, 'Unregistered immutable archive')
@@ -296,7 +413,10 @@ def resolve_case(evidence, record, archives, executions, policy, amendment=None)
             other[key+'_reference'] = evidence.locator(archive, member, source[key+'_sha256'])
         result = other['result']
         amended_case = amendment is not None and record['case_id'] in amendment['protocol']['case_ids']
-        schema = 'joint_exposure_refinement_case_v1' if amended_case else 'joint_remaining_case_result_v1'
+        reader_case = 'execution_producer' in record
+        require(not reader_case or (reader is not None and amended_case and record['case_id'] != amendment['protocol']['partial_case_id']),
+                'Reader identity lacks reviewed untouched-case profile')
+        schema = 'joint_refined_cpu_case_v1' if reader_case else 'joint_exposure_refinement_case_v1' if amended_case else 'joint_remaining_case_result_v1'
         require(result.get('schema') == schema and result.get('handled') is True and
                 result.get('disposition_valid') is True and result.get('status') == 'terminal_disposition' and
                 result['case_id'] == record['case_id'] and result['disposition'] == record['disposition'] and
@@ -311,7 +431,7 @@ def resolve_case(evidence, record, archives, executions, policy, amendment=None)
                     'Result protocol or immutable lineage differs')
         if amendment is not None:
             require(result['source_sha256'] == review['source_sha256'], 'Per-execution reviewed source identity differs')
-            expected_sources = (amendment['driver_sources'] if amended_case else
+            expected_sources = (reader['producer']['execution_source_sha256'] if reader_case else amendment['driver_sources'] if amended_case else
                                 amendment['original_index']['scientific_source_sha256'])
             require(result['source_sha256'] == expected_sources, 'Executed source map differs from its reviewed original/amended graph')
         native = policy['original_native']
@@ -324,6 +444,9 @@ def resolve_case(evidence, record, archives, executions, policy, amendment=None)
                 supervision.get('cleanup_errors') == [] and supervision.get('survivors_after_cleanup') == [],
                 'Technical supervision failure cannot be terminal science')
     report = evidence.member(archive, case_member, source['case_sha256'])
+    if 'execution_producer' not in record:
+        require('execution_producer' not in report and 'execution_producer' not in other.get('result', {}),
+                'Public producer cannot be disguised as an old execution')
     trace = evidence.member(archive, trace_member, source['trace_sha256'], as_json=False)
     events = [document(line) for line in trace.splitlines()]
     require(events and all(isinstance(event, dict) for event in events), 'Missing attempt trace')
@@ -571,6 +694,7 @@ def build(repository, paths):
     require(frozen[MANIFEST] == evidence.pins[MANIFEST], 'Frozen input manifest identity differs')
     require(policy['scientific_protocol_sha256'] == evidence.pins[SCIENCE], 'Frozen scientific protocol identity differs')
     amendment = amendment_sources(evidence, registry, index, policy)
+    reader = reader_sources(evidence, registry, amendment)
     if amendment is None:
         require(index['protocol_sha256'] == evidence.pins[POLICY], 'Frozen protocol identity differs')
     sequence = policy['full_sequence']
@@ -615,9 +739,10 @@ def build(repository, paths):
                     'Permanent unknown cannot become complete or change source')
         if n >= 41:
             used_executions.add(source['execution_id'])
-        report, events, refs, review, result = resolve_case(evidence, record, archives, executions, policy, amendment)
+        report, events, refs, review, result = resolve_case(evidence, record, archives, executions, policy, amendment, reader)
         amended_case = amendment is not None and n >= 44
-        if result and (amendment is None or amended_case):
+        reader_case = 'execution_producer' in record
+        if result and (amendment is None or amended_case) and not reader_case:
             require(result['source_sha256'] == index['scientific_source_sha256'], 'Executed scientific source identity differs')
         for key, value in projection(report).items():
             require(record[key] == value, 'Compact projection differs from saved case: '+key)
@@ -631,6 +756,8 @@ def build(repository, paths):
         if amendment:
             entry['computation'] = (amended_computation(evidence,record,report,result,executions,amendment) if amended_case
                                     else dict(kind='retained_original',scope='Accepted original computation; not rerun by the numerical amendment.'))
+        if reader_case:
+            entry['public_reader'] = reader_computation(evidence,record,report,result,review,executions,reader)
         if disposition == 'complete':
             require(report.get('passed') is True and report.get('status') == 'complete' and
                     record['outcomes'] == report['outcomes'], 'Complete source or projection differs')
@@ -720,6 +847,11 @@ def build(repository, paths):
             retained_original_unknown_case=UNKNOWN_CASE,partial_case_id=amendment['protocol']['partial_case_id'],
             method='Optimizer-callback-only same-vector original fine value and gradient after the original finite negative-exposure guard; original quadrature, fresh-state, selection and held-out checks remain.',
             search_census='Tables count canonical logical saved fit records. Physical amended calls, reused records, refinement evaluations and prior failed attempts are separately identified for each case.')
+    if reader:
+        ids = [row['case_id'] for row in dispositions if 'public_reader' in row]
+        require(ids, 'Reader registry has no actual reader executions')
+        result['public_reader'] = dict(references=reader['references'],execution_producer=reader['producer'],case_ids=ids,
+            scope='Actual public-entrypoint fresh fits with the bundled audited Linux x86-64 native library. Prior fixed/partial computations retain their own identities; no new compilation or inherited Task3 execution claim.')
     return result, evidence.pins
 
 
