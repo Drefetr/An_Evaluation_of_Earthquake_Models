@@ -1,9 +1,9 @@
 {
   "schema": "bounded_repository_checks_v2",
-  "status": "passed",
+  "status": "local_checks_passed_corrected_linux_ci_pending",
   "baseline_commit": "f1eb1606ed75f90d1a88912bdd64ded49b106a66",
-  "checked_at_utc": "2026-11-08T11:29:05.632668+00:00",
-  "snapshot": "Reviewed working-tree publication candidate; exact final payload is bound by MANIFEST.json. CI records pin their tested commits separately.",
+  "checked_at_utc": "2026-11-08T11:53:24.935797+00:00",
+  "snapshot": "Publication candidate 779058b followed by a standalone site CLI import correction. Artifact bytes are unchanged; fresh Linux CI for the correction is pending.",
   "environment": {
     "python": "3.13.4",
     "local": "Windows x64; actual native fixture and CPU execution records retained",
@@ -213,9 +213,38 @@
   },
   "scope": "Bounded tests and production verification. The 981 distinct tests are not 981 scientific experiments; custody release_ready does not satisfy the failed original all80-success gate.",
   "historical_checks": {
-    "path": "validation/checks_before_joint_20261108.json",
-    "sha256": "4505c7ccec27dc57be2c755e18782204e705c61078d53527af857c89bb2559eb",
-    "source_path": "validation/checks.json",
-    "scope": "Exact previous coverage and its complete earlier evidence-retention chain."
+    "path": "validation/checks_before_site_import_20261108.json",
+    "sha256": "ee4f0037f272da710aa87607c11280f46a368c01df06bac3eed6bd652c7ffd5c",
+    "scope": "Exact publication checks before the site import correction, retaining its earlier history chain."
+  },
+  "site_import_followup": {
+    "baseline_commit": "779058b55208f0195091ee86ac970eff3c22d545",
+    "retained_prior_ci": {
+      "path": "validation/reproductions/publication_joint_20261108/ci_candidate_779058b/result.json",
+      "sha256": "ba93b4a5e5cb56dca6cf8616b019d5204ffa0fcfea29509b0fd6afd2a03b712d"
+    },
+    "prior_ordinary_ci_passed": false,
+    "prior_cpu_ci_passed": true,
+    "correction_review": {
+      "path": "validation/reproductions/publication_joint_20261108/site_import_correction/independent_review/result.json",
+      "sha256": "389594c87dfb31f81e70682bd514bc7cf26ea55973647fe7fbffacb67ac4453d"
+    },
+    "workflow_tests": {
+      "path": "validation/reproductions/publication_joint_20261108/site_import_correction/workflow_tests.json",
+      "sha256": "f6739099df3d25916239640fedf46ad8f22f5baf1d3151fa10847df7694755b8"
+    },
+    "workflow_tests_count": 9,
+    "count_scope": "These nine tests are a repeated subset of the 903 main tests, not nine additional distinct tests.",
+    "isolated_cli": {
+      "path": "validation/reproductions/publication_joint_20261108/site_import_correction/isolated_build.json",
+      "sha256": "5edfc1bf939cb9ca3f0be834d7955054009fa68ff879bd314a137076da4b026c"
+    },
+    "site_byte_identity": {
+      "path": "validation/reproductions/publication_joint_20261108/site_import_correction/byte_identity.json",
+      "sha256": "c3e962b2318ce6d5a31eecc4bf53cf42af7b972a733bb49a0adfe61ce2bc19c0"
+    },
+    "linux_ci_status": "pending_actual_execution",
+    "scientific_calls": 0,
+    "artifact_scope": "All nine generated site files are byte-identical; paper, guide, numerical validators, scientific results and manuscript bindings are unchanged."
   }
 }

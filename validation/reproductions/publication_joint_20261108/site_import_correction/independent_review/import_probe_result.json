@@ -1,0 +1,47 @@
+{
+  "schema": "independent_site_import_probe_v1",
+  "scope": "Import-only probe; no site build, validation, report arithmetic, PDF build or scientific calls.",
+  "baseline_commit": "779058b",
+  "source_sha256": {
+    "website/build_site.py": "2491b3fdf2709554141e426c52de4e921ef7a7e838367bb4dfd31d2872ac8b64",
+    "tests/test_workflows.py": "acca1983b26ce82b0384a774ed0bea3a273e03de66ca0fe33e60fb3ec344aafe",
+    "website/build_findings.py": "026ced0715d9748a03301373ea1b95920beedeaca5ca00e2a84c0bf62743eeb2",
+    "scripts/render_joint_disposition_results.py": "6c8446a8e9ab7194b8f45cc4099e46416f753581d9f105e2b76f2b394a6a7982",
+    "scripts/build_joint_disposition_report.py": "e4cb8d2c489ceab645e9654d8029c487fe402bdf0dd20ca6a1aad3a4384eb780"
+  },
+  "probe_sha256": "d00b96b565da8e83e5943c8b183a9b9f88a08cf8c56d27462233098d1c17faec",
+  "records": [
+    {
+      "variant": "baseline",
+      "argv": [
+        "C:\\Users\\Drefetr\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-E",
+        "-B",
+        "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\publication_site_import_fix_review\\probe.py",
+        "C:\\Users\\Drefetr\\work\\joint_replay_20261107T045457Z\\integration",
+        "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\publication_site_import_fix_review\\baseline_build_site.py"
+      ],
+      "cwd": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\publication_site_import_fix_review",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\publication_site_import_fix_review\\probe.py\", line 7, in <module>\n    module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)\n                                                 ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^\n  File \"<frozen importlib._bootstrap_external>\", line 1026, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 488, in _call_with_frames_removed\n  File \"C:\\Users\\Drefetr\\work\\joint_replay_20261107T045457Z\\integration\\scripts\\render_joint_disposition_results.py\", line 14, in <module>\n    from scripts import build_joint_disposition_report as builder\nImportError: cannot import name 'build_joint_disposition_report' from 'scripts' (unknown location)\n"
+    },
+    {
+      "variant": "candidate",
+      "argv": [
+        "C:\\Users\\Drefetr\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-E",
+        "-B",
+        "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\publication_site_import_fix_review\\probe.py",
+        "C:\\Users\\Drefetr\\work\\joint_replay_20261107T045457Z\\integration",
+        "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\publication_site_import_fix_review\\candidate_build_site.py"
+      ],
+      "cwd": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\publication_site_import_fix_review",
+      "returncode": 0,
+      "stdout": "{\"formatter\": \"C:\\\\Users\\\\Drefetr\\\\work\\\\joint_replay_20261107T045457Z\\\\integration\\\\scripts\\\\render_joint_disposition_results.py\", \"builder\": \"C:\\\\Users\\\\Drefetr\\\\work\\\\joint_replay_20261107T045457Z\\\\integration\\\\scripts\\\\build_joint_disposition_report.py\", \"repo_on_sys_path\": true, \"build_or_validation_invoked\": false}\n",
+      "stderr": ""
+    }
+  ],
+  "passed": true,
+  "harness_note": "Initial harness expected the Linux ModuleNotFoundError spelling; this Windows environment resolves another scripts namespace and raises ImportError instead. The corrected assertion accepts either import error and requires the same missing builder name. Candidate import succeeds; no application change was needed."
+}

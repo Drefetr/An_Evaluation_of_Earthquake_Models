@@ -7,3 +7,5 @@ The [visual review](visual_review/result.json) records actual page inspection an
 The [current checks](../../checks.json) report 981 distinct tests, with the historical CUDA test kept separate from its CPU counterpart. These are bounded verification tests, not scientific experiments. The [scientific disposition review](../../live_results/joint_nuisance_dispositions_20261107/completion_review.json) accepts reporting of 78 complete histories and two unavailable histories; it does not satisfy the original all-success scientific gate.
 
 All reviews here are internal computational-agent reviews, not external human academic peer review.
+
+The [first publication CI audit](ci_candidate_779058b/result.json) retains the failed Linux site-import test and the separate passing CPU job at `779058b`. The [independent correction review](site_import_correction/independent_review/result.json) verifies the standalone CLI import fix, nine repeated workflow tests and byte-identical publication output. Fresh Linux CI is recorded separately in the current checks; the earlier custody review covers its named candidate snapshot.

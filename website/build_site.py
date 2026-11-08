@@ -6,10 +6,16 @@ import json
 import shutil
 import argparse
 import tempfile
+import sys
 import pymupdf
-from build_findings import build as build_findings
 
 ROOT = Path(__file__).resolve().parents[1]
+# The CLI is also run from outside the checkout with no PYTHONPATH. Dynamically
+# loaded publication validators import sibling modules through scripts.*.
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+from build_findings import build as build_findings
+
 OUT = ROOT / 'build' / 'site'
 def document_contract(config):
     state=config['status']

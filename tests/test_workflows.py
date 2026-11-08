@@ -100,7 +100,14 @@ class PublicWorkflows(unittest.TestCase):
         before = [digest(path) for path in documents]
         with tempfile.TemporaryDirectory(prefix='site-workflow-') as temp:
             output = Path(temp)/'site'
-            self.command('website/build_site.py', '--output', output)
+            # Match a clean reader/CI invocation: ignore PYTHONPATH and do not
+            # rely on the repository being the subprocess working directory.
+            result = subprocess.run(
+                [sys.executable, '-E', '-B', str(ROOT/'website/build_site.py'),
+                 '--output', str(output)], cwd=temp, capture_output=True,
+                text=True, encoding='utf-8', errors='replace',
+            )
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
             metadata = json.loads((output/'documents.json').read_text(encoding='utf-8'))
             self.assertEqual(len(metadata['documents']), 2)
             self.assertEqual(metadata['bundle_kind'],'self_contained_deployment')

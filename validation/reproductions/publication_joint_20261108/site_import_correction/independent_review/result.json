@@ -1,0 +1,53 @@
+{
+  "schema": "publication_site_import_fix_review_v1",
+  "task_id": "publication_site_import_fix_review",
+  "attempt_id": "6bb6ab3e-1c97-4045-8b68-0fb39819fd14",
+  "reviewer": "/root/disposition_reporting",
+  "review_kind": "live_independent_source_and_saved_output_review",
+  "completed_utc": "2026-11-08T11:49:05.583232+00:00",
+  "passed": true,
+  "audit_passed": true,
+  "live_agent_review": true,
+  "source_review_passed": true,
+  "saved_output_comparison_passed": true,
+  "baseline_commit": "779058b55208f0195091ee86ac970eff3c22d545",
+  "reviewed_source_sha256": {
+    "website/build_site.py": "2491b3fdf2709554141e426c52de4e921ef7a7e838367bb4dfd31d2872ac8b64",
+    "tests/test_workflows.py": "acca1983b26ce82b0384a774ed0bea3a273e03de66ca0fe33e60fb3ec344aafe"
+  },
+  "unchanged_validator_sha256": {
+    "scripts/render_joint_disposition_results.py": "6c8446a8e9ab7194b8f45cc4099e46416f753581d9f105e2b76f2b394a6a7982",
+    "scripts/build_joint_disposition_report.py": "e4cb8d2c489ceab645e9654d8029c487fe402bdf0dd20ca6a1aad3a4384eb780",
+    "website/build_findings.py": "026ced0715d9748a03301373ea1b95920beedeaca5ca00e2a84c0bf62743eeb2"
+  },
+  "findings": [],
+  "evidence": [
+    {
+      "path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\publication_site_import_fix_review\\import_probe_result.json",
+      "sha256": "e48bb1fbf4ff5a0c362f0eae01bb96b6724415c9ea01de7b890229182630c3be"
+    },
+    {
+      "path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\publication_site_import_fix_review\\saved_comparison.json",
+      "sha256": "18d920a1831ffab4b865b30858ffbf01380135bdfa6c9b9540a75a84aeb591bc"
+    },
+    {
+      "path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\publication_site_import_fix_review\\reviewed.patch",
+      "sha256": "b5c5b81cac98c7901daf69cd81166f6b5f258155ba5729deb1b54c8ffd093444"
+    },
+    {
+      "path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\publication_site_import_fix_review\\review.md",
+      "sha256": "86b0b5a4877e3172d2c252e16cb090ac0e406ca147287b2ecd30fdfd062bb4b7"
+    },
+    {
+      "path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\site_import_correction_20261108\\byte_identity.json",
+      "sha256": "c3e962b2318ce6d5a31eecc4bf53cf42af7b972a733bb49a0adfe61ce2bc19c0"
+    }
+  ],
+  "output_files_count": 9,
+  "workflow_tests_passed": 9,
+  "interaction_selector_combinations": 80,
+  "linux_ci_rerun_reviewed": false,
+  "scientific_calls": 0,
+  "repository_edits_by_reviewer": false,
+  "scope": "Exact source correction plus actual saved isolated site output, not scientific acceptance or a new visual review."
+}

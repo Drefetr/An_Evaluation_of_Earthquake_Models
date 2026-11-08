@@ -1,0 +1,42 @@
+diff --git a/tests/test_workflows.py b/tests/test_workflows.py
+index 06b87fd..0670a3a 100644
+--- a/tests/test_workflows.py
++++ b/tests/test_workflows.py
+@@ -100,7 +100,14 @@ class PublicWorkflows(unittest.TestCase):
+         before = [digest(path) for path in documents]
+         with tempfile.TemporaryDirectory(prefix='site-workflow-') as temp:
+             output = Path(temp)/'site'
+-            self.command('website/build_site.py', '--output', output)
++            # Match a clean reader/CI invocation: ignore PYTHONPATH and do not
++            # rely on the repository being the subprocess working directory.
++            result = subprocess.run(
++                [sys.executable, '-E', '-B', str(ROOT/'website/build_site.py'),
++                 '--output', str(output)], cwd=temp, capture_output=True,
++                text=True, encoding='utf-8', errors='replace',
++            )
++            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+             metadata = json.loads((output/'documents.json').read_text(encoding='utf-8'))
+             self.assertEqual(len(metadata['documents']), 2)
+             self.assertEqual(metadata['bundle_kind'],'self_contained_deployment')
+diff --git a/website/build_site.py b/website/build_site.py
+index 7d7a8a7..449506e 100644
+--- a/website/build_site.py
++++ b/website/build_site.py
+@@ -6,10 +6,16 @@ import json
+ import shutil
+ import argparse
+ import tempfile
++import sys
+ import pymupdf
+-from build_findings import build as build_findings
+ 
+ ROOT = Path(__file__).resolve().parents[1]
++# The CLI is also run from outside the checkout with no PYTHONPATH. Dynamically
++# loaded publication validators import sibling modules through scripts.*.
++if str(ROOT) not in sys.path:
++    sys.path.insert(0, str(ROOT))
++from build_findings import build as build_findings
++
+ OUT = ROOT / 'build' / 'site'
+ def document_contract(config):
+     state=config['status']
