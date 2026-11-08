@@ -7,6 +7,9 @@ schema is ``joint_disposition_execution_registry_v1``: ``archives`` contain
 contain execution_id and member_prefix (normally ``host/``). Historical comparator
 entries contain kind (fixed_floor/intercept_only), artifact and review references.
 The genuine live final index review binds the index hash and its actual counts.
+The optional numerical_amendment field holds protocol/source_review references
+for the explicitly reviewed exposure-refinement version; original inputs keep
+their original schema, sources, and acceptance rules.
 """
 import argparse
 from collections import Counter
@@ -26,6 +29,7 @@ except ModuleNotFoundError:  # Direct CLI invocation.
 
 SCIENCE = 'experiments/s04b_joint_nuisance/protocol.json'
 POLICY = 'experiments/s04b_joint_remaining/protocol.json'
+AMENDMENT = 'experiments/s04b_exposure_refinement/protocol.json'
 MANIFEST = 'reproduction/synthetic/input_manifest.json'
 INPUT_PINS = 'experiments/s04b_joint_nuisance/input_pins.json'
 CORE = 'experiments/s04b_joint_nuisance_audit/audit.py'
@@ -133,7 +137,87 @@ def arithmetic():
     return module
 
 
-def registry_sources(evidence, registry, policy):
+def amendment_sources(evidence, registry, index, policy):
+    """Admit one explicit numerical amendment; never reinterpret old sources."""
+    if 'numerical_amendment' not in registry:
+        return None
+    refs = registry['numerical_amendment']
+    require(set(refs) == {'protocol', 'source_review'} and refs['protocol']['path'] == AMENDMENT,
+            'Explicit known amendment and source review required')
+    amended, review = evidence.reference(refs['protocol']), evidence.reference(refs['source_review'])
+    require(amended.get('schema') == 'joint_exposure_refinement_protocol_v1' and
+            amended.get('version') == 'joint_exposure_refinement_v1', 'Unknown numerical amendment')
+    require(review.get('passed') is True and review.get('live_agent_review') is True and
+            review.get('live_agent_review_performed', True) is True and
+            review.get('final_batch_agent_review_required', False) is False,
+            'Independent live amendment source review required')
+    sources = dict(amended['source_sha256'])
+    checker = ['experiments/s04b_exposure_refinement_audit/check.py',
+               'experiments/s04b_exposure_refinement_audit/__init__.py',
+               'experiments/s04b_joint_remaining_audit/check.py', 'experiments/s04b_joint_audit/check.py', CORE]
+    require(amended['checker']['sources'] == checker, 'Amendment independent checker graph differs')
+    new_sources = [str(PurePosixPath(AMENDMENT).parent/name) for name in
+                   ('__init__.py', 'adapter.py', 'partial_fit.py', 'case_driver.py', 'host.py', 'protocol.json')]
+    driver_sources = dict(sources)
+    for path in new_sources:
+        require(path in review['reviewed_files_sha256'], 'Amendment source is outside independent review')
+        driver_sources[path] = review['reviewed_files_sha256'][path]
+    for path in new_sources+checker:
+        require(path in review['reviewed_files_sha256'], 'Amendment source is outside independent review')
+        sources[path] = review['reviewed_files_sha256'][path]
+    for path, pin in sources.items():
+        require(review['reviewed_files_sha256'].get(path) == pin and sha(safe(evidence.repository, path)) == pin,
+                'Reviewed amendment dependency changed: '+path)
+        evidence.pins[path] = pin
+    require(amended['original_scientific_protocol_sha256'] == evidence.pins[SCIENCE] and
+            amended['full_sequence'] == policy['full_sequence'] and
+            amended['case_ids'] == policy['full_sequence'][44:] and
+            amended['partial_case_id'] == policy['full_sequence'][44] and
+            amended['original_native'] == policy['original_native'] and
+            amended['permanent_unknown'] == policy['immutable_failure_reference'],
+            'Amendment changed scientific roster, native or permanent unknown')
+    base = amended['base']
+    require(base['records'] == 44 and base['complete_histories'] == 43 and base['unknown_histories'] == 1,
+            'Wrong retained original prefix census')
+    archive = evidence.archive(dict(path=base['archive'], sha256=base['archive_sha256']))
+    original = evidence.member(archive, base['index_member'], base['index_sha256'])
+    prefix_review = evidence.file(base['review'], base['review_sha256'])
+    require(prefix_review.get('passed') is False and prefix_review.get('audit_passed') is True and
+            prefix_review.get('live_agent_review') is True and prefix_review.get('accepted_completed_prefix') is True and
+            prefix_review.get('live_agent_review_performed', True) is True and
+            prefix_review.get('review_kind') == 'live_agent_saved_output_review' and
+            prefix_review.get('final_batch_agent_review_required') is False and
+            prefix_review.get('scientific_completion') is False and
+            prefix_review['artifact_sha256'] == archive and prefix_review['index_sha256'] == base['index_sha256'] and
+            prefix_review['accepted_completed_case_ids'] == policy['full_sequence'][42:44],
+            'Exact failed-host completed-prefix review required')
+    require(original['schema'] == 'joint_remaining_index_v1' and original['passed'] is False and
+            original['scientific_completion'] is False and original['protocol_sha256'] == evidence.pins[POLICY] and
+            original['original_native'] == policy['original_native'] and
+            original['immutable_failure_reference'] == policy['immutable_failure_reference'] and
+            [row['case_id'] for row in original['records']] == policy['full_sequence'][:44] and
+            sum(row['disposition'] == 'complete' for row in original['records']) == 43 and
+            index['records'][:44] == original['records'], 'Retained forty-four-record prefix changed')
+    require(index.get('schema') == 'joint_exposure_refinement_index_v1' and
+            index['protocol_sha256'] == evidence.pins[AMENDMENT] and
+            index['numerical_amendment_version'] == amended['version'] and
+            index['original_scientific_protocol_sha256'] == evidence.pins[SCIENCE] and
+            index['compatible_saved_prefix'] == base and
+            index['original_exposure_failure_reference'] == amended['failed_case'] and
+            index['scientific_source_sha256'] == index['host_source_sha256'] == driver_sources,
+            'Final index does not identify the explicit amendment')
+    failed = amended['failed_case']
+    require(failed['archive'] == dict(path=base['archive'], sha256=archive) and
+            failed['review'] == dict(path=base['review'], sha256=base['review_sha256']),
+            'Partial reuse evidence differs from accepted failed host')
+    old_partial = evidence.member(archive, failed['case_member'], failed['case_sha256'])
+    require(old_partial['case_id'] == amended['partial_case_id'] and old_partial['passed'] is False and
+            old_partial['outcomes'] == [], 'Partial source was relabeled complete')
+    return dict(protocol=amended, references=refs, original_index=original,
+                prefix_review=prefix_review, partial=old_partial, driver_sources=driver_sources)
+
+
+def registry_sources(evidence, registry, policy, amendment=None):
     require(registry.get('schema') == 'joint_disposition_execution_registry_v1', 'Unknown registry schema')
     archives, executions = {}, {}
     ref = policy['immutable_failure_reference']
@@ -157,10 +241,16 @@ def registry_sources(evidence, registry, policy):
         require(prefix.endswith('/'), 'Archive member prefix must end in slash')
         member_name(prefix)
         review = evidence.reference(entry['review'])
-        live_review(review)
+        base = amendment['protocol']['base'] if amendment else None
+        accepted_prefix = base is not None and entry['archive'] == dict(path=base['archive'], sha256=base['archive_sha256'])
+        if accepted_prefix:
+            require(entry['review'] == dict(path=base['review'], sha256=base['review_sha256']) and
+                    review == amendment['prefix_review'], 'Failed host review was substituted')
+        else:
+            live_review(review)
         require(review['artifact_sha256'] == pin and review['execution_id'] == execution,
                 'Live review does not bind execution archive')
-        ids = review['checked_case_ids']
+        ids = review['accepted_completed_case_ids'] if accepted_prefix else review['checked_case_ids']
         require(len(ids) == len(set(ids)) and set(ids) <= set(policy['case_ids']),
                 'Live host review case roster differs')
         executions[execution] = (entry, review)
@@ -177,7 +267,7 @@ def projection(report):
                                if name in fits and fits[name]['passed'] is True})
 
 
-def resolve_case(evidence, record, archives, executions, policy):
+def resolve_case(evidence, record, archives, executions, policy, amendment=None):
     source = record['source']
     if source['kind'] == 'immutable_archive':
         require(source['archive_sha256'] in archives, 'Unregistered immutable archive')
@@ -190,6 +280,10 @@ def resolve_case(evidence, record, archives, executions, policy):
                 'Unregistered host execution')
         entry, review = executions[source['execution_id']]
         require(record['case_id'] in review['checked_case_ids'], 'Case lacks live host review')
+        if review.get('passed') is False:
+            require(amendment is not None and review == amendment['prefix_review'] and
+                    record['case_id'] in review['accepted_completed_case_ids'] and record['disposition'] == 'complete',
+                    'Failed host supplies only its independently accepted complete cases')
         archive, prefix = entry['archive']['sha256'], entry['member_prefix']
         for field in ('case_path', 'trace_path', 'result_path', 'supervision_path'):
             member_name(source[field])
@@ -201,15 +295,25 @@ def resolve_case(evidence, record, archives, executions, policy):
             other[key] = value
             other[key+'_reference'] = evidence.locator(archive, member, source[key+'_sha256'])
         result = other['result']
-        require(result.get('schema') == 'joint_remaining_case_result_v1' and result.get('handled') is True and
+        amended_case = amendment is not None and record['case_id'] in amendment['protocol']['case_ids']
+        schema = 'joint_exposure_refinement_case_v1' if amended_case else 'joint_remaining_case_result_v1'
+        require(result.get('schema') == schema and result.get('handled') is True and
                 result.get('disposition_valid') is True and result.get('status') == 'terminal_disposition' and
                 result['case_id'] == record['case_id'] and result['disposition'] == record['disposition'] and
                 result['scientific_passed'] is record['scientific_passed'], 'Case result disposition differs')
         require(result['report_sha256'] == source['case_sha256'] and
                 result['trace_sha256'] == source['trace_sha256'], 'Result does not bind case and trace')
-        require(result['protocol_sha256'] == evidence.pins[POLICY] and
-                result['immutable_failure_reference'] == policy['immutable_failure_reference'],
-                'Result protocol or immutable lineage differs')
+        if amended_case:
+            require(result['protocol_sha256'] == evidence.pins[AMENDMENT], 'Result amendment protocol differs')
+        else:
+            require(result['protocol_sha256'] == evidence.pins[POLICY] and
+                    result['immutable_failure_reference'] == policy['immutable_failure_reference'],
+                    'Result protocol or immutable lineage differs')
+        if amendment is not None:
+            require(result['source_sha256'] == review['source_sha256'], 'Per-execution reviewed source identity differs')
+            expected_sources = (amendment['driver_sources'] if amended_case else
+                                amendment['original_index']['scientific_source_sha256'])
+            require(result['source_sha256'] == expected_sources, 'Executed source map differs from its reviewed original/amended graph')
         native = policy['original_native']
         require(result['runtime']['essential'] == native['runtime_essential'] and
                 all(result[key] == native[key] for key in ('library_sha256', 'build_receipt_sha256')),
@@ -230,6 +334,111 @@ def resolve_case(evidence, record, archives, executions, policy):
         if key in other:
             refs[key] = other[key+'_reference']
     return report, events, refs, review, other.get('result')
+
+
+def amended_computation(evidence, record, report, result, executions, amendment):
+    """Bind saved amendment operands/census; the live checker audits mathematics."""
+    p = amendment['protocol']
+    meta = result['numerical_amendment']
+    partial = record['case_id'] == p['partial_case_id']
+    kind = 'amended_partial_resume' if partial else 'amended_untouched'
+    require(record['numerical_amendment'] == report['numerical_amendment'] == meta and
+            meta['version'] == p['version'] and meta['protocol_sha256'] == evidence.pins[AMENDMENT] and
+            meta['original_scientific_protocol_sha256'] == evidence.pins[SCIENCE] and
+            meta['computation_kind'] == kind and
+            meta['original_failure_reference'] == (p['failed_case'] if partial else None),
+            'Case amendment identity/reuse scope differs')
+    entry, _ = executions[record['source']['execution_id']]
+    archive = entry['archive']['sha256']
+    parent = PurePosixPath(record['source']['result_path']).parent
+    documents, locators = {}, {}
+    for name, field in (('reuse_map.json', 'reuse_map_sha256'),
+                        ('refinement_events.jsonl', 'refinement_event_log_sha256'),
+                        ('execution_calls.jsonl', 'execution_calls_sha256')):
+        member = entry['member_prefix']+str(parent/name)
+        raw = evidence.member(archive, member, meta[field], as_json=False)
+        documents[name] = document(raw) if name.endswith('.json') else [document(line) for line in raw.splitlines()]
+        locators[name] = evidence.locator(archive, member, meta[field])
+    reuse = documents['reuse_map.json']; calls = documents['execution_calls.jsonl']; refinements = documents['refinement_events.jsonl']
+    require(reuse['schema'] == 'joint_exposure_refinement_reuse_v1' and
+            reuse['mode'] == ('partial' if partial else 'untouched') and
+            reuse['original_failure_reference'] == meta['original_failure_reference'] and
+            reuse['entries'] == result['adapter']['reuse_entries'], 'Saved reuse map differs')
+    entries = reuse['entries']
+    reused = sum(8 if row['kind'] == 'complete_arm' else 4 if row['kind'] == 'total_prefix' else 0 for row in entries)
+    require(reused == reuse['reused_optimizer_attempts'] == result['reused_optimizer_attempts'] == (28 if partial else 0),
+            'Reused records cannot be counted as new optimizer calls')
+    require(reuse['prior_failed_total_start4_attempts_retained'] == (2 if partial else 0), 'Prior failed attempts lost or duplicated')
+    if partial:
+        old = amendment['partial']
+        require(record['disposition'] == 'complete', 'Mandatory partial pilot did not complete')
+        for arm in ARMS[:3]:
+            require(report['fits'][arm] == old['fits'][arm] and report['training_checks'][arm] == old['training_checks'][arm],
+                    'Reused complete fit/check object changed')
+        total = 'LIplus_inclusive'
+        require(report['fits'][total]['records'][:4] == old['fits'][total]['records'][:4] and
+                report['fits'][total]['candidates'][:5] == old['fits'][total]['candidates'][:5] and
+                [r for r in report['floor_checks'] if r['phase'] == 'train'] == old['floor_checks'],
+                'Reused total-arm prefix changed')
+        expected_entries = [dict(kind='historical_training_floor',pointer='/fits/null/candidates/0/score')]
+        for arm in ARMS[:3]:
+            expected_entries += [dict(kind='complete_arm',model=arm,pointer='/fits/'+arm),
+                                 dict(kind='selected_training_check',model=arm,pointer='/training_checks/'+arm)]
+        expected_entries.append(dict(kind='total_prefix',model=total,candidate_indices=list(range(5)),
+                                     record_indices=list(range(4)),prior_failed_record_indices=[4,5]))
+        require(entries == expected_entries, 'Partial reuse action/pointer roster differs')
+    else:
+        require(entries == [], 'Untouched case claims reused optimizer work')
+    reuse_event = {'complete_arm':'reuse_arm', 'selected_training_check':'reuse_selected_training_check',
+                   'historical_training_floor':'reuse_historical_training_floor', 'total_prefix':'reuse_total_prefix'}
+    require(all(row['kind'] in reuse_event for row in entries) and
+            [(row['event'],row.get('model')) for row in calls if row['event'] not in ('optimizer_start','optimizer_end')] ==
+            [(reuse_event[row['kind']],row.get('model')) for row in entries], 'Actual reuse log differs from reuse map')
+    for row in calls:
+        if row['event'] in ('reuse_arm','reuse_total_prefix'):
+            require(row.get('physical_optimizer_calls') == 0 and row.get('physical_evaluations',0) == 0,
+                    'Reuse log claims physical optimizer/evaluation work')
+        elif row['event'] in ('reuse_selected_training_check','reuse_historical_training_floor'):
+            require(row.get('physical_evaluations') == 0 and row.get('physical_optimizer_calls',0) == 0,
+                    'Reuse log claims physical evaluation/optimizer work')
+    starts = [r for r in calls if r['event'] == 'optimizer_start']
+    ends = [r for r in calls if r['event'] == 'optimizer_end']
+    key = lambda row: (row['model'], row['start_index'], row['method'])
+    started, ended = [key(r) for r in starts], [key(r) for r in ends]
+    expected = [(arm,r['start_index'],r['method']) for arm in ARMS if arm in report['fits']
+                for r in report['fits'][arm]['records'] if not partial or (arm == 'LIplus_inclusive' and r['start_index'] >= 4)]
+    require(started == ended == expected and len(set(started)) == len(started) and
+            result['adapter']['physical_optimizer_calls'] == [list(k) for k in started] and
+            integer(result['actual_optimizer_attempts']) == len(started), 'Physical optimizer census differs')
+    require(result['evaluation_census'] == result['adapter']['evaluation_census'], 'Physical evaluation census differs')
+    for count in result['evaluation_census'].values():
+        values = {k:integer(count.get(k,0)) for k in ('attempted','returned','errors')}
+        require(all(v >= 0 for v in values.values()) and values['attempted'] == values['returned']+values['errors'],
+                'Unbalanced physical evaluation census')
+    require(len(refinements) % 2 == 0, 'Unpaired refinement evidence')
+    accepted = 0
+    for n, (start,end) in enumerate(zip(refinements[::2], refinements[1::2]), 1):
+        require(start['event'] == 'refinement_start' and end['event'] == 'refinement_end' and
+                start['event_id'] == end['event_id'] == n and start['context'] == end['context'] and
+                start['theta'] == end['theta'] and start['context']['phase'] == 'train' and
+                key(start['context']) in started and type(end['accepted']) is bool,
+                'Refinement is not paired with a physical training optimizer callback')
+        for value in (start['coarse_seconds'],end['coarse_seconds'],end['fine_seconds']):
+            require(numeric(value) >= 0, 'Invalid retained refinement timing')
+        if end['accepted']:
+            require(end['comparison']['passed'] is True and end['comparison']['finite'] is True and end['effective_order'] == 16,
+                    'Rejected/nonfinite refinement was reported accepted')
+            accepted += 1
+    census = dict(started=len(refinements)//2,accepted=accepted,rejected=len(refinements)//2-accepted)
+    require(record['refinement_census'] == result['refinement_census'] == census and
+            all(result['adapter']['refinement_'+key] == value for key,value in census.items()), 'Refinement census differs')
+    require(result['adapter']['callback_active'] is False and result['adapter']['refinement_active'] is False,
+            'Case ended inside a refinement callback')
+    return dict(kind=kind,numerical_amendment=deepcopy(meta),evidence=locators,
+                actual_optimizer_attempts=len(started),reused_optimizer_attempts=reused,
+                prior_failed_total_start4_attempts_retained=reuse['prior_failed_total_start4_attempts_retained'],
+                evaluation_census=deepcopy(result['evaluation_census']),refinement_census=census,
+                scope='Physical calls in this amended execution; reused logical records and prior failures are separate.')
 
 
 def unknown_census(record, report, events, review, result, policy):
@@ -360,8 +569,10 @@ def build(repository, paths):
     science, policy, manifest = (evidence.file(path) for path in (SCIENCE, POLICY, MANIFEST))
     frozen = evidence.file(INPUT_PINS, science['input_pins_sha256'])
     require(frozen[MANIFEST] == evidence.pins[MANIFEST], 'Frozen input manifest identity differs')
-    require(policy['scientific_protocol_sha256'] == evidence.pins[SCIENCE] and
-            index['protocol_sha256'] == evidence.pins[POLICY], 'Frozen protocol identity differs')
+    require(policy['scientific_protocol_sha256'] == evidence.pins[SCIENCE], 'Frozen scientific protocol identity differs')
+    amendment = amendment_sources(evidence, registry, index, policy)
+    if amendment is None:
+        require(index['protocol_sha256'] == evidence.pins[POLICY], 'Frozen protocol identity differs')
     sequence = policy['full_sequence']
     require(len(sequence) == len(set(sequence)) == len(science['roster']) == 80 and set(sequence) == set(science['roster']),
             'Exactly the frozen eighty histories are required')
@@ -372,7 +583,7 @@ def build(repository, paths):
     require(len(cases) == len(manifest['s04b']['cases']) == 80 and set(cases) == set(sequence) and
             Counter(case['regime'] for case in cases.values()) == Counter({r:20 for r in range(4, 8)}),
             'Frozen input manifest roster differs')
-    require(index.get('schema') == 'joint_remaining_index_v1' and index.get('passed') is False and
+    require(index.get('schema') == ('joint_exposure_refinement_index_v1' if amendment else 'joint_remaining_index_v1') and index.get('passed') is False and
             index.get('scientific_completion') is False and
             [record['case_id'] for record in index['records']] == sequence, 'Final compact disposition index required')
     require(index['original_native'] == policy['original_native'] and
@@ -384,7 +595,7 @@ def build(repository, paths):
         integer(count)
     require(final['index_sha256'] == evidence.pins[paths['index']] and final['counts'] == index['counts'] and
             final.get('all_histories_attempted') is True, 'Live final index review does not bind all eighty dispositions')
-    archives, executions = registry_sources(evidence, registry, policy)
+    archives, executions = registry_sources(evidence, registry, policy, amendment)
     comparator_refs, old = historical(evidence, [cases[key] for key in sequence], registry, frozen)
     reports, dispositions, outcomes, unknowns = {}, [], [], []
     used_executions = set()
@@ -404,8 +615,9 @@ def build(repository, paths):
                     'Permanent unknown cannot become complete or change source')
         if n >= 41:
             used_executions.add(source['execution_id'])
-        report, events, refs, review, result = resolve_case(evidence, record, archives, executions, policy)
-        if result:
+        report, events, refs, review, result = resolve_case(evidence, record, archives, executions, policy, amendment)
+        amended_case = amendment is not None and n >= 44
+        if result and (amendment is None or amended_case):
             require(result['source_sha256'] == index['scientific_source_sha256'], 'Executed scientific source identity differs')
         for key, value in projection(report).items():
             require(record[key] == value, 'Compact projection differs from saved case: '+key)
@@ -416,6 +628,9 @@ def build(repository, paths):
                      source_identity=dict(scientific_protocol_sha256=evidence.pins[SCIENCE],
                          remaining_protocol_sha256=evidence.pins[POLICY], native=policy['original_native'],
                          executed_source_sha256=result['source_sha256'] if result else review['source_sha256']))
+        if amendment:
+            entry['computation'] = (amended_computation(evidence,record,report,result,executions,amendment) if amended_case
+                                    else dict(kind='retained_original',scope='Accepted original computation; not rerun by the numerical amendment.'))
         if disposition == 'complete':
             require(report.get('passed') is True and report.get('status') == 'complete' and
                     record['outcomes'] == report['outcomes'], 'Complete source or projection differs')
@@ -485,7 +700,7 @@ def build(repository, paths):
     counts = dict(planned_histories=80, accepted_terminal_dispositions=80, complete_histories=c,
         scientific_unknown_histories=u, pending_histories=0, unresolved_technical_failures=0,
         planned_outcomes=400, computed_outcomes=5*c, unavailable_outcomes=5*u, regime_procedure_rows=20)
-    return dict(schema=REPORT_SCHEMA, reporting_accepted=False, disposition_accounting_complete=True,
+    result = dict(schema=REPORT_SCHEMA, reporting_accepted=False, disposition_accounting_complete=True,
         scientific_completion=False, original_publication_gate_satisfied=False,
         campaign_identity=dict(scientific_protocol_sha256=evidence.pins[SCIENCE],
             remaining_protocol_sha256=evidence.pins[POLICY], immutable_failure_reference_sha256=failure['review_sha256']),
@@ -496,7 +711,16 @@ def build(repository, paths):
                       verified_retained_floor_checks=floor_checks, preserved_fixed_floor_outcomes=400,
                       preserved_intercept_only_outcomes=400),
         source_pins=evidence.pins, arithmetic_source_sha256=CORE_SHA256,
-        scope='Saved outputs only. Full-regime statistics require all original 20 histories; unknowns stay unavailable.'), evidence.pins
+        scope='Saved outputs only. Full-regime statistics require all original 20 histories; unknowns stay unavailable.')
+    if amendment:
+        result['campaign_identity'].update(numerical_amendment_protocol_sha256=evidence.pins[AMENDMENT],
+            numerical_amendment_source_review_sha256=amendment['references']['source_review']['sha256'])
+        result['numerical_amendment'] = dict(version=amendment['protocol']['version'],
+            references=amendment['references'],retained_original_complete_histories=43,
+            retained_original_unknown_case=UNKNOWN_CASE,partial_case_id=amendment['protocol']['partial_case_id'],
+            method='Optimizer-callback-only same-vector original fine value and gradient after the original finite negative-exposure guard; original quadrature, fresh-state, selection and held-out checks remain.',
+            search_census='Tables count canonical logical saved fit records. Physical amended calls, reused records, refinement evaluations and prior failed attempts are separately identified for each case.')
+    return result, evidence.pins
 
 
 def write_report(repository, paths, output):

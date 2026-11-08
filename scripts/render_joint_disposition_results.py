@@ -129,6 +129,8 @@ def render(report, report_path, report_sha, tex_location=TEX_LOCATION):
         r'\caption{Saved held-out joint-score gains against the jointly training-refitted uninhibited comparator, in nats, with the common spatial and mark laws held fixed. Full-regime statistics require all original twenty histories. Incomplete regimes remain unavailable; no complete-case mean, median or Wilson interval is substituted. Wins are strictly positive gains against that comparator; positive near-zero gains remain wins. Wilson intervals are pointwise win-rate intervals, not mean-gain uncertainty. Marked rows are the prespecified primary contrasts. Historical fixed-floor and intercept-only comparisons remain unchanged.}',
         r'\label{tab:s04b-joint-disposition-scores}', r'\begin{tabular}{@{}llrrrrr@{}}', r'\toprule',
         r'Regime & Procedure & Computed/planned & Mean & Median & Wins & Wilson interval \\', r'\midrule']
+    if report.get('numerical_amendment'):
+        lines[2:2] = ['', 'The separately reviewed numerical amendment applies only within training optimizer callbacks after the original negative-exposure exception, using the original fine value and gradient subject to the original quadrature checks. Accepted original fits and the explicitly identified partial fit prefix remain reused evidence; fresh returned-state, selection and held-out checks retain their original rules. Canonical logical fit-attempt counts in the tables are distinct from physical amended calls, reused records and earlier failed attempts, which remain source-bound in the execution records.', '']
     for i, row in enumerate(report['regime_summary']):
         prefix = f'/regime_summary/{i}'
         # S4/S5/... are validated regime identifiers, not numeric display tokens.
