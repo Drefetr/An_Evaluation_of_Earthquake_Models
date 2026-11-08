@@ -22,6 +22,7 @@ JOINT_CONTINUATION_STAGES = ('joint-continuation-pilot', 'joint-continuation-cam
 BUDGETED_STAGE = 'joint-budgeted-case'
 HOST_BATCH_STAGE = 'joint-budgeted-host'
 RECOVERY_HOST_STAGE = 'joint-recovery-host'
+REMAINING_HOST_STAGE = 'joint-remaining-host'
 LI_REPAIR_STAGE = 'li-constructor-repair'
 LI_ORIGINAL_PILOT = ['original_li/LI_CA_M4_F2/LI/train',
                      'original_li/S0_uniform_null_seed410002/LI/test',
@@ -197,6 +198,24 @@ def mandatory_sources(stage, review=None):
         paths.update(('scripts/reproduce_cpu.py',
                       'validation/reproductions/score_replay_20261107/accepted_execution_index.json'))
         paths.update(review.get('reader_execution_evidence_sha256', {}))
+    elif stage == REMAINING_HOST_STAGE:
+        paths.update(mandatory_sources('joint-pilot', review))
+        paths.update(('experiments/s04b_joint_execution/parallel_chunks.py',
+                      'experiments/s04b_joint_remaining/case_driver.py',
+                      'experiments/s04b_joint_remaining/host.py',
+                      'experiments/s04b_joint_remaining/protocol.json',
+                      'experiments/s04b_joint_remaining_audit/check.py',
+                      'tests/test_joint_parallel_chunks.py',
+                      'experiments/s04b_joint_audit/check.py',
+                      'experiments/s04b_joint_nuisance_audit/audit.py',
+                      'tests/test_joint_remaining_controller.py',
+                      review['source_review_record'], review['checker_source_review'],
+                      review['operational_run_config_path'], review['prior_index_review']))
+        for name in ('s04b_joint_remaining', 's04b_joint_remaining_audit'):
+            paths.update(p.relative_to(ROOT).as_posix() for p in (ROOT/'experiments'/name).rglob('*')
+                         if p.is_file() and p.suffix in ('.py', '.json', '.md'))
+        paths.update(p.relative_to(ROOT).as_posix() for p in (ROOT/'tests').glob('test_joint_remaining*.py'))
+        paths.update(review['remaining_evidence_sha256'])
     elif stage == RECOVERY_HOST_STAGE:
         # Recovery is an explicit operational amendment, never an approval of
         # the failed fixed-slot campaign. Retain its complete source lineage.
@@ -633,6 +652,106 @@ def host_batch_passed(output, review):
         raise ValueError('Host final accepted index changed')
 
 
+def joint_remaining_host(review, output, token, prior, host=None, driver=None):
+    """Prepare untouched cases; the capped predecessor is never retried."""
+    if host is None:
+        from experiments.s04b_joint_remaining import host
+    if driver is None:
+        from experiments.s04b_joint_remaining import case_driver as driver
+    if review.get('stage') != REMAINING_HOST_STAGE or any(review.get(k) is not True for k in (
+            'remaining_protocol_review_passed', 'host_batch_source_review_passed', 'checker_source_review_passed')):
+        raise ValueError('Untouched-case protocol, host and checker reviews are required')
+    if os.environ.get('CONTINUATION_HOST_TIMEOUT_MINUTES') != '240':
+        raise ValueError('Untouched cases require the bounded host workflow')
+    policy_path = ROOT/'experiments/s04b_joint_remaining/protocol.json'
+    policy = read(policy_path)
+    group = next((g for g in policy['actual_hosts'] if g['host'] == review['batch_id']), None)
+    if group is None or review['case_ids'] != group['case_ids']:
+        raise ValueError('Untouched host roster differs')
+    window = group['outer_maximum_seconds']-group['upload_reserve_seconds']
+    resource, shared = policy['resources'], policy['shared_run']
+    if (not 0 < window <= 13800 or review['wall_cap_seconds'] != window or
+            review['rss_cap_bytes'] != resource['sampled_process_tree_rss_cap_bytes'] or
+            review['host_headroom_bytes'] < resource['minimum_host_free_bytes']):
+        raise ValueError('Untouched host resource envelope differs')
+    config = inside(ROOT, review['operational_run_config_path'])
+    if (sha(config) != shared['config_sha256'] or review['operational_run_config_sha256'] != sha(config) or
+            review['operational_run_id'] != shared['run_id'] or review['expires_utc'] != shared['expires_utc']):
+        raise ValueError('Untouched continuation cannot extend shared limits')
+    source_review = inside(ROOT, review['source_review_record'])
+    checker_review = inside(ROOT, review['checker_source_review'])
+    if sha(source_review) != review['source_review_sha256'] or sha(checker_review) != review['checker_source_review_sha256']:
+        raise ValueError('Untouched source-review identity changed')
+    for relative, expected in review['remaining_evidence_sha256'].items():
+        if sha(inside(ROOT, relative)) != expected:
+            raise ValueError('Untouched-case evidence changed: '+relative)
+    failed = policy['immutable_failure_reference']
+    archive = inside(ROOT, failed['archive'])
+    if sha(archive) != failed['archive_sha256']:
+        raise ValueError('Original terminal failure archive changed')
+    build = output/'build'
+    build.mkdir(exist_ok=False)
+    with zipfile.ZipFile(archive) as saved:
+        for key, filename, pin in (
+                ('library_member', 'attenuation.so', policy['original_native']['library_sha256']),
+                ('build_receipt_member', 'build_receipt.json', policy['original_native']['build_receipt_sha256'])):
+            if saved.namelist().count(failed[key]) != 1:
+                raise ValueError('Missing or duplicated original native member')
+            data = saved.read(failed[key])
+            if hashlib.sha256(data).hexdigest() != pin:
+                raise ValueError('Original native member identity changed')
+            (build/filename).write_bytes(data)
+        if review['batch_id'] == 1:
+            if prior is not None or saved.namelist().count(failed['index_member']) != 1:
+                raise ValueError('Initial untouched pilot must use the exact terminal failed index')
+            data = saved.read(failed['index_member'])
+            if hashlib.sha256(data).hexdigest() != failed['index_sha256']:
+                raise ValueError('Original failed index identity changed')
+            index_path = output/'initial_failed_index.json'
+            index_path.write_bytes(data)
+        else:
+            if prior is None or review.get('prior_index_path') != 'host/index.json':
+                raise ValueError('Later untouched host requires the prior compact index')
+            index_path = inside(prior, review['prior_index_path'])
+    index_review = inside(ROOT, review['prior_index_review'])
+    if sha(index_path) != review['prior_index_sha256'] or sha(index_review) != review['prior_review_sha256']:
+        raise ValueError('Untouched predecessor or its review changed')
+    if review['batch_id'] == 1 and (review['prior_index_review'] != failed['review'] or
+                                   sha(index_review) != failed['review_sha256']):
+        raise ValueError('Initial failed index lacks its independent disposition review')
+    admission = dict(mode='remaining_host_batch', source_sha256=host.source_identity(),
+        scientific_source_sha256=driver.source_identity(), protocol_sha256=sha(policy_path),
+        scientific_protocol_sha256=policy['scientific_protocol_sha256'], shared_run=shared,
+        batch_id=review['batch_id'], case_ids=review['case_ids'], child_attempt_ids=review['child_attempt_ids'],
+        numerical_attempt_id=review['numerical_attempt_id'], lease_token_sha256=hashlib.sha256(token.encode()).hexdigest(),
+        prior_index_sha256=sha(index_path), prior_review_sha256=sha(index_review), expires_utc=review['expires_utc'],
+        prior_archive_sha256=review.get('prior_archive_sha256',failed['archive_sha256']),
+        prior_artifact_id=review.get('prior_artifact_id'),
+        host_started_utc=os.environ['CONTINUATION_HOST_STARTED_UTC'], execution_window_seconds=window,
+        rss_cap_bytes=review['rss_cap_bytes'], host_headroom_bytes=review['host_headroom_bytes'],
+        library_sha256=sha(build/'attenuation.so'), build_receipt_sha256=sha(build/'build_receipt.json'),
+        source_review_sha256=sha(source_review), checker_source_review_sha256=sha(checker_review),
+        host_batch_source_review_passed=True, checker_source_review_passed=True,
+        source_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
+        reviewed_files_sha256=review['reviewed_files_sha256'], conductor_review=review)
+    command = [sys.executable,'-B','-m','experiments.s04b_joint_remaining.host',
+        '--admission',str(output/'admission.json'),'--output',str(output/'host'),
+        '--prior-index',str(index_path),'--prior-review',str(index_review),
+        '--config',str(config),'--source-review',str(source_review),'--checker-review',str(checker_review),
+        '--library',str(build/'attenuation.so'),'--build-receipt',str(build/'build_receipt.json')]
+    return admission, command
+
+
+def remaining_host_passed(output, review):
+    result = read(output/'host/result.json')
+    if (result.get('host_execution_passed') is not True or result.get('status') != 'host_batch_complete' or
+            result.get('scientific_completion') is not False or
+            [v['case_id'] for v in result.get('children', [])] != review['case_ids'] or
+            result.get('live_agent_review') is not False or result.get('final_batch_agent_review_required') is not True or
+            result.get('latest_index') != 'index.json' or sha(output/'host/index.json') != result.get('index_sha256')):
+        raise ValueError('Untouched host did not certify its exact execution scope and retained unknown')
+
+
 def joint_recovery_host(review, output, token, prior, batch=None, driver=None):
     """Prepare the separately reviewed partial-fit recovery; no science here."""
     if batch is None:
@@ -841,7 +960,7 @@ def main():
     environment['JOINT_NUMERICAL_LEASE_TOKEN'] = token
     environment['NUMERICAL_LEASE_TOKEN'] = token
     os.environ.update(environment)
-    if stage in JOINT_CONTINUATION_STAGES or stage in (BUDGETED_STAGE,HOST_BATCH_STAGE,RECOVERY_HOST_STAGE):
+    if stage in JOINT_CONTINUATION_STAGES or stage in (BUDGETED_STAGE,HOST_BATCH_STAGE,RECOVERY_HOST_STAGE,REMAINING_HOST_STAGE):
         prior = prior_artifact(dict(pilot_artifact_id=review['prior_artifact_id'],
                                    pilot_archive_sha256=review['prior_archive_sha256']), output) if 'prior_artifact_id' in review else None
     else:
@@ -850,7 +969,9 @@ def main():
     os.environ.pop('GITHUB_TOKEN', None)
     if stage in READER_STAGES:
         return execute_reader_dispatch(review,output,expires)
-    if stage == RECOVERY_HOST_STAGE:
+    if stage == REMAINING_HOST_STAGE:
+        admission,command = joint_remaining_host(review,output,token,prior)
+    elif stage == RECOVERY_HOST_STAGE:
         admission,command = joint_recovery_host(review,output,token,prior)
     elif stage == HOST_BATCH_STAGE:
         admission,command = joint_host_batch(review,output,token,prior)
@@ -969,7 +1090,7 @@ def main():
     write(output/'admission.json',admission)
     remaining = (expires-dt.datetime.now(dt.timezone.utc)).total_seconds()
     wall_cap = review['wall_cap_seconds']
-    if stage in (HOST_BATCH_STAGE,RECOVERY_HOST_STAGE):
+    if stage in (HOST_BATCH_STAGE,RECOVERY_HOST_STAGE,REMAINING_HOST_STAGE):
         window = admission.get('execution_window_seconds',13800)
         host_end = dt.datetime.fromisoformat(admission['host_started_utc'])+dt.timedelta(seconds=window)
         wall_cap = min(wall_cap,(host_end-dt.datetime.now(dt.timezone.utc)).total_seconds(),remaining)
@@ -989,6 +1110,8 @@ def main():
         observed_batch_passed(output,review)
     if stage in (HOST_BATCH_STAGE,RECOVERY_HOST_STAGE) and result.returncode == 0:
         host_batch_passed(output,review)
+    if stage == REMAINING_HOST_STAGE and result.returncode == 0:
+        remaining_host_passed(output,review)
     return result.returncode
 
 
