@@ -59,6 +59,8 @@ def require(value, message):
 
 def mandatory_sources():
     paths = {'scripts/run_joint_exposure_refinement.py', '.github/workflows/joint-exposure-refinement.yml',
+        '.github/workflows/research-continuation.yml', '.github/workflows/joint-support-diagnostic.yml',
+        '.github/workflows/joint-exposure-diagnostic.yml',
         'scripts/supervise_research.py', 'tests/test_joint_exposure_refinement_launcher.py',
         'tests/test_joint_recovery.py', 'tests/test_joint_output_audit.py',
         'tests/test_joint_remaining_output_audit.py', 'experiments/s04b_joint_recovery/__init__.py',

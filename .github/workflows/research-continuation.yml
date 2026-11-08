@@ -6,7 +6,7 @@ permissions:
   contents: read
   actions: read
 concurrency:
-  group: reviewed-research-continuation
+  group: ${{ contains(github.event.head_commit.message, '[run-continuation]') && 'reviewed-research-continuation' || format('inactive-{0}-{1}', github.workflow, github.run_id) }}
   cancel-in-progress: false
 jobs:
   continuation:

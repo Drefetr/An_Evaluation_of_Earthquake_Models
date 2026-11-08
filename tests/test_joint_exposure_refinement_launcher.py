@@ -13,6 +13,20 @@ import zipfile
 from scripts import run_joint_exposure_refinement as launch
 
 
+class WorkflowSchedulingControls(unittest.TestCase):
+    def test_only_active_scientific_workflows_share_the_numerical_group(self):
+        root=Path(__file__).resolve().parents[1]
+        pairs=[('research-continuation','run-continuation'),('joint-support-diagnostic','support-diagnostic'),
+               ('joint-exposure-diagnostic','exposure-diagnostic'),('joint-exposure-refinement','exposure-refinement')]
+        for filename,marker in pairs:
+            with self.subTest(workflow=filename):
+                text=(root/'.github/workflows'/f'{filename}.yml').read_text()
+                group="  group: ${{ contains(github.event.head_commit.message, '["+marker+"]') && 'reviewed-research-continuation' || format('inactive-{0}-{1}', github.workflow, github.run_id) }}"
+                self.assertIn(group,text)
+                self.assertIn("if: contains(github.event.head_commit.message, '["+marker+"]')",text)
+                self.assertIn('  cancel-in-progress: false',text)
+
+
 class LauncherControls(unittest.TestCase):
     def setUp(self):
         self.temp=tempfile.TemporaryDirectory(); self.addCleanup(self.temp.cleanup)

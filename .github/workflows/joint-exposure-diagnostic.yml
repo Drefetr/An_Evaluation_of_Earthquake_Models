@@ -5,7 +5,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: reviewed-research-continuation
+  group: ${{ contains(github.event.head_commit.message, '[exposure-diagnostic]') && 'reviewed-research-continuation' || format('inactive-{0}-{1}', github.workflow, github.run_id) }}
   cancel-in-progress: false
 jobs:
   diagnostic:
