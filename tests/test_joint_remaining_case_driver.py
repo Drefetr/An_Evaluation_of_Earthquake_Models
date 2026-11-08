@@ -1,5 +1,6 @@
 """Invented original-runner cases only; no native or historical fitting."""
 import copy
+import datetime as dt
 import hashlib
 import json
 import math
@@ -176,6 +177,7 @@ class RemainingCaseControls(unittest.TestCase):
 
     def test_admission_rejects_old_history_source_runtime_and_cap_changes(self):
         p=driver.verify_protocol();native=p['original_native'];case=p['case_ids'][0]
+        p['shared_run']['expires_utc']=(dt.datetime.now(dt.timezone.utc)+dt.timedelta(hours=2)).isoformat()
         build=self.root/'build.json';driver.write(build,dict(passed=True,source_sha256=driver.sha(driver.legacy.SCIENCE/'attenuation.cpp'),library_sha256=native['library_sha256']))
         current=dict(source_sha256=driver.source_identity(),protocol_sha256=driver.sha(driver.HERE/'protocol.json'),
             runtime={'essential':native['runtime_essential']},library_sha256=native['library_sha256'],build_receipt_sha256=native['build_receipt_sha256'])
