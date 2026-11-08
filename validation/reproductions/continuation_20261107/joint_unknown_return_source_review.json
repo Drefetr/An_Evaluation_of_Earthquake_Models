@@ -1,0 +1,33 @@
+{
+  "schema": "independent_terminal_unknown_reporting_source_review_v1",
+  "passed": true,
+  "reviewer": "/root/continuation_cpu",
+  "live_agent_review": true,
+  "review_kind": "independent_source_review",
+  "source_commit": "785a499cbde197804d029db3f508a7a233f6799f",
+  "reviewed_files_sha256": {
+    "experiments/s04b_joint_recovery/adapter.py": "abedf1be03eef9c16e1ae3c77f5859ee70f105bebe5101cc116c6804809bedd1",
+    "tests/test_joint_recovery.py": "6bdf0f65bdbfae270394d2901efdcb5958b8f735fd28088d8682885ca02ebb12"
+  },
+  "source_sha256": {
+    "experiments/s04b_joint_recovery/adapter.py": "abedf1be03eef9c16e1ae3c77f5859ee70f105bebe5101cc116c6804809bedd1",
+    "tests/test_joint_recovery.py": "6bdf0f65bdbfae270394d2901efdcb5958b8f735fd28088d8682885ca02ebb12"
+  },
+  "scientific_calls": 0,
+  "execution_admitted": false,
+  "scientific_completion": false,
+  "tests": {
+    "constructed_controls": 43,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "log_sha256": "995bd48ca56e5aa7030bf50a3c5474da6a4801a9db83d88860bb553358841ea2"
+  },
+  "checks": [
+    "The four-line adapter guard returns the unchanged frozen unknown_starts result before reading a nonexistent selected_state_index.",
+    "The original solver cap,success criteria,candidate pool and records are unchanged; this is truthful failure propagation, not convergence repair.",
+    "Invented frozen-fit control returns a clearly labelled mocked capped result with nfev5000 and one actual fake-objective call, verifies unresolved start5 and not_run6/7, and does not claim5000 fixture evaluations.",
+    "No previously failed artifact is rewritten or relabelled; pilot04 remains failed and the accepted prefix remains40."
+  ],
+  "boundary": "Source acceptance only. This does not authorize rerunning the failed case or extending optimizer limits; continuation of untouched cases requires a separate frozen policy/source review."
+}
