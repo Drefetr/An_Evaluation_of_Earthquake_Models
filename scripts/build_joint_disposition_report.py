@@ -158,7 +158,7 @@ def registry_sources(evidence, registry, policy):
         member_name(prefix)
         review = evidence.reference(entry['review'])
         live_review(review)
-        require(review['archive_sha256'] == pin and review['execution_id'] == execution,
+        require(review['artifact_sha256'] == pin and review['execution_id'] == execution,
                 'Live review does not bind execution archive')
         ids = review['checked_case_ids']
         require(len(ids) == len(set(ids)) and set(ids) <= set(policy['case_ids']),

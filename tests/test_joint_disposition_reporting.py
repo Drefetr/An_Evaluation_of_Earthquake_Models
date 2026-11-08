@@ -196,7 +196,7 @@ class InventedDispositionEvidence:
         new_archive = self.zip('new.zip', new)
         host_review_path = self.base+'host_review.json'
         host_review = dict(passed=True, audit_passed=True, scientific_completion=False,
-            live_agent_review=True, review_kind='live_agent_saved_output_review', archive_sha256=new_archive['sha256'],
+            live_agent_review=True, review_kind='live_agent_saved_output_review', artifact_sha256=new_archive['sha256'],
             execution_id='invented-parent-attempt', checked_case_ids=self.sequence[41:])
         write(self.repo/host_review_path, host_review)
         host_review_ref = dict(path=host_review_path, sha256=builder.sha(self.repo/host_review_path))
