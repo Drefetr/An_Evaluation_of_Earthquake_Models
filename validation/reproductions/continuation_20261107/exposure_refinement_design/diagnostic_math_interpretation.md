@@ -1,0 +1,26 @@
+# Saved diagnostic interpretation and bounded repair
+
+The actual failure was a finite negative coarse exposure. Its dominant cause is a mismatch between the analytic unattenuated triggering exposure and its coarse quadrature representation under strong inhibition. It was not a nonfinite point/joint value or attenuation underflow. The saved original evaluator and diagnostic chunks establish this at the failed state; no model was called for this interpretation.
+
+| Saved quantity | Original order 8 | Original order 16 |
+|---|---:|---:|
+| Original E0 minus native D | -3.784288082897547e-8 | 1.3737633253185777e-10 |
+| Positive same-node Qa | 1.356645641098177e-10 | 1.3566456410360473e-10 |
+| E0 minus same-node Q0 | -3.797759973167558e-8 | 1.6342482922482304e-12 |
+| Native D minus diagnostic D | 9.521272659185342e-13 | -7.105427357601002e-14 |
+
+Analytic E0 is 71.59553189059959. At order 8 the triggering part of Q0 exceeds the analytic triggering mass by 3.7977621047957655e-8; the background discrepancy is only -1.4210854715202004e-14. In the identity `E0-D = Qa+(E0-Q0)-[D-(Q0-Qa)]`, that negative quadrature correction overwhelms the positive remaining exposure. Native-versus-diagnostic arithmetic differences are much smaller. Cancellation exposes this mismatch; changing only final subtraction or clipping to zero would not fix it. All inspected chunk diagnostic terms were finite/nonnegative and their attenuation-underflow counts were zero.
+
+Joint refinement of space and time removes the dominant discrepancy. It does not identify which quadrature dimension caused it, and matching Qa values are not a certified continuum-error bound. The fine residual also differs slightly from Qa because it retains the original analytic-minus-deficit formulation. That is expected and is not grounds to replace it with Qa.
+
+The recommended repair is a separately versioned numerical amendment confined to actual optimizer objective calls. Catch only the original evaluator's shared full-exposure exception with its original frame showing finite P, M, E, joint and gradient, and E strictly below the unchanged -1e-9 guard. Verify the exact theta/model/training phase/source/runtime. At that same point call the unchanged original order-16 evaluator and use its value AND gradient together only if both are finite, E is nonnegative, P/M are unchanged, and the frozen absolute joint and projected/scaled-gradient consistency tolerances both pass. Apply the exact existing projection/scaling convention, not a newly chosen scale. Never recursively refine or catch unrelated errors.
+
+For this saved state P/M are identical, the absolute joint discrepancy is 3.798049874603748e-8, and the maximum scaled gradient discrepancy is 9.209899396103431e-10. Projection leaves these gradients unchanged at this theta. Both meet the existing tolerances of 1e-4. These are arithmetic comparisons of retained values, not new scores.
+
+Keep eligible-floor, returned-state fresh evaluation, selection, fine-check and test calls unchanged. In particular, if the optimizer returns a state whose fresh coarse evaluation fails, it still fails under the original policy. This limited repair can let the optimizer leave a numerically invalid trial state; it does not promise completion. The branch discrepancy is checked at each use, so this is a bounded adaptive numerical oracle compatible with the finite-search interpretation. It is not a proof of a globally smooth numerical objective or global convergence.
+
+Every fallback must retain the original failure, exact point, original coarse operands/gradient, fine return/gradient, both discrepancies, source/custody pins, elapsed cost and call counts. Fine evaluations are additional scientific work even though the solver sees one objective call. Preserve solver starts, success rules, maxiter/maxfev caps and cumulative resource accounting. Reject a fine failure, nonfinite quantity, negative fine E, changed point terms or excess discrepancy as unresolved numerical/technical failure; do not turn it into a cap unknown or successful fit.
+
+B's pinned saved-output census covers 43 accepted complete histories and 1377 paired optimizer attempts with zero target exceptions. This supports reuse as compatible saved computations after source-level normal-path equivalence and independent custody review; it is not a fresh refit or a full counterfactual trajectory proof. A matching exception in a completed case would require explicit fixed-state classification and redo/reuse analysis even if Powell later succeeded. A broader E<0 trigger cannot use this census because small accepted negative intermediate values were not all logged. A broader gradient fallback would alter the scope: 410419 had a gradient failure whose Powell rescue supplied the selected state. Preserve that route and keep the original 410518 capped outcome permanently unknown.
+
+Next work is a written amendment design, source adapter and semantic regression controls, independent review, and a separately admitted bounded continuation. Preserve the original technical-failure case and all prototype outputs. No report may silently present amended values as original frozen-prototype results; the original full-success gate remains unsatisfied.

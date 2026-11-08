@@ -1,0 +1,1442 @@
+{
+  "schema": "joint_exposure_refinement_design_v1",
+  "version": "joint_exposure_refinement_v1",
+  "status": "proposed_for_independent_review",
+  "created_utc": "2026-11-08T02:06:02.900844+00:00",
+  "implementation_admitted": false,
+  "fits_admitted": false,
+  "scientific_completion": false,
+  "original_publication_gate_satisfied": false,
+  "scope": "A separately versioned optimizer-objective-only numerical refinement; original frozen scientific sources and all existing results remain immutable.",
+  "evidence": {
+    "diagnostic_archive": {
+      "path": "validation/reproductions/joint_nuisance_20261107/continuation/exposure_diagnostic01.zip",
+      "sha256": "8690e6e800832a0569b0c31bb5da80a9bd673b442724f771b457ac57b02b9a1e"
+    },
+    "diagnostic_live_review": {
+      "path": "validation/reproductions/joint_nuisance_20261107/continuation/exposure_diagnostic01_independent_review.json",
+      "sha256": "5cf20101faf273ef2d8e992f780439a945e4e134ffddf15cef061f65752165ef"
+    },
+    "diagnostic_math_source_review": {
+      "path": "validation/reproductions/continuation_20261107/joint_exposure_diagnostic_math_source_review.json",
+      "sha256": "0d33184a9152899533636e58cf1af11474b5e8a6064ff37faeb28b02cfc7f9ec"
+    },
+    "diagnostic_combined_source_review": {
+      "path": "validation/reproductions/continuation_20261107/joint_exposure_diagnostic_combined_source_review.json",
+      "sha256": "953899f00e9b8c74508fb6a53fe11cb7351492b2d6559e7ce092e5c57c2654e9"
+    },
+    "math_interpretation": {
+      "path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_exposure_diagnostic_math_interpretation\\result.json",
+      "sha256": "8791a318005d5a333bc09f9c979faaeb6f085e8decfd66e6bcb4eda80e031d5f",
+      "custody": "Private retained review input; no invented public installation"
+    },
+    "prior_failure_census": {
+      "path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_exposure_prior_failure_census\\result.json",
+      "sha256": "3f1e5912a1c9ebd9efc69fec20cc3708e49e852da95512c5927e1d400bd159ac",
+      "custody": "Private retained review input; no invented public installation"
+    },
+    "scientific_protocol": {
+      "path": "experiments/s04b_joint_nuisance/protocol.json",
+      "sha256": "8f31b9f28d830eeffa30bdbf3e0fcf1295087411869fa301b91333c95fa445e9"
+    },
+    "remaining_protocol": {
+      "path": "experiments/s04b_joint_remaining/protocol.json",
+      "sha256": "4c77737acf8801ccfd0db25bba3005b1c547562675d7ced5bc1b72f428c8f2cd"
+    },
+    "failed_case": {
+      "archive": {
+        "path": "validation/reproductions/joint_nuisance_20261107/continuation/remaining_host02_exposure_failure.zip",
+        "sha256": "9319b3669c5fda81fab941038913a0c3bc7178c506441af4f244b7e64c228b88"
+      },
+      "review": {
+        "path": "validation/reproductions/joint_nuisance_20261107/continuation/remaining_host02_exposure_failure_review.json",
+        "sha256": "aa43adfe5c2ffcf3c0056887066899b9cd4ac33bb6631a7f345860be99855343"
+      },
+      "case_member": "host/children/03_S6_narrow_short_total_seed410603/science/cases/S6_narrow_short_total_seed410603.json",
+      "case_sha256": "6b8a7a39bf82882b1db7d026f9c85b73496cf518a1d8e92e54018369a4a9d96c",
+      "trace_member": "host/children/03_S6_narrow_short_total_seed410603/science/cases/S6_narrow_short_total_seed410603.attempts.jsonl",
+      "trace_sha256": "ff569fb658489ae1629fe222b98c8d615cdfb37b6e9b0468ad9028f58b86c5f0",
+      "driver_result_member": "host/children/03_S6_narrow_short_total_seed410603/science/result.json",
+      "driver_result_sha256": "c8922efd6c9615d39c46f3668e33430faf5c168e30c89229518b24a2a19976ea",
+      "supervision_member": "host/children/03_S6_narrow_short_total_seed410603/supervision/result.json",
+      "supervision_sha256": "c0a6ef78d5b466537f48fad844d59d408c76a6917b1b86323f8b7a9676a6047a"
+    },
+    "resource_proposal": {
+      "path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_exposure_refinement_resources\\proposal.json",
+      "sha256": "b8754d0be4f65fc9a41ab7b1f82fdae2cbbf6036a47554d399f6da7c90dce79e",
+      "status": "separate independent resource review required"
+    }
+  },
+  "unchanged": {
+    "solver": {
+      "primary": "L-BFGS-B",
+      "maxiter": 200,
+      "maxls": 200,
+      "ftol": 1e-10,
+      "gtol": 2e-06,
+      "rescue": "Failure-only bounded Powell from finite feasible failed returned point, otherwise original start. A finite objective with unrepresentable gradient may use value-only Powell; primary arithmetic failure is retained. Timeout, memory, interruption and programming errors stop without recovery.",
+      "powell": {
+        "maxiter": 400,
+        "maxfev": 5000,
+        "ftol": 1e-10,
+        "xtol": 1e-06
+      },
+      "same_all_arms": true,
+      "completion": "Every one of8 starts must resolve with finite feasible successful result; all attempts, failures, caps and messages retained. Any unresolved start makes arm/case unknown and stops campaign; never zero gain.",
+      "selected_acceptance": "Eight resolved starts, finite feasible fresh-selected value/gradient and declared quadrature consistency. Projected KKT norm is reported as a diagnostic; no added arbitrary KKT threshold or claim of optimum/global stationarity."
+    },
+    "starts": {
+      "count": 8,
+      "shared_templates": [
+        [
+          0,
+          -0.2,
+          0.2,
+          0.0001,
+          1.1
+        ],
+        [
+          0,
+          -0.2,
+          0.6,
+          0.001,
+          1.3
+        ],
+        [
+          0,
+          0.2,
+          0.2,
+          0.01,
+          1.1
+        ],
+        [
+          0,
+          0.2,
+          0.6,
+          0.1,
+          1.3
+        ],
+        [
+          -0.5,
+          -0.2,
+          0.2,
+          1,
+          1.7
+        ],
+        [
+          -0.5,
+          -0.2,
+          0.6,
+          20,
+          2.5
+        ],
+        [
+          -0.5,
+          0.2,
+          0.2,
+          0.01,
+          2.5
+        ],
+        [
+          -0.5,
+          0.2,
+          0.6,
+          0.1,
+          1.01
+        ]
+      ],
+      "intercept": "a0=clip(log(.6*max(Ntrain,1)/365),-11.5,-.1); clip a0+offset to shared box",
+      "inhibition_templates": [
+        [
+          0,
+          30,
+          7
+        ],
+        [
+          0.1,
+          5,
+          0.041666666666666664
+        ],
+        [
+          0.3,
+          15,
+          0.25
+        ],
+        [
+          0.7,
+          50,
+          7
+        ],
+        [
+          1.5,
+          150,
+          30
+        ],
+        [
+          3,
+          5,
+          365
+        ],
+        [
+          4,
+          150,
+          0.041666666666666664
+        ],
+        [
+          0.5,
+          30,
+          365
+        ]
+      ],
+      "alternative_start_zero": "Use selected new null shared coordinates for eta0 start; positive starts1..7 use the same corresponding shared templates as the null. Exact selected new null is additionally an eligible unoptimized alternative state."
+    },
+    "shared_bounds": [
+      [
+        -12.0,
+        0.0
+      ],
+      [
+        -2.0,
+        2.0
+      ],
+      [
+        0.0,
+        0.98
+      ],
+      [
+        -9.210340371976182,
+        2.995732273553991
+      ],
+      [
+        1.01,
+        2.5
+      ]
+    ],
+    "inhibition_bounds": [
+      [
+        0.0,
+        4.0
+      ],
+      [
+        1.6094379124341003,
+        5.0106352940962555
+      ],
+      [
+        -3.1780538303479458,
+        5.8998973535824915
+      ]
+    ],
+    "quadrature": {
+      "space_orders": [
+        8,
+        16
+      ],
+      "time_orders": [
+        64,
+        128
+      ],
+      "time_transform_c": 0.0001,
+      "time_plan": "Fixed before optimization; log panels within every event gap use c_min=.0001, independent of fitted c. No derivative of moving quadrature nodes.",
+      "space_plan": "Pinned geometry-only adaptive positive area plan, proxy tolerance1e-8, near width20. Background masses calibrated; attenuation never renormalized.",
+      "training": "Fit order8/64, preserve that selection. Verify selected null and three alternatives at16/128 without re-ranking; require alternative fine NLL no worse than eligible null beyond1e-9. Record projected KKT and scaled coarse/fine projected-gradient difference, not a raw boundary-gradient condition.",
+      "test": "After training frozen, report fine16/128 scores and separately evaluate8/64 as a declared numerical sensitivity check, never for selection.",
+      "joint_absolute_tolerance": 0.0001,
+      "selected_training_gradient_scaled_tolerance": 0.0001,
+      "failure": "Any selected coarse/fine joint or training-gradient failure stops as numerical unknown. No automatic tolerance relaxation or outcome-triggered refit.",
+      "exposure_sign": "Selected fine training/test exposure estimates must be nonnegative; no clipped negative exposure. Trial arithmetic failure is retained under the declared recovery policy."
+    },
+    "scientific_dependency_sha256": {
+      "experiments/s04b_joint_execution/driver.py": "f188cc787c8c62a735e88e34a606dac8b992c6c42d8d1070676df885353aa012",
+      "experiments/s04b_joint_execution/operational_protocol.json": "6d48997cba7005037c959709f6f27a8ba447f72769bd5051302c5cf865e4409b",
+      "experiments/s04b_joint_execution/parallel_chunks.py": "94734c667745abf995a89cd386c642127a6dd4ef0029e6f97638c96b9a38db1f",
+      "experiments/s04b_joint_execution/proposal.json": "3c61eb930ff7b03906afbc5d6c1b0d634923597f67d74a331e67badbfe7e8efc",
+      "experiments/s04b_joint_nuisance/attenuation.cpp": "d47a85c5ed899a952b315977a700487c54bd79b90eddc88f62feef7001d2751e",
+      "experiments/s04b_joint_nuisance/checkpoint.py": "e0c4af19dca51a471188e86409a2a9533ba54a26922bfa7acff8ee5cd04275d7",
+      "experiments/s04b_joint_nuisance/checkpoint_repair.json": "25fff5174ab62efc1ebc71f5bb2b89e4ea2f4b975e10d3b53b613b095e29c5de",
+      "experiments/s04b_joint_nuisance/fit.py": "878dbf6a71bbc1b9e934f190d3ad0a1c3663097610edf5a42c8aab89b62775bb",
+      "experiments/s04b_joint_nuisance/input_pins.json": "636e2f6ebd1db404a04155acef1979f36931338cbfa0e4c24351a80378924dad",
+      "experiments/s04b_joint_nuisance/model.py": "cc891181e51251247b9668fb6213642f0884deb288050efb2586cf179c6e8898",
+      "experiments/s04b_joint_nuisance/protocol.json": "8f31b9f28d830eeffa30bdbf3e0fcf1295087411869fa301b91333c95fa445e9",
+      "experiments/s04b_joint_nuisance/run.py": "3f6d9cb3d14a45ea7752c3ab8b011ee1281f59c305c55eda35c36df7dd6ea243",
+      "experiments/s04b_joint_remaining/case_driver.py": "15ea0c895c1ce7295f70954ec72999b30c2bd4ae6b36122c067e3acff4ce4f17",
+      "experiments/s04b_joint_remaining/__init__.py": "7ebd5237d16aec6d2aec34fec01e55b24e84704707243eddfc3f479483bad080",
+      "experiments/s04b_joint_remaining/protocol.json": "4c77737acf8801ccfd0db25bba3005b1c547562675d7ced5bc1b72f428c8f2cd",
+      "reproduction/synthetic/source/controls_campaign.py": "cf6b14b7f8e7a5172b5ae8557d36ba6c3c1b263464443652b8d3ae1cd3480012",
+      "reproduction/synthetic/source/direct_oracle.py": "712f526110cef7004d1746b1c41f8735181d59b533602448cc160633590f1a04",
+      "reproduction/synthetic/source/generator.py": "b8bae982735b4fba26d450d93578c4d0b78ac33f7e33c691557b2bd8d4afcf43",
+      "reproduction/synthetic/source/geometry_plan.py": "96adbadb202c57953730aab5c4afeae05d0e3b8586034c4a60d639cb7d4cc92c",
+      "reproduction/synthetic/source/spatial.py": "764a006cc06967840839bdab9122039431c72603e2156470ae1d433549d2feaf"
+    },
+    "native": {
+      "library_sha256": "8a927a10f69fc12253658185ad4dc1fe22748fb8562e4d5b474a9d508da61c6f",
+      "build_receipt_sha256": "1a20a372777a5415dc632173aa8d39905e723ec2d407d95c5665fcc176810cb2",
+      "runtime_essential": {
+        "python_version": "3.13.18",
+        "implementation": "CPython",
+        "python_executable_sha256": "5d782b88e6d48cc376d3e4b890539876ccaf7235acb1a265b7880ba471432cba",
+        "numpy": "2.2.6",
+        "scipy": "1.15.3",
+        "architecture": "x86_64",
+        "byteorder": "little",
+        "numpy_extension_sha256": "aa26455b9418a62fc93e36752003b088c9cbcb0d143e7dbb9505234f5a93eca6",
+        "lbfgsb_extension_sha256": "1dc837bc636fc8b3242c9878bc418cce119558a21ffd93b0a1551a5f57f600bd",
+        "numerical_libraries": [
+          {
+            "api": "openblas",
+            "version": "0.3.29",
+            "sha256": "0bd815d04b6b54990e3cccc7528fbb696456d09569f533d0390c13f0cdc4dd4a"
+          },
+          {
+            "api": "openblas",
+            "version": "0.3.28",
+            "sha256": "3e739a2435af49d2d938749f316aa338c65f41c9ae6615406e7cf83feb662f46"
+          }
+        ]
+      }
+    },
+    "runtime_essential": {
+      "python_version": "3.13.18",
+      "implementation": "CPython",
+      "python_executable_sha256": "5d782b88e6d48cc376d3e4b890539876ccaf7235acb1a265b7880ba471432cba",
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "architecture": "x86_64",
+      "byteorder": "little",
+      "numpy_extension_sha256": "aa26455b9418a62fc93e36752003b088c9cbcb0d143e7dbb9505234f5a93eca6",
+      "lbfgsb_extension_sha256": "1dc837bc636fc8b3242c9878bc418cce119558a21ffd93b0a1551a5f57f600bd",
+      "numerical_libraries": [
+        {
+          "api": "openblas",
+          "version": "0.3.29",
+          "sha256": "0bd815d04b6b54990e3cccc7528fbb696456d09569f533d0390c13f0cdc4dd4a"
+        },
+        {
+          "api": "openblas",
+          "version": "0.3.28",
+          "sha256": "3e739a2435af49d2d938749f316aa338c65f41c9ae6615406e7cf83feb662f46"
+        }
+      ]
+    },
+    "normal_path": "Forward original return/exception semantics and values unchanged whenever the exact refinement predicate is false."
+  },
+  "refinement": {
+    "context": "Only the original objective callback executing inside L-BFGS-B or Powell; explicit scoped context, never a process-wide fallback.",
+    "coarse_order": 8,
+    "fine_order": 16,
+    "original_exception_type": "ArithmeticError",
+    "original_exception_message": "Nonfinite or negative full exposure",
+    "exception_origin": "Exact pinned original Phase.evaluate full-exposure guard frame; message matching alone is insufficient.",
+    "all_required_coarse_conditions": [
+      "Original optimizer objective context active, training phase only, original coarse order",
+      "Exact current full theta, model and phase identity retained",
+      "Original P, M, E, joint and all gradient coordinates finite",
+      "Original E strictly less than -1e-9",
+      "No alternate nonfinite-gradient, timeout, memory, interruption, native/programming or cap condition"
+    ],
+    "coarse_exposure_guard_strictly_below": -1e-09,
+    "fine_call": "Call unchanged original evaluator once at order16 at identical theta/model/phase; obtain original value AND full gradient; no recursive fallback.",
+    "all_required_fine_conditions": [
+      "Fine original call returns all score components and gradient finite",
+      "Fine E >= 0",
+      "Fine P and M exactly equal saved coarse P and M at the same theta",
+      "abs(fine joint - coarse joint) <= original joint_absolute_tolerance",
+      "Existing projected gradients with original active box/dimensions and boundary tolerance; max(abs(pg8-pg16)/max(1,abs(pg8),abs(pg16))) <= original selected_training_gradient_scaled_tolerance"
+    ],
+    "joint_absolute_tolerance": 0.0001,
+    "projected_gradient_scaled_tolerance": 0.0001,
+    "projection_boundary_tolerance": 1e-08,
+    "accepted_return": "Fine original score and fine original gradient as one paired result; never mix coarse/fine coordinates or replace E with direct Qa.",
+    "rejected_refinement": "Retain original exception and fine rejection evidence; follow unchanged original failure-only Powell rescue for the failed optimizer attempt, with no recursive fine retry. An unresolved arithmetic failure remains technical, not scientific_unknown.",
+    "excluded_contexts": [
+      "eligible floor",
+      "fresh returned-state score and gradient",
+      "candidate selection and tie breaking",
+      "selected training fine check",
+      "held-out/test scoring",
+      "diagnostic or historical comparator evaluation"
+    ],
+    "unchanged_fresh_nll_delta_tolerance": 1e-09,
+    "interpretation": "Adaptive numerical oracle with checked discrepancy at used trial points; no globally smooth-objective, global convergence or continuum-error certificate."
+  },
+  "logging": {
+    "per_refinement_required": [
+      "campaign/version/execution/case/model/start/method/objective-call identifiers",
+      "exact theta and original phase/source/native/runtime/input identities",
+      "original coarse exception origin and P/M/E/joint/full gradient",
+      "fine original score/full gradient or failure",
+      "P/M identity test, projected gradients, value and scaled-gradient discrepancies and thresholds",
+      "accepted/rejected decision and original/fine elapsed times",
+      "coarse evaluation count, added fine evaluation count, solver callback count, native work/cost accounting"
+    ],
+    "semantics": [
+      "A successful local refinement does not erase the original numerical exception.",
+      "A solver objective callback may cause two scientific evaluations; solver nfev/maxfev remain original callback semantics and all extra scientific work is separately counted.",
+      "No clipping, tolerance increase, Q0 renormalization, Qa substitution, changed start or expanded optimizer caps."
+    ]
+  },
+  "reuse": {
+    "complete_histories": [
+      {
+        "case_id": "S4_narrow_short_imm_seed410401",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410401.json",
+        "case_sha256": "cdaa8547ec2f9a19e0b2b8a7730f40ab953b47358b8cf658a5324ddd6c24398a",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410401.attempts.jsonl",
+        "trace_sha256": "a1c4ab379a639a14b1712710099560c41cccded2b16a8766f60d7e6e203f7c7c",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S5_broad_long_imm_seed410501",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410501.json",
+        "case_sha256": "7c08ae112d6bec411a6577da5b7e85dce5b019f8c4df6117f6d53bfed6abbcb8",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410501.attempts.jsonl",
+        "trace_sha256": "32106e7e7b01f2f3809812f859c205d87dde0fc03a02c00aafcf3de4c4f736f5",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S6_narrow_short_total_seed410601",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S6_narrow_short_total_seed410601.json",
+        "case_sha256": "20e3093d5b94e3ce2cbea50889b05aa2bb56e654030aca63d79cb1104a24d897",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S6_narrow_short_total_seed410601.attempts.jsonl",
+        "trace_sha256": "8d615e472147371d6c59e6c2fcd43aa90d737c0ee78186e66059bca4355cfa7a",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S6_narrow_short_total_seed410605",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S6_narrow_short_total_seed410605.json",
+        "case_sha256": "c09bf9968eaa5fbfee3430f2ba72af170a27c77074d29ea9972343c3e89d07c2",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S6_narrow_short_total_seed410605.attempts.jsonl",
+        "trace_sha256": "9c95ba2500cdb53dfeeb58bfcf079044753a26b70ad5dcb3968ed295629f153b",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S7_broad_long_total_seed410701",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S7_broad_long_total_seed410701.json",
+        "case_sha256": "4d716587ae7ede35c89f85d1409d41480b058229f4a93a530fe138abb2106c70",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S7_broad_long_total_seed410701.attempts.jsonl",
+        "trace_sha256": "956ab83ef5ea2a088ee1917373388cb9069a5811eb9b6af2ff1ebcfee756a19f",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S4_narrow_short_imm_seed410402",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410402.json",
+        "case_sha256": "e54519fbd382576f84493922b3b82a6ca7a2aacca94ce347c900bd9329c40296",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410402.attempts.jsonl",
+        "trace_sha256": "58aff1740efbcb4cf42f9923311dfd10a2dd7177b4291c347ac4d3f522eb5a16",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S4_narrow_short_imm_seed410403",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410403.json",
+        "case_sha256": "d6298f0464452ca9590353748af311fc569be1c0ef7b5f59e6a8ecd890c1444f",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410403.attempts.jsonl",
+        "trace_sha256": "4766c81af30e9dfddb3d29fe657575aec2b690de80d5065b8fd4b61eb6fa0e69",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S4_narrow_short_imm_seed410404",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410404.json",
+        "case_sha256": "f4353f67f9a1ecab9518b4404d8729511805acc46a99f03bf3c52ba605e42e76",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410404.attempts.jsonl",
+        "trace_sha256": "265af3e1e4d1f75710374e904a60e202c67c8de8513864f027ea43ccd52c4494",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S4_narrow_short_imm_seed410405",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410405.json",
+        "case_sha256": "4cb4c631364f2a72303d3c5e255d2eb274a16ffa73d5699e0c1bf7afe0810bfc",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410405.attempts.jsonl",
+        "trace_sha256": "e637f43bd067ae63c2b775fcee5cdb473875d03a0bbc3ec4a89b335ceb9c0564",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S4_narrow_short_imm_seed410406",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410406.json",
+        "case_sha256": "e9aac1849afa6c1ce2c7424119272b90c8b22d0c01718098697c55e79e3ce4c8",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410406.attempts.jsonl",
+        "trace_sha256": "280f48cbaa3fe43f122b3a77dad2d6af3d5707ba4db433c5841117003f5d4271",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S4_narrow_short_imm_seed410407",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410407.json",
+        "case_sha256": "90a5fa905e0e81368732ba9309e2b707bda02da171e47133f8501c64e90df254",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410407.attempts.jsonl",
+        "trace_sha256": "2dd97c73bdf7f73a92bd7dd3227335433913fbc8d746049c3a9f2e2bdb984dd0",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S4_narrow_short_imm_seed410408",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410408.json",
+        "case_sha256": "6b05b2a6a47c6e2d2b812ec51caaccc537cacdd29021700b7ef2f3389708ade4",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410408.attempts.jsonl",
+        "trace_sha256": "56a5aa24ef975cfceebe900187ce23238f4b9e19cebaaedde2534732f79cefc3",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S4_narrow_short_imm_seed410409",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410409.json",
+        "case_sha256": "cc9c160ceb723f576050dd089bd0320e1c33d722ded29f8531dbbea87910eb6e",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410409.attempts.jsonl",
+        "trace_sha256": "f2d80f9b847a9dbc6141ad5f91568d808dd034b401c79481d4bc75bcaa02c681",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S4_narrow_short_imm_seed410410",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410410.json",
+        "case_sha256": "470661d58772e445df115eb27c7f90ad76d3d4acf026d8afe8f5ebffde3fb302",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410410.attempts.jsonl",
+        "trace_sha256": "4a9835e01efb461266a69bde10550d76eb04f97e6f8588c50b5ca722c6513947",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S4_narrow_short_imm_seed410411",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410411.json",
+        "case_sha256": "5bbd43c151589d211b6ae34c6b164a62443285c1370f60bdcb5bf345f3574f18",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410411.attempts.jsonl",
+        "trace_sha256": "fa6003c8bc6b9a261c77cb9a3979e9c8de84f706fbd767c80388aa7802a85969",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S4_narrow_short_imm_seed410412",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410412.json",
+        "case_sha256": "469c37d3ed51c02395d338d23ab2952e4a3c9902f855fa4ce0cafc6b6a8058c5",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410412.attempts.jsonl",
+        "trace_sha256": "6609197213e56c02fab6650243425b0efaf253df1cf3d34e413816d9e3ab1478",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S4_narrow_short_imm_seed410413",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410413.json",
+        "case_sha256": "255dd495ef763f1235be9878b8d2df810d974a17a87b819ee9115fea7df0054d",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410413.attempts.jsonl",
+        "trace_sha256": "d1bd26bd197427fb5a8e9628906944271a268d05268556bfc11185b75e3a3525",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S4_narrow_short_imm_seed410414",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410414.json",
+        "case_sha256": "62ec92558e52a72ea1672053422d964bbdf4294fe565689f87aa4ecb5fb3f2c3",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410414.attempts.jsonl",
+        "trace_sha256": "a9de001b3610d0a07b1d4c127d64b09faa88e6c53ed060788939927725e99988",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S4_narrow_short_imm_seed410415",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410415.json",
+        "case_sha256": "13536187d3c9e4c079e2840ada30b6ef6270918fb126cbb314f28354e0810c7c",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410415.attempts.jsonl",
+        "trace_sha256": "d2f58ba8bc649fea56aebe7525dcb61543a2dfcddfbeb2b33207ed7a0aeae668",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S4_narrow_short_imm_seed410416",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410416.json",
+        "case_sha256": "63838151e40a3f25b6bda2b2bd5540333e39d7d83273e5d51639271f2b8b8523",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410416.attempts.jsonl",
+        "trace_sha256": "03b998e72ffb7e896674b0f984427bd51641b458dca1e104079ca7768322d694",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S4_narrow_short_imm_seed410417",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410417.json",
+        "case_sha256": "0717ba491812d88329e380fb0426cbb6a087b4483b0f5b8becf1167f735b3586",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410417.attempts.jsonl",
+        "trace_sha256": "a0411b48f5c34453c7020b4d86f2764dece6df751b95f76982d46d3114574786",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S4_narrow_short_imm_seed410418",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410418.json",
+        "case_sha256": "94f163d22a5c69a1137cbe19c14185ef09d2358b83abbc8246e828d347bc5d2c",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410418.attempts.jsonl",
+        "trace_sha256": "1e4156686aba1992b9ec2b522e8967216a463a110fa4290b5c8d10dfe4cd08c4",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S4_narrow_short_imm_seed410419",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410419.json",
+        "case_sha256": "a14aa25b2bba077ded0aa295575eab819110a1e5c4002333aa38dfce2e84d4c4",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410419.attempts.jsonl",
+        "trace_sha256": "a3e3c81160a1acf51929fecc208e77da7558ae2ff929acfda40bca55aefc24bd",
+        "paired_attempts": 33,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S4_narrow_short_imm_seed410420",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410420.json",
+        "case_sha256": "f9a42935a1425491c7995760bfabe8c6f1f65dec6a36c095b0f5488fca4d27fc",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410420.attempts.jsonl",
+        "trace_sha256": "ac90deac79f3ce190e6079317ecdf03c533bdd76ac187a3ea8173abeb2d68bad",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S5_broad_long_imm_seed410502",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410502.json",
+        "case_sha256": "0e599200ea06e137de2e72c7e5831357d11e13ec7f44fc778b2bb4deee03d048",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410502.attempts.jsonl",
+        "trace_sha256": "d18cf6ad9f9728f761a71835e93683f76c1f96a2c91a586448f42366493b4561",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S5_broad_long_imm_seed410503",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410503.json",
+        "case_sha256": "6d19ed2c49fcd4f5654f5c321291ac360bf459e351d981094c587ba3e8bcf667",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410503.attempts.jsonl",
+        "trace_sha256": "76095d03211e7793daff898973cdb186a4e09adaa40ce3ecd58b47541c1f601f",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S5_broad_long_imm_seed410504",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410504.json",
+        "case_sha256": "e06857e27d217f08d8ac3e279fbfc8eea601faca77ce079b18e868b9fb73f5b3",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410504.attempts.jsonl",
+        "trace_sha256": "3631a80947c0619bfdf48097df923f33dfa46699938455cc42ac499faf6848ba",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S5_broad_long_imm_seed410505",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410505.json",
+        "case_sha256": "95439d20c65c5189dc48ee42f73617fd4e953025bddc0c0dc2caa8b08b5f1f38",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410505.attempts.jsonl",
+        "trace_sha256": "83e813dbb3dd59214ff2733e29bf5d9306a7776c36a55ac639a39449be633903",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S5_broad_long_imm_seed410506",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410506.json",
+        "case_sha256": "33026e27648f1d67ace975ead9a6291d2eee019cd22e919695b72b2894e816e8",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410506.attempts.jsonl",
+        "trace_sha256": "816be2eb1bf6d062d6f5802429db84387823cdd20f19ad674c3eeb34bfd31fa6",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S5_broad_long_imm_seed410507",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410507.json",
+        "case_sha256": "e1b57fe7a8bb3f6148879c58f8c7dfe9a310af7022002470fa1be3240782e52a",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410507.attempts.jsonl",
+        "trace_sha256": "417b041eeea66ae05ba0ddee80b1dea47b5a11b0d7e9318d0e7dbf80e6c34de2",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S5_broad_long_imm_seed410508",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410508.json",
+        "case_sha256": "22125eb3274b754baef66b962085eafc4b3c35468296943fa4ab96edf9848729",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410508.attempts.jsonl",
+        "trace_sha256": "6decb0c32f09e45f3965033c34da316bef574a66817fac599224763f5a2a8b5f",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S5_broad_long_imm_seed410509",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410509.json",
+        "case_sha256": "03bfdc03db1cb3fb272fa478dbee41347132187603691629ac74685dbf386629",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410509.attempts.jsonl",
+        "trace_sha256": "6a0b3b5576caadce12e874cff015c325afdc3ff0a5ea7f2bb5293d7a3085e6c1",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S5_broad_long_imm_seed410510",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410510.json",
+        "case_sha256": "7702195c26b820a51501b221340f05446592ae3539ea5a11c9c18014163931a3",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410510.attempts.jsonl",
+        "trace_sha256": "66fa9d8cd43ded079675e377b3880180d839e097d32ddc9ac9b78c89c8cb8548",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S5_broad_long_imm_seed410511",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410511.json",
+        "case_sha256": "0495f7f199bcc39c90916451c2e775607d2034d5adadbe778cc7ad6b2d70f509",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410511.attempts.jsonl",
+        "trace_sha256": "065879b64e6e5a42310192cc9f8b92ed13d1544c4c6bf914e913aadbea8b79e7",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S5_broad_long_imm_seed410512",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410512.json",
+        "case_sha256": "87a3bf0a32f29a496a9acc680d6fe438f4d782dc9f190a02f9f6e8ecbe9f7f6d",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410512.attempts.jsonl",
+        "trace_sha256": "d784b44359d964d977e8c86d97feea32f6bd49e0e522cada364f8aaa1fe96af3",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S5_broad_long_imm_seed410513",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410513.json",
+        "case_sha256": "2ced561194c8b8a6e4d5a0ae1a6ecdedfe45392dc8a11b9ee283142cebfac913",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410513.attempts.jsonl",
+        "trace_sha256": "2e976c0d5017e84447a99c0db08611650c3325486e50dcee607e3b6d5a7a4389",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S5_broad_long_imm_seed410514",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410514.json",
+        "case_sha256": "48f109bba6742e63c1f925e54ba7bc5c40a2a631d348269aa9cb074e652eca0a",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410514.attempts.jsonl",
+        "trace_sha256": "c2c11aa15bfaed6a9cf7d007db014ea0a2cdf793cdcf605e3660ca5231981065",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S5_broad_long_imm_seed410515",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410515.json",
+        "case_sha256": "f97713e1cc9f2b57fa41782723013e6c236146358123614c9e1cce21238cab08",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410515.attempts.jsonl",
+        "trace_sha256": "924be07b675c9b5d91f70ef98f345a9138a0b339df6a924d54d11f1fdc910c1a",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S5_broad_long_imm_seed410516",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410516.json",
+        "case_sha256": "6f26c23edce1976ec21bc841efd38dd811d0b78d95ca4ad16f333a323771f70d",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410516.attempts.jsonl",
+        "trace_sha256": "8f1749803b5f6d2b7e9b8fc7d8e90cd08024b9166b053ca4fcd1e30c0bcb545e",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S5_broad_long_imm_seed410517",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+        "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410517.json",
+        "case_sha256": "7c66e40459f27013ca62408bee597fb07ee2458b2ff97ba50ecff5edcd93576e",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410517.attempts.jsonl",
+        "trace_sha256": "4f135bd10845036e1ced7159b84971d27bd582ce1cd653b2689d9423b98f2976",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S5_broad_long_imm_seed410519",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/remaining_pilot_01.zip",
+        "archive_sha256": "9ca2b0d3bfd58c3f3f547301c4e1a28822dbcaa6164baff2619805db97af95fd",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410519/science/cases/S5_broad_long_imm_seed410519.json",
+        "case_sha256": "4a9abb12c26e7a98ff3828ed4bd572ac7fe8fc7ef6ceaf405614d65eaa7c04a9",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410519/science/cases/S5_broad_long_imm_seed410519.attempts.jsonl",
+        "trace_sha256": "a744302c492f1ab90917c60cc5e95c359104730a07aeabdb5fd216ddb4a9a5ab",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S5_broad_long_imm_seed410520",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/remaining_host02_exposure_failure.zip",
+        "archive_sha256": "9319b3669c5fda81fab941038913a0c3bc7178c506441af4f244b7e64c228b88",
+        "case_member": "host/children/01_S5_broad_long_imm_seed410520/science/cases/S5_broad_long_imm_seed410520.json",
+        "case_sha256": "677eb42fd50af8c8a6fd3a6b1d1a50008a5f49f8a9e6f03697d32dfce93ff6fe",
+        "trace_member": "host/children/01_S5_broad_long_imm_seed410520/science/cases/S5_broad_long_imm_seed410520.attempts.jsonl",
+        "trace_sha256": "6bb159f3044f28aea775e1e7b771d9ec6fa7eb54b1fa96b27c114b4f2ba23b60",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      },
+      {
+        "case_id": "S6_narrow_short_total_seed410602",
+        "archive": "validation/reproductions/joint_nuisance_20261107/continuation/remaining_host02_exposure_failure.zip",
+        "archive_sha256": "9319b3669c5fda81fab941038913a0c3bc7178c506441af4f244b7e64c228b88",
+        "case_member": "host/children/02_S6_narrow_short_total_seed410602/science/cases/S6_narrow_short_total_seed410602.json",
+        "case_sha256": "0a196f758e2c28339e28e21ea5a19324ffadb53fffd9859b642977e1ff4b51e4",
+        "trace_member": "host/children/02_S6_narrow_short_total_seed410602/science/cases/S6_narrow_short_total_seed410602.attempts.jsonl",
+        "trace_sha256": "45a9c97e14fc501c0fd39aa5674dd15418c7f2d83482e28f3fb40a166e5c2722",
+        "paired_attempts": 32,
+        "target_exception_count": 0
+      }
+    ],
+    "complete_count": 43,
+    "paired_attempts": 1377,
+    "target_exceptions": 0,
+    "claim": "Compatible saved computations under a change whose exact recorded trigger is absent; not newly refitted and not a counterfactual trajectory proof.",
+    "acceptance": [
+      "Independent census/custody acceptance with complete paired attempts and pinned case/trace bytes",
+      "Independent source proof/control that false predicate leaves original path unchanged",
+      "No broader tiny-negative-E or gradient fallback and no other solver/start/cap/scoring changes"
+    ],
+    "preserve_gradient_rescue_case": "S4_narrow_short_imm_seed410419",
+    "gradient_rescue_detail": "Immigrant start6 original gradient error, successful Powell rescue selected state7; remains unchanged.",
+    "permanent_unknown": {
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "index_member": "host/children/01_S5_broad_long_imm_seed410518/science/index.json",
+      "index_sha256": "7caeaa76d32e62ac340855e24467d91a94e985b23383a27c7fd51d6614fab288",
+      "review": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failure_review.json",
+      "review_sha256": "acad07075963f220f59c257eb512555000ec5cffe3fa46ba3df0183775de6c80",
+      "case_id": "S5_broad_long_imm_seed410518",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410518.json",
+      "case_sha256": "6714ad7ebd17e3bf432638f9c8b0cb4d466d6aa5d7ddd7f3623d2ead17960028",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410518.attempts.jsonl",
+      "trace_sha256": "0c62a0f2c193f16ab15efd08c94777ef3acaf2d969bb891b60cd86b378a0b71a",
+      "library_member": "host/children/01_S5_broad_long_imm_seed410518/build/attenuation.so",
+      "build_receipt_member": "host/children/01_S5_broad_long_imm_seed410518/build/build_receipt.json",
+      "complete_case_ids": [
+        "S4_narrow_short_imm_seed410401",
+        "S5_broad_long_imm_seed410501",
+        "S6_narrow_short_total_seed410601",
+        "S6_narrow_short_total_seed410605",
+        "S7_broad_long_total_seed410701",
+        "S4_narrow_short_imm_seed410402",
+        "S4_narrow_short_imm_seed410403",
+        "S4_narrow_short_imm_seed410404",
+        "S4_narrow_short_imm_seed410405",
+        "S4_narrow_short_imm_seed410406",
+        "S4_narrow_short_imm_seed410407",
+        "S4_narrow_short_imm_seed410408",
+        "S4_narrow_short_imm_seed410409",
+        "S4_narrow_short_imm_seed410410",
+        "S4_narrow_short_imm_seed410411",
+        "S4_narrow_short_imm_seed410412",
+        "S4_narrow_short_imm_seed410413",
+        "S4_narrow_short_imm_seed410414",
+        "S4_narrow_short_imm_seed410415",
+        "S4_narrow_short_imm_seed410416",
+        "S4_narrow_short_imm_seed410417",
+        "S4_narrow_short_imm_seed410418",
+        "S4_narrow_short_imm_seed410419",
+        "S4_narrow_short_imm_seed410420",
+        "S5_broad_long_imm_seed410502",
+        "S5_broad_long_imm_seed410503",
+        "S5_broad_long_imm_seed410504",
+        "S5_broad_long_imm_seed410505",
+        "S5_broad_long_imm_seed410506",
+        "S5_broad_long_imm_seed410507",
+        "S5_broad_long_imm_seed410508",
+        "S5_broad_long_imm_seed410509",
+        "S5_broad_long_imm_seed410510",
+        "S5_broad_long_imm_seed410511",
+        "S5_broad_long_imm_seed410512",
+        "S5_broad_long_imm_seed410513",
+        "S5_broad_long_imm_seed410514",
+        "S5_broad_long_imm_seed410515",
+        "S5_broad_long_imm_seed410516",
+        "S5_broad_long_imm_seed410517"
+      ],
+      "scientific_indexed_seconds": 22249.261830978,
+      "known_prior_outer_overhead_seconds": 51.02269905900175,
+      "operational_failure_charge_seconds": 290,
+      "operational_diagnostic_charge_seconds": 80,
+      "additional_workflow_overhead_seconds": 94.601386743,
+      "additional_workflow_overhead_seconds_decimal": "94.6013867429999",
+      "accounted_base_seconds": 22764.885916780004,
+      "whole_workflow_bound_seconds": 680,
+      "included_current_scientific_seconds": 585.3986132570001
+    },
+    "permanent_unknown_rule": "S5_broad_long_imm_seed410518 remains the original finite 5000-call Powell-cap unknown. No rerun or retrospective completion under this amendment."
+  },
+  "resume_current": {
+    "case_id": "S6_narrow_short_total_seed410603",
+    "original_failure": {
+      "archive": {
+        "path": "validation/reproductions/joint_nuisance_20261107/continuation/remaining_host02_exposure_failure.zip",
+        "sha256": "9319b3669c5fda81fab941038913a0c3bc7178c506441af4f244b7e64c228b88"
+      },
+      "review": {
+        "path": "validation/reproductions/joint_nuisance_20261107/continuation/remaining_host02_exposure_failure_review.json",
+        "sha256": "aa43adfe5c2ffcf3c0056887066899b9cd4ac33bb6631a7f345860be99855343"
+      },
+      "case_member": "host/children/03_S6_narrow_short_total_seed410603/science/cases/S6_narrow_short_total_seed410603.json",
+      "case_sha256": "6b8a7a39bf82882b1db7d026f9c85b73496cf518a1d8e92e54018369a4a9d96c",
+      "trace_member": "host/children/03_S6_narrow_short_total_seed410603/science/cases/S6_narrow_short_total_seed410603.attempts.jsonl",
+      "trace_sha256": "ff569fb658489ae1629fe222b98c8d615cdfb37b6e9b0468ad9028f58b86c5f0",
+      "driver_result_member": "host/children/03_S6_narrow_short_total_seed410603/science/result.json",
+      "driver_result_sha256": "c8922efd6c9615d39c46f3668e33430faf5c168e30c89229518b24a2a19976ea",
+      "supervision_member": "host/children/03_S6_narrow_short_total_seed410603/supervision/result.json",
+      "supervision_sha256": "c0a6ef78d5b466537f48fad844d59d408c76a6917b1b86323f8b7a9676a6047a"
+    },
+    "completed_arms": [
+      {
+        "model": "null",
+        "fit_pointer": "/fits/null",
+        "training_check_pointer": "/training_checks/null",
+        "selected_state_index": 1,
+        "reuse": "Exact saved fit/candidate/selection/check values; no optimizer replay or refit"
+      },
+      {
+        "model": "LI",
+        "fit_pointer": "/fits/LI",
+        "training_check_pointer": "/training_checks/LI",
+        "selected_state_index": 5,
+        "reuse": "Exact saved fit/candidate/selection/check values; no optimizer replay or refit"
+      },
+      {
+        "model": "LIplus_immigrant",
+        "fit_pointer": "/fits/LIplus_immigrant",
+        "training_check_pointer": "/training_checks/LIplus_immigrant",
+        "selected_state_index": 6,
+        "reuse": "Exact saved fit/candidate/selection/check values; no optimizer replay or refit"
+      }
+    ],
+    "reused_total_model": "LIplus_inclusive",
+    "reused_total_candidate_pointers": [
+      "/fits/LIplus_inclusive/candidates/0",
+      "/fits/LIplus_inclusive/candidates/1",
+      "/fits/LIplus_inclusive/candidates/2",
+      "/fits/LIplus_inclusive/candidates/3",
+      "/fits/LIplus_inclusive/candidates/4"
+    ],
+    "reused_total_candidate_meaning": "State0 exact eligible selected-null floor; states1?4 exact successful original starts0?3. Preserve parameters, fresh coarse scores, gradients, kind, start/state indices and tie ordering.",
+    "reused_total_successful_record_indices": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "historical_failed_record_indices": [
+      4,
+      5
+    ],
+    "failed_attempt_lineage": "Retain original primary and Powell start4 failures and full original trace in immutable lineage; never relabel them successful or count them as new active solver returns.",
+    "new_required_start_indices": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "new_start4_initial_theta": [
+      -2.148549042550726,
+      -0.2,
+      0.2,
+      0.0,
+      1.7,
+      1.5,
+      5.0106352940962555,
+      3.4011973816621555
+    ],
+    "new_start4": "Restart the original declared start4 under the separately versioned amendment; no new start or use of an optimizer-returned/diagnostic vector.",
+    "new_starts5_7": "Untouched original templates, same null-shared seed recipe, same starts/order/caps.",
+    "selection": "After every required start resolves, original candidate tie ordering, fresh-return agreement and selected fine checks remain unchanged. Reused candidate values remain exact; any additional numerical support is explicitly distinct and cannot substitute values.",
+    "saved_training_checks": "Retain exact passed saved null/LI/immigrant checks and applicable saved floor/historical identities. Any separately declared revalidation must use original evaluator outside refinement, be retained as additional support, charged to the same new cap, and never replace the saved checks or fit/candidate values.",
+    "test_boundary": "Original outcomes are empty. Only after all amended training states and original checks are frozen, perform the original held-out scoring procedure for the completed case; no test-informed refinement or selection.",
+    "prohibited": [
+      "Rerun completed arms or totalstarts0?3 merely to fill traces",
+      "Use diagnostic state as fitted/selected candidate",
+      "Silently edit original case JSON or old execution index",
+      "Drop prior failed attempts",
+      "Treat the partial case as an already complete history"
+    ],
+    "implementation_boundary": "Import the exact saved resolved prefix without inventing new optimizer computations. A separate narrowly scoped partial-resume loop may implement only original start-loop semantics for4?7; future untouched cases retain original fit_arm with callback-only adapter. Independent source equivalence/controls must verify candidate indexing, attempt bookkeeping, rescue and selection."
+  },
+  "resources": {
+    "shared_run": {
+      "run_id": "joint_replay_continuation_20261107T071500Z",
+      "config_sha256": "dea0efc08bdeffefaca55d4cffbce983a21d8e3799c9b4e79fba12e70b7ef41c",
+      "expires_utc": "2026-11-09T07:15:00+00:00"
+    },
+    "threads": 2,
+    "workers": 1,
+    "sampled_process_tree_rss_cap_bytes": 6442450944,
+    "minimum_host_free_bytes": 2147483648,
+    "new_current_scientific_cap_seconds": 1776,
+    "new_current_outer_cap_seconds": 1806,
+    "current_finalization_reserve_seconds": 30,
+    "retained_original_scientific_seconds_decimal": "713.4644529529999",
+    "retained_original_outer_seconds_decimal": "713.9540351120002",
+    "cumulative_scientific_upper_bound_decimal": "2489.4644529529999",
+    "cumulative_outer_upper_bound_decimal": "2519.9540351120002",
+    "original_current_scientific_cap_seconds": 2490,
+    "original_current_outer_cap_seconds": 2520,
+    "diagnostic_accounting": "Retain independently reviewed270-second whole-launch diagnostic charge in the shared aggregate. Nested171.49905620399997 scientific/172.088020928 supervisor seconds are included, not added twice. Diagnostic charge is separate from the case continuation envelope.",
+    "all_additional_refinement_work_charged": true,
+    "global_and_host_reserves": "Reuse current independently accepted shared ledger/host resource design; recompute available balance including all retained failures, diagnostics and actual continuation work before numerical admission. No cap expansion or future-slot borrowing.",
+    "accounted_shared_seconds_decimal": "25139.78809128000155",
+    "future_case_slots_seconds_decimal": "64926",
+    "future_host_overhead_seconds_decimal": "14400",
+    "global_finalization_reserve_seconds_decimal": "1800",
+    "shared_conservative_upper_seconds_decimal": "106265.78809128000155",
+    "shared_headroom_seconds_decimal": "8934.21190871999845",
+    "shared_cap_seconds": 115200,
+    "numerical_concurrency": 1
+  },
+  "future": {
+    "case_ids": [
+      "S6_narrow_short_total_seed410604",
+      "S6_narrow_short_total_seed410606",
+      "S6_narrow_short_total_seed410607",
+      "S6_narrow_short_total_seed410608",
+      "S6_narrow_short_total_seed410609",
+      "S6_narrow_short_total_seed410610",
+      "S6_narrow_short_total_seed410611",
+      "S6_narrow_short_total_seed410612",
+      "S6_narrow_short_total_seed410613",
+      "S6_narrow_short_total_seed410614",
+      "S6_narrow_short_total_seed410615",
+      "S6_narrow_short_total_seed410616",
+      "S6_narrow_short_total_seed410617",
+      "S6_narrow_short_total_seed410618",
+      "S6_narrow_short_total_seed410619",
+      "S6_narrow_short_total_seed410620",
+      "S7_broad_long_total_seed410702",
+      "S7_broad_long_total_seed410703",
+      "S7_broad_long_total_seed410704",
+      "S7_broad_long_total_seed410705",
+      "S7_broad_long_total_seed410706",
+      "S7_broad_long_total_seed410707",
+      "S7_broad_long_total_seed410708",
+      "S7_broad_long_total_seed410709",
+      "S7_broad_long_total_seed410710",
+      "S7_broad_long_total_seed410711",
+      "S7_broad_long_total_seed410712",
+      "S7_broad_long_total_seed410713",
+      "S7_broad_long_total_seed410714",
+      "S7_broad_long_total_seed410715",
+      "S7_broad_long_total_seed410716",
+      "S7_broad_long_total_seed410717",
+      "S7_broad_long_total_seed410718",
+      "S7_broad_long_total_seed410719",
+      "S7_broad_long_total_seed410720"
+    ],
+    "count": 35,
+    "source": "Exact suffix after current case in frozen remaining protocol full_sequence; no reordering/substitution.",
+    "case_slots": [
+      {
+        "case_id": "S6_narrow_short_total_seed410604",
+        "wall_seconds": 2520,
+        "scientific_seconds": 2490
+      },
+      {
+        "case_id": "S6_narrow_short_total_seed410606",
+        "wall_seconds": 2520,
+        "scientific_seconds": 2490
+      },
+      {
+        "case_id": "S6_narrow_short_total_seed410607",
+        "wall_seconds": 2520,
+        "scientific_seconds": 2490
+      },
+      {
+        "case_id": "S6_narrow_short_total_seed410608",
+        "wall_seconds": 2520,
+        "scientific_seconds": 2490
+      },
+      {
+        "case_id": "S6_narrow_short_total_seed410609",
+        "wall_seconds": 2520,
+        "scientific_seconds": 2490
+      },
+      {
+        "case_id": "S6_narrow_short_total_seed410610",
+        "wall_seconds": 2520,
+        "scientific_seconds": 2490
+      },
+      {
+        "case_id": "S6_narrow_short_total_seed410611",
+        "wall_seconds": 2520,
+        "scientific_seconds": 2490
+      },
+      {
+        "case_id": "S6_narrow_short_total_seed410612",
+        "wall_seconds": 2520,
+        "scientific_seconds": 2490
+      },
+      {
+        "case_id": "S6_narrow_short_total_seed410613",
+        "wall_seconds": 2520,
+        "scientific_seconds": 2490
+      },
+      {
+        "case_id": "S6_narrow_short_total_seed410614",
+        "wall_seconds": 2520,
+        "scientific_seconds": 2490
+      },
+      {
+        "case_id": "S6_narrow_short_total_seed410615",
+        "wall_seconds": 2520,
+        "scientific_seconds": 2490
+      },
+      {
+        "case_id": "S6_narrow_short_total_seed410616",
+        "wall_seconds": 2520,
+        "scientific_seconds": 2490
+      },
+      {
+        "case_id": "S6_narrow_short_total_seed410617",
+        "wall_seconds": 2520,
+        "scientific_seconds": 2490
+      },
+      {
+        "case_id": "S6_narrow_short_total_seed410618",
+        "wall_seconds": 2520,
+        "scientific_seconds": 2490
+      },
+      {
+        "case_id": "S6_narrow_short_total_seed410619",
+        "wall_seconds": 2520,
+        "scientific_seconds": 2490
+      },
+      {
+        "case_id": "S6_narrow_short_total_seed410620",
+        "wall_seconds": 2520,
+        "scientific_seconds": 2490
+      },
+      {
+        "case_id": "S7_broad_long_total_seed410702",
+        "wall_seconds": 1200,
+        "scientific_seconds": 1170
+      },
+      {
+        "case_id": "S7_broad_long_total_seed410703",
+        "wall_seconds": 1200,
+        "scientific_seconds": 1170
+      },
+      {
+        "case_id": "S7_broad_long_total_seed410704",
+        "wall_seconds": 1200,
+        "scientific_seconds": 1170
+      },
+      {
+        "case_id": "S7_broad_long_total_seed410705",
+        "wall_seconds": 1200,
+        "scientific_seconds": 1170
+      },
+      {
+        "case_id": "S7_broad_long_total_seed410706",
+        "wall_seconds": 1200,
+        "scientific_seconds": 1170
+      },
+      {
+        "case_id": "S7_broad_long_total_seed410707",
+        "wall_seconds": 1200,
+        "scientific_seconds": 1170
+      },
+      {
+        "case_id": "S7_broad_long_total_seed410708",
+        "wall_seconds": 1200,
+        "scientific_seconds": 1170
+      },
+      {
+        "case_id": "S7_broad_long_total_seed410709",
+        "wall_seconds": 1200,
+        "scientific_seconds": 1170
+      },
+      {
+        "case_id": "S7_broad_long_total_seed410710",
+        "wall_seconds": 1200,
+        "scientific_seconds": 1170
+      },
+      {
+        "case_id": "S7_broad_long_total_seed410711",
+        "wall_seconds": 1200,
+        "scientific_seconds": 1170
+      },
+      {
+        "case_id": "S7_broad_long_total_seed410712",
+        "wall_seconds": 1200,
+        "scientific_seconds": 1170
+      },
+      {
+        "case_id": "S7_broad_long_total_seed410713",
+        "wall_seconds": 1200,
+        "scientific_seconds": 1170
+      },
+      {
+        "case_id": "S7_broad_long_total_seed410714",
+        "wall_seconds": 1200,
+        "scientific_seconds": 1170
+      },
+      {
+        "case_id": "S7_broad_long_total_seed410715",
+        "wall_seconds": 1200,
+        "scientific_seconds": 1170
+      },
+      {
+        "case_id": "S7_broad_long_total_seed410716",
+        "wall_seconds": 1200,
+        "scientific_seconds": 1170
+      },
+      {
+        "case_id": "S7_broad_long_total_seed410717",
+        "wall_seconds": 1200,
+        "scientific_seconds": 1170
+      },
+      {
+        "case_id": "S7_broad_long_total_seed410718",
+        "wall_seconds": 1200,
+        "scientific_seconds": 1170
+      },
+      {
+        "case_id": "S7_broad_long_total_seed410719",
+        "wall_seconds": 1200,
+        "scientific_seconds": 1170
+      },
+      {
+        "case_id": "S7_broad_long_total_seed410720",
+        "wall_seconds": 1200,
+        "scientific_seconds": 1170
+      }
+    ],
+    "policy": "Same accepted amendment predicate applies to actual optimizer callbacks for untouched cases; every false-predicate path and original selected/test gate remains unchanged.",
+    "activation": "Only after resumed410603 is complete and independently accepted, then separate host admissions within original slots and aggregate limits; stop on any technical failure.",
+    "hosts": [
+      {
+        "host": 1,
+        "case_ids": [
+          "S6_narrow_short_total_seed410603"
+        ],
+        "scientific_seconds": 1776,
+        "case_outer_seconds": 1806,
+        "role": "standalone_amended_partial_resume_pilot",
+        "host_overhead_reserve_seconds": 1800,
+        "whole_host_upper_seconds": 3606
+      },
+      {
+        "host": 2,
+        "case_ids": [
+          "S6_narrow_short_total_seed410604"
+        ],
+        "scientific_seconds": 2490,
+        "case_outer_seconds": 2520,
+        "role": "untouched_single_case_after_pilot_audit",
+        "host_overhead_reserve_seconds": 1800,
+        "whole_host_upper_seconds": 4320
+      },
+      {
+        "host": 3,
+        "case_ids": [
+          "S6_narrow_short_total_seed410606",
+          "S6_narrow_short_total_seed410607",
+          "S6_narrow_short_total_seed410608",
+          "S6_narrow_short_total_seed410609",
+          "S6_narrow_short_total_seed410610"
+        ],
+        "case_outer_seconds": 12600,
+        "role": "unchanged_remaining_roster_after_pilot_audit",
+        "host_overhead_reserve_seconds": 1800,
+        "whole_host_upper_seconds": 14400
+      },
+      {
+        "host": 4,
+        "case_ids": [
+          "S6_narrow_short_total_seed410611",
+          "S6_narrow_short_total_seed410612",
+          "S6_narrow_short_total_seed410613",
+          "S6_narrow_short_total_seed410614",
+          "S6_narrow_short_total_seed410615"
+        ],
+        "case_outer_seconds": 12600,
+        "role": "unchanged_remaining_roster_after_pilot_audit",
+        "host_overhead_reserve_seconds": 1800,
+        "whole_host_upper_seconds": 14400
+      },
+      {
+        "host": 5,
+        "case_ids": [
+          "S6_narrow_short_total_seed410616",
+          "S6_narrow_short_total_seed410617",
+          "S6_narrow_short_total_seed410618",
+          "S6_narrow_short_total_seed410619",
+          "S6_narrow_short_total_seed410620"
+        ],
+        "case_outer_seconds": 12600,
+        "role": "unchanged_remaining_roster_after_pilot_audit",
+        "host_overhead_reserve_seconds": 1800,
+        "whole_host_upper_seconds": 14400
+      },
+      {
+        "host": 6,
+        "case_ids": [
+          "S7_broad_long_total_seed410702",
+          "S7_broad_long_total_seed410703",
+          "S7_broad_long_total_seed410704",
+          "S7_broad_long_total_seed410705",
+          "S7_broad_long_total_seed410706",
+          "S7_broad_long_total_seed410707",
+          "S7_broad_long_total_seed410708",
+          "S7_broad_long_total_seed410709"
+        ],
+        "case_outer_seconds": 9600,
+        "role": "unchanged_remaining_roster_after_pilot_audit",
+        "host_overhead_reserve_seconds": 1800,
+        "whole_host_upper_seconds": 11400
+      },
+      {
+        "host": 7,
+        "case_ids": [
+          "S7_broad_long_total_seed410710",
+          "S7_broad_long_total_seed410711",
+          "S7_broad_long_total_seed410712",
+          "S7_broad_long_total_seed410713",
+          "S7_broad_long_total_seed410714",
+          "S7_broad_long_total_seed410715",
+          "S7_broad_long_total_seed410716",
+          "S7_broad_long_total_seed410717"
+        ],
+        "case_outer_seconds": 9600,
+        "role": "unchanged_remaining_roster_after_pilot_audit",
+        "host_overhead_reserve_seconds": 1800,
+        "whole_host_upper_seconds": 11400
+      },
+      {
+        "host": 8,
+        "case_ids": [
+          "S7_broad_long_total_seed410718",
+          "S7_broad_long_total_seed410719",
+          "S7_broad_long_total_seed410720"
+        ],
+        "case_outer_seconds": 3600,
+        "role": "unchanged_remaining_roster_after_pilot_audit",
+        "host_overhead_reserve_seconds": 1800,
+        "whole_host_upper_seconds": 5400
+      }
+    ],
+    "second_host_boundary": "After independently accepted410603, run410604 alone and audit it before the larger original-roster batches."
+  },
+  "required_regression_controls": [
+    "False-predicate optimizer calls return the exact original value/gradient object/semantics; no fine calls and no changed source dependencies.",
+    "Successful target fallback returns fine value AND gradient at exact same theta and records both original failure/fine call and cost.",
+    "Reject nonfinite coarse P/M/E/joint/gradient and any different exception origin/message; preserve original gradient-error Powell path.",
+    "Threshold boundary controls: E=-1e-9 and accepted tiny-negative coarse values do not trigger; stricter-negative original guard may trigger.",
+    "Matching exception in floor/fresh-return/selection/fine-check/test contexts never invokes fallback; no held-out state is touched.",
+    "Reject fine negative E, nonfinite score/gradient, changed P/M, changed point/model/phase, fine exception, value-gap or projected-gradient-gap excess.",
+    "Check exact frozen projected-gradient boundary convention, active dimensions and strict acceptance inequalities.",
+    "No recursive refinement or hidden optimizer retry; original primary/Powell limits and callback counts remain unchanged while all extra scientific work is counted.",
+    "Retained410419 gradient exception cannot trigger; retained410518 cap unknown cannot be retried/reclassified.",
+    "Partial resume preserves all three completed arms, saved checks, total floor and four candidate/record values exactly and appends only original starts4?7.",
+    "Reject mutated candidate parameters/score/gradient/indices, missing case or trace bytes, altered source/runtime/native/input pins, missing failure lineage, or inferred history completion.",
+    "New final candidate selection/tie order, fresh-return1e-9 agreement and selected coarse/fine checks remain unchanged; a fresh-coarse-invalid returned state is rejected.",
+    "Resume budget uses retained driver/supervisor wall times and exact cumulative caps; timeout/resource/interruption stays a technical stop with durable evidence.",
+    "Separate amended method version in case/index/report; original prototype and permanent unknown remain immutable; reporting never infers full80 success.",
+    "Partial-resume remaining-start loop is equivalent to frozen loop mechanics for4?7, including exact starts/bounds/options/attempt success, candidate indexing and original tie key; no saved prefix operation is presented as new computation."
+  ],
+  "acceptance_sequence": [
+    "C independent design review of this proposal, diagnostic evidence and census/reuse/resource scope",
+    "Separate adapter/driver/checker implementation and invented semantic controls; no edits to original scientific sources",
+    "Independent source review binds exact amendment and frozen dependency bytes plus all new executable support before import",
+    "Separate single resumed-case admission with exact caps and no parallel scientific work",
+    "Independent saved-output review of resumed case, fallback events, reused values and complete training/test/disposition custody",
+    "Only then separately admitted untouched-case hosts, each independently audited",
+    "Final reporting approval only after all80 dispositions audited and original task2/task3/reporting gates pass"
+  ],
+  "reporting": {
+    "original_prototype_immutable": true,
+    "amendment_version_required": true,
+    "compatible_saved_history_count": 43,
+    "new_amendment_history_maximum": 36,
+    "original_permanent_unknown_count": 1,
+    "planned_histories": 80,
+    "planned_procedure_slots": 400,
+    "regime_procedure_rows": 20,
+    "scientific_completion": false,
+    "original_publication_gate_satisfied": false,
+    "reporting_acceptance": "Separate reporting_accepted/disposition_accounting_complete only after all80 audited dispositions and other required task2/task3 gates; not a full-success scientific claim.",
+    "missing_data": "Keep unknown outcomes empty/unavailable; complete20-history regime/procedure requirement for full mean/median/Wilson. Preserve original fixed/intercept comparators.",
+    "provenance_statement": "Identify43 compatible saved computations versus histories computed under the named numerical amendment. Do not claim80 fresh refits or an unchanged original numerical protocol.",
+    "original_failure_visibility": "Retain410603 prototype technical-failure artifact and amended continuation as distinct linked attempts; immutable410518 remains unknown.",
+    "required_identity_fields": [
+      "original_scientific_protocol_sha256",
+      "numerical_amendment_version",
+      "numerical_amendment_protocol_sha256",
+      "source/runtime/native/input identities",
+      "execution_id",
+      "compatible_saved_or_amended_computation_kind",
+      "reuse_map_sha256",
+      "refinement_event_log_sha256",
+      "original_failure_reference"
+    ]
+  }
+}

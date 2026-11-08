@@ -1,0 +1,163 @@
+{
+  "schema": "joint_exposure_refinement_independent_design_review_v1",
+  "passed": true,
+  "review_kind": "live_agent_design_review",
+  "live_agent_review": true,
+  "live_agent_review_performed": true,
+  "reviewer": "/root/continuation_cpu",
+  "reviewed_utc": "2026-11-08T02:12:05.629120+00:00",
+  "verdict": "ACCEPT_FOR_SEPARATE_IMPLEMENTATION_AND_SOURCE_REVIEW_ONLY",
+  "implementation_admitted": true,
+  "source_implementation_accepted": false,
+  "numerical_execution_admitted": false,
+  "fits_admitted": false,
+  "scientific_completion": false,
+  "original_publication_gate_satisfied": false,
+  "reviewed_artifacts": {
+    "formal_protocol": {
+      "path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_exposure_refinement_design\\protocol_proposal.json",
+      "sha256": "5ff434b999e2dd729552e18012fe97319578eb101738597fe7f8d18d9032ea23"
+    },
+    "formal_proposal": {
+      "path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_exposure_refinement_design\\proposal.md",
+      "sha256": "e54a970675463389ce6853e0fcf83fdda8bdf425d9ff31f44fa8e749aecc5361"
+    },
+    "formal_result": {
+      "path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_exposure_refinement_design\\result.json",
+      "sha256": "52436403749bad40e6a7d626a1af4d55e5315fbd5486934690944b8cb4a25b42"
+    },
+    "architecture": {
+      "path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_exposure_refinement_architecture\\plan.md",
+      "sha256": "8bcdde5ab35b4f9df72abd1f14d3e4d6fba177bc5bed254898ddee54a7ebeed9"
+    },
+    "architecture_result": {
+      "path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_exposure_refinement_architecture\\result.json",
+      "sha256": "65fa11595b71cb19d2b61a1ec8d6795e4fe2a210d63263e382733ace044a5b21"
+    },
+    "resource_addendum": {
+      "path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_exposure_refinement_resources\\proposal.json",
+      "sha256": "e20f857ca92147c2a4710e915ac13fbd9c997a6de1ffdca52fc338c61365bd14"
+    },
+    "independent_reuse_census": {
+      "path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_output_and_replay_acceptance\\joint_exposure_refinement_reuse_census.json",
+      "sha256": "beeb04498e6f57fa4d6027883ee5eb69a1f7a5cbb8ef412423f95991c750d4a0"
+    },
+    "diagnostic_output_review": {
+      "path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_output_and_replay_acceptance\\joint_exposure_diagnostic01_output_review.json",
+      "sha256": "5cf20101faf273ef2d8e992f780439a945e4e134ffddf15cef061f65752165ef"
+    },
+    "partial_failure_review": {
+      "path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_output_and_replay_acceptance\\joint_remaining_host02_failure_output_review.json",
+      "sha256": "aa43adfe5c2ffcf3c0056887066899b9cd4ac33bb6631a7f345860be99855343"
+    }
+  },
+  "resource_addendum": {
+    "superseded_design_resource_sha256": "b8754d0be4f65fc9a41ab7b1f82fdae2cbbf6036a47554d399f6da7c90dce79e",
+    "current_resource_sha256": "e20f857ca92147c2a4710e915ac13fbd9c997a6de1ffdca52fc338c61365bd14",
+    "change": "Only qualification of unmeasured historical setup/platform costs; numerical amounts, roster, caps and scientific amendment unchanged. This review explicitly binds the addendum alongside the unchanged formal design."
+  },
+  "numerical_assessment": {
+    "accepted": true,
+    "method_version": "joint_exposure_refinement_v1",
+    "trigger": "Only actual training optimizer callback, exact frozen full-exposure guard origin/message, finite coarse P/M/E/joint/full gradient, and E strictly below -1e-9.",
+    "refinement": "One same-state original order16 value and full gradient pair, no recursion; nonnegative fine exposure, exact P/M identity, original1e-4 joint and projected-gradient discrepancy criteria.",
+    "original_fresh_floor_selected_test_checks_unchanged": true,
+    "original_fresh_agreement_tolerance": 1e-09,
+    "observed_joint_discrepancy": 3.798049874603748e-08,
+    "observed_projected_gradient_scaled_discrepancy": 9.209899396103431e-10,
+    "observed_vector_passes_proposed_local_checks": true,
+    "limits": "A narrowly triggered adaptive numerical oracle; no smooth-objective/global-optimizer/continuum-error guarantee. The new version must not be described as unchanged original numerical execution."
+  },
+  "reuse_assessment": {
+    "accepted": true,
+    "compatible_saved_complete_cases": 43,
+    "independently_verified_paired_attempts": 1377,
+    "target_exceptions": 0,
+    "other_exception": [
+      {
+        "case_id": "S4_narrow_short_imm_seed410419",
+        "model": "LIplus_immigrant",
+        "start_index": 6,
+        "method": "L-BFGS-B",
+        "error": "Finite objective has unrepresentable gradient"
+      }
+    ],
+    "preserved_unknown": "S5_broad_long_imm_seed410518",
+    "retry_unknown_allowed": false,
+    "partial_case": "S6_narrow_short_total_seed410603",
+    "saved_complete_arms": [
+      "null",
+      "LI",
+      "LIplus_immigrant"
+    ],
+    "saved_total_starts": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "new_total_starts": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "original_two_failed_start4_attempts_retained": true,
+    "semantics": "Import exact saved fits/checks/floor/candidates before selection. Execute only the original-semantics4?7 suffix under the new callback adapter; no fake completed optimizer runs, no post-selection canonicalization, no repeated complete fits.",
+    "future_untouched_histories": 35,
+    "partition": "43 compatible complete +1 permanent unknown +1 partial amendment pilot +35 untouched =80 planned histories"
+  },
+  "resource_assessment": {
+    "accepted_with_explicit_measurement_qualification": true,
+    "costs_seconds": {
+      "all_indexed_scientific_seconds": "23441.40122622",
+      "failed_410603_scientific_seconds_not_indexed": "713.4644529529999",
+      "known_prior_outer_overhead_seconds": "51.02269905900175",
+      "prior_failed_launch_charge_seconds": "290",
+      "prior_diagnostic_charge_seconds": "80",
+      "pilot04_incremental_workflow_overhead_seconds": "94.6013867429999",
+      "remaining_pilot01_incremental_workflow_overhead_seconds": "99.312696377",
+      "remaining_host02_incremental_workflow_overhead_seconds": "99.985629928",
+      "exposure_diagnostic01_whole_workflow_charge_seconds": "270"
+    },
+    "accounted_seconds": "25139.78809128000155",
+    "future_case_slots_seconds": "64926",
+    "future_host_overhead_seconds": "14400",
+    "global_finalization_reserve_seconds": "1800",
+    "known_accounted_plus_future_reservations_seconds": "106265.78809128000155",
+    "headroom_seconds": "8934.21190871999845",
+    "shared_cap_seconds": 115200,
+    "shared_deadline_utc": "2026-11-09T07:15:00+00:00",
+    "threads": 2,
+    "workers": 1,
+    "numerical_concurrency": 1,
+    "partial_new_scientific_cap_seconds": 1776,
+    "partial_new_outer_cap_seconds": 1806,
+    "partial_cumulative_scientific_upper_seconds": "2489.4644529529999",
+    "partial_cumulative_outer_upper_seconds": "2519.9540351120002",
+    "original_scientific_cap_seconds": 2490,
+    "original_outer_cap_seconds": 2520,
+    "scope": "Old failed work and diagnostic270 whole-launch charged once. Earlier unmeasured setup/transfer/platform time is not asserted zero; headroom is contingency, not a measurement or proved bound on all historical platform time."
+  },
+  "required_implementation_controls": [
+    "Scope context to each actual optimizer objective invocation; clear on all returns/exceptions. Whole-minimize/whole-fit activation is insufficient. Floors/fresh/selection/fine/test/replayed support cannot refine.",
+    "False trigger forwards original object/values/semantics without extra fine calls. Reject wrong origin, wrong point/model/phase/order, nonfinite fields, tiny-negative accepted coarse values, and gradient-only errors.",
+    "Accepted trigger returns original fine value AND gradient together; verify all specified identities/deltas and preserve rejection evidence. Never clip, renormalize, substitute Qa, or widen thresholds.",
+    "Direct partial-prefix import must preserve exact original candidates/records/checks, indices and tie order. Source-equivalence controls cover new suffix loop/rescue/options/fresh checks/selection; no completed optimizer is executed.",
+    "Physical evaluations, callbacks, refinements and old/new attempts have separate complete ledgers. Original two start4 failures and prior costs remain immutable; all new work stays inside remaining partial allowance.",
+    "New schemas/source/protocol/transition/checker must name amendment and preserve43 original source identities. One standalone partial pilot and independent live audit precede410604 and the unchanged35-case suffix.",
+    "Cap/unknown/technical failures remain explicit. Original410518 unknown cannot be retried, missing outcomes are unavailable, and aggregate statistics require all20 complete histories in that group."
+  ],
+  "reporting_assessment": "Require separately versioned procedure and disposition reporting; never80 fresh refits, original full-success, causal inhibition, forecast skill or nominal-size claims. All80 dispositions and existing Task2/Task3/reporting gates remain necessary.",
+  "blocking_findings": [],
+  "independent_work_performed": [
+    "Read formal numerical rule and architecture against frozen fit/model/runner source.",
+    "Reaggregated43 source-bound case/trace pairs and1377 attempts with zero target exceptions.",
+    "Recomputed actual diagnostic value/projected-gradient discrepancy using retained outputs only.",
+    "Checked exact failed-case lineage, remaining35 roster, per-case cumulative caps and Decimal resource arithmetic."
+  ],
+  "actual_history_evaluations": 0,
+  "actual_native_calls": 0,
+  "optimizer_calls": 0,
+  "repository_source_edits": 0
+}

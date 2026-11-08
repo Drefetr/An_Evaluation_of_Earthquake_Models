@@ -1,0 +1,3803 @@
+{
+  "schema": "joint_saved_exposure_exception_census_v1",
+  "passed": true,
+  "scientific_acceptance": false,
+  "task_id": "joint_exposure_prior_failure_census",
+  "attempt_id": "0f043563-bb7b-4546-8b0f-7c05300c83c0",
+  "source_index": {
+    "archive": {
+      "path": "validation/reproductions/joint_nuisance_20261107/continuation/remaining_host02_exposure_failure.zip",
+      "sha256": "9319b3669c5fda81fab941038913a0c3bc7178c506441af4f244b7e64c228b88",
+      "review": "validation/reproductions/joint_nuisance_20261107/continuation/remaining_host02_exposure_failure_review.json",
+      "review_sha256": "aa43adfe5c2ffcf3c0056887066899b9cd4ac33bb6631a7f345860be99855343"
+    },
+    "member": "host/index.json",
+    "sha256": "34506b398ceefb757733a8ea3732d786625601e2bae7270884b306e8d1c87962"
+  },
+  "archives": {
+    "recovery_pilot04_optimizer_cap_failed.zip": {
+      "path": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "review": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failure_review.json",
+      "review_sha256": "acad07075963f220f59c257eb512555000ec5cffe3fa46ba3df0183775de6c80"
+    },
+    "remaining_pilot_01.zip": {
+      "path": "validation/reproductions/joint_nuisance_20261107/continuation/remaining_pilot_01.zip",
+      "sha256": "9ca2b0d3bfd58c3f3f547301c4e1a28822dbcaa6164baff2619805db97af95fd",
+      "review": "validation/reproductions/joint_nuisance_20261107/continuation/remaining_pilot_01_independent_review.json",
+      "review_sha256": "3674fb5bb3813dc5820b16dff3c7f8d6ae6613313b58f57c1737da863a6f3ed3"
+    },
+    "remaining_host02_exposure_failure.zip": {
+      "path": "validation/reproductions/joint_nuisance_20261107/continuation/remaining_host02_exposure_failure.zip",
+      "sha256": "9319b3669c5fda81fab941038913a0c3bc7178c506441af4f244b7e64c228b88",
+      "review": "validation/reproductions/joint_nuisance_20261107/continuation/remaining_host02_exposure_failure_review.json",
+      "review_sha256": "aa43adfe5c2ffcf3c0056887066899b9cd4ac33bb6631a7f345860be99855343"
+    }
+  },
+  "coverage": {
+    "accepted_complete": 43,
+    "permanent_unknown": 1,
+    "current_technical_failure": 1,
+    "histories_scanned": 45,
+    "all_case_and_trace_hashes_verified": true,
+    "all_trace_pairs_complete": true,
+    "complete_case_fit_trace_records_exact": true,
+    "hidden_missing_traces": 0,
+    "missing_case_records_in_trace": 0,
+    "partial_case_trace_extras": [
+      {
+        "case_id": "S5_broad_long_imm_seed410518",
+        "extra_trace_records": 7,
+        "models": [
+          "LIplus_immigrant"
+        ],
+        "reason": "Retained recovery masking failure left partial case JSON with null/LI only; complete paired trace remains authoritative for immigrant attempts."
+      }
+    ]
+  },
+  "totals": {
+    "optimizer_attempt_records": 1430,
+    "returned": 1426,
+    "successful_returns": 1425,
+    "exception": 4
+  },
+  "exposure_exception_count": 2,
+  "complete_histories_with_exposure_exception": [],
+  "complete_exposure_exception_count": 0,
+  "same_start_successful_Powell_rescues": 0,
+  "rescued_candidate_selected_count": 0,
+  "failed_theta_missing_count": 0,
+  "histories": [
+    {
+      "case_id": "S4_narrow_short_imm_seed410401",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410401.json",
+      "case_sha256": "cdaa8547ec2f9a19e0b2b8a7730f40ab953b47358b8cf658a5324ddd6c24398a",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410401.attempts.jsonl",
+      "trace_sha256": "a1c4ab379a639a14b1712710099560c41cccded2b16a8766f60d7e6e203f7c7c",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 6,
+          "start_index": 5,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 5,
+              "trace_end_line": 12
+            }
+          ],
+          "selected_parameters_sha256": "2a3e07b3e16deb04b0a9a1565380c734200633ef2389c9d76df5825177a865f3"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 6,
+          "start_index": 5,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 5,
+              "trace_end_line": 28
+            }
+          ],
+          "selected_parameters_sha256": "014dae6c5d59e2d7487bec1bcb4f44012d3f86049ed1b4852c68a38d48a63c2a"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 3,
+          "start_index": 2,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 2,
+              "trace_end_line": 38
+            }
+          ],
+          "selected_parameters_sha256": "82dc2121085ee82618d8fd8b3543d0c8f3c7b743fd5837ea49ee78767ad09e91"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 6,
+          "start_index": 5,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 5,
+              "trace_end_line": 60
+            }
+          ],
+          "selected_parameters_sha256": "9b6151d1cbeabacc5174f500c471de192bda5c920d57fb77f1fb17dcc65de59e"
+        }
+      }
+    },
+    {
+      "case_id": "S5_broad_long_imm_seed410501",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410501.json",
+      "case_sha256": "7c08ae112d6bec411a6577da5b7e85dce5b019f8c4df6117f6d53bfed6abbcb8",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410501.attempts.jsonl",
+      "trace_sha256": "32106e7e7b01f2f3809812f859c205d87dde0fc03a02c00aafcf3de4c4f736f5",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 6,
+          "start_index": 5,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 5,
+              "trace_end_line": 12
+            }
+          ],
+          "selected_parameters_sha256": "6648db4e2586907bd27e3a884c1f16d95f0966d0a1600b6b79f9efeda6c221e8"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 32
+            }
+          ],
+          "selected_parameters_sha256": "0aa9608097f1f968e8866779f565d9966072a28de4efff701ca356ee1ce365a0"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 3,
+          "start_index": 2,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 2,
+              "trace_end_line": 38
+            }
+          ],
+          "selected_parameters_sha256": "d5b2c4479e92f033a783733180a9a469d66ec49f0da2d335d6064a071745f917"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 3,
+          "start_index": 2,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 2,
+              "trace_end_line": 54
+            }
+          ],
+          "selected_parameters_sha256": "a0fcddb56706d3e5bf0297f947e12179e913c05953199fb61938ff3d09e0806e"
+        }
+      }
+    },
+    {
+      "case_id": "S6_narrow_short_total_seed410601",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S6_narrow_short_total_seed410601.json",
+      "case_sha256": "20e3093d5b94e3ce2cbea50889b05aa2bb56e654030aca63d79cb1104a24d897",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S6_narrow_short_total_seed410601.attempts.jsonl",
+      "trace_sha256": "8d615e472147371d6c59e6c2fcd43aa90d737c0ee78186e66059bca4355cfa7a",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 2,
+          "start_index": 1,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 1,
+              "trace_end_line": 4
+            }
+          ],
+          "selected_parameters_sha256": "36d2a98b3379a191ed45b1164eb07e0e34bea56c159dccbe9977c4a439346b3c"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 4,
+          "start_index": 3,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 3,
+              "trace_end_line": 24
+            }
+          ],
+          "selected_parameters_sha256": "b1de93950f1a8ea235bddd7f2d94dbbeba02dbe34985618b6a93a0254b48b243"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 3,
+          "start_index": 2,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 2,
+              "trace_end_line": 38
+            }
+          ],
+          "selected_parameters_sha256": "861eece4ffbe9271df9af66ac18404612eda801b4bcba1e2e71d56f0044ee704"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 5,
+          "start_index": 4,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 4,
+              "trace_end_line": 58
+            }
+          ],
+          "selected_parameters_sha256": "411a761e9f1bb76bb0f114b2cf951f39b938eeba50afc4a13617771c430282da"
+        }
+      }
+    },
+    {
+      "case_id": "S6_narrow_short_total_seed410605",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S6_narrow_short_total_seed410605.json",
+      "case_sha256": "c09bf9968eaa5fbfee3430f2ba72af170a27c77074d29ea9972343c3e89d07c2",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S6_narrow_short_total_seed410605.attempts.jsonl",
+      "trace_sha256": "9c95ba2500cdb53dfeeb58bfcf079044753a26b70ad5dcb3968ed295629f153b",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 16
+            }
+          ],
+          "selected_parameters_sha256": "399f92ff4af6c70ff384e7dc1b56487050bdaaefd575d1036e409237a94d4ded"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 4,
+          "start_index": 3,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 3,
+              "trace_end_line": 24
+            }
+          ],
+          "selected_parameters_sha256": "84df1c862df98eda7fc0805c209351a488f8790f2cefa532f6d1a65803550d1f"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 1,
+          "start_index": 0,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 0,
+              "trace_end_line": 34
+            }
+          ],
+          "selected_parameters_sha256": "a109b1882e6c109e8497750a7ac52028f264f2c66c85c9c35d7fd45465896c32"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 1,
+          "start_index": 0,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 0,
+              "trace_end_line": 50
+            }
+          ],
+          "selected_parameters_sha256": "118e4115183a592ff724ad7f2de7b0bd79fd4dda0cd70ca78e59bf3b794d92e7"
+        }
+      }
+    },
+    {
+      "case_id": "S7_broad_long_total_seed410701",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S7_broad_long_total_seed410701.json",
+      "case_sha256": "4d716587ae7ede35c89f85d1409d41480b058229f4a93a530fe138abb2106c70",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S7_broad_long_total_seed410701.attempts.jsonl",
+      "trace_sha256": "956ab83ef5ea2a088ee1917373388cb9069a5811eb9b6af2ff1ebcfee756a19f",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 5,
+          "start_index": 4,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 4,
+              "trace_end_line": 10
+            }
+          ],
+          "selected_parameters_sha256": "32861e180ed19d33b17bd84c7e0c4141377bd1e33c5452138608ec0268045733"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 2,
+          "start_index": 1,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 1,
+              "trace_end_line": 20
+            }
+          ],
+          "selected_parameters_sha256": "a2d4e40bb3642de5b57eb4b1bef82e5fe348d64c3621f6fa5f572d0268aa4f80"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 5,
+          "start_index": 4,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 4,
+              "trace_end_line": 42
+            }
+          ],
+          "selected_parameters_sha256": "a4093257adcb4fb5d8f0cb5ac3cc5b16cc4476d5fe932270ffd298dd261720a4"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 6,
+          "start_index": 5,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 5,
+              "trace_end_line": 60
+            }
+          ],
+          "selected_parameters_sha256": "03fea2174d4b40529a8a9fa9c05ddb91294b2761e6193d9526f424bab5177041"
+        }
+      }
+    },
+    {
+      "case_id": "S4_narrow_short_imm_seed410402",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410402.json",
+      "case_sha256": "e54519fbd382576f84493922b3b82a6ca7a2aacca94ce347c900bd9329c40296",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410402.attempts.jsonl",
+      "trace_sha256": "58aff1740efbcb4cf42f9923311dfd10a2dd7177b4291c347ac4d3f522eb5a16",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 1,
+          "start_index": 0,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 0,
+              "trace_end_line": 2
+            }
+          ],
+          "selected_parameters_sha256": "d1a11ac36e6d4b4f0552f547c05661100e1fbe0e043c5babea21bd6dd1738012"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 32
+            }
+          ],
+          "selected_parameters_sha256": "72ea1257437335a9ef4a7533a1001d7fa8c9a479cbe2c1772eed768751992b5a"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 48
+            }
+          ],
+          "selected_parameters_sha256": "5382150d13fbef7e0110f22fbd1138f7ec365e203c25dec5a3ca657ea536166b"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 4,
+          "start_index": 3,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 3,
+              "trace_end_line": 56
+            }
+          ],
+          "selected_parameters_sha256": "77a711c40b76404ef7bf50c0e3b86d316e01033327487b7d6816a270f7265edb"
+        }
+      }
+    },
+    {
+      "case_id": "S4_narrow_short_imm_seed410403",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410403.json",
+      "case_sha256": "d6298f0464452ca9590353748af311fc569be1c0ef7b5f59e6a8ecd890c1444f",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410403.attempts.jsonl",
+      "trace_sha256": "4766c81af30e9dfddb3d29fe657575aec2b690de80d5065b8fd4b61eb6fa0e69",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 1,
+          "start_index": 0,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 0,
+              "trace_end_line": 2
+            }
+          ],
+          "selected_parameters_sha256": "d7f3728665838046a11ef69320ab5603db6271cd5537ddecbfa3c94b647c9b7b"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 5,
+          "start_index": 4,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 4,
+              "trace_end_line": 26
+            }
+          ],
+          "selected_parameters_sha256": "18bc426037d60ff657fbfd05d8c7e20ab6ae86949b2b15b1b4628bfca9ca4aa4"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 6,
+          "start_index": 5,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 5,
+              "trace_end_line": 44
+            }
+          ],
+          "selected_parameters_sha256": "01d62a0933a0d41defaead84a6edaca9dc5a5c89d5396af0c9c76c212ef76bd3"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 2,
+          "start_index": 1,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 1,
+              "trace_end_line": 52
+            }
+          ],
+          "selected_parameters_sha256": "5088496c75ddc1e229af29cafc86f0893100cfc9f433a219b8e8f4ce5d4053c9"
+        }
+      }
+    },
+    {
+      "case_id": "S4_narrow_short_imm_seed410404",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410404.json",
+      "case_sha256": "f4353f67f9a1ecab9518b4404d8729511805acc46a99f03bf3c52ba605e42e76",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410404.attempts.jsonl",
+      "trace_sha256": "265af3e1e4d1f75710374e904a60e202c67c8de8513864f027ea43ccd52c4494",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 4,
+          "start_index": 3,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 3,
+              "trace_end_line": 8
+            }
+          ],
+          "selected_parameters_sha256": "514cacbf6882995ae7c99f47522fa8b77ae7e454d36792cccff9b937820f3e75"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 32
+            }
+          ],
+          "selected_parameters_sha256": "d290063ee66b7b909e4b8d14edd5de09cd9de775c7f3b7edbbb084f272d00084"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 48
+            }
+          ],
+          "selected_parameters_sha256": "62b192b6e42c434ae372dfffa360404fbb90b62ce72ec8c06a3a383a170ed78c"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 1,
+          "start_index": 0,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 0,
+              "trace_end_line": 50
+            }
+          ],
+          "selected_parameters_sha256": "76c533b2ce4a8ea11eb6274f356fcd8c58e03c77cd02d864ea51006502eaf4c2"
+        }
+      }
+    },
+    {
+      "case_id": "S4_narrow_short_imm_seed410405",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410405.json",
+      "case_sha256": "4cb4c631364f2a72303d3c5e255d2eb274a16ffa73d5699e0c1bf7afe0810bfc",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410405.attempts.jsonl",
+      "trace_sha256": "e637f43bd067ae63c2b775fcee5cdb473875d03a0bbc3ec4a89b335ceb9c0564",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 4,
+          "start_index": 3,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 3,
+              "trace_end_line": 8
+            }
+          ],
+          "selected_parameters_sha256": "ca0c51624b2c55666d55c0ca71c4b18c59324fe45b8a21492f9dbe1ab5b1af7d"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 7,
+          "start_index": 6,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 6,
+              "trace_end_line": 30
+            }
+          ],
+          "selected_parameters_sha256": "81bd5f45b6c96cb1313b06b0aea5885efef094c412777fafec197f1ad6ab8fd4"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 7,
+          "start_index": 6,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 6,
+              "trace_end_line": 46
+            }
+          ],
+          "selected_parameters_sha256": "0d9e53d4ec07d164b925a5cb8457583c97b669c8ac4e00bf5632bae4c924655d"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 5,
+          "start_index": 4,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 4,
+              "trace_end_line": 58
+            }
+          ],
+          "selected_parameters_sha256": "7e185f76c7eb24ffcc729026ff67f96f103cdb2bc0388810520b779f54bedd7a"
+        }
+      }
+    },
+    {
+      "case_id": "S4_narrow_short_imm_seed410406",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410406.json",
+      "case_sha256": "e9aac1849afa6c1ce2c7424119272b90c8b22d0c01718098697c55e79e3ce4c8",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410406.attempts.jsonl",
+      "trace_sha256": "280f48cbaa3fe43f122b3a77dad2d6af3d5707ba4db433c5841117003f5d4271",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 1,
+          "start_index": 0,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 0,
+              "trace_end_line": 2
+            }
+          ],
+          "selected_parameters_sha256": "ad2cd5eae21579a6d6f546a5e9beb3012f66bc032a842a50da537f9b151c9b8d"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 5,
+          "start_index": 4,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 4,
+              "trace_end_line": 26
+            }
+          ],
+          "selected_parameters_sha256": "ad399b10aee57d2f5ae71fdedf99d1e5217c672cf6b152d795bf991383c6760f"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 48
+            }
+          ],
+          "selected_parameters_sha256": "594f84701efd23a528d4500e06bf870583b49da18e2f5dc1739e6282ceee4242"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 5,
+          "start_index": 4,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 4,
+              "trace_end_line": 58
+            }
+          ],
+          "selected_parameters_sha256": "98da9029121faf71cc2aee0ff5b488b2c648f42ae4c1fc3c4e8cb43cf53ffe16"
+        }
+      }
+    },
+    {
+      "case_id": "S4_narrow_short_imm_seed410407",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410407.json",
+      "case_sha256": "90a5fa905e0e81368732ba9309e2b707bda02da171e47133f8501c64e90df254",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410407.attempts.jsonl",
+      "trace_sha256": "2dd97c73bdf7f73a92bd7dd3227335433913fbc8d746049c3a9f2e2bdb984dd0",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 2,
+          "start_index": 1,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 1,
+              "trace_end_line": 4
+            }
+          ],
+          "selected_parameters_sha256": "adb49c673ebbd4d9eaacec43678b33a6c2663063085b609b2514a536a8468c3c"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 7,
+          "start_index": 6,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 6,
+              "trace_end_line": 30
+            }
+          ],
+          "selected_parameters_sha256": "901f5a273a760f3f7a706e155917e4f498f31e55ca7bf6cd6df4e46c6235bcf0"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 7,
+          "start_index": 6,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 6,
+              "trace_end_line": 46
+            }
+          ],
+          "selected_parameters_sha256": "f5c8c279dc362c0503f5278dcf6bc8159a5667ecc54b5df2cf80600c6e7ff99b"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 7,
+          "start_index": 6,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 6,
+              "trace_end_line": 62
+            }
+          ],
+          "selected_parameters_sha256": "a5bed1b7858a4e6443a87fb1d010dfec0d9d53df11038d756d04e659a463e3cc"
+        }
+      }
+    },
+    {
+      "case_id": "S4_narrow_short_imm_seed410408",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410408.json",
+      "case_sha256": "6b05b2a6a47c6e2d2b812ec51caaccc537cacdd29021700b7ef2f3389708ade4",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410408.attempts.jsonl",
+      "trace_sha256": "56a5aa24ef975cfceebe900187ce23238f4b9e19cebaaedde2534732f79cefc3",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 3,
+          "start_index": 2,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 2,
+              "trace_end_line": 6
+            }
+          ],
+          "selected_parameters_sha256": "a73ac5fc3dcaa4a79554bc0d142107ce6ae67171ce3eb704eac22c2fcc6639f9"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 2,
+          "start_index": 1,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 1,
+              "trace_end_line": 20
+            }
+          ],
+          "selected_parameters_sha256": "2d49f7d122e5f6fcedda241425ac6f6749ac36595b6f2fdc4c9253ed24843505"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 4,
+          "start_index": 3,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 3,
+              "trace_end_line": 40
+            }
+          ],
+          "selected_parameters_sha256": "64ab76e14eed49161f4879f5477d7fa4a7177b6a428c4423afc087d95dee6d29"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 5,
+          "start_index": 4,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 4,
+              "trace_end_line": 58
+            }
+          ],
+          "selected_parameters_sha256": "64a2f2470db86ca87fc4c37349b1adc71f113c50f4652d7b8571cff179550a15"
+        }
+      }
+    },
+    {
+      "case_id": "S4_narrow_short_imm_seed410409",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410409.json",
+      "case_sha256": "cc9c160ceb723f576050dd089bd0320e1c33d722ded29f8531dbbea87910eb6e",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410409.attempts.jsonl",
+      "trace_sha256": "f2d80f9b847a9dbc6141ad5f91568d808dd034b401c79481d4bc75bcaa02c681",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 16
+            }
+          ],
+          "selected_parameters_sha256": "65af30310414a9d8a64a5235498adb999ec3a804f9deb8d048caf05e4e6a8dc5"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 1,
+          "start_index": 0,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 0,
+              "trace_end_line": 18
+            }
+          ],
+          "selected_parameters_sha256": "2cc02d8a1da74f74b335fbb6eef082fdf87d424cf6e100599ce50bbc9d9dac1d"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 4,
+          "start_index": 3,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 3,
+              "trace_end_line": 40
+            }
+          ],
+          "selected_parameters_sha256": "bd2b858f4aaeac0d75e9eabea0a88f8128d4df35553a279c66995c9f3d63aa20"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 1,
+          "start_index": 0,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 0,
+              "trace_end_line": 50
+            }
+          ],
+          "selected_parameters_sha256": "9fa31066bda7c46d7106bc17c0dc2353e123fd5edfe968acff02e872a3fe9c39"
+        }
+      }
+    },
+    {
+      "case_id": "S4_narrow_short_imm_seed410410",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410410.json",
+      "case_sha256": "470661d58772e445df115eb27c7f90ad76d3d4acf026d8afe8f5ebffde3fb302",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410410.attempts.jsonl",
+      "trace_sha256": "4a9835e01efb461266a69bde10550d76eb04f97e6f8588c50b5ca722c6513947",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 3,
+          "start_index": 2,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 2,
+              "trace_end_line": 6
+            }
+          ],
+          "selected_parameters_sha256": "1749e1968478da489bed326a52bb404279369ff2a836ff235401b8cdd07dafd2"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 1,
+          "start_index": 0,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 0,
+              "trace_end_line": 18
+            }
+          ],
+          "selected_parameters_sha256": "c50ab729934c6f1d2117a486eda189bcfa49857a0b7fd699969f9e61cf2a9c3b"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 48
+            }
+          ],
+          "selected_parameters_sha256": "2ad8347ebf56080af75855bb2c3dede3b9dc65e4b477dce0e8c58c4db8a92885"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 7,
+          "start_index": 6,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 6,
+              "trace_end_line": 62
+            }
+          ],
+          "selected_parameters_sha256": "8e5343acc632c3470c7eafe1810851e76fe84647149e740cab897de3112b17c4"
+        }
+      }
+    },
+    {
+      "case_id": "S4_narrow_short_imm_seed410411",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410411.json",
+      "case_sha256": "5bbd43c151589d211b6ae34c6b164a62443285c1370f60bdcb5bf345f3574f18",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410411.attempts.jsonl",
+      "trace_sha256": "fa6003c8bc6b9a261c77cb9a3979e9c8de84f706fbd767c80388aa7802a85969",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 3,
+          "start_index": 2,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 2,
+              "trace_end_line": 6
+            }
+          ],
+          "selected_parameters_sha256": "07b73bf8790f4606075c159ae007f32fa0c6252859530d17b6ccb1bb28c9b86a"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 6,
+          "start_index": 5,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 5,
+              "trace_end_line": 28
+            }
+          ],
+          "selected_parameters_sha256": "64b4fc6853471d1d84639cb13147aeb55a98e99b4bc889a8ea3d5e6b62573a7c"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 4,
+          "start_index": 3,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 3,
+              "trace_end_line": 40
+            }
+          ],
+          "selected_parameters_sha256": "4f21a41ea9b49ffcf3541e9cd1d3268df8daa954550e18b9b7dd8aa80f8c9d88"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 3,
+          "start_index": 2,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 2,
+              "trace_end_line": 54
+            }
+          ],
+          "selected_parameters_sha256": "9585b2d84fdb66eb9dc9484ae72ff882b5cddca51642e932eee4c3ab8cb03ce1"
+        }
+      }
+    },
+    {
+      "case_id": "S4_narrow_short_imm_seed410412",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410412.json",
+      "case_sha256": "469c37d3ed51c02395d338d23ab2952e4a3c9902f855fa4ce0cafc6b6a8058c5",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410412.attempts.jsonl",
+      "trace_sha256": "6609197213e56c02fab6650243425b0efaf253df1cf3d34e413816d9e3ab1478",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 16
+            }
+          ],
+          "selected_parameters_sha256": "f7e0f779096f44650ccf3ee64bd1e8e9b32ccaf4d033c8721122e5283cdbaeea"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 2,
+          "start_index": 1,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 1,
+              "trace_end_line": 20
+            }
+          ],
+          "selected_parameters_sha256": "6f1adc7a32f53a292c958484c0fc7fb2c941044c192d476e02bc999a1d7b54f7"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 2,
+          "start_index": 1,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 1,
+              "trace_end_line": 36
+            }
+          ],
+          "selected_parameters_sha256": "f91780d3f17f8020a3d2fcfcb234ef29ae8bc7dd32fa71f09bfda1a1482ab27e"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 64
+            }
+          ],
+          "selected_parameters_sha256": "7cf6ea99ac78fdc6bd61dbe217a8af281186329f9e1705b18bc42f98a0d4e2a5"
+        }
+      }
+    },
+    {
+      "case_id": "S4_narrow_short_imm_seed410413",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410413.json",
+      "case_sha256": "255dd495ef763f1235be9878b8d2df810d974a17a87b819ee9115fea7df0054d",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410413.attempts.jsonl",
+      "trace_sha256": "d1bd26bd197427fb5a8e9628906944271a268d05268556bfc11185b75e3a3525",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 4,
+          "start_index": 3,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 3,
+              "trace_end_line": 8
+            }
+          ],
+          "selected_parameters_sha256": "da83b28fb0bba987e6968af43833922701ac5484fee429e678fd33db2cc8d3e9"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 32
+            }
+          ],
+          "selected_parameters_sha256": "b5813c30e4bb814d052d6541aa15163a2a550943e0931af4b57a2a2f4e405202"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 48
+            }
+          ],
+          "selected_parameters_sha256": "3263f9d1625c059e49eeb2b70efaa53654ebb1086ea8f952804f32a3f4e62dd2"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 4,
+          "start_index": 3,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 3,
+              "trace_end_line": 56
+            }
+          ],
+          "selected_parameters_sha256": "9ee40c8b8ff69ce4c1185df14c53e85fe5865f10f85e8bf86aaa968cd58cc957"
+        }
+      }
+    },
+    {
+      "case_id": "S4_narrow_short_imm_seed410414",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410414.json",
+      "case_sha256": "62ec92558e52a72ea1672053422d964bbdf4294fe565689f87aa4ecb5fb3f2c3",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410414.attempts.jsonl",
+      "trace_sha256": "a9de001b3610d0a07b1d4c127d64b09faa88e6c53ed060788939927725e99988",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 2,
+          "start_index": 1,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 1,
+              "trace_end_line": 4
+            }
+          ],
+          "selected_parameters_sha256": "edc2d6662207f25b90dff1124efda2c75d28ebf3cd8c0963ac55ff58f3f2565a"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 7,
+          "start_index": 6,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 6,
+              "trace_end_line": 30
+            }
+          ],
+          "selected_parameters_sha256": "a57fb7b8a6a912d76428c79d64738f86ebf019edd4f8fc32ebcba5aa89652f11"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 7,
+          "start_index": 6,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 6,
+              "trace_end_line": 46
+            }
+          ],
+          "selected_parameters_sha256": "4f7bf6b674a1e2640d669a6e62263963f6e8fb4a97ec6882fdcb7f06625bfe62"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 4,
+          "start_index": 3,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 3,
+              "trace_end_line": 56
+            }
+          ],
+          "selected_parameters_sha256": "800d4eb37da8f67724218849d6b5390e3f03a637b931eb446f25edbd77f51c6e"
+        }
+      }
+    },
+    {
+      "case_id": "S4_narrow_short_imm_seed410415",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410415.json",
+      "case_sha256": "13536187d3c9e4c079e2840ada30b6ef6270918fb126cbb314f28354e0810c7c",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410415.attempts.jsonl",
+      "trace_sha256": "d2f58ba8bc649fea56aebe7525dcb61543a2dfcddfbeb2b33207ed7a0aeae668",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 16
+            }
+          ],
+          "selected_parameters_sha256": "b044f8d3b1d47fd83d4660e5413ed043fcd0fab1c43a120724bf6de0a7f9136e"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 32
+            }
+          ],
+          "selected_parameters_sha256": "6aa13ea818c5b17129bab7261fb91d063e5c014166aeb1ffd32e58fc75ef34dd"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 4,
+          "start_index": 3,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 3,
+              "trace_end_line": 40
+            }
+          ],
+          "selected_parameters_sha256": "1ea302dbe9ba0f58e401a7c83b54bf1d17a48199fde4e46b49ab95012ee4a166"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 7,
+          "start_index": 6,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 6,
+              "trace_end_line": 62
+            }
+          ],
+          "selected_parameters_sha256": "bc6d9e225e2d6e4d74ec63dd02a1621d6e490f3399bdc76e09b13b560bf8f7db"
+        }
+      }
+    },
+    {
+      "case_id": "S4_narrow_short_imm_seed410416",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410416.json",
+      "case_sha256": "63838151e40a3f25b6bda2b2bd5540333e39d7d83273e5d51639271f2b8b8523",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410416.attempts.jsonl",
+      "trace_sha256": "03b998e72ffb7e896674b0f984427bd51641b458dca1e104079ca7768322d694",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 1,
+          "start_index": 0,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 0,
+              "trace_end_line": 2
+            }
+          ],
+          "selected_parameters_sha256": "4fb1f695a3d5ea35031b51283e8bf2fdbd670fb0b1595a97af58838d1f68ea30"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 5,
+          "start_index": 4,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 4,
+              "trace_end_line": 26
+            }
+          ],
+          "selected_parameters_sha256": "6a97cd8d68a3a98a45b77070d004c822363f95a26f6ea79accd673a2cb8992d8"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 1,
+          "start_index": 0,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 0,
+              "trace_end_line": 34
+            }
+          ],
+          "selected_parameters_sha256": "62f5d37228a48b460d35ce05d22a02cf62b6dbed9f575b75c3df7c57896aa03e"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 2,
+          "start_index": 1,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 1,
+              "trace_end_line": 52
+            }
+          ],
+          "selected_parameters_sha256": "99622a99bad3f3653f6da4831828b2d56b25c27be1021d05cfe898302cd82ce7"
+        }
+      }
+    },
+    {
+      "case_id": "S4_narrow_short_imm_seed410417",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410417.json",
+      "case_sha256": "0717ba491812d88329e380fb0426cbb6a087b4483b0f5b8becf1167f735b3586",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410417.attempts.jsonl",
+      "trace_sha256": "a0411b48f5c34453c7020b4d86f2764dece6df751b95f76982d46d3114574786",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 16
+            }
+          ],
+          "selected_parameters_sha256": "0d290c5d75ce017e1126500c7324db8a50620bf5196886d4ba268cb20acf1b4a"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 5,
+          "start_index": 4,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 4,
+              "trace_end_line": 26
+            }
+          ],
+          "selected_parameters_sha256": "a3229e693c98adf43e6a8e4dbbd85ebbbe577707af7e7a4bf8a3f9e7ee2124e9"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 4,
+          "start_index": 3,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 3,
+              "trace_end_line": 40
+            }
+          ],
+          "selected_parameters_sha256": "a3094d0ef241fc14ca04f445aba10b742e5b00bae249a350a776e0bd7336dffc"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 64
+            }
+          ],
+          "selected_parameters_sha256": "d970cde87759ea927c5987838e7b1eab1457ed241db950f41136823901283e47"
+        }
+      }
+    },
+    {
+      "case_id": "S4_narrow_short_imm_seed410418",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410418.json",
+      "case_sha256": "94f163d22a5c69a1137cbe19c14185ef09d2358b83abbc8246e828d347bc5d2c",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410418.attempts.jsonl",
+      "trace_sha256": "1e4156686aba1992b9ec2b522e8967216a463a110fa4290b5c8d10dfe4cd08c4",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 16
+            }
+          ],
+          "selected_parameters_sha256": "77ba88922d69a6821f4e2500f123df20d41cb8038654ce11db8388fdc510d745"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 6,
+          "start_index": 5,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 5,
+              "trace_end_line": 28
+            }
+          ],
+          "selected_parameters_sha256": "29fec421e983b94f3a6786de46d3d5d707042f9b07e61afd856403c26a4267c8"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 6,
+          "start_index": 5,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 5,
+              "trace_end_line": 44
+            }
+          ],
+          "selected_parameters_sha256": "5375ceb1071243e578b00cb8c06334e34635478ec0d139a5ea905d73314d29ff"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 64
+            }
+          ],
+          "selected_parameters_sha256": "c814658d49a2f0928baea9a632a5962ba4c8e0978d2808017f27d4fa3927abce"
+        }
+      }
+    },
+    {
+      "case_id": "S4_narrow_short_imm_seed410419",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410419.json",
+      "case_sha256": "a14aa25b2bba077ded0aa295575eab819110a1e5c4002333aa38dfce2e84d4c4",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410419.attempts.jsonl",
+      "trace_sha256": "a3e3c81160a1acf51929fecc208e77da7558ae2ff929acfda40bca55aefc24bd",
+      "trace_lines": 66,
+      "paired_attempts": 33,
+      "retained_fit_records": 33,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 1,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 5,
+          "start_index": 4,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 4,
+              "trace_end_line": 10
+            }
+          ],
+          "selected_parameters_sha256": "57be0e3052add15d850abf7d0751fb34a472a176961efc5c51c41df91e9c0f10"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 6,
+          "start_index": 5,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 5,
+              "trace_end_line": 28
+            }
+          ],
+          "selected_parameters_sha256": "5047a31cc99c3b7773251c937326ae1f4d83ff3133d02a1c534ddd97648dd5c7"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 7,
+          "start_index": 6,
+          "optimizer_source": [
+            {
+              "method": "Powell",
+              "start_index": 6,
+              "trace_end_line": 48
+            }
+          ],
+          "selected_parameters_sha256": "a09d272490467e609d69df2cadd62da6673c995b78ee752834cc4dc338f29fb4"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 66
+            }
+          ],
+          "selected_parameters_sha256": "e58c582cafd919f401f46f36d74293ce39d14a89e9b5e7b515828060f284b41d"
+        }
+      }
+    },
+    {
+      "case_id": "S4_narrow_short_imm_seed410420",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410420.json",
+      "case_sha256": "f9a42935a1425491c7995760bfabe8c6f1f65dec6a36c095b0f5488fca4d27fc",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410420.attempts.jsonl",
+      "trace_sha256": "ac90deac79f3ce190e6079317ecdf03c533bdd76ac187a3ea8173abeb2d68bad",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 3,
+          "start_index": 2,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 2,
+              "trace_end_line": 6
+            }
+          ],
+          "selected_parameters_sha256": "1cab99bf6ecd4ac492f2ae629c2d314540d3d578f68057ffd0440f541c1ff0ea"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 32
+            }
+          ],
+          "selected_parameters_sha256": "25f540f0e87a0411fbd9b9e1f9f8c3f50c7c846fa9625b761c41c48d5d1b9479"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 48
+            }
+          ],
+          "selected_parameters_sha256": "7b54246b7b5e42b71cfef2033b6d9a23faab0b20a13caf065a63ad4ac35c1fab"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 1,
+          "start_index": 0,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 0,
+              "trace_end_line": 50
+            }
+          ],
+          "selected_parameters_sha256": "8081d09c3befc26f59cc0e9b562d18aa385f8c6e5421fe792adfc157c39cfe9a"
+        }
+      }
+    },
+    {
+      "case_id": "S5_broad_long_imm_seed410502",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410502.json",
+      "case_sha256": "0e599200ea06e137de2e72c7e5831357d11e13ec7f44fc778b2bb4deee03d048",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410502.attempts.jsonl",
+      "trace_sha256": "d18cf6ad9f9728f761a71835e93683f76c1f96a2c91a586448f42366493b4561",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 2,
+          "start_index": 1,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 1,
+              "trace_end_line": 4
+            }
+          ],
+          "selected_parameters_sha256": "f7b446a9d05b258fa12ec44505459337ab6ff5ec1e96fdca5ce5a9bbdc4dd825"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 32
+            }
+          ],
+          "selected_parameters_sha256": "3d476a9b948801a28e31e85a8563aafdaf5b6dd8f9c5a8166c9eff62fc56e34d"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 4,
+          "start_index": 3,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 3,
+              "trace_end_line": 40
+            }
+          ],
+          "selected_parameters_sha256": "516638a38dd29aacf5bdc0564af101bce123ab9ef18d5cfc34b55bd7a0f5ec81"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 6,
+          "start_index": 5,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 5,
+              "trace_end_line": 60
+            }
+          ],
+          "selected_parameters_sha256": "eb8886b848880c620d3ee3b109dc5547e27a9af94882dd901b3a0ed3ae42e231"
+        }
+      }
+    },
+    {
+      "case_id": "S5_broad_long_imm_seed410503",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410503.json",
+      "case_sha256": "6d19ed2c49fcd4f5654f5c321291ac360bf459e351d981094c587ba3e8bcf667",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410503.attempts.jsonl",
+      "trace_sha256": "76095d03211e7793daff898973cdb186a4e09adaa40ce3ecd58b47541c1f601f",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 7,
+          "start_index": 6,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 6,
+              "trace_end_line": 14
+            }
+          ],
+          "selected_parameters_sha256": "fa3539809eb1233e89e95a2a4d4b9702543c1570d931c2948dca9b18d680ef0d"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 4,
+          "start_index": 3,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 3,
+              "trace_end_line": 24
+            }
+          ],
+          "selected_parameters_sha256": "c827a5dd5341c76a7ac4a86c460e89546e8336bfa124f80c099fd203e544bb66"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 4,
+          "start_index": 3,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 3,
+              "trace_end_line": 40
+            }
+          ],
+          "selected_parameters_sha256": "55e2152aa4dad81223348457b0b717148a02ab64e97f6945e9cb740c8a6123de"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 64
+            }
+          ],
+          "selected_parameters_sha256": "8518e2b632624eb13b97e7234875ca1a9f3fea83e99b6d7a25a1d61c6c574a50"
+        }
+      }
+    },
+    {
+      "case_id": "S5_broad_long_imm_seed410504",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410504.json",
+      "case_sha256": "e06857e27d217f08d8ac3e279fbfc8eea601faca77ce079b18e868b9fb73f5b3",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410504.attempts.jsonl",
+      "trace_sha256": "3631a80947c0619bfdf48097df923f33dfa46699938455cc42ac499faf6848ba",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 2,
+          "start_index": 1,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 1,
+              "trace_end_line": 4
+            }
+          ],
+          "selected_parameters_sha256": "a9ba7b77d32aea62622ec006290020afdfd4e76a8ab909ec229436aa1d61579b"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 3,
+          "start_index": 2,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 2,
+              "trace_end_line": 22
+            }
+          ],
+          "selected_parameters_sha256": "9a4bbd3e34b6e439e7f33ba6cf647bd46699c5264b5cb3abe2af121c8da17162"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 6,
+          "start_index": 5,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 5,
+              "trace_end_line": 44
+            }
+          ],
+          "selected_parameters_sha256": "d3310690a2fd71a24a5735f321f990e25f7b0cb0588983baafbd03dac60a294a"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 1,
+          "start_index": 0,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 0,
+              "trace_end_line": 50
+            }
+          ],
+          "selected_parameters_sha256": "a6d4abf46db407e71df472cf2c3f12a913b4ff657463d9efdddb1df319eae26b"
+        }
+      }
+    },
+    {
+      "case_id": "S5_broad_long_imm_seed410505",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410505.json",
+      "case_sha256": "95439d20c65c5189dc48ee42f73617fd4e953025bddc0c0dc2caa8b08b5f1f38",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410505.attempts.jsonl",
+      "trace_sha256": "83e813dbb3dd59214ff2733e29bf5d9306a7776c36a55ac639a39449be633903",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 1,
+          "start_index": 0,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 0,
+              "trace_end_line": 2
+            }
+          ],
+          "selected_parameters_sha256": "51acac6cb38f7a80ee7365c00ea049e4198efc112a24fa16156ebe31b8103853"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 4,
+          "start_index": 3,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 3,
+              "trace_end_line": 24
+            }
+          ],
+          "selected_parameters_sha256": "ede2f9c3a41a2de2758c233a34f48cb5b8bcec7402d58ff3b0a7a237a840a6a2"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 48
+            }
+          ],
+          "selected_parameters_sha256": "affa0c3e11445a482b1362a87a7ff3c96a3bdf6c2abf50c030ac913d73c57ef0"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 5,
+          "start_index": 4,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 4,
+              "trace_end_line": 58
+            }
+          ],
+          "selected_parameters_sha256": "5b1b768a9918f7c70aa76faed920f333c9f56a74fc37dd5fd3d771764dc99fa8"
+        }
+      }
+    },
+    {
+      "case_id": "S5_broad_long_imm_seed410506",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410506.json",
+      "case_sha256": "33026e27648f1d67ace975ead9a6291d2eee019cd22e919695b72b2894e816e8",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410506.attempts.jsonl",
+      "trace_sha256": "816be2eb1bf6d062d6f5802429db84387823cdd20f19ad674c3eeb34bfd31fa6",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 2,
+          "start_index": 1,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 1,
+              "trace_end_line": 4
+            }
+          ],
+          "selected_parameters_sha256": "f19364a5d31e2754112d6262c8a1ed19c450bde8bb7b61bccfca6a65e9bcd1bc"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 1,
+          "start_index": 0,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 0,
+              "trace_end_line": 18
+            }
+          ],
+          "selected_parameters_sha256": "474843154f246c266f72d2d1b793b0eb6984868dccfcb2f84492673fe904f8d3"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 6,
+          "start_index": 5,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 5,
+              "trace_end_line": 44
+            }
+          ],
+          "selected_parameters_sha256": "aafe4889d920e148e137ff670c755a336768f478c7ad49f2069ab4c6e20e8181"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 1,
+          "start_index": 0,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 0,
+              "trace_end_line": 50
+            }
+          ],
+          "selected_parameters_sha256": "5489197cb8745bcd7768d1820957b689300f28f333f0a23cff7a1818a9c0c621"
+        }
+      }
+    },
+    {
+      "case_id": "S5_broad_long_imm_seed410507",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410507.json",
+      "case_sha256": "e1b57fe7a8bb3f6148879c58f8c7dfe9a310af7022002470fa1be3240782e52a",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410507.attempts.jsonl",
+      "trace_sha256": "417b041eeea66ae05ba0ddee80b1dea47b5a11b0d7e9318d0e7dbf80e6c34de2",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 2,
+          "start_index": 1,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 1,
+              "trace_end_line": 4
+            }
+          ],
+          "selected_parameters_sha256": "4e8eae0f994e832b8002900998463bae9179c84999d3016308087ce7cdb3e25b"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 32
+            }
+          ],
+          "selected_parameters_sha256": "8aacf1b1e4d2164b752d064a6fdac6704c5b1c1c9c0124d4a2c710847d5d734e"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 4,
+          "start_index": 3,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 3,
+              "trace_end_line": 40
+            }
+          ],
+          "selected_parameters_sha256": "0477394b48ede16c32e95211bdf98a17b0b2bc49b2470f71c1bebd268d40504e"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 5,
+          "start_index": 4,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 4,
+              "trace_end_line": 58
+            }
+          ],
+          "selected_parameters_sha256": "219a17e3f2d5161b6925bae7e39e6902ba2539d6792580c4419f70d036855955"
+        }
+      }
+    },
+    {
+      "case_id": "S5_broad_long_imm_seed410508",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410508.json",
+      "case_sha256": "22125eb3274b754baef66b962085eafc4b3c35468296943fa4ab96edf9848729",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410508.attempts.jsonl",
+      "trace_sha256": "6decb0c32f09e45f3965033c34da316bef574a66817fac599224763f5a2a8b5f",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 1,
+          "start_index": 0,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 0,
+              "trace_end_line": 2
+            }
+          ],
+          "selected_parameters_sha256": "c1f65d4cabc74a9db5a28db4796430d8011991f068e4c5916179e75df7f88c54"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 32
+            }
+          ],
+          "selected_parameters_sha256": "e3451356dbc39c02ff21bfc020daf170cafb52fbaa4c63659d33ff3c1843267b"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 5,
+          "start_index": 4,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 4,
+              "trace_end_line": 42
+            }
+          ],
+          "selected_parameters_sha256": "ba1c546c204c7f861c3d84500c57887e601b20b53f4310c988599c89c92f3cb5"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 4,
+          "start_index": 3,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 3,
+              "trace_end_line": 56
+            }
+          ],
+          "selected_parameters_sha256": "27455e31a63d08fff1bc7fa30c43268149d95084fbcda952639c495a4482c1d0"
+        }
+      }
+    },
+    {
+      "case_id": "S5_broad_long_imm_seed410509",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410509.json",
+      "case_sha256": "03bfdc03db1cb3fb272fa478dbee41347132187603691629ac74685dbf386629",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410509.attempts.jsonl",
+      "trace_sha256": "6a0b3b5576caadce12e874cff015c325afdc3ff0a5ea7f2bb5293d7a3085e6c1",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 16
+            }
+          ],
+          "selected_parameters_sha256": "a23e0d03429daaad26b8b2f3d8f9a0868660e27ff3a168e760f9991b626a4c20"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 4,
+          "start_index": 3,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 3,
+              "trace_end_line": 24
+            }
+          ],
+          "selected_parameters_sha256": "610a6faba9d3cbfa90c883a169b00328501f3173fc5e45abc9026cd4d850004f"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 4,
+          "start_index": 3,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 3,
+              "trace_end_line": 40
+            }
+          ],
+          "selected_parameters_sha256": "0fa35ef5624b24ce5bb1f1d99661fa6de9eb1c826e7e3a3cfd391b25d1290fbe"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 4,
+          "start_index": 3,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 3,
+              "trace_end_line": 56
+            }
+          ],
+          "selected_parameters_sha256": "393f7b1852252cda8deee15c431c33836cab3f98390e8a2d0394af905b53567a"
+        }
+      }
+    },
+    {
+      "case_id": "S5_broad_long_imm_seed410510",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410510.json",
+      "case_sha256": "7702195c26b820a51501b221340f05446592ae3539ea5a11c9c18014163931a3",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410510.attempts.jsonl",
+      "trace_sha256": "66fa9d8cd43ded079675e377b3880180d839e097d32ddc9ac9b78c89c8cb8548",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 3,
+          "start_index": 2,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 2,
+              "trace_end_line": 6
+            }
+          ],
+          "selected_parameters_sha256": "c73f289c277a2566a2f7fc41820fdf2e3e6bfc52b18981e4dc53d7af81fc3657"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 7,
+          "start_index": 6,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 6,
+              "trace_end_line": 30
+            }
+          ],
+          "selected_parameters_sha256": "7c04177bc5e7f9fe53c10332145ba2f3f40944c4d39ecfdbda5c32c6d45afc25"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 6,
+          "start_index": 5,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 5,
+              "trace_end_line": 44
+            }
+          ],
+          "selected_parameters_sha256": "0971a136bf71f782338b1a436bb910b31c5f5e583ededea134caac734f87028b"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 6,
+          "start_index": 5,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 5,
+              "trace_end_line": 60
+            }
+          ],
+          "selected_parameters_sha256": "cba002321084dd7dffea990b606a9742d0c0d9dc1b3d3e4397ce9f02c852e8b1"
+        }
+      }
+    },
+    {
+      "case_id": "S5_broad_long_imm_seed410511",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410511.json",
+      "case_sha256": "0495f7f199bcc39c90916451c2e775607d2034d5adadbe778cc7ad6b2d70f509",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410511.attempts.jsonl",
+      "trace_sha256": "065879b64e6e5a42310192cc9f8b92ed13d1544c4c6bf914e913aadbea8b79e7",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 6,
+          "start_index": 5,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 5,
+              "trace_end_line": 12
+            }
+          ],
+          "selected_parameters_sha256": "02f41211db77059e7694f998ccf754bf966223580f09a6ec9fa7dda04fda9235"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 5,
+          "start_index": 4,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 4,
+              "trace_end_line": 26
+            }
+          ],
+          "selected_parameters_sha256": "c081acfd4adbc9ca40a260f5e1b3d76c11b2bab35a907133494356a27ec8d624"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 4,
+          "start_index": 3,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 3,
+              "trace_end_line": 40
+            }
+          ],
+          "selected_parameters_sha256": "10ddfb883aba88eef20e554174bcfeeb8952feb556ac69c9dc61abbc61b6d705"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 4,
+          "start_index": 3,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 3,
+              "trace_end_line": 56
+            }
+          ],
+          "selected_parameters_sha256": "5348a2452f502b11385ab8ae9ee3a3ed09ccbbf401f392c1dd3df60943492452"
+        }
+      }
+    },
+    {
+      "case_id": "S5_broad_long_imm_seed410512",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410512.json",
+      "case_sha256": "87a3bf0a32f29a496a9acc680d6fe438f4d782dc9f190a02f9f6e8ecbe9f7f6d",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410512.attempts.jsonl",
+      "trace_sha256": "d784b44359d964d977e8c86d97feea32f6bd49e0e522cada364f8aaa1fe96af3",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 2,
+          "start_index": 1,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 1,
+              "trace_end_line": 4
+            }
+          ],
+          "selected_parameters_sha256": "ae55e068f67fa9bff1c67b28465fc3c1df30dcde51566b61d7ea89ba34f02796"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 5,
+          "start_index": 4,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 4,
+              "trace_end_line": 26
+            }
+          ],
+          "selected_parameters_sha256": "67a59405b810e444fa090b934e72a05132271d07e10581973a1afd87e3d4b466"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 48
+            }
+          ],
+          "selected_parameters_sha256": "11e61d6f8e7c1720ce923fe43c5f11ae9a9b7303465cb0c31f8a653f7262a0ec"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 6,
+          "start_index": 5,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 5,
+              "trace_end_line": 60
+            }
+          ],
+          "selected_parameters_sha256": "9d254207cae9ff44c3d11a07676a8d53ac408ed612bc748aff3ad19821ba5de6"
+        }
+      }
+    },
+    {
+      "case_id": "S5_broad_long_imm_seed410513",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410513.json",
+      "case_sha256": "2ced561194c8b8a6e4d5a0ae1a6ecdedfe45392dc8a11b9ee283142cebfac913",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410513.attempts.jsonl",
+      "trace_sha256": "2e976c0d5017e84447a99c0db08611650c3325486e50dcee607e3b6d5a7a4389",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 1,
+          "start_index": 0,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 0,
+              "trace_end_line": 2
+            }
+          ],
+          "selected_parameters_sha256": "b86a0ee310a86d0c10d55dac8d5297e9f16c7a659fae3b467b795763b3d19d84"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 5,
+          "start_index": 4,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 4,
+              "trace_end_line": 26
+            }
+          ],
+          "selected_parameters_sha256": "abc87297d7628496c8d4d2d96ceaaa72c5f959a4471043ecf1b065750f9e9f2f"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 6,
+          "start_index": 5,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 5,
+              "trace_end_line": 44
+            }
+          ],
+          "selected_parameters_sha256": "32437224510b8134ea3d79fd5cff6e8f2f8daeda5c3604e6d59fc2d681694912"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 4,
+          "start_index": 3,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 3,
+              "trace_end_line": 56
+            }
+          ],
+          "selected_parameters_sha256": "ec7695d1186ab6822c911daa710bc8ce35a1b696a845c819ccdd4f7b8410ac94"
+        }
+      }
+    },
+    {
+      "case_id": "S5_broad_long_imm_seed410514",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410514.json",
+      "case_sha256": "48f109bba6742e63c1f925e54ba7bc5c40a2a631d348269aa9cb074e652eca0a",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410514.attempts.jsonl",
+      "trace_sha256": "c2c11aa15bfaed6a9cf7d007db014ea0a2cdf793cdcf605e3660ca5231981065",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 4,
+          "start_index": 3,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 3,
+              "trace_end_line": 8
+            }
+          ],
+          "selected_parameters_sha256": "155e1053a0d5f4315e9b3261729b289320e64bf75b3d6101aedfcff4cf329eda"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 32
+            }
+          ],
+          "selected_parameters_sha256": "d8331de2e4c9a80c4ac228f95d3c46603436e829e7baa7f2c13079afe9d462c1"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 5,
+          "start_index": 4,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 4,
+              "trace_end_line": 42
+            }
+          ],
+          "selected_parameters_sha256": "c140aae8e5cb56fd570d03216265c50da0e196e561244c73b3a0f4440b191b24"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 6,
+          "start_index": 5,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 5,
+              "trace_end_line": 60
+            }
+          ],
+          "selected_parameters_sha256": "ccf70ab1c72352137439a7730177f3a298a833343dd12270c93ad67aa899f7e3"
+        }
+      }
+    },
+    {
+      "case_id": "S5_broad_long_imm_seed410515",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410515.json",
+      "case_sha256": "f97713e1cc9f2b57fa41782723013e6c236146358123614c9e1cce21238cab08",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410515.attempts.jsonl",
+      "trace_sha256": "924be07b675c9b5d91f70ef98f345a9138a0b339df6a924d54d11f1fdc910c1a",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 1,
+          "start_index": 0,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 0,
+              "trace_end_line": 2
+            }
+          ],
+          "selected_parameters_sha256": "57905751eb89816fecdb40395ea9b61b6ea207058792e1bb89685472a9df2ffa"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 1,
+          "start_index": 0,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 0,
+              "trace_end_line": 18
+            }
+          ],
+          "selected_parameters_sha256": "739e1107d88385e4763036fd6c77c2233beb621d650c3f9b35c2c02e4019f80b"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 6,
+          "start_index": 5,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 5,
+              "trace_end_line": 44
+            }
+          ],
+          "selected_parameters_sha256": "1bd4535a6bc3f20309e59dbed53b48043695a6cd9cd54fba387a74f570b9e2d1"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 2,
+          "start_index": 1,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 1,
+              "trace_end_line": 52
+            }
+          ],
+          "selected_parameters_sha256": "6d73c929784da40afda681dec50bd767f8568afcc5c9969fabef06b626aa4196"
+        }
+      }
+    },
+    {
+      "case_id": "S5_broad_long_imm_seed410516",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410516.json",
+      "case_sha256": "6f26c23edce1976ec21bc841efd38dd811d0b78d95ca4ad16f333a323771f70d",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410516.attempts.jsonl",
+      "trace_sha256": "8f1749803b5f6d2b7e9b8fc7d8e90cd08024b9166b053ca4fcd1e30c0bcb545e",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 2,
+          "start_index": 1,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 1,
+              "trace_end_line": 4
+            }
+          ],
+          "selected_parameters_sha256": "6ac5d15fb03a1db00803d2757634fd5fd82bef807861eb1b76aea0a35bc502fb"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 5,
+          "start_index": 4,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 4,
+              "trace_end_line": 26
+            }
+          ],
+          "selected_parameters_sha256": "23ce1d6e6cd9bfb121cec9a7be13271a30928b6bfca628cb74fa2928c1b7aea3"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 48
+            }
+          ],
+          "selected_parameters_sha256": "e1d1fc90b2a279f74b950aecc294ce108ac3a3b5a0e1e0116400647393ddd791"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 5,
+          "start_index": 4,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 4,
+              "trace_end_line": 58
+            }
+          ],
+          "selected_parameters_sha256": "d5f7f14c19430e07bb755f3e87a67ae38426af257adfdd11eff0aba716a27b0b"
+        }
+      }
+    },
+    {
+      "case_id": "S5_broad_long_imm_seed410517",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410517.json",
+      "case_sha256": "7c66e40459f27013ca62408bee597fb07ee2458b2ff97ba50ecff5edcd93576e",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410517.attempts.jsonl",
+      "trace_sha256": "4f135bd10845036e1ced7159b84971d27bd582ce1cd653b2689d9423b98f2976",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 3,
+          "start_index": 2,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 2,
+              "trace_end_line": 6
+            }
+          ],
+          "selected_parameters_sha256": "c2cdbb051d7409184f2579960881f6a0fa108ac190e470e24fb8f7fccadb88d2"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 5,
+          "start_index": 4,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 4,
+              "trace_end_line": 26
+            }
+          ],
+          "selected_parameters_sha256": "b50e5ed111595cc077e135cc5b300a7f8aa23cd794731e7b671fea6fd2e622be"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 3,
+          "start_index": 2,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 2,
+              "trace_end_line": 38
+            }
+          ],
+          "selected_parameters_sha256": "1143cbed714c23cfecd42df177132e3f4839aa265cfadac6b9cdb87d220b3144"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 7,
+          "start_index": 6,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 6,
+              "trace_end_line": 62
+            }
+          ],
+          "selected_parameters_sha256": "7f131cccd35ee8831c5de03923414bcfd9c2d46a98f77844c460315138d1ac3e"
+        }
+      }
+    },
+    {
+      "case_id": "S5_broad_long_imm_seed410518",
+      "disposition": "scientific_unknown",
+      "passed": false,
+      "status": "unknown",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410518.json",
+      "case_sha256": "6714ad7ebd17e3bf432638f9c8b0cb4d466d6aa5d7ddd7f3623d2ead17960028",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410518.attempts.jsonl",
+      "trace_sha256": "0c62a0f2c193f16ab15efd08c94777ef3acaf2d969bb891b60cd86b378a0b71a",
+      "trace_lines": 46,
+      "paired_attempts": 23,
+      "retained_fit_records": 16,
+      "extra_trace_records": 7,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 1,
+      "unsuccessful_returns": 1,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 7,
+          "start_index": 6,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 6,
+              "trace_end_line": 14
+            }
+          ],
+          "selected_parameters_sha256": "87811545bd123524f0e2e608a9cd08b87d9d4fbcb55e2f08920ae632a41df711"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 32
+            }
+          ],
+          "selected_parameters_sha256": "21cf41be134531a1834f870e85e35e9fbfb1900a84795569c82dea839ae92af5"
+        }
+      }
+    },
+    {
+      "case_id": "S5_broad_long_imm_seed410519",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/remaining_pilot_01.zip",
+      "archive_sha256": "9ca2b0d3bfd58c3f3f547301c4e1a28822dbcaa6164baff2619805db97af95fd",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410519/science/cases/S5_broad_long_imm_seed410519.json",
+      "case_sha256": "4a9abb12c26e7a98ff3828ed4bd572ac7fe8fc7ef6ceaf405614d65eaa7c04a9",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410519/science/cases/S5_broad_long_imm_seed410519.attempts.jsonl",
+      "trace_sha256": "a744302c492f1ab90917c60cc5e95c359104730a07aeabdb5fd216ddb4a9a5ab",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 5,
+          "start_index": 4,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 4,
+              "trace_end_line": 10
+            }
+          ],
+          "selected_parameters_sha256": "169d423ecf9046e44202f060b27af530420a6726ae08a62aff321736393b647e"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 5,
+          "start_index": 4,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 4,
+              "trace_end_line": 26
+            }
+          ],
+          "selected_parameters_sha256": "5d023c35d6408f88305817b896dc558d977c4b2b731fbd3dd021ab4d28c10f81"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 7,
+          "start_index": 6,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 6,
+              "trace_end_line": 46
+            }
+          ],
+          "selected_parameters_sha256": "6d7f7de22809b825a5f817a6c77a9190360f632d7dd146692953b7f0c6514c29"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 6,
+          "start_index": 5,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 5,
+              "trace_end_line": 60
+            }
+          ],
+          "selected_parameters_sha256": "db70209bcbb1d200ba79c132a9a3e459989fa7755cfb1e626f1a8ae0052a7f6e"
+        }
+      }
+    },
+    {
+      "case_id": "S5_broad_long_imm_seed410520",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/remaining_host02_exposure_failure.zip",
+      "archive_sha256": "9319b3669c5fda81fab941038913a0c3bc7178c506441af4f244b7e64c228b88",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410520/science/cases/S5_broad_long_imm_seed410520.json",
+      "case_sha256": "677eb42fd50af8c8a6fd3a6b1d1a50008a5f49f8a9e6f03697d32dfce93ff6fe",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410520/science/cases/S5_broad_long_imm_seed410520.attempts.jsonl",
+      "trace_sha256": "6bb159f3044f28aea775e1e7b771d9ec6fa7eb54b1fa96b27c114b4f2ba23b60",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 5,
+          "start_index": 4,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 4,
+              "trace_end_line": 10
+            }
+          ],
+          "selected_parameters_sha256": "d874a74f80cdea7aff1c2ef97291b4e41e2baf00ce9a343017fb9ae697f3a611"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 7,
+          "start_index": 6,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 6,
+              "trace_end_line": 30
+            }
+          ],
+          "selected_parameters_sha256": "0a26a92c0186bae6db246694b290d986f992d8a4d663c95d39973940180e118f"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 4,
+          "start_index": 3,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 3,
+              "trace_end_line": 40
+            }
+          ],
+          "selected_parameters_sha256": "61d98ce13100aa0dc6933339e61b0b7c8e7a15fe718568c57c5857cbffaa43a6"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 6,
+          "start_index": 5,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 5,
+              "trace_end_line": 60
+            }
+          ],
+          "selected_parameters_sha256": "0b58e37bb557bbaf0221bdbef6cee7b58f3d74dd7d5cac19146b2fea4ea808e8"
+        }
+      }
+    },
+    {
+      "case_id": "S6_narrow_short_total_seed410602",
+      "disposition": "complete",
+      "passed": true,
+      "status": "complete",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/remaining_host02_exposure_failure.zip",
+      "archive_sha256": "9319b3669c5fda81fab941038913a0c3bc7178c506441af4f244b7e64c228b88",
+      "case_member": "host/children/02_S6_narrow_short_total_seed410602/science/cases/S6_narrow_short_total_seed410602.json",
+      "case_sha256": "0a196f758e2c28339e28e21ea5a19324ffadb53fffd9859b642977e1ff4b51e4",
+      "trace_member": "host/children/02_S6_narrow_short_total_seed410602/science/cases/S6_narrow_short_total_seed410602.attempts.jsonl",
+      "trace_sha256": "45a9c97e14fc501c0fd39aa5674dd15418c7f2d83482e28f3fb40a166e5c2722",
+      "trace_lines": 64,
+      "paired_attempts": 32,
+      "retained_fit_records": 32,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 0,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 16
+            }
+          ],
+          "selected_parameters_sha256": "df6ba97b1cd9ffd896de23f933aa7035904cff59c3a37630c405b7a6c0252f10"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 6,
+          "start_index": 5,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 5,
+              "trace_end_line": 28
+            }
+          ],
+          "selected_parameters_sha256": "118e0cc2e20c6e5970980b41b07adfb1df7e08367acde41739ec42cd5e181dcc"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 8,
+          "start_index": 7,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 7,
+              "trace_end_line": 48
+            }
+          ],
+          "selected_parameters_sha256": "5ac9d1e134a653ff18ae9a85f2d9a1737b4bd6dc018ef72b9dce394d4d9530c6"
+        },
+        "LIplus_inclusive": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 6,
+          "start_index": 5,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 5,
+              "trace_end_line": 60
+            }
+          ],
+          "selected_parameters_sha256": "fe23ba3d2e42b2cf271bae78db44c77763e580e9d0506489da1b6e2b4cbe5fd5"
+        }
+      }
+    },
+    {
+      "case_id": "S6_narrow_short_total_seed410603",
+      "disposition": "technical_failure",
+      "passed": false,
+      "status": "unknown",
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/remaining_host02_exposure_failure.zip",
+      "archive_sha256": "9319b3669c5fda81fab941038913a0c3bc7178c506441af4f244b7e64c228b88",
+      "case_member": "host/children/03_S6_narrow_short_total_seed410603/science/cases/S6_narrow_short_total_seed410603.json",
+      "case_sha256": "6b8a7a39bf82882b1db7d026f9c85b73496cf518a1d8e92e54018369a4a9d96c",
+      "trace_member": "host/children/03_S6_narrow_short_total_seed410603/science/cases/S6_narrow_short_total_seed410603.attempts.jsonl",
+      "trace_sha256": "ff569fb658489ae1629fe222b98c8d615cdfb37b6e9b0468ad9028f58b86c5f0",
+      "trace_lines": 60,
+      "paired_attempts": 30,
+      "retained_fit_records": 30,
+      "extra_trace_records": 0,
+      "missing_trace_records": 0,
+      "exposure_exceptions": 2,
+      "other_exceptions": 0,
+      "unsuccessful_returns": 0,
+      "selected_candidates": {
+        "null": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 1,
+          "start_index": 0,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 0,
+              "trace_end_line": 2
+            }
+          ],
+          "selected_parameters_sha256": "f32494fd3a51c29bf9a47da605d0876cb17946ea85413fe6899ad94e40a2d4eb"
+        },
+        "LI": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 5,
+          "start_index": 4,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 4,
+              "trace_end_line": 26
+            }
+          ],
+          "selected_parameters_sha256": "1e5fe3ad0df456ff1079df5b8bbab089d976ae54bebd20f84faa00d2b5468043"
+        },
+        "LIplus_immigrant": {
+          "status": "selected",
+          "kind": "optimizer",
+          "state_index": 6,
+          "start_index": 5,
+          "optimizer_source": [
+            {
+              "method": "L-BFGS-B",
+              "start_index": 5,
+              "trace_end_line": 44
+            }
+          ],
+          "selected_parameters_sha256": "d8e0250bdf998d54c6fc8c890f00f3c5a63bd7a16e186aec449a2855da8dca0f"
+        },
+        "LIplus_inclusive": {
+          "status": "unresolved",
+          "source": null
+        }
+      }
+    }
+  ],
+  "exposure_exceptions": [
+    {
+      "case_id": "S6_narrow_short_total_seed410603",
+      "disposition": "technical_failure",
+      "model": "LIplus_inclusive",
+      "start_index": 4,
+      "method": "L-BFGS-B",
+      "trace_end_line": 58,
+      "error_type": "ArithmeticError",
+      "error": "Nonfinite or negative full exposure",
+      "failed_theta_present": true,
+      "failed_theta": [
+        -2.148549042550726,
+        -0.2,
+        0.2,
+        0.0,
+        1.7,
+        1.5,
+        5.0106352940962555,
+        3.4011973816621555
+      ],
+      "initial_parameters": [
+        -2.148549042550726,
+        -0.2,
+        0.2,
+        0.0,
+        1.7,
+        1.5,
+        5.0106352940962555,
+        3.4011973816621555
+      ],
+      "last_successful_evaluation_present": false,
+      "last_successful_evaluation_count": null,
+      "failed_theta_equals_initial": true,
+      "successful_same_start_Powell_rescue": false,
+      "subsequent_same_start_records": [
+        {
+          "method": "Powell",
+          "status": "exception",
+          "success": false,
+          "trace_end_line": 60,
+          "returned_parameters_sha256": null
+        }
+      ],
+      "rescued_candidate_selected": false,
+      "selected_candidate_source": {
+        "status": "unresolved",
+        "source": null
+      },
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/remaining_host02_exposure_failure.zip",
+      "case_member": "host/children/03_S6_narrow_short_total_seed410603/science/cases/S6_narrow_short_total_seed410603.json",
+      "case_sha256": "6b8a7a39bf82882b1db7d026f9c85b73496cf518a1d8e92e54018369a4a9d96c",
+      "trace_member": "host/children/03_S6_narrow_short_total_seed410603/science/cases/S6_narrow_short_total_seed410603.attempts.jsonl",
+      "trace_sha256": "ff569fb658489ae1629fe222b98c8d615cdfb37b6e9b0468ad9028f58b86c5f0"
+    },
+    {
+      "case_id": "S6_narrow_short_total_seed410603",
+      "disposition": "technical_failure",
+      "model": "LIplus_inclusive",
+      "start_index": 4,
+      "method": "Powell",
+      "trace_end_line": 60,
+      "error_type": "ArithmeticError",
+      "error": "Nonfinite or negative full exposure",
+      "failed_theta_present": true,
+      "failed_theta": [
+        -2.148549042550726,
+        -0.2,
+        0.2,
+        0.0,
+        1.7,
+        1.5,
+        5.0106352940962555,
+        3.4011973816621555
+      ],
+      "initial_parameters": [
+        -2.148549042550726,
+        -0.2,
+        0.2,
+        0.0,
+        1.7,
+        1.5,
+        5.0106352940962555,
+        3.4011973816621555
+      ],
+      "last_successful_evaluation_present": false,
+      "last_successful_evaluation_count": null,
+      "failed_theta_equals_initial": true,
+      "successful_same_start_Powell_rescue": false,
+      "subsequent_same_start_records": [],
+      "rescued_candidate_selected": false,
+      "selected_candidate_source": {
+        "status": "unresolved",
+        "source": null
+      },
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/remaining_host02_exposure_failure.zip",
+      "case_member": "host/children/03_S6_narrow_short_total_seed410603/science/cases/S6_narrow_short_total_seed410603.json",
+      "case_sha256": "6b8a7a39bf82882b1db7d026f9c85b73496cf518a1d8e92e54018369a4a9d96c",
+      "trace_member": "host/children/03_S6_narrow_short_total_seed410603/science/cases/S6_narrow_short_total_seed410603.attempts.jsonl",
+      "trace_sha256": "ff569fb658489ae1629fe222b98c8d615cdfb37b6e9b0468ad9028f58b86c5f0"
+    }
+  ],
+  "other_exceptions": [
+    {
+      "case_id": "S4_narrow_short_imm_seed410419",
+      "disposition": "complete",
+      "model": "LIplus_immigrant",
+      "start_index": 6,
+      "method": "L-BFGS-B",
+      "trace_end_line": 46,
+      "error_type": "ArithmeticError",
+      "error": "Finite objective has unrepresentable gradient",
+      "failed_theta_present": true,
+      "failed_theta": [
+        -3.1353826605495847,
+        -2.0,
+        0.0,
+        0.4242092096646881,
+        2.5,
+        4.0,
+        1.6094379124341003,
+        5.8998973535824915
+      ],
+      "initial_parameters": [
+        -2.2193750951193385,
+        0.2,
+        0.2,
+        -4.605170185988091,
+        2.5,
+        4.0,
+        5.0106352940962555,
+        -3.1780538303479458
+      ],
+      "last_successful_evaluation_present": true,
+      "last_successful_evaluation_count": 26,
+      "failed_theta_equals_initial": false,
+      "successful_same_start_Powell_rescue": true,
+      "subsequent_same_start_records": [
+        {
+          "method": "Powell",
+          "status": "returned",
+          "success": true,
+          "trace_end_line": 48,
+          "returned_parameters_sha256": "a09d272490467e609d69df2cadd62da6673c995b78ee752834cc4dc338f29fb4"
+        }
+      ],
+      "rescued_candidate_selected": true,
+      "selected_candidate_source": {
+        "status": "selected",
+        "kind": "optimizer",
+        "state_index": 7,
+        "start_index": 6,
+        "optimizer_source": [
+          {
+            "method": "Powell",
+            "start_index": 6,
+            "trace_end_line": 48
+          }
+        ],
+        "selected_parameters_sha256": "a09d272490467e609d69df2cadd62da6673c995b78ee752834cc4dc338f29fb4"
+      },
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410419.json",
+      "case_sha256": "a14aa25b2bba077ded0aa295575eab819110a1e5c4002333aa38dfce2e84d4c4",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S4_narrow_short_imm_seed410419.attempts.jsonl",
+      "trace_sha256": "a3e3c81160a1acf51929fecc208e77da7558ae2ff929acfda40bca55aefc24bd"
+    },
+    {
+      "case_id": "S5_broad_long_imm_seed410518",
+      "disposition": "scientific_unknown",
+      "model": "LIplus_immigrant",
+      "start_index": 5,
+      "method": "L-BFGS-B",
+      "trace_end_line": 44,
+      "error_type": "ArithmeticError",
+      "error": "Finite objective has unrepresentable gradient",
+      "failed_theta_present": true,
+      "failed_theta": [
+        -1.761860254409021,
+        -1.273938114975904,
+        0.0,
+        -2.104426995501204,
+        2.5,
+        3.2498743051806507,
+        3.337053423748964,
+        5.8998973535824915
+      ],
+      "initial_parameters": [
+        -3.6918471524802814,
+        -0.2,
+        0.6,
+        2.995732273553991,
+        2.5,
+        3.0,
+        1.6094379124341003,
+        5.8998973535824915
+      ],
+      "last_successful_evaluation_present": true,
+      "last_successful_evaluation_count": 1,
+      "failed_theta_equals_initial": false,
+      "successful_same_start_Powell_rescue": false,
+      "subsequent_same_start_records": [
+        {
+          "method": "Powell",
+          "status": "returned",
+          "success": false,
+          "trace_end_line": 46,
+          "returned_parameters_sha256": "c4ced6bf04d28fbc90ca1c311fd02dcf8c4788f5f9bc0e7f99b24c87d5117448"
+        }
+      ],
+      "rescued_candidate_selected": false,
+      "selected_candidate_source": {
+        "status": "not_retained_in_partial_report",
+        "source": null
+      },
+      "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+      "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410518.json",
+      "case_sha256": "6714ad7ebd17e3bf432638f9c8b0cb4d466d6aa5d7ddd7f3623d2ead17960028",
+      "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410518.attempts.jsonl",
+      "trace_sha256": "0c62a0f2c193f16ab15efd08c94777ef3acaf2d969bb891b60cd86b378a0b71a"
+    }
+  ],
+  "unsuccessful_returns": [
+    {
+      "case_id": "S5_broad_long_imm_seed410518",
+      "disposition": "scientific_unknown",
+      "model": "LIplus_immigrant",
+      "start_index": 5,
+      "method": "Powell",
+      "trace_end_line": 46,
+      "status": "returned",
+      "solver_status": 1,
+      "message": "Maximum number of function evaluations has been exceeded.",
+      "nfev": 5000,
+      "nit": 22,
+      "finite_feasible": true
+    }
+  ],
+  "interpretation": [
+    "Saved records establish where this exact exception occurred and whether the original rescue selected a candidate. They do not establish that every shared exception has the410603 quadrature cause.",
+    "A new invalid-coarse-to-fine value-and-gradient policy could change trajectories at recorded failures; a successfully rescued or unselected failed start is not evidence that a changed fit would be identical.",
+    "Cases without this recorded exception have no observed trigger in saved completed attempts. This census is not a per-evaluation trajectory log or a proof of unchanged trajectories under modified code.",
+    "Trace attempts count each canonical scientific optimizer attempt once. Operational support diagnostics and replayed returns during recovery are not counted as new fits; exact sources are retained.",
+    "Permanent410518 Powell-cap unknown remains unchanged; no case or candidate is substituted or relabeled.",
+    "A broader invalid-gradient fallback would encompass accepted410419, whose Powell rescue supplied selected state7; it must not be assumed unaffected. The requested exact-exposure trigger has no observed occurrence among the43 accepted completed cases."
+  ],
+  "execution_scope": {
+    "scientific_calls": 0,
+    "native_calls": 0,
+    "fits": 0,
+    "repository_edits": 0
+  },
+  "finished_utc": "2026-11-08T01:59:07.965866+00:00",
+  "report_sha256": "8b5efe3aa209799d959cb0e0d98eec075f0f7f6e0f5b04832e3127114feff91e",
+  "census_source_sha256": "6fcf7050c46c7079939e239ecec4e797d18442d2ec735be13b89196c5ab28cd3",
+  "scientific_source_sha256": {
+    "experiments/s04b_joint_nuisance/fit.py": "878dbf6a71bbc1b9e934f190d3ad0a1c3663097610edf5a42c8aab89b62775bb",
+    "experiments/s04b_joint_nuisance/model.py": "cc891181e51251247b9668fb6213642f0884deb288050efb2586cf179c6e8898"
+  }
+}
