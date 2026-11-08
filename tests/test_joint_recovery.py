@@ -297,6 +297,38 @@ class RecoveryControls(unittest.TestCase):
         result=r.fit_arm(phase,'LIplus_immigrant',self.science,self.partial['fits']['null']['selected']['parameters'],lambda _:None)
         self.assertTrue(result['passed']);self.assertEqual(calls,['Powell','L-BFGS-B','L-BFGS-B'])
         self.assertEqual(r.reference_snapshots,{'return':{'observed':False},'next_input':{'observed':False}})
+    def test_original_exhausted_powell_return_preserves_unknown_starts_and_reason(self):
+        calls=[];logical=[]
+        def exhausted(objective,x,*,jac,bounds,method,options):
+            # An invented capped return, not five thousand real evaluations.
+            calls.append((method,copy.deepcopy(options)))
+            self.assertEqual(method,'Powell');self.assertFalse(jac)
+            value=objective(x)
+            return OptimizeResult(x=np.asarray(x),fun=value,success=False,status=1,
+                message='Maximum number of function evaluations has been exceeded.',
+                nfev=options['maxfev'],nit=22)
+        r=self.recorder(optimizer=exhausted);phase=self.run_to_immigrant(r)
+        result=r.fit_arm(phase,'LIplus_immigrant',self.science,
+            self.partial['fits']['null']['selected']['parameters'],logical.append)
+        self.assertFalse(result['passed']);self.assertEqual(result['status'],'unknown_starts')
+        self.assertNotIn('selected_state_index',result);self.assertNotIn('selected',result)
+        self.assertEqual(result['resolved_starts'],[True]*5+[False])
+        self.assertEqual(result['not_run_starts'],[6,7]);self.assertEqual(result['required_starts'],8)
+        self.assertEqual(calls,[('Powell',self.science['solver']['powell'])])
+        failure=result['records'][-1]
+        self.assertEqual((failure['start_index'],failure['method'],failure['solver_status'],failure['nfev'],failure['nit']),
+            (5,'Powell',1,5000,22))
+        self.assertFalse(failure['success']);self.assertFalse(failure['solver_success'])
+        self.assertTrue(failure['finite_feasible']);self.assertEqual(failure['fresh_nll_delta'],0.)
+        self.assertEqual(failure['message'],'Maximum number of function evaluations has been exceeded.')
+        self.assertTrue(adapter.same(adapter.bare(logical[-1]),failure))
+        self.assertTrue(adapter.same(result['records'][5],r.original_error))
+        original=[adapter.bare(v) for v in self.trace if v['event']=='attempt_end' and v['model']=='LIplus_immigrant']
+        self.assertTrue(adapter.same(result['records'][:5],original[:5]))
+        self.assertEqual(len(result['candidates']),6)
+        self.assertEqual(len(r.replayed_candidates),5);self.assertIsNone(r.pending_return)
+        self.assertEqual(r.optimizer_calls, [('LIplus_immigrant',i,'L-BFGS-B') for i in range(6)]+
+            [('LIplus_immigrant',5,'Powell')])
     def test_changed_options_rejected(self):
         r=self.recorder();r.current=self.trace[32]
         with self.assertRaisesRegex(ValueError,'recipe'):r.optimizer(lambda _:None,np.array(r.current['initial_parameters']),jac=True,bounds=fit.bounds(self.science,'LIplus_immigrant'),method='L-BFGS-B',options={})

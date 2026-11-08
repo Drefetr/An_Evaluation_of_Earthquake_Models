@@ -328,6 +328,10 @@ class RecoveryAdapter:
             self.replayed_candidates[str(start)]=comparison
             self.log('replayed_candidate_preserved',model=model,start_index=start,**comparison)
             require(comparison['passed'], 'Preselection canonical candidate changed')
+        # The frozen fit returns unknown_starts without a selected state when
+        # an original solver budget is exhausted. Preserve that result verbatim.
+        if not result['passed']:
+            return result
         selected=next(v for v in result['candidates'] if v['state_index']==result['selected_state_index'])
         require(same(result['selected'],selected), 'Selected candidate changed during support restoration')
         return result
