@@ -69,6 +69,7 @@ def validate(review):
     required = {'scripts/run_joint_exposure_diagnostic.py',
         '.github/workflows/joint-exposure-diagnostic.yml', 'scripts/supervise_research.py',
         'experiments/s04b_exposure_diagnostic/__init__.py',
+        'experiments/s04b_exposure_diagnostic/numerics.py',
         'experiments/s04b_exposure_diagnostic/run.py', 'experiments/s04b_exposure_diagnostic/protocol.json',
         'tests/test_joint_exposure_diagnostic.py', 'tests/test_joint_exposure_diagnostic_launcher.py',
         'requirements-cpu.txt', 'requirements.txt',
