@@ -1,0 +1,56 @@
+name: Reviewed wall-failure continuation
+on:
+  push:
+    branches: ['research/joint_replay_20261107T045457Z-integration']
+permissions:
+  contents: read
+concurrency:
+  group: ${{ contains(github.event.head_commit.message, '[wall-failure-continuation]') && 'reviewed-research-continuation' || format('inactive-{0}-{1}', github.workflow, github.run_id) }}
+  cancel-in-progress: false
+jobs:
+  refinement:
+    if: contains(github.event.head_commit.message, '[wall-failure-continuation]')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 240
+    env:
+      OMP_NUM_THREADS: '2'
+      OPENBLAS_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+      NUMEXPR_NUM_THREADS: '2'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Record whole host start
+        run: echo "CONTINUATION_HOST_STARTED_UTC=$(date -u +%Y-%m-%dT%H:%M:%S+00:00)" >> "$GITHUB_ENV"
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.18'
+          cache: pip
+      - run: python -m pip install -r requirements-cpu.txt
+      - name: Constructed operational bridge and independent checker controls
+        run: python -B -m unittest discover -s tests -p 'test_joint_wall_failure*.py' -v
+      - name: Process containment controls
+        env:
+          SUPERVISOR_TEST_OUTPUT: ${{ runner.temp }}/refinement-preflight
+        run: python -B -m unittest discover -s scripts/tests -p test_supervise_research_linux.py -v
+      - name: Retain containment evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: wall-failure-continuation-preflight-${{ github.sha }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/refinement-preflight
+          if-no-files-found: error
+      - name: Supervised untouched fixed host
+        run: python -B scripts/run_joint_wall_failure_continuation.py --admission validation/reproductions/continuation_20261107/wall_failure_continuation_admission.json --output "$RUNNER_TEMP/refinement"
+      - name: Retain all new successes, failures and partial work
+        if: always()
+        timeout-minutes: 10
+        uses: actions/upload-artifact@v4
+        with:
+          name: wall-failure-continuation-${{ github.sha }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/refinement/*.json
+            ${{ runner.temp }}/refinement/build/**
+            ${{ runner.temp }}/refinement/supervision/**
+            ${{ runner.temp }}/refinement/host/**
+          if-no-files-found: error
