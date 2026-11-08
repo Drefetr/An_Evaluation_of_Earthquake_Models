@@ -47,7 +47,7 @@ class LauncherControls(unittest.TestCase):
         prior=self.root/launch.FAILED_ARCHIVE;prior.parent.mkdir(parents=True,exist_ok=True)
         index=json.dumps({'records':[]}).encode()
         with zipfile.ZipFile(prior,'w') as z:z.writestr('host/index.json',index)
-        audit=put(launch.FAILED_REVIEW,{'audit_passed':True,'live_agent_review':True,'passed':False,
+        audit=put(launch.FAILED_REVIEW,{'audit_passed':True,'live_agent_review':True,'passed':False,'artifact_sha256':launch.sha(prior),
             'disposition_valid':False,'index_sha256':hashlib.sha256(index).hexdigest()})
         for key,path in [('FAILED_ARCHIVE_SHA',prior),('FAILED_REVIEW_SHA',audit)]:
             patch=mock.patch.object(launch,key,launch.sha(path));patch.start();self.addCleanup(patch.stop)
@@ -96,9 +96,30 @@ class LauncherControls(unittest.TestCase):
         self.review.update(batch_id=2,case_ids=['caseB'],child_attempt_ids={'caseB':'next-child'})
         with self.assertRaisesRegex(ValueError,'accepted compact predecessor'):launch.validate(self.review)
         p=self.put(launch.FAILED_REVIEW,{'audit_passed':True,'live_agent_review':True,'disposition_valid':True,
+            'artifact_sha256':self.review['prior_archive_sha256'],
             'index_sha256':self.review['prior_index_sha256']})
         self.review['prior_review_sha256']=launch.sha(p)
         self.assertEqual(launch.validate(self.review)[0]['case_ids'],['caseB'])
+
+    def test_repacked_archive_with_same_index_is_not_accepted_as_reviewed_execution(self):
+        self.review.update(batch_id=2,case_ids=['caseB'],child_attempt_ids={'caseB':'next-child'})
+        audit={'audit_passed':True,'live_agent_review':True,'disposition_valid':True,
+            'artifact_sha256':self.review['prior_archive_sha256'],'index_sha256':self.review['prior_index_sha256']}
+        p=self.put(launch.FAILED_REVIEW,audit);self.review['prior_review_sha256']=launch.sha(p)
+        with zipfile.ZipFile(self.root/launch.FAILED_ARCHIVE,'a') as z:z.writestr('unreviewed',b'changed execution')
+        self.review['prior_archive_sha256']=launch.sha(self.root/launch.FAILED_ARCHIVE)
+        with self.assertRaisesRegex(ValueError,'exact execution archive'):launch.validate(self.review)
+        audit['artifact_sha256']=self.review['prior_archive_sha256'];audit['live_agent_review']=False
+        p=self.put(launch.FAILED_REVIEW,audit);self.review['prior_review_sha256']=launch.sha(p)
+        with self.assertRaisesRegex(ValueError,'live independent'):launch.validate(self.review)
+
+    def test_consumed_final_validation_margin_cannot_extend_host(self):
+        group=launch.validate(self.review)[0]
+        early=(dt.datetime.now(dt.timezone.utc)-dt.timedelta(seconds=10)).isoformat()
+        late=(dt.datetime.now(dt.timezone.utc)-dt.timedelta(seconds=100)).isoformat()
+        self.assertGreater(launch.remaining_window(self.review,group,early),launch.remaining_window(self.review,group,late))
+        exhausted=(dt.datetime.now(dt.timezone.utc)-dt.timedelta(seconds=1051)).isoformat()
+        with self.assertRaisesRegex(ValueError,'Complete case'):launch.remaining_window(self.review,group,exhausted)
 
     def test_archive_escape_duplicate_and_overwrite_rejected(self):
         import warnings

@@ -114,6 +114,8 @@ def validate(review):
     prior_audit = read(prior_review)
     require(prior_audit.get('audit_passed') is True and prior_audit.get('live_agent_review') is True,
             'Predecessor lacks a live independent output audit')
+    require(prior_audit.get('artifact_sha256') == review['prior_archive_sha256'],
+            'Predecessor audit does not bind this exact execution archive')
     if batch == 1:
         require(review['prior_archive'] == FAILED_ARCHIVE and review['prior_archive_sha256'] == FAILED_ARCHIVE_SHA
                 and review['prior_review'] == FAILED_REVIEW and review['prior_review_sha256'] == FAILED_REVIEW_SHA,
@@ -141,6 +143,16 @@ def extract(archive_path, destination):
             target.parent.mkdir(parents=True,exist_ok=True)
             with target.open('xb') as stream:
                 stream.write(saved.read(name))
+
+
+def remaining_window(review, group, started):
+    """Measure again immediately before launch, including the final pin check."""
+    elapsed=(dt.datetime.now(dt.timezone.utc)-dt.datetime.fromisoformat(started)).total_seconds()
+    require(elapsed >= 0, 'Host start lies in the future')
+    wall=review['wall_cap_seconds']-elapsed
+    require(wall >= group['case_outer_seconds']+120*len(group['case_ids'])+30,
+            'Complete case/check/finalization slots do not fit this host')
+    return wall
 
 
 def prepare(review, output, started):
@@ -187,10 +199,7 @@ def prepare(review, output, started):
         '--library',str(build/'attenuation.so'),'--build-receipt',str(build/'build_receipt.json')]
     if review['batch_id']==1:
         command += ['--failed-prior',str(prior)]
-    elapsed=(dt.datetime.now(dt.timezone.utc)-dt.datetime.fromisoformat(started)).total_seconds()
-    wall=review['wall_cap_seconds']-elapsed
-    require(wall >= group['case_outer_seconds']+120*len(group['case_ids'])+30,
-            'Complete case/check/finalization slots do not fit this host')
+    wall=remaining_window(review,group,started)
     env={name:'2' for name in ('OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS','NUMEXPR_NUM_THREADS','BLIS_NUM_THREADS')}
     env.update(PYTHONDONTWRITEBYTECODE='1',JOINT_NUMERICAL_LEASE_TOKEN=token,NUMERICAL_LEASE_TOKEN=token)
     return dict(command=command,cwd=str(ROOT),output=str(output/'supervision'),env=env,
@@ -208,8 +217,10 @@ def main():
     require(not output.is_relative_to(ROOT),'Outputs must be outside the checkout')
     output.mkdir(parents=True,exist_ok=False)
     review=read(args.admission); write(output/'conductor_review.json',review)
-    spec=prepare(review,output,started); write(output/'supervisor_spec.json',spec)
-    validate(review)
+    spec=prepare(review,output,started)
+    group,_,_=validate(review)
+    spec['wall_cap_seconds']=remaining_window(review,group,started)
+    write(output/'supervisor_spec.json',spec)
     return subprocess.run([sys.executable,'-B',str(ROOT/'scripts/supervise_research.py'),
                            str(output/'supervisor_spec.json')],cwd=ROOT).returncode
 
