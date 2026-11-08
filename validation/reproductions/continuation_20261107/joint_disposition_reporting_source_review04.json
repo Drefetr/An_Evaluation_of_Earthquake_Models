@@ -1,0 +1,45 @@
+{
+  "schema": "independent_reporting_source_review_v1",
+  "passed": true,
+  "review_kind": "live_agent_source_review",
+  "live_agent_review": true,
+  "reviewer": "/root/continuation_cpu",
+  "reviewed_commit": "db9631b6839f96537269379101311964851812bc",
+  "reviewed_files_sha256": {
+    "scripts/build_joint_disposition_report.py": "de993b23e1c61266a89c723109d9bbe12cfba504ad36202d220da929d2edd189",
+    "scripts/render_joint_disposition_results.py": "a8fb74e9a13eb1ec5ecb1fc3529b6de475881d72e8025ef772dba1358f655fa5",
+    "tests/test_joint_disposition_reporting.py": "60dd1a2df647037b4ca1afa01eb759fc4e550479e5850fdc6f82aceba26bc486",
+    "scripts/render_joint_nuisance_results.py": "0ce865ec630b769c7580829453115790efed292a91ce23de3deea6d03e89c20a",
+    "scripts/verify_claims.py": "11e189dea791a6ad228ca85d52f0c6b25a4e609c585e64885795ccb2f21c7746",
+    "paper/source/preamble.tex": "9dedf68a71faa48ea00b42231b1517e30ef60cc0eae87ce2b095bdf14dde3653"
+  },
+  "scientific_completion": false,
+  "publication_admitted": false,
+  "previous_source_review": {
+    "path": "joint_disposition_reporting_source_review03.json",
+    "sha256": "1b5e0675024c4a4aa009ab892b5a9bac8e4452e18670c8c867ccb532604b9acf"
+  },
+  "amendment_scope": "Align identifier rendering and numeric bindings with unchanged manuscript verifier.",
+  "findings": [],
+  "checks": [
+    "S4/S5/S6/S7 regime identifiers retain displayed labels and are not numeric claim bindings.",
+    "Complete-regime identifiers likewise stay literal; statistics and census binding generation unchanged.",
+    "Unknown case/seed IDs use existing xurl path markup and remain documentary identifiers.",
+    "Actual verifier manuscript_numbers set equals rendered numeric binding display set on the complete invented artifact.",
+    "Original full-success formatter and verifier bytes unchanged.",
+    "All disposition/live/custody/Task2+3/unknown suppression gates unchanged."
+  ],
+  "controls": {
+    "independently_executed": 1,
+    "elapsed_seconds": 1.811,
+    "failures": 0,
+    "errors": 0,
+    "author_combined_controls": 29
+  },
+  "numerical_calls": 0,
+  "optimizer_calls": 0,
+  "limitations": [
+    "No actual final report, TeX compilation, manuscript installation or ledger change performed.",
+    "Final publication layout and exact source-custody promotion remain separate checks."
+  ]
+}
