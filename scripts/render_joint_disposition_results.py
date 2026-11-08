@@ -131,7 +131,8 @@ def render(report, report_path, report_sha, tex_location=TEX_LOCATION):
         r'Regime & Procedure & Computed/planned & Mean & Median & Wins & Wilson interval \\', r'\midrule']
     for i, row in enumerate(report['regime_summary']):
         prefix = f'/regime_summary/{i}'
-        values = ['S'+cell(prefix+'/regime'), label(row), cell(prefix+'/computed_histories')+'/'+cell(prefix+'/planned_histories')]
+        # S4/S5/... are validated regime identifiers, not numeric display tokens.
+        values = ['S'+str(row['regime']), label(row), cell(prefix+'/computed_histories')+'/'+cell(prefix+'/planned_histories')]
         if row['statistics_available']:
             full = prefix+'/full_regime'
             values += [cell(full+'/mean_gain', 4), cell(full+'/median_gain', 4),
@@ -146,7 +147,7 @@ def render(report, report_path, report_sha, tex_location=TEX_LOCATION):
         r'Regime & Procedure & Unknown & $a$ bounds & $\eta$ bounds & Failed attempts & Null gaps & Gate differences \\', r'\midrule']
     for i, row in enumerate(report['regime_summary']):
         prefix = f'/regime_summary/{i}'
-        values = ['S'+cell(prefix+'/regime'), label(row), cell(prefix+'/unavailable_histories')]
+        values = ['S'+str(row['regime']), label(row), cell(prefix+'/unavailable_histories')]
         full = prefix+'/full_regime'
         values += ([cell(full+'/coordinate_boundaries/a/lower')+'/'+cell(full+'/coordinate_boundaries/a/upper'),
                     cell(full+'/eta_lower')+'/'+cell(full+'/eta_upper')]+
@@ -159,20 +160,22 @@ def render(report, report_path, report_sha, tex_location=TEX_LOCATION):
         r'Regime & Procedure & Off-floor & Floor returns & Near zero & Positive near zero & Robust positive & Robust negative \\', r'\midrule']
     for i, row in enumerate(report['regime_summary']):
         prefix = f'/regime_summary/{i}'
-        values = ['S'+cell(prefix+'/regime'), label(row)]
+        values = ['S'+str(row['regime']), label(row)]
         values += ([cell(prefix+'/full_regime/'+key) for key in ('off_floor', 'floor_returns', 'near_zero',
             'positive_near_zero', 'robust_positive', 'robust_negative')] if row['statistics_available'] else ['Unavailable']*6)
         lines.append(' & '.join(values)+r' \\')
     lines += [r'\bottomrule', r'\end{tabular}', r'\end{table}', '',
               'Unknown histories retain their original optimizer cap returns and have no held-out outcome.']
     for i, row in enumerate(report['unknown_census']):
-        name = row['case_id'].replace('_', r'\_')
+        # Raw path markup keeps the complete case/seed identifier intact for
+        # both TeX and the existing numeric-token verifier (xurl is loaded).
+        name = r'\path{'+row['case_id']+'}'
         arm = row['failed_model'].replace('_', r'\_')
         lines.append(name+': '+arm+', unresolved zero-based start '+cell(f'/unknown_census/{i}/unresolved_start')+
             ', terminal evaluations '+cell(f'/unknown_census/{i}/terminal_solver_return/nfev')+
             ', terminal iterations '+cell(f'/unknown_census/{i}/terminal_solver_return/nit')+'.')
-    lines += ['', 'Complete-regime boundaries: '+(', '.join('S'+cell(f'/complete_regimes/{i}')
-              for i in range(len(report['complete_regimes']))) or 'none')+
+    lines += ['', 'Complete-regime boundaries: '+(', '.join('S'+str(regime)
+              for regime in report['complete_regimes']) or 'none')+
               '. Every other planned regime has unavailable full-regime statistics.', '']
     return '\n'.join(lines), list(claims.values())
 

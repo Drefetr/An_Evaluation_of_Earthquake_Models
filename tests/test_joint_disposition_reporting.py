@@ -415,6 +415,14 @@ class TestDispositionReporting(unittest.TestCase):
         self.assertIn('common spatial and mark laws held fixed', tex)
         claims = builder.read(self.root/'stage/claims.additions.json')['claims']
         self.assertTrue(all(claim['id'].startswith('s04b-joint-disposition-') for claim in claims))
+        recognized = verify_claims.manuscript_numbers(tex)
+        bound_displays = {verify_claims.numeric_value(claim['display']) for claim in claims}
+        self.assertEqual(recognized, bound_displays, 'Every numeric token must be bound and every binding recognized')
+        self.assertTrue(all(not claim['json_pointer'].endswith('/regime') and
+                            not claim['json_pointer'].startswith('/complete_regimes/') for claim in claims))
+        self.assertEqual(verify_claims.manuscript_numbers('S4 S5 S6 S7'), set())
+        self.assertIn(r'\path{'+builder.UNKNOWN_CASE+'}', tex)
+        self.assertEqual(verify_claims.manuscript_numbers(r'\path{'+builder.UNKNOWN_CASE+'}'), set())
         for claim in claims:
             raw = verify_claims.resolve(report, claim['json_pointer'])
             self.assertIsNotNone(raw)
