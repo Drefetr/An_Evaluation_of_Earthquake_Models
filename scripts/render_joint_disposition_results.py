@@ -121,8 +121,9 @@ def render(report, report_path, report_sha, tex_location=TEX_LOCATION):
         return LABELS[row['model']]+' ('+row['gate']+')'+(r'$^{\dagger}$' if row['primary'] else '')
     lines = [r'% Separate disposition report, staged only. No manuscript or ledger installation.',
         'All '+cell('/counts/planned_histories')+' planned histories have accepted terminal dispositions: '+
-        cell('/counts/complete_histories')+' complete and '+cell('/counts/scientific_unknown_histories')+
-        ' scientific unknown. Of '+cell('/counts/planned_outcomes')+' planned outcomes, '+
+        cell('/counts/complete_histories')+' complete, '+cell('/counts/scientific_unknown_histories')+
+        ' optimizer unknown'+(', '+cell('/counts/wall_time_failure_histories')+' technical wall failure' if report.get('operational_continuation') else '')+
+        '. Of '+cell('/counts/planned_outcomes')+' planned outcomes, '+
         cell('/counts/computed_outcomes')+' are computed and '+cell('/counts/unavailable_outcomes')+
         ' are unavailable. Scientific completion is false; the original full-success publication gate remains unsatisfied.',
         '', r'\begin{table}[htbp]', r'\centering', r'\setlength{\tabcolsep}{3pt}',
@@ -133,6 +134,8 @@ def render(report, report_path, report_sha, tex_location=TEX_LOCATION):
         lines[2:2] = ['', 'The separately reviewed numerical amendment applies only within training optimizer callbacks after the original negative-exposure exception, using the original fine value and gradient subject to the original quadrature checks. Accepted original fits and the explicitly identified partial fit prefix remain reused evidence; fresh returned-state, selection and held-out checks retain their original rules. Canonical logical fit-attempt counts in the tables are distinct from physical amended calls, reused records and earlier failed attempts, which remain source-bound in the execution records.', '']
     if report.get('public_reader'):
         lines[2:2] = ['', 'Explicitly identified public-reader executions fitted untouched supplied histories through the same amended numerical core, using the bundled audited Linux CPU library and original build receipt. Their actual entrypoint and source maps remain distinct from earlier executions. This is not a fresh compilation claim and does not borrow acceptance from the earlier CPU reader edition.', '']
+    if report.get('operational_continuation'):
+        lines[2:2] = ['', 'The separately audited operational transition retains a technical wall failure without retry, cap expansion or substitution of partial training results. Its unavailable outcomes are distinct from optimizer-cap unknowns. Only untouched histories continued under the unchanged numerical procedure and fixed allocations; scientific completion remains false.', '']
     for i, row in enumerate(report['regime_summary']):
         prefix = f'/regime_summary/{i}'
         # S4/S5/... are validated regime identifiers, not numeric display tokens.
@@ -148,7 +151,7 @@ def render(report, report_path, report_sha, tex_location=TEX_LOCATION):
     lines += [r'\bottomrule', r'\end{tabular}', r'\end{table}', '', r'\begin{table}[htbp]', r'\centering',
         r'\caption{Complete-regime search and numerical census. Full-regime diagnostic cells are unavailable for incomplete regimes. Failed attempts count unsuccessful logical attempts for the shared null and named alternative; raw/BIC rows reuse searches and must not be added. Resource interruptions and administrative restarts remain in execution records. Near-zero is numerical, not statistical significance. A null-search gap prevents attributing a procedure contrast to inhibition.}',
         r'\label{tab:s04b-joint-disposition-diagnostics}', r'\begin{tabular}{@{}llrrrrrr@{}}', r'\toprule',
-        r'Regime & Procedure & Unknown & $a$ bounds & $\eta$ bounds & Failed attempts & Null gaps & Gate differences \\', r'\midrule']
+        r'Regime & Procedure & Unavailable & $a$ bounds & $\eta$ bounds & Failed attempts & Null gaps & Gate differences \\', r'\midrule']
     for i, row in enumerate(report['regime_summary']):
         prefix = f'/regime_summary/{i}'
         values = ['S'+str(row['regime']), label(row), cell(prefix+'/unavailable_histories')]
@@ -178,6 +181,8 @@ def render(report, report_path, report_sha, tex_location=TEX_LOCATION):
         lines.append(name+': '+arm+', unresolved zero-based start '+cell(f'/unknown_census/{i}/unresolved_start')+
             ', terminal evaluations '+cell(f'/unknown_census/{i}/terminal_solver_return/nfev')+
             ', terminal iterations '+cell(f'/unknown_census/{i}/terminal_solver_return/nit')+'.')
+    for row in report.get('failure_census',[]):
+        lines.append(r'\path{'+row['case_id']+'}: technical scientific-wall timeout; the original timeout and secondary wrapper error are retained. Partial training work supplies no held-out outcome. This history was not retried and is not an optimizer-cap unknown.')
     lines += ['', 'Complete-regime boundaries: '+(', '.join('S'+str(regime)
               for regime in report['complete_regimes']) or 'none')+
               '. Every other planned regime has unavailable full-regime statistics.', '']

@@ -107,11 +107,11 @@ def load_joint_disposition_study(repository):
         comparator='Jointly fitted uninhibited floor',metrics=['joint'],summary=summary,display_summary=display,
         regime_names={'4':'Immigrant: narrow/short','5':'Immigrant: broad/long','6':'Total: narrow/short','7':'Total: broad/long'},
         counts=report['counts'],outcomes=report['outcomes'],case_dispositions=report['case_dispositions'],
-        unknown_census=report['unknown_census'],complete_regimes=report['complete_regimes'],
+        unknown_census=report['unknown_census'],failure_census=report.get('failure_census',[]),complete_regimes=report['complete_regimes'],
         campaign_identity=report['campaign_identity'],historical_comparators=report['historical_comparators'],
         coverage=report['coverage'],scientific_completion=False,original_publication_gate_satisfied=False,
         note='Temporal and background coordinates are fitted jointly on training data; spatial and mark laws stay fixed. '
-             'Each regime retains its original twenty seeded histories. A capped unresolved fit leaves its procedure '
+             'Each regime retains its original twenty seeded histories. An optimizer unknown or technical wall failure leaves its procedure '
              'outcomes unavailable, including when an earlier training arm completed. Unavailable outcomes are neither '
              'zero gains nor losses. Full-regime means, medians, strict wins and diagnostics require all original histories; '
              'success-only summaries are not substituted. Pointwise Wilson intervals describe strict-positive win '

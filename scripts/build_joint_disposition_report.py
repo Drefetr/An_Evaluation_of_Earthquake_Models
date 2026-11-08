@@ -13,10 +13,13 @@ their original schema, sources, and acceptance rules.
 The optional public_reader field binds profile/source_review references for
 explicit per-record public entrypoint identities; top-level frozen core maps
 remain compatibility identities rather than claims of old-driver execution.
+The optional operational_continuation references bind the separate audited seal
+and singular technical wall failure; failed numerical evidence stays failed.
 """
 import argparse
 from collections import Counter
 from copy import deepcopy
+from decimal import Decimal
 import hashlib
 import importlib.util
 import json
@@ -33,6 +36,8 @@ except ModuleNotFoundError:  # Direct CLI invocation.
 SCIENCE = 'experiments/s04b_joint_nuisance/protocol.json'
 POLICY = 'experiments/s04b_joint_remaining/protocol.json'
 AMENDMENT = 'experiments/s04b_exposure_refinement/protocol.json'
+OPERATIONAL = 'experiments/s04b_wall_failure_continuation/protocol.json'
+WALL_CASE = 'S6_narrow_short_total_seed410615'
 READER_PROFILE = 'experiments/s04b_refined_cpu_reader/profile.json'
 READER_ENTRYPOINT = 'scripts/fit_joint_refined_cpu.py'
 READER_SOURCES = {
@@ -217,13 +222,15 @@ def amendment_sources(evidence, registry, index, policy):
             [row['case_id'] for row in original['records']] == policy['full_sequence'][:44] and
             sum(row['disposition'] == 'complete' for row in original['records']) == 43 and
             index['records'][:44] == original['records'], 'Retained forty-four-record prefix changed')
-    require(index.get('schema') == 'joint_exposure_refinement_index_v1' and
+    operational = 'operational_continuation' in registry
+    require(index.get('schema') == ('joint_exposure_refinement_operational_index_v1' if operational else 'joint_exposure_refinement_index_v1') and
             index['protocol_sha256'] == evidence.pins[AMENDMENT] and
             index['numerical_amendment_version'] == amended['version'] and
             index['original_scientific_protocol_sha256'] == evidence.pins[SCIENCE] and
             index['compatible_saved_prefix'] == base and
             index['original_exposure_failure_reference'] == amended['failed_case'] and
-            index['scientific_source_sha256'] == index['host_source_sha256'] == driver_sources,
+            index['scientific_source_sha256'] == driver_sources and
+            (operational or index['host_source_sha256'] == driver_sources),
             'Final index does not identify the explicit amendment')
     failed = amended['failed_case']
     require(failed['archive'] == dict(path=base['archive'], sha256=archive) and
@@ -236,7 +243,73 @@ def amendment_sources(evidence, registry, index, policy):
                 prefix_review=prefix_review, partial=old_partial, driver_sources=driver_sources)
 
 
-def registry_sources(evidence, registry, policy, amendment=None):
+def operational_sources(evidence, registry, index, policy, amendment):
+    """One reviewed wall-failure transition; no producer imports or generic failure bypass."""
+    if 'operational_continuation' not in registry:
+        return None
+    require(amendment is not None, 'Operational continuation requires its original numerical identity')
+    refs=registry['operational_continuation']
+    require(set(refs)=={'protocol','source_review','sealed_index','sealing_review'} and refs['protocol']['path']==OPERATIONAL,
+            'Exact operational policy, source review and separate seal required')
+    p,review,sealed,seal_review=(evidence.reference(refs[k]) for k in ('protocol','source_review','sealed_index','sealing_review'))
+    require(p['schema']=='joint_wall_failure_continuation_protocol_v1' and p['version']=='wall_failure_continuation_v1'
+        and p['numerical_protocol']==amendment['references']['protocol']
+        and p['scientific_protocol']==dict(path=SCIENCE,sha256=evidence.pins[SCIENCE])
+        and p['core_source_sha256']==amendment['driver_sources'] and p['full_sequence']==policy['full_sequence']
+        and p['case_ids']==policy['full_sequence'][56:] and p['original_native']==policy['original_native']
+        and p['failure']['case_id']==policy['full_sequence'][55]==WALL_CASE,'Operational policy changed numerical or case identities')
+    require(review.get('passed') is True and review.get('live_agent_review') is True
+        and review.get('live_agent_review_performed',True) is True and review.get('final_batch_agent_review_required',False) is False,
+        'Independent operational source review required')
+    directory=str(PurePosixPath(OPERATIONAL).parent)
+    required={directory+'/'+n for n in ('__init__.py','host.py','transition.py','protocol.json')}
+    required|={'scripts/run_joint_wall_failure_continuation.py','.github/workflows/joint-wall-failure-continuation.yml',
+        'tests/test_joint_wall_failure_continuation.py','tests/test_joint_wall_failure_launcher.py'}
+    require(required<=set(p['producer_source_paths']) and len(p['producer_source_paths'])==len(set(p['producer_source_paths'])), 'Operational source graph incomplete')
+    checker=['experiments/s04b_wall_failure_continuation_audit/__init__.py','experiments/s04b_wall_failure_continuation_audit/check.py',
+        'experiments/s04b_exposure_refinement_audit/__init__.py','experiments/s04b_exposure_refinement_audit/check.py',
+        'experiments/s04b_joint_remaining_audit/check.py','experiments/s04b_joint_audit/check.py',CORE]
+    require(p['checker']['sources']==checker,'Operational checker graph differs')
+    host_sources=dict(p['core_source_sha256'])
+    for path in p['producer_source_paths']:
+        require(path in review['reviewed_files_sha256'],'Unreviewed operational source')
+        host_sources[path]=review['reviewed_files_sha256'][path]
+    sources=dict(host_sources)
+    for path in checker+[p['checker']['test'],'requirements.txt','requirements-cpu.txt']:
+        require(path in review['reviewed_files_sha256'],'Unreviewed operational checker dependency')
+        sources[path]=review['reviewed_files_sha256'][path]
+    for path,pin in sources.items():
+        require(review['reviewed_files_sha256'].get(path)==pin and sha(safe(evidence.repository,path))==pin,'Operational source changed: '+path)
+        evidence.pins[path]=pin
+    base=p['base'];archive=evidence.archive(base['archive']);raw=evidence.member(archive,base['index_member'],base['index_sha256'])
+    failed_review=evidence.reference(base['review']);prefix=failed_review['accepted_completed_prefix']
+    live_review_flags=(failed_review.get('passed') is False and failed_review.get('audit_passed') is True
+        and failed_review.get('live_agent_review') is True and failed_review.get('live_agent_review_performed') is True
+        and failed_review.get('review_kind')=='live_agent_saved_output_review' and failed_review.get('final_batch_agent_review_required') is False
+        and failed_review.get('scientific_completion') is False)
+    require(live_review_flags and prefix['audit_passed'] is True and prefix['processed_histories']==55 and prefix['complete_histories']==54
+        and prefix['new_complete_cases']==policy['full_sequence'][51:55] and failed_review['artifact_sha256']==archive
+        and failed_review['index_sha256']==base['index_sha256'] and raw['records']==index['records'][:55], 'Exact raw host04 accepted prefix required')
+    require(seal_review.get('passed') is True and seal_review.get('audit_passed') is True
+        and seal_review.get('review_kind')=='live_operational_failure_transition_review'
+        and seal_review.get('live_agent_review') is True and seal_review.get('live_agent_review_performed',True) is True
+        and seal_review.get('final_batch_agent_review_required') is False and 'execution_id' not in seal_review
+        and seal_review.get('failure_accounting_valid') is True and seal_review.get('scientific_execution_passed') is False
+        and seal_review.get('scientific_completion') is False and seal_review['index_sha256']==refs['sealed_index']['sha256']
+        and seal_review['operational_continuation']==refs['protocol'] and seal_review['raw_archive']==base['archive']
+        and seal_review['raw_review']==base['review'] and seal_review['raw_index_sha256']==base['index_sha256'], 'Separate live seal transition review required')
+    require(sealed['schema']==index['schema']=='joint_exposure_refinement_operational_index_v1'
+        and sealed['operational_continuation']==index['operational_continuation']==refs['protocol']
+        and sealed['records']==index['records'][:56] and sealed['records'][:55]==raw['records']
+        and len(sealed['records'])==56 and sealed['records'][55]['disposition']=='wall_time_failure'
+        and sealed['records'][55]['case_id']==WALL_CASE and sealed['records'][55]['outcomes']==[]
+        and sealed['records'][55]['scientific_passed'] is False and sealed['passed'] is False and sealed['scientific_completion'] is False
+        and sealed['scientific_source_sha256']==index['scientific_source_sha256']==p['core_source_sha256']
+        and sealed['host_source_sha256']==index['host_source_sha256']==host_sources, 'Sealed operational prefix or execution identity changed')
+    return dict(protocol=p,references=refs,raw_index=raw,sealed_index=sealed,prefix_review=failed_review,host_sources=host_sources)
+
+
+def registry_sources(evidence, registry, policy, amendment=None, operational=None):
     require(registry.get('schema') == 'joint_disposition_execution_registry_v1', 'Unknown registry schema')
     archives, executions = {}, {}
     ref = policy['immutable_failure_reference']
@@ -262,14 +335,17 @@ def registry_sources(evidence, registry, policy, amendment=None):
         review = evidence.reference(entry['review'])
         base = amendment['protocol']['base'] if amendment else None
         accepted_prefix = base is not None and entry['archive'] == dict(path=base['archive'], sha256=base['archive_sha256'])
-        if accepted_prefix:
+        wall_prefix = operational is not None and entry['archive']==operational['protocol']['base']['archive']
+        if wall_prefix:
+            require(entry['review']==operational['protocol']['base']['review'] and review==operational['prefix_review'], 'Wall-failure prefix review substituted')
+        elif accepted_prefix:
             require(entry['review'] == dict(path=base['review'], sha256=base['review_sha256']) and
                     review == amendment['prefix_review'], 'Failed host review was substituted')
         else:
             live_review(review)
         require(review['artifact_sha256'] == pin and review['execution_id'] == execution,
                 'Live review does not bind execution archive')
-        ids = review['accepted_completed_case_ids'] if accepted_prefix else review['checked_case_ids']
+        ids = review['accepted_completed_prefix']['new_complete_cases'] if wall_prefix else review['accepted_completed_case_ids'] if accepted_prefix else review['checked_case_ids']
         require(len(ids) == len(set(ids)) and set(ids) <= set(policy['case_ids']),
                 'Live host review case roster differs')
         executions[execution] = (entry, review)
@@ -384,7 +460,7 @@ def projection(report):
                                if name in fits and fits[name]['passed'] is True})
 
 
-def resolve_case(evidence, record, archives, executions, policy, amendment=None, reader=None):
+def resolve_case(evidence, record, archives, executions, policy, amendment=None, reader=None, operational=None):
     source = record['source']
     if source['kind'] == 'immutable_archive':
         require(source['archive_sha256'] in archives, 'Unregistered immutable archive')
@@ -397,9 +473,14 @@ def resolve_case(evidence, record, archives, executions, policy, amendment=None,
                 'Unregistered host execution')
         entry, review = executions[source['execution_id']]
         require(record['case_id'] in review['checked_case_ids'], 'Case lacks live host review')
+        if operational and record['case_id'] in operational['protocol']['case_ids']:
+            require(review.get('host_source_sha256')==operational['host_sources']
+                and review.get('operational_continuation')==operational['references']['protocol'],
+                'Future host lacks its actual operational source identity')
         if review.get('passed') is False:
-            require(amendment is not None and review == amendment['prefix_review'] and
-                    record['case_id'] in review['accepted_completed_case_ids'] and record['disposition'] == 'complete',
+            accepted = ((amendment is not None and review == amendment['prefix_review'] and record['case_id'] in review['accepted_completed_case_ids']) or
+                        (operational is not None and review==operational['prefix_review'] and record['case_id'] in review['accepted_completed_prefix']['new_complete_cases']))
+            require(accepted and record['disposition'] == 'complete',
                     'Failed host supplies only its independently accepted complete cases')
         archive, prefix = entry['archive']['sha256'], entry['member_prefix']
         for field in ('case_path', 'trace_path', 'result_path', 'supervision_path'):
@@ -457,6 +538,62 @@ def resolve_case(evidence, record, archives, executions, policy, amendment=None,
         if key in other:
             refs[key] = other[key+'_reference']
     return report, events, refs, review, other.get('result')
+
+
+def resolve_wall_failure(evidence,record,executions,operational):
+    """The singular audited failed case has no completed-case mathematical claim."""
+    require(operational is not None and record['case_id']==WALL_CASE and record['disposition']=='wall_time_failure'
+        and record['scientific_passed'] is False and record['outcomes']==[], 'Only the reviewed wall failure is unavailable here')
+    p=operational['protocol'];f=p['failure'];source=record['source']
+    require(source['kind']=='host_execution' and source['execution_id']==f['execution_id']
+        and source['execution_id'] in executions, 'Wall failure execution missing')
+    entry,review=executions[source['execution_id']]
+    require(entry['archive']==p['base']['archive'] and entry['review']==p['base']['review'] and review==operational['prefix_review'],
+        'Wall failure cannot borrow another execution audit')
+    archive=entry['archive']['sha256'];values={};refs={}
+    for key in ('case','trace','result','supervision'):
+        member=entry['member_prefix']+source[key+'_path']
+        require(member==f[key+'_member'] and source[key+'_sha256']==f[key+'_sha256'],'Wall failure member substituted')
+        values[key]=evidence.member(archive,member,f[key+'_sha256'],as_json=key!='trace')
+        refs[key]=evidence.locator(archive,member,f[key+'_sha256'])
+    refs['independent_review']=entry['review'];refs['sealing_review']=operational['references']['sealing_review']
+    report,result=values['case'],values['result'];census=review['failure']
+    require(census==f['failure_census']==record['failure_census'] and census['case_id']==WALL_CASE
+        and census['held_out_calls']==0 and census['new_outcomes_available']==0
+        and census['physical_optimizer_attempts']==29 and census['successful_optimizer_returns']==27 and census['optimizer_exception_attempts']==2,
+        'Exact failure census changed')
+    require(report['case_id']==result['case_id']==WALL_CASE and report['passed'] is False and report['status']=='unknown'
+        and report['error_type']=='TimeoutError' and report['error']=='Joint experiment deadline' and report['outcomes']==[]
+        and result['schema']=='joint_exposure_refinement_case_v1' and result['passed'] is False and result['scientific_passed'] is False
+        and result['handled'] is False and result['disposition_valid'] is False and result['disposition']=='technical_failure'
+        and result['error_type']=='ValueError' and result['error']=='Case optimizer records differ from trace'
+        and result['scientific_clock_cap_exceeded'] is True, 'Wall failure relabeled as scientific result')
+    require(not report.get('test_checks') and 'new_null_test' not in report and 'bic_threshold' not in report
+        and not report.get('training_selections_frozen',False) and set(report['fits'])==set(ARMS[:3])
+        and result['phase_constructions']==[dict(start=30,end=395,returned=True)], 'Wall failure contains held-out or completed total-arm output')
+    require(result['source_sha256']==p['core_source_sha256']==review['source_sha256'] and result['protocol_sha256']==p['numerical_protocol']['sha256']
+        and result['runtime']['essential']==p['original_native']['runtime_essential']
+        and all(result[k]==p['original_native'][k] for k in ('library_sha256','build_receipt_sha256')),
+        'Failed execution source/runtime changed')
+    require(result['report_sha256']==f['case_sha256'] and result['trace_sha256']==f['trace_sha256']
+        and str(result['wall_seconds'])==p['accounting']['failure_scientific_seconds']
+        and str(values['supervision']['wall_seconds_including_cleanup'])==p['accounting']['failure_outer_seconds'], 'Actual failed clocks or report pins changed')
+    require(record['reason_code']=='scientific_wall_limit' and record['failure_review']==p['base']['review']
+        and record['primary_error']==dict(type=report['error_type'],message=report['error'])
+        and record['secondary_error']==dict(type=result['error_type'],message=result['error'])
+        and record['allocation']==result['allocation'] and record['numerical_amendment']==result['numerical_amendment'], 'Failed projection differs')
+    for key in ('case_id','regime','seed','input_sha256','n_train','n_test','stratum','thinning','fixed_spatial_mark_law','historical_comparisons'):
+        require(record[key]==report[key],'Failure metadata changed: '+key)
+    events=[document(line) for line in values['trace'].splitlines()]
+    require(events and all(isinstance(e,dict) for e in events),'Failure trace absent')
+    output=dict(case_id=WALL_CASE,reason_code='scientific_wall_limit',disposition='wall_time_failure',
+        primary_error=record['primary_error'],secondary_error=record['secondary_error'],
+        physical_optimizer_attempts=census['physical_optimizer_attempts'],successful_optimizer_returns=census['successful_optimizer_returns'],
+        optimizer_exception_attempts=census['optimizer_exception_attempts'],completed_arms=census['completed_arms'],
+        unfinished_arm=census['unfinished_arm'],successful_trace_only_starts=census['successful_trace_only_starts'],
+        interrupted_start=census['interrupted_start'],not_run_starts=census['not_run_starts'],held_out_calls=0,
+        scientific_seconds=result['wall_seconds'],outer_seconds=values['supervision']['wall_seconds_including_cleanup'],evidence=refs)
+    return report,events,refs,review,result,output
 
 
 def amended_computation(evidence, record, report, result, executions, amendment):
@@ -694,6 +831,7 @@ def build(repository, paths):
     require(frozen[MANIFEST] == evidence.pins[MANIFEST], 'Frozen input manifest identity differs')
     require(policy['scientific_protocol_sha256'] == evidence.pins[SCIENCE], 'Frozen scientific protocol identity differs')
     amendment = amendment_sources(evidence, registry, index, policy)
+    operational = operational_sources(evidence, registry, index, policy, amendment)
     reader = reader_sources(evidence, registry, amendment)
     if amendment is None:
         require(index['protocol_sha256'] == evidence.pins[POLICY], 'Frozen protocol identity differs')
@@ -707,7 +845,8 @@ def build(repository, paths):
     require(len(cases) == len(manifest['s04b']['cases']) == 80 and set(cases) == set(sequence) and
             Counter(case['regime'] for case in cases.values()) == Counter({r:20 for r in range(4, 8)}),
             'Frozen input manifest roster differs')
-    require(index.get('schema') == ('joint_exposure_refinement_index_v1' if amendment else 'joint_remaining_index_v1') and index.get('passed') is False and
+    expected_schema='joint_exposure_refinement_operational_index_v1' if operational else 'joint_exposure_refinement_index_v1' if amendment else 'joint_remaining_index_v1'
+    require(index.get('schema') == expected_schema and index.get('passed') is False and
             index.get('scientific_completion') is False and
             [record['case_id'] for record in index['records']] == sequence, 'Final compact disposition index required')
     require(index['original_native'] == policy['original_native'] and
@@ -719,15 +858,17 @@ def build(repository, paths):
         integer(count)
     require(final['index_sha256'] == evidence.pins[paths['index']] and final['counts'] == index['counts'] and
             final.get('all_histories_attempted') is True, 'Live final index review does not bind all eighty dispositions')
-    archives, executions = registry_sources(evidence, registry, policy, amendment)
+    archives, executions = registry_sources(evidence, registry, policy, amendment, operational)
     comparator_refs, old = historical(evidence, [cases[key] for key in sequence], registry, frozen)
-    reports, dispositions, outcomes, unknowns = {}, [], [], []
+    reports, dispositions, outcomes, unknowns, failures = {}, [], [], [], []
     used_executions = set()
     historical_checks = floor_checks = 0
     for n, record in enumerate(index['records']):
         case_id, disposition = record['case_id'], record['disposition']
-        require(disposition in ('complete', 'scientific_unknown') and
+        wall = disposition=='wall_time_failure'
+        require(disposition in (('complete','scientific_unknown','wall_time_failure') if operational else ('complete','scientific_unknown')) and
                 record['scientific_passed'] is (disposition == 'complete'), 'Unaccepted terminal disposition')
+        require(not wall or n==55 and case_id==WALL_CASE,'Only the reviewed wall failure is permitted')
         source = record['source']
         require(source['kind'] == ('immutable_archive' if n < 41 else 'host_execution'),
                 'Original prefix/source partition changed')
@@ -739,13 +880,17 @@ def build(repository, paths):
                     'Permanent unknown cannot become complete or change source')
         if n >= 41:
             used_executions.add(source['execution_id'])
-        report, events, refs, review, result = resolve_case(evidence, record, archives, executions, policy, amendment, reader)
+        if wall:
+            report,events,refs,review,result,failed_census=resolve_wall_failure(evidence,record,executions,operational)
+        else:
+            report, events, refs, review, result = resolve_case(evidence, record, archives, executions, policy, amendment, reader, operational)
         amended_case = amendment is not None and n >= 44
         reader_case = 'execution_producer' in record
         if result and (amendment is None or amended_case) and not reader_case:
             require(result['source_sha256'] == index['scientific_source_sha256'], 'Executed scientific source identity differs')
-        for key, value in projection(report).items():
-            require(record[key] == value, 'Compact projection differs from saved case: '+key)
+        if not wall:
+            for key, value in projection(report).items():
+                require(record[key] == value, 'Compact projection differs from saved case: '+key)
         require(all(report[key] == cases[case_id][key] for key in ('case_id', 'regime', 'seed')),
                 'Case manifest identity differs')
         entry = dict(case_id=case_id, regime=report['regime'], seed=report['seed'], disposition=disposition,
@@ -753,7 +898,9 @@ def build(repository, paths):
                      source_identity=dict(scientific_protocol_sha256=evidence.pins[SCIENCE],
                          remaining_protocol_sha256=evidence.pins[POLICY], native=policy['original_native'],
                          executed_source_sha256=result['source_sha256'] if result else review['source_sha256']))
-        if amendment:
+        if wall:
+            entry['computation']=dict(kind='retained_technical_wall_failure',scope='Audited partial training evidence only; no held-out score or full-case computation acceptance.')
+        elif amendment:
             entry['computation'] = (amended_computation(evidence,record,report,result,executions,amendment) if amended_case
                                     else dict(kind='retained_original',scope='Accepted original computation; not rerun by the numerical amendment.'))
         if reader_case:
@@ -784,6 +931,12 @@ def build(repository, paths):
                 outcomes.append(dict(deepcopy(row), id=case_id+'|'+row['model']+'|'+row['gate'], case_id=case_id,
                     regime=report['regime'], availability='computed', historical_comparators=comparator,
                     source=dict(refs['case'], json_pointer=f'/outcomes/{i}')))
+        elif wall:
+            failures.append(failed_census);entry.update(reason_code='scientific_wall_limit',failure_census=failed_census)
+            for model,gate in PROCEDURES:
+                outcomes.append(dict.fromkeys(NULL_FIELDS)|dict(id=case_id+'|'+model+'|'+gate,case_id=case_id,regime=report['regime'],
+                    model=model,gate=gate,availability='unavailable',reason_code='scientific_wall_limit',source=refs['case'],
+                    failure_evidence=refs,historical_comparators=old[(case_id,model,gate)]))
         else:
             census = unknown_census(record, report, events, review, result, dict(policy, _science=science))
             unknowns.append(census)
@@ -804,10 +957,11 @@ def build(repository, paths):
         floor_checks += len(floors)
         dispositions.append(entry)
     require(used_executions == set(executions), 'Extraneous or unresolved execution registry entries')
-    c, u = len(reports), len(unknowns)
-    require(c+u == 80 and u >= 1 and len(outcomes) == 400, 'Disposition accounting is incomplete')
+    c, u, w = len(reports), len(unknowns), len(failures)
+    require(c+u+w == 80 and u >= 1 and w==(1 if operational else 0) and len(outcomes) == 400, 'Disposition accounting is incomplete')
     expected_counts = dict(processed_histories=80, complete_histories=c, unknown_histories=u,
                            unattempted_histories=0, computed_outcomes=5*c)
+    if operational:expected_counts['wall_time_failure_histories']=w
     require(index['counts'] == expected_counts, 'Index counts differ from accepted saved bytes')
     core = arithmetic()
     summary = []
@@ -825,8 +979,9 @@ def build(repository, paths):
                 unavailable_case_ids=unavailable, statistics_available=stats is not None, full_regime=stats,
                 unavailable_reason=None if stats else 'incomplete_original_20_history_regime'))
     counts = dict(planned_histories=80, accepted_terminal_dispositions=80, complete_histories=c,
-        scientific_unknown_histories=u, pending_histories=0, unresolved_technical_failures=0,
-        planned_outcomes=400, computed_outcomes=5*c, unavailable_outcomes=5*u, regime_procedure_rows=20)
+        scientific_unknown_histories=u, pending_histories=0, unresolved_technical_failures=w,
+        planned_outcomes=400, computed_outcomes=5*c, unavailable_outcomes=5*(u+w), regime_procedure_rows=20)
+    if operational:counts['wall_time_failure_histories']=w
     result = dict(schema=REPORT_SCHEMA, reporting_accepted=False, disposition_accounting_complete=True,
         scientific_completion=False, original_publication_gate_satisfied=False,
         campaign_identity=dict(scientific_protocol_sha256=evidence.pins[SCIENCE],
@@ -852,6 +1007,23 @@ def build(repository, paths):
         require(ids, 'Reader registry has no actual reader executions')
         result['public_reader'] = dict(references=reader['references'],execution_producer=reader['producer'],case_ids=ids,
             scope='Actual public-entrypoint fresh fits with the bundled audited Linux x86-64 native library. Prior fixed/partial computations retain their own identities; no new compilation or inherited Task3 execution claim.')
+    if operational:
+        result['failure_census']=failures
+        result['campaign_identity']['operational_continuation_protocol_sha256']=evidence.pins[OPERATIONAL]
+        result['operational_continuation']=dict(references=operational['references'],version=operational['protocol']['version'],
+            failure_case_id=WALL_CASE,method='One exact audited technical wall failure retained as unavailable; untouched fixed hosts continue with unchanged numerical children. No retry, cap expansion or partial-result substitution.')
+        resource=final.get('resource')
+        require(isinstance(resource,dict) and resource and final['execution_id']==index['records'][-1]['source']['execution_id']
+            and all(row['execution_id']!=final['execution_id'] for row in index['audited_host_overheads']), 'Final host resource receipt must remain separate from indexed prior overheads')
+        raw_overhead=resource['whole_workflow_overhead_beyond_all_child_outer_seconds']
+        require(type(raw_overhead) in (str,int,float), 'Invalid final host overhead scalar')
+        overhead=Decimal(str(raw_overhead))
+        require(overhead.is_finite() and 0<=overhead<=1800,'Final live host overhead exceeds retained reservation')
+        result['resource_evidence']=dict(index_budget=deepcopy(index['budget']),indexed_host_overheads=deepcopy(index['audited_host_overheads']),
+            final_live_review=dict(path=paths['index_review'],sha256=evidence.pins[paths['index_review']],json_pointer='/resource'),
+            final_host_execution_id=final['execution_id'],final_live_resource=deepcopy(resource),
+            scope='The final live resource receipt includes current-host overhead not yet entered at a later index boundary. The raw index budget/reservations remain unchanged; these objects are not additive independent totals.')
+        result['scope']='Saved outputs only. Full-regime statistics require all original 20 histories; optimizer unknowns and technical wall failures remain distinct and unavailable.'
     return result, evidence.pins
 
 

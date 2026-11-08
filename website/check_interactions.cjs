@@ -49,7 +49,7 @@ for(let i=0;i<DATA.studies.length;i++){
    assert.equal(elements.rows.children.length,4);assert.equal(elements.units.disabled,true);assert.equal(elements.units.value,'total');assert.equal(elements.chart.children.length,0);
    assertJointHidden();assert.equal(elements['joint-disposition-diagnostics'].hidden,false);assert.equal(elements['refitted-floor'].hidden,true);
    assert.notEqual(elements.source.hidden,true);assert(!elements.number.textContent.includes('Pooled'));
-   assert.equal(elements.number.textContent,s.counts.planned_histories+' planned histories: '+s.counts.complete_histories+' computed, '+s.counts.scientific_unknown_histories+' unavailable');
+   assert.equal(elements.number.textContent,s.counts.planned_histories+' planned histories: '+s.counts.complete_histories+' computed, '+s.counts.scientific_unknown_histories+' optimizer unknown, '+(s.counts.wall_time_failure_histories||0)+' technical wall failure');
    assert(elements.heading.textContent.endsWith(' minus '+s.comparator.toLowerCase()));
    assert(head.innerHTML.includes('Pointwise Wilson'));assert(!head.innerHTML.includes('MC SE'));
    assert.equal(elements['joint-disposition-search-rows'].children.length,4);assert.equal(elements['joint-disposition-floor-rows'].children.length,4);
@@ -113,6 +113,9 @@ if(dispositions.length){
  assert.equal(s.outcomes.filter(r=>r.availability==='computed').length,s.counts.computed_outcomes);
  assert.equal(s.outcomes.filter(r=>r.availability==='unavailable').length,s.counts.unavailable_outcomes);
  assert.equal(s.counts.computed_outcomes+s.counts.unavailable_outcomes,400);
+ assert.equal(s.counts.unavailable_outcomes,5*(s.counts.scientific_unknown_histories+(s.counts.wall_time_failure_histories||0)));
+ assert.equal(s.counts.unresolved_technical_failures,s.counts.wall_time_failure_histories||0);
+ assert.equal((s.failure_census||[]).length,s.counts.wall_time_failure_histories||0);
 }
 // Switching back must restore denominator semantics and unit controls.
 elements.study.value='0';vm.runInContext('selectStudy()',context);assert.equal(elements.units.disabled,false);assertJointHidden();assertDispositionHidden();

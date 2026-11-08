@@ -59,7 +59,7 @@ function renderJointDisposition(s){
  document.querySelectorAll('.result > p.muted:not(#source)').forEach(p=>p.hidden=true);
  const key=el('comparison').value,rows=s.summary.filter(r=>r.model+'_'+r.gate===key),unavailable='Unavailable';
  el('heading').textContent=s.comparisons[key]+' minus '+s.comparator.toLowerCase();
- el('number').textContent=s.counts.planned_histories+' planned histories: '+s.counts.complete_histories+' computed, '+s.counts.scientific_unknown_histories+' unavailable';
+ el('number').textContent=s.counts.planned_histories+' planned histories: '+s.counts.complete_histories+' computed, '+s.counts.scientific_unknown_histories+' optimizer unknown, '+(s.counts.wall_time_failure_histories||0)+' technical wall failure';
  el('interpretation').textContent='Disposition accounting is complete; the scientific comparison is incomplete. Spatial and mark laws stay fixed. Comparative statistics are shown only for regimes with all 20 original histories completed. No pooled or per-earthquake score is reported.';
  el('caption').textContent='S04B joint comparison dispositions: full-regime gains in total held-out nats per history';
  tableHead().innerHTML='<tr>'+['Generating law / regime','Planned','Computed','Unavailable','Mean gain','Median','Wins / histories','Pointwise Wilson 95% win interval','Active'].map(x=>'<th scope="col">'+x+'</th>').join('')+'</tr>';

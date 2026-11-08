@@ -34,6 +34,7 @@ class InventedDispositionEvidence:
         for regime in range(4, 8):
             for seed in range(20):
                 case_id = builder.UNKNOWN_CASE if (regime, seed) == (5, 17) else f'S{regime}_invented_seed{regime*100+seed}'
+                case_id = getattr(self, 'case_id_overrides', {}).get((regime, seed), case_id)
                 self.cases.append(dict(case_id=case_id, regime=regime, seed=regime*100+seed,
                                        expected='invented/'+case_id+'.json'))
         prefix = self.cases[:20]+self.cases[20:37]+self.cases[40:42]+self.cases[60:61]
