@@ -10,6 +10,8 @@ ROOT = Path(__file__).resolve().parents[1]
 AUTH = ROOT/'validation/authorities'
 JOINT_DIRECTORY = 'validation/live_results/joint_nuisance_20261107'
 FORMATTER_PATH = ROOT/'scripts/render_joint_nuisance_results.py'
+DISPOSITION_DIRECTORY = 'validation/live_results/joint_nuisance_dispositions_20261107'
+DISPOSITION_FORMATTER_PATH = ROOT/'scripts/render_joint_disposition_results.py'
 
 
 def joint_display(value):
@@ -76,6 +78,67 @@ def write_findings(out,payload):
     (out/'findings.html').write_text(template.replace('/* DATA */',
         'const DATA='+json.dumps(payload).replace('<','\\u003c')+';'),encoding='utf-8')
 
+
+def load_joint_disposition_study(repository):
+    """A separate accepted disposition report; never a fallback from the success gate."""
+    base=repository/DISPOSITION_DIRECTORY
+    if not base.exists():return None,[]
+    paths={key:DISPOSITION_DIRECTORY+'/'+filename+'.json' for key,filename in
+           [('report','report'),('audit','independent_review'),('completion_review','completion_review')]}
+    if not base.is_dir() or not all((repository/p).is_file() for p in paths.values()):
+        raise ValueError('Joint disposition publication evidence is incomplete')
+    spec=importlib.util.spec_from_file_location('joint_disposition_publication_validator',DISPOSITION_FORMATTER_PATH)
+    validator=importlib.util.module_from_spec(spec);spec.loader.exec_module(validator)
+    try:report,pins=validator.validate(repository,paths)
+    except (KeyError,TypeError) as exc:
+        raise ValueError('Malformed joint disposition publication evidence') from exc
+    summary=report['regime_summary']
+    display=[]
+    for row in summary:
+        full=row['full_regime']
+        values=dict(mean_gain=None,median_gain=None,wilson95=None)
+        if row['statistics_available']:
+            values=dict(mean_gain=joint_display(full['mean_gain']),median_gain=joint_display(full['median_gain']),
+                        wilson95=[joint_display(x) for x in full['wilson95']])
+        display.append(dict(regime=row['regime'],model=row['model'],gate=row['gate'],**values))
+    study=dict(name='Synthetic controls - S04B joint comparison dispositions',kind='joint_disposition_simulation',
+        comparisons={'LI_raw':'LI','LIplus_immigrant_raw':'LI+ immigrant','LIplus_immigrant_BIC':'LI+ immigrant gated',
+                     'LIplus_inclusive_raw':'LI+ total','LIplus_inclusive_BIC':'LI+ total gated'},
+        comparator='Jointly fitted uninhibited floor',metrics=['joint'],summary=summary,display_summary=display,
+        regime_names={'4':'Immigrant: narrow/short','5':'Immigrant: broad/long','6':'Total: narrow/short','7':'Total: broad/long'},
+        counts=report['counts'],outcomes=report['outcomes'],case_dispositions=report['case_dispositions'],
+        unknown_census=report['unknown_census'],complete_regimes=report['complete_regimes'],
+        campaign_identity=report['campaign_identity'],historical_comparators=report['historical_comparators'],
+        coverage=report['coverage'],scientific_completion=False,original_publication_gate_satisfied=False,
+        note='Temporal and background coordinates are fitted jointly on training data; spatial and mark laws stay fixed. '
+             'Each regime retains its original twenty seeded histories. A capped unresolved fit leaves its procedure '
+             'outcomes unavailable, including when an earlier training arm completed. Unavailable outcomes are neither '
+             'zero gains nor losses. Full-regime means, medians, strict wins and diagnostics require all original histories; '
+             'success-only summaries are not substituted. Pointwise Wilson intervals describe strict-positive win '
+             'indicators for complete regimes, not mean-gain uncertainty or simultaneous inference. Positive near-zero '
+             'gains remain wins. Active selection does not establish parameter recovery; null-search gaps prevent '
+             'attributing a procedure contrast solely to inhibition. Logical unsuccessful attempts may be shared by '
+             'raw and gated rows and must not be added across procedures. Attempted and unrun arms, original cap '
+             'returns and operational interruptions remain in the evidence. Regimes are never pooled. These controlled '
+             'comparisons do not establish a physical mechanism or prospective forecasting performance.',
+        source='Separate joint-comparison disposition report. All planned outcome slots, unavailable reasons, '
+               'unchanged historical comparators and source hashes are retained in the aggregate download. '
+               'Reporting acceptance is distinct from scientific completion.',
+        evidence_paths=paths,validation_source='scripts/render_joint_disposition_results.py',
+        validation_source_sha256=hashlib.sha256(DISPOSITION_FORMATTER_PATH.read_bytes()).hexdigest())
+    return study,[{'file':Path(p).name,'path':p,'sha256':h} for p,h in sorted(pins.items())]
+
+
+def append_joint_publications(repository,studies,sources):
+    # Both fixed directories refer to this one frozen S04B campaign. A malformed
+    # full-success record must raise before the separate disposition path is read.
+    joint,joint_sources=load_joint_study(repository)
+    disposition,disposition_sources=load_joint_disposition_study(repository)
+    if joint is not None and disposition is not None:
+        raise ValueError('The same joint campaign cannot publish success and disposition reports together')
+    if joint is not None:studies.append(joint);sources.extend(joint_sources)
+    if disposition is not None:studies.append(disposition);sources.extend(disposition_sources)
+
 def build(out):
     studies=[];sources=[]
     def read(pattern):
@@ -133,8 +196,6 @@ def build(out):
     studies[-1]['note']+=' The narrow/short immigrant generator rejected no event in 19 of 20 histories. The lower table refits only the uninhibited background intercept on training data; all original inhibited fits and gates stay unchanged. This isolates comparator sensitivity without claiming joint nuisance fitting or parameter recovery. In the separate original unit-mark S04 controls, all 20 narrow/short histories had no rejected proposals; they are not additional S04B replicates.'
     studies[-1]['source']='Chapter 13: original fixed-floor S04B summaries, source-backed generator/parameter diagnostics, and completed 80-history intercept sensitivity.'
     payload={'studies':studies,'sources':sources,'scope':'Reported aggregates, including the dated train-only intercept sensitivity. No uncertainty intervals inferred from dependent windows. S06 acceptance covers saved rows and arithmetic, not independent likelihood replay.'}
-    joint,joint_sources=load_joint_study(ROOT)
-    if joint is not None:
-        studies.append(joint);sources.extend(joint_sources)
+    append_joint_publications(ROOT,studies,sources)
     write_findings(out,payload)
     return payload
