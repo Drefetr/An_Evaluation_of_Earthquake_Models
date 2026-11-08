@@ -76,7 +76,7 @@ def classify(report, case, science, trace, phase_constructions):
     census = dict(attempted_models=attempted,
                   completed_models=[name for name in attempted if fits[name]['passed'] is True],
                   not_run_models=list(MODELS[len(attempted):]),
-                  logical_optimizer_returns=len(ends),
+                  logical_optimizer_attempts=len(ends),
                   held_out_phase_constructed=len(phase_constructions) == 2)
     if report.get('passed') is True:
         require(report['status'] == 'complete' and attempted == list(MODELS)

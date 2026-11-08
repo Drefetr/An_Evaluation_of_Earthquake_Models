@@ -24,7 +24,7 @@ class RemainingCaseControls(unittest.TestCase):
         self.root=self.fixture.root
         self.science=self.fixture.science
 
-    def setup_case(self, unknown_model=None, technical=False, iteration=False):
+    def setup_case(self, unknown_model=None, technical=False, iteration=False, primary_exception=False):
         delegate,case,modules,_,_=self.fixture.startup_fixture()
         construction=[];calls=[]
         class Phase(TinyPhase):
@@ -44,6 +44,7 @@ class RemainingCaseControls(unittest.TestCase):
                 if technical and model==unknown_model:raise TimeoutError('invented technical deadline')
                 value=objective(x);value=value[0] if jac else value
                 bad=model==unknown_model and index==2
+                if bad and primary_exception and method=='L-BFGS-B':raise ArithmeticError('invented primary gradient failure')
                 return OptimizeResult(x=np.asarray(x),fun=value,success=not bad,status=(2 if iteration else 1) if bad else 0,
                     message='Maximum number of function evaluations has been exceeded.' if bad else 'invented successful return',
                     nfev=(3 if iteration else options['maxfev']) if bad and method=='Powell' else 1,
@@ -113,6 +114,13 @@ class RemainingCaseControls(unittest.TestCase):
         self.assertEqual(result['model_census']['completed_models'],[])
         self.assertEqual(result['terminal_solver_return']['nit'],400)
         self.assertEqual(phases,[(30,395)]);self.assertEqual(len(calls),4)
+
+    def test_attempt_census_includes_primary_exception_without_calling_it_a_return(self):
+        code,result,report,_,calls,_=self.execute_fixture(unknown_model='null',primary_exception=True)
+        self.assertEqual(code,0);self.assertEqual(result['disposition'],'scientific_unknown')
+        self.assertEqual(report['fits']['null']['records'][-2]['status'],'exception')
+        self.assertEqual(result['model_census']['logical_optimizer_attempts'],4)
+        self.assertEqual(len(calls),4);self.assertNotIn('logical_optimizer_returns',result['model_census'])
 
     def test_technical_timeout_never_becomes_scientific_unknown(self):
         code,result,report,phases,calls,args=self.execute_fixture(unknown_model='null',technical=True)
