@@ -212,6 +212,7 @@ class HostControls(unittest.TestCase):
         H.write(review,dict(passed=False,audit_passed=True));H.write(config,{})
         p['immutable_failure_reference'].update(index_sha256=H.sha(prior),review_sha256=H.sha(review))
         p['shared_run']['config_sha256']=H.sha(config)
+        p['shared_run']['expires_utc']=(dt.datetime.now(dt.timezone.utc)+dt.timedelta(hours=2)).isoformat()
         native=self.d/'native.so';native.write_bytes(b'invented, never loaded')
         build=self.d/'build.json';H.write(build,{})
         p['original_native'].update(library_sha256=H.sha(native),build_receipt_sha256=H.sha(build))
