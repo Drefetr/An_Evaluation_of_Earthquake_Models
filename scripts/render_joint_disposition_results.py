@@ -26,6 +26,8 @@ def flags(value):
     require(value.get('reporting_accepted') is True and value.get('disposition_accounting_complete') is True and
             value.get('scientific_completion') is False and value.get('original_publication_gate_satisfied') is False and
             value.get('live_independent_review') is True and value.get('review_kind') == REVIEW_KIND and
+            value.get('live_agent_review', True) is True and value.get('live_agent_review_performed', True) is True and
+            value.get('final_batch_agent_review_required', False) is False and
             isinstance(value.get('reviewer'), str) and value['reviewer'].strip(),
             'Genuine live independent disposition acceptance is required')
     require('passed' not in value, 'Disposition acceptance must not assert unqualified passed')
@@ -124,7 +126,7 @@ def render(report, report_path, report_sha, tex_location=TEX_LOCATION):
         cell('/counts/computed_outcomes')+' are computed and '+cell('/counts/unavailable_outcomes')+
         ' are unavailable. Scientific completion is false; the original full-success publication gate remains unsatisfied.',
         '', r'\begin{table}[htbp]', r'\centering', r'\setlength{\tabcolsep}{3pt}',
-        r'\caption{Saved joint-score procedure comparisons, in nats. Full-regime statistics require all original twenty histories. Incomplete regimes remain unavailable; no complete-case mean, median or Wilson interval is substituted. Wins are strictly positive gains; positive near-zero gains remain wins. Wilson intervals are pointwise win-rate intervals, not mean-gain uncertainty. Marked rows are the prespecified primary contrasts. Historical fixed-floor and intercept-only comparisons remain unchanged.}',
+        r'\caption{Saved held-out joint-score gains against the jointly training-refitted uninhibited comparator, in nats, with the common spatial and mark laws held fixed. Full-regime statistics require all original twenty histories. Incomplete regimes remain unavailable; no complete-case mean, median or Wilson interval is substituted. Wins are strictly positive gains against that comparator; positive near-zero gains remain wins. Wilson intervals are pointwise win-rate intervals, not mean-gain uncertainty. Marked rows are the prespecified primary contrasts. Historical fixed-floor and intercept-only comparisons remain unchanged.}',
         r'\label{tab:s04b-joint-disposition-scores}', r'\begin{tabular}{@{}llrrrrr@{}}', r'\toprule',
         r'Regime & Procedure & Computed/planned & Mean & Median & Wins & Wilson interval \\', r'\midrule']
     for i, row in enumerate(report['regime_summary']):

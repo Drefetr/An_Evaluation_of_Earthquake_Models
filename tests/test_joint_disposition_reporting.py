@@ -394,6 +394,8 @@ class TestDispositionReporting(unittest.TestCase):
         tex = (self.root/'stage'/formatter.TEX_LOCATION).read_text(encoding='utf-8')
         self.assertIn('Unavailable', tex)
         self.assertIn('original full-success publication gate remains unsatisfied', tex)
+        self.assertIn('jointly training-refitted uninhibited comparator', tex)
+        self.assertIn('common spatial and mark laws held fixed', tex)
         claims = builder.read(self.root/'stage/claims.additions.json')['claims']
         self.assertTrue(all(claim['id'].startswith('s04b-joint-disposition-') for claim in claims))
         for claim in claims:
@@ -445,6 +447,23 @@ class TestDispositionReporting(unittest.TestCase):
         target.write_text('Existing source', encoding='utf-8')
         with self.assertRaisesRegex(ValueError, 'must not be replaced'):
             formatter.stage(self.fixture.repo, self.fixture.public, self.root/'stage')
+
+    def test_contradictory_live_or_pending_flags_fail_even_after_hashes_are_repinned(self):
+        _, audit, acceptance = self.fixture.accept()
+        for field, value in (('live_agent_review', False), ('live_agent_review_performed', False),
+                             ('final_batch_agent_review_required', True)):
+            for target in ('audit', 'completion_review'):
+                with self.subTest(field=field, target=target):
+                    changed_audit, changed_acceptance = deepcopy(audit), deepcopy(acceptance)
+                    changed = changed_audit if target == 'audit' else changed_acceptance
+                    changed[field] = value
+                    write(self.fixture.repo/self.fixture.public['audit'], changed_audit)
+                    audit_pin = builder.sha(self.fixture.repo/self.fixture.public['audit'])
+                    changed_acceptance['artifact_sha256'][self.fixture.public['audit']] = audit_pin
+                    changed_acceptance['tasks']['task1']['acceptance']['sha256'] = audit_pin
+                    write(self.fixture.repo/self.fixture.public['completion_review'], changed_acceptance)
+                    with self.assertRaisesRegex(ValueError, 'live independent disposition acceptance'):
+                        formatter.validate(self.fixture.repo, self.fixture.public)
 
 
 if __name__ == '__main__':
