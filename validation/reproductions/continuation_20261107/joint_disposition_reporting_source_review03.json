@@ -1,0 +1,55 @@
+{
+  "schema": "independent_reporting_source_review_v1",
+  "passed": true,
+  "review_kind": "live_agent_source_review",
+  "live_agent_review": true,
+  "reviewer": "/root/continuation_cpu",
+  "reviewed_commit": "74a166edb014f5c294ea52343a3a8fffdb739076",
+  "reviewed_files_sha256": {
+    "scripts/build_joint_disposition_report.py": "de993b23e1c61266a89c723109d9bbe12cfba504ad36202d220da929d2edd189",
+    "scripts/render_joint_disposition_results.py": "6acb96827e460b0d0ed8d5a6e044253c3a56a67d0acc5cf00d484dfd206da845",
+    "tests/test_joint_disposition_reporting.py": "841d00b214ac8c0452d9d7a0cceab7e39f5da9360497f0482b69e91ae9abb476",
+    "scripts/render_joint_nuisance_results.py": "0ce865ec630b769c7580829453115790efed292a91ce23de3deea6d03e89c20a",
+    "experiments/s04b_joint_nuisance_audit/audit.py": "47e38c68ff613f5dae1ac80da3713f03a673dc1a31553bf2a8ca3a27773231c3",
+    "experiments/s04b_joint_nuisance/input_pins.json": "636e2f6ebd1db404a04155acef1979f36931338cbfa0e4c24351a80378924dad",
+    "reproduction/synthetic/input_manifest.json": "bf7bc6dabf94b15f74f63f22676b72b68286bf1dbde1cab874ec720328d7ece2",
+    "validation/live_results/methodological_20261106/refitted_floor_summary.json": "2751cff67e8cfe1a0a4920a27fd1507eeeb8f0c2d060327685e9910a8826433c",
+    "validation/live_results/methodological_20261106/refitted_floor/output_review.json": "9df57f92d75d0642796d90e9f6dd807d5eb16b592d1f831bd05b793e2c2ef139",
+    "validation/live_results/methodological_20261106/refitted_floor/result.json": "127e281a63279e1cdaed94f7d96f1f320991f08cb690e1f3ce1b9c6e03593bd0"
+  },
+  "scientific_completion": false,
+  "publication_admitted": false,
+  "previous_source_review": {
+    "path": "joint_disposition_reporting_source_review02.json",
+    "sha256": "3ffb510ca4855c34d3b451d7f72cecc3af7bcfe7a777719bc811db03c2154d1e"
+  },
+  "amendment_scope": "Recognize the genuine retained intercept-only saved-output review schema without rewriting it or accepting an unrelated passing review.",
+  "findings": [],
+  "checks": [
+    "Exact review_floor_results/completed/PASS_SAVED_OUTPUT_AUDIT identity required.",
+    "Exact80 case-name set and each reviewed SHA must match frozen input pins and actual file bytes.",
+    "Summary schema/passed/cases80 and review480floors/400contrasts/20aggregates counts required.",
+    "Summary result_sha256 resolves exact full-phase result, also bound by review evidence_sha256.",
+    "Unrelated task/verdict with passed:true, changed reviewedcase hash, changed review fullresult hash, changed summary result hash all rejected.",
+    "Other400-slot/80-disposition/live/Task2+3/immutableunknown/full20-only reporting gates remain unchanged.",
+    "All historical source and review bytes remain unchanged; no model or score evaluation."
+  ],
+  "controls": {
+    "independently_executed": 3,
+    "elapsed_seconds": 1.861,
+    "failures": 0,
+    "errors": 0,
+    "real_metadata_only_tests": 2,
+    "adversarial_metadata_mutations": 5,
+    "existing_invented_staging_test": 1,
+    "author_full_suite": 15
+  },
+  "source_metadata_case_files_verified": 80,
+  "source_metadata_full_result_files_verified": 1,
+  "numerical_calls": 0,
+  "optimizer_calls": 0,
+  "limitations": [
+    "No actual final disposition report or publication generated.",
+    "This source acceptance does not admit scientific execution or replace final output review."
+  ]
+}
