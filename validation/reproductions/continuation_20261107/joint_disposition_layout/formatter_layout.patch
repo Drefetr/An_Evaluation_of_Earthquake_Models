@@ -1,0 +1,56 @@
+--- a/scripts/render_joint_disposition_results.py
++++ b/scripts/render_joint_disposition_results.py
+@@ -126,10 +126,10 @@
+         '. Of '+cell('/counts/planned_outcomes')+' planned outcomes, '+
+         cell('/counts/computed_outcomes')+' are computed and '+cell('/counts/unavailable_outcomes')+
+         ' are unavailable. Scientific completion is false; the original full-success publication gate remains unsatisfied.',
+-        '', r'\begin{table}[htbp]', r'\centering', r'\setlength{\tabcolsep}{3pt}',
+-        r'\caption{Saved held-out joint-score gains against the jointly training-refitted uninhibited comparator, in nats, with the common spatial and mark laws held fixed. Full-regime statistics require all original twenty histories. Incomplete regimes remain unavailable; no complete-case mean, median or Wilson interval is substituted. Wins are strictly positive gains against that comparator; positive near-zero gains remain wins. Wilson intervals are pointwise win-rate intervals, not mean-gain uncertainty. Marked rows are the prespecified primary contrasts. Historical fixed-floor and intercept-only comparisons remain unchanged.}',
++        '', r'\begin{table}[htbp]', r'\centering', r'\setlength{\tabcolsep}{2.5pt}',
++        r'\caption{Saved held-out joint-score gains against the jointly training-refitted uninhibited comparator, in nats, with the common spatial and mark laws held fixed. Full-regime statistics require all original twenty histories. Incomplete regimes remain unavailable; no complete-case mean, median or Wilson interval is substituted. Wins are strictly positive gains against that comparator; positive near-zero gains remain wins. Wilson intervals are pointwise win-rate intervals, not mean-gain uncertainty. Marked rows are the prespecified primary contrasts. Historical fixed-floor and intercept-only comparisons remain unchanged. An em dash denotes an unavailable comparison.}',
+         r'\label{tab:s04b-joint-disposition-scores}', r'\begin{tabular}{@{}llrrrrr@{}}', r'\toprule',
+-        r'Regime & Procedure & Computed/planned & Mean & Median & Wins & Wilson interval \\', r'\midrule']
++        r'Regime & Procedure & \shortstack{Computed/\\planned} & Mean & Median & Wins & \shortstack{Wilson\\interval} \\', r'\midrule']
+     if report.get('numerical_amendment'):
+         lines[2:2] = ['', 'The separately reviewed numerical amendment applies only within training optimizer callbacks after the original negative-exposure exception, using the original fine value and gradient subject to the original quadrature checks. Accepted original fits and the explicitly identified partial fit prefix remain reused evidence; fresh returned-state, selection and held-out checks retain their original rules. Canonical logical fit-attempt counts in the tables are distinct from physical amended calls, reused records and earlier failed attempts, which remain source-bound in the execution records.', '']
+     if report.get('public_reader'):
+@@ -146,12 +146,12 @@
+                        cell(full+'/wins')+'/'+cell(full+'/N'),
+                        '['+cell(full+'/wilson95/0', 4)+', '+cell(full+'/wilson95/1', 4)+']']
+         else:
+-            values += ['Unavailable']*4
++            values += [r'\textemdash']*4
+         lines.append(' & '.join(values)+r' \\')
+-    lines += [r'\bottomrule', r'\end{tabular}', r'\end{table}', '', r'\begin{table}[htbp]', r'\centering',
+-        r'\caption{Complete-regime search and numerical census. Full-regime diagnostic cells are unavailable for incomplete regimes. Failed attempts count unsuccessful logical attempts for the shared null and named alternative; raw/BIC rows reuse searches and must not be added. Resource interruptions and administrative restarts remain in execution records. Near-zero is numerical, not statistical significance. A null-search gap prevents attributing a procedure contrast to inhibition.}',
++    lines += [r'\bottomrule', r'\end{tabular}', r'\end{table}', '', r'\begin{table}[htbp]', r'\centering', r'\setlength{\tabcolsep}{2.5pt}',
++        r'\caption{Complete-regime search and numerical census. Full-regime diagnostic cells are unavailable for incomplete regimes. Failed attempts count unsuccessful logical attempts for the shared null and named alternative; raw/BIC rows reuse searches and must not be added. Resource interruptions and administrative restarts remain in execution records. Near-zero is numerical, not statistical significance. A null-search gap prevents attributing a procedure contrast to inhibition. An em dash denotes an unavailable census.}',
+         r'\label{tab:s04b-joint-disposition-diagnostics}', r'\begin{tabular}{@{}llrrrrrr@{}}', r'\toprule',
+-        r'Regime & Procedure & Unavailable & $a$ bounds & $\eta$ bounds & Failed attempts & Null gaps & Gate differences \\', r'\midrule']
++        r'Regime & Procedure & Unavailable & \shortstack{$a$\\bounds} & \shortstack{$\eta$\\bounds} & \shortstack{Failed\\attempts} & \shortstack{Null\\gaps} & \shortstack{Gate\\differences} \\', r'\midrule']
+     for i, row in enumerate(report['regime_summary']):
+         prefix = f'/regime_summary/{i}'
+         values = ['S'+str(row['regime']), label(row), cell(prefix+'/unavailable_histories')]
+@@ -159,17 +159,17 @@
+         values += ([cell(full+'/coordinate_boundaries/a/lower')+'/'+cell(full+'/coordinate_boundaries/a/upper'),
+                     cell(full+'/eta_lower')+'/'+cell(full+'/eta_upper')]+
+                    [cell(full+'/'+key) for key in ('optimizer_failed_attempts', 'null_search_gap_cases',
+-                    'coarse_fine_gate_disagreements')] if row['statistics_available'] else ['Unavailable']*5)
++                    'coarse_fine_gate_disagreements')] if row['statistics_available'] else [r'\textemdash']*5)
+         lines.append(' & '.join(values)+r' \\')
+-    lines += [r'\bottomrule', r'\end{tabular}', r'\end{table}', '', r'\begin{table}[htbp]', r'\centering',
+-        r'\caption{Complete-regime floor and near-zero census. Positive near-zero gains remain strict wins. An alternative with zero inhibition and a better nuisance solution is a procedure and optimizer contrast, not evidence of inhibition. Incomplete regimes have no full-regime diagnostic census.}',
++    lines += [r'\bottomrule', r'\end{tabular}', r'\end{table}', '', r'\begin{table}[htbp]', r'\centering', r'\setlength{\tabcolsep}{2.5pt}',
++        r'\caption{Complete-regime floor and near-zero census. Positive near-zero gains remain strict wins. An alternative with zero inhibition and a better nuisance solution is a procedure and optimizer contrast, not evidence of inhibition. Incomplete regimes have no full-regime diagnostic census. An em dash denotes an unavailable census.}',
+         r'\label{tab:s04b-joint-disposition-floor-census}', r'\begin{tabular}{@{}llrrrrrr@{}}', r'\toprule',
+-        r'Regime & Procedure & Off-floor & Floor returns & Near zero & Positive near zero & Robust positive & Robust negative \\', r'\midrule']
++        r'Regime & Procedure & Off-floor & \shortstack{Floor\\returns} & \shortstack{Near\\zero} & \shortstack{Positive\\near zero} & \shortstack{Robust\\positive} & \shortstack{Robust\\negative} \\', r'\midrule']
+     for i, row in enumerate(report['regime_summary']):
+         prefix = f'/regime_summary/{i}'
+         values = ['S'+str(row['regime']), label(row)]
+         values += ([cell(prefix+'/full_regime/'+key) for key in ('off_floor', 'floor_returns', 'near_zero',
+-            'positive_near_zero', 'robust_positive', 'robust_negative')] if row['statistics_available'] else ['Unavailable']*6)
++            'positive_near_zero', 'robust_positive', 'robust_negative')] if row['statistics_available'] else [r'\textemdash']*6)
+         lines.append(' & '.join(values)+r' \\')
+     lines += [r'\bottomrule', r'\end{tabular}', r'\end{table}', '',
+               'Unknown histories retain their original optimizer cap returns and have no held-out outcome.']

@@ -1,0 +1,126 @@
+{
+  "schema": "joint_disposition_table_layout_independent_review_v1",
+  "task_id": "joint_disposition_table_layout_review",
+  "attempt_id": "b71895a6-9b38-4ab8-93d3-d97f0d81aff2",
+  "reviewer": "/root/disposition_reporting",
+  "created_utc": "2026-11-08T09:37:47.304021+00:00",
+  "status": "accepted",
+  "passed": true,
+  "audit_passed": true,
+  "review_kind": "live_agent_source_and_layout_review",
+  "live_agent_review": true,
+  "live_agent_review_performed": true,
+  "final_batch_agent_review_required": false,
+  "layout_only": true,
+  "semantic_baseline_review": {
+    "path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_wall_failure_reporting_portable_refs_review\\result.json",
+    "sha256": "3a99219397db3bceca7cb3e3bd3b4c200a1ed868e362788b41135a1f8e8efa47"
+  },
+  "implementation_receipt": {
+    "path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_disposition_table_layout_preflight\\result.json",
+    "sha256": "0fab8e59d7791bbf6f6d8f968b3d88dd5c3d85a42f22a7adbcc25a7184824e37"
+  },
+  "patch": {
+    "path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_disposition_table_layout_preflight\\formatter_layout.patch",
+    "sha256": "42bcf9608279bf81be6dac899f16bfd2e124f63f67c78be9d8f36975ccc791d5"
+  },
+  "original_formatter_sha256": "a535ec529dc3887b04b3ad97448272b4842d664d8498ce818d8d6ef714cdcc6a",
+  "candidate_formatter_sha256": "6c8446a8e9ab7194b8f45cc4099e46416f753581d9f105e2b76f2b394a6a7982",
+  "candidate_source_path": "scripts/render_joint_disposition_results.py",
+  "root_baseline_commit": "bf181cadcdb18ce45a0904597c40f36e4b168d60",
+  "checks": {
+    "cell_function_ast_identical": true,
+    "all_25_numeric_cell_call_asts_identical": true,
+    "whole_formatter_ast_identical_except_declared_presentation": true,
+    "claims_and_rounding_unchanged": true,
+    "table_labels_unchanged": [
+      "tab:s04b-joint-disposition-scores",
+      "tab:s04b-joint-disposition-diagnostics",
+      "tab:s04b-joint-disposition-floor-census"
+    ],
+    "actual_literal_verifier_excludes_spacing": true,
+    "git_apply_check_exit_code": 0,
+    "normal_font_retained": true,
+    "caption_defined_missingness": true,
+    "source_pdf_render_hashes_match": true,
+    "layout_only_heading_on_every_page": true,
+    "candidate_overfull_boxes": false
+  },
+  "measurement_scope": "Exact eleven-point manuscript preamble; blank numeric-width probes, not outcomes. Actual accepted-value widths and manuscript pagination still require final review.",
+  "measurements": [
+    {
+      "variant": "original",
+      "table": "scores",
+      "width_pt": 511.49048,
+      "textwidth_pt": 443.863,
+      "fits": false
+    },
+    {
+      "variant": "original",
+      "table": "diagnostics",
+      "width_pt": 600.02171,
+      "textwidth_pt": 443.863,
+      "fits": false
+    },
+    {
+      "variant": "original",
+      "table": "floor_census",
+      "width_pt": 638.11974,
+      "textwidth_pt": 443.863,
+      "fits": false
+    },
+    {
+      "variant": "candidate",
+      "table": "scores",
+      "width_pt": 438.87813,
+      "textwidth_pt": 443.863,
+      "fits": true
+    },
+    {
+      "variant": "candidate",
+      "table": "diagnostics",
+      "width_pt": 421.0354,
+      "textwidth_pt": 443.863,
+      "fits": true
+    },
+    {
+      "variant": "candidate",
+      "table": "floor_census",
+      "width_pt": 398.83258,
+      "textwidth_pt": 443.863,
+      "fits": true
+    }
+  ],
+  "pdf": {
+    "path": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_disposition_table_layout_preflight\\layout_candidate.pdf",
+    "sha256": "9a89bfaf304f1eb799ff08e9c7554db1daa77b5684319d92093eb332c7738f6e",
+    "pages": 3
+  },
+  "visual_inspection": "All three private probe pages and refreshed page-top details inspected; normal font is legible, headings and body cells are distinct, no clipping or overlap observed.",
+  "findings": [],
+  "source_edits_by_reviewer": 0,
+  "patch_applied": false,
+  "renderer_invocations": 0,
+  "report_builder_invocations": 0,
+  "actual_manuscript_builds": 0,
+  "scientific_calls": 0,
+  "native_calls": 0,
+  "optimizer_calls": 0,
+  "actual_report_generated": false,
+  "actual_registry_assembled": false,
+  "claims_generated": false,
+  "scientific_completion": false,
+  "original_publication_gate_satisfied": false,
+  "actual_output_acceptance": false,
+  "publication_accepted": false,
+  "evidence_sha256": {
+    "independent_candidate_1.png": "ba62419c2e0e878ac0f4791a698047539d93fdac25b73537aff5229d4e0d660a",
+    "independent_candidate_2.png": "f1acdc1d332f573c99d89010138261489fc490d1dbf462203495c0766ede673f",
+    "independent_candidate_3.png": "7c3e14d046e0d5736d7b698ab41a6b2d7cb6db62fc9f377844609a8742e65285",
+    "independent_checks.json": "71e11a8abdd84c9b6bdb111bdd2ce82273e1f3c056fa98f7ae1c1d2e1901d751",
+    "review.md": "f76563418ecf186a141e5bd7d7297d7981913c5f77fcab9e6cecd6d0543c6dbe",
+    "top_2.png": "1df3228d7aeca36a6299ea42e4ec89c1ff0190bf3390d2fe5bda998c9286cf33",
+    "top_3.png": "832509df556dcbb2d8d42de49148a2706a36a036e577aaaae648d16ed333b0fd",
+    "visual_checks.json": "4e450639e552ca40ac5112d7f78102b5bdaafd602227de9f922dba4c8ccad019"
+  }
+}
