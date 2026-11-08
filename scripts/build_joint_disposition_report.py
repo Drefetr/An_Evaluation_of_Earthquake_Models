@@ -277,16 +277,49 @@ def unknown_census(record, report, events, review, result, policy):
                 terminal_solver_return=terminal, model_census=deepcopy(census))
 
 
+def verify_intercept_review(evidence, summary, review, cases, frozen):
+    """Retain the genuine pre-existing review's verdict schema and byte scope.
+
+    This older review has no ``passed`` boolean. Do not rewrite it or replace it
+    with a passing review of a different study. No saved values are recalculated.
+    """
+    require(review.get('task_id') == 'review_floor_results' and review.get('status') == 'completed' and
+            review.get('verdict') == 'PASS_SAVED_OUTPUT_AUDIT', 'Genuine intercept saved-output review required')
+    require(summary.get('schema') == 's04b_refitted_floor_component_summary_v1' and
+            summary.get('passed') is True and type(summary.get('cases')) is int and summary['cases'] == 80,
+            'Original intercept summary identity differs')
+    for key, count in dict(unique_cases=80, historical_floor_checks=480, procedure_contrasts=400, aggregate_rows=20).items():
+        require(type(review.get('counts', {}).get(key)) is int and review['counts'][key] == count,
+                'Historical review coverage differs: '+key)
+    expected = {case['case_id']+'.json' for case in cases}
+    reviewed = review['reviewed_case_sha256']
+    require(len(cases) == len(expected) == 80 and set(reviewed) == expected,
+            'Historical review must bind exactly eighty original case payloads')
+    prefix = 'validation/live_results/methodological_20261106/refitted_floor/'
+    for name in sorted(expected):
+        relative = prefix+name
+        require(relative in frozen and reviewed[name] == frozen[relative], 'Historical reviewed case hash differs: '+name)
+        evidence.file(relative, reviewed[name])
+    result_path = prefix+'result.json'
+    result = evidence.file(result_path, summary['result_sha256'])
+    require(review['evidence_sha256'].get('numerical_continuation/full/result.json') == evidence.pins[result_path] and
+            result.get('schema') == 's04b_refitted_floor_run_v1' and result.get('phase') == 'full' and
+            result.get('passed') is True, 'Historical summary/full-result review identity differs')
+
+
 def historical(evidence, cases, registry, frozen):
     """Preserve both original 400-row comparators, including unknown new cases."""
     entries = registry['historical_comparators']
     require(len(entries) == 2 and {entry['kind'] for entry in entries} == {'fixed_floor', 'intercept_only'},
             'Both unchanged historical comparators are required')
     for entry in entries:
-        evidence.reference(entry['artifact'])
+        artifact = evidence.reference(entry['artifact'])
         review = evidence.reference(entry['review'])
-        require(review.get('passed') is True or (review.get('accepted') is True and
-                review.get('final_scientific_accepted') is True), 'Historical acceptance missing')
+        if entry['kind'] == 'intercept_only':
+            verify_intercept_review(evidence, artifact, review, cases, frozen)
+        else:
+            require(review.get('passed') is True or (review.get('accepted') is True and
+                    review.get('final_scientific_accepted') is True), 'Historical acceptance missing')
     rows = {}
     for case in cases:
         expected_path = 'reproduction/synthetic/'+case['expected']

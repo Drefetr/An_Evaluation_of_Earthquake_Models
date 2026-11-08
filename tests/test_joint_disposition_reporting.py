@@ -1,4 +1,4 @@
-"""Invented bytes only: no model, optimizer, simulator or historical replay."""
+"""Invented outputs plus read-only real metadata: no models or historical replay."""
 from copy import deepcopy
 import json
 from pathlib import Path
@@ -101,9 +101,26 @@ class InventedDispositionEvidence:
         self.historical = []
         for kind in ('fixed_floor', 'intercept_only'):
             relative = self.base+kind+'.json'
-            write(self.repo/relative, dict(passed=True, fixture='invented historical acceptance'))
-            reference = dict(path=relative, sha256=builder.sha(self.repo/relative))
-            self.historical.append(dict(kind=kind, artifact=reference, review=reference))
+            if kind == 'fixed_floor':
+                write(self.repo/relative, dict(passed=True, fixture='invented historical acceptance'))
+                reference = dict(path=relative, sha256=builder.sha(self.repo/relative))
+                self.historical.append(dict(kind=kind, artifact=reference, review=reference))
+            else:
+                result_path = 'validation/live_results/methodological_20261106/refitted_floor/result.json'
+                write(self.repo/result_path, dict(schema='s04b_refitted_floor_run_v1', phase='full', passed=True,
+                                                 fixture='invented historical result'))
+                result_pin = builder.sha(self.repo/result_path)
+                write(self.repo/relative, dict(schema='s04b_refitted_floor_component_summary_v1', passed=True,
+                                               cases=80, result_sha256=result_pin))
+                review_path = self.base+'intercept_review.json'
+                write(self.repo/review_path, dict(task_id='review_floor_results', status='completed',
+                    verdict='PASS_SAVED_OUTPUT_AUDIT',
+                    counts=dict(unique_cases=80, historical_floor_checks=480, procedure_contrasts=400, aggregate_rows=20),
+                    reviewed_case_sha256={case['case_id']+'.json':frozen[
+                        'validation/live_results/methodological_20261106/refitted_floor/'+case['case_id']+'.json']
+                        for case in self.cases}, evidence_sha256={'numerical_continuation/full/result.json':result_pin}))
+                self.historical.append(dict(kind=kind, artifact=dict(path=relative, sha256=builder.sha(self.repo/relative)),
+                    review=dict(path=review_path, sha256=builder.sha(self.repo/review_path))))
         self.index = dict(schema='joint_remaining_index_v1', passed=False, scientific_completion=False,
                           original_native=self.native, scientific_source_sha256=self.sources)
         self.policy = dict(full_sequence=self.sequence, case_ids=self.sequence[41:], original_native=self.native,
@@ -464,6 +481,50 @@ class TestDispositionReporting(unittest.TestCase):
                     write(self.fixture.repo/self.fixture.public['completion_review'], changed_acceptance)
                     with self.assertRaisesRegex(ValueError, 'live independent disposition acceptance'):
                         formatter.validate(self.fixture.repo, self.fixture.public)
+
+
+class TestRealHistoricalReviewMetadata(unittest.TestCase):
+    """Check the preserved review contract using hashes/flags, never scores."""
+    def setUp(self):
+        self.repo = Path(__file__).resolve().parents[1]
+        self.summary = builder.read(self.repo/'validation/live_results/methodological_20261106/refitted_floor_summary.json')
+        self.review = builder.read(self.repo/'validation/live_results/methodological_20261106/refitted_floor/output_review.json')
+        self.cases = builder.read(self.repo/builder.MANIFEST)['s04b']['cases']
+        self.frozen = builder.read(self.repo/builder.INPUT_PINS)
+
+    def check(self, summary=None, review=None):
+        evidence = builder.Evidence(self.repo)
+        builder.verify_intercept_review(evidence, self.summary if summary is None else summary,
+            self.review if review is None else review, self.cases, self.frozen)
+        return evidence
+
+    def test_genuine_verdict_schema_binds_all_eighty_case_bytes_and_full_result(self):
+        self.assertNotIn('passed', self.review)
+        self.assertNotIn('accepted', self.review)
+        evidence = self.check()
+        self.assertEqual(len(evidence.pins), 81)
+        self.assertEqual(evidence.pins['validation/live_results/methodological_20261106/refitted_floor/result.json'],
+                         self.summary['result_sha256'])
+
+    def test_altered_case_hash_task_verdict_and_result_are_rejected_without_changing_sources(self):
+        for field, value in (('task_id', 'stability_audit'), ('verdict', 'PASS_INTEGRATION_REVIEW')):
+            with self.subTest(field=field):
+                review = deepcopy(self.review)
+                review.update({field:value, 'passed':True})
+                with self.assertRaisesRegex(ValueError, 'Genuine intercept'):
+                    self.check(review=review)
+        review = deepcopy(self.review)
+        review['reviewed_case_sha256'][next(iter(review['reviewed_case_sha256']))] = '0'*64
+        with self.assertRaisesRegex(ValueError, 'reviewed case hash'):
+            self.check(review=review)
+        review = deepcopy(self.review)
+        review['evidence_sha256']['numerical_continuation/full/result.json'] = '0'*64
+        with self.assertRaisesRegex(ValueError, 'summary/full-result review identity'):
+            self.check(review=review)
+        summary = deepcopy(self.summary)
+        summary['result_sha256'] = '0'*64
+        with self.assertRaisesRegex(ValueError, 'Source hash differs'):
+            self.check(summary=summary)
 
 
 if __name__ == '__main__':
