@@ -1,0 +1,44 @@
+name: Bounded joint exposure diagnostic
+on:
+  push:
+    branches: ['research/joint_replay_20261107T045457Z-integration']
+permissions:
+  contents: read
+concurrency:
+  group: reviewed-research-continuation
+  cancel-in-progress: false
+jobs:
+  diagnostic:
+    if: contains(github.event.head_commit.message, '[exposure-diagnostic]')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      OMP_NUM_THREADS: '2'
+      OPENBLAS_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+      NUMEXPR_NUM_THREADS: '2'
+      BLIS_NUM_THREADS: '2'
+    steps:
+      - name: Record host start before setup
+        run: echo "EXPOSURE_DIAGNOSTIC_HOST_STARTED_UTC=$(date -u +%Y-%m-%dT%H:%M:%S%z)" >> "$GITHUB_ENV"
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.18'
+          cache: pip
+      - run: python -m pip install -r requirements-cpu.txt
+      - name: Constructed diagnostic controls
+        run: python -B -m unittest discover -s tests -p 'test_joint_exposure_diagnostic*.py' -v
+      - name: Exact training-state exposure diagnostic only
+        run: python -B scripts/run_joint_exposure_diagnostic.py --admission validation/reproductions/continuation_20261107/joint_exposure_diagnostic_admission.json --output "$RUNNER_TEMP/exposure-diagnostic"
+      - name: Preserve diagnostic failures and resource evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: joint-exposure-diagnostic-${{ github.sha }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/exposure-diagnostic/*.json
+            ${{ runner.temp }}/exposure-diagnostic/science/**
+            ${{ runner.temp }}/exposure-diagnostic/supervision/**
+          if-no-files-found: warn
