@@ -1,0 +1,94 @@
+{
+  "schema": "independent_source_review_v1",
+  "task_id": "joint_final_aggregate_source_review02",
+  "attempt_id": "3a75041c-72da-46f2-a5a2-5fd671829a71",
+  "created_utc": "2026-11-08T10:36:15.853937+00:00",
+  "reviewer": "/root/recover_jma",
+  "author": "/root/disposition_reporting",
+  "passed": true,
+  "status": "accepted_source_revision_02",
+  "source_directory": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_final_disposition_independent_audit\\revision_02",
+  "source_sha256": {
+    "audit_saved.py": "69554de9f025923e397687191b35f0770d9f81748aacdf96a4854d92d9553c2c",
+    "test_audit_saved.py": "012f2080657e4adcb04cb64528cc0ba0c8a7f85740d71a0a78194b7754489059",
+    "ready.json": "63c9e5e4da1ea118f886fe3eebc43c265bbd48a8bbf7fe9f7b8dfb61f1094071",
+    "README.md": "71a57743e48c21eeae07c7b67f320144fa870e8932f3fa8e5d3bf7ea7ade233c"
+  },
+  "prior_review": {
+    "path": "joint_final_aggregate_source_review/result.json",
+    "sha256": "0cd9c93ae655bceea61936eca470225708096f0359fa39fef0376f1a928c4d02"
+  },
+  "closed_findings": [
+    "FA1",
+    "FA2"
+  ],
+  "open_findings": [],
+  "controls": {
+    "author_focused": {
+      "count": 18,
+      "passed": true,
+      "log": "author_controls.log"
+    },
+    "independent": {
+      "baseline_passes": 1,
+      "adversarial_rejections": 5,
+      "original_counterexamples_reject": [
+        "omitted_prior_overhead",
+        "changed_physical_duration"
+      ],
+      "additional_rejections": [
+        "clamped_historical_failure",
+        "changed_host_identity",
+        "changed_partial_reuse"
+      ],
+      "evidence": "independent_counterexamples.json"
+    },
+    "retained_fixture_failure": {
+      "reason": "Reviewer invented records initially omitted required case_id fields; corrected only owned fixture.",
+      "source": "independent_counterexamples_fixture01.py",
+      "log": "fixture01_failure.log"
+    }
+  },
+  "scope_checks": {
+    "predecessor_files_preserved": 8,
+    "unchanged_functions_or_classes": 18,
+    "changed_functions": [
+      "source_contract",
+      "audit_resources",
+      "audit"
+    ],
+    "added_function": "bind_physical_attempts",
+    "unrelated_relaxation_found": false,
+    "heterogeneous_historical_clock_contract_preserved": true
+  },
+  "execution_scope": {
+    "source_only": true,
+    "constructed_controls_only": true,
+    "actual_cohort_audited": false,
+    "actual_report_audited": false,
+    "scientific_calls": 0,
+    "optimizer_calls": 0,
+    "native_calls": 0,
+    "builds": 0,
+    "repository_edits": false,
+    "owned_directory": "C:\\Users\\Drefetr\\work\\joint_replay_continuation_20261107T071500Z\\joint_final_aggregate_source_review02"
+  },
+  "reporting_accepted": false,
+  "scientific_completion": false,
+  "original_publication_gate_satisfied": false,
+  "pending": [
+    "Actual saved-output cohort/report audit by D",
+    "Genuine live final reporting acceptance"
+  ],
+  "evidence_sha256": {
+    "report.md": "1303ecfa71dedf31e241c44ac272696f8c9e00a0bdd644a087fe23b6580cc292",
+    "scope_comparison.json": "7c60fb4fdd4df293a2e01756c5e2bb7813c66206f1977fdefbfb2772aa97436c",
+    "source.diff": "2763493ccb13e933b87831a3f1d1655f966b763e811864fd226d8b594f6ed845",
+    "author_controls.log": "4d5c4a217771c33e2960c2adc1a7447bed469367ccebeadcfac69d625001ca39",
+    "independent_counterexamples.py": "5910e1bd36bdf84b7c6bfcccb26b4d589b94035c772e0e205f0945bc7a0244f4",
+    "independent_counterexamples.json": "096228a7441b0612d30f11b03d0c28196e2d3419cca465979033ab1fe9211ab7",
+    "independent_counterexamples.log": "f9e085298368b405a4cacc12800b1100c8228bd4a7940991f7104b86bb6f6f11",
+    "independent_counterexamples_fixture01.py": "8f64befd71482505cf8deffd56f52e1b0224b29c80d8d1424d912e58f43d2e83",
+    "fixture01_failure.log": "584d8fe7b3ac9dcc0e1e3308f768519dca1fe63208c99429e6108e9b479dfa2e"
+  }
+}

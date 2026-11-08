@@ -1,0 +1,64 @@
+{
+  "schema": "joint_nuisance_disposition_acceptance_v1",
+  "review_kind": "live_independent_disposition_and_saved_output_review",
+  "reviewer": "/root",
+  "reviewed_utc": "2026-11-08T10:46:02.021776+00:00",
+  "reporting_accepted": true,
+  "disposition_accounting_complete": true,
+  "scientific_completion": false,
+  "original_publication_gate_satisfied": false,
+  "live_independent_review": true,
+  "live_agent_review": true,
+  "live_agent_review_performed": true,
+  "final_batch_agent_review_required": false,
+  "artifact_sha256": {
+    "validation/live_results/joint_nuisance_dispositions_20261107/report.json": "f94d14a648929ae48ef0107758837b08239ecc84d6d1d813edacdd23886276e2",
+    "validation/live_results/joint_nuisance_dispositions_20261107/independent_review.json": "c35480ed45b590eb7a093d5e159ba1b0393a9119a89eed7a01348cdcb43982c4"
+  },
+  "campaign_identity": {
+    "scientific_protocol_sha256": "8f31b9f28d830eeffa30bdbf3e0fcf1295087411869fa301b91333c95fa445e9",
+    "remaining_protocol_sha256": "4c77737acf8801ccfd0db25bba3005b1c547562675d7ced5bc1b72f428c8f2cd",
+    "immutable_failure_reference_sha256": "acad07075963f220f59c257eb512555000ec5cffe3fa46ba3df0183775de6c80",
+    "numerical_amendment_protocol_sha256": "9b419d004ee3a075abdc3059bcc06fa037281cf5af7ea031d0c209be5687c982",
+    "numerical_amendment_source_review_sha256": "7011948266596ad1be0119b8311234035fe611bb19fe39b877aa6a3742883e37",
+    "operational_continuation_protocol_sha256": "809dd264636b01e2ef6f4165a19595d8f8cf72ae188c428ba8b9dea27208211b"
+  },
+  "counts": {
+    "planned_histories": 80,
+    "accepted_terminal_dispositions": 80,
+    "complete_histories": 78,
+    "scientific_unknown_histories": 1,
+    "pending_histories": 0,
+    "unresolved_technical_failures": 1,
+    "planned_outcomes": 400,
+    "computed_outcomes": 390,
+    "unavailable_outcomes": 10,
+    "regime_procedure_rows": 20,
+    "wall_time_failure_histories": 1
+  },
+  "tasks": {
+    "task2": {
+      "passed": true,
+      "acceptance": {
+        "path": "validation/reproductions/score_replay_20261107/final_coverage/independent_review.json",
+        "sha256": "6963b5b77f9348b73a5123c6e79ee5c66d8390ea119cd8c62fa11cdcd0a22506"
+      }
+    },
+    "task3": {
+      "passed": true,
+      "acceptance": {
+        "path": "validation/reproductions/cpu_20261107/checkout02_independent_review.json",
+        "sha256": "6d53a4a35a9141c2cb391627fab5021d6a259059b7f9a4b6d58ef9a237aea3be"
+      }
+    },
+    "task1": {
+      "disposition_reporting_accepted": true,
+      "scientific_completion": false,
+      "acceptance": {
+        "path": "validation/live_results/joint_nuisance_dispositions_20261107/independent_review.json",
+        "sha256": "c35480ed45b590eb7a093d5e159ba1b0393a9119a89eed7a01348cdcb43982c4"
+      }
+    }
+  },
+  "scope": "Conductor integration of separate live saved-output aggregation, selected-state replay and bounded CPU acceptances.78 successful histories are not80 successful fits;10 comparisons remain unavailable. No external academic peer review or completed all-success experiment is asserted."
+}

@@ -1,5 +1,7 @@
 # Run the joint-nuisance study on Linux CPU
 
+This page describes the original numerical procedure. The separately versioned [refined CPU reader](../experiments/s04b_refined_cpu_reader/README.md) uses the reviewed exposure-refinement adapter with the original fitter and scientific gates. Its default automatically extracts the audited Linux x86-64 native library and receipt; it needs no compiler, MSVC, CUDA, credentials or manual native-library environment setup. Use its documented clone, pinned dependency installation and `scripts/fit_joint_refined_cpu.py fit` command for a fresh single-history fit with finite reader-local limits after the author deadline. This is a fit, not saved-state score replay. Its optional author execution record imposes the unchanged dated author envelope, and actual outputs require their own independent review. The compiler-based original route below and its earlier bounded acceptance remain separate; neither demonstrates execution of the later amended reader.
+
 `scripts/fit_joint_cpu.py` runs the existing joint-background and temporal-excitation
 recipe on the supplied S04B histories. It uses the frozen fitting, likelihood,
 quadrature, starts, bounds, gates and aggregation functions, with the reviewed

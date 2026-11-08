@@ -1,5 +1,9 @@
 # Change history
 
+## 8 November 2026 joint comparison, historical score replays and CPU execution
+
+The joint temporal-backbone comparison has now attempted all 80 original histories: 78 completed, one reached an unresolved optimizer cap, and one exceeded its fixed wall allocation. Both arms fit `(a,d,n,c,p)` on training data; spatial and mark laws stay fixed. Against the jointly refitted uninhibited comparator, matched raw broad/long total inhibition has mean gain -1.2607 nats with 8/20 wins (95% Wilson win-fraction interval [0.2188, 0.6134]). Full-regime summaries for broad/long immigrant and narrow/short total generation remain unavailable. The [complete disposition report](../validation/live_results/joint_nuisance_dispositions_20261107/report.json) retains 390 computed comparisons and 10 unavailable slots, alongside the historical comparators. It is not an 80-success experiment. Selected-state likelihood replays reconcile the historical chapter-table roster without repeating historical optimizer searches. The bounded Linux CPU routes execute without MSVC or CUDA. Current production checks and the two incomplete regimes remain distinct from complete scientific execution.
+
 ## Unit-mark control correction, 7 November 2026
 
 Corrected the original S2 narrow/short interpretation throughout the publication and supplied a fixed-seed reconstruction against all twenty original histories. All twenty have zero realized thinning and exactly match paired uninhibited histories within the replay runtime. The audit confirms 2,951 immigrants and corrects the reviewer's offspring count to 1,317, for 4,268 events. Preserved the received reassessment and its separate exploratory joint-floor calculation with explicit provenance. No fitted procedure or historical score was rerun. See the [response and executable evidence](reviews/s2_control_reassessment_response.md) and [current edition review](../validation/reviews/S2_CONTROL_EDITION_20261107.json).

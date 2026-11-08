@@ -1,0 +1,27 @@
+{
+  "schema": "publication_visual_attempt_review_v1",
+  "reviewer": "/root/disposition_reporting",
+  "publication_ready": false,
+  "pdf": {
+    "path": "publication_paper_build_20261108_r03/main.pdf",
+    "sha256": "eea20f24d81b88eb49936fa083822fb9281cf482496763c3800f10ccbde1ddb9"
+  },
+  "image_identity_receipt": {
+    "path": "publication_visual_review/paper_attempt03_render_identity.json",
+    "sha256": "0115d3f7e15e14314361a565e7747c7324df85ca1967399738554436c728c812"
+  },
+  "all_235_pages_pixel_identical_to_attempt02": true,
+  "all_20_contacts_identical_to_attempt02": true,
+  "directly_reinspected_pages": [
+    172
+  ],
+  "findings": [
+    {
+      "id": "PV3",
+      "status": "Unresolved",
+      "finding": "The concluding observed-California paragraph still straddles a table/figure page, leaving three lines alone on page 172.",
+      "source_cause": "The input ends with an unterminated final paragraph; the parent closes the group before paragraph layout, restoring the interline penalty.",
+      "recommended_remedy": "Add an explicit paragraph terminator before the local group ends; preserve generated source and all content."
+    }
+  ]
+}

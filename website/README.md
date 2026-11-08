@@ -1,6 +1,6 @@
 # Research documents on GitHub Pages
 
-The generated site contains the accepted 231-page S04B manuscript, the eight-page plain-language guide and an interactive explorer of accepted S03, S04 observed, S06 and matched-generator S04B results. Calibration conclusions are explained in the guide and manuscript; the explorer does not compare p-values as model-performance scores.
+The generated site contains the current monograph, the plain-language guide and an interactive explorer of S03, S04 observed, S06 and matched-generator S04B results. It separately reports the joint temporal-backbone comparison, including unavailable outcomes. Exact page counts and document identities are recorded in document_metadata.json. Calibration conclusions are explained in the guide and manuscript; the explorer does not compare p-values as model-performance scores.
 
 Build an isolated preview from the repository root. Output directories must be new:
 
@@ -17,7 +17,7 @@ The explorer keeps study populations separate. Its five S04 procedures share the
 
 Preview locally with `python -m http.server 8000 --directory build/site`, then visit http://localhost:8000. The generated site also supports opening index.html directly.
 
-The [research website](https://drefetr.github.io/An_Evaluation_of_Earthquake_Models/) updates automatically after pushes to `main`. `.github/workflows/pages.yml` verifies the source/payload bindings, builds the standalone site, exercises all 70 explorer selector combinations, and publishes the verified bundle at the root of the dedicated `gh-pages` branch. The source branch keeps the research code and documentation; `docs/` remains the documentation directory. Publication does not add or replace a source-branch `index.html`.
+The [research website](https://drefetr.github.io/An_Evaluation_of_Earthquake_Models/) updates automatically after pushes to `main`. `.github/workflows/pages.yml` verifies the source/payload bindings, builds the standalone site, exercises the explorer selector combinations, and publishes the verified bundle at the root of the dedicated `gh-pages` branch. The source branch keeps the research code and documentation; `docs/` remains the documentation directory. Publication does not add or replace a source-branch `index.html`.
 
 In repository Settings, Pages, set **Source: GitHub Actions**. The same workflow explicitly uploads and deploys the published artifact using Pages/OIDC permissions; pushing `gh-pages` with `GITHUB_TOKEN` alone does not trigger a Pages build. GitHub documents this restriction under [configuring a publishing source](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site). To publish manually, run **Publish research documents** from the Actions tab with branch `main` selected. Pull-request runs and manual runs from other branches cannot publish.
 

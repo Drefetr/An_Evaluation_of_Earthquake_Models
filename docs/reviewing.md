@@ -1,6 +1,6 @@
 # Independent review
 
-Start with the [reviewer guide](../REVIEWER_START_HERE.md), the current [unified monograph](../paper/manuscript_unified.pdf), and the [limitations](limitations.md). The monograph distinguishes completed Stage 2 results from historical checkpoints. In particular, the [F scope note](F_followup.md) explains why October's unresolved outcomes no longer describe completed S01 coverage.
+Start with the [reviewer guide](../REVIEWER_START_HERE.md), the current [unified monograph](../paper/manuscript_unified.pdf), and the [limitations](limitations.md). The monograph distinguishes completed Stage 2 results from historical checkpoints. In particular, the [F scope note](F_followup.md) explains the withdrawn F continuation and its retained historical evidence; documentary source keys use a separate naming scheme.
 
 Inspect assumptions, observation laws, denominators, reference procedures, frozen training choices, and the declared validation roster before interpreting a score contrast. Preserve negative and inconclusive results. Conditional calibration, predictive comparison, physical identification, and prospective operational validation are different claims.
 

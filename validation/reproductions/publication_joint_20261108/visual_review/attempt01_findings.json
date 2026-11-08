@@ -1,0 +1,94 @@
+{
+  "schema": "publication_visual_attempt_review_v1",
+  "reviewer": "/root/disposition_reporting",
+  "scope": "Independent visual review of actual PDF images; no external peer review or new numerical validation.",
+  "publication_ready": false,
+  "paper_pdf": {
+    "path": "publication_paper_build_20261108/main.pdf",
+    "sha256": "b557e31b07393db0337b3008acafaad13dac63b3f2d702644bfe64a5430a41ff"
+  },
+  "guide_pdf": {
+    "path": "publication_guide_build_20261108/lay_guide_to_the_research.pdf",
+    "sha256": "858e033b69e9132d0050844f22096813db42c6847cf6121688bff7dedfcf2eb7"
+  },
+  "paper_contacts_inspected": [
+    "contact_01.png",
+    "contact_02.png",
+    "contact_03.png",
+    "contact_04.png",
+    "contact_05.png",
+    "contact_06.png",
+    "contact_07.png",
+    "contact_08.png",
+    "contact_09.png",
+    "contact_10.png",
+    "contact_11.png",
+    "contact_12.png",
+    "contact_13.png",
+    "contact_14.png",
+    "contact_15.png",
+    "contact_16.png",
+    "contact_17.png",
+    "contact_18.png",
+    "contact_19.png",
+    "contact_20.png"
+  ],
+  "paper_enlarged_pages_inspected": [
+    3,
+    165,
+    166,
+    167,
+    168,
+    169,
+    170,
+    174,
+    175,
+    176,
+    177,
+    178,
+    179
+  ],
+  "guide_enlarged_pages_inspected": [
+    8,
+    9
+  ],
+  "image_identity_receipts": [
+    {
+      "path": "publication_visual_review/paper_render_identity.json",
+      "sha256": "4d430ae86e4a65452bb753b419684826be2b05ce07a5f3ab6c0956b83d21f733"
+    },
+    {
+      "path": "publication_visual_review/guide_attempt01_inputs.json",
+      "sha256": "57978b0570351fc5e81457a4357e1c5406012c4a04d8b3276a83a9e89e00c2c1"
+    }
+  ],
+  "findings": [
+    {
+      "id": "PV1",
+      "artifact": "guide",
+      "pages": [
+        8,
+        9
+      ],
+      "severity": "layout_fix_required",
+      "finding": "Section 08 final note spills its final five words onto an otherwise blank ninth page; advertised eight-page format is not met.",
+      "recommended_remedy": "Shorten final note while preserving reader scope; no font-size change.",
+      "status": "Resolved in guide r02; original PDF retained."
+    },
+    {
+      "id": "PV2",
+      "artifact": "paper",
+      "pages": [
+        166,
+        167,
+        168,
+        169,
+        170
+      ],
+      "severity": "layout_fix_required",
+      "finding": "Failure-census paragraph is interrupted mid-word re-/tained by three float-only table pages.",
+      "recommended_remedy": "Keep the census paragraph together with a local paragraph-break penalty; preserve all content and numeric bindings.",
+      "status": "Resolved in paper r02; original PDF retained."
+    }
+  ]
+}

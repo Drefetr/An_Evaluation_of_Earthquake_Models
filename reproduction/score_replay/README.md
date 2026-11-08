@@ -34,11 +34,13 @@ Add `--plan-only` to check source, input, roster and published-dependency identi
 | `original_li` | 38 rows | Original selected LI/OC procedures and raw-input reconstruction |
 | `s04_original` | 80 histories | Original selected synthetic procedures; no history generation |
 | `california_blocks` | 39 rows | Interval scores using retained, freshly replayed event arrays |
-| `observed_fixedbackbone` | 6 phase/order rows | Exact selected states and prepared quadrature, checked against freshly replayed OC |
+| `observed_fixedbackbone` | 6 fold-by-quadrature rows | Exact selected states and prepared quadrature, checked against freshly replayed OC |
 | `s02` | 300 catalogues | Original paired-clock selected-state likelihoods |
 | `initial_mark` | 60 catalogues | Initial mark-history selected-state likelihoods |
 
 Counts are workload units, not independent samples. For registry routes, `--phase all` requests every row. `--phase completion` requests exactly the nonpilot rows and does not claim the pilot was rerun. `--phase subset --rows ordered_ids.json` requests a nonempty explicit list of registry IDs. Keep all attempt directories: a failed or interrupted attempt is evidence, not a result to erase. A later subset can recompute unresolved rows from scratch without changing their state, quadrature or tolerance. No partial run is labelled full coverage.
+
+The author campaign's [accepted final coverage](../../validation/reproductions/score_replay_20261107/final_coverage/independent_review.json) reconciles the declared historical table roster from actual selected-state replays, retained earlier evidence and explicit metadata checks. That acceptance does not transfer to a reader's new run. No historical optimizer campaign was repeated. The [amended joint fitting command](../../experiments/s04b_refined_cpu_reader/README.md) is a separate fresh-fit operation with its own producer identity; it is not one of these score-replay routes.
 
 S02 and initial-mark routes retain their original pilot/completion contract. Their local pilot inherits the exact source admission recorded in the hash-checked published pilot, not an endorsement of the new numerical output. Completion reuses a local pilot's actual library and reports and requires a separate output review:
 

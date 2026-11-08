@@ -6,9 +6,13 @@ The research studies restricted stability and identification, nuisance sensitivi
 
 This open research edition supplies recovered catalogue and simulation inputs, executable cohort reconstructions, and model replay tools. The unchanged New Zealand fitting recipe has been rerun from the recovered input and reproduces every scientific numerical field exactly. Complete known-law and matched-generator score replays have also passed, and a separately executed constant-background fit supplies a reproducible comparison within the autonomous finite-mode family. This is the same conditional intensity family as the earlier constant-background sensitivity, with a different fitting recipe. The stability theorem supplies no useful catalogue-horizon mixing bound for the pinned kernel. Original California completion and nuisance-fit records are also supplied. The F continuation and unexecuted prospective/horizon material have been removed from the current paper, with an explicit historical archive.
 
+The later [selected-state score campaign](reproduction/score_replay/README.md) has also recomputed the declared historical extension and regional scores. Its [independent table-coverage report](validation/reproductions/score_replay_20261107/final_coverage/independent_review.json) distinguishes fresh likelihood evaluations, retained earlier replays and metadata checks. Original optimizer searches were not repeated; exact-display rounding differences remain recorded. A separate [publication coverage check](validation/reproductions/score_replay_20261107/publication_refresh_20261108/independent_source_review.json) binds these retained results to the current manuscript source.
+
 The [per-study provenance map](docs/result_provenance.md) identifies recovered original results, later recomputations and available execution routes.
 
-The methodological revision adds a completed train-only background-intercept control on all 80 existing S04B histories. Against that refitted uninhibited comparator, the matched broad/long immigrant procedure gains 5.1631 joint nats on average with 19/20 wins, and the matched total-intensity procedure gains 9.7367 with 18/20 wins. These gains are substantially smaller than the original fixed-background contrasts. The original inhibited fits and gates are unchanged; this is a comparator sensitivity, not joint nuisance estimation. See the [complete results and executable control](experiments/s04b_refitted_floor/README.md), [point-by-point review response](docs/reviews/methodological_review_response.md), and [current edition review](validation/reviews/S2_CONTROL_EDITION_20261107.json).
+The joint temporal-backbone comparison has now attempted all 80 original histories: 78 completed, one reached an unresolved optimizer cap, and one exceeded its fixed wall allocation. Both arms fit `(a,d,n,c,p)` on training data; spatial and mark laws stay fixed. Against the jointly refitted uninhibited comparator, matched raw broad/long total inhibition has mean gain -1.2607 nats with 8/20 wins (95% Wilson win-fraction interval [0.2188, 0.6134]). Full-regime summaries for broad/long immigrant and narrow/short total generation remain unavailable. The [complete disposition report](validation/live_results/joint_nuisance_dispositions_20261107/report.json) retains 390 computed comparisons and 10 unavailable slots, alongside the historical comparators. It is not an 80-success experiment.
+
+The methodological revision adds a completed train-only background-intercept control on all 80 existing S04B histories. Against that refitted uninhibited comparator, the matched broad/long immigrant procedure gains 5.1631 joint nats on average with 19/20 wins, and the matched total-intensity procedure gains 9.7367 with 18/20 wins. These gains are substantially smaller than the original fixed-background contrasts. The original inhibited fits and gates are unchanged; this is a comparator sensitivity, not joint nuisance estimation. See the [complete results and executable control](experiments/s04b_refitted_floor/README.md), [point-by-point review response](docs/reviews/methodological_review_response.md), and [current edition review](validation/reviews/JOINT_NUISANCE_DISPOSITION_EDITION_20261108.json).
 
 The subsequent control audit corrects the interpretation of the original unit-mark narrow/short histories: none of their proposed events was rejected. Their retained losses concern histories coupled exactly to the uninhibited process, rather than missed recovery of a realized inhibitory effect. See the [reassessment response](docs/reviews/s2_control_reassessment_response.md) and [reproduction package](reproduction/synthetic/s2_unitmark/README.md).
 
@@ -38,7 +42,7 @@ python -B scripts/verify_claims.py
 python -B scripts/verify_repository.py
 ```
 
-The complete check record combines the main suite, regional input controls, S02 input controls, Stage 2 native fixtures, and historical iteration-27 tests; [current check results](validation/checks.json) give each count separately. To run every suite without skips, first build the LI, temporal and S06 libraries using the [Windows x64/MSVC native-build instructions](engine/stage2_followup/README.md#native-builds). The iteration-27 suite also requires a separate CUDA-enabled PyTorch installation and a usable CUDA device; its small CUDA/CPU fit comparison has no CPU fallback. These optional GPU dependencies are not included in `requirements.txt`.
+The complete check record combines the main suite, regional input controls, S02 input controls, Stage 2 native fixtures, and historical iteration-27 tests; [current check results](validation/checks.json) give each count separately. The historical full execution used Windows/MSVC native builds. The current Stage 2 command automatically builds the LI, temporal and S06 native fixtures when no native root is configured; GNU/Clang C++17 is supported on Linux and MSVC on Windows. A missing compiler fails the command rather than skipping fixtures. See the [native-build instructions](engine/stage2_followup/README.md#native-builds). The iteration-27 suite also requires a separate CUDA-enabled PyTorch installation and a usable CUDA device; its small CUDA/CPU fit comparison has no CPU fallback. These optional GPU dependencies are not included in `requirements.txt`.
 
 After building the native groups into `build/native/{li,temporal,s06}`, run the two additional suites from the repository root in PowerShell:
 
@@ -48,7 +52,15 @@ python -B -m unittest discover -s engine/stage2_followup/tests -v
 python -B -m unittest discover -s engine/iteration_27/tests -v
 ```
 
-Without `INHIBITORY_TEST_NATIVE_ROOT`, the Stage 2 command runs its five portable tests and skips its three native fixtures. The CPU CI configuration is therefore distinguished from the complete native/CUDA check record.
+Earlier Stage 2 runs without `INHIBITORY_TEST_NATIVE_ROOT` passed five portable tests and skipped three native fixtures. The current command instead builds those fixtures automatically in a fresh temporary directory and retains compiler receipts; an explicit native root reuses supplied libraries. The CPU check record remains distinct from the historical CUDA-inclusive execution.
+
+A separate [public CPU route](docs/cpu_reproduction.md) has now been [executed on a fresh Linux checkout](validation/reproductions/cpu_20261107/checkout02_independent_review.json). It requires a C++17 compiler but no MSVC, CUDA or private folders on Linux. This bounded acceptance does not claim macOS execution or GPU parity; it leaves the historical GPU-inclusive suite above distinct. Run its core CPU roster into a fresh directory:
+
+```sh
+python -B -m engine.cpu_reproduction --stage all --output build/cpu_acceptance
+```
+
+This executes eight Stage 2 tests and twenty iteration-27 CPU tests: nineteen unchanged non-GPU assertions plus one labelled CPU counterpart. The Stage 2 tests overlap the standalone suite; do not count them twice.
 
 These commands check fixed numerical examples, claim/source bindings, and current payload hashes. They do not run the research campaigns, acquire external data, or establish exhaustive mathematical or scientific correctness. Claim verification covers both the manuscript ledger and the separate source inventory; [validation documentation](validation/README.md) explains their roles and current check records.
 
@@ -59,6 +71,10 @@ node website/check_interactions.cjs
 ```
 
 ## Use the numerical code
+
+For selected-state likelihood replay, use the [public score reader](reproduction/score_replay/README.md). Its commands require explicit finite resource limits and fresh output directories. The [CPU guide](docs/cpu_reproduction.md) provides the dependency and compiler requirements.
+
+For a fresh fit using the separately versioned amended joint procedure, see the [refined CPU reader](experiments/s04b_refined_cpu_reader/README.md). It automatically extracts the audited Linux x86-64 native library and receipt, without a compiler, MSVC, CUDA, credentials or manual native-library environment setup. Ordinary use has fresh finite local limits and no inherited author expiry; the optional author record imposes a separate dated envelope. Source review and local checks do not constitute independent acceptance of fitted outputs. The earlier CPU acceptance and the C++17 core build route remain distinct.
 
 The [replay guide](reproduction/README.md) provides commands that reconstruct all three regional cohorts from bundled raw records, refit the frozen NZ procedure, and recompute synthetic likelihoods. For example:
 

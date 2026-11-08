@@ -1,5 +1,7 @@
 # Reviewer guide
 
+The joint temporal-backbone comparison has now attempted all 80 original histories: 78 completed, one reached an unresolved optimizer cap, and one exceeded its fixed wall allocation. Both arms fit `(a,d,n,c,p)` on training data; spatial and mark laws stay fixed. Against the jointly refitted uninhibited comparator, matched raw broad/long total inhibition has mean gain -1.2607 nats with 8/20 wins (95% Wilson win-fraction interval [0.2188, 0.6134]). Full-regime summaries for broad/long immigrant and narrow/short total generation remain unavailable. The [complete disposition report](validation/live_results/joint_nuisance_dispositions_20261107/report.json) retains 390 computed comparisons and 10 unavailable slots, alongside the historical comparators. It is not an 80-success experiment.
+
 Start with the [current unified monograph](paper/manuscript_unified.pdf), its [limitations](docs/limitations.md), and the study map below. This edition reports supported completed studies, including S04B controls; F and unexecuted prospective/horizon material have been withdrawn. Earlier PDFs remain available for comparison; their production receipts and unresolved counts do not describe the current edition by implication.
 
 The [plain-language guide](companion/lay_guide_to_the_research.pdf) introduces the studies without equations. The [findings explorer files](website/site/findings.html) use accepted aggregates and retain separate study populations; use the [website instructions](website/README.md) to preview the site.
@@ -7,6 +9,8 @@ The [plain-language guide](companion/lay_guide_to_the_research.pdf) introduces t
 ## Reproduce results from supplied inputs
 
 The [recovered-input guide](reproduction/README.md) provides the original New Zealand catalogue, California annual files, Japanese source archives and projected-region predicate, plus the recovered simulation histories and available fitted states. Cohort reconstruction has been executed for all three regions. The complete frozen New Zealand fit has also rerun: all scientific values match the archived result. These executions are separate from the claim ledger's display checks.
+
+The later [selected-state campaign](reproduction/score_replay/README.md) has recomputed the declared historical extension and regional scores. Its [independent table-coverage review](validation/reproductions/score_replay_20261107/final_coverage/independent_review.json) distinguishes fresh evaluations, retained earlier replays and metadata checks. It preserves the original fitted states and training selections, without rerunning their optimizer searches.
 
 ```sh
 python -B scripts/reproduce.py --study nz --output build/replay_nz
@@ -35,7 +39,7 @@ Current metadata identifies an open research edition and completed production ch
 | S05 | All 2,997 EP futures; point-score reconstruction on all 5,994 OC/EP paths; fifteen full 84-coordinate EP replays; [closure review](validation/acceptances/S05_CLOSURE_REVIEW.json), [point review](validation/acceptances/S05_ALL_PATH_POINT_REVIEW.json) | Fixed-state conditional inference. Full PIT coverage is fifteen EP paths, not every future; no inferred CSEP L/M/S results. |
 | S06 | California episode backtests and Japanese stationary/trend ablation; [acceptance](validation/acceptances/S06_ACCEPTANCE.json) | Retrospective roster, overlapping training, and saved-row validation do not establish prospective independent replication. |
 
-The historical S04B integration and editorial-remediation reviews certify their original document bytes. The [current production review](validation/reviews/S2_CONTROL_EDITION_20261107.json) identifies the delivered manuscript, companion and site. It records internal artifact checks; the separately linked execution records describe numerical work. The [preceding reassessment review](validation/reviews/REASSESSMENT_CLARIFICATIONS_20261106.json) retains its earlier artifact identities. None of these records represents external academic acceptance.
+The historical S04B integration and editorial-remediation reviews certify their original document bytes. The [current production review](validation/reviews/JOINT_NUISANCE_DISPOSITION_EDITION_20261108.json) identifies the delivered manuscript, companion and site. It records internal artifact checks; the separately linked execution records describe numerical work. The [preceding reassessment review](validation/reviews/REASSESSMENT_CLARIFICATIONS_20261106.json) retains its earlier artifact identities. None of these records represents external academic acceptance.
 
 Read each acceptance receipt for its actual roster, source identities, checks, and limits. Some historical references identify original research inputs outside this publication package. Accepted aggregate evidence is distinct from an independently reproducible raw experiment. Computational-agent review is distinct from independent external academic peer review.
 
@@ -66,7 +70,11 @@ python -B scripts/verify_repository.py
 node website/check_interactions.cjs
 ```
 
-The main suite now includes recovered-input reconstruction, corruption rejection and replay checks. The [current check record](validation/checks.json) records the executed count separately for the main suite, the eight Stage 2 tests and the twenty iteration-27 tests. See the [test prerequisites and native setup](validation/README.md#check-a-checkout), including the separate CUDA requirement. Without native fixtures, Stage 2 passes five tests and skips three.
+The main suite now includes recovered-input reconstruction, corruption rejection and replay checks. The [current check record](validation/checks.json) records the executed count separately for the main suite, the eight Stage 2 tests and the twenty iteration-27 tests. See the [test prerequisites and native setup](validation/README.md#check-a-checkout), including the separate CUDA requirement. Earlier runs without native fixtures passed five tests and skipped three. The current Stage 2 command automatically builds the native fixtures when no native root is configured; a missing compiler is an error, not a skip. Linux uses a GNU/Clang C++17 compiler, while Windows uses MSVC.
+
+The separate [Linux CPU route](docs/cpu_reproduction.md) has an [actual clean-checkout acceptance](validation/reproductions/cpu_20261107/checkout02_independent_review.json), including numerical kernel controls and public-reader executions. It requires a C++17 compiler but no MSVC or CUDA on Linux. This is distinct from the historical GPU-inclusive suite; macOS execution and GPU parity are not claimed.
+
+The later [refined single-history fit command](experiments/s04b_refined_cpu_reader/README.md) automatically extracts its audited Linux x86-64 native library and receipt. It uses fresh finite local limits for ordinary readers and needs no author admission, compiler, MSVC, CUDA or manual native-library variable. The optional dated author mode retains the original campaign restrictions. This executable interface and its [source review](validation/reproductions/continuation_20261107/joint_refined_cpu_combined_source_review.json) are distinct from independent acceptance of an actual fit, from historical selected-state replay, and from the earlier compiler-based CPU acceptance.
 
 The website check needs Node.js; CI uses Node 22. To compile and inspect the current monograph with Tectonic 0.17.0:
 
