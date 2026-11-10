@@ -476,6 +476,17 @@ class RecoveryControls(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'runtime'):driver.check_admission(args,p,changed)
             changed=copy.deepcopy(current);changed['source_sha256']['injected']='changed'
             with self.assertRaisesRegex(ValueError,'source/protocol'):driver.check_admission(args,p,changed)
+            now=driver.datetime.datetime.now(datetime.timezone.utc)
+            for seconds_until_expiry in (1,0,-1):
+                with self.subTest(seconds_until_expiry=seconds_until_expiry):
+                    boundary=copy.deepcopy(a)
+                    boundary['expires_utc']=(now+datetime.timedelta(seconds=seconds_until_expiry)).isoformat()
+                    driver.write(args.admission,boundary)
+                    if seconds_until_expiry>0:
+                        self.assertEqual(driver.check_admission(args,p,current),boundary)
+                    else:
+                        with self.assertRaisesRegex(ValueError,'Expired'):
+                            driver.check_admission(args,p,current)
             a['expires_utc']='2099-01-01T00:00:00+00:00';driver.write(args.admission,a)
             with self.assertRaisesRegex(ValueError,'Expired'):driver.check_admission(args,p,current)
     def test_removed_original_review_or_lineage_file_is_rejected(self):
