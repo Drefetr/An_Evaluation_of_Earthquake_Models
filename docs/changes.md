@@ -1,5 +1,9 @@
 # Change history
 
+## 10 November 2026 test-clock fix and README summary
+
+Fixed a calendar-dependent test: `test_runtime_source_and_expiry_admission_corruption` compared the real clock with the recovery policy's pinned expiry (2026-11-09T07:15Z) and failed for every checkout after that instant. It now uses a fixed instant inside the pinned window; no scientific code, result or pin changed. Added a short "At a glance" section to the README that restates existing scope and status text without new claims.
+
 ## 8 November 2026 joint comparison, historical score replays and CPU execution
 
 The joint temporal-backbone comparison has now attempted all 80 original histories: 78 completed, one reached an unresolved optimizer cap, and one exceeded its fixed wall allocation. Both arms fit `(a,d,n,c,p)` on training data; spatial and mark laws stay fixed. Against the jointly refitted uninhibited comparator, matched raw broad/long total inhibition has mean gain -1.2607 nats with 8/20 wins (95% Wilson win-fraction interval [0.2188, 0.6134]). Full-regime summaries for broad/long immigrant and narrow/short total generation remain unavailable. The [complete disposition report](../validation/live_results/joint_nuisance_dispositions_20261107/report.json) retains 390 computed comparisons and 10 unavailable slots, alongside the historical comparators. It is not an 80-success experiment. Selected-state likelihood replays reconcile the historical chapter-table roster without repeating historical optimizer searches. The bounded Linux CPU routes execute without MSVC or CUDA. Current production checks and the two incomplete regimes remain distinct from complete scientific execution.
