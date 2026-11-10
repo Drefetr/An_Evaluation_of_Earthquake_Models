@@ -2,6 +2,14 @@
 
 Research code, a unified monograph, a plain-language guide, and an interactive findings explorer for **Stability, Identification, and Predictive Evaluation in Inhibitory and Spatial-Temporal Earthquake Models**.
 
+## At a glance
+
+- **What this is:** an open research edition: code, a unified monograph, a plain-language guide and a findings explorer for inhibitory and spatial-temporal earthquake models.
+- **What it is not:** an operational forecasting service. Predictive preference does not establish a physical inhibition mechanism.
+- **Headline pattern:** in the completed observed-catalogue tests, stress-depletion additions lose to matched excitation models or select zero inhibition. These are procedure-level findings, not physical falsification.
+- **Status:** AI-assisted work offered for independent review; AI review is distinct from external academic peer review (see [limitations](docs/limitations.md) and [CONTRIBUTORS.md](CONTRIBUTORS.md)).
+- **Where to start:** the [plain-language guide](companion/lay_guide_to_the_research.pdf) for a non-technical overview, the [unified monograph](paper/manuscript_unified.pdf) for the full analysis, or the [reviewer guide](REVIEWER_START_HERE.md) to verify claims.
+
 The research studies restricted stability and identification, nuisance sensitivity, spatial and temporal extensions, competitive benchmarks (`OC`, `FC`, `MC`, `EP`), conditional calibration, and continuous local inhibition (`LI`, `LI+ immigrant`, `LI+ total`). The studies use synthetic controls and regional earthquake catalogues from New Zealand, Southern California, and Japan. Results depend on the specified model, observation law, and evaluation population. Predictive preference does not establish a physical inhibition mechanism; this repository does not provide an operational forecasting service.
 
 This open research edition supplies recovered catalogue and simulation inputs, executable cohort reconstructions, and model replay tools. The unchanged New Zealand fitting recipe has been rerun from the recovered input and reproduces every scientific numerical field exactly. Complete known-law and matched-generator score replays have also passed, and a separately executed constant-background fit supplies a reproducible comparison within the autonomous finite-mode family. This is the same conditional intensity family as the earlier constant-background sensitivity, with a different fitting recipe. The stability theorem supplies no useful catalogue-horizon mixing bound for the pinned kernel. Original California completion and nuisance-fit records are also supplied. The F continuation and unexecuted prospective/horizon material have been removed from the current paper, with an explicit historical archive.

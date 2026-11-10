@@ -460,9 +460,17 @@ class RecoveryControls(unittest.TestCase):
             library_sha256=old['library_sha256'],build_receipt_sha256=old['build_receipt_sha256'],numerical_attempt_id='invented')
         path=self.root/'admission.json';driver.write(path,admission)
         return p,current,admission,SimpleNamespace(admission=path,build_receipt=build)
+    def frozen_clock_before_expiry(self,policy):
+        # The recovery policy pins a real expiry date. Compare against a fixed instant inside that
+        # window so the test does not start failing once the calendar passes the pinned expiry.
+        instant=datetime.datetime.fromisoformat(policy['shared_run']['expires_utc'])-datetime.timedelta(hours=1)
+        class FrozenDateTime(datetime.datetime):
+            @classmethod
+            def now(cls,tz=None):return instant.astimezone(tz) if tz else instant.replace(tzinfo=None)
+        return patch.object(driver,'datetime',SimpleNamespace(datetime=FrozenDateTime,timezone=datetime.timezone,timedelta=datetime.timedelta))
     def test_runtime_source_and_expiry_admission_corruption(self):
         p,current,a,args=self.admission_fixture()
-        with patch.dict(os.environ,JOINT_NUMERICAL_LEASE_TOKEN='invented'):
+        with patch.dict(os.environ,JOINT_NUMERICAL_LEASE_TOKEN='invented'),self.frozen_clock_before_expiry(p):
             driver.check_admission(args,p,current)
             changed=copy.deepcopy(current);changed['runtime']['essential']={'unexpected':'runtime'}
             with self.assertRaisesRegex(ValueError,'runtime'):driver.check_admission(args,p,changed)
