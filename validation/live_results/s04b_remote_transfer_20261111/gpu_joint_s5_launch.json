@@ -1,0 +1,42 @@
+{
+  "pid": 94856,
+  "command": [
+    "/home/gpt/hostile_remediation_20261111/venv/bin/python",
+    "-B",
+    "-m",
+    "experiments.s04b_completion.recover_cuda_joint",
+    "--case-id",
+    "S5_broad_long_imm_seed410518",
+    "--wall-seconds",
+    "7200",
+    "--output-root",
+    "/home/gpt/hostile_remediation_20261111/results/s04b_gpu_joint",
+    "--saved-evidence",
+    "validation/live_results/s04b_remote_transfer_20261111/saved_evidence",
+    "--resume-from",
+    "/home/gpt/hostile_remediation_20261111/results/s04b_gpu_joint/predecessor_checkpoint",
+    "--immigrant-library",
+    "/home/gpt/hostile_remediation_20261111/repo/validation/live_results/cuda_immigrant_controls_20261111/build/64986d3df135b513/cuda_immigrant.so",
+    "--inclusive-library",
+    "/home/gpt/hostile_remediation_20261111/repo/validation/live_results/cuda_inclusive_controls_20261111/build/1698ff143667c53c/cuda_inclusive.so",
+    "--immigrant-controls",
+    "/home/gpt/hostile_remediation_20261111/repo/validation/live_results/cuda_immigrant_controls_20261111/result.json",
+    "--inclusive-controls",
+    "/home/gpt/hostile_remediation_20261111/repo/validation/live_results/cuda_inclusive_controls_20261111/result.json"
+  ],
+  "launched_utc": "2026-11-11T12:13:49.735829+00:00",
+  "predecessor_pid": 94658,
+  "launcher_sha256": "5c11bcf95e4c0eda7df3a712bd359f78b81a4c804d1e01bcfb3c2d313a61506b",
+  "checkpoint": [
+    {
+      "file": "S5_broad_long_imm_seed410518.json",
+      "sha256": "98bd13a77ee8ecb71899949f4acffbc3fa96326afd93be015dc8aa63fc79e8cf",
+      "bytes": 145640
+    },
+    {
+      "file": "S5_broad_long_imm_seed410518.attempts.jsonl",
+      "sha256": "ced64f7c351c1d83ee34fef6371e14d835741c1c8d2207da478b82a2514cf8a1",
+      "bytes": 79483
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+\subsection{Paired calendar-block score uncertainty}
+\label{sec:block_score_uncertainty}
+For each test fold, contiguous 90-day calendar blocks retain both the event
+log-intensity contrast and the corresponding integrated-rate contrast,
+including empty blocks and terminal exposure. We resample these paired block
+scores 49,999 times with replacement to obtain percentile 95\% intervals for
+the total contrast. A two-sided paired sign-flip reference independently
+reverses each block contrast. Training estimates remain fixed in these
+conditional comparisons. Pooled totals resample separately within each disjoint
+fold before summing. We also repeat the calculation with 180- and 365-day blocks.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{lrrr}
+\toprule
+Fold & Contrast (nats) & Paired 95\% interval & Sign-flip $p$ \\
+\midrule
+1 & -16.518 & $[-25.526,-7.459]$ & 0.00104 \\
+2 & -0.075 & $[-1.320,1.215]$ & 0.91248 \\
+3 & -1.030 & $[-2.087,0.004]$ & 0.05766 \\
+\bottomrule
+\end{tabular}
+\caption{Shared inhibition minus the uninhibited Mittag--Leffler model: paired calendar-block uncertainty. Negative contrasts favour the uninhibited model.}
+\label{tab:nz_score_uncertainty}
+\end{table}
+
+Fold~1 contributes 93.7\% of the total deficit. Fold~2 is close to zero under every block length: its 180- and 365-day intervals are $[-1.109,1.014]$ and $[-1.511,1.324]$. Fold~3 is sensitive to the dependence scale: the 90-day interval includes zero, whereas the 180- and 365-day intervals are $[-2.185,-0.091]$ and $[-2.149,-0.225]$; the annual-block sign-flip value is $p=0.015$. Evidence for the smaller Fold~3 deficit strengthens with annual aggregation.

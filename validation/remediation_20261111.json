@@ -1,0 +1,193 @@
+{
+  "schema": "hostile_review_remediation_acceptance_v1",
+  "date": "2026-11-12",
+  "coordinator_gate_passed": true,
+  "scope": "Completed scientific remediation and rebuilt monograph; no website deployment.",
+  "compute": {
+    "intensive_campaigns_completed_on_dedicated_remote": true,
+    "private_connection_configuration_outside_repository": true,
+    "local_activity": "Editing, transfers, static figures, LaTeX/PDF production, saved-output audits and lightweight checks.",
+    "predecessor_local_attempts": "Stopped after remote-routing correction; preserved in result provenance, not represented as remote execution.",
+    "final_remote_inventory": {
+      "path": "validation/remote_runs/final_idle_20261112.json",
+      "sha256": "7332da104f51664ba98e66fad005c823e5866553a2810853e1173500fd6e94fd"
+    }
+  },
+  "joint_comparison": {
+    "completed_histories": 80,
+    "completed_outcomes": 400,
+    "regimes": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "histories_per_regime": 20,
+    "missing_table_cells": 0,
+    "audit": {
+      "path": "validation/live_results/s04b_joint_complete_independent_audit_20261111.json",
+      "sha256": "4aebf495c04295c6bd5a6baa5edea4f8d813a0c9f93f17d8e89f58bf7ed77b36"
+    }
+  },
+  "concave_comparator": {
+    "completed_histories": 80,
+    "S7_zero_branching_histories": 20,
+    "comparator_and_active_columns_present": true,
+    "summary": {
+      "path": "validation/live_results/s04b_concave_20261111/summary.json",
+      "sha256": "e754b01f8bb8572f8b45a05d7ce3af41f4e6638d8b9b6e83aea0fe8e9973fee0"
+    }
+  },
+  "moderate_control": {
+    "completed_histories": 20,
+    "mean_gain": 0.2941447638438433,
+    "sample_mcse": 2.7772732750178357,
+    "wins": 13,
+    "rejection_fraction": 0.2720763723150358,
+    "mean_test_events": 94.7,
+    "numerical_rule": "Declared 0.01-nat training selected-score doubling gate; inherited stricter combined score/gradient flags remain separately reported.",
+    "audit": {
+      "path": "validation/live_results/s8_moderate_complete_independent_audit_20261111.json",
+      "sha256": "1f33300f1c356439d8dd487d777f2a45463ea8b2b281fed31651d8ad381397d6"
+    }
+  },
+  "strengthened_etas": {
+    "completed_folds": 3,
+    "matched_attenuation_contrasts": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "baseline_joint_gain": 69.55289384226876,
+    "summary": {
+      "path": "validation/live_results/etas_inhibition_benchmark_accepted_20261111/summary.json",
+      "sha256": "927bf0a66a24c90908a096b5cc9abf429f35725212e0b42b6a6509a197e4176a"
+    },
+    "baseline_uncertainty": {
+      "path": "validation/live_results/etas_baseline_uncertainty_20261111/summary.json",
+      "sha256": "a5c20bf9def942152722ba1d738d019f262c735ea9e466c7976820a215049f09"
+    }
+  },
+  "score_uncertainty": {
+    "fold_contrasts": 9,
+    "block_days": [
+      90,
+      180,
+      365
+    ],
+    "resamples": 49999,
+    "review": {
+      "path": "validation/live_results/score_uncertainty_independent_audit_20261111.json",
+      "sha256": "e7722fd08fef8e97117fba3924bcf4868f6307cb0f9a08ffd1a90bc6bbd31a0f"
+    },
+    "interpretation": "Reports actual block-length and reference-test sensitivity; does not assert that every small negative contrast is indistinguishable from zero."
+  },
+  "mathematics": {
+    "checked": true,
+    "results": {
+      "path": "scripts/check_results.json",
+      "sha256": "dc74706cb7050c2eb1afad449f69260aa83075eb65af3fd75738917cd069377c"
+    },
+    "scientific_results": {
+      "path": "validation/live_results/mathematics_remediation_20261111.json",
+      "sha256": "dc74706cb7050c2eb1afad449f69260aa83075eb65af3fd75738917cd069377c"
+    }
+  },
+  "manuscript": {
+    "pdf": {
+      "path": "paper/manuscript_unified.pdf",
+      "sha256": "123503b6fd88a48507ce1f0891628bf65ccc080304c5f7ce1f2f00f7d2f18e44"
+    },
+    "pages": 236,
+    "production_checks": {
+      "path": "validation/acceptances/HOSTILE_REMEDIATION_20261111/production_checks.json",
+      "sha256": "1d029eea0508ca7b36d5336d488e413a6aa53580d532534aa7ac79aab928366e"
+    },
+    "visual_review": {
+      "path": "validation/acceptances/HOSTILE_REMEDIATION_20261111/visual_review.json",
+      "sha256": "d10b58336bc3e5fc060012e9cf57df7185975f06e6f6f80fa8949ec99dbb42c2"
+    },
+    "operational_provenance": "docs/result_provenance.md"
+  },
+  "checks": {
+    "mathematics": {
+      "command": "python -B scripts/check_mathematics.py",
+      "exit_code": 0
+    },
+    "figures": {
+      "command": "python -B scripts/make_figures.py --output build/remediation/final_figures",
+      "exit_code": 0,
+      "figures": 9,
+      "canonical_temporal_pdf_matches": true,
+      "note": "The default fresh-directory run had already succeeded; a repeated default invocation correctly refused to overwrite it. Final verification used a new output directory."
+    },
+    "build": {
+      "command": "python -B scripts/build_paper.py --engine <Tectonic 0.17.0> --output build/remediation/final_paper_5 --install",
+      "exit_code": 0,
+      "engine_version": "Tectonic 0.17.0",
+      "engine_sha256": "99ffcfdbf1ebf8bdda9e791942e3d06aedb12463fddc33f07de6f5211c8bf08d"
+    },
+    "pdf": {
+      "command": "python -B scripts/validate_pdf.py --source-root paper --pdf paper/manuscript_unified.pdf --log build/remediation/final_paper_5/main.log --output build/remediation/final_pdf_qa_5",
+      "passed": true,
+      "errors": 0
+    },
+    "claims": {
+      "command": "python -B scripts/verify_claims.py",
+      "passed": true,
+      "failures": [],
+      "counts": {
+        "withdrawn_historical_records": 777,
+        "json_numeric_verified": 24844,
+        "json_pointer_verified": 25111,
+        "documentary_numeric_verified": 2430,
+        "documentary_metadata_verified": 679,
+        "claims": 27541,
+        "documentary_metadata": 679,
+        "total_records": 28220,
+        "literal_manuscript_display_records": 11693,
+        "missing_declared_manuscript_displays": 0,
+        "json_nonnumeric_verified": 267,
+        "distinct_authorities": 148
+      }
+    },
+    "joint_reader_tests": {
+      "command": "python -B -m unittest discover -s tests -p 'test_joint_refined_cpu*.py'",
+      "passed": true,
+      "tests": 27
+    },
+    "diff_whitespace": {
+      "command": "git -c core.whitespace=cr-at-eol diff --check",
+      "exit_code": 0
+    },
+    "repository": {
+      "command": "python -B scripts/verify_repository.py",
+      "passed": true,
+      "errors": [],
+      "checked_files": 10537,
+      "custody_note": "Manifest refreshed and normal verification passed. After this acceptance record is finalized, refresh and repeat normal verification once more; the final stdout is kept outside the payload to avoid a manifest cycle."
+    }
+  },
+  "private_configuration_scan": {
+    "passed": true,
+    "private_configuration_outside_repository": true,
+    "scope": "Repository payload and ZIP members checked for private connection identifiers and combined authentication material; values are never emitted.",
+    "matching_paths": []
+  },
+  "website": {
+    "current_source_metadata_updated_separately": true,
+    "generated_preview": "Unchanged, independently reviewed 8 November snapshot; labeled historical in website/README.md.",
+    "attempted_rebuild": "Strict archived reader-source review refused changed live reader bytes. No validator was relaxed and no generated preview was installed or published.",
+    "source_metadata": {
+      "path": "website/document_metadata.json",
+      "sha256": "67b0fc8fa3bd8e85d9cfc5e423b6c004229b6145145692908a507e185bfca344"
+    }
+  },
+  "claim_custody": {
+    "withdrawals": {
+      "path": "validation/withdrawals/JOINT_TABLE_SUPERSESSION_20261111.json",
+      "sha256": "59e2c135edee74e6850378c217bacc3b024ebfa9be5925a814d8995dda0310e3"
+    },
+    "reason": "Superseded incomplete joint tables and operational prose removed from manuscript; original authorities and historical values remain archived."
+  }
+}

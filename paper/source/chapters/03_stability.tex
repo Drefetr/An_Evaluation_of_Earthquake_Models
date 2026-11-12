@@ -143,7 +143,73 @@ most $\Lambda_R$, so neither jumps. Thus the synchronous coupling gives probabil
 \]
 The same coupling shows that the state at a fixed time converges in probability as the initial state varies continuously. Expectations of bounded continuous functions therefore converge, establishing the Feller property. Taking \(t=t_0\) verifies contraction and smallness at the same time; the choices were made in the order \(R,\epsilon,t_0\).
 
-Together with \eqref{eq:lyap-moment} this verifies the Lyapunov, contraction and smallness hypotheses of \citet{HairerMattinglyScheutzow2011}, Theorem~4.8 in the author-final version. Their Corollary~4.11 adds existence under the Feller and completeness conditions used here. Existence also follows from tight time-averaged laws, compact sublevels and \eqref{eq:lyap-moment}. The contraction time provided by the theorem may be later than the time used to check the hypotheses. Replacing \(d_\epsilon\) by \(\widetilde d\) and iterating the resulting contraction, while using \eqref{eq:lyap-moment} for the residual time, gives \eqref{eq:weighted-contraction}. No second mark moment is required.
+\emph{Weighted contraction and continuous time.} The deduction has four steps.
+\begin{enumerate}
+\item The function $d_\epsilon=1\wedge(\|z-z'\|/\epsilon)$ is a bounded
+complete metric on the closed finite-dimensional state space $\mathcal X$.
+Equation~\eqref{eq:lyap-moment} supplies the Lyapunov condition (4.1) of
+\citet{HairerMattinglyScheutzow2011}, with $C_V=1$ and $K_V=D/\kappa_V$.
+Equation~\eqref{eq:coupling-contraction} gives contraction with coefficient
+$1/2$ at $t_0$ when $d_\epsilon<1$, and the preceding display gives
+$d_\epsilon$-smallness of $\{V\leq4K_V\}$ at the same time. These are their
+Definitions~4.7 and 4.4, respectively. Increasing $t_0$ if necessary preserves
+both estimates and ensures the drift reduction required in the proof of their
+Theorem~4.8.
+\item The weighted-cost construction in that theorem gives $\beta>0$,
+$\widetilde\alpha\in(0,1)$ and a skeleton time (denoted again by $t_0$) for
+which
+\[
+ W_{\widetilde d}(P_{t_0}\mu,P_{t_0}\nu)
+ \leq\widetilde\alpha W_{\widetilde d}(\mu,\nu),\qquad
+ \widetilde d(z,z')=\sqrt{d_\epsilon(z,z')
+                  (1+\beta V(z)+\beta V(z'))}.
+\]
+The skeleton time need not equal the first time at which the unweighted
+hypotheses hold. Tight time-averaged laws, compact sublevels, the Feller
+property and \eqref{eq:lyap-moment} give an invariant law $\pi$; the theorem
+gives uniqueness. Iteration and invariance give
+\[
+ W_{\widetilde d}(P_{nt_0}z,\pi)
+ \leq\widetilde\alpha^n W_{\widetilde d}(\delta_z,\pi).
+\]
+\item For $0\leq s<t_0$, use the same synchronous coupling. When
+$d_\epsilon(z,z')<1$, \eqref{eq:coupling-contraction} bounds its expected
+$d_\epsilon$-cost by
+$(1+L\epsilon/\vartheta_{\min})d_\epsilon(z,z')\leq(5/4)d_\epsilon(z,z')$.
+When $d_\epsilon=1$ this also holds since the cost is at most one. Moreover,
+\eqref{eq:lyap-moment} gives
+$P_sV(z)+P_sV(z')\leq V(z)+V(z')+2D/\kappa_V$ uniformly in $s$.
+Cauchy--Schwarz on this same coupling therefore gives
+\[
+ \begin{split}
+ W_{\widetilde d}(P_sz,P_sz')
+ &\leq\sqrt{\tfrac54d_\epsilon(z,z')
+    (1+\beta V(z)+\beta V(z')+2\beta D/\kappa_V)}\\
+ &\leq C_0\widetilde d(z,z'),\qquad
+ C_0=\sqrt{\tfrac54(1+2\beta D/\kappa_V)}.
+ \end{split}
+\]
+Integrating these measurable coupling kernels against any coupling of
+$\mu,\nu$ and taking the infimum proves
+$W_{\widetilde d}(P_s\mu,P_s\nu)\leq C_0W_{\widetilde d}(\mu,\nu)$.
+\item Write $t=nt_0+s$, $0\leq s<t_0$. Then $P_t=P_sP_{nt_0}$ and
+$P_s\pi=\pi$. The invariant moment estimate proved below gives
+$\pi(V)\leq D/\kappa_V$; hence Jensen's inequality gives
+\[
+ W_{\widetilde d}(\delta_z,\pi)
+ \leq\sqrt{1+\beta V(z)+\beta D/\kappa_V}.
+\]
+Consequently
+\[
+ W_{\widetilde d}(P_tz,\pi)
+ \leq C_0\widetilde\alpha^n
+       \sqrt{1+\beta V(z)+\beta D/\kappa_V}
+ \leq Ce^{-rt}\sqrt{1+V(z)},\qquad
+ r=-\frac{\log\widetilde\alpha}{t_0},
+\]
+where $\widetilde\alpha^n\leq\widetilde\alpha^{-1}e^{-rt}$.
+This is \eqref{eq:weighted-contraction}; it uses only first mark moments.
+\end{enumerate}
 
 To see that every invariant probability has the same finite moment without subtracting potentially infinite integrals, suppose \(PV\leq aV+b\) with \(a<1\), and put \(f_K(v)=\min(v,K)\). If \(\nu\) is invariant, concavity gives
 \[

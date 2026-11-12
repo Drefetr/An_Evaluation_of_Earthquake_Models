@@ -2,13 +2,11 @@
 
 \label{sec:s04-observed-completed}
 
-These observed LI and LI+ comparisons retain the original fitted states and training selections. The later CPU replay recomputes their declared held-out selected and floor scores using the original prepared quadrature. It does not rerun training selection or every optimizer candidate; the original numerical audits retain their separate coverage.
-
-The planned observed comparison uses the same three California folds and 315 targets; numerical resolution status is retained for each row. Background and excitation nuisance inputs are fixed and shared between each candidate and its exact uninhibited floor. The common mark term cancels from each held-out joint gain, reported as floor NLL minus selected NLL. These are joint-score contrasts; no timing or location decomposition is inferred from the six-output objective ABI.
+The observed comparison uses the same three California folds and 315 targets. Background and excitation nuisance inputs are fixed and shared between each candidate and its exact uninhibited floor. The common mark term cancels from each held-out joint gain, reported as floor NLL minus selected NLL.
 
 Original LI is retained unpenalized. Magnitude-scaled LI+ is evaluated with immigrant-only and total-intensity attenuation, each with raw training selection and with the declared training-only BIC-style gate. A gate may select the exact floor. A negative held-out gain is retained, while an unresolved numerical result remains unknown rather than being assigned zero.
 
-\begin{table}[htbp]\centering\caption{Held-out joint gains (nats) relative to the shared uninhibited floor. Unknown or failed rows retain their planned targets and are displayed as --. These descriptive gains have no confidence intervals.}\label{tab:s04-observed}
+\begin{table}[htbp]\centering\caption{Held-out joint gains (nats) relative to the shared uninhibited floor. Paired block intervals for raw total-intensity attenuation are reported in Section~\ref{sec:li-score-uncertainty}.}\label{tab:s04-observed}
 
 \begin{tabular}{llllrll}\toprule Fold & Model & Gate & Status & Gain & Win & Active\\\midrule
 
@@ -44,9 +42,9 @@ Original LI is retained unpenalized. Magnitude-scaled LI+ is evaluated with immi
 
 \bottomrule\end{tabular}\end{table}
 
-The BIC-style gate is a complexity penalty, not a Davies-calibrated test or a guarantee of nominal size. A training-active fit, a selected floor and a held-out win are distinct outcomes. The same-history numerical acceptance and retained-state checks have the scope recorded in the reporting acceptance receipt; parent process completion alone is not scientific acceptance. These observed folds are adaptively inspected retrospective evidence, not a new untouched prospective cohort.
+The BIC-style gate is a complexity penalty, not a Davies-calibrated test or a guarantee of nominal size. A training-active fit, a selected floor and a held-out win are distinct outcomes. These observed folds have been inspected retrospectively.
 
-\begin{figure}[p]\centering\includegraphics[width=\textwidth]{s04_observed_joint_gains.pdf}\caption{Accepted held-out joint gains on the fixed three-fold population. Missing markers denote explicit unknown/failed rows, not zero gain.}\end{figure}
+\begin{figure}[p]\centering\includegraphics[width=\textwidth]{s04_observed_joint_gains.pdf}\caption{Held-out joint gains on the fixed three-fold population.}\end{figure}
 
 \begin{center}\begin{tabular}{lrr}\toprule Fold & Training targets & Planned held-out targets\\\midrule
 

@@ -1,0 +1,48 @@
+{
+  "host": "gpt",
+  "platform": "Linux-6.1.0-54-amd64-x86_64-with-glibc2.36",
+  "launched_utc": "2026-11-11T11:16:45.402955+00:00",
+  "jobs": [
+    {
+      "case_id": "S5_broad_long_imm_seed410518",
+      "pid": 93992,
+      "command": [
+        "/home/gpt/hostile_remediation_20261111/venv/bin/python",
+        "-B",
+        "scripts/fit_joint_refined_cpu.py",
+        "recover",
+        "--case-id",
+        "S5_broad_long_imm_seed410518",
+        "--wall-seconds",
+        "7200",
+        "--saved-evidence",
+        "validation/live_results/s04b_remote_transfer_20261111/saved_evidence",
+        "--resume-from",
+        "validation/live_results/s04b_joint_complete_20261111/recovery/S5_broad_long_imm_seed410518"
+      ],
+      "threads": 2,
+      "log": "/home/gpt/hostile_remediation_20261111/results/s04b/S5_broad_long_imm_seed410518.log"
+    },
+    {
+      "case_id": "S6_narrow_short_total_seed410615",
+      "pid": 93993,
+      "command": [
+        "/home/gpt/hostile_remediation_20261111/venv/bin/python",
+        "-B",
+        "scripts/fit_joint_refined_cpu.py",
+        "recover",
+        "--case-id",
+        "S6_narrow_short_total_seed410615",
+        "--wall-seconds",
+        "7200",
+        "--saved-evidence",
+        "validation/live_results/s04b_remote_transfer_20261111/saved_evidence",
+        "--resume-from",
+        "validation/live_results/s04b_joint_complete_20261111/recovery/S6_narrow_short_total_seed410615"
+      ],
+      "threads": 2,
+      "log": "/home/gpt/hostile_remediation_20261111/results/s04b/S6_narrow_short_total_seed410615.log"
+    }
+  ],
+  "transfer_manifest_sha256": "ab6db5c05920d2e57957599f29b2a82844bda4d94eaa779e22d8602e8f56ff45"
+}

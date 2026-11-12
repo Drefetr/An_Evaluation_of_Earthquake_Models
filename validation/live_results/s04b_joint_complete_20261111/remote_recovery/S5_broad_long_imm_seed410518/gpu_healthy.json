@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "model": "LIplus_immigrant",
+  "order": 8,
+  "parameters": [
+    -2.9781097427099086e-07,
+    1.682893769811307,
+    0.3823646080842323,
+    -0.8561973443992332,
+    1.6590366944954034,
+    1.9974225944244681,
+    3.561967842127005,
+    4.095635876585045
+  ],
+  "comparison": {
+    "max_absolute_error": 1.9042545318370685e-12,
+    "max_scaled_error": 4.858945121055371e-14
+  },
+  "backend": {
+    "backend": "Whole-plan immigrant-only CUDA deficit",
+    "library": "/home/gpt/hostile_remediation_20261111/repo/validation/live_results/cuda_immigrant_controls_20261111/build/64986d3df135b513/cuda_immigrant.so",
+    "library_sha256": "dd46977a98e701eb71d4505a5d9458f67fc62e0f549d79e0d8b25bfbe2bf794f",
+    "source_sha256": "64986d3df135b513d96536b2e4edf8a206988010b9738280d54781afdae69213",
+    "adapter_sha256": "826d416151b57191a56aa0a6db48559c99cef3572ecd939543b7db240df576a4",
+    "orders": {
+      "8": {
+        "space_nodes": 6208,
+        "time_nodes": 1664,
+        "parents": 28
+      }
+    },
+    "objective": "Original Phase.evaluate and baseline/event-score source unchanged.",
+    "summation": "Chronological recurrence per row; deterministic ascending row reduction; no atomics."
+  }
+}

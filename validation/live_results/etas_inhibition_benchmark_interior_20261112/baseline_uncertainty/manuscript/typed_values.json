@@ -1,0 +1,57 @@
+{
+  "passed": true,
+  "authority": "validation/live_results/etas_inhibition_benchmark_interior_20261112/baseline_uncertainty/summary.json",
+  "authority_sha256": "41734eab8f8a5455a8ae052ac5eaee9b987fc427efb08bba3ffe3e791bb587b1",
+  "pooled": {
+    "90": {
+      "total": 69.55289384227054,
+      "ci95_total": [
+        32.23942152377755,
+        123.71943253874105
+      ],
+      "paired_sign_permutation_p": 2e-05,
+      "sign_test_p": 0.00011705541630032304,
+      "blocks": 63,
+      "seed": 20261111,
+      "replicates": 49999,
+      "stratification": "resample blocks separately within each disjoint fold, then sum"
+    },
+    "180": {
+      "total": 69.55289384227055,
+      "ci95_total": [
+        32.15301441882991,
+        120.31243839556276
+      ],
+      "paired_sign_permutation_p": 0.0001,
+      "sign_test_p": 0.004551384132355452,
+      "blocks": 33,
+      "seed": 20261111,
+      "replicates": 49999,
+      "stratification": "resample blocks separately within each disjoint fold, then sum"
+    },
+    "365": {
+      "total": 69.55289384227056,
+      "ci95_total": [
+        26.58931660145044,
+        122.16411948767316
+      ],
+      "paired_sign_permutation_p": 0.00452,
+      "sign_test_p": 0.0308837890625,
+      "blocks": 18,
+      "seed": 20261111,
+      "replicates": 49999,
+      "stratification": "resample blocks separately within each disjoint fold, then sum"
+    }
+  },
+  "method": {
+    "block_days": [
+      90,
+      180,
+      365
+    ],
+    "replicates": 49999,
+    "confidence_percent": 95.0
+  },
+  "postprocessing_source": "experiments/etas_inhibition_benchmark/report_baseline_uncertainty.py",
+  "postprocessing_source_sha256": "7f81b09d0d637b2ee0fa3e7c6221cc6ef300bcb8434de9fdddf5e61721821064"
+}

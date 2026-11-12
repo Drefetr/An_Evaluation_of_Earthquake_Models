@@ -1,0 +1,584 @@
+{
+  "schema": "independent_uncertainty_audit_v1",
+  "passed": true,
+  "reviewer_task": "/root/mathematics",
+  "summary_sha256": "5a15f1048c60158470e2d098f5e58d6ee20b2c29d4b9e6a128c2aba89d0dae3f",
+  "reviewed_sources_sha256": {
+    "experiments/methodological_audit/score_uncertainty_cuda_frozen_v2_20261111.py": "5d426c57cb636689fbd94df109b0d56f248250fda841c26edfe1920fb0a25ae3",
+    "experiments/methodological_audit/inhibition_cuda.py": "c4ac97e3ceb7369409d985e90bbeaeb4e4214d96cdd8d043556d09a7df813fa9",
+    "experiments/methodological_audit/inhibition_marginal.cu": "847fb14665eecdb384a45401e1fc652ddecd108d415cfcba71b95ede0abac013"
+  },
+  "scope": "Light saved-output arithmetic, identity, source-custody and resampling-code review. No resampling campaign, fit, integration or GPU job rerun.",
+  "roster_rows_per_block_choice": 9,
+  "block_choices_days": [
+    90,
+    180,
+    365
+  ],
+  "max_block_or_total_arithmetic_error": 2.842170943040401e-14,
+  "checked_rows": [
+    {
+      "block_days": "90",
+      "contrast": "NZ_shared_minus_ML",
+      "case": "fold_50",
+      "blocks": 41,
+      "delta_identity_max_absolute_error": 0.0,
+      "total": -16.517557452809893,
+      "summary_total_error": 0.0,
+      "archived_total_error": 5.293543381412746e-13,
+      "ci_contains_zero": false,
+      "paired_sign_permutation_p": 0.00104,
+      "terminal_block_days": 59.100000000000364
+    },
+    {
+      "block_days": "90",
+      "contrast": "NZ_shared_minus_ML",
+      "case": "fold_65",
+      "blocks": 41,
+      "delta_identity_max_absolute_error": 0.0,
+      "total": -0.07527729055138699,
+      "summary_total_error": 0.0,
+      "archived_total_error": 6.017408793468348e-14,
+      "ci_contains_zero": true,
+      "paired_sign_permutation_p": 0.91248,
+      "terminal_block_days": 59.10000000000218
+    },
+    {
+      "block_days": "90",
+      "contrast": "NZ_shared_minus_ML",
+      "case": "fold_80",
+      "blocks": 55,
+      "delta_identity_max_absolute_error": 0.0,
+      "total": -1.0300246214325326,
+      "summary_total_error": 0.0,
+      "archived_total_error": 5.52891066263328e-13,
+      "ci_contains_zero": true,
+      "paired_sign_permutation_p": 0.05766,
+      "terminal_block_days": 18.799999999999272
+    },
+    {
+      "block_days": "90",
+      "contrast": "CA_OC_minus_EP",
+      "case": "california_fold_0",
+      "blocks": 21,
+      "delta_identity_max_absolute_error": 1.0658141036401503e-14,
+      "total": -6.288819096855438,
+      "summary_total_error": 0.0,
+      "archived_total_error": 2.213340621892712e-12,
+      "ci_contains_zero": true,
+      "paired_sign_permutation_p": 0.57656,
+      "terminal_block_days": 26.0
+    },
+    {
+      "block_days": "90",
+      "contrast": "CA_OC_minus_EP",
+      "case": "california_fold_1",
+      "blocks": 21,
+      "delta_identity_max_absolute_error": 7.105427357601002e-15,
+      "total": -31.742512448765165,
+      "summary_total_error": 0.0,
+      "archived_total_error": 1.7763568394002505e-14,
+      "ci_contains_zero": false,
+      "paired_sign_permutation_p": 0.02558,
+      "terminal_block_days": 27.0
+    },
+    {
+      "block_days": "90",
+      "contrast": "CA_OC_minus_EP",
+      "case": "california_fold_2",
+      "blocks": 21,
+      "delta_identity_max_absolute_error": 7.105427357601002e-15,
+      "total": -13.01987321743696,
+      "summary_total_error": 1.7763568394002505e-15,
+      "archived_total_error": 7.105427357601002e-15,
+      "ci_contains_zero": false,
+      "paired_sign_permutation_p": 0.00366,
+      "terminal_block_days": 26.0
+    },
+    {
+      "block_days": "90",
+      "contrast": "CA_LIplus_total_minus_floor",
+      "case": "california_fold_0",
+      "blocks": 21,
+      "delta_identity_max_absolute_error": 0.0,
+      "total": -0.22447114585666722,
+      "summary_total_error": 2.7755575615628914e-17,
+      "archived_total_error": 1.3582320268490378e-09,
+      "ci_contains_zero": true,
+      "paired_sign_permutation_p": 1.0,
+      "terminal_block_days": 26.0
+    },
+    {
+      "block_days": "90",
+      "contrast": "CA_LIplus_total_minus_floor",
+      "case": "california_fold_1",
+      "blocks": 21,
+      "delta_identity_max_absolute_error": 0.0,
+      "total": -1.95286019713595,
+      "summary_total_error": 0.0,
+      "archived_total_error": 7.559952420077565e-06,
+      "ci_contains_zero": true,
+      "paired_sign_permutation_p": 0.4799,
+      "terminal_block_days": 27.0
+    },
+    {
+      "block_days": "90",
+      "contrast": "CA_LIplus_total_minus_floor",
+      "case": "california_fold_2",
+      "blocks": 21,
+      "delta_identity_max_absolute_error": 0.0,
+      "total": -0.2093431742768117,
+      "summary_total_error": 0.0,
+      "archived_total_error": 7.480351005284547e-09,
+      "ci_contains_zero": false,
+      "paired_sign_permutation_p": 0.08712,
+      "terminal_block_days": 26.0
+    },
+    {
+      "block_days": "180",
+      "contrast": "NZ_shared_minus_ML",
+      "case": "fold_50",
+      "blocks": 21,
+      "delta_identity_max_absolute_error": 0.0,
+      "total": -16.517557452809896,
+      "summary_total_error": 3.552713678800501e-15,
+      "archived_total_error": 5.258016244624741e-13,
+      "ci_contains_zero": false,
+      "paired_sign_permutation_p": 0.00536,
+      "terminal_block_days": 59.100000000000364
+    },
+    {
+      "block_days": "180",
+      "contrast": "NZ_shared_minus_ML",
+      "case": "fold_65",
+      "blocks": 21,
+      "delta_identity_max_absolute_error": 0.0,
+      "total": -0.07527729055138765,
+      "summary_total_error": 0.0,
+      "archived_total_error": 6.084022174945858e-14,
+      "ci_contains_zero": true,
+      "paired_sign_permutation_p": 0.8937,
+      "terminal_block_days": 59.10000000000218
+    },
+    {
+      "block_days": "180",
+      "contrast": "NZ_shared_minus_ML",
+      "case": "fold_80",
+      "blocks": 28,
+      "delta_identity_max_absolute_error": 0.0,
+      "total": -1.030024621432541,
+      "summary_total_error": 0.0,
+      "archived_total_error": 5.444533712761768e-13,
+      "ci_contains_zero": false,
+      "paired_sign_permutation_p": 0.05046,
+      "terminal_block_days": 18.799999999999272
+    },
+    {
+      "block_days": "180",
+      "contrast": "CA_OC_minus_EP",
+      "case": "california_fold_0",
+      "blocks": 11,
+      "delta_identity_max_absolute_error": 1.0658141036401503e-14,
+      "total": -6.2888190968554305,
+      "summary_total_error": 0.0,
+      "archived_total_error": 2.220446049250313e-12,
+      "ci_contains_zero": true,
+      "paired_sign_permutation_p": 0.74162,
+      "terminal_block_days": 26.0
+    },
+    {
+      "block_days": "180",
+      "contrast": "CA_OC_minus_EP",
+      "case": "california_fold_1",
+      "blocks": 11,
+      "delta_identity_max_absolute_error": 1.4210854715202004e-14,
+      "total": -31.742512448765105,
+      "summary_total_error": 0.0,
+      "archived_total_error": 7.815970093361102e-14,
+      "ci_contains_zero": false,
+      "paired_sign_permutation_p": 0.04458,
+      "terminal_block_days": 27.0
+    },
+    {
+      "block_days": "180",
+      "contrast": "CA_OC_minus_EP",
+      "case": "california_fold_2",
+      "blocks": 11,
+      "delta_identity_max_absolute_error": 1.0658141036401503e-14,
+      "total": -13.019873217436954,
+      "summary_total_error": 0.0,
+      "archived_total_error": 1.7763568394002505e-15,
+      "ci_contains_zero": false,
+      "paired_sign_permutation_p": 0.00946,
+      "terminal_block_days": 26.0
+    },
+    {
+      "block_days": "180",
+      "contrast": "CA_LIplus_total_minus_floor",
+      "case": "california_fold_0",
+      "blocks": 11,
+      "delta_identity_max_absolute_error": 0.0,
+      "total": -0.22447114585666722,
+      "summary_total_error": 0.0,
+      "archived_total_error": null,
+      "ci_contains_zero": true,
+      "paired_sign_permutation_p": 1.0,
+      "terminal_block_days": 26.0
+    },
+    {
+      "block_days": "180",
+      "contrast": "CA_LIplus_total_minus_floor",
+      "case": "california_fold_1",
+      "blocks": 11,
+      "delta_identity_max_absolute_error": 0.0,
+      "total": -1.95286019713595,
+      "summary_total_error": 0.0,
+      "archived_total_error": null,
+      "ci_contains_zero": true,
+      "paired_sign_permutation_p": 0.45312,
+      "terminal_block_days": 27.0
+    },
+    {
+      "block_days": "180",
+      "contrast": "CA_LIplus_total_minus_floor",
+      "case": "california_fold_2",
+      "blocks": 11,
+      "delta_identity_max_absolute_error": 0.0,
+      "total": -0.20934317427681168,
+      "summary_total_error": 2.7755575615628914e-17,
+      "archived_total_error": null,
+      "ci_contains_zero": false,
+      "paired_sign_permutation_p": 0.15646,
+      "terminal_block_days": 26.0
+    },
+    {
+      "block_days": "365",
+      "contrast": "NZ_shared_minus_ML",
+      "case": "fold_50",
+      "blocks": 11,
+      "delta_identity_max_absolute_error": 0.0,
+      "total": -16.51755745280988,
+      "summary_total_error": 3.552713678800501e-15,
+      "archived_total_error": 5.435651928564766e-13,
+      "ci_contains_zero": false,
+      "paired_sign_permutation_p": 0.03172,
+      "terminal_block_days": 9.100000000000364
+    },
+    {
+      "block_days": "365",
+      "contrast": "NZ_shared_minus_ML",
+      "case": "fold_65",
+      "blocks": 11,
+      "delta_identity_max_absolute_error": 0.0,
+      "total": -0.07527729055141816,
+      "summary_total_error": 0.0,
+      "archived_total_error": 9.134359935103475e-14,
+      "ci_contains_zero": true,
+      "paired_sign_permutation_p": 0.92816,
+      "terminal_block_days": 9.100000000002183
+    },
+    {
+      "block_days": "365",
+      "contrast": "NZ_shared_minus_ML",
+      "case": "fold_80",
+      "blocks": 14,
+      "delta_identity_max_absolute_error": 0.0,
+      "total": -1.0300246214325472,
+      "summary_total_error": 0.0,
+      "archived_total_error": 5.382361223382759e-13,
+      "ci_contains_zero": false,
+      "paired_sign_permutation_p": 0.015,
+      "terminal_block_days": 133.79999999999927
+    },
+    {
+      "block_days": "365",
+      "contrast": "CA_OC_minus_EP",
+      "case": "california_fold_0",
+      "blocks": 6,
+      "delta_identity_max_absolute_error": 2.842170943040401e-14,
+      "total": -6.288819096855392,
+      "summary_total_error": 0.0,
+      "archived_total_error": 2.2586377212974185e-12,
+      "ci_contains_zero": true,
+      "paired_sign_permutation_p": 0.49984,
+      "terminal_block_days": 1.0
+    },
+    {
+      "block_days": "365",
+      "contrast": "CA_OC_minus_EP",
+      "case": "california_fold_1",
+      "blocks": 6,
+      "delta_identity_max_absolute_error": 1.7763568394002505e-14,
+      "total": -31.742512448765066,
+      "summary_total_error": 0.0,
+      "archived_total_error": 1.1723955140041653e-13,
+      "ci_contains_zero": false,
+      "paired_sign_permutation_p": 0.24992,
+      "terminal_block_days": 2.0
+    },
+    {
+      "block_days": "365",
+      "contrast": "CA_OC_minus_EP",
+      "case": "california_fold_2",
+      "blocks": 6,
+      "delta_identity_max_absolute_error": 1.0658141036401503e-14,
+      "total": -13.019873217436936,
+      "summary_total_error": 0.0,
+      "archived_total_error": 1.5987211554602254e-14,
+      "ci_contains_zero": false,
+      "paired_sign_permutation_p": 0.12464,
+      "terminal_block_days": 1.0
+    },
+    {
+      "block_days": "365",
+      "contrast": "CA_LIplus_total_minus_floor",
+      "case": "california_fold_0",
+      "blocks": 6,
+      "delta_identity_max_absolute_error": 0.0,
+      "total": -0.22447114585666728,
+      "summary_total_error": 0.0,
+      "archived_total_error": null,
+      "ci_contains_zero": true,
+      "paired_sign_permutation_p": 1.0,
+      "terminal_block_days": 1.0
+    },
+    {
+      "block_days": "365",
+      "contrast": "CA_LIplus_total_minus_floor",
+      "case": "california_fold_1",
+      "blocks": 6,
+      "delta_identity_max_absolute_error": 0.0,
+      "total": -1.9528601971359498,
+      "summary_total_error": 0.0,
+      "archived_total_error": null,
+      "ci_contains_zero": true,
+      "paired_sign_permutation_p": 0.49888,
+      "terminal_block_days": 2.0
+    },
+    {
+      "block_days": "365",
+      "contrast": "CA_LIplus_total_minus_floor",
+      "case": "california_fold_2",
+      "blocks": 6,
+      "delta_identity_max_absolute_error": 0.0,
+      "total": -0.2093431742768117,
+      "summary_total_error": 0.0,
+      "archived_total_error": null,
+      "ci_contains_zero": true,
+      "paired_sign_permutation_p": 0.37656,
+      "terminal_block_days": 1.0
+    }
+  ],
+  "pooled_checks": [
+    {
+      "block_days": "90",
+      "contrast": "CA_OC_minus_EP",
+      "total": -51.05120476305756,
+      "blocks": 63,
+      "ci95_total": [
+        -99.93007657992813,
+        -17.263597650041202
+      ],
+      "paired_sign_permutation_p": 0.00018,
+      "disjoint_contiguous_fold_windows": true
+    },
+    {
+      "block_days": "90",
+      "contrast": "NZ_shared_minus_ML",
+      "total": -17.62285936479381,
+      "blocks": 137,
+      "ci95_total": [
+        -26.764698598599953,
+        -8.44586628853207
+      ],
+      "paired_sign_permutation_p": 0.00042,
+      "disjoint_contiguous_fold_windows": true
+    },
+    {
+      "block_days": "90",
+      "contrast": "CA_LIplus_total_minus_floor",
+      "total": -2.386674517269429,
+      "blocks": 63,
+      "ci95_total": [
+        -6.5635283129563335,
+        -0.03319390714800577
+      ],
+      "paired_sign_permutation_p": 0.07678,
+      "disjoint_contiguous_fold_windows": true
+    },
+    {
+      "block_days": "180",
+      "contrast": "CA_OC_minus_EP",
+      "total": -51.05120476305749,
+      "blocks": 33,
+      "ci95_total": [
+        -96.89382414791918,
+        -16.99878871150697
+      ],
+      "paired_sign_permutation_p": 0.0013,
+      "disjoint_contiguous_fold_windows": true
+    },
+    {
+      "block_days": "180",
+      "contrast": "NZ_shared_minus_ML",
+      "total": -17.622859364793822,
+      "blocks": 70,
+      "ci95_total": [
+        -28.096437980224145,
+        -7.28570480171359
+      ],
+      "paired_sign_permutation_p": 0.0029,
+      "disjoint_contiguous_fold_windows": true
+    },
+    {
+      "block_days": "180",
+      "contrast": "CA_LIplus_total_minus_floor",
+      "total": -2.386674517269429,
+      "blocks": 33,
+      "ci95_total": [
+        -6.42615579550734,
+        -0.08539352789208825
+      ],
+      "paired_sign_permutation_p": 0.0456,
+      "disjoint_contiguous_fold_windows": true
+    },
+    {
+      "block_days": "365",
+      "contrast": "CA_OC_minus_EP",
+      "total": -51.05120476305739,
+      "blocks": 18,
+      "ci95_total": [
+        -93.18752961367102,
+        -17.25709555997066
+      ],
+      "paired_sign_permutation_p": 0.00726,
+      "disjoint_contiguous_fold_windows": true
+    },
+    {
+      "block_days": "365",
+      "contrast": "NZ_shared_minus_ML",
+      "total": -17.62285936479384,
+      "blocks": 36,
+      "ci95_total": [
+        -30.49847003121178,
+        -5.667734558080967
+      ],
+      "paired_sign_permutation_p": 0.01518,
+      "disjoint_contiguous_fold_windows": true
+    },
+    {
+      "block_days": "365",
+      "contrast": "CA_LIplus_total_minus_floor",
+      "total": -2.386674517269429,
+      "blocks": 18,
+      "ci95_total": [
+        -6.363635295415632,
+        -0.09049344698588709
+      ],
+      "paired_sign_permutation_p": 0.06578,
+      "disjoint_contiguous_fold_windows": true
+    }
+  ],
+  "custody_members": [
+    {
+      "path": "validation/live_results/score_uncertainty_remote_v2_20261111/nz.json",
+      "passed": true
+    },
+    {
+      "path": "validation/live_results/score_uncertainty_remote_v2_20261111/li.json",
+      "passed": true
+    },
+    {
+      "path": "validation/live_results/score_uncertainty_remote_v2_20261111/ca.json",
+      "passed": true
+    },
+    {
+      "path": "validation/live_results/score_uncertainty_remote_v2_20261111/summary.json",
+      "passed": true
+    },
+    {
+      "path": "validation/live_results/score_uncertainty_remote_v2_20261111/marginals/california_fold_0.npz",
+      "passed": true
+    },
+    {
+      "path": "validation/live_results/score_uncertainty_remote_v2_20261111/marginals/california_fold_2.npz",
+      "passed": true
+    },
+    {
+      "path": "validation/live_results/score_uncertainty_remote_v2_20261111/marginals/california_fold_1.npz",
+      "passed": true
+    },
+    {
+      "path": "validation/remote_runs/uncertainty_v2_20261111/launch.json",
+      "passed": true
+    },
+    {
+      "path": "validation/remote_runs/uncertainty_v2_20261111/stdout.log",
+      "passed": true
+    },
+    {
+      "path": "validation/remote_runs/uncertainty_v2_20261111/stderr.log",
+      "passed": true
+    },
+    {
+      "path": "build/uncertainty_cuda/847fb14665eecdb3/build.log",
+      "passed": true
+    },
+    {
+      "path": "build/uncertainty_cuda/847fb14665eecdb3/inhibition_marginal.so",
+      "passed": true
+    },
+    {
+      "path": "build/uncertainty_cuda/847fb14665eecdb3/build_receipt.json",
+      "passed": true
+    }
+  ],
+  "source_logic_review": {
+    "paired_statistic": "Each block contrast is DeltaP minus DeltaE with both terms from the same frozen fitted arms; empty and final blocks retained.",
+    "bootstrap": "Within each fold, draw n blocks independently with replacement, sum their uncentered paired contrasts, then sum independent fold draws for pooled intervals. Percentiles 0.025 and0.975; 49999 draws.",
+    "permutation": "Independently multiply each paired block contrast by +/-1, compare absolute total to observed absolute total, use add-one numerator and denominator. This is a symmetry-based paired block sign-flip randomization procedure, not a refitted likelihood-ratio calibration.",
+    "sign_test": "Two-sided binomial test of block signs after excluding absolute contrasts <=1e-12; it ignores contrast magnitude and can disagree with the sign-flip statistic.",
+    "terminal_block": "Last block is shorter and receives the same resampling probability as every full block; the implemented conditional block procedure retains it without duration reweighting.",
+    "pooling": "Chronological test folds are disjoint and contiguous within each catalogue. Bootstrap resamples separately within folds. It does not pool NZ and California."
+  },
+  "interpretation": {
+    "NZ_fold2": "All three block-length intervals include zero; paired sign-flip p-values are large.",
+    "NZ_fold3_annual": {
+      "ci95_total": [
+        -2.1494091947146874,
+        -0.22502374627060087
+      ],
+      "paired_sign_permutation_p": 0.015,
+      "conclusion": "The annual-block contrast is negative with percentile interval excluding zero and sign-flip p=.015; a blanket indistinguishable-from-zero statement is false."
+    },
+    "LI_pooled": {
+      "90": {
+        "total": -2.386674517269429,
+        "ci95_total": [
+          -6.5635283129563335,
+          -0.03319390714800577
+        ],
+        "paired_sign_permutation_p": 0.07678
+      },
+      "180": {
+        "total": -2.386674517269429,
+        "ci95_total": [
+          -6.42615579550734,
+          -0.08539352789208825
+        ],
+        "paired_sign_permutation_p": 0.0456
+      },
+      "365": {
+        "total": -2.386674517269429,
+        "ci95_total": [
+          -6.363635295415632,
+          -0.09049344698588709
+        ],
+        "paired_sign_permutation_p": 0.06578
+      }
+    },
+    "LI_conclusion": "Pooled percentile intervals exclude zero at all three block lengths. Two-sided sign-flip p-values straddle .05 across block lengths. Report both procedures and the length sensitivity; a blanket within-noise statement is unsupported.",
+    "CA_OC_minus_EP": "Pooled losses have negative percentile intervals and small paired sign-flip p-values for all tested block lengths. Individual-fold significance varies by block length.",
+    "inference_target": "Conditional uncertainty for saved fitted-procedure contrasts under the stated calendar-block resampling assumptions; not sequence-level parameter refitting or physical-causality uncertainty."
+  }
+}

@@ -1,5 +1,13 @@
 # Change history
 
+## 12 November 2026 independent-reassessment corrections
+
+Corrected the ETAS final-resolution acceptance search to include fresh positive-strength starts, reran all three folds remotely with per-evaluation traces, and retained zero attenuation with unchanged baseline states and scores. Added the S8 gated row, numerical-criterion and boundary disclosures, and separate win columns for both fitted comparators. Direct arithmetic corrects the reassessment's proposed gated median and MCSE to 0 and 1.4436. Removed the duplicate declustering bibliography entry and repaired citation style and spatial-normalization attribution. Restored the reviewed public-reader bytes, archived the orphan figure, refreshed the guide and completed-joint website view, and expanded acceptance to the documented full main suite. Earlier artifacts and selective acceptance records remain historical; [the response](reviews/reassessment_response_20261112.md) and [current acceptance record](../validation/reassessment_20261112.json) provide exact evidence and check results.
+
+## 12 November 2026 hostile-review remediation
+
+Completed the 80-history/400-outcome joint comparison, the concave background/branching comparator, and 20 moderate-thinning synthetic histories; corrected the weighted continuous-time stability proof and evaluated the visibility bound numerically. Added verified stress-release and Coulomb/rate-and-state literature. Executed a magnitude-scaled, declustered ETAS comparison and paired calendar-block uncertainty on the dedicated remote GPU host. Rewrote the abstract, corrected trend/depletion and score semantics, and moved operational execution narratives out of the scientific chapters. Current numerical sources and recovery epochs are distinguished in [result provenance](result_provenance.md).
+
 ## 10 November 2026 test-clock fix and README summary
 
 Fixed a calendar-dependent test: `test_runtime_source_and_expiry_admission_corruption` compared the real clock with the recovery policy's pinned expiry (2026-11-09T07:15Z) and failed for every checkout after that instant. It now uses a fixed instant inside the pinned window; no scientific code, result or pin changed. Added a short "At a glance" section to the README that restates existing scope and status text without new claims.

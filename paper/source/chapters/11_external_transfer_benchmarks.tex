@@ -72,11 +72,9 @@ Primary timing means OC-FC timing; primary location means OC-OL conditional loca
 
 The repaired California source contains 1,272 canonical unique preferred SCEDC/SCSN records meeting reported M $\geq$ 4.0, latitude 32-37 degrees, longitude -121 to -114 degrees and depth -5 to 40 km. Of these, 106 records in 1981-1985 provide warmup parents. Scored training begins in 1986; expanding training prefixes contain 851, 930 and 1,097 targets. The three half-open UTC test windows contain 79, 167 and 69 targets. Their total is 315 unique held-out targets. Reappearance of this denominator in the benchmark, calibration, concentration and inhibition studies reflects reuse of those same targets, not new samples.
 
-The schema repair retained an earlier stop and changed only acceptance of unused location-quality metadata as opaque printable tokens. All 45 cached official files were reused unchanged; no query, row removal, imputation or forecasting-engine change was needed. The 134 previously rejected occurrences were retained, and none was an M $\geq$ 4 model candidate. Independent reconstruction established equality of the previous model and diagnostic arrays. This establishes lossless handling within the verified snapshot, not universal source completeness or uninspected historical forecasting.
-
 \subsection{Primary results}
 
-The California scores below retain the original fitted states and have been checked by the later selected-state CPU replay and table reconciliation. They are descriptive score contrasts; no confidence intervals are reported.
+The California scores below use the original fitted states. Paired calendar-block intervals for the OC--EP joint and location contrasts are reported below using the method in Section~\ref{sec:block_score_uncertainty}.
 
 \begingroup\footnotesize\setlength{\tabcolsep}{2pt}\renewcommand{\arraystretch}{1.18}
 \begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.1800\textwidth}>{\raggedright\arraybackslash}p{0.1800\textwidth}>{\raggedright\arraybackslash}p{0.1800\textwidth}>{\raggedright\arraybackslash}p{0.1800\textwidth}>{\raggedright\arraybackslash}p{0.1800\textwidth}@{}}
@@ -112,7 +110,7 @@ The California accepted report supplies source selection, repair chronology and 
 
 \section{Stronger benchmarks change the conclusion}
 
-OC exceeds the refitted N0 procedure by +1694.942967 joint nats over 315 targets, but EP exceeds OC in each primary California test window. The same 315 targets, common mark law and frozen OC states are used. EP was independently fitted using training data; it was not selected as a replacement downstream forecast after inspecting these scores. The pooled benchmark contrasts below are descriptive scores, without confidence intervals.
+OC exceeds the refitted N0 procedure by +1694.942967 joint nats over 315 targets, but EP exceeds OC in each primary California test window. The same 315 targets, common mark law and frozen OC states are used. EP was independently fitted using training data; it was not selected as a replacement downstream forecast after inspecting these scores. The table gives pooled point-score decompositions; paired calendar-block intervals follow in Table~\ref{tab:ca_oc_ep_uncertainty}.
 
 \begingroup\footnotesize\setlength{\tabcolsep}{2pt}\renewcommand{\arraystretch}{1.18}
 \begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.1800\textwidth}>{\raggedright\arraybackslash}p{0.1800\textwidth}>{\raggedright\arraybackslash}p{0.1800\textwidth}>{\raggedright\arraybackslash}p{0.1800\textwidth}>{\raggedright\arraybackslash}p{0.1800\textwidth}@{}}
@@ -141,6 +139,10 @@ The decomposition also matters. Against EP, the point-event difference is -54.59
 
 
 The competitive benchmark report is the numeric authority for this section. The LI replay in Chapter~\ref{ch:local-inhibition} is separately sourced and differs at floating-point scale; it does not replace these archived benchmark values.
+
+\input{chapters/11_score_uncertainty}
+
+\input{chapters/11_epplus_benchmark}
 
 \section{Conditional adequacy is a separate question}
 The frozen OC conditional simulation and its complete coordinate results are developed in Chapter~\ref{ch:calibration}. Relative scores here do not supply an adequacy result for either OC or EP.
@@ -286,7 +288,7 @@ EP exceeds OC jointly in all three windows. Conditional location accounts for 21
 
 All background bandwidth selectors choose the lower 5 km endpoint, while FC spatial-scale selectors choose the interior 15 km value. The background trend slope reaches its lower bound for 7, 6 and 2 of seven models in the three folds. Results apply to the frozen grids and bounds; these choices do not identify physical length scales or measurement precision. The JMA forecast report retains full components, annual accounting and the combined descriptive transfer rule.
 
-Appendix~\ref{app:audit11-jma} retains all seven pooled contrasts and their three window differences, including OC--FL and OC--N0. The nine annual source-JST blocks retain the same counts and all canonical score/exposure components. No Powell recovery was needed for the 288 accepted L-BFGS-B returns. The filesystem retry reused seven completed procedures byte-for-byte and restored one written floor without reevaluation; it did not change the scientific objective or selection rule.
+Appendix~\ref{app:audit11-jma} retains all seven pooled contrasts and their three window differences, including OC--FL and OC--N0. The nine annual source-JST blocks retain the same counts and all canonical score/exposure components.
 
 \section{Consolidated implications and limits}
 
@@ -299,7 +301,7 @@ The historical archives have been inspected, processed and revised; later studie
 
 Numerical agreement supports the reported calculations; it does not independently replicate earthquake science. The California source repair accounted for 30 procedures and 240 starts. The separate benchmark audited all six new fit procedures and reconciled scores within 8.19e-11 nats. The higher-threshold sensitivity accounted for 30 procedures and 240 starts, reconciling within 1.13e-11 nats. The sequence audit retained all 315 targets and passed 7,128 component checks with maximum discrepancy 4.55e-13 nats. These are different validation rosters and are not independent research samples to add together.
 
-JMA fitting resolved 36 procedures, 288 starts, 42 floors and 330 slots. Maximum independently reconstructed score disagreement was 1.82e-10 nats against a 1e-4-nat tolerance; maximum stored near-optimal spread was 3.75e-5 nats per record against a strict 0.01 gate. A retained atomic-save interruption was repaired by bounded filesystem retry, preserving completed states without refitting. Other historical failures and recoveries remain in the source reports. Multistart completion and near-optimal-set stability are not global optimization certificates or uncertainty intervals.
+JMA fitting resolved 36 procedures, 288 starts, 42 floors and 330 slots. Maximum independently reconstructed score disagreement was 1.82e-10 nats against a 1e-4-nat tolerance; maximum stored near-optimal spread was 3.75e-5 nats per record against a strict 0.01 gate. Multistart completion and near-optimal-set stability are not global optimization certificates or uncertainty intervals.
 
 The public reproduction bundle now reconstructs the California and Japan cohorts from the original provider records, including source-row identities, exclusion accounting, exact clocks and chronological partitions. The Japanese bundle also supplies recovered fitted states and the explicit projected-region predicate. The current evidence index retains the source pins, unchanged display scalars, source-specific field dictionary and claim bindings. The readable scientific protocol subset supplies the LI law, clocks and fitting contract used in Chapter~\ref{ch:local-inhibition}. The review guide separately identifies the executed cohort reconstructions and the completed selected-state score replays. Neither operation reruns the original optimizer searches. Rebuildable event caches are outputs of the numerical pipeline, rather than required private inputs.
 

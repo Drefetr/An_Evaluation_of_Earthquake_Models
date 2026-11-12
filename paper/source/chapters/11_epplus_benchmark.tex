@@ -1,0 +1,60 @@
+\subsection{Magnitude-scaled ETAS and rupture-scaled attenuation}
+\label{sec:epplus_benchmark}
+We fit an unweighted California excitation benchmark with a
+magnitude-scaled spatial kernel
+\[
+ s_j(z)=\frac{q-1}{\pi\sigma_j^2}
+       \left(1+\frac{\|z-z_j\|^2}{\sigma_j^2}\right)^{-q},
+ \qquad \sigma_j=\sigma_0 e^{\alpha_s(M_j-M_0)}.
+\]
+This density is normalized on the plane; its mass inside the observation
+rectangle enters the compensator, retaining regional offspring leakage.
+Training immigrant probabilities weight five successive background KDE updates,
+following the probability-weighting principle of stochastic declustering
+\citep{ZhuangOgataVereJones2002}. The resulting density, with its inherited 5~km
+bandwidth and a 5\% uniform floor, is shared by the two final fitting arms.
+Training event densities omit their own KDE component.
+
+Both arms jointly estimate $(a,d,n,c,p,\sigma_0,\alpha_s,q)$.
+The attenuation arm also estimates $(\eta,\ell_0,\psi,\gamma)$ in
+\[
+ \lambda(t,z)=\{\mu(t)b_{\rm bg}(z)+nH(t,z)\}
+ \exp\!\left\{-\eta\sum_{t_j<t}
+ \frac{e^{\gamma(M_j-M_0)-(t-t_j)/\psi}}
+ {[1+\|z-z_j\|^2/\ell_j^2]^2}\right\},
+ \qquad \ell_j=\ell_0 10^{0.5(M_j-M_0)}.
+\]
+The fixed shadow-radius exponent is a statistical design choice motivated by
+empirical magnitude--rupture relations \citep{wells1994rupture}. It supplies a
+magnitude-scaled isotropic comparison without identifying a physical Coulomb
+stress field. The uninhibited arm is retained as an exact nested candidate. At each final
+quadrature resolution, the training search includes the fitted null and three
+prescribed strictly positive attenuation starts, in addition to nuisance warm
+starts.
+The attenuation deficit uses a frozen scrambled-Sobol importance proposal during
+each training optimization; independent larger proposals verify the training
+ordering and the held-out numerical precision. The reported integration error
+measures numerical variability across independent scrambles.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{lrrrrrrr}
+\toprule
+Fold & $N_{\rm train}$ & $N_{\rm test}$ & $\widehat\sigma_0$ (km) & $\widehat\alpha_s$ & $\widehat q$ & $\widehat\eta$ & Test contrast (nats) \\
+\midrule
+F0 & 851 & 79 & 2.000 & 0.617 & 2.440 & 0.000000 & +0.0000 \\
+F1 & 930 & 167 & 2.000 & 0.623 & 2.470 & 0.000000 & +0.0000 \\
+F2 & 1097 & 69 & 2.000 & 0.721 & 2.903 & 0.000000 & +0.0000 \\
+\bottomrule
+\end{tabular}
+\caption{Magnitude-scaled total attenuation minus the matched magnitude-scaled
+ETAS baseline. The common mark term cancels in each contrast. Spatial scales,
+magnitude exponents and tail shapes shown are from the uninhibited fit.}
+\label{tab:epplus_benchmark}
+\end{table}
+All three baseline fits place $\sigma_0$ at the 2~km lower search bound. The combined magnitude-scaled, probability-weighted-background, joint-fitting and spatial-normalization procedure improves the held-out joint score over the earlier EP procedure by 14.579, 30.691, and 24.282~nats in F0, F1, and F2, respectively (69.553~nats in total). The comparison uses identical event and parent histories, fertility weights, and common mark scores. The earlier EP procedure normalizes each parent kernel on the observation rectangle; the present procedure normalizes on the full plane and retains regional offspring leakage. Adding the rupture-scaled attenuation returns to $\widehat\eta=0$ in all three folds. The matched scored states are identical, so all three attenuation contrasts are exactly zero.
+
+% BEGIN EPPLUS BASELINE UNCERTAINTY
+For this combined excitation improvement, the paired 90-day block calculation in Section~\ref{sec:block_score_uncertainty} gives a 95\% interval of $[32.239,123.719]$~nats ($p=0.00002$). The 180- and 365-day intervals are $[32.153,120.312]$ and $[26.589,122.164]$~nats, with sign-flip values $p=0.00010$ and $p=0.00452$, respectively.
+% END EPPLUS BASELINE UNCERTAINTY

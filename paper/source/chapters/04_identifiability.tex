@@ -31,26 +31,20 @@ The independent background \(B(t)\) in the diagnostic family is not a reparamete
 
 \section{Exact nonidentification at zero feedback}
 
-The first nonidentification result follows directly from the multiplicative role of \(b\). If the stress sensitivity \(b=0\) while \(X_0\) and \(\rho\) remain finite, then \(bX(t)=0\) for every history. Consequently the conditional intensity is
-\[
-\lambda(t)=\exp(a)+nH_e(t),
-\]
-which contains neither \(\Phi_s\) nor \(G_s\). Different relaxation kernels can therefore imply radically different latent stress trajectories while leaving the rate and the common mark law unchanged.
-
 \begin{remark}[Stress-kernel nonidentification at zero feedback]
 \label{prop:nonidentification}
-Fix \(a\), \(n\), \(h_e\), the unit-mean transform \(\kappa\), and a common fresh-mark law. Two normalized relaxation kernels with the same finite \(X_0,\rho\) and \(b=0\) give identical observed marked laws, provided both constructions are nonexplosive. Indeed, their successive waiting-time hazards are both \(\exp(a)+nH_e\), and the accepted marks have the same conditional law. This constructs equal laws on each finite horizon; equality on nested windows extends to their generated infinite-horizon \(\sigma\)-field. The conclusion does not require a mark density.
+In the diagnostic family, $\exp(-\eta G_s)|_{\eta=0}=1$, so the intensity
+$B+nH_e$ contains no stress kernel. With background, triggering and fresh mark
+law fixed, every normalized stress kernel therefore gives the same observed
+marked law. In the physical family the identical conclusion follows from
+$bX=0$ at $b=0$ with finite $X_0,\rho$. A shared kernel can still be estimated
+through triggering; this does not identify the latent stress response.
+
+The singular closure $b\downarrow0$ with $p=bX_0$ or $q=b\rho$ fixed is a
+different model: its log-background is
+$a+p\Phi_s+q\int_0^t\Phi_s-rG_s$, $r=b$, with a kernel-shaped deterministic
+trend at $r=0$. Nonzero $p$ or $q$ requires divergent $X_0$ or $\rho$.
 \end{remark}
-
-This observation uses equality of the fresh mark laws. Equality of ground intensities alone is not equality of marked laws if the conditional mark distributions differ: the same event times with different marks produce different full catalogue laws. The statement also concerns normalized relaxation kernels; it does not assert invariance to kernel-dependent changes in the trigger mechanism. The latent stress laws may be substantively different, including in their unobserved tails, even though every observed waiting time and mark has the same distribution.
-
-In the diagnostic family the same argument applies at \(\eta=0\), holding background and triggering fixed. A shared-kernel restriction may still permit estimation of the kernel through triggering. Such estimation cannot validate the additional claim that an unobserved stress response has that same kernel.
-
-There is a distinct singular closure as the positive stress sensitivity approaches zero. For \(b>0\), put \(p=bX_0\), \(q=b\rho\), and \(r=b\). The physical background component \(\mu_b=\exp(a+bX)\) satisfies
-\[
-\log\mu_b(t)=a+p\Phi_s(t)+q\int_0^t\Phi_s(u)\,\dif u-rG_s(t).
-\]
-Allowing \(r=0\) while \(q>0\) creates a deterministic kernel-shaped trend with no event-dependent inhibition. Reaching this closure requires \(\rho=q/r\) to diverge; retaining nonzero \(p\) also requires \(X_0=p/r\) to diverge. With fixed finite \(X_0\), therefore, \(p\to0\). The loading constraint \(\rho\ge0\) preserves \(q\ge0\). This trend-only closure and the finite-parameter \(b=0\) null are different hypotheses. A deterministic trend may identify aspects of \(\Phi_s\) through loading without identifying earthquake-induced inhibition or establishing \(h_e=-\Phi_s'\).
 
 \section{Restricted active identification}
 
@@ -178,43 +172,58 @@ These constants are horizon-dependent. For the exact shared Mittag--Leffler pair
 \qquad
 C_T\sim\frac{\tau^\alpha}{\alpha(2-\alpha)\Gamma(1-\alpha)}T^{2-\alpha}.
 \]
-With a fixed positive constant background and fixed \(m>0\), \(K_T\) consequently grows as \(T^{3-\alpha}\). The upper bound can become uninformative on long windows; this does not imply that actual information decreases with exposure. No space--time counterpart of this temporal bound is established here.
+With a fixed positive constant background and fixed $m>0$, $K_T$
+consequently grows as $T^{3-\alpha}$.
+
+\paragraph{Numerical visibility on the catalogue horizon.}
+At $T=24{,}394$ days, $\alpha=0.5$ and $\tau=1$ day, the asymptotic expression
+is $C_T\simeq2.8660801\times10^{6}\,\mathrm{days}^2$.
+Direct quadrature of the implemented 195-mode pair gives
+\[
+ C_T^{(195)}=\int_0^T\frac{\Phi_{195}(u)^2}{h_{195}(u)}\,\dif u
+ =2.8662509\times10^{6}\,\mathrm{days}^2.
+\]
+For the frozen New Zealand reference background
+$B(t)=\exp\{-4.16210847+0.23211266(2t/T-1)\}$ and $n=0.50177516$,
+$\mathcal B=383.34958$ and $B_{\max}=0.01964375\,\mathrm{day}^{-1}$.
+Under $Q\sim\operatorname{Exp}(\beta)$ with $\beta=2.84940176$, $r=0.7$,
+$g(Q)=e^{\gamma(Q-1)}$, $\gamma=0.75\log10$, and
+$\kappa(Q)=(1-r)e^{r\beta Q}$,
+\[
+ m=\frac{e^{-2\gamma}\beta}{(1-r)\{\beta(1+r)-2\gamma\}}
+ =0.21606515,\quad
+ K_T=3.6644466\times10^{5},\quad \sqrt{K_T/2}=428.0448.
+\]
+Thus the Pinsker upper bound is exactly one, and completely vacuous, whenever
+$\eta\geq\sqrt{2/K_T}\simeq0.00233620$, including every fitted $\eta\in[0.10,1.65]$.
+For a constant positive background, a non-vacuous upper bound requires
+$\eta=O(T^{-(3-\alpha)/2})$ with a sufficiently small constant; a bound tending
+to zero requires $\eta=o(T^{-(3-\alpha)/2})$. These are sufficient
+upper-bound scales, not necessary detection thresholds.
+The quadrature, mark moment and background integration are checked by
+\path{scripts/check_mathematics.py}.
 
 \section{What spatial pooling preserves}
 \label{sec:regional_pooling}
 
-The distinction between an observable statistical model and a physical mechanism also matters when regional histories are pooled. Suppose that local depletion suppresses only the background in its own region. Even with a common inhibition coefficient, adding the local intensities generally does not produce the same functional form as suppressing the total background by the summed depletion. This is a property of the exponential link, before any estimation or data analysis.
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width=0.85\linewidth]{pooling.pdf}
-\caption{The same total depletion can have different local aggregate backgrounds. A pooled feature discards the regional allocation needed to distinguish these states. The comparison is conditional algebra, rather than an explanation of an observed predictive loss.}
-\label{fig:pooling}
-\end{figure}
-
 \begin{remark}[A conditional failure of closure under pooling]
 \label{prop:regional_nonclosure}
-For finitely many regions, fix $B_k\geq0$ with $B_+=\sum_kB_k>0$, nonnegative depletions $G_k$, and $\eta>0$. The local aggregate background and the pooled recipe are
-\begin{equation}
- J_{\mathrm{local}}=\sum_k B_k e^{-\eta G_k},
- \qquad
- J_{\mathrm{pooled}}=B_+e^{-\eta\sum_kG_k}.
+Let $B_k\geq0$, $B_+=\sum_kB_k>0$, $p_k=B_k/B_+$, and $\eta>0$.
+Jensen's inequality for the strictly convex function $x\mapsto e^{-\eta x}$
+gives
+\[
+ J_{\mathrm{local}}=B_+\sum_kp_ke^{-\eta G_k}
+ \geq B_+e^{-\eta\sum_kp_kG_k},
+\]
+with equality only when the $G_k$ on positive-background regions are equal.
+Its effective depletion is
+\begin{equation}\label{eq:effective_depletion}
+ G_{\mathrm{eff}}=-\eta^{-1}\log\!\left(\sum_kp_ke^{-\eta G_k}\right).
 \end{equation}
-The local aggregate has an effective depletion
-\begin{equation}
- G_{\mathrm{eff}}=-\frac1\eta\log\left(\sum_kp_ke^{-\eta G_k}\right),
- \qquad p_k=\frac{B_k}{B_+},
- \label{eq:effective_depletion}
-\end{equation}
-which generally depends on the regional allocation of depletion, the background shares and $\eta$. There exist two-region backgrounds for which no function of total depletion alone, including a single rescaling of $\eta$, represents this aggregate for all regional histories. This is a failure of closure of the model class, rather than a claim that every regional configuration fails to pool.
-
-The expression for $G_{\mathrm{eff}}$ follows by factoring $B_+$ from $J_{\mathrm{local}}$ and taking the logarithm. To show the loss of information, take two equal positive backgrounds $B$ and fix $g>0$. The histories $(G_1,G_2)=(0,g)$ and $(g/2,g/2)$ both have total depletion $g$. Their local aggregates are respectively $B(1+e^{-\eta g})$ and $2Be^{-\eta g/2}$. Their difference is
-\begin{equation}
- B\bigl(1-e^{-\eta g/2}\bigr)^2>0.
-\end{equation}
-Every recipe using only $B_+=2B$ and $G_1+G_2=g$ gives the same value on both histories, for any common choice of its inhibition coefficient. It cannot represent both distinct local aggregates.
+It depends on regional allocation, not only on $\sum_kG_k$.
+For example, with two equal backgrounds $B$ and $g>0$, the allocations
+$(0,g)$ and $(g/2,g/2)$ have the same total depletion but local aggregates
+differ by $B(1-e^{-\eta g/2})^2>0$. Thus no function of the total depletion
+alone represents every local aggregate. This algebra does not identify the
+cause of any observed score difference.
 \end{remark}
-
-
-
-Some configurations admit pooling or rescaling; this conditional algebra supplies no empirical explanation of the observed triggering-only advantage. A regional point-process model must declare its filtration and cross-region triggering, and its likelihood must include quiet-region compensators as well as event terms. Chapter~\ref{ch:nz-spatial} reports the completed comparisons under matched observational measures.

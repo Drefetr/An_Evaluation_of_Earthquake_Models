@@ -136,8 +136,40 @@ def append_joint_publications(repository,studies,sources):
     disposition,disposition_sources=load_joint_disposition_study(repository)
     if joint is not None and disposition is not None:
         raise ValueError('The same joint campaign cannot publish success and disposition reports together')
+    # The completed follow-up is a distinct, independently audited source epoch.
+    # Historical gates above still run unchanged before the current view can
+    # supersede their display. A malformed current authority is never ignored.
+    current,current_sources=load_completed_joint_study(repository)
+    if current is not None:
+        studies.append(current);sources.extend(joint_sources+disposition_sources+current_sources)
+        return
     if joint is not None:studies.append(joint);sources.extend(joint_sources)
     if disposition is not None:studies.append(disposition);sources.extend(disposition_sources)
+
+
+def load_completed_joint_study(repository):
+    try:from website.current_joint_results import validate
+    except ModuleNotFoundError:from current_joint_results import validate
+    report,pins=validate(repository)
+    if report is None:return None,[]
+    summary=report['summary']
+    study=dict(name='Synthetic controls - complete S04B joint nuisance comparison',kind='joint_simulation',
+        comparisons={'LI_raw':'LI','LIplus_immigrant_raw':'LI+ immigrant','LIplus_immigrant_BIC':'LI+ immigrant gated',
+            'LIplus_inclusive_raw':'LI+ total','LIplus_inclusive_BIC':'LI+ total gated'},
+        comparator='Jointly fitted uninhibited floor',metrics=['joint'],summary=summary,
+        display_summary=[dict(regime=r['regime'],model=r['model'],gate=r['gate'],
+            mean_gain=joint_display(r['mean_gain']),median_gain=joint_display(r['median_gain']),
+            wilson95=[joint_display(x) for x in r['wilson95']]) for r in summary],
+        regime_names={'4':'Immigrant: narrow/short','5':'Immigrant: broad/long','6':'Total: narrow/short','7':'Total: broad/long'},
+        completed_histories=report['completed_histories'],completed_outcomes=report['completed_outcomes'],scientific_completion=True,
+        note='All 80 original histories and 400 procedure outcomes are complete. Both arms fit background and temporal-triggering parameters on training data; spatial and mark laws remain fixed. Each regime has 20 independent seeded histories, shared across procedures. Regimes are never pooled or earthquake-normalized. Wilson intervals describe strict-positive win indicators, not uncertainty in mean gain. Active fits are not detections. Floor returns and boundary/search diagnostics remain visible. Matched broad/long immigrant and total inhibition both lose on average against their jointly fitted comparator.',
+        source='Chapter 13, completed S04B joint comparison. Every case source and all displayed aggregate fields are independently reconstructed by the completed-publication validator; historical disposition evidence remains preserved.',
+        evidence_paths={'summary':'validation/live_results/s04b_joint_complete_20261111/summary.json',
+            'audit':'validation/live_results/s04b_joint_complete_independent_audit_20261111.json',
+            'publication_review':'validation/publication_refresh_20261112/joint_publication_review.json'},
+        validation_source='website/current_joint_results.py',
+        validation_source_sha256=hashlib.sha256((ROOT/'website/current_joint_results.py').read_bytes()).hexdigest())
+    return study,[{'file':Path(p).name,'path':p,'sha256':h} for p,h in sorted(pins.items())]
 
 def build(out):
     studies=[];sources=[]
@@ -195,7 +227,7 @@ def build(out):
     studies[-1]['refitted_floor']=sensitivity['procedure_summary']
     studies[-1]['note']+=' The narrow/short immigrant generator rejected no event in 19 of 20 histories. The lower table refits only the uninhibited background intercept on training data; all original inhibited fits and gates stay unchanged. This isolates comparator sensitivity without claiming joint nuisance fitting or parameter recovery. In the separate original unit-mark S04 controls, all 20 narrow/short histories had no rejected proposals; they are not additional S04B replicates.'
     studies[-1]['source']='Chapter 13: original fixed-floor S04B summaries, source-backed generator/parameter diagnostics, and completed 80-history intercept sensitivity.'
-    payload={'studies':studies,'sources':sources,'scope':'Reported aggregates, including the dated train-only intercept sensitivity. No uncertainty intervals inferred from dependent windows. Original S06 acceptance checked saved rows and arithmetic; the later selected-state CPU replay and partition reconciliation have separate completed execution records. Original fitting searches were not repeated.'}
+    payload={'studies':studies,'sources':sources,'scope':'Reported aggregates, including the completed 80-history joint comparison and historical fixed-floor/intercept sensitivity. Observed selectors show point contrasts; paired calendar-block uncertainty, the moderate control and the stronger ETAS benchmark are reported in the current guide and monograph. Original historical fitting searches were not repeated by this publication build.'}
     append_joint_publications(ROOT,studies,sources)
     write_findings(out,payload)
     return payload

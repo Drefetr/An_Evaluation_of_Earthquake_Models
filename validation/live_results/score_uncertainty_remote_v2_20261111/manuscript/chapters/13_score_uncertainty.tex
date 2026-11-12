@@ -1,0 +1,25 @@
+\subsection{Uncertainty of the raw total-intensity contrasts}
+We apply the same paired calendar-block calculation to the raw total-intensity
+LI+ score minus its matched floor. The event sums and exposure integrals use
+identical calendar boundaries. The original log-Gauss event-gap map is retained;
+doubling its temporal order from 32 to 64 changes each block exposure by less
+than $10^{-11}$~nats on the original spatial grid.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{lrrr}
+\toprule
+Fold & Contrast (nats) & Paired 95\% interval & Sign-flip $p$ \\
+\midrule
+F0 & -0.224 & $[-0.787,0.074]$ & 1.00000 \\
+F1 & -1.953 & $[-5.945,0.143]$ & 0.47990 \\
+F2 & -0.209 & $[-0.458,-0.013]$ & 0.08712 \\
+\midrule
+Pooled & -2.387 & $[-6.564,-0.033]$ & 0.07678 \\
+\bottomrule
+\end{tabular}
+\caption{California raw total-intensity LI+ minus its floor: paired 90-day calendar-block uncertainty.}
+\label{tab:ca_li_floor_uncertainty}
+\end{table}
+
+The first two fold intervals include zero. The third excludes zero with 90- and 180-day blocks but includes it with annual blocks, $[-0.488,0.020]$. The pooled percentile intervals are negative at all three block lengths: $[-6.564,-0.033]$, $[-6.426,-0.085]$, and $[-6.364,-0.090]$ for 90, 180, and 365~days. Corresponding pooled sign-flip values are $0.07678$, $0.04560$, and $0.06578$. The pooled percentile intervals support a small negative contrast, while the sign-flip inference is sensitive to block length.

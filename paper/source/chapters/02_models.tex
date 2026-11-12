@@ -2,6 +2,21 @@
 
 The central difficulty is to separate three objects that are often conflated in stress-release modelling: the physical state that carries memory, the point process that records event occurrence, and the observation model through which events and their marks become data. The finite-mode formulation provides a transparent autonomous physical model. A diagnostic formulation specifies an independent background and separates its suppression from triggering. The distinction matters because stability, approximation and inference make different demands on the model.
 
+\paragraph{Relation to stress-release and Coulomb models.}
+The classical statistical stress-release law is
+$\lambda(t)=\exp\{\alpha+\beta(\rho t-\sum_{t_i<t}S_i)\}$: tectonic loading
+raises the hazard and cumulative release lowers it
+\citep{VereJones1978,VereJones1988,ZhengVereJones1991,ZhengVereJones1994}.
+Linked versions transfer release between regions \citep{BebbingtonHarte2003}.
+The model below replaces persistent cumulative release by relaxation and adds
+an explicit branching reservoir. Its diagnostic spatial variants use
+isotropic point kernels. Physical Coulomb models instead resolve signed
+$\Delta\mathrm{CFF}$ lobes from magnitude-dependent finite ruptures and receiver
+orientations \citep{KingSteinLin1994,Stein1999}; rate-and-state evolution acts
+on the affected fault population, including ongoing aftershocks
+\citep{Dieterich1994,TodaEtAl2005}. Immigrant-only attenuation is therefore a
+statistical allocation assumption, not the physical meaning of a stress shadow.
+
 \section{The physical finite-mode model}\label{sec:model_physical}
 
 Fix a finite number of modes \(m\in\mathbb N\), with \(j\in\{1,\ldots,m\}\); every mode sum in this finite-mode model is over that set. Let \(\vartheta_j>0\) be relaxation rates and let \(w_j>0\), \(\sum_{j=1}^m w_j=1\), be fixed weights. For a constant loading \(\rho\geq0\), write
@@ -154,6 +169,7 @@ MC & Free common-scale ML & Continuous offspring density \\
 OC & Omori & Continuous reference-weighted offspring density \\
 OL & Omori & Cell-lift offspring counterpart \\
 EP & Omori ETAS adaptation & Separately fitted unweighted inverse-power radial offspring law \\
+EP+ & Omori & Jointly fitted magnitude-scaled unweighted offspring and training-declustered background (Section~\ref{sec:epplus_benchmark}) \\
 N0 & No offspring excitation & Separately refitted smooth immigrant background \\
 LI & Matched OC excitation & Unrenormalized immigrant-only local attenuation \\
 \bottomrule\end{tabularx}\end{table}

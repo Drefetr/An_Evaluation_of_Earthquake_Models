@@ -1,0 +1,129 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "order": 16,
+      "cpu_score": {
+        "P": -831.9821027704902,
+        "E": 86.93200450707354,
+        "C": -86.93200450707354,
+        "M": -21.88925508403681,
+        "joint": -940.8033623616005,
+        "nll": 940.8033623616005
+      },
+      "gpu_score": {
+        "P": -831.9821027704902,
+        "E": 86.93200450707081,
+        "C": -86.93200450707081,
+        "M": -21.88925508403681,
+        "joint": -940.8033623615978,
+        "nll": 940.8033623615978
+      },
+      "cpu_gradient": [
+        -1.0679968008378182,
+        -1.6176006276680255e-05,
+        2.604467951172751e-05,
+        -5.342170348181664e-06,
+        -0.09946400419840615,
+        4.197681391815422e-06,
+        2.20921979519062e-05,
+        2.734266914217187e-06
+      ],
+      "gpu_gradient": [
+        -1.0679968008352603,
+        -1.6176005274814997e-05,
+        2.6044678119063747e-05,
+        -5.342170348183453e-06,
+        -0.09946400419840615,
+        4.1976800275733694e-06,
+        2.2092198342704705e-05,
+        2.73426701369317e-06
+      ],
+      "score_error": 2.7284841053187847e-12,
+      "gradient_comparison": {
+        "max_absolute_error": 2.5579538487363607e-12,
+        "max_scaled_error": 2.3950950477845124e-12
+      }
+    },
+    {
+      "order": 32,
+      "cpu_score": {
+        "P": -831.9821027704902,
+        "E": 86.93200562348562,
+        "C": -86.93200562348562,
+        "M": -21.88925508403681,
+        "joint": -940.8033634780126,
+        "nll": 940.8033634780126
+      },
+      "gpu_score": {
+        "P": -831.9821027704902,
+        "E": 86.93200562348923,
+        "C": -86.93200562348923,
+        "M": -21.88925508403681,
+        "joint": -940.8033634780162,
+        "nll": 940.8033634780162
+      },
+      "cpu_gradient": [
+        -1.067995674425191,
+        -1.658227213141572e-05,
+        2.584577748265815e-05,
+        -5.342162936406965e-06,
+        -0.09946400420430161,
+        1.5209271623461973e-05,
+        2.229682791465848e-05,
+        3.118486731068515e-06
+      ],
+      "gpu_gradient": [
+        -1.067995674427749,
+        -1.658227188983119e-05,
+        2.5845774164423574e-05,
+        -5.34216293640458e-06,
+        -0.09946400420430163,
+        1.5209295270324219e-05,
+        2.229682907284314e-05,
+        3.1184875126655243e-06
+      ],
+      "score_error": 3.637978807091713e-12,
+      "gradient_comparison": {
+        "max_absolute_error": 2.3646862246096134e-11,
+        "max_scaled_error": 2.3646862246096134e-11
+      }
+    }
+  ],
+  "backend": {
+    "backend": "Resident variable-backbone total-intensity CUDA deficit",
+    "library": "/home/gpt/hostile_remediation_20261111/repo/validation/live_results/cuda_inclusive_controls_20261111/build/1698ff143667c53c/cuda_inclusive.so",
+    "library_sha256": "b2b3d03c4d295266202c7832ed750132cb94a052e799ba8eb2957cd3b8cbae30",
+    "source_sha256": "12ccc5659f65fffde42770784ed6c377ba70cce3f2b76517a5a60281cb5a5202",
+    "chronology_dependency_sha256": "64986d3df135b513d96536b2e4edf8a206988010b9738280d54781afdae69213",
+    "adapter_sha256": "d305cdd59004b33630a3137b172e769d30645bd2910cb119d754795b02bd7fe0",
+    "contexts": [
+      {
+        "order": 8,
+        "space_nodes": 576,
+        "time_nodes": 2848,
+        "parents": 89,
+        "tile_rows": 576
+      },
+      {
+        "order": 16,
+        "space_nodes": 2304,
+        "time_nodes": 5696,
+        "parents": 89,
+        "tile_rows": 2304
+      },
+      {
+        "order": 32,
+        "space_nodes": 9216,
+        "time_nodes": 11392,
+        "parents": 89,
+        "tile_rows": 3840
+      }
+    ],
+    "retained_order": 32,
+    "workspace_limit_bytes": 1073741824,
+    "objective": "Original Phase.evaluate/baseline/event gradients unchanged.",
+    "temporal": "Fresh Omori field and both temporal derivatives per parameter vector; three FP64 cuBLAS products.",
+    "memory": "One quadrature-order context retained; freed on order change. Trigger workspace <= configured limit and half available GPU memory."
+  }
+}

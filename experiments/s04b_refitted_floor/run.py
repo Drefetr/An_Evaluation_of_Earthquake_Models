@@ -163,6 +163,72 @@ def fit_intercept(s, historical_a):
                 historical_b=math.exp(historical_a), train_joint_gain=score['joint']-historical['joint'])
 
 
+def with_branching(s, n):
+    """Use statistics constructed with unit branching, without spatial calls."""
+    return dict(s, v=n*s['v'], ground_v=n*s['ground_v'], H=n*s['H'])
+
+
+def fit_intercept_branching(s):
+    """Global box optimum of the jointly concave (b,n) likelihood.
+
+    Profile b by its monotone score equation, then solve the monotone envelope
+    derivative in n. Endpoint signs are the box KKT conditions.
+    """
+    def profile(n):
+        sn=with_branching(s,n)
+        b=fit_intercept(sn,-2.)['b']
+        gn=float(np.sum(s['v']/(b*s['u']+n*s['v']))-s['H'])
+        return b,gn
+    b0,g0=profile(0.); b1,g1=profile(.98)
+    if g0 <= 0: n,b=0.,b0
+    elif g1 >= 0: n,b=.98,b1
+    else:
+        n=brentq(lambda n:profile(n)[1],0.,.98,xtol=1e-13,rtol=1e-12)
+        b,_=profile(n)
+    gb=derivative(with_branching(s,n),b); gn=profile(n)[1]
+    pg=np.array([gb,gn]); box=[(math.exp(-12),1.),(0.,.98)]
+    for i,(v,(lo,hi)) in enumerate(zip((b,n),box)):
+        if (v<=lo+1e-12 and pg[i]<0) or (v>=hi-1e-12 and pg[i]>0): pg[i]=0
+    relative=float(np.max(np.abs(pg)/np.maximum(1.,[s['A'],s['H']])))
+    if relative>1e-8: raise ArithmeticError('Concave two-parameter KKT residual')
+    return dict(a=math.log(b),b=b,n=n,gradient=[gb,gn],relative_projected_kkt=relative,
+                n_endpoint_derivatives=[g0,g1],bounds_b_n=box)
+
+
+def concave_campaign(output):
+    """Recompute sufficient statistics on the original 80 fixed histories."""
+    from experiments.s04b_joint_nuisance.model import Geometry
+    output=Path(output);output.mkdir(parents=True,exist_ok=False)
+    replay,c=load_archive(); cases=read(INPUT/'input_manifest.json')['s04b']['cases'];validate_roster(cases)
+    reports=[]
+    for case in cases:
+        with np.load(safe_input(case['history']),allow_pickle=False) as z: rows=z['rows'].copy()
+        name=c.G.MATCHED_NAMES[case['regime']-4];_,bg,eta,ell,psi=c.G.ROSTER[name]
+        law=c.G.Law(name,case['seed'],bg,eta,ell,psi);gm=c.G.fitting_metadata(law)
+        pars=[law.a,law.d,law.n,math.log(law.c),law.p]; report=dict(case_id=case['case_id'],regime=case['regime'],seed=case['seed'],phases={})
+        for phase,start,end in [('train',30,395),('test',395,760)]:
+            meta=dict(start=start,end=end,T0=760,beta=gm['beta'],sigma=gm['sigma_km'],bg_floor=gm['bg_floor'],kde_h=gm['kde_h'] or 10)
+            arrays=c.canonical_arrays(rows[:,0],rows[:,1:3],rows[:,3],np.asarray(gm['rectangles']),np.asarray(gm['reference_pi']),np.asarray(gm['kde_xy']).reshape(-1,2),np.asarray(gm['kde_weight']),meta,pars,Geometry())
+            features=c.S.features(arrays,meta,pars[3:5]); s=sufficient(features,law.d,1.)
+            if phase=='train': report['fit']=fit_intercept_branching(s)
+            fitted=report['fit']; score=components(with_branching(s,fitted['n']),fitted['b'])
+            # Independently compare the archived uninhibited evaluator.
+            check=c.S.evaluate(features,[fitted['a'],law.d,fitted['n']])[0]
+            close(score['joint'],check['joint'],1e-9,'Concave archived score identity')
+            report['phases'][phase]=score
+        old=read(REPO/'validation/live_results/methodological_20261106/refitted_floor'/(case['case_id']+'.json'))
+        report['outcomes']=[dict(v,concave_gain=v['saved_procedure_test_joint']-report['phases']['test']['joint']) for v in old['outcomes']]
+        write(output/(case['case_id']+'.json'),report);reports.append(report)
+    summary=[]
+    for regime in range(4,8):
+        group=[r for r in reports if r['regime']==regime]
+        for model,gate in [('LI','raw'),('LIplus_immigrant','raw'),('LIplus_immigrant','BIC'),('LIplus_inclusive','raw'),('LIplus_inclusive','BIC')]:
+            outcomes=[next(v for v in r['outcomes'] if (v['model'],v['gate'])==(model,gate)) for r in group]
+            summary.append(dict(regime=regime,model=model,gate=gate,mean_gain=math.fsum(v['concave_gain'] for v in outcomes)/20,wins=sum(v['concave_gain']>0 for v in outcomes),active=sum(v['original_off_floor'] for v in outcomes),n_zero=sum(r['fit']['n']==0 for r in group)))
+    write(output/'summary.json',dict(completed_histories=len(reports),summary=summary))
+    return 0
+
+
 def validate_roster(cases):
     if len(cases) != 80 or len({c['case_id'] for c in cases}) != 80:
         raise ValueError('Exactly 80 unique cases required')
@@ -465,14 +531,14 @@ def run(args):
 
 def main(argv=None):
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--phase',choices=['pilot','full'],required=True)
-    parser.add_argument('--radial',required=True)
-    parser.add_argument('--build-receipt',required=True)
+    parser.add_argument('--phase',choices=['pilot','full','concave'],required=True)
+    parser.add_argument('--radial')
+    parser.add_argument('--build-receipt')
     parser.add_argument('--output',required=True)
     parser.add_argument('--pilot')
     parser.add_argument('--acknowledge-reviewed-numerical-admission',default='')
     args=parser.parse_args(argv)
-    return run(args)
+    return concave_campaign(args.output) if args.phase=='concave' else run(args)
 
 
 if __name__=='__main__':

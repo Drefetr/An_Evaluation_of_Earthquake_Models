@@ -127,9 +127,9 @@ tr=json.loads((DATA/'temporal.json').read_text()) if PORTABLE else [r for r in r
 fig,axes=plt.subplots(1,3,figsize=(7.2,3.45),sharey=True)
 for ax,f,title in zip(axes,folds,['1993-2003','2003-2013','2013-2026']):
  rr=sorted([r for r in tr if r['fold']==f],key=lambda r:int(r['bin'])); x=np.arange(1,5)
- ax.bar(x-.16,[float(r['event_logratio']) for r in rr],width=.3,color=BLUE,label='Event term E')
- ax.bar(x+.16,[float(r['compensator_contribution']) for r in rr],width=.3,color=ORANGE,label='Compensator C')
- ax.plot(x,[float(r['full_marked_logscore_difference']) for r in rr],'o-',color='#222222',ms=4,label='Full score E + C')
+ ax.bar(x-.16,[float(r['event_logratio']) for r in rr],width=.3,color=BLUE,label=r'Event contrast $\Delta Q$')
+ ax.bar(x+.16,[float(r['compensator_contribution']) for r in rr],width=.3,color=ORANGE,label=r'Signed exposure $\Delta C$')
+ ax.plot(x,[float(r['full_marked_logscore_difference']) for r in rr],'o-',color='#222222',ms=4,label=r'Score $\Delta Q+\Delta C$')
  ax.axhline(0,color=GRAY,lw=.7); ax.set(title=title,xlabel='Equal-duration test bin',xticks=x)
 axes[0].set_ylabel('Shared ML minus ML logscore term'); axes[1].legend(loc='upper center',bbox_to_anchor=(.5,1.32),ncol=3,frameon=False,fontsize=9)
 fig.tight_layout(w_pad=1)

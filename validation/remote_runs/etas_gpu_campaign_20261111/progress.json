@@ -1,0 +1,66 @@
+[
+  {
+    "stage": "pilot_F1",
+    "command": [
+      "/home/gpt/hostile_remediation_20261111/venv/bin/python",
+      "-B",
+      "experiments/etas_inhibition_benchmark/run_frozen_gpu_20261111.py",
+      "--backend",
+      "cuda",
+      "--case",
+      "california_fold_1",
+      "--power",
+      "13",
+      "--check-power",
+      "16",
+      "--output",
+      "/home/gpt/hostile_remediation_20261111/repo/validation/live_results/etas_gpu_pilot_run_F1_20261111"
+    ],
+    "started_utc": "2026-11-11T11:38:18.904379+00:00",
+    "pid": 94324,
+    "exit_code": 0,
+    "completed_utc": "2026-11-11T11:42:35.098726+00:00"
+  },
+  {
+    "stage": "pilot_F2",
+    "command": [
+      "/home/gpt/hostile_remediation_20261111/venv/bin/python",
+      "-B",
+      "experiments/etas_inhibition_benchmark/run_frozen_gpu_20261111.py",
+      "--backend",
+      "cuda",
+      "--case",
+      "california_fold_2",
+      "--power",
+      "13",
+      "--check-power",
+      "16",
+      "--output",
+      "/home/gpt/hostile_remediation_20261111/repo/validation/live_results/etas_gpu_pilot_run_F2_20261111"
+    ],
+    "started_utc": "2026-11-11T11:42:35.102627+00:00",
+    "pid": 94361,
+    "exit_code": 0,
+    "completed_utc": "2026-11-11T11:47:38.590569+00:00"
+  },
+  {
+    "stage": "acceptance",
+    "command": [
+      "/home/gpt/hostile_remediation_20261111/venv/bin/python",
+      "-B",
+      "experiments/etas_inhibition_benchmark/accept.py",
+      "--backend",
+      "cuda",
+      "--model-source",
+      "run_frozen_gpu_20261111.py",
+      "--pilot",
+      "/home/gpt/hostile_remediation_20261111/repo/validation/live_results/etas_gpu_pilot_states_20261111",
+      "--output",
+      "/home/gpt/hostile_remediation_20261111/repo/validation/live_results/etas_inhibition_benchmark_accepted_20261111"
+    ],
+    "started_utc": "2026-11-11T11:47:38.594770+00:00",
+    "pid": 94445,
+    "exit_code": 0,
+    "completed_utc": "2026-11-11T11:49:30.130278+00:00"
+  }
+]

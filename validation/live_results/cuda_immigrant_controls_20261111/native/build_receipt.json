@@ -1,0 +1,23 @@
+{
+  "source_sha256": "64986d3df135b513d96536b2e4edf8a206988010b9738280d54781afdae69213",
+  "library_sha256": "dd46977a98e701eb71d4505a5d9458f67fc62e0f549d79e0d8b25bfbe2bf794f",
+  "command": [
+    "nvcc",
+    "-std=c++17",
+    "-O3",
+    "-ccbin",
+    "/usr/bin/g++-11",
+    "-arch=sm_75",
+    "--fmad=false",
+    "--prec-div=true",
+    "--prec-sqrt=true",
+    "-Xcompiler=-fPIC,-ffp-contract=off",
+    "-shared",
+    "/home/gpt/hostile_remediation_20261111/repo/experiments/s04b_completion/cuda_immigrant.cu",
+    "-o",
+    "/home/gpt/hostile_remediation_20261111/repo/validation/live_results/cuda_immigrant_controls_20261111/build/64986d3df135b513/cuda_immigrant.so"
+  ],
+  "reduction": "Chronological recurrence per spatial row, ascending spatial-row host sum.",
+  "fast_math": false,
+  "fused_multiply_add": false
+}

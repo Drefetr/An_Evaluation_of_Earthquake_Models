@@ -1,0 +1,302 @@
+{
+  "schema": "independent_reassessment_corrections_v1",
+  "date": "2026-11-12",
+  "coordinator_gate_passed": true,
+  "status": "All five reassessment findings corrected; full documented main suite, workflow checks, scientific/source audits, current artifacts, claim reconciliation and repository custody checks passed.",
+  "trigger": "Five findings in the user-supplied independent reassessment of the 236-page 12 November edition.",
+  "previous_acceptance": {
+    "path": "validation/remediation_20261111.json",
+    "status": "Historical targeted acceptance omitted the documented full main suite and retained unresolved publication workflows.",
+    "exact_snapshot": {
+      "path": "paper/history/pre_reassessment_123503b6_20261112.zip",
+      "sha256": "90897abab2ee41ef3de9615a64e1f7d3bda3446ed08c4db96e0a308b5b12b499"
+    },
+    "retained_pdf": {
+      "path": "paper/history/pre_reassessment_123503b6_20261112.pdf",
+      "sha256": "123503b6fd88a48507ce1f0891628bf65ccc080304c5f7ce1f2f00f7d2f18e44"
+    }
+  },
+  "findings": {
+    "1_etas_interior_starts": {
+      "status": "resolved",
+      "accepted_epoch": {
+        "path": "validation/live_results/etas_inhibition_benchmark_interior_20261112/summary.json",
+        "sha256": "f61019bd210e175abc24f33fa75b1f99162da291b5c66ce73c9e7cdf4e1255cb"
+      },
+      "independent_audit": {
+        "path": "validation/live_results/etas_inhibition_benchmark_interior_independent_audit_20261112.json",
+        "sha256": "6aab6912af989b7f1efe4d27f6abe08cc5c4e8df020b0ca33b10bca87a990140"
+      },
+      "prescribed_positive_starts": 9,
+      "completed_optimizer_evaluations": 503,
+      "prescribed_positive_interior_evaluations": 124,
+      "training_power": 14,
+      "selected_eta": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "heldout_contrasts": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "baseline_identity": {
+        "path": "validation/live_results/etas_inhibition_benchmark_interior_20261112/baseline_identity_reconciliation.json",
+        "sha256": "1c2b22df9c356595e8e302134fe70e61d1c7ea17d30fa45c060cee97f976aafc"
+      },
+      "normalization_disclosure": "Both benchmark and discussion distinguish full-plane normalization/regional leakage from archived EP finite-rectangle normalization."
+    },
+    "2_workflows_and_companion": {
+      "status": "resolved",
+      "publication_review": {
+        "path": "validation/publication_refresh_20261112/final_publication_validation.json",
+        "sha256": "193f3fb069a9d927c873fd85deb9416c8c4af952f8016d1bb78e7dbc529a86cc"
+      },
+      "full_main_tests": {
+        "path": "validation/acceptances/REASSESSMENT_20261112/main_tests.json",
+        "sha256": "25b07df8f4952275d0044d4d498edfd3e212840e4337146d19c7c66865971b0e"
+      },
+      "workflow_tests": {
+        "command": "python -B -m unittest discover -s tests -p test_workflows.py -v",
+        "exit_code": 0,
+        "tests": 9,
+        "passed": true
+      },
+      "browser_interactions": {
+        "passed": true,
+        "selector_combinations": 80,
+        "simulation_selector_cases": 10,
+        "simulation_summary_rows": 20,
+        "joint_selector_cases": 10,
+        "joint_summary_rows": 20,
+        "disposition_selector_cases": 0,
+        "disposition_summary_rows": 0,
+        "independent_histories_per_row": 20,
+        "no_simulation_pooling": true,
+        "no_simulation_target_conversion": true,
+        "observed_S04_targets": 315
+      },
+      "reader_restored_to_baseline": true,
+      "orphan_figure_archived": true,
+      "current_guide_pages": 8,
+      "completed_joint_histories": 80,
+      "completed_joint_outcomes": 400,
+      "public_deployment_performed": false
+    },
+    "3_s8_reporting": {
+      "status": "resolved",
+      "supplement": {
+        "path": "validation/live_results/reporting_supplement_20261112/supplement.json",
+        "sha256": "449767993341f23c973cbdf0d6340a8b116743d646c0ccb7413a06374f2c39bc"
+      },
+      "independent_audit": {
+        "path": "validation/live_results/reporting_supplement_independent_audit_20261112.json",
+        "sha256": "6276d89f658301a174c2fb5e9d601164ff7df11baf134170af0a83cfc0c8f934"
+      },
+      "bic": {
+        "N": 20,
+        "mean": 2.4945996750852713,
+        "median": 0.0,
+        "mcse": 1.4435753453121167,
+        "wins": 9,
+        "active": 12,
+        "losses": 3,
+        "ties": 8,
+        "wilson95": [
+          0.2581978582556243,
+          0.6579146575496577
+        ]
+      },
+      "boundary_histories": 13,
+      "boundary_counts": {
+        "a": {
+          "lower": 0,
+          "upper": 1,
+          "any": 1
+        },
+        "d": {
+          "lower": 0,
+          "upper": 0,
+          "any": 0
+        },
+        "n": {
+          "lower": 0,
+          "upper": 6,
+          "any": 6
+        },
+        "log_c": {
+          "lower": 0,
+          "upper": 0,
+          "any": 0
+        },
+        "p": {
+          "lower": 0,
+          "upper": 7,
+          "any": 7
+        },
+        "eta": {
+          "lower": 0,
+          "upper": 2,
+          "any": 2
+        },
+        "log_ell": {
+          "lower": 0,
+          "upper": 0,
+          "any": 0
+        },
+        "log_psi": {
+          "lower": 0,
+          "upper": 0,
+          "any": 0
+        }
+      },
+      "inherited_false_flags": 18,
+      "maximum_gradient_discrepancy": 0.03324332526868545,
+      "actual_inherited_score_and_gradient_tolerance": [
+        0.0001,
+        0.0001
+      ],
+      "declared_training_score_gate": 0.01,
+      "review_arithmetic_correction": {
+        "proposed_bic_median": 0.1667,
+        "proposed_bic_mcse": 1.6627,
+        "accepted": false,
+        "reason": "Nine positive gains, three negative gains and eight exact zeros imply median zero; direct ddof=1 sample calculation gives the recorded MCSE."
+      }
+    },
+    "4_bibliography": {
+      "status": "resolved",
+      "duplicate_removed": true,
+      "parenthetical_citations": true,
+      "compiled_declustering_bibliography_entries": 1,
+      "bibliography": {
+        "path": "paper/source/references.bib",
+        "sha256": "7b0c9bc5c483bdf535840fdd828e9fea38e0668fc2d4c8420d7eb3440021b147"
+      }
+    },
+    "5_comparator_wins": {
+      "status": "resolved",
+      "both_win_columns": true,
+      "independently_checked_rows": 20,
+      "table": {
+        "path": "paper/source/chapters/13_s04_refitted_floor.tex",
+        "sha256": "40b01ed19bc1e2b3bd517a91965c5d3a6eef49889672e90da3a3dfe428c8fe0c"
+      }
+    }
+  },
+  "manuscript": {
+    "pdf": {
+      "path": "paper/manuscript_unified.pdf",
+      "sha256": "c957e4534455c6fcae432765666f24fa2ca343900b83ec4cdf0e3d70a9717030"
+    },
+    "pages": 236,
+    "production_checks": {
+      "path": "validation/acceptances/REASSESSMENT_20261112/production_checks.json",
+      "sha256": "3f792cd3d44851b9fd680aad893fa21e58d2b6ddea1a1202afcf923115aafe36"
+    },
+    "visual_review": {
+      "path": "validation/acceptances/REASSESSMENT_20261112/visual_review.json",
+      "sha256": "ad4b60ea86156a4ffb1521d2da9520492dba932377449325956688a3852b5809"
+    }
+  },
+  "companion": {
+    "pdf": {
+      "path": "companion/lay_guide_to_the_research.pdf",
+      "sha256": "cec9c9f2dfcb0c1d818ebcdd722eeb77622ddde13c5b490ef7109fdb917f6c58"
+    },
+    "pages": 8,
+    "review": {
+      "path": "validation/publication_refresh_20261112/companion_review.json",
+      "sha256": "eb4b2124512c48ff0ace2179d4101e643fa90c189da35d47bc250b103f99e878"
+    }
+  },
+  "checks": {
+    "full_main_suite": {
+      "command": "python -B -m unittest discover -s tests -v",
+      "exit_code": 0,
+      "passed": true,
+      "tests": 910,
+      "elapsed_seconds": 421.61798660014756,
+      "log": "validation/acceptances/REASSESSMENT_20261112/main_tests.log",
+      "failure_headers": [],
+      "scope": "Full documented main suite; includes workflow, source/claim custody and protocol controls. No research campaign launched."
+    },
+    "preflight": {
+      "path": "validation/acceptances/REASSESSMENT_20261112/preflight_main_tests.json",
+      "sha256": "8626a7ed188858073146db29b482776a6ab32144508c542b472a4a50b8ab7558"
+    },
+    "claims": {
+      "command": "python -B scripts/verify_claims.py",
+      "passed": true,
+      "failures": [],
+      "counts": {
+        "withdrawn_historical_records": 820,
+        "json_numeric_verified": 24960,
+        "json_pointer_verified": 25227,
+        "documentary_numeric_verified": 2430,
+        "documentary_metadata_verified": 679,
+        "claims": 27657,
+        "documentary_metadata": 679,
+        "total_records": 28336,
+        "literal_manuscript_display_records": 11764,
+        "missing_declared_manuscript_displays": 0,
+        "json_nonnumeric_verified": 267,
+        "distinct_authorities": 151
+      }
+    },
+    "mathematics": {
+      "command": "python -B scripts/check_mathematics.py --output build/reassessment_20261112/mathematics.json",
+      "exit_code": 0,
+      "results_equal_previous_authority": true
+    },
+    "figures": {
+      "command": "python -B scripts/make_figures.py --output build/reassessment_20261112/figures",
+      "exit_code": 0,
+      "figures": 9,
+      "canonical_temporal_pdf_matches": true
+    },
+    "build": {
+      "command": "python -B scripts/build_paper.py --engine <Tectonic 0.17.0> --output build/reassessment_20261112/paper_final --install",
+      "exit_code": 0,
+      "engine_sha256": "99ffcfdbf1ebf8bdda9e791942e3d06aedb12463fddc33f07de6f5211c8bf08d"
+    },
+    "pdf": {
+      "command": "python -B scripts/validate_pdf.py --source-root paper --pdf paper/manuscript_unified.pdf --log build/reassessment_20261112/paper_final/main.log --output build/reassessment_20261112/pdf_final_qa",
+      "passed": true,
+      "errors": 0
+    },
+    "whitespace": {
+      "command": "git -c core.whitespace=cr-at-eol diff --check",
+      "exit_code": 0
+    },
+    "repository": {
+      "command": "python -B scripts/verify_repository.py",
+      "passed": true,
+      "errors": [],
+      "checked_files": 10680,
+      "custody_note": "After this receipt was finalized, the reviewed manifest was refreshed and normal read-only verification repeated. Final stdout is outside the payload to avoid a circular manifest dependency."
+    }
+  },
+  "compute": {
+    "additional_fitting": "Dedicated remote GPU host only; pinned SSH identity and private connection storage.",
+    "remote_idle": {
+      "path": "validation/remote_runs/post_reassessment_idle_20261112.json",
+      "sha256": "087ea583bc5f080ca64beb5671d4ef573373373a462ad16c918267bcf500bb38"
+    },
+    "private_configuration_scan": {
+      "passed": true,
+      "private_configuration_outside_repository": true,
+      "scope": "Repository payload and ZIP members checked for private connection identifiers and combined authentication material; values are never emitted.",
+      "matching_paths": []
+    }
+  },
+  "custody": {
+    "withdrawals": {
+      "path": "validation/withdrawals/ETAS_INTERIOR_ACCEPTANCE_20261112.json",
+      "sha256": "f6fe1662b17f72b54eee81f879bafd5817bd41d0ddda148baf77affc42684fc8"
+    },
+    "note": "Forty-three previous manuscript bindings are superseded; all original values/authorities are archived. The earlier background-iteration source-inventory record remains historical source inventory."
+  },
+  "response": "docs/reviews/reassessment_response_20261112.md"
+}

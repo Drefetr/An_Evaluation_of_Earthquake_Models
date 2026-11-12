@@ -2,8 +2,6 @@
 
 \label{sec:s03-completed}
 
-\textit{Original numerical audit status: all folds passed their saved custody and score-decomposition checks, and the predeclared independent California-fold sample passed. That original acceptance used sampled validation, not independent raw replay of every fit. The later replay recomputes all declared saved-state score rows using reconstructed features and reconciles the reported contrasts; it does not rerun the fitting searches.}
-
 The comparison contains three California folds with 315 targets and three New Zealand folds with 612 targets. Four procedures are evaluated in each fold: arm 1 uses the reference-density-weighted rational offspring kernel and inherited KDE background; arm 2 removes reference-density weighting; arm 3 adds identity-based leave-one-out background fitting; arm 4 uses the unweighted EP offspring shape with the inherited background procedure. The temporal and mark parameters remain training-selected and fixed. Background level, trend and reproduction coefficient are refitted under the declared arm-specific normalization. California uses the archived training-selected EP spatial scale and shape. The New Zealand OC archives did not contain EP spatial parameters, so a separate training-only prerequisite estimated these missing nuisance parameters before the four-arm comparison. Those values were then frozen: each final arm optimizes only background level, trend and reproduction coefficient. This prerequisite is an explicit addition to the original execution specification, not a claim that the entire preparation fitted only three parameters.
 
 \begin{table}[htbp]\centering

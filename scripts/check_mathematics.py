@@ -159,6 +159,107 @@ def paired_mcse_checks() -> list:
     return out
 
 
+def visibility_bound_check() -> dict:
+    """Evaluate Proposition 4.4 on the frozen NZ reference background.
+
+    Integrate the *implemented* positive 195-mode mixture, independently of
+    engine imports. Two changes of variables check the quadrature. The mark
+    moment uses g(q)=exp(gamma*(q-1)) and kappa(q)=(1-r)*exp(beta*r*q).
+    """
+    root = Path(__file__).resolve().parents[1]
+    source = root / 'validation/authorities/4761702854830904_reference_score_geometry.json'
+    reference = json.loads(source.read_text(encoding='utf-8'))
+    pars, kernel = reference['generating_pars'], reference['stress_kernel']
+    T = float(reference['input_paths'][0]['horizon'])
+    a, d, n, beta, ratio = (pars[k] for k in ('a', 'd', 'n', 'beta', 'ratio'))
+    alpha, tau, step, tail = (kernel[k] for k in ('alpha', 'tau', 'spectral_step', 'spectral_tail_bound'))
+    half_count = math.ceil(max(math.log(4)/alpha,
+        math.log(4*math.sin(math.pi*alpha)/(math.pi*alpha)/tail)/alpha)/step)
+    nodes = np.arange(-half_count, half_count+1)*step
+    rates = np.exp(nodes)/tau
+    weights = step*math.sin(math.pi*alpha)/(2*math.pi*(np.cosh(alpha*nodes)+math.cos(math.pi*alpha)))
+    weights[[0, -1]] *= .5
+    weights /= weights.sum()
+    assert len(rates) == 195 and np.all(weights > 0)
+
+    def integrand(u):
+        decay = np.exp(-rates*u)
+        phi = float(weights@decay)
+        h = float((weights*rates)@decay)
+        return phi*phi/h
+
+    C, error = quad(lambda v: integrand(math.expm1(v))*math.exp(v),
+                    0., math.log1p(T), epsabs=1e-5, epsrel=1e-11)
+    cuts = [0., *np.geomspace(1e-12, T, 70)]
+    direct = sum(quad(integrand, left, right, epsabs=1e-7, epsrel=1e-11)[0]
+                 for left, right in zip(cuts[:-1], cuts[1:]))
+    assert math.isclose(C, direct, rel_tol=1e-10)
+    asymptotic = tau**alpha*T**(2-alpha)/(alpha*(2-alpha)*math.gamma(1-alpha))
+    gamma = .75*math.log(10)
+    moment_denominator = beta*(1+ratio)-2*gamma
+    assert moment_denominator > 0
+    moment = math.exp(-2*gamma)*beta/((1-ratio)*moment_denominator)
+    background_mass = T*math.exp(a)*(math.sinh(d)/d if d else 1.)
+    background_max = math.exp(a+abs(d))
+    K = background_max**2*C*moment*background_mass/(n*(1-n))
+    pinsker_coefficient = math.sqrt(K/2)
+    threshold = 1/pinsker_coefficient
+    assert math.isclose(C, 2866250.949255799, rel_tol=1e-9)
+    assert math.isclose(moment, .216065146328062, rel_tol=1e-12)
+    assert math.isclose(background_mass, 383.349580803454, rel_tol=1e-12)
+    assert math.isclose(K, 366444.657016935, rel_tol=1e-9)
+    assert all(min(1., eta*pinsker_coefficient) == 1. for eta in (.10, 1.65))
+    return {
+        'source': str(source.relative_to(root)).replace('\\', '/'),
+        'source_sha256': hashlib.sha256(source.read_bytes()).hexdigest(),
+        'parameters': {'T_days': T, 'alpha': alpha, 'tau_days': tau,
+                       'a': a, 'd': d, 'n': n, 'beta': beta, 'r': ratio},
+        'mixture_modes': len(rates), 'C_T_195_days_squared': C,
+        'C_T_195_direct_partition_check': direct, 'quadrature_error_estimate': error,
+        'C_T_asymptotic_days_squared': asymptotic,
+        'E_g_squared_over_kappa': moment, 'background_mass': background_mass,
+        'background_max_per_day': background_max, 'K_T': K,
+        'sqrt_K_T_over_2': pinsker_coefficient,
+        'eta_at_which_clipped_bound_equals_one': threshold,
+        'bound_for_eta_0_10': min(1., .10*pinsker_coefficient),
+        'bound_for_eta_1_65': min(1., 1.65*pinsker_coefficient),
+        'passed': True,
+    }
+
+
+def continuous_time_interpolation_check() -> dict:
+    """Check the scalar constants in the explicit weak-Harris extension.
+
+    This checks algebra, not construction of a Markov coupling. The proof in
+    Chapter 3 supplies the coupling and its first-moment drift estimates.
+    """
+    b, k, v = sp.symbols('b k v', positive=True)
+    residual = sp.expand((1+2*b*k)*(1+b*v)-(1+b*v+2*b*k))
+    assert residual == 2*b*b*k*v
+    # E sqrt(d*weight) <= sqrt(E d * E weight), then compare the
+    # resulting pointwise bound with sqrt(d0*(1+beta*(V+V'))).
+    rates = np.exp(np.arange(-97, 98)*.4)
+    minimum_rate = float(rates[0])
+    minimum_time = math.log(4)/minimum_rate
+    slow_modes = int(np.count_nonzero(-np.expm1(-rates*24394.) < .01))
+    assert math.isclose(math.log(minimum_rate), -38.8, abs_tol=1e-13)
+    assert math.isclose(minimum_time, 9.8283667623941e16, rel_tol=1e-12)
+    assert slow_modes == 61
+    return {'residual_time_d_cost_factor_upper': 1.25,
+            'residual_time_weight_factor_upper': '1+2*beta*D/kappa_V',
+            'C0': 'sqrt((5/4)*(1+2*beta*D/kappa_V))',
+            'nonnegative_comparison_residual': str(residual),
+            'r': '-log(alpha_tilde)/t0',
+            'skeleton_to_continuous_prefactor': 'C0/alpha_tilde',
+            'mixture_modes': len(rates),
+            'minimum_log_rate_per_day': math.log(minimum_rate),
+            'minimum_rate_per_day': minimum_rate,
+            'minimum_coupling_time_days': minimum_time,
+            'horizon_days': 24394.,
+            'modes_decaying_less_than_one_percent': slow_modes,
+            'passed': True}
+
+
 def main():
     ap=argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--output',type=Path,default=Path(__file__).with_name('check_results.json'))
@@ -173,6 +274,8 @@ def main():
         'fractional_no_event':fractional_no_event_check(),
         'likelihood_product_derivative':product_derivative_checks(),
         'paired_mcse':paired_mcse_checks(),
+        'finite_horizon_visibility': visibility_bound_check(),
+        'continuous_time_interpolation_constants': continuous_time_interpolation_check(),
         'reviewer_alternative_envelope_moment':{
             'beta':beta,'r':r,'gamma':gamma,'gamma_plus_r_beta':gamma+r*beta,
             'Eg_finite':gamma<beta,'Ekappa_finite':r<1,

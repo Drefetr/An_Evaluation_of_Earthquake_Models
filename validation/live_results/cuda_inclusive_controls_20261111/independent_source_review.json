@@ -1,0 +1,42 @@
+{
+  "schema": "cuda_inclusive_independent_review_v1",
+  "passed": true,
+  "independent_reviewer_task": "/root/benchmark",
+  "recorded_by": "/root/mathematics",
+  "basis": "Independent read-only source review message received after completed remote same-state controls; no optimizer or likelihood campaign rerun.",
+  "source_sha256": {
+    "experiments/s04b_cuda_inclusive/cuda_inclusive.cu": "12ccc5659f65fffde42770784ed6c377ba70cce3f2b76517a5a60281cb5a5202",
+    "experiments/s04b_cuda_inclusive/cuda_inclusive.py": "d305cdd59004b33630a3137b172e769d30645bd2910cb119d754795b02bd7fe0",
+    "experiments/s04b_completion/cuda_immigrant.cu": "64986d3df135b513d96536b2e4edf8a206988010b9738280d54781afdae69213"
+  },
+  "control_result_sha256": "28ca440b2018585de178d9fefb9bca3e0aad2b8b4be9077cc2b16f7cb2c225cf",
+  "reviewed_properties": [
+    "Column-major cuBLAS interpretation yields the required row-major local H=coeff*K and temporal derivative fields.",
+    "All nine deficit fields have the original (D,Da,Dd,Dn,Dlogc,Dp,Deta,Dlogell,Dlogpsi) order.",
+    "Temporal fields regenerate per theta; coefficient geometry remains immutable.",
+    "One active order context; prior workspace is freed on order change and Python arrays stay alive.",
+    "Default-stream operations and synchronous row download preserve sequencing."
+  ],
+  "remote_equivalence": {
+    "S8": {
+      "max_joint_absolute_error": 9.777068044058979e-12,
+      "max_gradient_absolute_error": 1.4352963262354024e-11,
+      "warm_speedup": 21.810794836469864,
+      "checked_order_sequence": [
+        8,
+        16,
+        8
+      ]
+    },
+    "S5": {
+      "max_joint_absolute_error": 2.6147972675971687e-12,
+      "max_gradient_absolute_error": 1.978150976356119e-11,
+      "warm_speedup": 63.832917630934126,
+      "checked_order_sequence": [
+        8,
+        16,
+        8
+      ]
+    }
+  }
+}

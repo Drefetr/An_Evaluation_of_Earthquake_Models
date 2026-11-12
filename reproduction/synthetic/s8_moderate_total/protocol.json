@@ -1,0 +1,99 @@
+{
+  "regime": "S8_moderate_total",
+  "seeds": [
+    410821,
+    410822,
+    410823,
+    410824,
+    410825,
+    410826,
+    410827,
+    410828,
+    410829,
+    410830,
+    410831,
+    410832,
+    410833,
+    410834,
+    410835,
+    410836,
+    410837,
+    410838,
+    410839,
+    410840
+  ],
+  "law": {
+    "a": -1.3862943611198906,
+    "d": 0.2,
+    "n": 0.35,
+    "c": 0.05,
+    "p": 1.3,
+    "eta": 0.4,
+    "ell": 15.0,
+    "psi": 5.0
+  },
+  "engineering_seeds": [
+    499801,
+    499802,
+    499803,
+    499804,
+    499805,
+    499806,
+    499807,
+    499808,
+    499809,
+    499810
+  ],
+  "engineering_result": {
+    "proposal_rejection_fraction": 0.3034154090548054,
+    "mean_test_events": 94.2
+  },
+  "count_calibration_seeds": [
+    410801,
+    410802,
+    410803,
+    410804,
+    410805,
+    410806,
+    410807,
+    410808,
+    410809,
+    410810,
+    410811,
+    410812,
+    410813,
+    410814,
+    410815,
+    410816,
+    410817,
+    410818,
+    410819,
+    410820
+  ],
+  "count_calibration_result": {
+    "eta": 0.5,
+    "rejection_fraction": 0.3620815138282387,
+    "mean_test_events": 91.45
+  },
+  "engineering_rule": "Choose law using only proposal thinning and event counts on disjoint engineering/calibration seeds; freeze before fresh analysis draws. Calibration training was interrupted before any held-out scoring.",
+  "train": [
+    30,
+    395
+  ],
+  "test": [
+    395,
+    760
+  ],
+  "fit_coordinates": [
+    "a",
+    "d",
+    "n",
+    "log_c",
+    "p",
+    "eta",
+    "log_ell",
+    "log_psi"
+  ],
+  "quadrature": "Positive tensor Gauss-Legendre in each of nine spatial cells; archived log time panels. Coarse 8/32, selected 16/64 and 32/128; refine fitting if selected train-score error exceeds 0.01 nat.",
+  "selection": "Eight training starts; exact fitted null included as inhibited candidate; no test selection."
+}

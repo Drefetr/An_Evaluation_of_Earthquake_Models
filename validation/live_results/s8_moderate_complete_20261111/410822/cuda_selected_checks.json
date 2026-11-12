@@ -1,0 +1,136 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "order": 32,
+      "cpu_score": {
+        "P": -814.7571058189965,
+        "E": 82.36574288493107,
+        "C": -82.36574288493107,
+        "M": -33.910792847720984,
+        "joint": -931.0336415516485,
+        "nll": 931.0336415516485
+      },
+      "gpu_score": {
+        "P": -814.7571058189965,
+        "E": 82.36574288492946,
+        "C": -82.36574288492946,
+        "M": -33.910792847720984,
+        "joint": -931.033641551647,
+        "nll": 931.033641551647
+      },
+      "cpu_gradient": [
+        1.9464933281199137e-05,
+        -5.655980835683749e-06,
+        -0.6472210000010179,
+        4.007057106236722e-06,
+        3.7020253234487654e-05,
+        -1.2569851250532338e-05,
+        -1.851862081281297e-05,
+        -9.769850056073892e-05
+      ],
+      "gpu_gradient": [
+        1.9464933281199137e-05,
+        -5.655980398699967e-06,
+        -0.6472210000029932,
+        4.007057011201631e-06,
+        3.7020253206065945e-05,
+        -1.2569852735566656e-05,
+        -1.8518623058128014e-05,
+        -9.769850127128166e-05
+      ],
+      "score_error": 1.5916157281026244e-12,
+      "gradient_comparison": {
+        "max_absolute_error": 2.2453150450019166e-12,
+        "max_scaled_error": 2.2453150450019166e-12
+      }
+    },
+    {
+      "order": 64,
+      "cpu_score": {
+        "P": -814.7571058189965,
+        "E": 82.36574288492707,
+        "C": -82.36574288492707,
+        "M": -33.910792847720984,
+        "joint": -931.0336415516445,
+        "nll": 931.0336415516445
+      },
+      "gpu_score": {
+        "P": -814.7571058189965,
+        "E": 82.36574288492837,
+        "C": -82.36574288492837,
+        "M": -33.910792847720984,
+        "joint": -931.0336415516458,
+        "nll": 931.0336415516458
+      },
+      "cpu_gradient": [
+        1.9464932663026957e-05,
+        -5.655979908425479e-06,
+        -0.6472210000035616,
+        4.0070568211314495e-06,
+        3.7020250278629874e-05,
+        -1.2569851101318363e-05,
+        -1.85186219638922e-05,
+        -9.769850077390174e-05
+      ],
+      "gpu_gradient": [
+        1.946493252091841e-05,
+        -5.655980157115437e-06,
+        -0.6472210000033911,
+        4.007056773169815e-06,
+        3.702025439977774e-05,
+        -1.2569853673483067e-05,
+        -1.851862384683045e-05,
+        -9.769850259289115e-05
+      ],
+      "score_error": 1.3642420526593924e-12,
+      "gradient_comparison": {
+        "max_absolute_error": 4.121147867408581e-12,
+        "max_scaled_error": 4.121147867408581e-12
+      }
+    }
+  ],
+  "backend": {
+    "backend": "Resident variable-backbone total-intensity CUDA deficit",
+    "library": "/home/gpt/hostile_remediation_20261111/repo/validation/live_results/cuda_inclusive_controls_20261111/build/1698ff143667c53c/cuda_inclusive.so",
+    "library_sha256": "b2b3d03c4d295266202c7832ed750132cb94a052e799ba8eb2957cd3b8cbae30",
+    "source_sha256": "12ccc5659f65fffde42770784ed6c377ba70cce3f2b76517a5a60281cb5a5202",
+    "chronology_dependency_sha256": "64986d3df135b513d96536b2e4edf8a206988010b9738280d54781afdae69213",
+    "adapter_sha256": "d305cdd59004b33630a3137b172e769d30645bd2910cb119d754795b02bd7fe0",
+    "contexts": [
+      {
+        "order": 8,
+        "space_nodes": 576,
+        "time_nodes": 2688,
+        "parents": 96,
+        "tile_rows": 576
+      },
+      {
+        "order": 16,
+        "space_nodes": 2304,
+        "time_nodes": 5376,
+        "parents": 96,
+        "tile_rows": 2304
+      },
+      {
+        "order": 32,
+        "space_nodes": 9216,
+        "time_nodes": 10752,
+        "parents": 96,
+        "tile_rows": 4096
+      },
+      {
+        "order": 64,
+        "space_nodes": 36864,
+        "time_nodes": 21504,
+        "parents": 96,
+        "tile_rows": 2048
+      }
+    ],
+    "retained_order": 64,
+    "workspace_limit_bytes": 1073741824,
+    "objective": "Original Phase.evaluate/baseline/event gradients unchanged.",
+    "temporal": "Fresh Omori field and both temporal derivatives per parameter vector; three FP64 cuBLAS products.",
+    "memory": "One quadrature-order context retained; freed on order change. Trigger workspace <= configured limit and half available GPU memory."
+  }
+}

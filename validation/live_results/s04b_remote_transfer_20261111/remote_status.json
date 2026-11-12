@@ -1,0 +1,76 @@
+{
+  "ps": "    PID     ELAPSED     TIME %CPU   RSS STAT\n  93992       33:43 00:47:49  141 98316 Ssl\n",
+  "cases": [
+    {
+      "case": "S5_broad_long_imm_seed410518",
+      "event": "optimizer_start",
+      "model": "LIplus_immigrant",
+      "start": 5,
+      "method": "Powell",
+      "log": "",
+      "case_passed": false,
+      "frozen": null,
+      "outcomes": []
+    },
+    {
+      "case": "S6_narrow_short_total_seed410615",
+      "event": "optimizer_end",
+      "model": "LIplus_inclusive",
+      "start": 7,
+      "method": "L-BFGS-B",
+      "log": "{\"case_id\": \"S6_narrow_short_total_seed410615\", \"passed\": true, \"seconds\": 1849.8820002720458, \"error\": null}\n",
+      "result": {
+        "passed": true,
+        "seconds": 1849.8820002720458,
+        "error": null
+      },
+      "case_passed": true,
+      "frozen": true,
+      "outcomes": [
+        {
+          "model": "LI",
+          "gate": "raw",
+          "new_gain": -1.3397233409101545
+        },
+        {
+          "model": "LIplus_immigrant",
+          "gate": "raw",
+          "new_gain": -4.949046418566468
+        },
+        {
+          "model": "LIplus_immigrant",
+          "gate": "BIC",
+          "new_gain": 0.0
+        },
+        {
+          "model": "LIplus_inclusive",
+          "gate": "raw",
+          "new_gain": 0.8946155613858764
+        },
+        {
+          "model": "LIplus_inclusive",
+          "gate": "BIC",
+          "new_gain": 0.0
+        }
+      ]
+    }
+  ],
+  "s8_launch": {
+    "pid": 94456,
+    "command": [
+      "/home/gpt/hostile_remediation_20261111/venv/bin/python",
+      "-B",
+      "-m",
+      "experiments.s04b_completion.s8_batch",
+      "--workers",
+      "1",
+      "--resume-from",
+      "validation/live_results/s8_moderate_20261111"
+    ],
+    "threads_per_worker": 2,
+    "workers": 1,
+    "launched_utc": "2026-11-11T11:47:42.120094+00:00",
+    "gate": "S6 complete scientific result passed"
+  },
+  "s8_queue_error": null
+}

@@ -1,0 +1,254 @@
+{
+  "passed": true,
+  "launcher_sha256": "5c11bcf95e4c0eda7df3a712bd359f78b81a4c804d1e01bcfb3c2d313a61506b",
+  "immigrant_controls_sha256": "ff21358c068b2d7e34caae722612d133dd0b0ba688896e42dd56d8c303d0ddb5",
+  "inclusive_controls_sha256": "28ca440b2018585de178d9fefb9bca3e0aad2b8b4be9077cc2b16f7cb2c225cf",
+  "provider": "CUDA training deficits; original CPU selected checks and held-out scores",
+  "backends": [
+    {
+      "backend": "Whole-plan immigrant-only CUDA deficit",
+      "library": "/home/gpt/hostile_remediation_20261111/repo/validation/live_results/cuda_immigrant_controls_20261111/build/64986d3df135b513/cuda_immigrant.so",
+      "library_sha256": "dd46977a98e701eb71d4505a5d9458f67fc62e0f549d79e0d8b25bfbe2bf794f",
+      "source_sha256": "64986d3df135b513d96536b2e4edf8a206988010b9738280d54781afdae69213",
+      "adapter_sha256": "826d416151b57191a56aa0a6db48559c99cef3572ecd939543b7db240df576a4",
+      "orders": {
+        "8": {
+          "space_nodes": 6208,
+          "time_nodes": 1664,
+          "parents": 28
+        },
+        "16": {
+          "space_nodes": 24832,
+          "time_nodes": 3328,
+          "parents": 28
+        }
+      },
+      "objective": "Original Phase.evaluate and baseline/event-score source unchanged.",
+      "summation": "Chronological recurrence per row; deterministic ascending row reduction; no atomics."
+    },
+    {
+      "backend": "Resident variable-backbone total-intensity CUDA deficit",
+      "library": "/home/gpt/hostile_remediation_20261111/repo/validation/live_results/cuda_inclusive_controls_20261111/build/1698ff143667c53c/cuda_inclusive.so",
+      "library_sha256": "b2b3d03c4d295266202c7832ed750132cb94a052e799ba8eb2957cd3b8cbae30",
+      "source_sha256": "12ccc5659f65fffde42770784ed6c377ba70cce3f2b76517a5a60281cb5a5202",
+      "chronology_dependency_sha256": "64986d3df135b513d96536b2e4edf8a206988010b9738280d54781afdae69213",
+      "adapter_sha256": "d305cdd59004b33630a3137b172e769d30645bd2910cb119d754795b02bd7fe0",
+      "contexts": [
+        {
+          "order": 8,
+          "space_nodes": 6208,
+          "time_nodes": 1664,
+          "parents": 28,
+          "tile_rows": 6208
+        },
+        {
+          "order": 16,
+          "space_nodes": 24832,
+          "time_nodes": 3328,
+          "parents": 28,
+          "tile_rows": 13440
+        }
+      ],
+      "retained_order": 16,
+      "workspace_limit_bytes": 1073741824,
+      "objective": "Original Phase.evaluate/baseline/event gradients unchanged.",
+      "temporal": "Fresh Omori field and both temporal derivatives per parameter vector; three FP64 cuBLAS products.",
+      "memory": "One quadrature-order context retained; freed on order change. Trigger workspace <= configured limit and half available GPU memory."
+    }
+  ],
+  "start5_polish": [
+    {
+      "continuation_index": 0,
+      "passed": true,
+      "CPU_projected_kkt": {
+        "8": 1.8622283590730149e-06,
+        "16": 1.8622283590730149e-06
+      },
+      "checks": [
+        {
+          "order": 8,
+          "cpu_score": {
+            "P": -245.566244933397,
+            "E": 24.560873662738572,
+            "C": -24.560873662738572,
+            "M": -17.7426275780732,
+            "joint": -287.8697461742088,
+            "nll": 287.8697461742088
+          },
+          "gpu_score": {
+            "P": -245.566244933397,
+            "E": 24.56087366273877,
+            "C": -24.56087366273877,
+            "M": -17.7426275780732,
+            "joint": -287.869746174209,
+            "nll": 287.869746174209
+          },
+          "cpu_gradient": [
+            -0.4391256162339019,
+            7.910645738462563e-08,
+            -1.8622283590730149e-06,
+            9.499151742975442e-08,
+            -2.843610511504835e-07,
+            2.7599273444423034e-07,
+            7.181177856807608e-07,
+            5.22017128190555e-07
+          ],
+          "gpu_gradient": [
+            -0.43912561623370294,
+            7.91059600047106e-08,
+            -1.8622283590730149e-06,
+            9.499151742975442e-08,
+            -2.843610511504835e-07,
+            2.759924431217087e-07,
+            7.181166914449477e-07,
+            5.220161511942933e-07
+          ],
+          "score_error": 2.2737367544323206e-13,
+          "gradient_comparison": {
+            "max_absolute_error": 1.0942358130705543e-12,
+            "max_scaled_error": 1.0942358130705543e-12
+          }
+        },
+        {
+          "order": 16,
+          "cpu_score": {
+            "P": -245.566244933397,
+            "E": 24.560873658827347,
+            "C": -24.560873658827347,
+            "M": -17.7426275780732,
+            "joint": -287.86974617029756,
+            "nll": 287.86974617029756
+          },
+          "gpu_score": {
+            "P": -245.566244933397,
+            "E": 24.560873658828626,
+            "C": -24.560873658828626,
+            "M": -17.7426275780732,
+            "joint": -287.86974617029887,
+            "nll": 287.86974617029887
+          },
+          "cpu_gradient": [
+            -0.439125620145127,
+            8.122588557313293e-08,
+            -1.8622283590730149e-06,
+            9.499151742975442e-08,
+            -2.843610511504835e-07,
+            2.784858565973991e-07,
+            7.327309603510912e-07,
+            5.267372742423504e-07
+          ],
+          "gpu_gradient": [
+            -0.43912562014384804,
+            8.122617689565459e-08,
+            -1.8622283590730149e-06,
+            9.499151742975442e-08,
+            -2.843610511504835e-07,
+            2.78485183358157e-07,
+            7.327289104352985e-07,
+            5.267359775018576e-07
+          ],
+          "score_error": 1.3073986337985843e-12,
+          "gradient_comparison": {
+            "max_absolute_error": 2.049915792667889e-12,
+            "max_scaled_error": 2.049915792667889e-12
+          }
+        }
+      ],
+      "record": {
+        "start_index": 5,
+        "method": "L-BFGS-B",
+        "continuation": "post-Powell KKT polish",
+        "continuation_index": 0,
+        "initial_parameters": [
+          -2.9781097427099086e-07,
+          1.682893769811307,
+          0.3823646080842323,
+          -0.8561973443992332,
+          1.6590366944954034,
+          1.9974225944244681,
+          3.561967842127005,
+          4.095635876585045
+        ],
+        "options": {
+          "maxiter": 2000,
+          "ftol": 1e-14,
+          "gtol": 2e-06,
+          "maxls": 200
+        },
+        "status": "returned",
+        "success": true,
+        "solver_success": true,
+        "solver_status": 0,
+        "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+        "nfev": 36,
+        "nit": 30,
+        "parameters": [
+          0.0,
+          1.5812064130345467,
+          0.38718535113663294,
+          -1.035308304218751,
+          1.5874957154324763,
+          1.8008607847366733,
+          3.5887678260049802,
+          4.163898259162177
+        ],
+        "returned_parameters": [
+          0.0,
+          1.5812064130345467,
+          0.38718535113663294,
+          -1.035308304218751,
+          1.5874957154324763,
+          1.8008607847366733,
+          3.5887678260049802,
+          4.163898259162177
+        ],
+        "returned_nll": 287.869746174209,
+        "fresh_score": {
+          "P": -245.566244933397,
+          "E": 24.56087366273877,
+          "C": -24.56087366273877,
+          "M": -17.7426275780732,
+          "joint": -287.869746174209,
+          "nll": 287.869746174209
+        },
+        "gradient": [
+          -0.43912561623370294,
+          7.91059600047106e-08,
+          -1.8622283590730149e-06,
+          9.499151742975442e-08,
+          -2.843610511504835e-07,
+          2.759924431217087e-07,
+          7.181166914449477e-07,
+          5.220161511942933e-07
+        ],
+        "fresh_nll_delta": 0.0,
+        "projected_gradient": [
+          0.0,
+          7.91059600047106e-08,
+          -1.8622283590730149e-06,
+          9.499151742975442e-08,
+          -2.843610511504835e-07,
+          2.759924431217087e-07,
+          7.181166914449477e-07,
+          5.220161511942933e-07
+        ],
+        "boundaries": [
+          "upper",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "finite_feasible": true,
+        "CPU_projected_kkt": {
+          "8": 1.8622283590730149e-06,
+          "16": 1.8622283590730149e-06
+        },
+        "wall_seconds": 4.293778229970485
+      }
+    }
+  ]
+}

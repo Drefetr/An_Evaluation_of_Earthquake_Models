@@ -1,0 +1,27 @@
+{
+  "sources_sha256": {
+    "cuda_inclusive.cu": "12ccc5659f65fffde42770784ed6c377ba70cce3f2b76517a5a60281cb5a5202",
+    "cuda_immigrant.cu": "64986d3df135b513d96536b2e4edf8a206988010b9738280d54781afdae69213"
+  },
+  "library_sha256": "b2b3d03c4d295266202c7832ed750132cb94a052e799ba8eb2957cd3b8cbae30",
+  "command": [
+    "nvcc",
+    "-std=c++17",
+    "-O3",
+    "-ccbin",
+    "/usr/bin/g++-11",
+    "-arch=sm_75",
+    "--fmad=false",
+    "--prec-div=true",
+    "--prec-sqrt=true",
+    "-Xcompiler=-fPIC,-ffp-contract=off",
+    "-shared",
+    "/home/gpt/hostile_remediation_20261111/repo/experiments/s04b_cuda_inclusive/cuda_inclusive.cu",
+    "-lcublas",
+    "-o",
+    "/home/gpt/hostile_remediation_20261111/repo/validation/live_results/cuda_inclusive_controls_20261111/build/1698ff143667c53c/cuda_inclusive.so"
+  ],
+  "fast_math": false,
+  "fused_multiply_add": false,
+  "temporal_backbone": "Regenerated at every evaluation, including log-c and p derivatives."
+}

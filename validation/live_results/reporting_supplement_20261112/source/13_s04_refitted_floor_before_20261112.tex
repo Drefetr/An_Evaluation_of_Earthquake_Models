@@ -1,0 +1,54 @@
+\subsubsection{A training-fitted uninhibited background}\label{sec:s04b-refitted}
+The fixed comparator cannot lower its immigrant rate when broad/long inhibition reduces the event count. A separate sensitivity now fits its background intercept on each of the 80 existing training histories, holding the trend, excitation, spatial law, mark law and realized history fixed. The saved inhibited fits and original gates are unchanged. The saved procedures are also compared with a training-only uninhibited refit of both the background rate and branching ratio.
+
+Writing $b=e^a$, precomputed event features $u_i,v_i$, background time integral $A$, fixed triggering exposure $H$ and common mark score $M$ give
+\[ L(b)=\sum_i\log(bu_i+v_i)-bA-H+M. \]
+This objective is concave in $b$. Endpoint derivatives or a bracketed derivative root select the global training optimum on the declared intercept box; that value is then frozen for test. The inherited box is $a\in[-12,0]$. All 480 phase--model checks against the historical floor scores pass. The protocol, executable scalar fit, per-history components and independent output review are supplied under \path{experiments/s04b_refitted_floor/} and \path{validation/live_results/methodological_20261106/}.
+
+The two-parameter comparator maximizes the jointly concave objective
+\[
+L(b,n)=\sum_i\log(bu_i+nh_i)-bA-nE_{\mathrm{trig}}+M,
+\qquad (b,n)\in[e^{-12},1]\times[0,0.98].
+\]
+For each $n$, a monotone score equation gives the optimal $b$; the monotone profile derivative then selects $n$, including its boundary optima. The box Karush--Kuhn--Tucker conditions and independent archived-score identities are checked for all 80 histories. All 20 S7 fits select $\hat n=0$. The executable two-parameter control and per-history results are in \path{experiments/s04b_refitted_floor/run.py} and \path{validation/live_results/s04b_concave_20261111/}.
+
+\begin{table}[H]\centering\small
+\setlength{\tabcolsep}{3pt}
+\caption{S04B comparator sensitivity. Mean held-out gains in nats per history against the fixed floor, the training-fitted intercept, and the jointly fitted $(a,n)$ comparator. Wins use the fitted-intercept comparator; active counts report saved procedures with $\hat\eta>0$, each out of 20. Original gates are not recomputed: a gated procedure returning the old fixed floor can win against the new floor without selecting inhibition.}\label{tab:s04b-refitted-floor}
+\begin{tabular}{@{}llrrrrr@{}}
+\toprule Regime & Saved procedure & \shortstack{Fixed\\floor} & \shortstack{Fitted\\intercept} & \shortstack{Fitted\\$(a,n)$} & Wins & Active\\\midrule
+S4 & LI & -3.9493 & -3.2102 & -2.5062 & 6/20 & 19/20\\
+ & LI+ immigrant & -4.5674 & -3.8283 & -3.1243 & 5/20 & 20/20\\
+ & LI+ immigrant gated & -1.3440 & -0.6049 & 0.0991 & 13/20 & 1/20\\
+ & LI+ total & -21.5766 & -20.8374 & -20.1335 & 5/20 & 19/20\\
+ & LI+ total gated & -1.0043 & -0.2651 & 0.4389 & 13/20 & 1/20\\
+\addlinespace
+S5 & LI & 44.3122 & 1.0885 & 3.3455 & 12/20 & 20/20\\
+ & LI+ immigrant & 48.3868 & 5.1631 & 7.4200 & 19/20 & 20/20\\
+ & LI+ immigrant gated & 48.3868 & 5.1631 & 7.4200 & 19/20 & 20/20\\
+ & LI+ total & 19.4993 & -23.7244 & -21.4675 & 4/20 & 19/20\\
+ & LI+ total gated & 19.3802 & -23.8435 & -21.5865 & 4/20 & 18/20\\
+\addlinespace
+S6 & LI & -1.7818 & -1.4757 & -0.8626 & 7/20 & 20/20\\
+ & LI+ immigrant & -3.2420 & -2.9359 & -2.3228 & 9/20 & 20/20\\
+ & LI+ immigrant gated & 0.0000 & 0.3061 & 0.9192 & 15/20 & 0/20\\
+ & LI+ total & -14.5947 & -14.2887 & -13.6756 & 10/20 & 20/20\\
+ & LI+ total gated & 0.0686 & 0.3747 & 0.9878 & 15/20 & 1/20\\
+\addlinespace
+S7 & LI & 42.5503 & -0.9462 & -5.0575 & 10/20 & 20/20\\
+ & LI+ immigrant & 49.2902 & 5.7937 & 1.6824 & 18/20 & 20/20\\
+ & LI+ immigrant gated & 49.2902 & 5.7937 & 1.6824 & 18/20 & 20/20\\
+ & LI+ total & 53.2332 & 9.7367 & 5.6255 & 18/20 & 20/20\\
+ & LI+ total gated & 53.2332 & 9.7367 & 5.6255 & 18/20 & 20/20\\
+\bottomrule\end{tabular}\end{table}
+
+\begin{table}[htbp]\centering\small
+\caption{Held-out change from the fixed to the training-fitted uninhibited floor. Means use the same histories as Table~\ref{tab:s04b-refitted-floor}; $C=-E$ is signed exposure and the mark contrast is zero.}\label{tab:s04b-floor-components}
+\begin{tabular}{@{}lrrr@{}}\toprule Regime & $\Delta P$ & $\Delta C$ & $\Delta$ joint\\\midrule
+S4 & -5.6558 & 4.9167 & -0.7392\\
+S5 & -24.4963 & 67.7200 & 43.2237\\
+S6 & 0.5534 & -0.8595 & -0.3061\\
+S7 & -21.8424 & 65.3389 & 43.4965\\
+\bottomrule\end{tabular}\end{table}
+
+Refitting the intercept reduces the broad/long immigrant gain from 48.3868 to 5.1631 nats and reverses the misspecified S5 total procedure from 19.4993 to $-23.7244$ nats. In S7, freeing $(a,n)$ further reduces the total-procedure residual from 9.7367 to 5.6255 nats; the fully joint temporal comparison in the next subsection reverses that residual to $-1.2607$ nats. The S4 gated procedures have 13/20 fitted-intercept wins but only 1/20 active fits. S6 immigrant and total gates each have 15/20 wins, with respectively 0/20 and 1/20 active fits. These wins therefore mostly compare two uninhibited floors and are not detections of inhibition.

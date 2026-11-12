@@ -1,0 +1,123 @@
+{
+  "schema": "first_fold_trend_depletion_geometry_v1",
+  "passed": true,
+  "source": "Frozen first-origin ml_shared stress kernel and training observations; no refit.",
+  "source_sha256": {
+    "reproduction/nzca/expected/geonet_M5_shallow_1960_2026.csv": "feacccb7581d1c4c33f88874cd6b198c41639da6930a7fc35e46f910a594fb3e",
+    "validation/authorities/e7fbc4fa4fae3da4_observed.json": "e7fbc4fa4fae3da4f8880695064798a8ebfc9342ab09303073f7afd7334439d8",
+    "engine/iteration_27/code/adequacy.py": "9662c90f9ff7e120fe26c1dfc0bd969071f16774feec686b9e97731337e0ff90",
+    "engine/iteration_5/code/kernels.py": "3561ef3471adf349caebebc6c2ca12881f2a3d9c7c7415d15453b5be20b978ae"
+  },
+  "script_sha256": "ce3201b8649c33992815e0af57f67847668122505d693f8cc62a4219602206e8",
+  "versions": {
+    "python": "3.13.4",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "scipy": "1.15.3"
+  },
+  "events": 301,
+  "test_events": 203,
+  "horizon_days": 24394.0,
+  "train_end_days": 12197.0,
+  "test_end_days": 15856.1,
+  "x_min": -0.9894109146545599,
+  "x_max": -0.0010892842597147734,
+  "correlation_G_with_trend": 0.3863194913447053,
+  "event_score_weighted_trend_depletion_correlation": 0.9340643480012697,
+  "normalized_event_score_condition_number": 21.217379081914178,
+  "event_score_weighting": "Squared immigrant intensity fraction v^2; intercept removed. Positive correlation compares x with G; eta score has the opposite sign.",
+  "spearman": 0.6727715561813822,
+  "linear_regression_slope": 2.2417394214563457,
+  "stress_start": 0.0,
+  "stress_last": 1.3911299252319742,
+  "fraction_positive_event_pre_stress_increments": 0.5,
+  "mixture_modes": 195,
+  "slow_modes": 61,
+  "slow_mode_weight": 0.00042934294645172454,
+  "slow_mode_weight_percent": 0.042934294645172455,
+  "slow_component_training": {
+    "mean": 0.026426985090650588,
+    "median": 0.024915710713756707,
+    "min": 0.0,
+    "max": 0.055616787291547946
+  },
+  "slow_component_fraction_of_last_training_G": 0.03997957795514586,
+  "G_training": {
+    "mean": 1.6824948891939704,
+    "median": 1.0314264639153348,
+    "min": 0.0,
+    "max": 8.749802326604591
+  },
+  "projection": {
+    "weighting": "Ordinary least squares with equal weights on training pre-event states only.",
+    "intercept_c": 2.750747162169055,
+    "slope_k": 2.2417394214563457,
+    "r_squared": 0.14924274939283222,
+    "explained_variance_percent": 14.924274939283222,
+    "unexplained_variance_fraction": 0.8507572506071678,
+    "residual_train": {
+      "mean": -6.845760577090667e-16,
+      "median": -0.5784480545749335,
+      "min": -1.4526521109309758,
+      "max": 6.912980596812493
+    },
+    "residual_test": {
+      "mean": 2.723658978257066,
+      "median": 0.4865327871820391,
+      "min": -1.528788341417188,
+      "max": 10.160001089888176
+    },
+    "identity": "a+d*x-eta*G = (a-eta*c)+(d-eta*k)*x-eta*(G-c-k*x)",
+    "identity_max_absolute_residual": 3.552713678800501e-15,
+    "projected_inhibited_a": -6.726436795313262,
+    "projected_inhibited_d": -1.9017467080422525,
+    "eta_times_slope_k": 3.691503807887511,
+    "parameter_tradeoff": "Holding residual history fixed, da=c*deta and dd=k*deta preserves projected log-background level and slope; the residual term changes by -deta*(G-c-k*x)."
+  },
+  "fit_contrast": {
+    "null_a": -4.458571951320322,
+    "null_d": -0.25215013380309004,
+    "null_n": 0.455824101217398,
+    "inhibited_a": -2.196742787842031,
+    "inhibited_d": 1.7897570998452585,
+    "inhibited_n": 0.4816995533123644,
+    "inhibited_eta": 1.6467140527373723,
+    "unattenuated_intercept_ratio": 9.600634244993673,
+    "trend_coefficient_change": 2.041907233648349,
+    "training_log_background_minus_null": {
+      "mean": -1.4817853946793809,
+      "median": -0.19842029592823263,
+      "min": -12.97904996426331,
+      "max": 0.395999833977426
+    },
+    "test_log_background_minus_null": {
+      "mean": -6.902415724934655,
+      "median": -3.12679231481225,
+      "min": -19.082804050708138,
+      "max": 0.1337116832160179
+    }
+  },
+  "saved_heldout_accounting": {
+    "null_integrated_intensity": 133.0692419773781,
+    "inhibited_integrated_intensity": 115.87159477011348,
+    "delta_point": -33.71520466007502,
+    "delta_exposure": -17.197647207264637,
+    "delta_signed_exposure": 17.197647207264637,
+    "delta_joint": -16.51755745281048
+  },
+  "archived_event_intensity_max_absolute_errors": {
+    "ml_trigger": {
+      "training_controls": 0.0,
+      "test_controls": 0.0
+    },
+    "ml_shared": {
+      "training_controls": 0.0,
+      "test_controls": 0.0
+    }
+  },
+  "interpretation": {
+    "supported": "The nonzero projection slope shows an affine training component of depletion can exchange with intercept and trend in the log-background. The displayed identity is exact after retaining the residual.",
+    "not_supported": "Neither 61 slow modes nor these equal-event-weight correlations establishes monotone total depletion, a likelihood ridge, or a causal explanation of the heldout loss. The slow modes have very small total normalized weight and half of consecutive pre-event stress increments are negative.",
+    "heldout_direction": "The inhibited fitted procedure has LOWER heldout integrated intensity than ML. Its negative event-log-intensity contrast is larger than its compensator saving; unattenuated intercept/trend comparisons do not establish rate overprediction."
+  }
+}

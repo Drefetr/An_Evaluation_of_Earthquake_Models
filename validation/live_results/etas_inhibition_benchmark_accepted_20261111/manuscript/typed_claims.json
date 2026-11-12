@@ -1,0 +1,153 @@
+{
+  "schema": "typed_epplus_benchmark_values_v1",
+  "passed": true,
+  "authority_sha256": "927bf0a66a24c90908a096b5cc9abf429f35725212e0b42b6a6509a197e4176a",
+  "rows": [
+    {
+      "case": "california_fold_0",
+      "n_train": 851,
+      "n_test": 79,
+      "sigma0_km": 2.0,
+      "alpha_s": 0.6169929144015514,
+      "q": 2.4397682304550328,
+      "eta": 0.0,
+      "gain": 0.0,
+      "integration_se": 0.0,
+      "result_sha256": "9eeb9ce49b8ed1badf50355791f6996368afec7aad541f49d35b67963669dffe"
+    },
+    {
+      "case": "california_fold_1",
+      "n_train": 930,
+      "n_test": 167,
+      "sigma0_km": 2.0,
+      "alpha_s": 0.6230819083308565,
+      "q": 2.4699015727466143,
+      "eta": 0.0,
+      "gain": 0.0,
+      "integration_se": 0.0,
+      "result_sha256": "cd7bf8f4206b6d41102076f25001810f0bf9f0a1421431d0fc05603910aae54b"
+    },
+    {
+      "case": "california_fold_2",
+      "n_train": 1097,
+      "n_test": 69,
+      "sigma0_km": 2.0,
+      "alpha_s": 0.7210302180706085,
+      "q": 2.9031627455908633,
+      "eta": 0.0,
+      "gain": 0.0,
+      "integration_se": 0.0,
+      "result_sha256": "ffd434fdcba4df1426958458a6b2a701bbb29aea8697ccd119dfd014a6e97a1b"
+    }
+  ],
+  "total_gain": 0.0,
+  "active_folds": 0,
+  "eta_max": 0.0,
+  "sigma0_search_bounds_km": [
+    2.0,
+    100.0
+  ],
+  "model_settings": {
+    "background_bandwidth_km": 5.0,
+    "background_floor_fraction": 0.05,
+    "background_weighting_iterations": 5,
+    "shadow_radius_magnitude_exponent": 0.5
+  },
+  "source_execution_sha256": {
+    "experiments/etas_inhibition_benchmark/accept.py": "8ef883090c3d761eec95dc95f0e229601b9dd50de1290cb031b7fcc8317e6a42",
+    "experiments/etas_inhibition_benchmark/run_frozen_gpu_20261111.py": "ba1ff9b8eb9f7dc8723aa6d6b2b7a8ddaaba013c44b8d295b4723d8616c38896",
+    "experiments/etas_inhibition_benchmark/native.py": "590e95b2e6c8d390e0ca82531ac526427941199a4775aa1471c17eab5b3840aa",
+    "experiments/etas_inhibition_benchmark/pairs.cpp": "d17678ec97a548067b5f2078a1ae2cf081766c643ff0c630dfb233ab6e10cacf",
+    "experiments/etas_inhibition_benchmark/gpu_native.py": "fd861d8b25749082f97b7b7ce2c4820ff13c637dd9579827dbb7b21118a0c183",
+    "experiments/etas_inhibition_benchmark/gpu_pairs.cu": "8eaf06e02acf6f77cd8a96f7753f65f3186154ae026eefe48c872e8491c8eb2c"
+  },
+  "upstream_pins_verified": {
+    "validation/live_results/etas_inhibition_benchmark_accepted_20261111/summary.json": "927bf0a66a24c90908a096b5cc9abf429f35725212e0b42b6a6509a197e4176a",
+    "validation/live_results/etas_inhibition_benchmark_accepted_20261111/california_fold_0/result.json": "9eeb9ce49b8ed1badf50355791f6996368afec7aad541f49d35b67963669dffe",
+    "validation/live_results/etas_gpu_pilot_states_20261111/california_fold_0/result.json": "6f6a5cbccb3899c7471a31869d6ee8f16117c822b73884a433e6bc0fb154b1e7",
+    "validation/live_results/etas_inhibition_benchmark_accepted_20261111/california_fold_1/result.json": "cd7bf8f4206b6d41102076f25001810f0bf9f0a1421431d0fc05603910aae54b",
+    "validation/live_results/etas_gpu_pilot_states_20261111/california_fold_1/result.json": "8cf50def062116fbec3bde84de9e3d4cc3f2f0cdad40782042e83c01d924bcd4",
+    "validation/live_results/etas_inhibition_benchmark_accepted_20261111/california_fold_2/result.json": "ffd434fdcba4df1426958458a6b2a701bbb29aea8697ccd119dfd014a6e97a1b",
+    "validation/live_results/etas_gpu_pilot_states_20261111/california_fold_2/result.json": "439f114dc634783388d465ba2fbf0b1eb56ea21942b9adbe69c2760bb02fd8ae"
+  },
+  "postprocessing_source": "experiments/etas_inhibition_benchmark/report.py",
+  "postprocessing_source_sha256": "80827fadf28326c3c233e2ae7767d2191235641e4c55bf96294e8be5340933fb",
+  "original_EP_comparison": {
+    "schema": "epplus_vs_original_ep_checked_scores_v1",
+    "passed": true,
+    "accepted_summary_sha256": "927bf0a66a24c90908a096b5cc9abf429f35725212e0b42b6a6509a197e4176a",
+    "rows": [
+      {
+        "case": "california_fold_0",
+        "new_joint_score": -1080.124223601719,
+        "original_EP_joint_score": -1094.7037060792363,
+        "gain": 14.579482477517331,
+        "common_mark_score": 6.45747525373892,
+        "beta": 2.2839209182061535,
+        "identical_history_checks": {
+          "parent_time": true,
+          "parent_xy": true,
+          "parent_fertility": true,
+          "event_time": true,
+          "event_xy": true,
+          "rectangles": true,
+          "start": true,
+          "end": true,
+          "T0": true,
+          "beta": true
+        },
+        "original_EP_state_sha256": "fed45442da1054229ba1367fbe6b746082ddb460c7f1ee644825fe97c275fa63",
+        "original_EP_cache_sha256": "1b0c2763eb3952d7c48127d7f53232e489106fe842c40e3c8e63eea58830e799",
+        "primary_cache_sha256": "9605fb61586aaad096dcf72ea6f8ee1f5c1c38c4cd675b3b4744e75d260d661d"
+      },
+      {
+        "case": "california_fold_1",
+        "new_joint_score": -1174.6866893699403,
+        "original_EP_joint_score": -1205.3776968240666,
+        "gain": 30.691007454126293,
+        "common_mark_score": -15.039036621081294,
+        "beta": 2.3150580973520416,
+        "identical_history_checks": {
+          "parent_time": true,
+          "parent_xy": true,
+          "parent_fertility": true,
+          "event_time": true,
+          "event_xy": true,
+          "rectangles": true,
+          "start": true,
+          "end": true,
+          "T0": true,
+          "beta": true
+        },
+        "original_EP_state_sha256": "7f887934f7114372f40c24a97626e862a1903c355be5eb59ad9813fab0bb2c6e",
+        "original_EP_cache_sha256": "7d1e3008fbfd26be60055d2806c783c4305482873ebe447253a63f82d6ec0b2f",
+        "primary_cache_sha256": "7a39b314c08fdc3b9992e3a031afee1e63d4331a163b06b528feeaf0fb22dc29"
+      },
+      {
+        "case": "california_fold_2",
+        "new_joint_score": -860.3532111530249,
+        "original_EP_joint_score": -884.63561506365,
+        "gain": 24.282403910625135,
+        "common_mark_score": 4.795665965226561,
+        "beta": 2.386699916086027,
+        "identical_history_checks": {
+          "parent_time": true,
+          "parent_xy": true,
+          "parent_fertility": true,
+          "event_time": true,
+          "event_xy": true,
+          "rectangles": true,
+          "start": true,
+          "end": true,
+          "T0": true,
+          "beta": true
+        },
+        "original_EP_state_sha256": "790d5f625881a666dafbb6ff9ac9a8c3c507749d777856199021539c6014d5b1",
+        "original_EP_cache_sha256": "3a527573d1a5ddad14623f95194df8c745b9f04bb7e155e213c1aebe4b1d5f5a",
+        "primary_cache_sha256": "d44887f67a178bae473c83f8d1d071d67d586a6decb246f65e5df21e32a1ab0b"
+      }
+    ],
+    "total_gain": 69.55289384226876,
+    "comparison": "Combined new magnitude scaling, training declustering and joint temporal/spatial fitting versus the archived EP procedure; same event/parent history, fertility and mark measure verified exactly."
+  }
+}

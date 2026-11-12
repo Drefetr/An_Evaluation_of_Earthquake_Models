@@ -92,12 +92,31 @@ All six selected Mittag--Leffler kernels use \(\alpha=0.5\), the lower searched 
 The rates \(\beta_{\rm train}\) are estimated from training marks alone, held common across families, and frozen during each test. Inactive serialization fields are not fitted coordinates: the saved \(p\) field of a Mittag--Leffler kernel and \(\alpha\) field of an Omori kernel have no role in their respective formulas. 
 
 At the three predictive origins, the selected shared-inhibition recipe's
-unattenuated deterministic background is approximately \(9.60\), \(1.57\)
-and \(1.34\) times that of the corresponding noninhibited Mittag--Leffler
-recipe, respectively. The first-origin fit therefore combines a much larger
-baseline with stronger depletion. These are descriptive ratios of fitted
-components, not total-intensity ratios or a demonstrated causal explanation
-of the subsequent predictive loss.
+unattenuated background intercept is approximately \(9.60\), \(1.57\)
+and \(1.34\) times that of the noninhibited Mittag--Leffler recipe.
+In the first training prefix, the trend coordinate lies in \([-1,0]\).
+Of the 195 relaxation modes, 61 decay by less than \(1\%\) over the
+24,394-day horizon, but they contain only \(0.043\%\) of the normalized
+mixture weight. The full stress history has jumps and decay; it is not monotone.
+Its training event-time projection \(G_s=c_G+k_Gx+R_G\), with
+\(c_G=2.7507\) and \(k_G=2.2417\), gives the exact identity
+\[
+ \log B_\eta(t)=(a-\eta c_G)+(d-\eta k_G)x(t)-\eta R_G(t).
+\]
+The affine part of depletion can therefore exchange with intercept and trend.
+The projection explains \(14.9\%\) of the training pre-event stress variance;
+the residual remains part of the intensity. With event-score weights
+\((B_\eta/\lambda)^2\), the intercept-adjusted trend--depletion correlation
+is \(0.9341\), quantifying the local confounding of these directions.
+The first inhibited fit combines
+\(d=1.789757\), compared with \(-0.252150\) for uninhibited ML, with the
+\(9.60\)-fold larger intercept. Extrapolation to \(x>0\) changes that balance:
+the training projection's residual has positive mean on the test events.
+The held-out accounting below gives the observed direction: the inhibited
+integrated intensity is lower than ML's, and its negative event log-intensity
+contrast outweighs the compensator saving. The largest subinterval loss
+occurs in 1995--1998. The executable projection and archived-intensity checks
+are in \path{experiments/methodological_audit/trend_depletion.py}.
 
 \section{Earlier calibrated restrictions}
 
@@ -111,7 +130,7 @@ Table~\ref{tab:observed-scores} reports score differences relative to the ML tri
 
 \begin{table}[!ht]
 \centering
-\caption{Descriptive held-out marked-process score differences relative to the ML triggering-only benchmark. Tests are disjoint chronological intervals in the declared archive protocol. Values are differences, not log-likelihoods for separate datasets. Confidence intervals are not reported.}
+\caption{Held-out marked-process score differences relative to the ML triggering-only benchmark. Tests are disjoint chronological intervals in the declared archive protocol. Values are differences, not log-likelihoods for separate datasets. Paired calendar-block intervals for shared inhibition follow below.}
 \label{tab:observed-scores}
 \small
 \setlength{\tabcolsep}{4pt}
@@ -137,10 +156,10 @@ The continuous Omori recipe improves on the finite ML kernel grid in every fold.
 \label{fig:prediction}
 \end{figure}
 
-\begin{samepage}
-\paragraph{Executable replay.}
-The recovered-input edition reran the unchanged frozen fitting recipe from the exact reconstructed catalogue: every scientific numerical field in the complete optimizer and diagnostic output matched the historical result exactly. Both complete outputs and the executable comparison are supplied in \path{reproduction/observed/}; the replay includes the prescribed starts, failed solver attempts, selected fits and numerical controls.
-\end{samepage}
+The catalogue, frozen fitting recipe and executable score reconstruction are supplied in \path{reproduction/observed/}.
+
+
+\input{chapters/08_score_uncertainty}
 
 \section{Score accounting and temporal localization}
 
@@ -186,7 +205,7 @@ The deficit is localized in time rather than uniformly spread across the first b
 \begin{figure}[tbp]
 \centering
 \includegraphics[width=\linewidth]{temporal.pdf}
-\caption{Event and compensator contributions in four equal-duration bins in each of the three test periods. The archived figure uses $E$ for the event contrast $\Delta Q$ and $C$ for the compensator contrast $\Delta C$; its $E$ is not the positive exposure $E=\int\lambda(t)\,dt$ used in this volume. Each bin is integrated with complete preceding history. In the first period a favorable compensator contribution partly offsets the negative event term; the full score is $\Delta Q+\Delta C$.}
+\caption{Event and compensator contributions in four equal-duration bins in each of the three test periods. The event log-intensity contrast is $\Delta Q$ and the signed exposure contrast is $\Delta C$. Each bin is integrated with complete preceding history. In the first period a favorable compensator contribution partly offsets the negative event term; the full score is $\Delta Q+\Delta C$.}
 \label{fig:temporal}
 \end{figure}
 
@@ -297,5 +316,5 @@ confidence intervals are not reported.}
 The early and late fits select positive inhibition and lose held-out score;
 the middle fit selects zero inhibition. The pooled gain is -12.9456 nats.
 This exploratory comparison fits the autonomous theorem's model class on
-reused chronological observations. Stability implies no predictive advantage,
+reused chronological observations. Mathematical stability of the autonomous model does not imply a predictive advantage on finite catalogues,
 and the fixed mark and kernel settings preclude full joint nuisance estimation.

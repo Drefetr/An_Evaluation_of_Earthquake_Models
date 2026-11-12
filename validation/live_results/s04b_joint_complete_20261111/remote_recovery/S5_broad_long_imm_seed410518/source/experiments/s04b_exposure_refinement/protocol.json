@@ -1,0 +1,745 @@
+{
+  "schema": "joint_exposure_refinement_protocol_v1",
+  "version": "joint_exposure_refinement_v1",
+  "scientific_completion": false,
+  "source_sha256": {
+    "experiments/s04b_joint_execution/driver.py": "f188cc787c8c62a735e88e34a606dac8b992c6c42d8d1070676df885353aa012",
+    "experiments/s04b_joint_execution/operational_protocol.json": "6d48997cba7005037c959709f6f27a8ba447f72769bd5051302c5cf865e4409b",
+    "experiments/s04b_joint_execution/parallel_chunks.py": "94734c667745abf995a89cd386c642127a6dd4ef0029e6f97638c96b9a38db1f",
+    "experiments/s04b_joint_execution/proposal.json": "3c61eb930ff7b03906afbc5d6c1b0d634923597f67d74a331e67badbfe7e8efc",
+    "experiments/s04b_joint_nuisance/attenuation.cpp": "d47a85c5ed899a952b315977a700487c54bd79b90eddc88f62feef7001d2751e",
+    "experiments/s04b_joint_nuisance/checkpoint.py": "e0c4af19dca51a471188e86409a2a9533ba54a26922bfa7acff8ee5cd04275d7",
+    "experiments/s04b_joint_nuisance/checkpoint_repair.json": "25fff5174ab62efc1ebc71f5bb2b89e4ea2f4b975e10d3b53b613b095e29c5de",
+    "experiments/s04b_joint_nuisance/fit.py": "878dbf6a71bbc1b9e934f190d3ad0a1c3663097610edf5a42c8aab89b62775bb",
+    "experiments/s04b_joint_nuisance/input_pins.json": "636e2f6ebd1db404a04155acef1979f36931338cbfa0e4c24351a80378924dad",
+    "experiments/s04b_joint_nuisance/model.py": "cc891181e51251247b9668fb6213642f0884deb288050efb2586cf179c6e8898",
+    "experiments/s04b_joint_nuisance/protocol.json": "8f31b9f28d830eeffa30bdbf3e0fcf1295087411869fa301b91333c95fa445e9",
+    "experiments/s04b_joint_nuisance/run.py": "3f6d9cb3d14a45ea7752c3ab8b011ee1281f59c305c55eda35c36df7dd6ea243",
+    "experiments/s04b_joint_remaining/case_driver.py": "15ea0c895c1ce7295f70954ec72999b30c2bd4ae6b36122c067e3acff4ce4f17",
+    "experiments/s04b_joint_remaining/__init__.py": "7ebd5237d16aec6d2aec34fec01e55b24e84704707243eddfc3f479483bad080",
+    "experiments/s04b_joint_remaining/protocol.json": "4c77737acf8801ccfd0db25bba3005b1c547562675d7ced5bc1b72f428c8f2cd",
+    "reproduction/synthetic/source/controls_campaign.py": "cf6b14b7f8e7a5172b5ae8557d36ba6c3c1b263464443652b8d3ae1cd3480012",
+    "reproduction/synthetic/source/direct_oracle.py": "712f526110cef7004d1746b1c41f8735181d59b533602448cc160633590f1a04",
+    "reproduction/synthetic/source/generator.py": "b8bae982735b4fba26d450d93578c4d0b78ac33f7e33c691557b2bd8d4afcf43",
+    "reproduction/synthetic/source/geometry_plan.py": "96adbadb202c57953730aab5c4afeae05d0e3b8586034c4a60d639cb7d4cc92c",
+    "reproduction/synthetic/source/spatial.py": "764a006cc06967840839bdab9122039431c72603e2156470ae1d433549d2feaf",
+    "experiments/s04b_joint_remaining/host.py": "75ac8ff689fc79878134cf64e1ba10af4d5c8fcf373924bf1ea072c0c8cf4d83",
+    "scripts/supervise_research.py": "e8aaca56bb4bccf81aa9687a841d09d28bc5b2ff286de3c396ac37bd09324fcb"
+  },
+  "original_scientific_protocol_sha256": "8f31b9f28d830eeffa30bdbf3e0fcf1295087411869fa301b91333c95fa445e9",
+  "design_evidence_sha256": {
+    "validation/reproductions/continuation_20261107/exposure_refinement_design/architecture.md": "8bcdde5ab35b4f9df72abd1f14d3e4d6fba177bc5bed254898ddee54a7ebeed9",
+    "validation/reproductions/continuation_20261107/exposure_refinement_design/architecture_result.json": "65fa11595b71cb19d2b61a1ec8d6795e4fe2a210d63263e382733ace044a5b21",
+    "validation/reproductions/continuation_20261107/exposure_refinement_design/custody.json": "cb3aad36c2beeb99bbc9c9c77925f755887287870fed3585e7e61c192da941af",
+    "validation/reproductions/continuation_20261107/exposure_refinement_design/design_result.json": "52436403749bad40e6a7d626a1af4d55e5315fbd5486934690944b8cb4a25b42",
+    "validation/reproductions/continuation_20261107/exposure_refinement_design/diagnostic_math_interpretation.json": "8791a318005d5a333bc09f9c979faaeb6f085e8decfd66e6bcb4eda80e031d5f",
+    "validation/reproductions/continuation_20261107/exposure_refinement_design/diagnostic_math_interpretation.md": "165a3aa3b605697e3f994551f3dac9f7cadc800dc56eefc40698f9eccea30faa",
+    "validation/reproductions/continuation_20261107/exposure_refinement_design/independent_design_review.json": "da10a9b046925426f9b7fb4370be0961697dd6c81ca58539201ba361dd7e2758",
+    "validation/reproductions/continuation_20261107/exposure_refinement_design/independent_reuse_census.json": "beeb04498e6f57fa4d6027883ee5eb69a1f7a5cbb8ef412423f95991c750d4a0",
+    "validation/reproductions/continuation_20261107/exposure_refinement_design/prior_failure_census.json": "3f1e5912a1c9ebd9efc69fec20cc3708e49e852da95512c5927e1d400bd159ac",
+    "validation/reproductions/continuation_20261107/exposure_refinement_design/proposal.md": "e54a970675463389ce6853e0fcf83fdda8bdf425d9ff31f44fa8e749aecc5361",
+    "validation/reproductions/continuation_20261107/exposure_refinement_design/protocol_proposal.json": "5ff434b999e2dd729552e18012fe97319578eb101738597fe7f8d18d9032ea23",
+    "validation/reproductions/continuation_20261107/exposure_refinement_design/resources.json": "e20f857ca92147c2a4710e915ac13fbd9c997a6de1ffdca52fc338c61365bd14"
+  },
+  "refinement": {
+    "context": "Only the original objective callback executing inside L-BFGS-B or Powell; explicit scoped context, never a process-wide fallback.",
+    "coarse_order": 8,
+    "fine_order": 16,
+    "original_exception_type": "ArithmeticError",
+    "original_exception_message": "Nonfinite or negative full exposure",
+    "exception_origin": "Exact pinned original Phase.evaluate full-exposure guard frame; message matching alone is insufficient.",
+    "all_required_coarse_conditions": [
+      "Original optimizer objective context active, training phase only, original coarse order",
+      "Exact current full theta, model and phase identity retained",
+      "Original P, M, E, joint and all gradient coordinates finite",
+      "Original E strictly less than -1e-9",
+      "No alternate nonfinite-gradient, timeout, memory, interruption, native/programming or cap condition"
+    ],
+    "coarse_exposure_guard_strictly_below": -1e-09,
+    "fine_call": "Call unchanged original evaluator once at order16 at identical theta/model/phase; obtain original value AND full gradient; no recursive fallback.",
+    "all_required_fine_conditions": [
+      "Fine original call returns all score components and gradient finite",
+      "Fine E >= 0",
+      "Fine P and M exactly equal saved coarse P and M at the same theta",
+      "abs(fine joint - coarse joint) <= original joint_absolute_tolerance",
+      "Existing projected gradients with original active box/dimensions and boundary tolerance; max(abs(pg8-pg16)/max(1,abs(pg8),abs(pg16))) <= original selected_training_gradient_scaled_tolerance"
+    ],
+    "joint_absolute_tolerance": 0.0001,
+    "projected_gradient_scaled_tolerance": 0.0001,
+    "projection_boundary_tolerance": 1e-08,
+    "accepted_return": "Fine original score and fine original gradient as one paired result; never mix coarse/fine coordinates or replace E with direct Qa.",
+    "rejected_refinement": "Retain original exception and fine rejection evidence; follow unchanged original failure-only Powell rescue for the failed optimizer attempt, with no recursive fine retry. An unresolved arithmetic failure remains technical, not scientific_unknown.",
+    "excluded_contexts": [
+      "eligible floor",
+      "fresh returned-state score and gradient",
+      "candidate selection and tie breaking",
+      "selected training fine check",
+      "held-out/test scoring",
+      "diagnostic or historical comparator evaluation"
+    ],
+    "unchanged_fresh_nll_delta_tolerance": 1e-09,
+    "interpretation": "Adaptive numerical oracle with checked discrepancy at used trial points; no globally smooth-objective, global convergence or continuum-error certificate."
+  },
+  "original_native": {
+    "library_sha256": "8a927a10f69fc12253658185ad4dc1fe22748fb8562e4d5b474a9d508da61c6f",
+    "build_receipt_sha256": "1a20a372777a5415dc632173aa8d39905e723ec2d407d95c5665fcc176810cb2",
+    "runtime_essential": {
+      "python_version": "3.13.18",
+      "implementation": "CPython",
+      "python_executable_sha256": "5d782b88e6d48cc376d3e4b890539876ccaf7235acb1a265b7880ba471432cba",
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "architecture": "x86_64",
+      "byteorder": "little",
+      "numpy_extension_sha256": "aa26455b9418a62fc93e36752003b088c9cbcb0d143e7dbb9505234f5a93eca6",
+      "lbfgsb_extension_sha256": "1dc837bc636fc8b3242c9878bc418cce119558a21ffd93b0a1551a5f57f600bd",
+      "numerical_libraries": [
+        {
+          "api": "openblas",
+          "version": "0.3.29",
+          "sha256": "0bd815d04b6b54990e3cccc7528fbb696456d09569f533d0390c13f0cdc4dd4a"
+        },
+        {
+          "api": "openblas",
+          "version": "0.3.28",
+          "sha256": "3e739a2435af49d2d938749f316aa338c65f41c9ae6615406e7cf83feb662f46"
+        }
+      ]
+    }
+  },
+  "shared_run": {
+    "run_id": "joint_replay_continuation_20261107T071500Z",
+    "config_sha256": "dea0efc08bdeffefaca55d4cffbce983a21d8e3799c9b4e79fba12e70b7ef41c",
+    "expires_utc": "2026-11-09T07:15:00+00:00"
+  },
+  "resources": {
+    "schema": "joint_exposure_refinement_resource_proposal_v1",
+    "scope": "Source/design proposal only; no numerical execution admitted",
+    "shared_cap_seconds": 115200,
+    "shared_config_sha256": "dea0efc08bdeffefaca55d4cffbce983a21d8e3799c9b4e79fba12e70b7ef41c",
+    "deadline_utc": "2026-11-09T07:15:00+00:00",
+    "source_index_sha256": "34506b398ceefb757733a8ea3732d786625601e2bae7270884b306e8d1c87962",
+    "original_remaining_protocol_sha256": "4c77737acf8801ccfd0db25bba3005b1c547562675d7ced5bc1b72f428c8f2cd",
+    "accepted_diagnostic_review_sha256": "5cf20101faf273ef2d8e992f780439a945e4e134ffddf15cef061f65752165ef",
+    "costs_seconds": {
+      "all_indexed_scientific_seconds": "23441.40122622",
+      "failed_410603_scientific_seconds_not_indexed": "713.4644529529999",
+      "known_prior_outer_overhead_seconds": "51.02269905900175",
+      "prior_failed_launch_charge_seconds": "290",
+      "prior_diagnostic_charge_seconds": "80",
+      "pilot04_incremental_workflow_overhead_seconds": "94.6013867429999",
+      "remaining_pilot01_incremental_workflow_overhead_seconds": "99.312696377",
+      "remaining_host02_incremental_workflow_overhead_seconds": "99.985629928",
+      "exposure_diagnostic01_whole_workflow_charge_seconds": "270"
+    },
+    "accounted_seconds": "25139.78809128000155",
+    "future_hosts": [
+      {
+        "host": 1,
+        "case_ids": [
+          "S6_narrow_short_total_seed410603"
+        ],
+        "scientific_seconds": 1776,
+        "case_outer_seconds": 1806,
+        "role": "standalone_amended_partial_resume_pilot",
+        "host_overhead_reserve_seconds": 1800,
+        "whole_host_upper_seconds": 3606
+      },
+      {
+        "host": 2,
+        "case_ids": [
+          "S6_narrow_short_total_seed410604"
+        ],
+        "scientific_seconds": 2490,
+        "case_outer_seconds": 2520,
+        "role": "untouched_single_case_after_pilot_audit",
+        "host_overhead_reserve_seconds": 1800,
+        "whole_host_upper_seconds": 4320
+      },
+      {
+        "host": 3,
+        "case_ids": [
+          "S6_narrow_short_total_seed410606",
+          "S6_narrow_short_total_seed410607",
+          "S6_narrow_short_total_seed410608",
+          "S6_narrow_short_total_seed410609",
+          "S6_narrow_short_total_seed410610"
+        ],
+        "case_outer_seconds": 12600,
+        "role": "unchanged_remaining_roster_after_pilot_audit",
+        "host_overhead_reserve_seconds": 1800,
+        "whole_host_upper_seconds": 14400
+      },
+      {
+        "host": 4,
+        "case_ids": [
+          "S6_narrow_short_total_seed410611",
+          "S6_narrow_short_total_seed410612",
+          "S6_narrow_short_total_seed410613",
+          "S6_narrow_short_total_seed410614",
+          "S6_narrow_short_total_seed410615"
+        ],
+        "case_outer_seconds": 12600,
+        "role": "unchanged_remaining_roster_after_pilot_audit",
+        "host_overhead_reserve_seconds": 1800,
+        "whole_host_upper_seconds": 14400
+      },
+      {
+        "host": 5,
+        "case_ids": [
+          "S6_narrow_short_total_seed410616",
+          "S6_narrow_short_total_seed410617",
+          "S6_narrow_short_total_seed410618",
+          "S6_narrow_short_total_seed410619",
+          "S6_narrow_short_total_seed410620"
+        ],
+        "case_outer_seconds": 12600,
+        "role": "unchanged_remaining_roster_after_pilot_audit",
+        "host_overhead_reserve_seconds": 1800,
+        "whole_host_upper_seconds": 14400
+      },
+      {
+        "host": 6,
+        "case_ids": [
+          "S7_broad_long_total_seed410702",
+          "S7_broad_long_total_seed410703",
+          "S7_broad_long_total_seed410704",
+          "S7_broad_long_total_seed410705",
+          "S7_broad_long_total_seed410706",
+          "S7_broad_long_total_seed410707",
+          "S7_broad_long_total_seed410708",
+          "S7_broad_long_total_seed410709"
+        ],
+        "case_outer_seconds": 9600,
+        "role": "unchanged_remaining_roster_after_pilot_audit",
+        "host_overhead_reserve_seconds": 1800,
+        "whole_host_upper_seconds": 11400
+      },
+      {
+        "host": 7,
+        "case_ids": [
+          "S7_broad_long_total_seed410710",
+          "S7_broad_long_total_seed410711",
+          "S7_broad_long_total_seed410712",
+          "S7_broad_long_total_seed410713",
+          "S7_broad_long_total_seed410714",
+          "S7_broad_long_total_seed410715",
+          "S7_broad_long_total_seed410716",
+          "S7_broad_long_total_seed410717"
+        ],
+        "case_outer_seconds": 9600,
+        "role": "unchanged_remaining_roster_after_pilot_audit",
+        "host_overhead_reserve_seconds": 1800,
+        "whole_host_upper_seconds": 11400
+      },
+      {
+        "host": 8,
+        "case_ids": [
+          "S7_broad_long_total_seed410718",
+          "S7_broad_long_total_seed410719",
+          "S7_broad_long_total_seed410720"
+        ],
+        "case_outer_seconds": 3600,
+        "role": "unchanged_remaining_roster_after_pilot_audit",
+        "host_overhead_reserve_seconds": 1800,
+        "whole_host_upper_seconds": 5400
+      }
+    ],
+    "future_case_slots_seconds": "64926",
+    "future_host_overhead_seconds": "14400",
+    "global_finalization_reserve_seconds": "1800",
+    "conservative_upper_seconds": "106265.78809128000155",
+    "headroom_seconds": "8934.21190871999845",
+    "partial_case_original_scientific_seconds": "713.4644529529999",
+    "partial_case_new_scientific_cap_seconds": 1776,
+    "partial_case_cumulative_scientific_upper_seconds": "2489.4644529529999",
+    "original_case_scientific_cap_seconds": 2490,
+    "partial_case_original_outer_seconds": "713.9540351120002",
+    "partial_case_new_outer_cap_seconds": 1806,
+    "partial_case_cumulative_outer_upper_seconds": "2519.9540351120002",
+    "original_case_outer_cap_seconds": 2520,
+    "threads": 2,
+    "workers": 1,
+    "numerical_concurrency": 1,
+    "rss_cap_bytes": 6442450944,
+    "minimum_host_free_bytes": 2147483648,
+    "scientific_full_success_possible": false,
+    "permanent_unknown_case": "S5_broad_long_imm_seed410518",
+    "caveats": [
+      "Known elapsed accounting plus future conservative reservations, not a runtime forecast or a proved absolute bound on all historical platform time.",
+      "Earlier checkout, dependency installation, artifact transfer and setup durations were not completely measured. They remain unmeasured rather than zero; the remaining headroom is contingency, not a measured value for those costs.",
+      "Past host reservations are replaced by separately charged actual logged overhead; neither the whole host nor nested science is charged twice.",
+      "Diagnostic270s is a whole-launch charge including its science/supervision; those components are not added again.",
+      "Original optimizer settings and caps unchanged; partial recovery does not grant a fresh full case wall allowance.",
+      "All source/protocol/implementation and pilot audits remain required; this proposal grants no execution permission."
+    ]
+  },
+  "base": {
+    "archive": "validation/reproductions/joint_nuisance_20261107/continuation/remaining_host02_exposure_failure.zip",
+    "archive_sha256": "9319b3669c5fda81fab941038913a0c3bc7178c506441af4f244b7e64c228b88",
+    "review": "validation/reproductions/joint_nuisance_20261107/continuation/remaining_host02_exposure_failure_review.json",
+    "review_sha256": "aa43adfe5c2ffcf3c0056887066899b9cd4ac33bb6631a7f345860be99855343",
+    "index_member": "host/index.json",
+    "index_sha256": "34506b398ceefb757733a8ea3732d786625601e2bae7270884b306e8d1c87962",
+    "complete_histories": 43,
+    "unknown_histories": 1,
+    "records": 44
+  },
+  "failed_case": {
+    "archive": {
+      "path": "validation/reproductions/joint_nuisance_20261107/continuation/remaining_host02_exposure_failure.zip",
+      "sha256": "9319b3669c5fda81fab941038913a0c3bc7178c506441af4f244b7e64c228b88"
+    },
+    "review": {
+      "path": "validation/reproductions/joint_nuisance_20261107/continuation/remaining_host02_exposure_failure_review.json",
+      "sha256": "aa43adfe5c2ffcf3c0056887066899b9cd4ac33bb6631a7f345860be99855343"
+    },
+    "case_member": "host/children/03_S6_narrow_short_total_seed410603/science/cases/S6_narrow_short_total_seed410603.json",
+    "case_sha256": "6b8a7a39bf82882b1db7d026f9c85b73496cf518a1d8e92e54018369a4a9d96c",
+    "trace_member": "host/children/03_S6_narrow_short_total_seed410603/science/cases/S6_narrow_short_total_seed410603.attempts.jsonl",
+    "trace_sha256": "ff569fb658489ae1629fe222b98c8d615cdfb37b6e9b0468ad9028f58b86c5f0",
+    "driver_result_member": "host/children/03_S6_narrow_short_total_seed410603/science/result.json",
+    "driver_result_sha256": "c8922efd6c9615d39c46f3668e33430faf5c168e30c89229518b24a2a19976ea",
+    "supervision_member": "host/children/03_S6_narrow_short_total_seed410603/supervision/result.json",
+    "supervision_sha256": "c0a6ef78d5b466537f48fad844d59d408c76a6917b1b86323f8b7a9676a6047a"
+  },
+  "partial_case_id": "S6_narrow_short_total_seed410603",
+  "case_ids": [
+    "S6_narrow_short_total_seed410603",
+    "S6_narrow_short_total_seed410604",
+    "S6_narrow_short_total_seed410606",
+    "S6_narrow_short_total_seed410607",
+    "S6_narrow_short_total_seed410608",
+    "S6_narrow_short_total_seed410609",
+    "S6_narrow_short_total_seed410610",
+    "S6_narrow_short_total_seed410611",
+    "S6_narrow_short_total_seed410612",
+    "S6_narrow_short_total_seed410613",
+    "S6_narrow_short_total_seed410614",
+    "S6_narrow_short_total_seed410615",
+    "S6_narrow_short_total_seed410616",
+    "S6_narrow_short_total_seed410617",
+    "S6_narrow_short_total_seed410618",
+    "S6_narrow_short_total_seed410619",
+    "S6_narrow_short_total_seed410620",
+    "S7_broad_long_total_seed410702",
+    "S7_broad_long_total_seed410703",
+    "S7_broad_long_total_seed410704",
+    "S7_broad_long_total_seed410705",
+    "S7_broad_long_total_seed410706",
+    "S7_broad_long_total_seed410707",
+    "S7_broad_long_total_seed410708",
+    "S7_broad_long_total_seed410709",
+    "S7_broad_long_total_seed410710",
+    "S7_broad_long_total_seed410711",
+    "S7_broad_long_total_seed410712",
+    "S7_broad_long_total_seed410713",
+    "S7_broad_long_total_seed410714",
+    "S7_broad_long_total_seed410715",
+    "S7_broad_long_total_seed410716",
+    "S7_broad_long_total_seed410717",
+    "S7_broad_long_total_seed410718",
+    "S7_broad_long_total_seed410719",
+    "S7_broad_long_total_seed410720"
+  ],
+  "case_slots": [
+    {
+      "case_id": "S6_narrow_short_total_seed410603",
+      "wall_seconds": 1806,
+      "scientific_seconds": 1776,
+      "mode": "partial"
+    },
+    {
+      "case_id": "S6_narrow_short_total_seed410604",
+      "wall_seconds": 2520,
+      "scientific_seconds": 2490,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S6_narrow_short_total_seed410606",
+      "wall_seconds": 2520,
+      "scientific_seconds": 2490,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S6_narrow_short_total_seed410607",
+      "wall_seconds": 2520,
+      "scientific_seconds": 2490,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S6_narrow_short_total_seed410608",
+      "wall_seconds": 2520,
+      "scientific_seconds": 2490,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S6_narrow_short_total_seed410609",
+      "wall_seconds": 2520,
+      "scientific_seconds": 2490,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S6_narrow_short_total_seed410610",
+      "wall_seconds": 2520,
+      "scientific_seconds": 2490,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S6_narrow_short_total_seed410611",
+      "wall_seconds": 2520,
+      "scientific_seconds": 2490,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S6_narrow_short_total_seed410612",
+      "wall_seconds": 2520,
+      "scientific_seconds": 2490,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S6_narrow_short_total_seed410613",
+      "wall_seconds": 2520,
+      "scientific_seconds": 2490,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S6_narrow_short_total_seed410614",
+      "wall_seconds": 2520,
+      "scientific_seconds": 2490,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S6_narrow_short_total_seed410615",
+      "wall_seconds": 2520,
+      "scientific_seconds": 2490,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S6_narrow_short_total_seed410616",
+      "wall_seconds": 2520,
+      "scientific_seconds": 2490,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S6_narrow_short_total_seed410617",
+      "wall_seconds": 2520,
+      "scientific_seconds": 2490,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S6_narrow_short_total_seed410618",
+      "wall_seconds": 2520,
+      "scientific_seconds": 2490,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S6_narrow_short_total_seed410619",
+      "wall_seconds": 2520,
+      "scientific_seconds": 2490,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S6_narrow_short_total_seed410620",
+      "wall_seconds": 2520,
+      "scientific_seconds": 2490,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S7_broad_long_total_seed410702",
+      "wall_seconds": 1200,
+      "scientific_seconds": 1170,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S7_broad_long_total_seed410703",
+      "wall_seconds": 1200,
+      "scientific_seconds": 1170,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S7_broad_long_total_seed410704",
+      "wall_seconds": 1200,
+      "scientific_seconds": 1170,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S7_broad_long_total_seed410705",
+      "wall_seconds": 1200,
+      "scientific_seconds": 1170,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S7_broad_long_total_seed410706",
+      "wall_seconds": 1200,
+      "scientific_seconds": 1170,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S7_broad_long_total_seed410707",
+      "wall_seconds": 1200,
+      "scientific_seconds": 1170,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S7_broad_long_total_seed410708",
+      "wall_seconds": 1200,
+      "scientific_seconds": 1170,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S7_broad_long_total_seed410709",
+      "wall_seconds": 1200,
+      "scientific_seconds": 1170,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S7_broad_long_total_seed410710",
+      "wall_seconds": 1200,
+      "scientific_seconds": 1170,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S7_broad_long_total_seed410711",
+      "wall_seconds": 1200,
+      "scientific_seconds": 1170,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S7_broad_long_total_seed410712",
+      "wall_seconds": 1200,
+      "scientific_seconds": 1170,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S7_broad_long_total_seed410713",
+      "wall_seconds": 1200,
+      "scientific_seconds": 1170,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S7_broad_long_total_seed410714",
+      "wall_seconds": 1200,
+      "scientific_seconds": 1170,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S7_broad_long_total_seed410715",
+      "wall_seconds": 1200,
+      "scientific_seconds": 1170,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S7_broad_long_total_seed410716",
+      "wall_seconds": 1200,
+      "scientific_seconds": 1170,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S7_broad_long_total_seed410717",
+      "wall_seconds": 1200,
+      "scientific_seconds": 1170,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S7_broad_long_total_seed410718",
+      "wall_seconds": 1200,
+      "scientific_seconds": 1170,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S7_broad_long_total_seed410719",
+      "wall_seconds": 1200,
+      "scientific_seconds": 1170,
+      "mode": "untouched"
+    },
+    {
+      "case_id": "S7_broad_long_total_seed410720",
+      "wall_seconds": 1200,
+      "scientific_seconds": 1170,
+      "mode": "untouched"
+    }
+  ],
+  "full_sequence": [
+    "S4_narrow_short_imm_seed410401",
+    "S5_broad_long_imm_seed410501",
+    "S6_narrow_short_total_seed410601",
+    "S6_narrow_short_total_seed410605",
+    "S7_broad_long_total_seed410701",
+    "S4_narrow_short_imm_seed410402",
+    "S4_narrow_short_imm_seed410403",
+    "S4_narrow_short_imm_seed410404",
+    "S4_narrow_short_imm_seed410405",
+    "S4_narrow_short_imm_seed410406",
+    "S4_narrow_short_imm_seed410407",
+    "S4_narrow_short_imm_seed410408",
+    "S4_narrow_short_imm_seed410409",
+    "S4_narrow_short_imm_seed410410",
+    "S4_narrow_short_imm_seed410411",
+    "S4_narrow_short_imm_seed410412",
+    "S4_narrow_short_imm_seed410413",
+    "S4_narrow_short_imm_seed410414",
+    "S4_narrow_short_imm_seed410415",
+    "S4_narrow_short_imm_seed410416",
+    "S4_narrow_short_imm_seed410417",
+    "S4_narrow_short_imm_seed410418",
+    "S4_narrow_short_imm_seed410419",
+    "S4_narrow_short_imm_seed410420",
+    "S5_broad_long_imm_seed410502",
+    "S5_broad_long_imm_seed410503",
+    "S5_broad_long_imm_seed410504",
+    "S5_broad_long_imm_seed410505",
+    "S5_broad_long_imm_seed410506",
+    "S5_broad_long_imm_seed410507",
+    "S5_broad_long_imm_seed410508",
+    "S5_broad_long_imm_seed410509",
+    "S5_broad_long_imm_seed410510",
+    "S5_broad_long_imm_seed410511",
+    "S5_broad_long_imm_seed410512",
+    "S5_broad_long_imm_seed410513",
+    "S5_broad_long_imm_seed410514",
+    "S5_broad_long_imm_seed410515",
+    "S5_broad_long_imm_seed410516",
+    "S5_broad_long_imm_seed410517",
+    "S5_broad_long_imm_seed410518",
+    "S5_broad_long_imm_seed410519",
+    "S5_broad_long_imm_seed410520",
+    "S6_narrow_short_total_seed410602",
+    "S6_narrow_short_total_seed410603",
+    "S6_narrow_short_total_seed410604",
+    "S6_narrow_short_total_seed410606",
+    "S6_narrow_short_total_seed410607",
+    "S6_narrow_short_total_seed410608",
+    "S6_narrow_short_total_seed410609",
+    "S6_narrow_short_total_seed410610",
+    "S6_narrow_short_total_seed410611",
+    "S6_narrow_short_total_seed410612",
+    "S6_narrow_short_total_seed410613",
+    "S6_narrow_short_total_seed410614",
+    "S6_narrow_short_total_seed410615",
+    "S6_narrow_short_total_seed410616",
+    "S6_narrow_short_total_seed410617",
+    "S6_narrow_short_total_seed410618",
+    "S6_narrow_short_total_seed410619",
+    "S6_narrow_short_total_seed410620",
+    "S7_broad_long_total_seed410702",
+    "S7_broad_long_total_seed410703",
+    "S7_broad_long_total_seed410704",
+    "S7_broad_long_total_seed410705",
+    "S7_broad_long_total_seed410706",
+    "S7_broad_long_total_seed410707",
+    "S7_broad_long_total_seed410708",
+    "S7_broad_long_total_seed410709",
+    "S7_broad_long_total_seed410710",
+    "S7_broad_long_total_seed410711",
+    "S7_broad_long_total_seed410712",
+    "S7_broad_long_total_seed410713",
+    "S7_broad_long_total_seed410714",
+    "S7_broad_long_total_seed410715",
+    "S7_broad_long_total_seed410716",
+    "S7_broad_long_total_seed410717",
+    "S7_broad_long_total_seed410718",
+    "S7_broad_long_total_seed410719",
+    "S7_broad_long_total_seed410720"
+  ],
+  "permanent_unknown": {
+    "archive": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failed.zip",
+    "archive_sha256": "9afcc1666204678791f15531b54cb81999febef1f37b6fa938ae2b92af1e7c2a",
+    "index_member": "host/children/01_S5_broad_long_imm_seed410518/science/index.json",
+    "index_sha256": "7caeaa76d32e62ac340855e24467d91a94e985b23383a27c7fd51d6614fab288",
+    "review": "validation/reproductions/joint_nuisance_20261107/continuation/recovery_pilot04_optimizer_cap_failure_review.json",
+    "review_sha256": "acad07075963f220f59c257eb512555000ec5cffe3fa46ba3df0183775de6c80",
+    "case_id": "S5_broad_long_imm_seed410518",
+    "case_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410518.json",
+    "case_sha256": "6714ad7ebd17e3bf432638f9c8b0cb4d466d6aa5d7ddd7f3623d2ead17960028",
+    "trace_member": "host/children/01_S5_broad_long_imm_seed410518/science/cases/S5_broad_long_imm_seed410518.attempts.jsonl",
+    "trace_sha256": "0c62a0f2c193f16ab15efd08c94777ef3acaf2d969bb891b60cd86b378a0b71a",
+    "library_member": "host/children/01_S5_broad_long_imm_seed410518/build/attenuation.so",
+    "build_receipt_member": "host/children/01_S5_broad_long_imm_seed410518/build/build_receipt.json",
+    "complete_case_ids": [
+      "S4_narrow_short_imm_seed410401",
+      "S5_broad_long_imm_seed410501",
+      "S6_narrow_short_total_seed410601",
+      "S6_narrow_short_total_seed410605",
+      "S7_broad_long_total_seed410701",
+      "S4_narrow_short_imm_seed410402",
+      "S4_narrow_short_imm_seed410403",
+      "S4_narrow_short_imm_seed410404",
+      "S4_narrow_short_imm_seed410405",
+      "S4_narrow_short_imm_seed410406",
+      "S4_narrow_short_imm_seed410407",
+      "S4_narrow_short_imm_seed410408",
+      "S4_narrow_short_imm_seed410409",
+      "S4_narrow_short_imm_seed410410",
+      "S4_narrow_short_imm_seed410411",
+      "S4_narrow_short_imm_seed410412",
+      "S4_narrow_short_imm_seed410413",
+      "S4_narrow_short_imm_seed410414",
+      "S4_narrow_short_imm_seed410415",
+      "S4_narrow_short_imm_seed410416",
+      "S4_narrow_short_imm_seed410417",
+      "S4_narrow_short_imm_seed410418",
+      "S4_narrow_short_imm_seed410419",
+      "S4_narrow_short_imm_seed410420",
+      "S5_broad_long_imm_seed410502",
+      "S5_broad_long_imm_seed410503",
+      "S5_broad_long_imm_seed410504",
+      "S5_broad_long_imm_seed410505",
+      "S5_broad_long_imm_seed410506",
+      "S5_broad_long_imm_seed410507",
+      "S5_broad_long_imm_seed410508",
+      "S5_broad_long_imm_seed410509",
+      "S5_broad_long_imm_seed410510",
+      "S5_broad_long_imm_seed410511",
+      "S5_broad_long_imm_seed410512",
+      "S5_broad_long_imm_seed410513",
+      "S5_broad_long_imm_seed410514",
+      "S5_broad_long_imm_seed410515",
+      "S5_broad_long_imm_seed410516",
+      "S5_broad_long_imm_seed410517"
+    ],
+    "scientific_indexed_seconds": 22249.261830978,
+    "known_prior_outer_overhead_seconds": 51.02269905900175,
+    "operational_failure_charge_seconds": 290,
+    "operational_diagnostic_charge_seconds": 80,
+    "additional_workflow_overhead_seconds": 94.601386743,
+    "additional_workflow_overhead_seconds_decimal": "94.6013867429999",
+    "accounted_base_seconds": 22764.885916780004,
+    "whole_workflow_bound_seconds": 680,
+    "included_current_scientific_seconds": 585.3986132570001
+  },
+  "reuse": {
+    "complete_arms": [
+      "null",
+      "LI",
+      "LIplus_immigrant"
+    ],
+    "total_model": "LIplus_inclusive",
+    "successful_starts": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "new_starts": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "prior_failed_record_indices": [
+      4,
+      5
+    ]
+  },
+  "checker": {
+    "module": "experiments.s04b_exposure_refinement_audit.check",
+    "sources": [
+      "experiments/s04b_exposure_refinement_audit/check.py",
+      "experiments/s04b_exposure_refinement_audit/__init__.py",
+      "experiments/s04b_joint_remaining_audit/check.py",
+      "experiments/s04b_joint_audit/check.py",
+      "experiments/s04b_joint_nuisance_audit/audit.py"
+    ]
+  }
+}

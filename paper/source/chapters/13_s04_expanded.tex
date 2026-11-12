@@ -123,9 +123,8 @@ All fits hold the shared background and excitation backbone fixed. Training-only
 The recovered-input edition completed the full saved-state likelihood and score
 replay supplied in \path{reproduction/synthetic/}. It rebuilds quadrature from
 the raw matched histories and reproduces the selected/floor likelihoods,
-score contrasts and summary rows. The interrupted first execution and the
-separately completed missing-case execution are both retained. This
-computation re-evaluates saved fits; it does not rerun their optimizer searches.
+score contrasts and summary rows. This computation re-evaluates saved fits;
+it does not rerun their optimizer searches.
 
 Under immigrant: narrow/short generation, the matched raw procedure has a negative mean gain and a negative median; its gated version has a negative mean. Under immigrant: broad/long generation, the matched raw procedure has a positive mean gain and a positive median; its gated version has a positive mean. Under total: narrow/short generation, the matched raw procedure has a negative mean gain and a negative median; its gated version has a positive mean. Under total: broad/long generation, the matched raw procedure has a positive mean gain and a positive median; its gated version has a positive mean. Both matched raw procedures lose on average in their narrow/short settings. The positive gated mean under narrow/short total generation comes from a single winning active history and otherwise exact-floor ties; it does not demonstrate reliable recovery. Under narrow/short immigrant generation, the matched gate instead retains a single active loss and otherwise floor ties. In both broad/long generating settings, matched raw and gated procedures win on every history in this declared bank. These outcomes remain conditional on the fixed nuisance backbone and chosen regimes.
 
