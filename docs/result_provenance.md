@@ -263,3 +263,8 @@ One initial audit failed because a metadata assertion required exact binary equa
 ### Original Chapter 12 edition-recovery statement
 
 These are original audit outcomes. This edition recovered the simulation and diagnostic records and checked their hashes and source identities; it did not repeat that simulation or diagnostic campaign.
+
+## 13 November 2026 referee-remediation supplement
+
+The additive calculations in `validation/live_results/referee_remediation_20261113/` are deterministic reuses of sealed authorities and frozen synthetic histories. `mde_expanded.json` recomputes contrast-specific block standard errors from the paired calendar-block authorities and the three JMA fold totals. `s8_oracle_decomposition.json` evaluates two partial oracles with the frozen S8 model code: the true attenuation parameters on a fitted backbone, and a five-parameter backbone refit at true attenuation. `synthetic_quantiles.json` recomputes exact order statistics from the 80 S04B case files and the sealed S8 rows. `nz_trend_totals.json` sums the three stored New Zealand fold controls. The independent audit replays the partial-oracle held-out scores and verifies the sealed hash roster. No sealed JSON was rewritten.
+

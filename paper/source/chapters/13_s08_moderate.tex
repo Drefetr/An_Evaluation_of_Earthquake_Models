@@ -1,14 +1,15 @@
 \subsubsection{A moderately thinned total-intensity control}\label{sec:s8-moderate}
 The S8 generator uses $e^a=0.25\,\mathrm{day}^{-1}$, $\eta=0.4$, $\ell=15\,\mathrm{km}$ and $\psi=5$ days, with the preceding temporal-trigger and mark settings. The generating law is fixed before the twenty analysis histories are drawn. It rejects 27.21\% of event proposals and retains 94.7 test events on average (range $[78, 112]$). Both arms jointly fit $(a,d,n,c,p)$ on the 365-day training window; the total-attenuation arm also fits $(\eta,\ell,\psi)$. Its search includes the fitted null as an eligible state. The fitted parameters are frozen for the subsequent 365-day test window.
 
-\begin{table}[htbp]\centering\small
-\caption{Complete S8 held-out contrasts against the jointly fitted uninhibited comparator, in nats per history. Both rows use twenty histories with 94.7 test events on average. The later frozen-fit BIC sensitivity retains attenuation when the fine training gain exceeds $1.5\log N_{\rm train}$ and returns the exact fitted null otherwise. MCSE uses the sample standard deviation of all twenty gains, including floor-return zeros, divided by $\sqrt{20}$. Wilson intervals concern strict-positive win probability.}\label{tab:s8-moderate}
-\begin{tabular}{@{}lrrrrrr@{}}\toprule
-Selection & Mean & Median & MCSE & Wins & Active & Wilson interval\\\midrule
-Raw & +0.2941 & +2.5415 & 2.7773 & 13/20 & 20/20 & [0.4329, 0.8188]\\
-BIC & +2.4946 & +0.0000 & 1.4436 & 9/20 & 12/20 & [0.2582, 0.6579]\\
+\begin{table}[htbp]\centering\scriptsize
+\setlength{\tabcolsep}{3pt}
+\caption{Complete S8 held-out contrasts against the jointly fitted uninhibited comparator, in nats per history. Both rows use twenty histories with 94.7 test events on average. Q25, Q75 and IQR are exact sample quantiles; Min and Max are the observed extremes. The later frozen-fit BIC sensitivity retains attenuation when the fine training gain exceeds $1.5\log N_{\rm train}$ and returns the exact fitted null otherwise. MCSE uses the sample standard deviation of all twenty gains, including floor-return zeros, divided by $\sqrt{20}$. Wilson intervals concern strict-positive win probability. Because null second moments diverge in the heavy-tailed mark regime ($2\gamma>\beta$), medians and interquartile ranges are primary and sample MCSEs are descriptive only.}\label{tab:s8-moderate}
+\begin{tabular}{@{}lrrrrrrrrr@{}}\toprule
+Selection & Mean & Median & Q25 & Q75 & IQR & Min & Max & MCSE & Wins\\\midrule
+Raw & +0.2941 & +2.5415 & -2.677 & +6.813 & 9.490 & -38.265 & +16.833 & 2.7773 & 13/20 \\
+BIC & +2.4946 & +0.0000 & +0.000 & +5.071 & 5.071 & -10.239 & +16.833 & 1.4436 & 9/20 \\
 \bottomrule\end{tabular}\end{table}
 
-Raw selected fits reach at least one box boundary in 13/20 histories: $p=2.5$ in 7, $n=0.98$ in 6, $\eta=4$ in 2 and $a=0$ in 1, with overlapping counts. S8 applies its declared 0.01-nat training-score gate; 18/20 records fail the stricter inherited 0.0001-nat score and 0.0001 scaled-gradient criterion, with maximum scaled coarse/fine gradient difference 0.03324.
+Raw selected fits reach at least one box boundary in 13/20 histories: $p=2.5$ in 7, $n=0.98$ in 6, $\eta=4$ in 2 and $a=0$ in 1, with overlapping counts. The raw procedure remains active in 20/20 histories, with Wilson interval $[0.4329, 0.8188]$; the BIC sensitivity is active in 12/20, with $[0.2582, 0.6579]$. S8 applies its declared 0.01-nat training-score gate; 18/20 records fail the stricter inherited 0.0001-nat score and 0.0001 scaled-gradient criterion, with maximum scaled coarse/fine gradient difference 0.03324.
 
 All twenty training fits select a positive attenuation amplitude. Individual test contrasts range from -38.2652 to +16.8335 nats, with 7 negative contrasts. The raw mean gain is smaller than its sample Monte Carlo standard error, and the win-probability interval includes $1/2$. The training mesh is refined until selected score doubling agrees within 0.01 nat. Selected likelihoods are checked by doubling positive Gauss--Legendre quadrature; the largest held-out change is 0.000028 nats. The twenty histories and generating law are supplied in \path{reproduction/synthetic/s8_moderate_total/}; complete fits, CPU score checks and the aggregate are in \path{validation/live_results/s8_moderate_complete_20261111/}.

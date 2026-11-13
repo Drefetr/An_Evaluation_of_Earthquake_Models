@@ -10,14 +10,14 @@ The recovered-input edition reran the frozen diagnostic fitting recipe from the 
 
 The empirical analysis begins with an archived catalogue rather than with the unavailable inputs to the original manuscript. The primary archive is a GeoNet WFS snapshot downloaded on 15 October 2026. Events were selected with magnitude \(M\geq 5\) and depth no greater than \(40\)~km, within latitude \([-48.5,-33.5]\) and longitude \([165,180]\). The depth sentinel value \(-9\) was excluded, while other negative depths were retained. The resulting file contains 913 selected events in a 24,394-day observation window, from 1960-01-01 inclusive to 2026-10-15 exclusive. The event count is recorded, together with the filter definition and catalogue metadata, in the archived research report and processed metadata (\hyperlink{S25}{archival \texttt{S25} (recovered archive)}; \href{https://github.com/Drefetr/An_Evaluation_of_Earthquake_Models/blob/61aa599cd023f2441a6a0c6af9aa4b6fe9eda3e5/provenance/catalogue_snapshot_metadata.json}{public metadata extract} (\texttt{S24})).
 
-The reappearance of the number 913 does not establish identity with the event list analysed in the original work. The original frozen data, source configuration, and executable code are absent, so neither event identity nor processing history can be recovered. A second archived FDSN interface from the same provider returned 914 selections, consisting of 913 events common to the primary snapshot and the additional event 2025p672513. These are interface selections from one national provider, not independent physical catalogues. The interfaces share the same provider and much of their processing history; agreement between them cannot serve as independent validation of completeness or magnitude accuracy.
+The reappearance of the number 913 does not establish identity with the event list analysed in the original work. The original frozen data, source configuration, and executable code are absent, so neither event identity nor processing history can be recovered. A second archived FDSN interface from the same provider returned 914 selections, consisting of 913 events common to the primary snapshot and the additional event 2025p672513. These are interface selections from one national provider, not independent physical catalogues. The interfaces share the same provider and much of their processing history; the 913/914-event agreement therefore tests query and export consistency only and provides zero evidence of physical catalogue completeness or magnitude accuracy.
 
-This distinction governs the interpretation of every later comparison. The reconstruction is an independent analysis applied to a documented archive snapshot, not a numerical replay of the historical analysis. The fitted catalogue slope for a continuous excess-exponential magnitude model is \(2.849401764894274\). For comparison with the earlier manuscript's half-bin convention, define
+This distinction governs the interpretation of every later comparison. The reconstruction is an independent analysis applied to a documented archive snapshot, not a numerical replay of the historical analysis. The fitted catalogue slope for a continuous excess-exponential magnitude model is \(2.849\). For comparison with the earlier manuscript's half-bin convention, define
 \[
  \widehat\beta_{\mathrm{adj}}
  =\frac{1}{\overline{M-M_0}+0.05},\qquad M_0=5.
 \]
-Applied to the archived selection, this gives \(2.494071218330174\), consistent in rounded form with the reported value near \(2.494\). This reconciles an estimator convention; mixed precision and native magnitude scales do not establish a common half-bin adjustment as a generally validated correction for this catalogue. The primary continuous estimate, raw magnitudes, productivity normalization and fitted-law records remain unchanged. It does not demonstrate that the historical event sample or likelihood calculation has been reproduced. Completeness above a time-varying threshold, the relation between native magnitude scales, missing parents of smaller or deeper events, activity before 1960, and the adequacy of national pooling therefore remain explicit assumptions (\hyperlink{S27}{archival \texttt{S27} (recovered archive)}).
+Applied to the archived selection, this gives \(2.494\), consistent in rounded form with the reported value near \(2.494\). This reconciles an estimator convention; mixed precision and native magnitude scales do not establish a common half-bin adjustment as a generally validated correction for this catalogue. The primary continuous estimate, raw magnitudes, productivity normalization and fitted-law records remain unchanged. It does not demonstrate that the historical event sample or likelihood calculation has been reproduced. Completeness above a time-varying threshold, the relation between native magnitude scales, missing parents of smaller or deeper events, activity before 1960, and the adequacy of national pooling therefore remain explicit assumptions (\hyperlink{S27}{archival \texttt{S27} (recovered archive)}).
 
 
 \begin{figure}[tbp]
@@ -70,7 +70,7 @@ Table~\ref{tab:saved-predictive-parameters} displays the saved selected records 
 \begin{table}[htbp]
 \centering\small
 \setlength{\tabcolsep}{4pt}
-\caption{Saved selected parameters at three predictive origins. The background is \(\exp(a+dz(t)-\eta G_s(t))\) per day, with \(z(t)=2t/24394-1\). Values are rounded for display; zeros in the uninhibited families are fixed.}
+\caption{Exploratory chronological comparison on the adaptively reused 612-event archive: saved selected parameters at three predictive origins. The background is \(\exp(a+dz(t)-\eta G_s(t))\) per day, with \(z(t)=2t/24394-1\). Values are rounded for display; zeros in the uninhibited families are fixed.}
 \label{tab:saved-predictive-parameters}
 \begin{tabular}{llrrrr}
 \toprule Origin & Family & \(a\) & \(d\) & \(n\) & \(\eta\) \\ \midrule
@@ -138,7 +138,7 @@ Table~\ref{tab:observed-scores} reports score differences relative to the ML tri
 
 \begin{table}[!ht]
 \centering
-\caption{Held-out marked-process score differences relative to the ML triggering-only benchmark. Tests are disjoint chronological intervals in the declared archive protocol. Values are differences, not log-likelihoods for separate datasets. Paired calendar-block intervals for shared inhibition follow below.}
+\caption{Exploratory chronological comparison on the adaptively reused 612-event archive: held-out marked-process score differences relative to the ML triggering-only benchmark. Tests are disjoint chronological intervals in the declared archive protocol. Values are differences, not log-likelihoods for separate datasets. Paired calendar-block intervals for shared inhibition follow below.}
 \label{tab:observed-scores}
 \small
 \setlength{\tabcolsep}{4pt}
@@ -223,12 +223,12 @@ A spatial and mark audit found that all five occupied coarse cells had negative 
 
 \section{Archive sensitivity}
 
-A replacement audit matched all 913 event identifiers and found 241 numerical magnitude differences, the largest absolute difference being \(0.164143665\). Many differences were only in small decimal places. The full history was rescored using alternate matched magnitudes while primary clocks, locations, depths, the fitted \(\beta\), and the recipe definitions were fixed. The additional event in the 914-event interface selection was excluded, and no parameters were refitted or physically converted between magnitude scales.
+A replacement audit matched all 913 event identifiers and found 241 numerical magnitude differences, the largest absolute difference being \(0.164\). Many differences were only in small decimal places. The full history was rescored using alternate matched magnitudes while primary clocks, locations, depths, the fitted \(\beta\), and the recipe definitions were fixed. The additional event in the 914-event interface selection was excluded, and no parameters were refitted or physically converted between magnitude scales.
 
 Under this replacement, the total shared score changed as follows:
 \[
- -17.622859365\ \longrightarrow\ -17.617975447,
- \qquad \text{change }+0.004883918.
+ -17.623\ \longrightarrow\ -17.618,
+ \qquad \text{change }+0.005.
 \]
 No fold changed sign. The Omori total changed from \(12.458121\) to \(12.441651\), shown to six decimal places. Thus the tested archive value discrepancy does not explain the recipe failure. Equally, this bounded audit does not eliminate every observational uncertainty in magnitudes, depths, locations, completeness, or event identity.
 
@@ -314,7 +314,7 @@ Late & -523.5999 & -526.5270 & -2.9272 \\
 Pooled & --- & --- & -12.9456 \\
 \bottomrule
 \end{tabular}
-\caption{Held-out marked log scores and inhibited-minus-null gains for the
+\caption{Exploratory chronological comparison on the adaptively reused 612-event archive: held-out marked log scores and inhibited-minus-null gains for the
 autonomous finite-mode subfamily, in nats. The common mark contribution
 cancels from each gain; this is an occurrence-score comparison. The middle
 fold selects $\hat\eta=0$: its displayed tie contains only a small

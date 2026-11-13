@@ -1,0 +1,227 @@
+{
+  "schema": "referee_mde_expanded_v1",
+  "passed": true,
+  "source": "experiments/methodological_audit/referee_remediation_20261113.py",
+  "definition": "MDE95=1.96*SE_B and MDE80=2.80*SE_B.  SE_B is the independent-block standard error sqrt(sum_f blocks_f * var_f) of paired calendar-block score totals, matching the repository's established block-SE definition.  The bootstrap percentile half-width is reported separately because contiguous blocks are dependent.",
+  "block_inference_qualification": "Contiguous calendar blocks are dependent under long memory; these are descriptive multi-scale sensitivities, not calibrated frequentist guarantees.",
+  "contrasts": [
+    {
+      "contrast": "NZ_shared_minus_ML",
+      "n_test": 612,
+      "source": "score_uncertainty_remote_v2_20261111",
+      "observed": {
+        "free_d": -17.62285936479381,
+        "zero_d": -11.43120134330374,
+        "fixed_null_d": -5.005743070332926,
+        "primary_display": "free d"
+      },
+      "block_days": {
+        "90": {
+          "blocks": 137,
+          "se_total_nats": 4.712389972269338,
+          "se_nats_per_event": 0.00769998361481918,
+          "mde95_total_nats": 9.236284345647903,
+          "mde95_nats_per_event": 0.015091967885045592,
+          "mde80_total_nats": 13.194691922354146,
+          "mde80_nats_per_event": 0.021559954121493703,
+          "required_rate_perturbation": 0.17373524619400402,
+          "bootstrap_halfwidth_nats": 9.159416155033941
+        },
+        "180": {
+          "blocks": 70,
+          "se_total_nats": 5.417713255024512,
+          "se_nats_per_event": 0.008852472638928941,
+          "mde95_total_nats": 10.618717979848043,
+          "mde95_nats_per_event": 0.017350846372300725,
+          "mde80_total_nats": 15.169597114068631,
+          "mde80_nats_per_event": 0.024786923389001035,
+          "required_rate_perturbation": 0.1862839036111318,
+          "bootstrap_halfwidth_nats": 10.405366589255278
+        },
+        "365": {
+          "blocks": 36,
+          "se_total_nats": 6.650650943016875,
+          "se_nats_per_event": 0.01086707670427594,
+          "mde95_total_nats": 13.035275848313075,
+          "mde95_nats_per_event": 0.021299470340380842,
+          "mde80_total_nats": 18.62182264044725,
+          "mde80_nats_per_event": 0.03042781477197263,
+          "required_rate_perturbation": 0.20639510818030957,
+          "bootstrap_halfwidth_nats": 12.415367736565408
+        }
+      }
+    },
+    {
+      "contrast": "CA_LIplus_total_minus_floor",
+      "n_test": 315,
+      "source": "score_uncertainty_remote_v2_20261111",
+      "observed": {
+        "free_d": -2.386674517269429,
+        "primary_display": "free d"
+      },
+      "block_days": {
+        "90": {
+          "blocks": 63,
+          "se_total_nats": 1.9484702112222803,
+          "se_nats_per_event": 0.006185619718165969,
+          "mde95_total_nats": 3.819001613995669,
+          "mde95_nats_per_event": 0.0121238146476053,
+          "mde80_total_nats": 5.455716591422385,
+          "mde80_nats_per_event": 0.017319735210864714,
+          "required_rate_perturbation": 0.15571650296359277,
+          "bootstrap_halfwidth_nats": 3.265167202904164
+        },
+        "180": {
+          "blocks": 33,
+          "se_total_nats": 1.9426189715890299,
+          "se_nats_per_event": 0.006167044354250888,
+          "mde95_total_nats": 3.8075331843144986,
+          "mde95_nats_per_event": 0.01208740693433174,
+          "mde80_total_nats": 5.439333120449283,
+          "mde80_nats_per_event": 0.017267724191902485,
+          "required_rate_perturbation": 0.15548251949548375,
+          "bootstrap_halfwidth_nats": 3.1703811338076258
+        },
+        "365": {
+          "blocks": 18,
+          "se_total_nats": 1.9419955005863043,
+          "se_nats_per_event": 0.006165065081226363,
+          "mde95_total_nats": 3.8063111811491566,
+          "mde95_nats_per_event": 0.012083527559203671,
+          "mde80_total_nats": 5.437587401641652,
+          "mde80_nats_per_event": 0.017262182227433816,
+          "required_rate_perturbation": 0.15545756693840074,
+          "bootstrap_halfwidth_nats": 3.1365709242148725
+        }
+      }
+    },
+    {
+      "contrast": "CA_EPplus_minus_original_EP",
+      "n_test": 315,
+      "source": "etas_inhibition_benchmark_interior_20261112/baseline_uncertainty",
+      "observed": {
+        "bound_pinned": 69.55289384227054,
+        "interior_sigma0_redeclustered": 77.0557339839778,
+        "interior_sigma0_frozen_weights": 78.5844526377922,
+        "primary_display": "bound-pinned 69.553; interior 77.056"
+      },
+      "block_days": {
+        "90": {
+          "blocks": 63,
+          "se_total_nats": 24.64400808671438,
+          "se_nats_per_event": 0.07823494630702978,
+          "mde95_total_nats": 48.30225584996018,
+          "mde95_nats_per_event": 0.15334049476177836,
+          "mde80_total_nats": 69.00322264280025,
+          "mde80_nats_per_event": 0.21905784965968336,
+          "required_rate_perturbation": 0.5537878560636345,
+          "bootstrap_halfwidth_nats": 45.74000550748175
+        },
+        "180": {
+          "blocks": 33,
+          "se_total_nats": 24.172885504734428,
+          "se_nats_per_event": 0.07673931906264897,
+          "mde95_total_nats": 47.378855589279475,
+          "mde95_nats_per_event": 0.15040906536279197,
+          "mde80_total_nats": 67.6840794132564,
+          "mde80_nats_per_event": 0.2148700933754171,
+          "required_rate_perturbation": 0.548468896771352,
+          "bootstrap_halfwidth_nats": 44.07971198836643
+        },
+        "365": {
+          "blocks": 18,
+          "se_total_nats": 26.960566843950673,
+          "se_nats_per_event": 0.0855891010919069,
+          "mde95_total_nats": 52.84271101414332,
+          "mde95_nats_per_event": 0.16775463814013752,
+          "mde80_total_nats": 75.48958716306188,
+          "mde80_nats_per_event": 0.2396494830573393,
+          "required_rate_perturbation": 0.5792316257597431,
+          "bootstrap_halfwidth_nats": 47.787401443111364
+        }
+      }
+    },
+    {
+      "contrast": "CA_OC_minus_EP",
+      "n_test": 315,
+      "source": "score_uncertainty_remote_v2_20261111",
+      "observed": {
+        "free_d": -51.05120476305756,
+        "primary_display": "free d"
+      },
+      "block_days": {
+        "90": {
+          "blocks": 63,
+          "se_total_nats": 22.11556931300263,
+          "se_nats_per_event": 0.0702081565492147,
+          "mde95_total_nats": 43.34651585348516,
+          "mde95_nats_per_event": 0.1376079868364608,
+          "mde80_total_nats": 61.92359407640736,
+          "mde80_nats_per_event": 0.19658283833780113,
+          "required_rate_perturbation": 0.5246103064875124,
+          "bootstrap_halfwidth_nats": 41.33323946494346
+        },
+        "180": {
+          "blocks": 33,
+          "se_total_nats": 21.970880240698055,
+          "se_nats_per_event": 0.0697488261609462,
+          "mde95_total_nats": 43.06292527176819,
+          "mde95_nats_per_event": 0.13670769927545456,
+          "mde80_total_nats": 61.51846467395455,
+          "mde80_nats_per_event": 0.19529671325064935,
+          "required_rate_perturbation": 0.5228913831293351,
+          "bootstrap_halfwidth_nats": 39.9475177182061
+        },
+        "365": {
+          "blocks": 18,
+          "se_total_nats": 21.503346048762893,
+          "se_nats_per_event": 0.06826459063099331,
+          "mde95_total_nats": 42.14655825557527,
+          "mde95_nats_per_event": 0.1337985976367469,
+          "mde80_total_nats": 60.209368936536094,
+          "mde80_nats_per_event": 0.19114085376678128,
+          "required_rate_perturbation": 0.5172979753232113,
+          "bootstrap_halfwidth_nats": 37.965217026850176
+        }
+      }
+    }
+  ],
+  "japan": {
+    "contrast": "Japan_OC_minus_EP_joint",
+    "n_test": 1277,
+    "source": "three reported JMA fold totals; between-window standard error, not a calendar-block bootstrap",
+    "observed": {
+      "total_nats": -221.2115,
+      "per_fold_nats": -73.73716666666667,
+      "fold_totals": [
+        -74.7591,
+        -59.1334,
+        -87.319
+      ],
+      "primary_display": "total -221.211; -73.737 per fold"
+    },
+    "per_fold": {
+      "se_total_nats": 8.152510301400694,
+      "se_nats_per_event": 0.006384111434143065,
+      "mde95_total_nats": 15.97892019074536,
+      "mde95_nats_per_event": 0.012512858410920407,
+      "mde80_total_nats": 22.82702884392194,
+      "blocks": 3
+    },
+    "three_fold_sum": {
+      "se_total_nats": 24.45753090420208,
+      "mde95_total_nats": 47.93676057223608,
+      "mde80_total_nats": 68.48108653176583,
+      "per_event_nats": 0.019152334302429193,
+      "note": "Sum of three annual fold totals; between-window SE multiplied by three."
+    },
+    "observed_total_over_three_fold_mde": -4.61465266654086,
+    "note": "The between-window SE describes three annual windows only; it is not a 90/180/365-day calendar-block estimate and is repeated at each label."
+  },
+  "block_lengths": [
+    90,
+    180,
+    365
+  ],
+  "confidence_percent": 95
+}

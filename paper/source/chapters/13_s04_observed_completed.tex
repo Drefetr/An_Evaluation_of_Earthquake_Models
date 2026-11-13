@@ -6,39 +6,47 @@ The observed comparison uses the same three California folds and 315 targets. Ba
 
 Original LI is retained unpenalized. Magnitude-scaled LI+ is evaluated with immigrant-only and total-intensity attenuation, each with raw training selection and with the declared training-only BIC-style gate. A gate may select the exact floor. A negative held-out gain is retained, while an unresolved numerical result remains unknown rather than being assigned zero.
 
-\begin{table}[htbp]\centering\caption{Held-out joint gains (nats) relative to the shared uninhibited floor. Displayed zeros select the nested $\hat\eta=0$ training boundary: their algebraic forecast contrasts are exactly zero, rather than estimates of a zero physical effect. Paired block intervals for raw total-intensity attenuation are reported in Section~\ref{sec:li-score-uncertainty}.}\label{tab:s04-observed}
+Table~\ref{tab:s04-observed} reports the three active empirical contrasts. Table~\ref{tab:s04-observed-boundary} partitions the twelve gate-selected or nested rows whose training solution is $\hat\eta=0$: for these cells the held-out joint contrast is identically $0.0000$ by algebraic nesting, not an independent empirical test of zero attenuation. Presenting the twelve zero rows as separate powered comparisons would overstate the evidence.
+
+\begin{table}[htbp]\centering\caption{Active held-out joint gains (nats) relative to the shared uninhibited floor. All three rows select positive total-intensity attenuation in training and lose held-out joint score. Displayed values are empirical contrasts, not algebraic returns. Paired block intervals for raw total-intensity attenuation are reported in Section~\ref{sec:li-score-uncertainty}.}\label{tab:s04-observed}
 
 \begin{tabular}{llllrll}\toprule Fold & Model & Gate & Status & Gain & Win & Active\\\midrule
 
-0 & LI & raw & resolved & 0.0000 & no & no \\
-
-0 & LI+ immigrant & raw & resolved & 0.0000 & no & no \\
-
-0 & LI+ immigrant & BIC & resolved & 0.0000 & no & no \\
-
 0 & LI+ total & raw & resolved & -0.2245 & no & yes \\
-
-0 & LI+ total & BIC & resolved & 0.0000 & no & no \\
-
-1 & LI & raw & resolved & 0.0000 & no & no \\
-
-1 & LI+ immigrant & raw & resolved & 0.0000 & no & no \\
-
-1 & LI+ immigrant & BIC & resolved & 0.0000 & no & no \\
 
 1 & LI+ total & raw & resolved & -1.9529 & no & yes \\
 
-1 & LI+ total & BIC & resolved & 0.0000 & no & no \\
-
-2 & LI & raw & resolved & 0.0000 & no & no \\
-
-2 & LI+ immigrant & raw & resolved & 0.0000 & no & no \\
-
-2 & LI+ immigrant & BIC & resolved & 0.0000 & no & no \\
-
 2 & LI+ total & raw & resolved & -0.2093 & no & yes \\
 
-2 & LI+ total & BIC & resolved & 0.0000 & no & no \\
+\bottomrule\end{tabular}\end{table}
+
+\begin{table}[htbp]\centering\caption{Boundary-selected rows partitioned from the active contrasts. Each displayed $0.0000$ is the exact algebraic forecast of the nested $\hat\eta=0$ floor, not an estimate of a zero physical effect. The twelve cells are three folds of four floor-selected procedures and must not be counted as twelve independent empirical test contrasts.}\label{tab:s04-observed-boundary}
+
+\begin{tabular}{llllr}\toprule Fold & Model & Gate & Status & Algebraic gain\\\midrule
+
+0 & LI & raw & floor-selected & 0.0000 \\
+
+0 & LI+ immigrant & raw & floor-selected & 0.0000 \\
+
+0 & LI+ immigrant & BIC & floor-selected & 0.0000 \\
+
+0 & LI+ total & BIC & floor-selected & 0.0000 \\
+
+1 & LI & raw & floor-selected & 0.0000 \\
+
+1 & LI+ immigrant & raw & floor-selected & 0.0000 \\
+
+1 & LI+ immigrant & BIC & floor-selected & 0.0000 \\
+
+1 & LI+ total & BIC & floor-selected & 0.0000 \\
+
+2 & LI & raw & floor-selected & 0.0000 \\
+
+2 & LI+ immigrant & raw & floor-selected & 0.0000 \\
+
+2 & LI+ immigrant & BIC & floor-selected & 0.0000 \\
+
+2 & LI+ total & BIC & floor-selected & 0.0000 \\
 
 \bottomrule\end{tabular}\end{table}
 

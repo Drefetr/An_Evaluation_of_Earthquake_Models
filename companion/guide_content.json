@@ -1,8 +1,8 @@
 {
   "title": "Diagnostic Exponential Rate Attenuation in Spatial–Temporal Earthquake Models",
   "subtitle": "Stability, identification and predictive evaluation of point-process models",
-  "edition": "Plain-language companion - diagnostic rate-attenuation and sensitivity-controls edition, 12 November 2026",
-  "status": "Includes component-ablation, trend-control, oracle-ceiling and minimum-detectable-effect summaries; sealed authorities unchanged.",
+  "edition": "Plain-language companion - diagnostic rate-attenuation and sensitivity-controls edition, 13 November 2026",
+  "status": "Includes component-ablation, trend-control, oracle-decomposition and contrast-specific minimum-detectable-effect summaries; sealed authorities unchanged and an additive referee-remediation supplement.",
   "pages": [
     {
       "title": "A diagnostic forecasting comparison",
@@ -226,8 +226,31 @@
       ]
     },
     {
+      "title": "Oracle ceiling and detection scales",
+      "kicker": "06  How much could the procedure recover?",
+      "source": "Manuscript chapter 13; exact S8 oracle decomposition and contrast-specific minimum detectable effects.",
+      "blocks": [
+        {
+          "type": "h2",
+          "text": "Separate the generating effect from nuisance estimation"
+        },
+        {
+          "type": "p",
+          "text": "The oracle ceiling separates the exact generating attenuation effect from nuisance adaptation. The full true generating law, including the true background and triggering backbone, beats the fixed true-backbone null by about 16.4 nats and the intercept-refitted true backbone by about 14.5 nats. Against the jointly fitted five-parameter null it gains about 18.1 nats, larger by about 3.6 nats because the uninhibited comparator itself benefits from finite-sample estimation."
+        },
+        {
+          "type": "p",
+          "text": "Fixing the true attenuation on a fitted backbone yields only about 3.1 nats, and refitting the backbone at true attenuation yields about 2.6 nats. The fitted procedure captures about 0.3 nats, so estimation loss of about 17.8 nats erases almost all of the oracle advantage on these 95-event histories; fitted attenuation strength has mean about 0.93 and range 0.04 to 4.0 against the generating 0.4."
+        },
+        {
+          "type": "note",
+          "text": "Contrast-specific 90-day detection scales are about 9.2 nats for New Zealand shared attenuation, 3.8 nats for California LI+ total attenuation, 48.3 nats for California EP+ minus EP, 43.3 nats for California OC minus EP, and 47.9 nats for the three-fold Japan OC minus EP total (16.0 nats per fold). A detection scale is not a significance threshold for a dependent, adaptively reused archive."
+        }
+      ]
+    },
+    {
       "title": "What the regional studies show",
-      "kicker": "06  New Zealand, California and Japan",
+      "kicker": "07  New Zealand, California and Japan",
       "source": "Manuscript chapters 8-13; paired calendar-block uncertainty and the magnitude-scaled ETAS benchmark.",
       "blocks": [
         {
@@ -236,7 +259,7 @@
         },
         {
           "type": "p",
-          "text": "Shared attenuation loses about 17.6 nats in total, with about 94% of the deficit in the first test period. Trend and depletion trade off in the fitted event scores. The attenuated model has lower held-out integrated exposure and loses chiefly at event times; the record does not support a simple monotone-stress or rate-overprediction account."
+          "text": "Shared attenuation loses about 17.6 nats in total, with about 94% of the deficit in the first test period. Fixing the background trend at zero reduces the three-fold deficit to about 11.4 nats (8.5 in the first period), and fixing it at the null trend reduces it to about 5.0 nats (4.6 in the first period), below the 9.2-nat 90-day detection scale. Trend and depletion trade off in the fitted event scores. The attenuated model has lower held-out integrated exposure and loses chiefly at event times; the record does not support a simple monotone-stress or rate-overprediction account."
         },
         {
           "type": "p",
@@ -252,7 +275,7 @@
         },
         {
           "type": "p",
-          "text": "The stronger ETAS procedure gains about 69.6 nats over archived EP while changing four ingredients together: magnitude-dependent offspring distance, immigrant-weighted background, joint fitting, and full-plane normalization with regional leakage. All three fitted spatial scales reach the 2 km lower search bound. The gain does not isolate one causal ingredient."
+          "text": "The stronger ETAS procedure gains about 69.6 nats over archived EP while changing four ingredients together: magnitude-dependent offspring distance, immigrant-weighted background, joint fitting, and full-plane normalization with regional leakage. All three fitted spatial scales reach the 2 km lower search bound. Relaxing that bound selects interior scales of about 0.82 to 0.84 km and raises the gain to about 77.1 nats, or 78.6 nats with the accepted weights held fixed. The gain does not isolate one causal ingredient."
         },
         {
           "type": "callout",
@@ -271,7 +294,7 @@
     },
     {
       "title": "Interpreting the evidence",
-      "kicker": "07  The boundaries of the evidence",
+      "kicker": "08  The boundaries of the evidence",
       "source": "Manuscript chapters 5-7 and 12-14; repository data and replay guides at the date of this edition.",
       "blocks": [
         {
@@ -319,7 +342,7 @@
     },
     {
       "title": "A small glossary and reading map",
-      "kicker": "08  Finding your way through the manuscript",
+      "kicker": "09  Finding your way through the manuscript",
       "source": "Terms follow the diagnostic monograph. Chapter 6 states the shared study scope; current records distinguish fresh fits, score replays and historical artifacts.",
       "blocks": [
         {

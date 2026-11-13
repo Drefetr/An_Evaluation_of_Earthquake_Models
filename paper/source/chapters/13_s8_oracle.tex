@@ -1,14 +1,31 @@
-\subsubsection{Oracle ceiling and estimation loss}\label{sec:s8-oracle}
-An oracle that knows the generating attenuation parameters but not the nuisance backbone achieves a mean held-out gain of 18.11~nats over the jointly fitted null (median 12.86, MCSE 4.18). Against a fixed true-backbone null the mean is 16.43~nats, and against an intercept-refitted null it is 14.54~nats. The fitted procedure captures only 0.294~nats on average; its mean estimation loss relative to the oracle is -17.82~nats (median -8.10, MCSE 6.08). The bottleneck is parameter estimation, not the absence of a true generating effect.
-\begin{table}[htbp]\centering\small
-\begin{tabular}{@{}lrrrrr@{}}\toprule
-Contrast & Mean & Median & SD & MCSE & Wins\\\midrule
-True vs fixed true-backbone null & 16.429 & 12.819 & 8.176 & 1.828 & 20 \\
-True vs refitted-intercept null & 14.541 & 11.630 & 8.187 & 1.831 & 20 \\
-True vs jointly fitted null & 18.112 & 12.865 & 18.700 & 4.182 & 19 \\
-Fitted inhibited minus true & -17.818 & -8.097 & 27.204 & 6.083 & 2 \\
-Fitted inhibited minus fitted null & 0.294 & 2.541 & 12.420 & 2.777 & 13 \\
+\subsubsection{Oracle decomposition and estimation loss}\label{sec:s8-oracle}
+The oracle contrasts separate the exact generating attenuation effect from nuisance adaptation. The true generating law $\theta_\star$ evaluated against the fixed true-backbone null $\theta_{\star,0}$ gains 16.43~nats on average (median 12.82, MCSE 1.83, 20/20 wins); this is the exact generating attenuation effect. Against an intercept-refitted true backbone the mean is 14.54~nats (median 11.63, MCSE 1.83, 20/20 wins). Against the jointly fitted five-parameter null $\hat\theta_0(H_{\rm train})$ the mean is 18.11~nats (median 12.86, MCSE 4.18, 19/20 wins). The last contrast exceeds 14.54~nats by 3.57~nats because the uninhibited comparator itself gains from finite-sample estimation of $(d,n,c,p)$: on the test window, $\ell(\hat a,\theta_{\star,0,-a})-\ell(\hat\theta_0)$ averages $+3.571$~nats, while the direct true-null comparison $\ell(\theta_{\star,0})-\ell(\hat\theta_0)$ averages $+1.683$~nats. The identity closes exactly: $14.541+3.571=18.112$.
+
+Two partial oracles locate the loss. Fixing the true attenuation $(\eta_\star,\ell_\star,\psi_\star)=(0.4,15~{\rm km},5~{\rm d})$ on each history's jointly fitted training null backbone and refitting only the scalar intercept yields a mean held-out gain of 3.13~nats (median 3.37, MCSE 1.41, 13/20 wins). Fixing the same attenuation and re-optimizing the five nuisance-backbone parameters $(a,d,n,c,p)$ on the training window yields 2.58~nats (median 5.90, MCSE 3.67, 13/20 wins). Both are far below the 18.11-nat full-information ceiling, so the dominant loss is estimation of the nuisance backbone, not absence of a generating effect. The fitted procedure captures only 0.294~nats on average; its mean estimation loss relative to $\theta_\star$ is $-17.82$~nats (median $-8.10$, MCSE $6.08$), which is $98.4\%$ of the mean oracle advantage of 18.112~nats. The fitted attenuation itself is badly estimated: $\hat\eta$ has mean 0.929, median 0.543, interquartile range $[0.264,0.984]$, minimum 0.042, maximum 4.000 and RMSE 1.230 relative to $\eta_\star=0.4$. On these 95-event histories, finite-sample estimation loss therefore erases almost all of the oracle advantage.
+
+\begin{table}[htbp]\centering\scriptsize
+\setlength{\tabcolsep}{2.6pt}
+\begin{tabular}{@{}lrrrrrrrr@{}}\toprule
+Contrast & Mean & Median & Q25 & Q75 & IQR & SD & MCSE & Wins\\\midrule
+True vs fixed true-backbone null & 16.429 & 12.819 & 10.824 & 22.854 & 12.031 & 8.176 & 1.828 & 20 \\
+True vs refitted-intercept null & 14.541 & 11.630 & 7.754 & 21.164 & 13.410 & 8.187 & 1.831 & 20 \\
+True vs jointly fitted null & 18.112 & 12.865 & 7.444 & 24.808 & 17.364 & 18.700 & 4.182 & 19 \\
+Fitted inhibited minus true & -17.818 & -8.097 & -23.831 & -3.698 & 20.133 & 27.204 & 6.083 & 2 \\
+Fitted inhibited minus fitted null & 0.294 & 2.541 & -2.677 & 6.813 & 9.490 & 12.420 & 2.777 & 13 \\
 \bottomrule\end{tabular}
-\caption{S8 oracle ceiling and estimation loss over the twenty histories, in nats. The true law uses the S8 moderate attenuation parameter and the same fixed mark and spatial laws as the fitted procedure. The jointly fitted null is the actual comparator; the fixed and intercept-refitted nulls separate nuisance adaptation from attenuation. MCSE is the sample standard deviation divided by the square root of the history count.}
+\caption{S8 oracle decomposition and estimation loss over the twenty histories, in nats. The true law is the full eight-parameter generating vector $\theta_\star=(a_\star,d_\star,n_\star,c_\star,p_\star,\eta_\star,\ell_\star,\psi_\star)$, including the true nuisance backbone, so the fixed-null row is the exact generating attenuation effect. The refitted-intercept row is $\theta_\star$ minus the true backbone with a scalar intercept refitted on training data; the jointly fitted row is $\theta_\star$ minus the actual five-parameter training-fitted comparator. Q25, Q75 and IQR are exact sample quantiles across the twenty histories. MCSE is the sample standard deviation divided by the square root of the history count. Because null second moments diverge in the heavy-tailed mark regime ($2\gamma>\beta$, Chapter~\ref{ch:stability}), medians and interquartile ranges are primary and sample MCSEs are descriptive only.}
 \label{tab:s8-oracle}
+\end{table}
+
+\begin{table}[htbp]\centering\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lrrrr@{}}\toprule
+Quantity & Mean & Median & MCSE & Wins\\\midrule
+Partial oracle A: fitted null backbone, true $(\eta,\ell,\psi)$, refit $a$ & 3.128 & 3.373 & 1.407 & 13 \\
+Partial oracle B: refit $(a,d,n,c,p)$ at true $(\eta,\ell,\psi)$ & 2.576 & 5.903 & 3.674 & 13 \\
+Comparator backbone estimation gain, $\ell(\hat a,\theta_{\star,0,-a})-\ell(\hat\theta_0)$ & 3.571 & $-1.683$ & 4.293 & 9 \\
+True null minus fitted null, $\ell(\theta_{\star,0})-\ell(\hat\theta_0)$ & 1.683 & $-4.254$ & 4.225 & 8 \\
+\bottomrule\end{tabular}
+\caption{Partial S8 oracles and nuisance-backbone estimation loss in nats. Partial oracle A fixes the true attenuation on each history's jointly fitted training null backbone and refits only the intercept. Partial oracle B fixes the true attenuation and re-optimizes the five nuisance-backbone parameters on the training window at order 16, scoring at order 32. The final two rows separate the comparator's own finite-sample estimation gain from the exact generating contrast.}
+\label{tab:s8-partial-oracle}
 \end{table}

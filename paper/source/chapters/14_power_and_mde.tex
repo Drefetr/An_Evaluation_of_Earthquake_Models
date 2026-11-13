@@ -1,18 +1,37 @@
-\subsection{Minimum detectable effects and the power of the negative result}\label{sec:mde}
-The regional score scales differ sharply. At 90-day blocks the two-sided 95 per cent minimum detectable effect is 9.24~nats in New Zealand, 48.30~nats in California and 15.98~nats in Japan. The 0.0077~nat-per-event New Zealand scale is much finer than the 0.0782~nat-per-event California scale because California's block scores are more dispersed. The completed EP+ gain of 69.553~nats is of the same order as one California 90-day MDE, while the S8 raw mean of 0.294~nats is far below its own MCSE. These calculations delimit what the negative and positive summaries can detect; they do not convert a non-significant contrast into evidence of physical absence.
-\begin{table}[htbp]\centering\small
-\begin{tabular}{@{}llrrrr@{}}\toprule
-Region & Block (d) & $\mathrm{SE}_B$ (nats) & $\mathrm{MDE}_{95}$ (nats) & $\mathrm{MDE}_{95}$/event & Required $\delta$ (\%)\\\midrule
-New Zealand & 90 & 4.71 & 9.24 & 0.0151 & 17.4 \\
-New Zealand & 180 & 5.42 & 10.62 & 0.0174 & 18.6 \\
-New Zealand & 365 & 6.65 & 13.04 & 0.0213 & 20.6 \\
-California & 90 & 24.64 & 48.30 & 0.1533 & 55.4 \\
-California & 180 & 24.17 & 47.38 & 0.1504 & 54.8 \\
-California & 365 & 26.96 & 52.84 & 0.1678 & 57.9 \\
-Japan & 90 & 8.15 & 15.98 & 0.0125 & 15.8 \\
-Japan & 180 & 8.15 & 15.98 & 0.0125 & 15.8 \\
-Japan & 365 & 8.15 & 15.98 & 0.0125 & 15.8 \\
-\bottomrule\end{tabular}
-\caption{Minimum detectable effects at two-sided ninety-five per cent for regional total held-out scores. The final column is the fractional rate perturbation $\delta=\Delta\lambda/\lambda$ satisfying a quadratic small-perturbation score approximation. New Zealand and California use paired calendar-block scores; Japan uses the between-window standard error of three annual fold totals, repeated at each block label and not a calendar-block bootstrap. Contiguous dependent blocks are descriptive dependence-scale units, not independent replications.}
+\subsection{Contrast-specific minimum detectable effects}\label{sec:mde}
+The regional score scales differ by contrast, not only by region. At 90-day blocks the two-sided 95 per cent minimum detectable effect is 9.24~nats for New Zealand shared attenuation (against $-17.62$~nats with free trend and $-5.01$~nats with the null trend fixed), 3.82~nats for California \texttt{LI+} total attenuation (against $-2.39$~nats observed; the pooled percentile half-width is 3.27~nats), 48.30~nats for California \texttt{EP+} minus \texttt{EP} (against $+69.55$~nats at the binding bound and $+77.06$~nats at the interior scale), 43.35~nats for California \texttt{OC} minus \texttt{EP} (against $-51.05$~nats), and 47.94~nats for the three-fold Japan \texttt{OC} minus \texttt{EP} total (15.98~nats per fold, against $-221.21$~nats total and $-73.74$~nats per fold). The California \texttt{LI+} total deficit is below its own 90-day detection scale, whereas the New Zealand shared-attenuation deficit and the Japan total exceed theirs. The completed \texttt{EP+} gain is of the same order as its own contrast-specific MDE, not the much larger attenuation MDE. These calculations delimit what the negative and positive summaries can detect; they do not convert a non-significant contrast into evidence of physical absence. Table~\ref{tab:mde} expands every regional contrast at all three block lengths, and the \texttt{supplement} records the dependent-block qualification.
+
+\begin{table}[htbp]\centering\scriptsize
+\setlength{\tabcolsep}{2pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lrlrrrr@{}}\toprule
+Contrast & $N_{\rm test}$ & Observed $\Delta\ell$ (nats) & Block (d) & $\mathrm{SE}_B$ (nats) & $\mathrm{MDE}_{95}$ (nats) & $\mathrm{MDE}_{95}$/event\\\midrule
+NZ shared $-$ ML & 612 & $-17.623$ free $d$; $-11.431$ zero $d$; $-5.006$ fixed null $d$ & 90 & 4.71 & 9.24 & 0.0151 \\
+ & & & 180 & 5.42 & 10.62 & 0.0174 \\
+ & & & 365 & 6.65 & 13.04 & 0.0213 \\
+\addlinespace
+CA \texttt{LI+} total $-$ floor & 315 & $-2.387$ & 90 & 1.95 & 3.82 & 0.0121 \\
+ & & & 180 & 1.94 & 3.81 & 0.0121 \\
+ & & & 365 & 1.94 & 3.81 & 0.0121 \\
+\addlinespace
+CA \texttt{EP+} $-$ \texttt{EP} & 315 & $+69.553$ bound; $+77.056$ interior $\sigma_0$ & 90 & 24.64 & 48.30 & 0.1533 \\
+ & & & 180 & 24.17 & 47.38 & 0.1504 \\
+ & & & 365 & 26.96 & 52.84 & 0.1678 \\
+\addlinespace
+CA \texttt{OC} $-$ \texttt{EP} & 315 & $-51.051$ & 90 & 22.12 & 43.35 & 0.1376 \\
+ & & & 180 & 21.97 & 43.06 & 0.1367 \\
+ & & & 365 & 21.50 & 42.15 & 0.1338 \\
+\addlinespace
+Japan \texttt{OC} $-$ \texttt{EP} (per fold) & 1277 & $-73.737$ & annual & 8.15 & 15.98 & 0.0125 \\
+ & & & annual & 8.15 & 15.98 & 0.0125 \\
+ & & & annual & 8.15 & 15.98 & 0.0125 \\
+\addlinespace
+Japan \texttt{OC} $-$ \texttt{EP} (3-fold sum) & 1277 & $-221.212$ & annual & 24.46 & 47.94 & 0.0192 \\
+ & & & annual & 24.46 & 47.94 & 0.0192 \\
+ & & & annual & 24.46 & 47.94 & 0.0192 \\
+\bottomrule\end{tabular}}
+\caption{Contrast-specific minimum detectable effects at two-sided ninety-five per cent. Each row names the exact scored contrast, its test-event count, the observed pooled total and the block length. $\mathrm{SE}_B$ is the independent-block standard error of paired calendar-block score totals; $\mathrm{MDE}_{95}=1.96\,\mathrm{SE}_B$ and per-event values divide by $N_{\rm test}$. New Zealand and California use 90-, 180- and 365-day blocks. Japan has only three annual fold totals, so its between-window standard error is repeated at each label; the per-fold row reports 8.15~nats and the three-fold-sum row reports $3\times8.15=24.46$~nats. Contiguous dependent blocks are descriptive dependence-scale units, not independent replications, and the Japanese entries are not calendar-block estimates.}
 \label{tab:mde}
 \end{table}
+
+The corresponding fractional rate perturbations $\delta=\Delta\lambda/\lambda$ from the quadratic small-perturbation score approximation are 17.4, 18.6 and 20.6\% for New Zealand, 55.4, 54.8 and 57.9\% for California \texttt{EP+}, and 15.8\% for Japan at each label. The 0.0077~nat-per-event New Zealand scale is much finer than the 0.0782~nat-per-event California \texttt{EP+} scale because California's block scores are more dispersed. The completed \texttt{EP+} gain of 69.553~nats is of the same order as its own California 90-day MDE, while the S8 raw mean of 0.294~nats is far below its own MCSE.

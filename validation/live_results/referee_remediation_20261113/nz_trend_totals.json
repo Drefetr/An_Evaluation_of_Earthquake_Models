@@ -1,0 +1,166 @@
+{
+  "schema": "referee_nz_trend_totals_v1",
+  "passed": true,
+  "source": "experiments/methodological_audit/referee_remediation_20261113.py",
+  "authority": "validation/live_results/track_b_controls_20261112/nz_trend_controls/summary.json",
+  "folds": [
+    "fold_50",
+    "fold_65",
+    "fold_80"
+  ],
+  "controls": {
+    "free_d": {
+      "definition": "Archived free-d fits, order 32.",
+      "totals": {
+        "delta_Q": -39.931967891724,
+        "delta_C": 22.309108526929165,
+        "delta_joint": -17.62285936479489
+      },
+      "per_fold": {
+        "fold_50": {
+          "delta_Q": -33.71520466007506,
+          "delta_C": 17.197647207264637,
+          "delta_joint": -16.51755745281048
+        },
+        "fold_65": {
+          "delta_Q": -1.785927107632972,
+          "delta_C": 1.710649817081645,
+          "delta_joint": -0.07527729055132681
+        },
+        "fold_80": {
+          "delta_Q": -4.430836124015968,
+          "delta_C": 3.400811502582883,
+          "delta_joint": -1.0300246214330855
+        }
+      }
+    },
+    "zero_d": {
+      "definition": "d=0 with (a,n,eta) refitted.",
+      "totals": {
+        "delta_Q": -35.238173397944166,
+        "delta_C": 23.806972054640482,
+        "delta_joint": -11.43120134330374
+      },
+      "per_fold": {
+        "fold_50": {
+          "delta_Q": -26.02507258901079,
+          "delta_C": 17.521025680903165,
+          "delta_joint": -8.504046908107625
+        },
+        "fold_65": {
+          "delta_Q": -6.520303656998294e-07,
+          "delta_C": 1.0496264621906448e-06,
+          "delta_joint": 3.975960964908154e-07
+        },
+        "fold_80": {
+          "delta_Q": -9.21310015690301,
+          "delta_C": 6.285945324110855,
+          "delta_joint": -2.927154832792212
+        }
+      }
+    },
+    "fixed_null_d": {
+      "definition": "d frozen at the uninhibited null trend.",
+      "totals": {
+        "delta_Q": -18.400942071002504,
+        "delta_C": 13.395199000669692,
+        "delta_joint": -5.005743070332926
+      },
+      "per_fold": {
+        "fold_50": {
+          "delta_Q": -12.970709620008506,
+          "delta_C": 8.4150554346553,
+          "delta_joint": -4.555654185353205
+        },
+        "fold_65": {
+          "delta_Q": -2.0332814066547087,
+          "delta_C": 2.708743238888161,
+          "delta_joint": 0.6754618322334522
+        },
+        "fold_80": {
+          "delta_Q": -3.396951044339289,
+          "delta_C": 2.27140032712623,
+          "delta_joint": -1.125550717213173
+        }
+      }
+    },
+    "clamped_clock": {
+      "definition": "Archived free-d fits with the affine clock fixed at its training endpoint; not a refit.",
+      "totals": {
+        "delta_Q": -60.051844092460186,
+        "delta_C": 33.15336739379484,
+        "delta_joint": -26.89847669866535
+      },
+      "per_fold": {
+        "fold_50": {
+          "delta_Q": -48.054284329105684,
+          "delta_C": 23.26306420615319,
+          "delta_joint": -24.791220122952495
+        },
+        "fold_65": {
+          "delta_Q": -3.9795518564146732,
+          "delta_C": 4.246315494433048,
+          "delta_joint": 0.2667636380183751
+        },
+        "fold_80": {
+          "delta_Q": -8.018007906939829,
+          "delta_C": 5.643987693208601,
+          "delta_joint": -2.374020213731228
+        }
+      }
+    }
+  },
+  "fold1": {
+    "free_d": {
+      "delta_Q": -33.71520466007506,
+      "delta_C": 17.197647207264637,
+      "delta_joint": -16.51755745281048
+    },
+    "zero_d": {
+      "delta_Q": -26.02507258901079,
+      "delta_C": 17.521025680903165,
+      "delta_joint": -8.504046908107625
+    },
+    "fixed_null_d": {
+      "delta_Q": -12.970709620008506,
+      "delta_C": 8.4150554346553,
+      "delta_joint": -4.555654185353205
+    },
+    "clamped_clock": {
+      "delta_Q": -48.054284329105684,
+      "delta_C": 23.26306420615319,
+      "delta_joint": -24.791220122952495
+    }
+  },
+  "reconciliation": {
+    "authority_totals": {
+      "archived_delta_joint": -17.62285936479489,
+      "zero_trend_delta_joint": -11.43120134330374,
+      "fixed_null_trend_delta_joint": -5.005743070332926,
+      "clamped_delta_joint": -26.89847669866535,
+      "archived_loss": 17.62285936479489,
+      "zero_trend_loss": 11.43120134330374,
+      "fixed_null_trend_loss": 5.005743070332926,
+      "pooled_archived_fold1_loss": 16.51755745281048
+    },
+    "free_d_joint_error": 0.0,
+    "zero_d_joint_error": 0.0,
+    "fixed_null_d_joint_error": 0.0,
+    "clamped_joint_error": 0.0
+  },
+  "review_reported": {
+    "clamped_clock": {
+      "delta_Q": -41.787,
+      "delta_C": 14.889,
+      "delta_joint": -26.899
+    },
+    "note": "The referee-reported clamped joint total -26.899 is reproduced exactly.  The stored clamped records expose only ground/compensator scores, so the reproduced Q/C split is reported above; the manuscript cites only the joint total."
+  },
+  "below_nz_90day_mde": {
+    "fixed_null_d_joint": -5.005743070332926,
+    "nz_90day_mde95": 9.236284345647903,
+    "nz_180day_mde95": 10.618717979848043,
+    "smaller_than_90day": true,
+    "smaller_than_180day": true
+  }
+}

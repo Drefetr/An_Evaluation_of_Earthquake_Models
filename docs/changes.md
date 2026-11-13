@@ -1,5 +1,9 @@
 # Change history
 
+## 13 November 2026 referee remediation
+
+Addressed the referee report on the Track B summary tables and prose. Added an additive deterministic supplement under `validation/live_results/referee_remediation_20261113/` with an exact five-contrast minimum-detectable-effect table, a partial S8 oracle decomposition and fitted-$\hat\eta$ census, exact three-fold New Zealand trend-control totals and non-Gaussian quantiles for every synthetic table. Replaced the region-only MDE labels with contrast-specific rows, corrected the S8 oracle description, reported the three-fold trend totals and the three-fold clamped total, corrected `0.82–0.85 km` to `0.82–0.84 km`, unified the EP+ abstract presentation, partitioned the algebraic-zero California boundary rows, added IQR/range columns and explanatory captions, and rounded narrative floating-point displays. The sealed authorities are byte-identical to the pre-change snapshot. See the [referee response](reviews/referee_report_response_20261113.md) and [acceptance record](../validation/referee_remediation_20261113.json).
+
 ## 12 November 2026 statistical and publication revision
 
 Synchronized current reviewer entry points with the completed joint comparison; qualified the title and abstract as diagnostic earthquake point-process analysis and added front-page attribution and responsibility. Corrected block-interval, nested-boundary and benchmark interpretations, displayed synthetic sample MCSEs and event counts from sealed results, and added verified statistical-seismology literature. Preserved the prechange publication and ledger, retained historical reviews, and rebuilt the monograph, guide and website. No new fitting or simulation campaign was run. The [statistical and publication revision response](reviews/track_a_hostile_review_response_20261112.md) describes the evidence and the [acceptance record](../validation/track_a_remediation_20261112.json) records final verification.
