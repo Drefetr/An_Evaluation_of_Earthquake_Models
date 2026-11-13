@@ -71,6 +71,17 @@ actual process mixing rate. The scalar calculation and saved-fit protocol
 comparison are reproducible through
 \path{experiments/methodological_audit/stability.py}.
 
+The Doeblin minorization constant in Theorem~\ref{thm:finite_mode} can be made
+explicit. Since $R=4D/\kappa_V\propto\vartheta_{\min}^{-1}=e^{38.8}$ and
+$t_0\geq\log(4)/\vartheta_{\min}$, the event rate on $\{V\leq R\}$ satisfies
+$\Lambda_R t_0\sim e^{116.4}$. The empty-interval coupling probability is
+therefore $e^{-\Lambda_R t_0}\approx\exp(-3.5\times10^{50})$, and the displayed
+minorization coefficient $\tfrac12e^{-\Lambda_R t_0}$ is positive but
+numerically indistinguishable from zero. The theorem is a qualitative
+Harris-recurrence certificate at this scale, not a usable quantitative mixing
+bound. The small-set estimate is stated as a positivity result, not as a
+numerical lower bound on the transition kernel.
+
 
 \begin{proof}
 \emph{Construction and nonexplosion.} Use a marked Poisson embedding with thinning by the predictable intensity \(\Psi(X)+H\). The process is dominated by a marked Hawkes process with immigration \(\bar\Psi\), kernel

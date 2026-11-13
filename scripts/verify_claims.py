@@ -294,6 +294,13 @@ def withdrawal_archive(root, relative):
 def verify(root=ROOT,*,authority_only=False,refresh_presence=False,ledger_path='validation/MASTER_CLAIM_LEDGER.json'):
  root=Path(root).resolve(); path=safe_path(root,str(ledger_path))
  failures,display_checks,source_hashes=[],[],{}; counts,cache=Counter(),{}
+ # Track every literal input in the compiled manuscript tree, not only files
+ # that happen to carry a numeric display claim.  This keeps newly added
+ # chapters (for example 13_s04b_joint_quantiles.tex) in the custody roster.
+ compiled=compiled_tex_sources(root)
+ if compiled:
+  for source_path in compiled:
+   source_hashes[source_path.relative_to(root).as_posix()]=digest(source_path.read_bytes())
  try:
   raw_ledger=path.read_bytes(); ledger=strict_json(raw_ledger.decode('utf-8-sig'))
   claims=ledger['claims']; metadata=ledger.get('documentary_metadata',[])

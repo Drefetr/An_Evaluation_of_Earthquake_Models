@@ -1,22 +1,39 @@
 \subsubsection{California attenuation profile and upper bounds}\label{sec:california-eta-profiles}
-At the S8 moderate scale pair, the training profile places the one-sided ninety-five per cent upper bound on $\eta$ at $3.72\times10^{-5}$, $3.75\times10^{-5}$ and $2.93\times10^{-5}$ in F0, F1 and F2 after re-optimizing $(a,d,n)$ at each fixed attenuation. The corresponding held-out contrast at the S8 parameter is -73.76, -10119.53 and -25.75~nats. The fixed-backbone grid in Table~\ref{tab:california-eta-profiles} shows that the upper bound and test contrast depend strongly on the spatial and temporal scales; the S8 pair is not a universal detection threshold. The training bounds lie far below the S8 generating value, so under the EP+ kernel and the California training windows the zero boundary is strongly selected rather than a flat-direction artefact. The large negative held-out contrasts at that value are model-specific consequences of the same amplitude, not estimates of a physical stress-shadow strength.
+The archived upper bounds used a linear secant between $\eta=0$ and $\eta=0.01$, where the training profile has already fallen by hundreds to thousands of nats. That interpolation underestimates every upper bound, and the archived profiled curve also evaluated its null baseline at $\hat\psi(\eta)$ instead of the uninhibited MLE $\hat\psi(0)$. The corrected calculation evaluates the training score derivative analytically at $\eta=0$ and finds the roots by an exact Newton iteration checked with \texttt{brentq}. At the S8 scale pair $(\ell,\psi)=(15,5)$ the fixed-backbone two-sided 95 per cent (one-sided 97.5 per cent) upper bounds are $1.1414\times10^{-4}$, $1.1175\times10^{-4}$ and $9.0964\times10^{-5}$ in F0, F1 and F2; the one-sided 95 per cent bounds are $8.1665\times10^{-5}$, $7.9898\times10^{-5}$ and $6.4957\times10^{-5}$. Re-optimizing $(a,d,n)$ at each fixed attenuation gives the fine-grid profiled bounds $1.1398\times10^{-4}$, $1.1187\times10^{-4}$ and $9.2864\times10^{-5}$ (two-sided) and $8.1613\times10^{-5}$, $8.0085\times10^{-5}$ and $6.6254\times10^{-5}$ (one-sided). These are roughly three times the archived values, but still far below the S8 generating value $\eta_\star=0.4$, so the zero boundary remains strongly selected under the EP+ kernel and the California training windows.
+
+The corrected held-out contrasts at the S8 parameter are $-74.708$, $-10118.507$ and $-27.189$ nats, versus the archived corrupted values $-73.759$, $-10119.528$ and $-25.748$. The difference is small compared with the thousands-of-nats profile range, but it is systematic and is corrected here. The fixed-backbone grid in Table~\ref{tab:california-eta-profiles} shows that the upper bound and test contrast depend strongly on the spatial and temporal scales; the S8 pair is not a universal detection threshold. The large negative held-out contrasts at that value are model-specific consequences of the same amplitude, not estimates of a physical stress-shadow strength.
+
+The kernel is radially monotone and peaks at the parent epicentre. In California Fold~0 at the uninhibited MLE, the event-weighted attenuation sum is $75{,}313.9$, while the exposure integral is only $59{,}415.5$; hence $\partial_\eta\ell|_{\eta=0}=-15{,}898.4$ nats per unit $\eta$. This is why a positive $\eta$ suppresses the training likelihood so sharply even though the fitted attenuation amplitude remains near zero. The geometry is that of an epicentral peak, not an annular or signed off-fault stress shadow.
+
 \begin{table}[htbp]\centering\scriptsize
 \setlength{\tabcolsep}{3pt}
-\begin{tabular}{@{}llrrr@{}}\toprule
-Fold & $\ell/\psi$ (km, d) & Slope at zero & $\eta_{\rm upper}$ & $\Delta\ell_{\rm test}(\eta_{\rm S8})$\\\midrule
-F0 & 10/2 & -11450.1244 & $4.93\times10^{-5}$ & -66.7915 \\
-F0 & 15/5 & -15914.8956 & $3.63\times10^{-5}$ & -74.6861 \\
-F0 & 20/5 & -16690.5223 & $3.48\times10^{-5}$ & -75.4810 \\
-F0 & 50/30 & -24432.0608 & $2.17\times10^{-5}$ & -91.5085 \\
-F1 & 10/2 & -11745.3094 & $4.91\times10^{-5}$ & -8421.9884 \\
-F1 & 15/5 & -16299.7610 & $3.62\times10^{-5}$ & -10126.6168 \\
-F1 & 20/5 & -17086.5338 & $3.46\times10^{-5}$ & -10476.3676 \\
-F1 & 50/30 & -25195.7265 & $2.16\times10^{-5}$ & -13728.4733 \\
-F2 & 10/2 & -15174.0559 & $3.59\times10^{-5}$ & -23.1668 \\
-F2 & 15/5 & -20120.4700 & $2.71\times10^{-5}$ & -28.4518 \\
-F2 & 20/5 & -20995.3535 & $2.59\times10^{-5}$ & -29.0287 \\
-F2 & 50/30 & -29096.6446 & $1.68\times10^{-5}$ & -43.7236 \\
+\begin{tabular}{@{}llrrrr@{}}\toprule
+Fold & $\ell/\psi$ (km, d) & Slope at zero & $\eta_{\rm upper}^{97.5}$ & $\eta_{\rm upper}^{95}$ & $\Delta\ell_{\rm test}(\eta_{\rm S8})$\\\midrule
+F0 & 10/2 & -11438.5089 & $1.5578\times10^{-4}$ & $1.1197\times10^{-4}$ & -66.7915 \\
+F0 & 15/5 & -15898.4233 & $1.1414\times10^{-4}$ & $8.1665\times10^{-5}$ & -74.6861 \\
+F0 & 20/5 & -16673.0365 & $1.0904\times10^{-4}$ & $7.7976\times10^{-5}$ & -75.4810 \\
+F0 & 50/30 & -24399.1695 & $7.4969\times10^{-5}$ & $5.3527\times10^{-5}$ & -91.5085 \\
+F1 & 10/2 & -11733.7686 & $1.5243\times10^{-4}$ & $1.0946\times10^{-4}$ & -8421.9884 \\
+F1 & 15/5 & -16283.3998 & $1.1175\times10^{-4}$ & $7.9898\times10^{-5}$ & -10126.6168 \\
+F1 & 20/5 & -17069.1676 & $1.0679\times10^{-4}$ & $7.6316\times10^{-5}$ & -10476.3676 \\
+F1 & 50/30 & -25163.1182 & $7.2918\times10^{-5}$ & $5.2020\times10^{-5}$ & -13728.4733 \\
+F2 & 10/2 & -15157.9977 & $1.1926\times10^{-4}$ & $8.5413\times10^{-5}$ & -23.1668 \\
+F2 & 15/5 & -20097.8939 & $9.0964\times10^{-5}$ & $6.4957\times10^{-5}$ & -28.4518 \\
+F2 & 20/5 & -20971.3072 & $8.7262\times10^{-5}$ & $6.2297\times10^{-5}$ & -29.0287 \\
+F2 & 50/30 & -29053.0657 & $6.3144\times10^{-5}$ & $4.5050\times10^{-5}$ & -43.7236 \\
 \bottomrule\end{tabular}
-\caption{California EP+ attenuation slices at the uninhibited training MLE. The slope is the one-sided training score derivative at zero; $\eta_{\rm upper}$ is where the training profile falls by the one-sided threshold; the last column is the held-out contrast at the S8 moderate parameter. Positive last-column values favour attenuation.}
+\caption{California EP+ attenuation slices at the uninhibited training MLE, with exact Newton/\texttt{brentq} roots. The slope is the analytic training score derivative at zero; $\eta_{\rm upper}^{97.5}$ is the two-sided 95 per cent (one-sided 97.5 per cent) cutoff at $\Delta\ell=-1.9207$, and $\eta_{\rm upper}^{95}$ is the one-sided 95 per cent cutoff at $\Delta\ell=-1.3528$. The last column is the held-out contrast at the S8 moderate parameter. Positive last-column values favour attenuation.}
 \label{tab:california-eta-profiles}
+\end{table}
+
+\begin{table}[htbp]\centering\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lrrrr@{}}\toprule
+Fold & Scaled $\eta^{97.5}_{\rm upper}$ & Scaled $\eta^{95}_{\rm upper}$ & Unscaled $\eta^{97.5}_{\rm upper}$ & Unscaled $\eta^{95}_{\rm upper}$\\\midrule
+F0 & $1.1398\times10^{-4}$ & $8.1613\times10^{-5}$ & $8.8873\times10^{-4}$ & $6.9142\times10^{-4}$ \\
+F1 & $1.1187\times10^{-4}$ & $8.0085\times10^{-5}$ & $8.5332\times10^{-4}$ & $6.6052\times10^{-4}$ \\
+F2 & $9.2864\times10^{-5}$ & $6.6254\times10^{-5}$ & $5.8688\times10^{-4}$ & $4.3838\times10^{-4}$ \\
+\bottomrule\end{tabular}
+\caption{Profiled $(a,d,n)$ upper bounds at $\ell_0=15$~km and $\psi=5$~d, with rupture-scaled $\ell_j=15\times10^{0.5(M_j-4)}$~km and with the unscaled range $\ell_j\equiv15$~km. The scaled kernel gives $M7.1$ Ridgecrest $\ell_j=532.2$~km, so its attenuation field is much broader. At $\eta=0.01$ the scaled training loss is $-517.4$, $-514.2$ and $-665.9$ nats in F0--F2, versus $-95.7$, $-94.5$ and $-124.9$~nats unscaled; the unscaled bounds are consequently about eight times larger.}
+\label{tab:california-eta-profiles-unscaled}
 \end{table}

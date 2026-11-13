@@ -1,7 +1,9 @@
 \subsubsection{Component ablation and the spatial-scale boundary}\label{sec:epplus-ablation}
-The $69.553$-nat EP+ gain is not primarily a normalization effect. The balanced factorial gives Shapley contributions of 29.22~nats for training declustering, 30.03~nats for magnitude scaling, 0.064~nats for full-plane versus rectangle normalization, and 10.241~nats for joint temporal--spatial fitting (Table~\ref{tab:epplus-factorial}). The rectangle-normalized analogue A7 reaches 69.502~nats, so common-space normalization changes the total by 0.050~nats.
+The $69.551$-nat self-declustered EP+ gain is not primarily a normalization effect. Every declustered arm now runs its own five-step training-declustering loop under its own normalization and scaling, starting from the neutral three-start grid and importing neither the accepted A8 weights nor its post-declustering state. The balanced factorial gives Shapley contributions of 27.605~nats for training declustering, 31.669~nats for magnitude scaling, 0.037~nats for full-plane versus rectangle normalization, and 10.241~nats for joint temporal--spatial fitting (Table~\ref{tab:epplus-factorial}). The rectangle-normalized analogue A7 reaches 69.547~nats, so common-space normalization changes the total by 0.004~nats. The previously reported frozen-A8-weight decomposition gave 29.22, 30.03 and 0.06~nats with a 69.553-nat total; the cross-arm weight leak therefore inflated the declustering contribution by about 1.62~nats and depressed the scaling contribution by about 1.64~nats. The total EP+ gain is almost unchanged, but the attribution is not.
 
-The original lower bound of 2.000~km is binding in every accepted fit. Releasing it to 0.050~km selects interior scales of 0.823, 0.839 and 0.821~km under full-plane normalization (0.82--0.84~km), with $\widehat\alpha_s$ near eight tenths (Table~\ref{tab:sigma0-relaxation}). The three-fold test gain rises to 77.056~nats when the background is redeclustered under the relaxed bound, and to 78.584~nats when the accepted EP+ weights are held fixed. The fixed-$\sigma_0$ profile curves in Table~\ref{tab:sigma0-profile} confirm an interior training minimum rather than a boundary one; the earlier boundary was therefore a search-box artefact, not a likelihood maximum.
+The original lower bound of 2.000~km is binding in every accepted fit. Releasing it to 0.050~km selects interior scales of 0.823, 0.839 and 0.821~km under full-plane normalization (0.82--0.84~km), with $\widehat\alpha_s$ near eight tenths (Table~\ref{tab:sigma0-relaxation}). The three-fold test gain rises to 77.056~nats under full-plane normalization when the background is redeclustered under the relaxed bound, and to 78.584~nats when the accepted EP+ weights are held fixed; the corresponding rectangle-panel totals are 77.059 and 78.518~nats. These are alternative normalizations, so they must not be added: the archived 154.114-nat total double-counted the plane and rectangle six-row panels. The fixed-$\sigma_0$ profile curves in Table~\ref{tab:sigma0-profile} confirm an interior training minimum rather than a boundary one; the earlier boundary was therefore a search-box artefact, not a likelihood maximum.
+
+The relaxed bound also changes the inhibited benchmark. Refitting the full twelve-parameter inhibited EP+ model from the exact nested null and the three prescribed positive starts $(0.05,10,2)$, $(0.2,20,5)$ and $(0.5,50,30)$ returns $\hat\eta=0$ in every fold and every start, with interior $\hat\sigma_0=0.828$, $0.845$ and $0.827$~km. The zero-strength selection is therefore not an artefact of the binding $2$~km bound. The 77.06-nat relaxed gain in the preceding paragraph is an uninhibited procedure; it does not supply a positive attenuation term.
 
 \begin{table}[htbp]\centering\scriptsize
 \setlength{\tabcolsep}{3pt}
@@ -10,14 +12,14 @@ Arm & Norm. & KDE & $\alpha_s$ & F0 & F1 & F2 & Total\\\midrule
 A0 & rect & unw & fixed & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
 A1 & rect & unw & fixed & 5.0835 & 4.5498 & 0.6075 & 10.2408 \\
 A2 & plane & unw & fixed & 5.1056 & 4.6368 & 0.5877 & 10.3302 \\
-A3 & rect & decl & fixed & 12.6340 & 4.1432 & 21.2576 & 38.0347 \\
-A4 & plane & decl & fixed & 12.5908 & 4.2517 & 21.2477 & 38.0902 \\
+A3 & rect & decl & fixed & 11.1001 & 3.1047 & 20.6032 & 34.8080 \\
+A4 & plane & decl & fixed & 11.0546 & 3.1770 & 20.5625 & 34.7941 \\
 A5 & rect & unw & free & 5.6526 & 30.4042 & 2.7849 & 38.8417 \\
 A6 & plane & unw & free & 5.6457 & 30.4627 & 2.7808 & 38.8892 \\
-A7 & rect & decl & free & 14.6067 & 30.6127 & 24.2831 & 69.5025 \\
-A8 & plane & decl & free & 14.5795 & 30.6910 & 24.2824 & 69.5529 \\
+A7 & rect & decl & free & 14.6189 & 30.6297 & 24.2986 & 69.5472 \\
+A8 & plane & decl & free & 14.5777 & 30.6913 & 24.2824 & 69.5514 \\
 \bottomrule\end{tabular}
-\caption{Component ablation of the magnitude-scaled ETAS procedure, in held-out nats relative to archived EP. Positive values favour the new procedure. A0 is the archived EP score; A1--A8 form a balanced $2\times2\times2$ factorial over rectangle versus full-plane normalization, unweighted versus five-step training-declustered KDE background, and fixed versus free magnitude scaling, all with joint temporal--spatial fitting except A0. Columns abbreviate normalization (rect/plane), KDE (unw/decl) and magnitude scaling (fixed/free). Each arm uses the same histories, fertility weights and common mark measure.}
+\caption{Component ablation of the magnitude-scaled ETAS procedure, in held-out nats relative to archived EP. Positive values favour the new procedure. A0 is the archived EP score; A1--A8 form a balanced $2\times2\times2$ factorial over rectangle versus full-plane normalization, unweighted versus five-step training-declustered KDE background, and fixed versus free magnitude scaling, all with joint temporal--spatial fitting except A0. Columns abbreviate normalization (rect/plane), KDE (unw/decl) and magnitude scaling (fixed/free). Each arm uses the same histories and common mark measure. A3, A4, A7 and A8 each run their own five-step training declustering from the neutral three-start grid; no arm imports the accepted A8 weights or state.}
 \label{tab:epplus-ablation}
 \end{table}
 
@@ -25,12 +27,12 @@ A8 & plane & decl & free & 14.5795 & 30.6910 & 24.2824 & 69.5529 \\
 \begin{tabular}{@{}lrr@{}}\toprule
 Component & Shapley (nats) & Sequential (nats)\\\midrule
 Joint fitting (A0$\to$A1) & --- & 10.241 \\
-Full-plane normalization & 0.064 & 0.089 \\
-Training declustering & 29.223 & 27.760 \\
-Magnitude scaling & 30.026 & 31.463 \\
-Total (A8$-$A0) & 69.553 & 69.553 \\
+Full-plane normalization & 0.037 & 0.089 \\
+Training declustering & 27.605 & 24.464 \\
+Magnitude scaling & 31.669 & 34.757 \\
+Total (A8$-$A0) & 69.551 & 69.551 \\
 \bottomrule\end{tabular}
-\caption{Additive decomposition of the $69.553$-nat A8$-$A0 gain. Shapley values average every order of the three procedural factors and sum exactly with the joint-fitting increment; the sequential column follows A0$\to$A1$\to$A2$\to$A4$\to$A8.}
+\caption{Additive decomposition of the self-declustered $69.551$-nat A8$-$A0 gain. Shapley values average every order of the three procedural factors and sum exactly with the joint-fitting increment; the sequential column follows A0$\to$A1$\to$A2$\to$A4$\to$A8. The frozen-A8-weight decomposition of the archived supplement gives 29.22, 30.03 and 0.06~nats on a 69.553-nat total and is retained for comparison only.}
 \label{tab:epplus-factorial}
 \end{table}
 
@@ -44,7 +46,7 @@ F0 (frozen KDE) & 0.828 & 0.770 & 1.694 & 14.861 \\
 F1 (frozen KDE) & 0.845 & 0.774 & 1.717 & 38.705 \\
 F2 (frozen KDE) & 0.827 & 0.827 & 1.802 & 25.018 \\
 \bottomrule\end{tabular}
-\caption{Relaxed lower bound $\sigma_0\geq0.05$~km, full-plane normalization. The first three rows rerun five-step training declustering under the relaxed bound; the last three hold the accepted EP+ background weights fixed. Every fit remains training-only and every test score uses the common mark measure.}
+\caption{Relaxed lower bound $\sigma_0\geq0.05$~km, full-plane normalization. The first three rows rerun five-step training declustering under the relaxed bound; the last three hold the accepted EP+ background weights fixed. Every fit remains training-only and every test score uses the common mark measure. The rectangle-normalized panel is a separate normalization ($77.059$ and $78.518$~nats) and is not additive with this plane panel.}
 \label{tab:sigma0-relaxation}
 \end{table}
 

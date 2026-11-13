@@ -204,11 +204,37 @@ def visibility_bound_check() -> dict:
     K = background_max**2*C*moment*background_mass/(n*(1-n))
     pinsker_coefficient = math.sqrt(K/2)
     threshold = 1/pinsker_coefficient
+    # Tightened bound: retain B(t) >= B_min > 0 in the denominator.  The
+    # direct single-parent quadrature uses the normalized offset
+    # B_min/B_max^2, so the eta-dependent integral is
+    #   C_T^tight = int_0^T Phi(u)^2 / (B_min/B_max^2 + n h_e(u)) du.
+    background_min = math.exp(a-abs(d))
+    offset = background_min/background_max**2
+    def tight_integrand(u):
+        decay = np.exp(-rates*u)
+        phi = float(weights@decay)
+        h = float((weights*rates)@decay)
+        return phi*phi/(offset+n*h)
+    tight, tight_error = quad(lambda v: tight_integrand(math.expm1(v))*math.exp(v),
+                              0., math.log1p(T), epsabs=1e-10, epsrel=1e-12)
+    tight_cuts = [0., *np.geomspace(1e-12, T, 90)]
+    tight_direct = sum(quad(tight_integrand, left, right, epsabs=1e-10, epsrel=1e-12)[0]
+                       for left, right in zip(tight_cuts[:-1], tight_cuts[1:]))
+    assert math.isclose(tight, tight_direct, rel_tol=1e-9)
+    K_tight = K*tight/C
+    tight_coefficient = math.sqrt(K_tight/2)
+    tight_threshold = 1/tight_coefficient
     assert math.isclose(C, 2866250.949255799, rel_tol=1e-9)
     assert math.isclose(moment, .216065146328062, rel_tol=1e-12)
     assert math.isclose(background_mass, 383.349580803454, rel_tol=1e-12)
     assert math.isclose(K, 366444.657016935, rel_tol=1e-9)
+    assert math.isclose(background_min, 0.012348494430127546, rel_tol=1e-12)
+    assert math.isclose(offset, 32.00110702437131, rel_tol=1e-12)
+    assert math.isclose(tight, 0.10424014954814537, rel_tol=1e-8)
+    assert math.isclose(K_tight, 0.0133269, rel_tol=1e-4)
+    assert math.isclose(tight_threshold, 12.2504, rel_tol=1e-4)
     assert all(min(1., eta*pinsker_coefficient) == 1. for eta in (.10, 1.65))
+    assert all(min(1., eta*tight_coefficient) < 1. for eta in (.10, 1.65))
     return {
         'source': str(source.relative_to(root)).replace('\\', '/'),
         'source_sha256': hashlib.sha256(source.read_bytes()).hexdigest(),
@@ -223,6 +249,18 @@ def visibility_bound_check() -> dict:
         'eta_at_which_clipped_bound_equals_one': threshold,
         'bound_for_eta_0_10': min(1., .10*pinsker_coefficient),
         'bound_for_eta_1_65': min(1., 1.65*pinsker_coefficient),
+        'background_min_per_day': background_min,
+        'B_min_over_B_max_squared': offset,
+        'C_T_tight_days_squared': tight,
+        'C_T_tight_direct_partition_check': tight_direct,
+        'C_T_tight_quadrature_error_estimate': tight_error,
+        'C_T_reduction_factor': C/tight,
+        'K_T_tight': K_tight,
+        'sqrt_K_T_tight_over_2': tight_coefficient,
+        'eta_tight_at_which_clipped_bound_equals_one': tight_threshold,
+        'tight_bound_for_eta_0_10': min(1., .10*tight_coefficient),
+        'tight_bound_for_eta_0_178': min(1., .178*tight_coefficient),
+        'tight_bound_for_eta_1_65': min(1., 1.65*tight_coefficient),
         'passed': True,
     }
 

@@ -194,9 +194,36 @@ $\kappa(Q)=(1-r)e^{r\beta Q}$,
  =0.21606515,\quad
  K_T=3.6644466\times10^{5},\quad \sqrt{K_T/2}=428.0448.
 \]
-Thus the Pinsker upper bound is exactly one, and completely vacuous, whenever
-$\eta\geq\sqrt{2/K_T}\simeq0.00233620$, including every fitted $\eta\in[0.10,1.65]$.
-For a constant positive background, a non-vacuous upper bound requires
+Thus the $B(t)$-discarded Pinsker upper bound is exactly one, and completely
+vacuous, whenever $\eta\geq\sqrt{2/K_T}\simeq0.00233620$, including every fitted
+$\eta\in[0.10,1.65]$.
+
+The discarded background is not negligible at long lags. Write
+$B_{\min}=\exp(a-|d|)=0.0123485>0$ and $B_{\max}=\exp(a+|d|)=0.0196438$.
+Retaining $B(t)\geq B_{\min}$ in the denominator and using the direct
+single-parent quadrature gives
+\[
+C_T^{\mathrm{tight}}
+=\int_0^T\frac{\Phi_{195}(u)^2}{B_{\min}/B_{\max}^2+n h_{195}(u)}\,\dif u
+=1.0424015\times10^{-1}\ \mathrm{days}^2,
+\]
+a reduction by $2.7497\times10^{7}$ relative to the discarded
+$C_T=2.8662509\times10^{6}$. Holding the same finite mark moment and count
+factor, the tightened coefficient is
+\[
+K_T^{\mathrm{tight}}=1.3326902\times10^{-2},\qquad
+\sqrt{K_T^{\mathrm{tight}}/2}=8.1629964\times10^{-2}.
+\]
+The tightened bound therefore first reaches one at
+$\eta=12.2504$, not at $2.3362\times10^{-3}$. It is non-vacuous throughout the
+fitted range: $0.00816$ at $\eta=0.10$, $0.01453$ at the detrended fixed-null
+value $\eta=0.178$, $0.1347$ at the free-trend value $\eta=1.65$, and $0.3265$
+at the largest fitted synthetic value $\eta=4$. The difference is not a new
+detection theorem: the direct quadrature is a mean-field single-parent bound,
+the mark second moment remains the restrictive object, and the calculation
+only shows that the earlier ``vacuous for every positive strength'' statement
+depended on discarding a positive background at long lags. For a constant
+positive background, a non-vacuous upper bound requires
 $\eta=O(T^{-(3-\alpha)/2})$ with a sufficiently small constant; a bound tending
 to zero requires $\eta=o(T^{-(3-\alpha)/2})$. These are sufficient
 upper-bound scales, not necessary detection thresholds.

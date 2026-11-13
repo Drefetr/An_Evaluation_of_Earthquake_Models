@@ -1,0 +1,1272 @@
+{
+  "schema": "forensic_remediation_independent_audit_v1",
+  "passed": true,
+  "source": "experiments/methodological_audit/audit_forensic_remediation_20261114.py",
+  "input": "validation/live_results/forensic_remediation_20261114",
+  "input_hashes": {
+    "epplus_ablation.json": "689ff2788a30d7b5e441143c3b2f3259125650afedd59369d24e7162a7855d73",
+    "epplus_relaxed_inhibited.json": "a9345e27d2f5db190c523f107bdaec3cad1fa79de04626deeff983ba6ac07c5a",
+    "epplus_sigma0_totals.json": "595860dd9d95cda98e6d61658746300662ee8f60d31eadd79d2dc32345f16253",
+    "eta_profiles.json": "b3f973142d81242decf576e26a2140f5b04b55c0ce99ba3879a957b7e94cf93a",
+    "independent_audit.json": "afc22e87f1e04eabfcfa46c296260ea06e7ca324b179d6b301bbc9062229a013",
+    "japan_mde.json": "34958e184f5169b927c1ecc6ba89dc6d2c05475d5c7daccf47d83bacc9b0e5d7",
+    "mathematics_full.json": "0a99874b8db37afb4c0127c290e3ac17da7dd8fa1cc3a7cb56d1edae69448c00",
+    "mathematics_visibility.json": "63af426af233198347cc6bd0d75c54c518fcc836b3c725ea089fb530715cb81e",
+    "nz_trend_controls.json": "8c9dc7afe46a24aec30cd733b7b50d060b9aecbd4f471ceb44db06f9c0a027bc",
+    "s8_oracle.json": "38f728780ce0b1295a51365c2541b3d9e8b603e865a5eb2b919ec43ddd84dcde",
+    "summary.json": "c7cf6d2a24e7d3a40a19593e995dd36227ea11b56e71a93b39b68a26d47dfc6b"
+  },
+  "checks": [
+    {
+      "name": "sealed_snapshot_file_count",
+      "passed": true,
+      "detail": 700
+    },
+    {
+      "name": "sealed_snapshot_unchanged",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "nz_free_d_90_mde_identity",
+      "passed": true,
+      "detail": {
+        "blocks": 137,
+        "se_total_nats": 4.712389972269029,
+        "mde95_total_nats": 9.236284345647297,
+        "mde80_total_nats": 13.19469192235328,
+        "se_nats_per_event": 0.007699983614818675,
+        "mde95_nats_per_event": 0.015091967885044603,
+        "z": -3.7396861186147454,
+        "standardized_ratio": 1.9080031217422169
+      }
+    },
+    {
+      "name": "nz_free_d_90_z_identity",
+      "passed": true,
+      "detail": {
+        "blocks": 137,
+        "se_total_nats": 4.712389972269029,
+        "mde95_total_nats": 9.236284345647297,
+        "mde80_total_nats": 13.19469192235328,
+        "se_nats_per_event": 0.007699983614818675,
+        "mde95_nats_per_event": 0.015091967885044603,
+        "z": -3.7396861186147454,
+        "standardized_ratio": 1.9080031217422169
+      }
+    },
+    {
+      "name": "nz_free_d_90_standardized_ratio",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "nz_free_d_90_per_event_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "nz_free_d_180_mde_identity",
+      "passed": true,
+      "detail": {
+        "blocks": 70,
+        "se_total_nats": 5.4177132550241405,
+        "mde95_total_nats": 10.618717979847315,
+        "mde80_total_nats": 15.169597114067592,
+        "se_nats_per_event": 0.008852472638928334,
+        "mde95_nats_per_event": 0.017350846372299535,
+        "z": -3.2528224612941954,
+        "standardized_ratio": 1.6596032965786711
+      }
+    },
+    {
+      "name": "nz_free_d_180_z_identity",
+      "passed": true,
+      "detail": {
+        "blocks": 70,
+        "se_total_nats": 5.4177132550241405,
+        "mde95_total_nats": 10.618717979847315,
+        "mde80_total_nats": 15.169597114067592,
+        "se_nats_per_event": 0.008852472638928334,
+        "mde95_nats_per_event": 0.017350846372299535,
+        "z": -3.2528224612941954,
+        "standardized_ratio": 1.6596032965786711
+      }
+    },
+    {
+      "name": "nz_free_d_180_standardized_ratio",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "nz_free_d_180_per_event_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "nz_free_d_365_mde_identity",
+      "passed": true,
+      "detail": {
+        "blocks": 36,
+        "se_total_nats": 6.650650943016521,
+        "mde95_total_nats": 13.03527584831238,
+        "mde80_total_nats": 18.621822640446258,
+        "se_nats_per_event": 0.01086707670427536,
+        "mde95_nats_per_event": 0.021299470340379708,
+        "z": -2.649794661573481,
+        "standardized_ratio": 1.3519360518232044
+      }
+    },
+    {
+      "name": "nz_free_d_365_z_identity",
+      "passed": true,
+      "detail": {
+        "blocks": 36,
+        "se_total_nats": 6.650650943016521,
+        "mde95_total_nats": 13.03527584831238,
+        "mde80_total_nats": 18.621822640446258,
+        "se_nats_per_event": 0.01086707670427536,
+        "mde95_nats_per_event": 0.021299470340379708,
+        "z": -2.649794661573481,
+        "standardized_ratio": 1.3519360518232044
+      }
+    },
+    {
+      "name": "nz_free_d_365_standardized_ratio",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "nz_free_d_365_per_event_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "nz_zero_d_90_mde_identity",
+      "passed": true,
+      "detail": {
+        "blocks": 137,
+        "se_total_nats": 2.763704414772542,
+        "mde95_total_nats": 5.416860652954182,
+        "mde80_total_nats": 7.738372361363116,
+        "se_nats_per_event": 0.004515856886883238,
+        "mde95_nats_per_event": 0.008851079498291147,
+        "z": -4.136188111218309,
+        "standardized_ratio": 2.110300056744035
+      }
+    },
+    {
+      "name": "nz_zero_d_90_z_identity",
+      "passed": true,
+      "detail": {
+        "blocks": 137,
+        "se_total_nats": 2.763704414772542,
+        "mde95_total_nats": 5.416860652954182,
+        "mde80_total_nats": 7.738372361363116,
+        "se_nats_per_event": 0.004515856886883238,
+        "mde95_nats_per_event": 0.008851079498291147,
+        "z": -4.136188111218309,
+        "standardized_ratio": 2.110300056744035
+      }
+    },
+    {
+      "name": "nz_zero_d_90_standardized_ratio",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "nz_zero_d_90_per_event_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "nz_zero_d_180_mde_identity",
+      "passed": true,
+      "detail": {
+        "blocks": 70,
+        "se_total_nats": 2.790277659738102,
+        "mde95_total_nats": 5.46894421308668,
+        "mde80_total_nats": 7.8127774472666855,
+        "se_nats_per_event": 0.004559277221794285,
+        "mde95_nats_per_event": 0.008936183354716798,
+        "z": -4.096797070860927,
+        "standardized_ratio": 2.0902025871739425
+      }
+    },
+    {
+      "name": "nz_zero_d_180_z_identity",
+      "passed": true,
+      "detail": {
+        "blocks": 70,
+        "se_total_nats": 2.790277659738102,
+        "mde95_total_nats": 5.46894421308668,
+        "mde80_total_nats": 7.8127774472666855,
+        "se_nats_per_event": 0.004559277221794285,
+        "mde95_nats_per_event": 0.008936183354716798,
+        "z": -4.096797070860927,
+        "standardized_ratio": 2.0902025871739425
+      }
+    },
+    {
+      "name": "nz_zero_d_180_standardized_ratio",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "nz_zero_d_180_per_event_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "nz_zero_d_365_mde_identity",
+      "passed": true,
+      "detail": {
+        "blocks": 36,
+        "se_total_nats": 2.994612904665831,
+        "mde95_total_nats": 5.869441293145029,
+        "mde80_total_nats": 8.384916133064326,
+        "se_nats_per_event": 0.004893158340957241,
+        "mde95_nats_per_event": 0.009590590348276192,
+        "z": -3.817255086790374,
+        "standardized_ratio": 1.947579125913456
+      }
+    },
+    {
+      "name": "nz_zero_d_365_z_identity",
+      "passed": true,
+      "detail": {
+        "blocks": 36,
+        "se_total_nats": 2.994612904665831,
+        "mde95_total_nats": 5.869441293145029,
+        "mde80_total_nats": 8.384916133064326,
+        "se_nats_per_event": 0.004893158340957241,
+        "mde95_nats_per_event": 0.009590590348276192,
+        "z": -3.817255086790374,
+        "standardized_ratio": 1.947579125913456
+      }
+    },
+    {
+      "name": "nz_zero_d_365_standardized_ratio",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "nz_zero_d_365_per_event_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "nz_fixed_null_d_90_mde_identity",
+      "passed": true,
+      "detail": {
+        "blocks": 137,
+        "se_total_nats": 1.3955978289659632,
+        "mde95_total_nats": 2.7353717447732877,
+        "mde80_total_nats": 3.9076739211046965,
+        "se_nats_per_event": 0.0022803886094215084,
+        "mde95_nats_per_event": 0.004469561674466156,
+        "z": -3.5868091555013515,
+        "standardized_ratio": 1.830004671174159
+      }
+    },
+    {
+      "name": "nz_fixed_null_d_90_z_identity",
+      "passed": true,
+      "detail": {
+        "blocks": 137,
+        "se_total_nats": 1.3955978289659632,
+        "mde95_total_nats": 2.7353717447732877,
+        "mde80_total_nats": 3.9076739211046965,
+        "se_nats_per_event": 0.0022803886094215084,
+        "mde95_nats_per_event": 0.004469561674466156,
+        "z": -3.5868091555013515,
+        "standardized_ratio": 1.830004671174159
+      }
+    },
+    {
+      "name": "nz_fixed_null_d_90_standardized_ratio",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "nz_fixed_null_d_90_per_event_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "nz_fixed_null_d_180_mde_identity",
+      "passed": true,
+      "detail": {
+        "blocks": 70,
+        "se_total_nats": 1.4212209871794512,
+        "mde95_total_nats": 2.7855931348717244,
+        "mde80_total_nats": 3.979418764102463,
+        "se_nats_per_event": 0.0023222565149991032,
+        "mde95_nats_per_event": 0.004551622769398242,
+        "z": -3.522142661478213,
+        "standardized_ratio": 1.7970115619786802
+      }
+    },
+    {
+      "name": "nz_fixed_null_d_180_z_identity",
+      "passed": true,
+      "detail": {
+        "blocks": 70,
+        "se_total_nats": 1.4212209871794512,
+        "mde95_total_nats": 2.7855931348717244,
+        "mde80_total_nats": 3.979418764102463,
+        "se_nats_per_event": 0.0023222565149991032,
+        "mde95_nats_per_event": 0.004551622769398242,
+        "z": -3.522142661478213,
+        "standardized_ratio": 1.7970115619786802
+      }
+    },
+    {
+      "name": "nz_fixed_null_d_180_standardized_ratio",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "nz_fixed_null_d_180_per_event_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "nz_fixed_null_d_365_mde_identity",
+      "passed": true,
+      "detail": {
+        "blocks": 36,
+        "se_total_nats": 1.5499239217342744,
+        "mde95_total_nats": 3.037850886599178,
+        "mde80_total_nats": 4.339786980855968,
+        "se_nats_per_event": 0.002532555427670383,
+        "mde95_nats_per_event": 0.004963808638233951,
+        "z": -3.229670179380025,
+        "standardized_ratio": 1.6477909078469517
+      }
+    },
+    {
+      "name": "nz_fixed_null_d_365_z_identity",
+      "passed": true,
+      "detail": {
+        "blocks": 36,
+        "se_total_nats": 1.5499239217342744,
+        "mde95_total_nats": 3.037850886599178,
+        "mde80_total_nats": 4.339786980855968,
+        "se_nats_per_event": 0.002532555427670383,
+        "mde95_nats_per_event": 0.004963808638233951,
+        "z": -3.229670179380025,
+        "standardized_ratio": 1.6477909078469517
+      }
+    },
+    {
+      "name": "nz_fixed_null_d_365_standardized_ratio",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "nz_fixed_null_d_365_per_event_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "nz_fixed_null_se90",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "nz_fixed_null_mde90",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "nz_fixed_null_z",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "nz_fixed_null_ratio",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "nz_full_grid_cells",
+      "passed": true,
+      "detail": 18
+    },
+    {
+      "name": "nz_full_grid_zero_total",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "nz_full_grid_fixed_total",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "nz_full_grid_mde_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_california_fold_0_ell10_psi2_two_sided_95_newton_residual",
+      "passed": true,
+      "detail": 3.304023721284466e-13
+    },
+    {
+      "name": "eta_california_fold_0_ell10_psi2_two_sided_95_brentq_residual",
+      "passed": true,
+      "detail": -1.694999696155719e-11
+    },
+    {
+      "name": "eta_california_fold_0_ell10_psi2_two_sided_95_newton_brentq",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_california_fold_0_ell10_psi2_one_sided_95_newton_residual",
+      "passed": true,
+      "detail": 3.390621117205228e-13
+    },
+    {
+      "name": "eta_california_fold_0_ell10_psi2_one_sided_95_brentq_residual",
+      "passed": true,
+      "detail": -1.4799272918253337e-12
+    },
+    {
+      "name": "eta_california_fold_0_ell10_psi2_one_sided_95_newton_brentq",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_california_fold_0_ell15_psi5_two_sided_95_newton_residual",
+      "passed": true,
+      "detail": 3.304023721284466e-13
+    },
+    {
+      "name": "eta_california_fold_0_ell15_psi5_two_sided_95_brentq_residual",
+      "passed": true,
+      "detail": -5.790923296444817e-13
+    },
+    {
+      "name": "eta_california_fold_0_ell15_psi5_two_sided_95_newton_brentq",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_california_fold_0_ell15_psi5_one_sided_95_newton_residual",
+      "passed": true,
+      "detail": 3.390621117205228e-13
+    },
+    {
+      "name": "eta_california_fold_0_ell15_psi5_one_sided_95_brentq_residual",
+      "passed": true,
+      "detail": -5.704325900524054e-13
+    },
+    {
+      "name": "eta_california_fold_0_ell15_psi5_one_sided_95_newton_brentq",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_california_fold_0_ell20_psi5_two_sided_95_newton_residual",
+      "passed": true,
+      "detail": 3.304023721284466e-13
+    },
+    {
+      "name": "eta_california_fold_0_ell20_psi5_two_sided_95_brentq_residual",
+      "passed": true,
+      "detail": -1.4885870314174099e-12
+    },
+    {
+      "name": "eta_california_fold_0_ell20_psi5_two_sided_95_newton_brentq",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_california_fold_0_ell20_psi5_one_sided_95_newton_residual",
+      "passed": true,
+      "detail": 3.390621117205228e-13
+    },
+    {
+      "name": "eta_california_fold_0_ell20_psi5_one_sided_95_brentq_residual",
+      "passed": true,
+      "detail": 3.390621117205228e-13
+    },
+    {
+      "name": "eta_california_fold_0_ell20_psi5_one_sided_95_newton_brentq",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_california_fold_0_ell50_psi30_two_sided_95_newton_residual",
+      "passed": true,
+      "detail": 3.304023721284466e-13
+    },
+    {
+      "name": "eta_california_fold_0_ell50_psi30_two_sided_95_brentq_residual",
+      "passed": true,
+      "detail": -5.790923296444817e-13
+    },
+    {
+      "name": "eta_california_fold_0_ell50_psi30_two_sided_95_newton_brentq",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_california_fold_0_ell50_psi30_one_sided_95_newton_residual",
+      "passed": true,
+      "detail": 3.390621117205228e-13
+    },
+    {
+      "name": "eta_california_fold_0_ell50_psi30_one_sided_95_brentq_residual",
+      "passed": true,
+      "detail": -5.704325900524054e-13
+    },
+    {
+      "name": "eta_california_fold_0_ell50_psi30_one_sided_95_newton_brentq",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_california_fold_0_profile_baseline",
+      "passed": true,
+      "detail": {
+        "eta": 0.0,
+        "train_nll": 8179.05975070175,
+        "train_loglik_gain": 2.510205376893282e-10,
+        "archived_train_loglik_gain": 0.0,
+        "parameters": [
+          -3.554913310290985,
+          0.5398051699635039,
+          0.9294480413824625,
+          -5.458702162653876,
+          1.1077657579368747,
+          0.6931471805599453,
+          0.6169929144015514,
+          2.4397682304550328,
+          0.0,
+          2.70805020110221,
+          1.6094379124341003,
+          1.7269388197455344
+        ]
+      }
+    },
+    {
+      "name": "eta_california_fold_0_corrected_test_gain",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_california_fold_0_test_gain_finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_california_fold_0_profile_root_residual",
+      "passed": true,
+      "detail": {
+        "eta": 0.00011398043566014948,
+        "residual": 8.815170815523743e-14,
+        "bracket": [
+          0.0,
+          0.01
+        ]
+      }
+    },
+    {
+      "name": "eta_california_fold_0_fine_profile_residual",
+      "passed": true,
+      "detail": {
+        "eta": 0.00011398043566014948,
+        "residual": 8.815170815523743e-14,
+        "bracket": [
+          0.0,
+          0.01
+        ]
+      }
+    },
+    {
+      "name": "eta_california_fold_1_ell10_psi2_two_sided_95_newton_residual",
+      "passed": true,
+      "detail": -5.790923296444817e-13
+    },
+    {
+      "name": "eta_california_fold_1_ell10_psi2_two_sided_95_brentq_residual",
+      "passed": true,
+      "detail": -1.149302875091962e-11
+    },
+    {
+      "name": "eta_california_fold_1_ell10_psi2_two_sided_95_newton_brentq",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_california_fold_1_ell10_psi2_one_sided_95_newton_residual",
+      "passed": true,
+      "detail": -5.704325900524054e-13
+    },
+    {
+      "name": "eta_california_fold_1_ell10_psi2_one_sided_95_brentq_residual",
+      "passed": true,
+      "detail": -5.704325900524054e-13
+    },
+    {
+      "name": "eta_california_fold_1_ell10_psi2_one_sided_95_newton_brentq",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_california_fold_1_ell15_psi5_two_sided_95_newton_residual",
+      "passed": true,
+      "detail": -5.790923296444817e-13
+    },
+    {
+      "name": "eta_california_fold_1_ell15_psi5_two_sided_95_brentq_residual",
+      "passed": true,
+      "detail": -2.398081733190338e-12
+    },
+    {
+      "name": "eta_california_fold_1_ell15_psi5_two_sided_95_newton_brentq",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_california_fold_1_ell15_psi5_one_sided_95_newton_residual",
+      "passed": true,
+      "detail": 1.248556813493451e-12
+    },
+    {
+      "name": "eta_california_fold_1_ell15_psi5_one_sided_95_brentq_residual",
+      "passed": true,
+      "detail": -5.704325900524054e-13
+    },
+    {
+      "name": "eta_california_fold_1_ell15_psi5_one_sided_95_newton_brentq",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_california_fold_1_ell20_psi5_two_sided_95_newton_residual",
+      "passed": true,
+      "detail": 1.2398970739013748e-12
+    },
+    {
+      "name": "eta_california_fold_1_ell20_psi5_two_sided_95_brentq_residual",
+      "passed": true,
+      "detail": 1.2398970739013748e-12
+    },
+    {
+      "name": "eta_california_fold_1_ell20_psi5_two_sided_95_newton_brentq",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_california_fold_1_ell20_psi5_one_sided_95_newton_residual",
+      "passed": true,
+      "detail": -5.704325900524054e-13
+    },
+    {
+      "name": "eta_california_fold_1_ell20_psi5_one_sided_95_brentq_residual",
+      "passed": true,
+      "detail": -5.704325900524054e-13
+    },
+    {
+      "name": "eta_california_fold_1_ell20_psi5_one_sided_95_newton_brentq",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_california_fold_1_ell50_psi30_two_sided_95_newton_residual",
+      "passed": true,
+      "detail": -5.790923296444817e-13
+    },
+    {
+      "name": "eta_california_fold_1_ell50_psi30_two_sided_95_brentq_residual",
+      "passed": true,
+      "detail": 1.2398970739013748e-12
+    },
+    {
+      "name": "eta_california_fold_1_ell50_psi30_two_sided_95_newton_brentq",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_california_fold_1_ell50_psi30_one_sided_95_newton_residual",
+      "passed": true,
+      "detail": -5.704325900524054e-13
+    },
+    {
+      "name": "eta_california_fold_1_ell50_psi30_one_sided_95_brentq_residual",
+      "passed": true,
+      "detail": -2.389421993598262e-12
+    },
+    {
+      "name": "eta_california_fold_1_ell50_psi30_one_sided_95_newton_brentq",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_california_fold_1_profile_baseline",
+      "passed": true,
+      "detail": {
+        "eta": 0.0,
+        "train_nll": 9243.62477312947,
+        "train_loglik_gain": 2.10275175049901e-09,
+        "archived_train_loglik_gain": 0.0,
+        "parameters": [
+          -3.6622486571754496,
+          0.24962864642453497,
+          0.906019228895167,
+          -5.471482026720992,
+          1.1038022082101082,
+          0.6931471805599453,
+          0.6230819083308565,
+          2.4699015727466143,
+          0.0,
+          2.70805020110221,
+          1.6094379124341003,
+          1.7269388197455344
+        ]
+      }
+    },
+    {
+      "name": "eta_california_fold_1_corrected_test_gain",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_california_fold_1_test_gain_finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_california_fold_1_profile_root_residual",
+      "passed": true,
+      "detail": {
+        "eta": 0.00011187195575715899,
+        "residual": 1.4432899320127035e-14,
+        "bracket": [
+          0.0,
+          0.01
+        ]
+      }
+    },
+    {
+      "name": "eta_california_fold_1_fine_profile_residual",
+      "passed": true,
+      "detail": {
+        "eta": 0.00011187195575715899,
+        "residual": 1.4432899320127035e-14,
+        "bracket": [
+          0.0,
+          0.01
+        ]
+      }
+    },
+    {
+      "name": "eta_california_fold_2_ell10_psi2_two_sided_95_newton_residual",
+      "passed": true,
+      "detail": -5.790923296444817e-13
+    },
+    {
+      "name": "eta_california_fold_2_ell10_psi2_two_sided_95_brentq_residual",
+      "passed": true,
+      "detail": -2.398081733190338e-12
+    },
+    {
+      "name": "eta_california_fold_2_ell10_psi2_two_sided_95_newton_brentq",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_california_fold_2_ell10_psi2_one_sided_95_newton_residual",
+      "passed": true,
+      "detail": 1.248556813493451e-12
+    },
+    {
+      "name": "eta_california_fold_2_ell10_psi2_one_sided_95_brentq_residual",
+      "passed": true,
+      "detail": -5.704325900524054e-13
+    },
+    {
+      "name": "eta_california_fold_2_ell10_psi2_one_sided_95_newton_brentq",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_california_fold_2_ell15_psi5_two_sided_95_newton_residual",
+      "passed": true,
+      "detail": -5.790923296444817e-13
+    },
+    {
+      "name": "eta_california_fold_2_ell15_psi5_two_sided_95_brentq_residual",
+      "passed": true,
+      "detail": -5.790923296444817e-13
+    },
+    {
+      "name": "eta_california_fold_2_ell15_psi5_two_sided_95_newton_brentq",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_california_fold_2_ell15_psi5_one_sided_95_newton_residual",
+      "passed": true,
+      "detail": -5.704325900524054e-13
+    },
+    {
+      "name": "eta_california_fold_2_ell15_psi5_one_sided_95_brentq_residual",
+      "passed": true,
+      "detail": -5.704325900524054e-13
+    },
+    {
+      "name": "eta_california_fold_2_ell15_psi5_one_sided_95_newton_brentq",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_california_fold_2_ell20_psi5_two_sided_95_newton_residual",
+      "passed": true,
+      "detail": -5.790923296444817e-13
+    },
+    {
+      "name": "eta_california_fold_2_ell20_psi5_two_sided_95_brentq_residual",
+      "passed": true,
+      "detail": -5.790923296444817e-13
+    },
+    {
+      "name": "eta_california_fold_2_ell20_psi5_two_sided_95_newton_brentq",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_california_fold_2_ell20_psi5_one_sided_95_newton_residual",
+      "passed": true,
+      "detail": -5.704325900524054e-13
+    },
+    {
+      "name": "eta_california_fold_2_ell20_psi5_one_sided_95_brentq_residual",
+      "passed": true,
+      "detail": 1.248556813493451e-12
+    },
+    {
+      "name": "eta_california_fold_2_ell20_psi5_one_sided_95_newton_brentq",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_california_fold_2_ell50_psi30_two_sided_95_newton_residual",
+      "passed": true,
+      "detail": -5.790923296444817e-13
+    },
+    {
+      "name": "eta_california_fold_2_ell50_psi30_two_sided_95_brentq_residual",
+      "passed": true,
+      "detail": -5.790923296444817e-13
+    },
+    {
+      "name": "eta_california_fold_2_ell50_psi30_two_sided_95_newton_brentq",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_california_fold_2_ell50_psi30_one_sided_95_newton_residual",
+      "passed": true,
+      "detail": -5.704325900524054e-13
+    },
+    {
+      "name": "eta_california_fold_2_ell50_psi30_one_sided_95_brentq_residual",
+      "passed": true,
+      "detail": 1.248556813493451e-12
+    },
+    {
+      "name": "eta_california_fold_2_ell50_psi30_one_sided_95_newton_brentq",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_california_fold_2_profile_baseline",
+      "passed": true,
+      "detail": {
+        "eta": 0.0,
+        "train_nll": 10381.284356005246,
+        "train_loglik_gain": 5.566107574850321e-10,
+        "archived_train_loglik_gain": 0.0,
+        "parameters": [
+          -3.7047128143198114,
+          0.003569988561060107,
+          0.8308429761126565,
+          -6.01535634338414,
+          1.1073754210941875,
+          0.6931471805599453,
+          0.7210302180706085,
+          2.9031627455908633,
+          0.0,
+          2.70805020110221,
+          1.6094379124341003,
+          1.7269388197455344
+        ]
+      }
+    },
+    {
+      "name": "eta_california_fold_2_corrected_test_gain",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_california_fold_2_test_gain_finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_california_fold_2_profile_root_residual",
+      "passed": true,
+      "detail": {
+        "eta": 9.2863733890812e-05,
+        "residual": -2.220446049250313e-16,
+        "bracket": [
+          0.0,
+          0.0001
+        ]
+      }
+    },
+    {
+      "name": "eta_california_fold_2_fine_profile_residual",
+      "passed": true,
+      "detail": {
+        "eta": 9.2863733890812e-05,
+        "residual": -2.220446049250313e-16,
+        "bracket": [
+          0.0,
+          0.0001
+        ]
+      }
+    },
+    {
+      "name": "eta_california_fold_0_expected_two_sided",
+      "passed": true,
+      "detail": {
+        "eta": 0.00011414237998275211,
+        "residual": 3.304023721284466e-13,
+        "brentq_eta": 0.00011414237998280998,
+        "brentq_residual": -5.790923296444817e-13,
+        "iterations": 7
+      }
+    },
+    {
+      "name": "eta_california_fold_0_expected_one_sided",
+      "passed": true,
+      "detail": {
+        "eta": 8.166486670108451e-05,
+        "residual": 3.390621117205228e-13,
+        "brentq_eta": 8.166486670107728e-05,
+        "brentq_residual": -5.704325900524054e-13,
+        "iterations": 7
+      }
+    },
+    {
+      "name": "eta_california_fold_1_expected_two_sided",
+      "passed": true,
+      "detail": {
+        "eta": 0.00011175376694945352,
+        "residual": -5.790923296444817e-13,
+        "brentq_eta": 0.00011175376694950102,
+        "brentq_residual": -2.398081733190338e-12,
+        "iterations": 7
+      }
+    },
+    {
+      "name": "eta_california_fold_1_expected_one_sided",
+      "passed": true,
+      "detail": {
+        "eta": 7.989817840660443e-05,
+        "residual": 1.248556813493451e-12,
+        "brentq_eta": 7.989817840658445e-05,
+        "brentq_residual": -5.704325900524054e-13,
+        "iterations": 7
+      }
+    },
+    {
+      "name": "eta_california_fold_2_expected_two_sided",
+      "passed": true,
+      "detail": {
+        "eta": 9.096374377353929e-05,
+        "residual": -5.790923296444817e-13,
+        "brentq_eta": 9.096374377355231e-05,
+        "brentq_residual": -5.790923296444817e-13,
+        "iterations": 7
+      }
+    },
+    {
+      "name": "eta_california_fold_2_expected_one_sided",
+      "passed": true,
+      "detail": {
+        "eta": 6.495661438470821e-05,
+        "residual": -5.704325900524054e-13,
+        "brentq_eta": 6.495661438479887e-05,
+        "brentq_residual": -5.704325900524054e-13,
+        "iterations": 7
+      }
+    },
+    {
+      "name": "eta_california_fold_0_unscaled_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_california_fold_1_unscaled_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_california_fold_2_unscaled_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_ridgecrest_ell",
+      "passed": true,
+      "detail": 532.220083850363
+    },
+    {
+      "name": "eta_epicentral_event_sum",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_epicentral_exposure",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eta_epicentral_slope",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "s8_sign_mean",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "s8_sign_other_mean",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "s8_sign_median",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "s8_seed_410840",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "s8_partial_b_mean",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "s8_partial_c_mean",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "s8_partial_c_median",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "s8_partial_b_multistart",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "s8_closure",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "japan_per_fold_per_event_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "japan_per_event_factor",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "japan_delta",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "japan_annual_se",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "japan_annual_mde",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "japan_nine_blocks",
+      "passed": true,
+      "detail": 9
+    },
+    {
+      "name": "japan_fold_windows",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "ablation_closure",
+      "passed": true,
+      "detail": 0.0
+    },
+    {
+      "name": "ablation_declustering",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "ablation_scaling",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "ablation_a3_lower_than_frozen",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "ablation_a4_lower_than_frozen",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "ablation_A8_california_fold_0_own_weights",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "ablation_A8_california_fold_1_own_weights",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "ablation_A8_california_fold_2_own_weights",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "relaxed_plane_total",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "relaxed_rect_total",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "relaxed_not_double_counted",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "relaxed_inhibited_all_eta_zero",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "relaxed_inhibited_interior_sigma",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "pinsker_original_C",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "pinsker_tight_C",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "pinsker_reduction",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "pinsker_tight_K",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "pinsker_tight_threshold",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "pinsker_tight_nonvacuous",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "pinsker_original_vacuous",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "date_paper/source/main.tex",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "date_companion/guide_content.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "date_website/document_metadata.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "date_website/findings.html",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "date_README.md",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "date_REVIEWER_START_HERE.md",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "date_website_metadata",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "custody_quantiles_chapter",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "failures": [],
+  "check_count": 190,
+  "failure_count": 0,
+  "completeness_limit": "Recomputes reported algebraic and numerical identities from the written JSON, checks the sealed snapshot and date/custody fields, and does not re-run the producer optimizers."
+}

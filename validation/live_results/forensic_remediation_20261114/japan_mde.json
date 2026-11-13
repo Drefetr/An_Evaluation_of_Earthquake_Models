@@ -1,0 +1,167 @@
+{
+  "schema": "forensic_japan_mde_v1",
+  "passed": true,
+  "source": "experiments/methodological_audit/forensic_mde_20261114.py",
+  "authority_sha256": "ad5c7b19cf47d0bee099261615c897b69b3ee959cdd2d559ed464fa317aa8a92",
+  "archived": {
+    "per_fold": {
+      "se_total_nats": 8.152510301400694,
+      "se_nats_per_event": 0.006384111434143065,
+      "mde95_total_nats": 15.97892019074536,
+      "mde95_nats_per_event": 0.012512858410920407,
+      "mde80_total_nats": 22.82702884392194,
+      "blocks": 3
+    },
+    "three_fold_sum": {
+      "se_total_nats": 24.45753090420208,
+      "mde95_total_nats": 47.93676057223608,
+      "mde80_total_nats": 68.48108653176583,
+      "per_event_nats": 0.019152334302429193,
+      "note": "Sum of three annual fold totals; between-window SE multiplied by three."
+    },
+    "fold_totals": [
+      -74.75911649585487,
+      -59.13340261235726,
+      -87.3189732542919
+    ]
+  },
+  "repaired": {
+    "per_fold": {
+      "mde95_total_nats": 15.97892019074536,
+      "n_events": 425.6666666666667,
+      "mde95_nats_per_event": 0.03753857523276122,
+      "required_rate_perturbation": 0.27400209938159675
+    },
+    "three_fold_sum": {
+      "mde95_total_nats": 47.93676057223608,
+      "n_events": 1277.0,
+      "mde95_nats_per_event": 0.037538575232761225,
+      "required_rate_perturbation": 0.2740020993815968
+    },
+    "annual_nine_blocks": {
+      "mde95_total_nats": 56.506556420748645,
+      "n_events": 1277.0,
+      "mde95_nats_per_event": 0.04424945686824483,
+      "required_rate_perturbation": 0.29748766988984543
+    },
+    "fold_mean_events": 425.6666666666667
+  },
+  "arithmetic_checks": {
+    "archived_per_fold_per_event": 0.03753857523276122,
+    "archived_three_fold_per_event": 0.037538575232761225,
+    "repaired_per_fold_matches_three_fold": true,
+    "three_fold_mde_over_n_equals_196_se": true,
+    "archived_bug_reproduction": {
+      "omitted_factor_per_event": 0.019152334302429193,
+      "wrong_per_fold_denominator": 0.012512858410920407,
+      "repaired_factor": 1.96
+    }
+  },
+  "annual_blocks": [
+    {
+      "fold": 0,
+      "block": "2016",
+      "n_targets": 201,
+      "difference_nats": -37.57988520813751,
+      "difference_nats_per_target": -0.18696460302555976
+    },
+    {
+      "fold": 0,
+      "block": "2017",
+      "n_targets": 125,
+      "difference_nats": -14.460023483845362,
+      "difference_nats_per_target": -0.1156801878707629
+    },
+    {
+      "fold": 0,
+      "block": "2018",
+      "n_targets": 143,
+      "difference_nats": -22.719207803871996,
+      "difference_nats_per_target": -0.1588755790480559
+    },
+    {
+      "fold": 1,
+      "block": "2019",
+      "n_targets": 106,
+      "difference_nats": -7.198571510356032,
+      "difference_nats_per_target": -0.06791105198449088
+    },
+    {
+      "fold": 1,
+      "block": "2020",
+      "n_targets": 111,
+      "difference_nats": -23.846464159108336,
+      "difference_nats_per_target": -0.21483301044241745
+    },
+    {
+      "fold": 1,
+      "block": "2021",
+      "n_targets": 131,
+      "difference_nats": -28.08836694289289,
+      "difference_nats_per_target": -0.21441501483124342
+    },
+    {
+      "fold": 2,
+      "block": "2022",
+      "n_targets": 140,
+      "difference_nats": -24.95520815216196,
+      "difference_nats_per_target": -0.17825148680115685
+    },
+    {
+      "fold": 2,
+      "block": "2023",
+      "n_targets": 126,
+      "difference_nats": -28.95818316706982,
+      "difference_nats_per_target": -0.22982685053230015
+    },
+    {
+      "fold": 2,
+      "block": "2024",
+      "n_targets": 194,
+      "difference_nats": -33.40558193506013,
+      "difference_nats_per_target": -0.17219372131474292
+    }
+  ],
+  "annual_pooled": {
+    "groups": [
+      {
+        "fold": 0,
+        "blocks": 3,
+        "se_total_nats": 20.292632464717467,
+        "values": [
+          -37.57988520813751,
+          -14.460023483845362,
+          -22.719207803871996
+        ]
+      },
+      {
+        "fold": 1,
+        "blocks": 3,
+        "se_total_nats": 19.124978720049572,
+        "values": [
+          -7.198571510356032,
+          -23.846464159108336,
+          -28.08836694289289
+        ]
+      },
+      {
+        "fold": 2,
+        "blocks": 3,
+        "se_total_nats": 7.321611224388762,
+        "values": [
+          -24.95520815216196,
+          -28.95818316706982,
+          -33.40558193506013
+        ]
+      }
+    ],
+    "se_total_nats": 28.82987572487176,
+    "blocks": 9
+  },
+  "fold_windows": {
+    "0": "2016-2018",
+    "1": "2019-2021",
+    "2": "2022-2024"
+  },
+  "note": "The three folds are three-year windows (2016-2018, 2019-2021 and 2022-2024), not three annual fold totals.  The nine annual JMA blocks are pooled by fold into the same sqrt(sum se_f^2) independent-block standard error used elsewhere."
+}

@@ -1,0 +1,174 @@
+{
+  "schema": "forensic_remediation_disposition_v1",
+  "passed": true,
+  "edition_date": "14 November 2026",
+  "baseline_commit": "e8db032",
+  "scope": "Additive correction package for the five forensic errors and three custody/theory gaps identified in commit e8db032. All outputs are under validation/live_results/forensic_remediation_20261114; no sealed authority or pre-existing live_result JSON is rewritten.",
+  "sealed_snapshot": {
+    "path": "validation/forensic_prechange_snapshot_20261114.json",
+    "zip": "validation/forensic_prechange_snapshot_20261114.zip",
+    "file_count": 700,
+    "unchanged": true
+  },
+  "work_items": {
+    "F1_nz_trend_controls": {
+      "disposition": "corrected",
+      "evidence": "validation/live_results/forensic_remediation_20261114/nz_trend_controls.json",
+      "key_results": {
+        "fixed_null_se90": 1.3955978289659632,
+        "fixed_null_mde95_90": 2.7353717447732877,
+        "fixed_null_z": -3.5868091555013515,
+        "fixed_null_ratio": 1.830004671174159,
+        "zero_d_mde95_90": 5.416860652954182,
+        "full_grid_zero_total": -11.43117364480338,
+        "full_grid_fixed_total": -5.005783652743219,
+        "cells": 18,
+        "starts_per_cell": 2
+      }
+    },
+    "F2_california_eta_profiles": {
+      "disposition": "corrected",
+      "evidence": "validation/live_results/forensic_remediation_20261114/eta_profiles.json",
+      "key_results": {
+        "f0_two_sided_roots": [
+          0.00015577799433032574,
+          0.00011414237998275211,
+          0.00010903712592656318,
+          7.49690906638344e-05
+        ],
+        "f0_one_sided_roots": [
+          0.00011196980693690434,
+          8.166486670108451e-05,
+          7.79755013966151e-05,
+          5.352689838344764e-05
+        ],
+        "ridgecrest_ell_km": 532.220083850363,
+        "f0_event_sum_G": 75313.90275560762,
+        "f0_exposure_integral_G": 59415.47941914608,
+        "f0_slope": -15898.423336461536
+      }
+    },
+    "F3_s8_oracle": {
+      "disposition": "corrected",
+      "evidence": "validation/live_results/forensic_remediation_20261114/s8_oracle.json",
+      "key_results": {
+        "sign_mean": 3.571425664485332,
+        "other_seed_mean": -0.2025960225016182,
+        "median": -1.6831136976599055,
+        "partial_b_mean": 2.823657383237122,
+        "partial_b_median": 5.903274556184215,
+        "partial_c_mean": -6.513221037516632,
+        "partial_c_median": -3.1306456698728766,
+        "seed_410840_contrast": 75.27783771723705
+      }
+    },
+    "F4_japan_mde": {
+      "disposition": "corrected",
+      "evidence": "validation/live_results/forensic_remediation_20261114/japan_mde.json",
+      "key_results": {
+        "per_fold_per_event": 0.03753857523276122,
+        "three_fold_per_event": 0.037538575232761225,
+        "required_rate_perturbation": 0.2740020993815968,
+        "annual_se365": 28.82987572487176,
+        "annual_mde95": 56.506556420748645,
+        "annual_per_event": 0.04424945686824483,
+        "annual_delta": 0.29748766988984543,
+        "fold_windows": [
+          "2016-2018",
+          "2019-2021",
+          "2022-2024"
+        ]
+      }
+    },
+    "F5_epplus_ablation": {
+      "disposition": "corrected",
+      "evidence": [
+        "validation/live_results/forensic_remediation_20261114/epplus_ablation.json",
+        "validation/live_results/forensic_remediation_20261114/epplus_sigma0_totals.json",
+        "validation/live_results/forensic_remediation_20261114/epplus_relaxed_inhibited.json"
+      ],
+      "key_results": {
+        "self_declustered_totals": {
+          "A3": 34.8080479803217,
+          "A4": 34.79410832804001,
+          "A7": 69.54720461399427,
+          "A8": 69.55138526786914,
+          "A0": 0.0,
+          "A1": 10.240825527520997,
+          "A2": 10.330176929178037,
+          "A5": 38.84172789883155,
+          "A6": 38.88922855366525
+        },
+        "shapley": {
+          "normalization": 0.03677085226930406,
+          "declustering": 27.604694408005646,
+          "scaling": 31.669094480073188
+        },
+        "relaxed_plane": 77.0557339839778,
+        "relaxed_rect": 77.05874171993219,
+        "relaxed_frozen_plane": 78.5844526377922,
+        "relaxed_frozen_rect": 78.51839026490643,
+        "relaxed_inhibited_all_eta_zero": true
+      }
+    },
+    "F6_theory_and_custody": {
+      "disposition": "corrected",
+      "evidence": [
+        "paper/source/chapters/04_identifiability.tex",
+        "paper/source/chapters/03_stability.tex",
+        "paper/source/chapters/02_models.tex",
+        "paper/source/chapters/11_epplus_eta_profiles.tex",
+        "paper/source/chapters/13_continuous_local_inhibition.tex",
+        "validation/live_results/forensic_remediation_20261114/mathematics_visibility.json"
+      ],
+      "key_results": {
+        "original_C_T": 2866250.949488237,
+        "original_K_T": 366444.65704665193,
+        "original_threshold": 0.0023362042029492786,
+        "tight_C_T": 0.10424014954814537,
+        "tight_K_T": 0.013326902118770183,
+        "tight_threshold": 12.250403506767263,
+        "tight_bound_at_1_65": 0.1346894409713542,
+        "reduction_factor": 27496612.024375528,
+        "doeblin_exponent": 116.4,
+        "minorization": 0.5
+      }
+    }
+  },
+  "build": {
+    "paper_pdf": "paper/manuscript_unified.pdf",
+    "paper_pdf_sha256": "327d7ef2636e368c1c1d6d4f06237fd48822d020644e632fdb77a824384d46e0",
+    "paper_pages": 252,
+    "companion_pdf": "companion/lay_guide_to_the_research.pdf",
+    "companion_pages": 12,
+    "site": "website/site/index.html"
+  },
+  "verification": {
+    "independent_audit": {
+      "path": "validation/live_results/forensic_remediation_20261114/independent_audit.json",
+      "passed": true,
+      "checks": 190,
+      "failures": 0
+    },
+    "claim_ledger_passed": true,
+    "repository_manifest_passed": true,
+    "tests_918_ok": true,
+    "regional_44_ok": true,
+    "s02_6_ok": true,
+    "site_interactions_passed": true
+  },
+  "outputs": {
+    "epplus_ablation.json": "689ff2788a30d7b5e441143c3b2f3259125650afedd59369d24e7162a7855d73",
+    "epplus_relaxed_inhibited.json": "a9345e27d2f5db190c523f107bdaec3cad1fa79de04626deeff983ba6ac07c5a",
+    "epplus_sigma0_totals.json": "595860dd9d95cda98e6d61658746300662ee8f60d31eadd79d2dc32345f16253",
+    "eta_profiles.json": "b3f973142d81242decf576e26a2140f5b04b55c0ce99ba3879a957b7e94cf93a",
+    "independent_audit.json": "56e9b634771853cf89c7f356aecadb6e5ca312ad2d2b289b80d7fe96024efe39",
+    "japan_mde.json": "34958e184f5169b927c1ecc6ba89dc6d2c05475d5c7daccf47d83bacc9b0e5d7",
+    "mathematics_full.json": "0a99874b8db37afb4c0127c290e3ac17da7dd8fa1cc3a7cb56d1edae69448c00",
+    "mathematics_visibility.json": "63af426af233198347cc6bd0d75c54c518fcc836b3c725ea089fb530715cb81e",
+    "nz_trend_controls.json": "8c9dc7afe46a24aec30cd733b7b50d060b9aecbd4f471ceb44db06f9c0a027bc",
+    "s8_oracle.json": "38f728780ce0b1295a51365c2541b3d9e8b603e865a5eb2b919ec43ddd84dcde",
+    "summary.json": "c7cf6d2a24e7d3a40a19593e995dd36227ea11b56e71a93b39b68a26d47dfc6b"
+  },
+  "sealed_authorities_mutated": false
+}
