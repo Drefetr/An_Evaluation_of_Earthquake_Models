@@ -9,6 +9,15 @@ magnitude-scaled spatial kernel
 \]
 This density is normalized on the plane; its mass inside the observation
 rectangle enters the compensator, retaining regional offspring leakage.
+Both this procedure and archived EP define intensities in
+$\mathrm{day}^{-1}\,\mathrm{km}^{-2}$ on the same observation domain
+$[T_0,T_1]\times R$. Both score events against that common measure and
+integrate their compensators over that domain. EP normalizes each parent's
+spatial density over $R$; here the in-region mass $\int_R s_j(z)\,\mathrm{d}z\leq1$
+enters the triggering exposure. Allowing offspring outside $R$ therefore
+changes the fitted forecast but does not invalidate a proper-score comparison
+of the two recorded-region intensities. It does prevent attributing their
+contrast solely to magnitude scaling.
 Training immigrant probabilities weight five successive background KDE updates,
 following the probability-weighting principle of stochastic declustering
 \citep{ZhuangOgataVereJones2002}. The resulting density, with its inherited 5~km
@@ -35,6 +44,8 @@ The attenuation deficit uses a frozen scrambled-Sobol importance proposal during
 each training optimization; independent larger proposals verify the training
 ordering and the held-out numerical precision. The reported integration error
 measures numerical variability across independent scrambles.
+The saved field \texttt{training\_power}$=14$ denotes Sobol quadrature
+resolution, $2^{14}$ integration points, not statistical detection power.
 
 \begin{table}[htbp]
 \centering
@@ -50,11 +61,16 @@ F2 & 1097 & 69 & 2.000 & 0.721 & 2.903 & 0.000000 & +0.0000 \\
 \end{tabular}
 \caption{Magnitude-scaled total attenuation minus the matched magnitude-scaled
 ETAS baseline. The common mark term cancels in each contrast. Spatial scales,
-magnitude exponents and tail shapes shown are from the uninhibited fit.}
+magnitude exponents and tail shapes shown are from the uninhibited fit. Each
+zero contrast follows exactly from selecting the nested training boundary
+$\hat\eta=0$; it is not an interior-power test for physical inhibition.}
 \label{tab:epplus_benchmark}
 \end{table}
-All three baseline fits place $\sigma_0$ at the 2~km lower search bound. The combined magnitude-scaled, probability-weighted-background, joint-fitting and spatial-normalization procedure improves the held-out joint score over the earlier EP procedure by 14.579, 30.691, and 24.282~nats in F0, F1, and F2, respectively (69.553~nats in total). The comparison uses identical event and parent histories, fertility weights, and common mark scores. The earlier EP procedure normalizes each parent kernel on the observation rectangle; the present procedure normalizes on the full plane and retains regional offspring leakage. Adding the rupture-scaled attenuation returns to $\widehat\eta=0$ in all three folds. The matched scored states are identical, so all three attenuation contrasts are exactly zero.
+All three baseline fits place $\sigma_0$ at the 2~km lower search bound. The combined magnitude-scaled, probability-weighted-background, joint-fitting and spatial-normalization procedure improves the held-out joint score over the earlier EP procedure by 14.58, 30.69, and 24.28~nats in F0, F1, and F2, respectively (69.55~nats in total). The comparison uses identical event and parent histories, fertility weights, and common mark scores. The gain confounds all four procedural changes and rests on a boundary spatial-scale estimate; it does not identify which change caused the improvement. Adding the rupture-scaled attenuation selects $\widehat\eta=0$ in all three folds. The matched scored states are identical, so all three attenuation contrasts are exactly zero by nesting.
+
+\input{chapters/11_epplus_ablation}
+\input{chapters/11_epplus_eta_profiles}
 
 % BEGIN EPPLUS BASELINE UNCERTAINTY
-For this combined excitation improvement, the paired 90-day block calculation in Section~\ref{sec:block_score_uncertainty} gives a 95\% interval of $[32.239,123.719]$~nats ($p=0.00002$). The 180- and 365-day intervals are $[32.153,120.312]$ and $[26.589,122.164]$~nats, with sign-flip values $p=0.00010$ and $p=0.00452$, respectively.
+For this combined excitation improvement, the paired 90-day block calculation in Section~\ref{sec:block_score_uncertainty} gives a 95\% interval of $[32.239,123.719]$~nats (nominal sign-flip $p=0.00002$). The 180- and 365-day intervals are $[32.153,120.312]$ and $[26.589,122.164]$~nats, with nominal sign-flip values $p=0.00010$ and $p=0.00452$, respectively. The small reference probability and wide interval are compatible summaries of directional extremeness and score-magnitude variability. Adjacent blocks are not independent sequence replications, and independent sign reversal does not establish exchangeability under clustered, history-dependent seismicity. Read the multi-scale intervals and fold directions first; these values do not supply calibrated long-memory significance or fitted-parameter uncertainty.
 % END EPPLUS BASELINE UNCERTAINTY

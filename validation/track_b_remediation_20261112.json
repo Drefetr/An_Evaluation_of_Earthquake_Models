@@ -1,0 +1,257 @@
+{
+  "schema": "track_b_scientific_controls_remediation_v1",
+  "date": "2026-11-12",
+  "coordinator_gate_passed": true,
+  "status": "Track B complete: all control scripts, independent audit, builds and full verification suites passed; sealed scientific authorities unchanged.",
+  "baseline_acceptance": {
+    "path": "validation/track_a_remediation_20261112.json",
+    "sha256": "be4d7089788b79825667081b059a364bded3f4750cdaceaa9d774949de263084",
+    "bytes": 12241
+  },
+  "prechange_snapshot": {
+    "path": "validation/track_b_prechange_snapshot_20261112.json",
+    "sha256": "fd3e562154bf3e8798141be45bec51804287d503703520e421df3cd99911627e",
+    "bytes": 63377
+  },
+  "response": {
+    "path": "docs/reviews/track_b_hostile_review_response_20261112.md",
+    "sha256": "2142e1df378f4b9c39ad143b45205b8b9320faef5b606bb223905eaaa6f86c67",
+    "bytes": 11436
+  },
+  "scope": "Targeted scientific controls: EP+ component ablation and interior spatial scale, New Zealand trend/depletion controls, S8 oracle ceiling, California attenuation profiles and regional minimum detectable effects.",
+  "scientific_campaign_executed": true,
+  "remote_compute_required": false,
+  "public_deployment_performed": false,
+  "work_items": {
+    "B1_component_ablation": "Nine-arm EP+ ablation with exact Shapley closure; full-plane normalization contributes 0.064 nats, declustering 29.223, magnitude scaling 30.026 and joint fitting 10.241.",
+    "B1_interior_sigma0": "The 2 km lower bound is binding; relaxed fits select 0.823, 0.839 and 0.821 km and raise the full-plane gain to 77.056 nats (78.584 with frozen weights).",
+    "B2_nz_trend_controls": "Zero-trend and fixed-null-trend controls remove 48.5% and 72.4% of the Fold-1 deficit; archived scores reproduce exactly.",
+    "B3_s8_oracle": "Oracle gain over the jointly fitted null averages 18.112 nats (MCSE 4.182); fitted procedure captures 0.294; estimation loss 17.818.",
+    "B3_eta_profiles": "California training profiles place the one-sided upper bound near 2e-5 to 5e-5 under the EP+ kernel; the zero boundary is strongly selected.",
+    "B3_mde": "90-day MDE95 is 9.236 nats (NZ), 48.302 (CA) and 15.979 (Japan between-window)."
+  },
+  "artifacts": {
+    "monograph": {
+      "path": "paper/manuscript_unified.pdf",
+      "sha256": "51d05cf38a0d449da7ad969fd5a2d6868d2fc89e37d89496aa40ac25f0304f95",
+      "bytes": 2223974,
+      "pages": 244
+    },
+    "companion": {
+      "path": "companion/lay_guide_to_the_research.pdf",
+      "sha256": "8a3170139623ed4a477e323035998260a30e2a1141d2d8b7ec90ad5f47a8d2e6",
+      "bytes": 63659,
+      "pages": 8
+    },
+    "site_documents": {
+      "path": "website/site/documents.json",
+      "sha256": "2e44604752c7bbe707c99e38d78c98065d2ce34c00a9337d4ed68da6b6dfcad4",
+      "bytes": 1557
+    },
+    "site_findings": {
+      "path": "website/site/findings-data.json",
+      "sha256": "b434bd83ce500c564d675fd3cf7aec50d4b24001db5ffd3d26032b0ffb290451",
+      "bytes": 221483
+    },
+    "site_findings_html": {
+      "path": "website/site/findings.html",
+      "sha256": "213261d08d173cbc1784f3dcc9872e808ef878990cddafc867bd518ca3f77dd6",
+      "bytes": 191165
+    }
+  },
+  "new_derived_authorities": [
+    {
+      "path": "validation/live_results/track_b_controls_20261112/epplus_ablation/ablation.json",
+      "sha256": "d1c89e17168958bc3af3fa2a4cd1a438754be5d876778143ddc86d0a1442ffec",
+      "bytes": 31541
+    },
+    {
+      "path": "validation/live_results/track_b_controls_20261112/epplus_ablation/sigma0_relaxation.json",
+      "sha256": "68b277e36300965af0e37dda0a668c2132e9e679448e6295f8499868d8b81771",
+      "bytes": 207697
+    },
+    {
+      "path": "validation/live_results/track_b_controls_20261112/epplus_ablation/sigma0_relaxation_frozen.json",
+      "sha256": "d0941cba91c3b63dfdadecf123b850f58e51753f43ebaef3c422faa67b366436",
+      "bytes": 5570
+    },
+    {
+      "path": "validation/live_results/track_b_controls_20261112/epplus_ablation/sigma0_profile.json",
+      "sha256": "2eafabaf2e40300a1574a87098ebd25df93081e41a63df698a2676676a9e163e",
+      "bytes": 48309
+    },
+    {
+      "path": "validation/live_results/track_b_controls_20261112/nz_trend_controls/summary.json",
+      "sha256": "0130f06902de7c99d11b28c88b54f6fd6af32eb943d0daed0b0dd074138af34d",
+      "bytes": 743596
+    },
+    {
+      "path": "validation/live_results/track_b_controls_20261112/profiles_and_power/s8_oracle.json",
+      "sha256": "e20fa214bfcb589ed8dbf454e21d64c7350852e6663f3ed8432a3063a89d7048",
+      "bytes": 20296
+    },
+    {
+      "path": "validation/live_results/track_b_controls_20261112/profiles_and_power/california_eta_profiles.json",
+      "sha256": "acb6d3df8037b9514db54bdfc3d6f824018cece35c4641b1895449960e2c8823",
+      "bytes": 47469
+    },
+    {
+      "path": "validation/live_results/track_b_controls_20261112/profiles_and_power/mde.json",
+      "sha256": "eb4b5adab2bff29b8fdad64107886880a0879956feff418348801ec814592556",
+      "bytes": 5229
+    },
+    {
+      "path": "validation/live_results/track_b_controls_20261112/independent_track_b_audit.json",
+      "sha256": "45660ae0e8b8a284ea8e01f746fcfdefa711e6273bf3aabd8d7ad2e9be731504",
+      "bytes": 178120
+    },
+    {
+      "path": "validation/live_results/track_b_controls_20261112/track_b_numeric_claims.json",
+      "sha256": "f91b7c02b8f9cd24a3262e0e4dfe93937cf97a3daeea154f6e4e69008d9840f6",
+      "bytes": 407501
+    },
+    {
+      "path": "validation/live_results/track_b_controls_20261112/epplus_ablation/summary.json",
+      "sha256": "c04e5bb7bd280f3db488934605ac1f83f420c80d5e0d7deddcb624a87e14b9a2",
+      "bytes": 1385
+    },
+    {
+      "path": "validation/live_results/track_b_controls_20261112/profiles_and_power/summary.json",
+      "sha256": "87fb28304c39c67349a8a81ded334ab22e154fc4d749ebdef23ea02ad3c1ec33",
+      "bytes": 1013
+    }
+  ],
+  "claim_custody": {
+    "master_ledger": {
+      "path": "validation/MASTER_CLAIM_LEDGER.json",
+      "sha256": "7abe2a880e1a0fa5f9981c4ca25a9fc1eafef91124b0405b55341c68f7ddc03d",
+      "bytes": 24971055
+    },
+    "authority_manifest": {
+      "path": "validation/authority_manifest.json",
+      "sha256": "6156ae869b6ceecbf6a0f3761f92935fc0548f26616af10196c818e741c2d63a",
+      "bytes": 129634
+    },
+    "new_display_bindings": 371,
+    "receipt_refresh_command": "python -B scripts/verify_claims.py --write-receipts",
+    "receipt": {
+      "path": "validation/numeric_reconciliation_receipt.json",
+      "sha256": "aaa39223c59aa0716e30f97d4470d386036242cbf2bba0c9c5d31743dd7b198b",
+      "bytes": 7237
+    },
+    "display_regression": {
+      "path": "validation/manuscript_display_regression.json",
+      "sha256": "74a2c757f6ee368908d426bbbbb250071037205704e5fcdea10108087c91eee3",
+      "bytes": 5967
+    },
+    "claims_passed": true,
+    "release_ready": true,
+    "failures": 0,
+    "missing_declared_manuscript_displays": 0
+  },
+  "computational_reviews": [
+    {
+      "path": "validation/live_results/track_b_controls_20261112/independent_track_b_audit.json",
+      "sha256": "45660ae0e8b8a284ea8e01f746fcfdefa711e6273bf3aabd8d7ad2e9be731504",
+      "bytes": 178120
+    }
+  ],
+  "checks": {
+    "main_tests": {
+      "path": "validation/acceptances/TRACK_B_20261112/main_tests.json",
+      "sha256": "08311952b8a3716a4b84e75aa4d3bc982db35db42137e5db06722f44fa79980e",
+      "bytes": 234
+    },
+    "regional_tests": {
+      "path": "validation/acceptances/TRACK_B_20261112/regional_tests.json",
+      "sha256": "f089e1283270bf629e02382c3c8e64855d4900c8d4ec0d8c7c57a4a4accc09db",
+      "bytes": 213
+    },
+    "s02_tests": {
+      "path": "validation/acceptances/TRACK_B_20261112/s02_tests.json",
+      "sha256": "898a96945935ba4f8bba4389a92c7c96e758279acec1d8dd8a093604d6d37cf4",
+      "bytes": 206
+    },
+    "regional_inputs": {
+      "path": "validation/acceptances/TRACK_B_20261112/regional_inputs.json",
+      "sha256": "9bff9b4db9e260619ec01e68c73a642c8d24f0811010b84540247b5ca8ab541b",
+      "bytes": 215
+    },
+    "s02_inputs": {
+      "path": "validation/acceptances/TRACK_B_20261112/s02_inputs.json",
+      "sha256": "fc01f56fe2da82f816d4ea21c95076e4cffaf7789b6eb5ec6c5af9c2e3b361b6",
+      "bytes": 210
+    },
+    "historical_fits": {
+      "path": "validation/acceptances/TRACK_B_20261112/historical_fits.json",
+      "sha256": "0b385a54418338ad0a0f8bccaec0c6627ebf8850052fd25839519e4ce45014d0",
+      "bytes": 216
+    },
+    "mathematics": {
+      "path": "validation/acceptances/TRACK_B_20261112/mathematics.json",
+      "sha256": "dc74706cb7050c2eb1afad449f69260aa83075eb65af3fd75738917cd069377c",
+      "bytes": 8604
+    },
+    "claims": {
+      "path": "validation/acceptances/TRACK_B_20261112/claims.json",
+      "sha256": "2e225fe7ce4c9eae83cef6a1e85e851ee25c0b70646eaecbafdc2d24fee3160b",
+      "bytes": 7237
+    },
+    "website": {
+      "path": "validation/acceptances/TRACK_B_20261112/website.json",
+      "sha256": "c970c8168fed79ba0f68a1eb1199398301718ce694a59698b851efb913f20a61",
+      "bytes": 616
+    },
+    "paper_production_checks": {
+      "path": "validation/acceptances/TRACK_B_20261112/paper_production_checks.json",
+      "sha256": "3ac1354391c13ff47a03e2f233b2274819ef34d1c70800a50be5b4d89c4788e8",
+      "bytes": 546
+    },
+    "paper_machine_review": {
+      "path": "validation/acceptances/TRACK_B_20261112/paper_visual_review.json",
+      "sha256": "314e314f9ee7421e845369ee67ab0fe5c6fb8ca99c8a4d8525229a70b7b4eb73",
+      "bytes": 396
+    },
+    "repository": {
+      "path": "validation/acceptances/TRACK_B_20261112/repository.json",
+      "sha256": "b49a16fb9855ea9e3f65709b66b419611989cf238e4ff6a11913ce79cd5626bd",
+      "bytes": 245
+    }
+  },
+  "production": {
+    "paper_builds": [
+      "python -B scripts/build_paper.py --output build/track_b_paper_final2 --install"
+    ],
+    "final_pdf_check_command": "python -B scripts/validate_pdf.py --source-root paper --pdf build/track_b_paper_final2/main.pdf --log build/track_b_paper_final2/main.log --output build/track_b_pdf_qa_final2",
+    "overfull_boxes": 0,
+    "undefined_references_or_citations": 0,
+    "pages": 244,
+    "companion_build": "python -B companion/build_guide.py --output build/track_b_companion_v9 --install",
+    "site_build": "python -B website/build_site.py --output build/track_b_site_v7 --companion build/track_b_companion_v9 --install",
+    "paper_machine_qa": {
+      "path": "validation/acceptances/TRACK_B_20261112/paper_visual_review.json",
+      "sha256": "314e314f9ee7421e845369ee67ab0fe5c6fb8ca99c8a4d8525229a70b7b4eb73",
+      "bytes": 396
+    }
+  },
+  "sealed_custody": {
+    "snapshot": {
+      "path": "validation/track_b_prechange_snapshot_20261112.json",
+      "sha256": "fd3e562154bf3e8798141be45bec51804287d503703520e421df3cd99911627e",
+      "bytes": 63377
+    },
+    "sealed_json_files": 327,
+    "prior_track_a_roster": 316,
+    "changed_against_prior": 0,
+    "missing_against_prior": 0,
+    "new_since_prior": 11,
+    "scope": "Exact SHA-256 roster check; no sealed authority was modified."
+  },
+  "test_counts": {
+    "main_tests": 918,
+    "regional_tests": 44,
+    "s02_tests": 6
+  },
+  "repository_manifest": "MANIFEST.json binds the final payload; its own hash is not embedded to avoid a self-reference cycle.",
+  "verified_payload_files": 10791
+}

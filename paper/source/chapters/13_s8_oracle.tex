@@ -1,0 +1,14 @@
+\subsubsection{Oracle ceiling and estimation loss}\label{sec:s8-oracle}
+An oracle that knows the generating attenuation parameters but not the nuisance backbone achieves a mean held-out gain of 18.11~nats over the jointly fitted null (median 12.86, MCSE 4.18). Against a fixed true-backbone null the mean is 16.43~nats, and against an intercept-refitted null it is 14.54~nats. The fitted procedure captures only 0.294~nats on average; its mean estimation loss relative to the oracle is -17.82~nats (median -8.10, MCSE 6.08). The bottleneck is parameter estimation, not the absence of a true generating effect.
+\begin{table}[htbp]\centering\small
+\begin{tabular}{@{}lrrrrr@{}}\toprule
+Contrast & Mean & Median & SD & MCSE & Wins\\\midrule
+True vs fixed true-backbone null & 16.429 & 12.819 & 8.176 & 1.828 & 20 \\
+True vs refitted-intercept null & 14.541 & 11.630 & 8.187 & 1.831 & 20 \\
+True vs jointly fitted null & 18.112 & 12.865 & 18.700 & 4.182 & 19 \\
+Fitted inhibited minus true & -17.818 & -8.097 & 27.204 & 6.083 & 2 \\
+Fitted inhibited minus fitted null & 0.294 & 2.541 & 12.420 & 2.777 & 13 \\
+\bottomrule\end{tabular}
+\caption{S8 oracle ceiling and estimation loss over the twenty histories, in nats. The true law uses the S8 moderate attenuation parameter and the same fixed mark and spatial laws as the fitted procedure. The jointly fitted null is the actual comparator; the fixed and intercept-refitted nulls separate nuisance adaptation from attenuation. MCSE is the sample standard deviation divided by the square root of the history count.}
+\label{tab:s8-oracle}
+\end{table}

@@ -12,43 +12,51 @@ L(b,n)=\sum_i\log(bu_i+nh_i)-bA-nE_{\mathrm{trig}}+M,
 \]
 For each $n$, a monotone score equation gives the optimal $b$; the monotone profile derivative then selects $n$, including its boundary optima. The box Karush--Kuhn--Tucker conditions and independent archived-score identities are checked for all 80 histories. All 20 S7 fits select $\hat n=0$. The executable two-parameter control and per-history results are in \path{experiments/s04b_refitted_floor/run.py} and \path{validation/live_results/s04b_concave_20261111/}.
 
-\begin{table}[H]\centering\small
-\setlength{\tabcolsep}{3pt}
-\caption{S04B comparator sensitivity. Mean held-out gains in nats against the fixed floor, the training-fitted intercept, and the jointly fitted $(a,n)$ comparator. The two win columns count strictly positive contrasts against their respective fitted comparators, each out of twenty histories. Active counts describe the saved attenuation procedure; original gates are unchanged. A gate returning the original fixed floor can beat a refitted floor without selecting inhibition.}\label{tab:s04b-refitted-floor}
+\begin{table}[H]\centering\footnotesize
+\setlength{\tabcolsep}{2pt}
+\caption{S04B comparator sensitivity. Cells give mean held-out gain (MCSE), in nats, against the fixed floor, training-fitted intercept, and jointly fitted $(a,n)$ comparator. MCSE is the sample standard deviation divided by the square root of the number of histories. The two win columns count strictly positive contrasts against their respective fitted comparators. Active counts describe the saved attenuation procedure; original gates are unchanged. A gate returning the original fixed floor can beat a refitted floor without selecting inhibition.}\label{tab:s04b-refitted-floor}
 \begin{tabular}{@{}llrrrrrr@{}}
 \toprule Regime & Saved procedure & \shortstack{Fixed\\floor} & \shortstack{Fitted\\intercept} & \shortstack{Fitted\\$(a,n)$} & \shortstack{Wins\\$a$} & \shortstack{Wins\\$(a,n)$} & Active\\\midrule
-S4 & LI & -3.9493 & -3.2102 & -2.5062 & 6/20 & 4/20 & 19/20\\
- & LI+ immigrant & -4.5674 & -3.8283 & -3.1243 & 5/20 & 5/20 & 20/20\\
- & LI+ immigrant gated & -1.3440 & -0.6049 & 0.0991 & 13/20 & 14/20 & 1/20\\
- & LI+ total & -21.5766 & -20.8374 & -20.1335 & 5/20 & 5/20 & 19/20\\
- & LI+ total gated & -1.0043 & -0.2651 & 0.4389 & 13/20 & 14/20 & 1/20\\
+\multicolumn{8}{@{}l}{\textbf{S4}: mean $N_{\mathrm{train}}=86.65$, $N_{\mathrm{test}}=109.40$} \\
+S4 & LI & -3.9493 (1.2142) & -3.2102 (1.0419) & -2.5062 (1.0019) & 6/20 & 4/20 & 19/20\\
+S4 & LI+ immigrant & -4.5674 (1.6218) & -3.8283 (1.5001) & -3.1243 (1.3910) & 5/20 & 5/20 & 20/20\\
+S4 & LI+ immigrant gated & -1.3440 (1.3440) & -0.6049 (1.1378) & 0.0991 (1.0364) & 13/20 & 14/20 & 1/20\\
+S4 & LI+ total & -21.5766 (9.8329) & -20.8374 (9.8741) & -20.1335 (9.5417) & 5/20 & 5/20 & 19/20\\
+S4 & LI+ total gated & -1.0043 (1.0043) & -0.2651 (0.8096) & 0.4389 (0.7296) & 13/20 & 14/20 & 1/20\\
 \addlinespace
-S5 & LI & 44.3122 & 1.0885 & 3.3455 & 12/20 & 14/20 & 20/20\\
- & LI+ immigrant & 48.3868 & 5.1631 & 7.4200 & 19/20 & 19/20 & 20/20\\
- & LI+ immigrant gated & 48.3868 & 5.1631 & 7.4200 & 19/20 & 19/20 & 20/20\\
- & LI+ total & 19.4993 & -23.7244 & -21.4675 & 4/20 & 5/20 & 19/20\\
- & LI+ total gated & 19.3802 & -23.8435 & -21.5865 & 4/20 & 5/20 & 18/20\\
+\multicolumn{8}{@{}l}{\textbf{S5}: mean $N_{\mathrm{train}}=15.15$, $N_{\mathrm{test}}=16.90$} \\
+S5 & LI & 44.3122 (1.4559) & 1.0885 (0.8462) & 3.3455 (1.3055) & 12/20 & 14/20 & 20/20\\
+S5 & LI+ immigrant & 48.3868 (0.9599) & 5.1631 (0.7036) & 7.4200 (1.2945) & 19/20 & 19/20 & 20/20\\
+S5 & LI+ immigrant gated & 48.3868 (0.9599) & 5.1631 (0.7036) & 7.4200 (1.2945) & 19/20 & 19/20 & 20/20\\
+S5 & LI+ total & 19.4993 (7.2001) & -23.7244 (7.2583) & -21.4675 (6.5238) & 4/20 & 5/20 & 19/20\\
+S5 & LI+ total gated & 19.3802 (7.2159) & -23.8435 (7.2806) & -21.5865 (6.5500) & 4/20 & 5/20 & 18/20\\
 \addlinespace
-S6 & LI & -1.7818 & -1.4757 & -0.8626 & 7/20 & 8/20 & 20/20\\
- & LI+ immigrant & -3.2420 & -2.9359 & -2.3228 & 9/20 & 9/20 & 20/20\\
- & LI+ immigrant gated & 0.0000 & 0.3061 & 0.9192 & 15/20 & 15/20 & 0/20\\
- & LI+ total & -14.5947 & -14.2887 & -13.6756 & 10/20 & 13/20 & 20/20\\
- & LI+ total gated & 0.0686 & 0.3747 & 0.9878 & 15/20 & 15/20 & 1/20\\
+\multicolumn{8}{@{}l}{\textbf{S6}: mean $N_{\mathrm{train}}=95.80$, $N_{\mathrm{test}}=111.55$} \\
+S6 & LI & -1.7818 (0.6357) & -1.4757 (0.6454) & -0.8626 (0.6333) & 7/20 & 8/20 & 20/20\\
+S6 & LI+ immigrant & -3.2420 (1.2527) & -2.9359 (1.2674) & -2.3228 (1.0470) & 9/20 & 9/20 & 20/20\\
+S6 & LI+ immigrant gated & 0.0000 (0.0000) & 0.3061 (0.1270) & 0.9192 (0.3695) & 15/20 & 15/20 & 0/20\\
+S6 & LI+ total & -14.5947 (7.8248) & -14.2887 (7.8134) & -13.6756 (7.7435) & 10/20 & 13/20 & 20/20\\
+S6 & LI+ total gated & 0.0686 (0.0686) & 0.3747 (0.1436) & 0.9878 (0.3701) & 15/20 & 15/20 & 1/20\\
 \addlinespace
-S7 & LI & 42.5503 & -0.9462 & -5.0575 & 10/20 & 8/20 & 20/20\\
- & LI+ immigrant & 49.2902 & 5.7937 & 1.6824 & 18/20 & 15/20 & 20/20\\
- & LI+ immigrant gated & 49.2902 & 5.7937 & 1.6824 & 18/20 & 15/20 & 20/20\\
- & LI+ total & 53.2332 & 9.7367 & 5.6255 & 18/20 & 18/20 & 20/20\\
- & LI+ total gated & 53.2332 & 9.7367 & 5.6255 & 18/20 & 18/20 & 20/20\\
+\multicolumn{8}{@{}l}{\textbf{S7}: mean $N_{\mathrm{train}}=13.30$, $N_{\mathrm{test}}=13.25$} \\
+S7 & LI & 42.5503 (1.7274) & -0.9462 (1.5646) & -5.0575 (2.0010) & 10/20 & 8/20 & 20/20\\
+S7 & LI+ immigrant & 49.2902 (1.3502) & 5.7937 (0.9722) & 1.6824 (0.8890) & 18/20 & 15/20 & 20/20\\
+S7 & LI+ immigrant gated & 49.2902 (1.3502) & 5.7937 (0.9722) & 1.6824 (0.8890) & 18/20 & 15/20 & 20/20\\
+S7 & LI+ total & 53.2332 (2.1250) & 9.7367 (1.7197) & 5.6255 (1.0844) & 18/20 & 18/20 & 20/20\\
+S7 & LI+ total gated & 53.2332 (2.1250) & 9.7367 (1.7197) & 5.6255 (1.0844) & 18/20 & 18/20 & 20/20\\
 \bottomrule\end{tabular}\end{table}
 
 \begin{table}[htbp]\centering\small
-\caption{Held-out change from the fixed to the training-fitted uninhibited floor. Means use the same histories as Table~\ref{tab:s04b-refitted-floor}; $C=-E$ is signed exposure and the mark contrast is zero.}\label{tab:s04b-floor-components}
+\caption{Held-out change from the fixed to the training-fitted uninhibited floor. Cells give mean (MCSE), using the same histories as Table~\ref{tab:s04b-refitted-floor}; $C=-E$ is signed exposure and the mark contrast is zero.}\label{tab:s04b-floor-components}
 \begin{tabular}{@{}lrrr@{}}\toprule Regime & $\Delta P$ & $\Delta C$ & $\Delta$ joint\\\midrule
-S4 & -5.6558 & 4.9167 & -0.7392\\
-S5 & -24.4963 & 67.7200 & 43.2237\\
-S6 & 0.5534 & -0.8595 & -0.3061\\
-S7 & -21.8424 & 65.3389 & 43.4965\\
+\multicolumn{4}{@{}l}{\textbf{S4}: mean $N_{\mathrm{train}}=86.65$, $N_{\mathrm{test}}=109.40$} \\
+S4 & -5.6558 (2.1509) & 4.9167 (2.0500) & -0.7392 (0.3407)\\
+\multicolumn{4}{@{}l}{\textbf{S5}: mean $N_{\mathrm{train}}=15.15$, $N_{\mathrm{test}}=16.90$} \\
+S5 & -24.4963 (0.7762) & 67.7200 (0.5160) & 43.2237 (0.7837)\\
+\multicolumn{4}{@{}l}{\textbf{S6}: mean $N_{\mathrm{train}}=95.80$, $N_{\mathrm{test}}=111.55$} \\
+S6 & 0.5534 (2.1584) & -0.8595 (2.1831) & -0.3061 (0.1270)\\
+\multicolumn{4}{@{}l}{\textbf{S7}: mean $N_{\mathrm{train}}=13.30$, $N_{\mathrm{test}}=13.25$} \\
+S7 & -21.8424 (1.2469) & 65.3389 (0.7709) & 43.4965 (0.7825)\\
 \bottomrule\end{tabular}\end{table}
 
-Refitting the intercept reduces the broad/long immigrant gain from 48.3868 to 5.1631 nats and reverses the misspecified S5 total procedure from 19.4993 to $-23.7244$ nats. In S7, freeing $(a,n)$ further reduces the total-procedure residual from 9.7367 to 5.6255 nats; the fully joint temporal comparison in the next subsection reverses that residual to $-1.2607$ nats. The S4 gated procedures have 13/20 fitted-intercept wins but only 1/20 active fits. S6 immigrant and total gates each have 15/20 wins, with respectively 0/20 and 1/20 active fits. These wins therefore mostly compare two uninhibited floors and are not detections of inhibition.
+Refitting the intercept reduces the broad/long immigrant mean gain from 48.3868 (0.9599) to 5.1631 (0.7036) nats and reverses the misspecified S5 total procedure from 19.4993 (7.2001) to -23.7244 (7.2583) nats. In S7, freeing $(a,n)$ further reduces the total-procedure residual from 9.7367 (1.7197) to 5.6255 (1.0844) nats; the fully joint temporal comparison in the next subsection reverses that residual to -1.2607 (2.6293) nats. Parentheses give MCSEs. The S4 gated procedures have 13/20 fitted-intercept wins but only 1/20 active fits. S6 immigrant and total gates each have 15/20 wins, with respectively 0/20 and 1/20 active fits. These wins therefore mostly compare two uninhibited floors and are not detections of inhibition.

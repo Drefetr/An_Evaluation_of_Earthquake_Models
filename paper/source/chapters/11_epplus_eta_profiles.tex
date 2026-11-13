@@ -1,0 +1,22 @@
+\subsubsection{California attenuation profile and upper bounds}\label{sec:california-eta-profiles}
+At the S8 moderate scale pair, the training profile places the one-sided ninety-five per cent upper bound on $\eta$ at $3.72\times10^{-5}$, $3.75\times10^{-5}$ and $2.93\times10^{-5}$ in F0, F1 and F2 after re-optimizing $(a,d,n)$ at each fixed attenuation. The corresponding held-out contrast at the S8 parameter is -73.76, -10119.53 and -25.75~nats. The fixed-backbone grid in Table~\ref{tab:california-eta-profiles} shows that the upper bound and test contrast depend strongly on the spatial and temporal scales; the S8 pair is not a universal detection threshold. The training bounds lie far below the S8 generating value, so under the EP+ kernel and the California training windows the zero boundary is strongly selected rather than a flat-direction artefact. The large negative held-out contrasts at that value are model-specific consequences of the same amplitude, not estimates of a physical stress-shadow strength.
+\begin{table}[htbp]\centering\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}llrrr@{}}\toprule
+Fold & $\ell/\psi$ (km, d) & Slope at zero & $\eta_{\rm upper}$ & $\Delta\ell_{\rm test}(\eta_{\rm S8})$\\\midrule
+F0 & 10/2 & -11450.1244 & $4.93\times10^{-5}$ & -66.7915 \\
+F0 & 15/5 & -15914.8956 & $3.63\times10^{-5}$ & -74.6861 \\
+F0 & 20/5 & -16690.5223 & $3.48\times10^{-5}$ & -75.4810 \\
+F0 & 50/30 & -24432.0608 & $2.17\times10^{-5}$ & -91.5085 \\
+F1 & 10/2 & -11745.3094 & $4.91\times10^{-5}$ & -8421.9884 \\
+F1 & 15/5 & -16299.7610 & $3.62\times10^{-5}$ & -10126.6168 \\
+F1 & 20/5 & -17086.5338 & $3.46\times10^{-5}$ & -10476.3676 \\
+F1 & 50/30 & -25195.7265 & $2.16\times10^{-5}$ & -13728.4733 \\
+F2 & 10/2 & -15174.0559 & $3.59\times10^{-5}$ & -23.1668 \\
+F2 & 15/5 & -20120.4700 & $2.71\times10^{-5}$ & -28.4518 \\
+F2 & 20/5 & -20995.3535 & $2.59\times10^{-5}$ & -29.0287 \\
+F2 & 50/30 & -29096.6446 & $1.68\times10^{-5}$ & -43.7236 \\
+\bottomrule\end{tabular}
+\caption{California EP+ attenuation slices at the uninhibited training MLE. The slope is the one-sided training score derivative at zero; $\eta_{\rm upper}$ is where the training profile falls by the one-sided threshold; the last column is the held-out contrast at the S8 moderate parameter. Positive last-column values favour attenuation.}
+\label{tab:california-eta-profiles}
+\end{table}

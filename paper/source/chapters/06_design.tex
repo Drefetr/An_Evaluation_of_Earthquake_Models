@@ -1,9 +1,45 @@
 \chapter{Experimental Design, Sequential Conditional Scoring, and Audit Protocols}\label{chap:design}
 \label{ch:design}
 
-This chapter specifies the finite-history experiment used to study detection of the diagnostic inhibition term. The quantity of primary interest is a diagnostic inhibition parameter, \(\eta\), not the physical loading parameter of the original process model. The distinction is substantive. Within the diagnostic family, a positive \(\eta\) suppresses the background contribution after the specified history feature is represented. It does not identify the original physical loading parameter, nor does it establish a unique physical mechanism. The experiment is therefore an inference study about a class of fitted laws, not a reconstruction of a complete physical loading history.
+This chapter defines the finite-history diagnostic experiment, its complete generating laws, the separate oracle and fitted comparisons, and the reference-calibration rule. The observed-catalogue analyses use the same predictable-history and scoring conventions.
 
-The synthetic construction is model-correct relative to the laws it generates: histories are produced from the stated marked point-process model, evaluated under that model, and compared without introducing an external observation model. Geography, changing observation practices, and missing parents are deliberately omitted. Consequently, agreement or disagreement among procedures on these histories measures behavior within a specified filtration and law class. It cannot by itself establish that the same procedures are adequate for a catalogue affected by spatial heterogeneity, reporting changes, or genealogical incompleteness.
+\section{Common interpretation of the diagnostic experiment}
+\label{sec:diagnostic_scope}
+
+The empirical target is the selected recorded event stream and its stated
+magnitude and location measure. The fitted occurrence intensity has no
+estimated detection function, missing-parent filter or magnitude-error law.
+Completeness is a property to estimate from an observation system, with
+uncertainty \citep{WoessnerWiemer2005,Mignan2012}; selecting a threshold does
+not establish it. The synthetic laws, in contrast, supply their own complete
+histories and mark distributions. Their recovery results concern those laws.
+
+The attenuation fields use nonnegative radial point kernels. Reference
+geography and finite-domain truncation can make the resulting full intensity
+anisotropic, but no fitted arm calculates signed Coulomb stress on receiver
+faults or propagates a physical rate-and-state population. Physical stress
+transfer depends on source geometry, receiver orientation and fault state
+\citep{Dieterich1994,KingSteinLin1994,HarrisSimpson1998}. The comparisons
+estimate the incremental predictive value of the stated exponential rate
+attenuation after the excitation and background representation is specified.
+
+The paired calendar-block intervals condition on the saved fitted states.
+They summarize variation of the observed score contrasts across retained
+dependent blocks. The conditional simulation reference likewise holds each
+origin's fitted parameters, nuisance choices and prehistory fixed. These are
+different experiments: neither refits the full procedure over repeated
+catalogues or propagates catalogue revision and measurement uncertainty.
+Their interval labels and simulation ranks do not assert nominal calibration
+after adaptive model selection. Model comparison and conditional consistency
+are reported separately, following the distinction emphasized by
+\citet{RhoadesEtAl2011,BraySchoenberg2013}.
+
+A selected $\widehat\eta=0$ means that the stated training optimization returns
+the uninhibited boundary. It is a result of that fitted procedure, not a
+measurement of a physical attenuation strength or a calibrated power estimate.
+Power is a rejection probability under a declared alternative-generating law
+and testing rule; the synthetic reference-calibrated comparisons supply those
+experiments separately.
 
 \section{The diagnostic law and its history}
 

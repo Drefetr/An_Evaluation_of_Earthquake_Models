@@ -2,11 +2,20 @@
 \label{ch:local-inhibition}
 \section{Study overview}
 
-Continuous immigrant-only local inhibition selects exactly zero strength in all three California test windows, both with unit marks and with magnitude scaling. The original procedure is a numerical tie with its matched background-weighted Omori reference on the same 315 targets. Raw magnitude-scaled total attenuation loses less than two nats per fold; the paired calendar-block intervals are reported at the end of this chapter. The magnitude-scaled, training-declustered ETAS benchmark in Section~\ref{sec:epplus_benchmark} also selects zero attenuation in every fold.
+Continuous immigrant-only local attenuation selects the zero-strength training boundary in all three California test windows, both with unit marks and with magnitude scaling. Nesting then makes its forecast identical to the matched background-weighted Omori reference on the same 315 targets. This boundary selection is not an interior-power test of physical inhibition. Raw magnitude-scaled total attenuation gives negative differences smaller than two nats per fold, a near tie on this score scale. The dependent-block interval summaries at the end of this chapter should be read under Section~\ref{sec:block_score_uncertainty}, rather than as calibrated tests of long-memory seismicity. The magnitude-scaled ETAS extension in Section~\ref{sec:epplus_benchmark} also selects the nested zero-strength boundary.
 
-The synthetic controls distinguish an uninhibited reference fixed at generating parameters from a model allowed to fit the temporal backbone. All 80 joint-fit histories and 400 outcomes are complete. In the matched broad/long regimes, the immigrant and total-attenuation means are $-10.3701$ and $-1.2607$ nats, with 10/20 and 8/20 wins. The fitted-intercept and branching-ratio controls explain how the earlier fixed-floor gains depend on the comparator. At zero attenuation strength, the range and memory coordinates disappear from the law.
+The synthetic controls distinguish an uninhibited reference fixed at generating parameters from a model allowed to fit the temporal backbone. All 80 joint-fit histories and 400 outcomes are complete. Broad/long immigrant attenuation has mean $-10.37$ nats (sample MCSE $8.56$), median $+2.26$, 10/20 wins and $16.9$ mean test events. Broad/long total attenuation has mean $-1.26$ nats (MCSE $2.63$), median $-1.26$, 8/20 wins and $13.25$ mean test events. The tables report every regime with event counts and sample MCSEs, including floor returns. The fitted-intercept and branching-ratio controls show why fixed-floor gains do not isolate attenuation. At zero strength, range and memory disappear from the law.
 
-The intermediate S8 bank rejects 27.2\% of proposals and retains 94.7 test events on average. Its twenty joint-fit contrasts have mean $+0.2941$, median $+2.5415$ nats and 13/20 wins; all 20 fits select positive attenuation. Section~\ref{sec:s8-moderate} gives the complete Monte Carlo summary.
+The intermediate S8 bank rejects 27.2\% of proposals and retains 94.7 test events on average. Its raw mean is $+0.294$ nats (MCSE $2.777$; 13/20 wins), while its training-BIC-gated sensitivity has mean $+2.495$ nats (MCSE $1.444$; 9/20 wins and 12/20 active fits). Section~\ref{sec:s8-moderate} reports the boundary and training-resolution diagnostics. These finite-bank summaries do not establish uniform detection power.
+
+Together the controls span almost unrealized narrow/short attenuation, strong
+count depletion in the broad/long banks, and a moderate regime with noisy
+per-history contrasts. None supplies an automatically well-powered physical
+absence test. Sample MCSEs describe variation across independently generated
+histories; they do not make events within one earthquake sequence independent
+or justify Gaussian inference under heavy-tailed generating laws. The common
+measurement and inferential scope is consolidated in
+Section~\ref{sec:diagnostic_scope}.
 
 \section{Key question and review status}
 
@@ -278,6 +287,7 @@ In the diagnostic table below, boundary pairs report lower/upper counts for the 
 \input{chapters/13_s04b_joint_dispositions}
 
 \input{chapters/13_s08_moderate}
+\input{chapters/13_s8_oracle}
 
 \input{chapters/13_s04_observed_completed}
 \par

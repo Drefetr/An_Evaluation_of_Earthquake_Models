@@ -162,13 +162,16 @@ def load_completed_joint_study(repository):
             wilson95=[joint_display(x) for x in r['wilson95']]) for r in summary],
         regime_names={'4':'Immigrant: narrow/short','5':'Immigrant: broad/long','6':'Total: narrow/short','7':'Total: broad/long'},
         completed_histories=report['completed_histories'],completed_outcomes=report['completed_outcomes'],scientific_completion=True,
-        note='All 80 original histories and 400 procedure outcomes are complete. Both arms fit background and temporal-triggering parameters on training data; spatial and mark laws remain fixed. Each regime has 20 independent seeded histories, shared across procedures. Regimes are never pooled or earthquake-normalized. Wilson intervals describe strict-positive win indicators, not uncertainty in mean gain. Active fits are not detections. Floor returns and boundary/search diagnostics remain visible. Matched broad/long immigrant and total inhibition both lose on average against their jointly fitted comparator.',
-        source='Chapter 13, completed S04B joint comparison. Every case source and all displayed aggregate fields are independently reconstructed by the completed-publication validator; historical disposition evidence remains preserved.',
+        note='All 80 original histories and 400 procedure outcomes are complete. Both arms fit background and temporal-triggering parameters on training data; spatial and mark laws remain fixed. Each regime has 20 independent seeded histories, shared across procedures. Regimes are never pooled or earthquake-normalized. Wilson intervals summarize strict-positive win indicators, not uncertainty in mean gain. Sample Monte Carlo errors and training/test event counts are supplied in the aggregate download and manuscript. Active fits are not detections; a zero-strength return gives an exactly nested tie, not a power test. Floor returns and boundary/search diagnostics remain visible. Matched broad/long immigrant and total attenuation both lose on average against their jointly fitted comparator.',
+        source='Chapter 13, completed S04B joint comparison. Every case source and displayed aggregate field is reconstructed by an independent computational publication check. Additive presentation records bind the new MCSE table to the unchanged scientific result; historical records remain preserved.',
         evidence_paths={'summary':'validation/live_results/s04b_joint_complete_20261111/summary.json',
             'audit':'validation/live_results/s04b_joint_complete_independent_audit_20261111.json',
-            'publication_review':'validation/publication_refresh_20261112/joint_publication_review.json'},
+            'publication_review':'validation/publication_refresh_track_b_20261112/joint_publication_review.json'},
         validation_source='website/current_joint_results.py',
         validation_source_sha256=hashlib.sha256((ROOT/'website/current_joint_results.py').read_bytes()).hexdigest())
+    if 'presentation' in report:
+        study['mean_gain_mcse']=[{k:r[k] for k in ('regime','model','gate','N','mean','mcse')} for r in report['presentation']['mcse_rows']]
+        study['regime_event_counts']=[{k:r[k] for k in ('regime','N','mean_n_train','mean_n_test')} for r in report['presentation']['regimes']]
     return study,[{'file':Path(p).name,'path':p,'sha256':h} for p,h in sorted(pins.items())]
 
 def build(out):
@@ -227,7 +230,7 @@ def build(out):
     studies[-1]['refitted_floor']=sensitivity['procedure_summary']
     studies[-1]['note']+=' The narrow/short immigrant generator rejected no event in 19 of 20 histories. The lower table refits only the uninhibited background intercept on training data; all original inhibited fits and gates stay unchanged. This isolates comparator sensitivity without claiming joint nuisance fitting or parameter recovery. In the separate original unit-mark S04 controls, all 20 narrow/short histories had no rejected proposals; they are not additional S04B replicates.'
     studies[-1]['source']='Chapter 13: original fixed-floor S04B summaries, source-backed generator/parameter diagnostics, and completed 80-history intercept sensitivity.'
-    payload={'studies':studies,'sources':sources,'scope':'Reported aggregates, including the completed 80-history joint comparison and historical fixed-floor/intercept sensitivity. Observed selectors show point contrasts; paired calendar-block uncertainty, the moderate control and the stronger ETAS benchmark are reported in the current guide and monograph. Original historical fitting searches were not repeated by this publication build.'}
+    payload={'studies':studies,'sources':sources,'scope':'Reported aggregates, including the completed 80-history joint comparison and historical fixed-floor/intercept sensitivity. Observed selectors show point contrasts; multi-scale block intervals are descriptive sensitivity summaries and nominal sign-flip references are not calibrated for unverified long-memory dependence. The moderate control and stronger ETAS benchmark are reported in the current guide and monograph. Original historical fitting searches were not repeated by this publication build.'}
     append_joint_publications(ROOT,studies,sources)
     write_findings(out,payload)
     return payload

@@ -1,0 +1,54 @@
+{
+  "schema": "track_a_synthetic_saved_output_audit_v1",
+  "passed": true,
+  "no_scientific_execution": true,
+  "histories": 80,
+  "joint_procedure_rows": 20,
+  "joint_outcomes": 400,
+  "comparator_procedure_rows": 20,
+  "sample_mcse_statistics_checked": 92,
+  "rendered_table_rows_checked": 44,
+  "sample_mcse_denominator": "sqrt(20); sample variance denominator 19",
+  "checks": [
+    "Every saved history is present and passed",
+    "Existing joint means, medians and wins unchanged",
+    "Intercept and concave inputs agree on saved procedures and intercept scores",
+    "Event counts match joint and historical score outputs",
+    "MCSE agrees with independently written centered-sum formula",
+    "All scientific source hashes unchanged after rendering"
+  ],
+  "authority_path": "validation/live_results/track_a_supplement_20261112/s04b_joint_mcse.json",
+  "authority_sha256": "0de1eddc563c23d615b9df8b89d6ce8895dec77c855eaff7fb295c9a428d548e",
+  "claims_path": "validation/live_results/track_a_supplement_20261112/synthetic_numeric_claims.json",
+  "claims_sha256": "7adf8ae0cd25b320d059c217edee0c9de0985917497780e4ddb155eb7a0ad984",
+  "reporting_module": {
+    "path": "experiments/methodological_audit/track_a_synthetic.py",
+    "sha256": "7534d4bca37a7b726ef74575c7df3e585f811230ae2af6ed7ad10d9ad339db8e"
+  },
+  "manuscript_sha256": {
+    "paper/source/chapters/13_s04b_joint_dispositions.tex": "5e33fb782bcf7fb91f62d688d3e59fa8d39e5da7a7cfed350c5bc569b3189fd1",
+    "paper/source/chapters/13_s04_refitted_floor.tex": "54e233fc8ab2c499269b6874b25201d912c7a373d27a5e8dc20e149c5dc7b019"
+  },
+  "preserved_source_count": 242,
+  "prechange_snapshot": {
+    "path": "validation/track_a_prechange_snapshot_20261112.json",
+    "sha256": "9b836daf631e042b57e5b84239c3e284f1ee6fc6b12e2a92e5c692f4e18df0cf"
+  },
+  "preserved_sealed_json_count": 316,
+  "archived_prior_manuscript_sha256": {
+    "paper/source/chapters/13_s04b_joint_dispositions.tex": "b8b20ef3b623d200bd78068f3c29d0b2341878af4c28f542149f8cf5fc262939",
+    "paper/source/chapters/13_s04_refitted_floor.tex": "40b01ed19bc1e2b3bd517a91965c5d3a6eef49889672e90da3a3dfe428c8fe0c"
+  },
+  "prior_scientific_audits": [
+    {
+      "path": "validation/live_results/s04b_joint_complete_independent_audit_20261111.json",
+      "sha256": "4aebf495c04295c6bd5a6baa5edea4f8d813a0c9f93f17d8e89f58bf7ed77b36"
+    },
+    {
+      "path": "validation/live_results/s04b_concave_20261111/audit.json",
+      "sha256": "470a71e1efa85720a4872433f6220197731f3c0da9754240d8a994a4601b7119"
+    }
+  ],
+  "prior_scientific_audits_remain_unchanged": true,
+  "publication_adapter_change": "Joint table has eight columns including MCSE. All three tables have multicolumn event-count subheaders. Comparator/component gain cells are mean (MCSE)."
+}

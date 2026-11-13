@@ -17,6 +17,24 @@ if str(ROOT) not in sys.path:
 from build_findings import build as build_findings
 
 OUT = ROOT / 'build' / 'site'
+def companion_repository_source(companion, install):
+    """Bind an installed preview to the already accepted canonical guide.
+
+    A staged guide may be used by the documented --companion/--install command
+    only when BOTH staged deliverables match the canonical PDF and HTML bytes.
+    The deployment keeps its actual staged-source identity separately; the
+    repository preview links the canonical pair, never an ignored build file.
+    This rule does not admit staged manuscript candidates.
+    """
+    companion=Path(companion).resolve();canonical=(ROOT/'companion').resolve()
+    source=companion/'lay_guide_to_the_research.pdf'
+    if not install or companion==canonical:return source
+    for name in ('lay_guide_to_the_research.pdf','lay_guide_to_the_research.html'):
+        staged=companion/name;accepted=canonical/name
+        if not staged.is_file() or not accepted.is_file() or staged.read_bytes()!=accepted.read_bytes():
+            raise ValueError('Staged companion must match the accepted canonical PDF and HTML before installation')
+    return canonical/'lay_guide_to_the_research.pdf'
+
 def document_contract(config):
     state=config['status']
     if state not in ['draft','published_research']:raise ValueError('explicit document status required')
@@ -48,6 +66,7 @@ def main():
     target.parent.mkdir(parents=True,exist_ok=True)
     OUT=Path(tempfile.mkdtemp(prefix='site-build-',dir=target.parent))
     companion = a.companion.resolve()
+    guide_repository_source=companion_repository_source(companion,a.install)
     data = json.loads((ROOT/'companion/guide_content.json').read_text(encoding='utf-8'))
     OUT.mkdir(parents=True, exist_ok=True)
     downloads = OUT / 'downloads'
@@ -58,20 +77,29 @@ def main():
     (OUT / 'site.css').write_text(css, encoding='utf-8')
     nav = '<a class="skip" href="#main">Skip to content</a><nav class="site-nav" aria-label="Main"><a href="index.html">Research home</a><a href="guide.html">Read the guide</a><a href="findings.html">Explore findings</a><a href="index.html#documents">Documents</a></nav>'
     esc = html.escape
+    document_title=config['document'].get('title','Diagnostic Exponential Rate Attenuation in Spatial-Temporal Earthquake Models')
+    document_subtitle=config['document'].get('subtitle','Stability, identification and predictive evaluation of point-process models')
+    authors=', '.join(v['name'] for v in config['document'].get('authors',[]))
+    correspondence=config['document'].get('correspondence','https://github.com/Drefetr/An_Evaluation_of_Earthquake_Models/issues')
+    sections=len(data['pages'])
     toc = '<nav class="contents" aria-label="Guide sections"><strong>In this guide</strong><ol>' + ''.join(f'<li><a href="#page-{i}">{esc(p["title"])}</a></li>' for i,p in enumerate(data['pages'],1)) + '</ol><a href="downloads/research-guide.pdf">Download the guide as a PDF</a></nav>'
     guide = (companion / 'lay_guide_to_the_research.html').read_text(encoding='utf-8')
     guide = guide.replace('</head>', '<link rel="stylesheet" href="site.css"></head>').replace('<body>', '<body>'+nav+toc).replace('<main>', '<main id="main">')
     (OUT / 'guide.html').write_text(guide, encoding='utf-8')
-    landing = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="A plain-language companion and reviewed manuscript on earthquake triggering, inhibition and forecasting."><title>Earthquake modelling  -  Research and documents</title><link rel="stylesheet" href="site.css"></head><body>{nav}<main id="main" class="wrap"><p class="eyebrow">Research companion</p><h1>Understanding the earthquake research</h1><p class="intro">How can we tell whether an earthquake encourages or discourages later activity - and whether modelling that distinction improves forecasts?</p><p>This collection explains the research in everyday language and provides the mathematical manuscript for readers who want the details.</p><div class="notice"><strong>{esc(config['collection_label'])}</strong><p>{esc(data['status'])}</p></div><div class="cards" id="documents"><article class="card"><h2>Start with the guide</h2><p>Eight illustrated sections cover the question, models, evidence and limitations. No equations are needed.</p><p><a class="button" href="guide.html">Read online</a></p><p><a href="downloads/research-guide.pdf">Download the eight-page PDF</a></p><small>{esc(data['edition'])}</small></article><article class="card"><h2>{esc(label)}</h2><p>{config['document']['pages']}-page document.</p><p><a class="button" href="downloads/{filename}">Read the manuscript PDF</a></p><p>{esc(config['document_note'])}</p></article></div><h2>What the evidence means</h2><p>The guide distinguishes mathematical validity, what can be learned from data, and performance on later observations. A good fit to past earthquakes does not by itself establish better forecasts.</p><h2>The revised release</h2><p>{esc(config['release_note'])}</p><p><a href="https://github.com/Drefetr/An_Evaluation_of_Earthquake_Models/tree/main/reproduction">Open the data and replay instructions</a></p><footer>Research comparisons using historical catalogues and simulations. This project has not established an operational earthquake forecasting service.<p><a href="documents.json">Document versions and SHA-256 checksums</a></p></footer></main></body></html>'''
+    landing = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="A plain-language companion and reviewed manuscript on earthquake triggering, inhibition and forecasting."><title>{esc(document_title)}</title><link rel="stylesheet" href="site.css"></head><body>{nav}<main id="main" class="wrap"><p class="eyebrow">Research companion</p><h1>{esc(document_title)}</h1><p>{esc(document_subtitle)}</p><p>Human authors: {esc(authors)}. <a href="{esc(correspondence,quote=True)}">Correspondence and corrections</a>.</p><p class="intro">How do specified statistical rate-reduction terms affect forecasts when their background and triggering comparators can be fitted comparably?</p><p>The tested isotropic point kernels are diagnostic exponential attenuation rules. They do not implement directional Coulomb stress, receiver-fault geometry or rate-and-state friction. The guide explains this scope in everyday language.</p><div class="notice"><strong>{esc(config['collection_label'])}</strong><p>{esc(data['status'])}</p></div><div class="cards" id="documents"><article class="card"><h2>Start with the guide</h2><p>{sections} illustrated sections cover the diagnostic question, models, evidence and interpretation. No equations are needed.</p><p><a class="button" href="guide.html">Read online</a></p><p><a href="downloads/research-guide.pdf">Download the {sections}-page PDF</a></p><small>{esc(data['edition'])}</small></article><article class="card"><h2>{esc(label)}</h2><p>{config['document']['pages']}-page document.</p><p><a class="button" href="downloads/{filename}">Read the manuscript PDF</a></p><p>{esc(config['document_note'])}</p></article></div><h2>What the evidence means</h2><p>The guide distinguishes mathematical validity, what can be learned from data, and performance on later observations. A good fit to past earthquakes does not by itself establish better forecasts.</p><h2>The revised release</h2><p>{esc(config['release_note'])}</p><p><a href="https://github.com/Drefetr/An_Evaluation_of_Earthquake_Models/tree/main/reproduction">Open the data and replay instructions</a></p><footer>Research comparisons using historical catalogues and simulations. This project has not established an operational earthquake forecasting service.<p><a href="documents.json">Document versions and SHA-256 checksums</a></p></footer></main></body></html>'''
     (OUT / 'index.html').write_text(landing, encoding='utf-8')
     (OUT / '.nojekyll').write_text('')
-    inputs = {filename:baseline,'research-guide.pdf':companion/'lay_guide_to_the_research.pdf'}
+    inputs = {filename:baseline,'research-guide.pdf':guide_repository_source}
     records = []
     for p in sorted(downloads.glob('*.pdf')):
         source=inputs[p.name].resolve()
         repository_source=source.relative_to(ROOT).as_posix() if source.is_relative_to(ROOT) else None
-        records.append({'path':p.relative_to(OUT).as_posix(),'repository_source':repository_source,'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'bytes':p.stat().st_size})
-    (OUT / 'documents.json').write_text(json.dumps({'edition':data['edition'],'status':config['status'],'bundle_kind':'self_contained_deployment','baseline_is_revised_release':False,'document_kind':('research_edition' if config['status']=='published_research' else 'draft'),'manuscript_pages':config['document']['pages'],'documents':records},indent=2)+'\n',encoding='utf-8')
+        record={'path':p.relative_to(OUT).as_posix(),'repository_source':repository_source,'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'bytes':p.stat().st_size}
+        if p.name=='research-guide.pdf' and companion!=(ROOT/'companion').resolve():
+            record['staged_source']=str(companion/'lay_guide_to_the_research.pdf')
+            record['canonical_companion_identity_checked']=a.install
+        records.append(record)
+    (OUT / 'documents.json').write_text(json.dumps({'edition':data['edition'],'status':config['status'],'bundle_kind':'self_contained_deployment','baseline_is_revised_release':False,'document_kind':('research_edition' if config['status']=='published_research' else 'draft'),'manuscript_pages':config['document']['pages'],'manuscript_title':document_title,'manuscript_subtitle':document_subtitle,'human_authors':config['document'].get('authors',[]),'correspondence':correspondence,'documents':records},indent=2)+'\n',encoding='utf-8')
     build_findings(OUT)
     OUT.rename(target)
     if a.install:

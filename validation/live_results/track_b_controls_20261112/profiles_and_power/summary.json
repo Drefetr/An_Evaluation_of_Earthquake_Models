@@ -1,0 +1,27 @@
+{
+  "schema": "track_b_profiles_and_power_summary_v1",
+  "passed": true,
+  "source": "experiments/methodological_audit/eta_profiles_and_power.py",
+  "components": [
+    "s8_oracle.json",
+    "california_eta_profiles.json",
+    "mde.json"
+  ],
+  "key_results": {
+    "s8_oracle_gain_mean": 18.111994353630667,
+    "s8_oracle_gain_mcse": 4.1815218042957865,
+    "s8_fitted_gain_mean": 0.2941447638438433,
+    "s8_estimation_loss_mean": -17.817849589786825,
+    "regional_mde95_90day": {
+      "NZ_shared_minus_ML": 9.236284345647903,
+      "CA_EPplus_minus_original_EP": 48.30225584996018,
+      "Japan_OC_minus_EP_joint": 15.97892019074536
+    },
+    "profile_threshold_nats": -1.9207
+  },
+  "sha256": {
+    "s8_oracle.json": "e20fa214bfcb589ed8dbf454e21d64c7350852e6663f3ed8432a3063a89d7048",
+    "california_eta_profiles.json": "acb6d3df8037b9514db54bdfc3d6f824018cece35c4641b1895449960e2c8823",
+    "mde.json": "eb4b5adab2bff29b8fdad64107886880a0879956feff418348801ec814592556"
+  }
+}

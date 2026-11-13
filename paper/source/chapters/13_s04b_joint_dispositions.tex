@@ -1,34 +1,41 @@
 All 80 histories have completed training selections and held-out scores, giving 400 procedure outcomes.\footnote{The two recovery histories are S5 seed 410518 and S6 seed 410615; all other histories retain their saved completed fits.} Both arms jointly fit the temporal backbone $(a,d,n,c,p)$; the common spatial and mark laws remain fixed. Eight starts are resolved in every arm. The exact fitted null is an eligible state in each inhibited search. Table rows report all twenty histories in each regime; positive near-zero gains remain strict wins.
 
 \begin{table}[htbp]
-\centering\small
-\setlength{\tabcolsep}{2.5pt}
-\caption{Held-out joint-score gains against the jointly training-refitted uninhibited comparator, in nats. Wins are strictly positive gains; Wilson intervals quantify the win probability, not uncertainty in the mean gain. Marked rows are the matched broad/long contrasts.}
+\centering\footnotesize
+\setlength{\tabcolsep}{2.3pt}
+\caption{Held-out joint-score gains against the jointly training-refitted uninhibited comparator, in nats. MCSE is the sample standard deviation divided by the square root of the number of histories. Wins are strictly positive gains; Wilson intervals quantify the win probability. Marked rows are the matched broad/long contrasts.}
 \label{tab:s04b-joint-disposition-scores}
-\begin{tabular}{@{}llrrrrr@{}}
+\begin{tabular}{@{}llrrrrrr@{}}
 \toprule
-Regime & Procedure & Computed & Mean & Median & Wins & Wilson interval \\
+Regime & Procedure & Computed & Mean & MCSE & Median & Wins & Wilson interval \\
 \midrule
-S4 & LI (raw) & 20/20 & -14.8576 & -6.1519 & 3/20 & [0.0524, 0.3604] \\
-S4 & LI+ immigrant (raw) & 20/20 & -9.7627 & -5.6971 & 6/20 & [0.1455, 0.5190] \\
-S4 & LI+ immigrant (BIC) & 20/20 & 0.0000 & 0.0000 & 0/20 & [0.0000, 0.1611] \\
-S4 & LI+ total (raw) & 20/20 & -41.9098 & -4.1493 & 4/20 & [0.0807, 0.4160] \\
-S4 & LI+ total (BIC) & 20/20 & 0.0000 & 0.0000 & 0/20 & [0.0000, 0.1611] \\
-S5 & LI (raw) & 20/20 & -4.3604 & -0.9636 & 8/20 & [0.2188, 0.6134] \\
-S5 & LI+ immigrant (raw)$^{\dagger}$ & 20/20 & -10.3701 & 2.2590 & 10/20 & [0.2993, 0.7007] \\
-S5 & LI+ immigrant (BIC) & 20/20 & -10.3701 & 2.2590 & 10/20 & [0.2993, 0.7007] \\
-S5 & LI+ total (raw) & 20/20 & -18.0129 & -3.4946 & 7/20 & [0.1812, 0.5671] \\
-S5 & LI+ total (BIC) & 20/20 & -16.1057 & 0.0000 & 1/20 & [0.0089, 0.2361] \\
-S6 & LI (raw) & 20/20 & -12.7890 & -3.3593 & 3/20 & [0.0524, 0.3604] \\
-S6 & LI+ immigrant (raw) & 20/20 & -15.7837 & -4.6434 & 2/20 & [0.0279, 0.3010] \\
-S6 & LI+ immigrant (BIC) & 20/20 & 0.0000 & 0.0000 & 0/20 & [0.0000, 0.1611] \\
-S6 & LI+ total (raw) & 20/20 & -30.4734 & -2.1916 & 6/20 & [0.1455, 0.5190] \\
-S6 & LI+ total (BIC) & 20/20 & 0.0828 & 0.0000 & 1/20 & [0.0089, 0.2361] \\
-S7 & LI (raw) & 20/20 & -30.5865 & -11.9125 & 5/20 & [0.1119, 0.4687] \\
-S7 & LI+ immigrant (raw) & 20/20 & -1.8107 & -2.6127 & 8/20 & [0.2188, 0.6134] \\
-S7 & LI+ immigrant (BIC) & 20/20 & -2.4696 & -2.6127 & 6/20 & [0.1455, 0.5190] \\
-S7 & LI+ total (raw)$^{\dagger}$ & 20/20 & -1.2607 & -1.2574 & 8/20 & [0.2188, 0.6134] \\
-S7 & LI+ total (BIC) & 20/20 & -1.2435 & -1.2574 & 8/20 & [0.2188, 0.6134] \\
+\multicolumn{8}{@{}l}{\textbf{S4}: mean $N_{\mathrm{train}}=86.65$, $N_{\mathrm{test}}=109.40$} \\
+S4 & LI (raw) & 20/20 & -14.8576 & 5.4708 & -6.1519 & 3/20 & [0.0524, 0.3604] \\
+S4 & LI+ immigrant (raw) & 20/20 & -9.7627 & 4.6732 & -5.6971 & 6/20 & [0.1455, 0.5190] \\
+S4 & LI+ immigrant (BIC) & 20/20 & 0.0000 & 0.0000 & 0.0000 & 0/20 & [0.0000, 0.1611] \\
+S4 & LI+ total (raw) & 20/20 & -41.9098 & 29.3814 & -4.1493 & 4/20 & [0.0807, 0.4160] \\
+S4 & LI+ total (BIC) & 20/20 & 0.0000 & 0.0000 & 0.0000 & 0/20 & [0.0000, 0.1611] \\
+\addlinespace
+\multicolumn{8}{@{}l}{\textbf{S5}: mean $N_{\mathrm{train}}=15.15$, $N_{\mathrm{test}}=16.90$} \\
+S5 & LI (raw) & 20/20 & -4.3604 & 3.3375 & -0.9636 & 8/20 & [0.2188, 0.6134] \\
+S5 & LI+ immigrant (raw)$^{\dagger}$ & 20/20 & -10.3701 & 8.5587 & 2.2590 & 10/20 & [0.2993, 0.7007] \\
+S5 & LI+ immigrant (BIC) & 20/20 & -10.3701 & 8.5587 & 2.2590 & 10/20 & [0.2993, 0.7007] \\
+S5 & LI+ total (raw) & 20/20 & -18.0129 & 7.4590 & -3.4946 & 7/20 & [0.1812, 0.5671] \\
+S5 & LI+ total (BIC) & 20/20 & -16.1057 & 7.4217 & 0.0000 & 1/20 & [0.0089, 0.2361] \\
+\addlinespace
+\multicolumn{8}{@{}l}{\textbf{S6}: mean $N_{\mathrm{train}}=95.80$, $N_{\mathrm{test}}=111.55$} \\
+S6 & LI (raw) & 20/20 & -12.7890 & 4.8712 & -3.3593 & 3/20 & [0.0524, 0.3604] \\
+S6 & LI+ immigrant (raw) & 20/20 & -15.7837 & 5.2080 & -4.6434 & 2/20 & [0.0279, 0.3010] \\
+S6 & LI+ immigrant (BIC) & 20/20 & 0.0000 & 0.0000 & 0.0000 & 0/20 & [0.0000, 0.1611] \\
+S6 & LI+ total (raw) & 20/20 & -30.4734 & 13.2726 & -2.1916 & 6/20 & [0.1455, 0.5190] \\
+S6 & LI+ total (BIC) & 20/20 & 0.0828 & 0.0828 & 0.0000 & 1/20 & [0.0089, 0.2361] \\
+\addlinespace
+\multicolumn{8}{@{}l}{\textbf{S7}: mean $N_{\mathrm{train}}=13.30$, $N_{\mathrm{test}}=13.25$} \\
+S7 & LI (raw) & 20/20 & -30.5865 & 10.1921 & -11.9125 & 5/20 & [0.1119, 0.4687] \\
+S7 & LI+ immigrant (raw) & 20/20 & -1.8107 & 2.7358 & -2.6127 & 8/20 & [0.2188, 0.6134] \\
+S7 & LI+ immigrant (BIC) & 20/20 & -2.4696 & 2.6584 & -2.6127 & 6/20 & [0.1455, 0.5190] \\
+S7 & LI+ total (raw)$^{\dagger}$ & 20/20 & -1.2607 & 2.6293 & -1.2574 & 8/20 & [0.2188, 0.6134] \\
+S7 & LI+ total (BIC) & 20/20 & -1.2435 & 2.6297 & -1.2574 & 8/20 & [0.2188, 0.6134] \\
 \bottomrule
 \end{tabular}
 \end{table}

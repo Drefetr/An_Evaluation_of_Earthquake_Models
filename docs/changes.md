@@ -1,5 +1,9 @@
 # Change history
 
+## 12 November 2026 statistical and publication revision
+
+Synchronized current reviewer entry points with the completed joint comparison; qualified the title and abstract as diagnostic earthquake point-process analysis and added front-page attribution and responsibility. Corrected block-interval, nested-boundary and benchmark interpretations, displayed synthetic sample MCSEs and event counts from sealed results, and added verified statistical-seismology literature. Preserved the prechange publication and ledger, retained historical reviews, and rebuilt the monograph, guide and website. No new fitting or simulation campaign was run. The [statistical and publication revision response](reviews/track_a_hostile_review_response_20261112.md) describes the evidence and the [acceptance record](../validation/track_a_remediation_20261112.json) records final verification.
+
 ## 12 November 2026 independent-reassessment corrections
 
 Corrected the ETAS final-resolution acceptance search to include fresh positive-strength starts, reran all three folds remotely with per-evaluation traces, and retained zero attenuation with unchanged baseline states and scores. Added the S8 gated row, numerical-criterion and boundary disclosures, and separate win columns for both fitted comparators. Direct arithmetic corrects the reassessment's proposed gated median and MCSE to 0 and 1.4436. Removed the duplicate declustering bibliography entry and repaired citation style and spatial-normalization attribution. Restored the reviewed public-reader bytes, archived the orphan figure, refreshed the guide and completed-joint website view, and expanded acceptance to the documented full main suite. Earlier artifacts and selective acceptance records remain historical; [the response](reviews/reassessment_response_20261112.md) and [current acceptance record](../validation/reassessment_20261112.json) provide exact evidence and check results.

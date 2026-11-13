@@ -2,15 +2,33 @@
 \label{ch:external}
 \section{Study overview}
 
-The stronger benchmark defeats the target procedure in both external regions: fitted inverse-power ETAS (EP) exceeds Omori continuous (OC) on joint score in every primary California and Japan test window (while losing one episode in the separate five-episode causal-window backtest in Section~\ref{sec:s06-completed}). OC nevertheless improves California timing against fixed-scale Mittag-Leffler continuous (FC) by 0.119969 nats per target and location against the coarse Omori cell-lift (OL) by 2.140710, over 315 targets. These are different references, and the location gain primarily measures recovery of within-cell density. Japan retains that representation contrast but reverses the OC--FC timing direction in every window, so the combined descriptive transfer rule is not met. California's positive timing contrast is strongly concentrated in one eligible sequence period. Conditional diagnostics also expose OC discrepancies. These inspected and revised archives support retrospective fitted-procedure comparisons, not pristine confirmation or a physical mechanism.
+The unweighted inverse-power benchmark (EP) has a higher joint score than the background-weighted procedure (OC) in every primary California and Japan test window, with an episode reversal in the separate California backtest. OC improves California timing against fixed-scale Mittag-Leffler continuous (FC) by 0.119969 nats per target and location against the coarse Omori cell-lift (OL) by 2.140710, over 315 targets. These are different references, and the location gain primarily measures recovery of within-cell density. Japan retains that representation contrast but reverses the OC--FC timing direction in every window. Conditional calibration discrepancies in both OC and EP make these rankings comparisons among conditionally misspecified procedures, rather than validation of a calibrated reference. Section~\ref{sec:diagnostic_scope} states the common scope.
+
+The 2010 El Mayor--Cucapah episode is the EP reversal in the five-episode
+backtest (Section~\ref{sec:s06-completed}). The 2019 Ridgecrest concentration
+concerns positive OC contrasts against other references and a retrospective
+active-time union, not an independent replication of that episode ranking.
+The episode-origin and calendar-year/active-union denominators below remain
+separate. In particular, concentration in a large sequence does not establish
+transferable performance across independently sampled sequences.
 
 \section{Question, status and relation to the preceding work}
+
+Established space--time clustering and forecasting work provides the
+competitive context \citep{ConsoleMurru2001,HelmstetterKaganJackson2006,WernerEtAl2011}.
+Forecast comparison and consistency testing ask different questions
+\citep{RhoadesEtAl2011}; residual and simulation diagnostics assess features
+that a relative log score can leave wrong \citep{BraySchoenberg2013}.
 
 The question is how far the specific forecasting improvements reported in Chapter~\ref{ch:nz-spatial} travel when the region, comparator and diagnostic question change. There are four distinct questions: does a matched ablation retain its direction elsewhere; does the complete procedure beat serious alternatives; do its conditional probabilities resemble the recorded history; and where do the realised score differences occur? A positive answer to one does not answer the others.
 
 Chapter~\ref{ch:nz-spatial} found a large location-score advantage for continuous offspring geography over a cell-lift representation in New Zealand, and a smaller timing advantage for Omori decay over fixed-scale Mittag-Leffler decay within the continuous representation. Its 612 historical targets are context for the programme, not an additional denominator for any table below. The present chapter consolidates subsequent completed studies. Chapter~\ref{ch:local-inhibition} separately reports the local-inhibition extension and its negative observed result. The original manuscript and Addenda I--III remain historical source authorities; the present chapter integrates the completed studies into this unified monograph.
 
-The historical comparisons in this chapter retain their original fitted states, score records and audit scopes. The later replay recomputes the declared selected-state scores and reconciles the regional tables and partition arithmetic. Its records distinguish cached numerical inputs, reconstructed features and archived projected coordinates. The original optimizer searches were not rerun; cohort reconstruction, selected-state scoring and model fitting remain separate operations.
+The historical comparisons retain their original fitted states. Later
+selected-state likelihood replays checked their scores without repeating
+optimizer searches; the magnitude-scaled benchmark in
+Section~\ref{sec:epplus_benchmark} is a separately identified fitting execution.
+The repository provenance map distinguishes those evidence types.
 
 \section{Models, forecast object and score}
 
@@ -176,7 +194,10 @@ The first higher-threshold OC-MC joint difference is -0.626348 nats, and its OC-
 
 Against OL, the higher-threshold location decomposition is +5.881781 zone, +2.472120 conditional-cell and +176.422568 within-cell nats. Its OC--FC timing decomposition is +14.762895 event-ground nats minus 1.513472 integrated-exposure nats; OC--MC joint gain comprises +5.992897 timing and +0.751200 location nats. Each decomposition retains its own reference.
 
-Preferred magnitudes mix magnitude types and are not homogeneous moment magnitude. Count eligibility does not establish physical detection completeness. The source provides no defensible numerical location covariance or empirical location-error distribution; no perturbation law was invented from quality codes or decimal places. No independent alternate historical snapshot was admitted. The sensitivity therefore supports direction under one specified observation-law change, not general robustness to catalogue uncertainty.
+This threshold sensitivity changes recorded-data eligibility, rather than
+adding an observation-error likelihood. Completeness and magnitude-scale
+uncertainty remain distinct issues \citep{WoessnerWiemer2005,Mignan2012}; the
+common observation-law scope in Section~\ref{sec:diagnostic_scope} applies.
 
 \begin{figure}[tbp]\centering\includegraphics[width=\linewidth,height=.78\textheight,keepaspectratio]{spatial_detail_window_primary_nats_per_target_m4_m45_v1.pdf}
 \caption{Fixed-window and event-weighted pooled primary score contrasts per target under M $\geq$ 4.0 and M $\geq$ 4.5. Bars retain the three windows and pooled diamonds divide summed nats by 315 or 87 targets. Each component uses its named reference; the negative early OC--MC joint contrast is retained. Cross-threshold differences are descriptive, not paired performance gains.}\end{figure}

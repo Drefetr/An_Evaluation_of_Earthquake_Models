@@ -9,11 +9,34 @@ reverses each block contrast. Training estimates remain fixed in these
 conditional comparisons. Pooled totals resample separately within each disjoint
 fold before summing. We also repeat the calculation with 180- and 365-day blocks.
 
+Calendar splitting does not make these blocks independent or strictly
+exchangeable. In the New Zealand model, 61 of the 195 finite-mixture modes
+decay by less than $1\%$ over $24{,}394$ days, with minimum rate
+$e^{-38.8}\,\mathrm{day}^{-1}$; their aggregate weight is small, but the
+state is carried across block boundaries. Triggered sequence clustering and
+fitted nonstationary rates provide further dependence across months and years.
+An independently reversed sign for each observed block is therefore a
+reference calculation under an additional symmetry/exchangeability assumption,
+not a justified randomization of independent earthquake sequences.
+
+Small nominal sign-flip values and wide block intervals address different
+features of the same contrasts. For example, Fold~1 has nominal $p=0.00104$
+and interval $[-25.526,-7.459]$ nats, while its strongest subinterval loss is
+concentrated in 1995--1998. The sign-flip reference counts directional
+extremeness under independent reversals; the bootstrap expresses magnitude
+variability under its chosen block resampling. Neither operation establishes
+long-memory calibration. Prioritize the agreement or disagreement of the
+90-, 180- and 365-day interval summaries and the fold-level directions over a
+nominal 90-day $p$-value. The intervals also remain conditional sensitivity
+summaries: their nominal coverage is not proved under the catalogue's full
+dependence and fitted-parameter uncertainty. Section~\ref{sec:diagnostic_scope}
+states the common inferential scope.
+
 \begin{table}[htbp]
 \centering
 \begin{tabular}{lrrr}
 \toprule
-Fold & Contrast (nats) & Paired 95\% interval & Sign-flip $p$ \\
+Fold & Contrast (nats) & Paired 95\% interval & Nominal sign-flip $p$ \\
 \midrule
 1 & -16.518 & $[-25.526,-7.459]$ & 0.00104 \\
 2 & -0.075 & $[-1.320,1.215]$ & 0.91248 \\
@@ -24,4 +47,4 @@ Fold & Contrast (nats) & Paired 95\% interval & Sign-flip $p$ \\
 \label{tab:nz_score_uncertainty}
 \end{table}
 
-Fold~1 contributes 93.7\% of the total deficit. Fold~2 is close to zero under every block length: its 180- and 365-day intervals are $[-1.109,1.014]$ and $[-1.511,1.324]$. Fold~3 is sensitive to the dependence scale: the 90-day interval includes zero, whereas the 180- and 365-day intervals are $[-2.185,-0.091]$ and $[-2.149,-0.225]$; the annual-block sign-flip value is $p=0.015$. Evidence for the smaller Fold~3 deficit strengthens with annual aggregation.
+Fold~1 contributes 93.7\% of the total deficit and its intervals exclude zero at all three block lengths. Fold~2's intervals contain zero throughout: its 180- and 365-day intervals are $[-1.109,1.014]$ and $[-1.511,1.324]$. Fold~3 is sensitive to the dependence scale: the 90-day interval includes zero, whereas the 180- and 365-day intervals are $[-2.185,-0.091]$ and $[-2.149,-0.225]$; the annual-block nominal sign-flip value is $p=0.015$. This change in zero inclusion is part of the block-size sensitivity, not a validated long-memory rejection.

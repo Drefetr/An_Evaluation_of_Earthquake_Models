@@ -1,0 +1,115 @@
+{
+  "schema": "track_a_current_publication_validation_v2",
+  "passed": true,
+  "scope": "Current diagnostic monograph, reviewed companion and website preview; source identities, complete joint data and all workflow tests. No scientific execution or public deployment.",
+  "build": {
+    "command": "python -B website/build_site.py --output build/track_a_site --companion build/track_a_companion --install",
+    "exit_code": 0,
+    "fixed_install_targets_resolved_under": "website/",
+    "staged_companion_pdf_and_html_match_canonical": true,
+    "initial_guard_failure": "The earlier implementation rejected any build/ companion path. Its failed deployment bundle is preserved under build/track_a_20261112/site_guard_failure. Reviewed v2 accepts only the already canonical byte-identical PDF/HTML pair and retains staged-manuscript rejection."
+  },
+  "workflow_tests": {
+    "command": "python -B -m unittest discover -s tests -p test_workflows.py -v",
+    "passed": true,
+    "exit_code": 0,
+    "tests": 9
+  },
+  "browser_interactions": [
+    {
+      "target": "website/site",
+      "passed": true,
+      "selector_combinations": 80,
+      "simulation_selector_cases": 10,
+      "simulation_summary_rows": 20,
+      "joint_selector_cases": 10,
+      "joint_summary_rows": 20,
+      "disposition_selector_cases": 0,
+      "disposition_summary_rows": 0,
+      "independent_histories_per_row": 20,
+      "no_simulation_pooling": true,
+      "no_simulation_target_conversion": true,
+      "observed_S04_targets": 315
+    },
+    {
+      "target": "build/track_a_site",
+      "passed": true,
+      "selector_combinations": 80,
+      "simulation_selector_cases": 10,
+      "simulation_summary_rows": 20,
+      "joint_selector_cases": 10,
+      "joint_summary_rows": 20,
+      "disposition_selector_cases": 0,
+      "disposition_summary_rows": 0,
+      "independent_histories_per_row": 20,
+      "no_simulation_pooling": true,
+      "no_simulation_target_conversion": true,
+      "observed_S04_targets": 315
+    }
+  ],
+  "source_metadata": {
+    "path": "website/document_metadata.json",
+    "sha256": "86182dcf1f8c38decdb62bb5bb5fc0f7cb209be061e526295ea658503d9b77c1"
+  },
+  "source_review_v2": {
+    "path": "validation/publication_refresh_track_a_20261112/joint_publication_review_v2.json",
+    "sha256": "9edab9636c09c13da3caa218f829ade3dadcb13eaf2555507b85b3c420490e6a"
+  },
+  "companion_review": {
+    "path": "validation/publication_refresh_track_a_20261112/companion_review.json",
+    "sha256": "3895b6de1887759a3c91fd8933b5faa1651f60c6afe711f07dc091d26b39190b"
+  },
+  "site_files_sha256": {
+    ".nojekyll": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "documents.json": "4b876159ae498d927cac04367ee5175669ce9e2b183c3525bbf17775c031c837",
+    "findings-data.json": "89f0eb354e771a40129777471fad251ca333439707825a8b0deb3e5e4ec23af5",
+    "findings.html": "acdb0627f9123c38da8f31a99dc03c96c8017da778948ef3bbe7ee7781666b5c",
+    "guide.html": "245cacd22400be6d347fc9948bb044e5ef947e3e54c03e2d4136edee8840ab6e",
+    "index.html": "c447af2c821d0c16ad619234b323d56c8fae4d0240517b5f80032aa75388c082",
+    "site.css": "cc6d9021270df00ccdab3d225f4a634b709a01d6caa52b8d44c986786614f0b3"
+  },
+  "documents": {
+    "edition": "Plain-language companion - diagnostic Track A edition, 12 November 2026",
+    "status": "published_research",
+    "bundle_kind": "repository_preview",
+    "baseline_is_revised_release": false,
+    "document_kind": "research_edition",
+    "manuscript_pages": 240,
+    "manuscript_title": "Diagnostic Exponential Rate Attenuation in Spatial–Temporal Earthquake Models",
+    "manuscript_subtitle": "Stability, identification and predictive evaluation of point-process models",
+    "human_authors": [
+      {
+        "name": "Drefetr",
+        "url": "https://github.com/Drefetr"
+      },
+      {
+        "name": "magna-nz",
+        "url": "https://github.com/magna-nz"
+      }
+    ],
+    "correspondence": "https://github.com/Drefetr/An_Evaluation_of_Earthquake_Models/issues",
+    "documents": [
+      {
+        "path": "../../paper/manuscript_unified.pdf",
+        "repository_source": "paper/manuscript_unified.pdf",
+        "sha256": "42b2d9aa1a2f52346b0d3687b0442df422dd7cb38dad3a039660a14a15584149",
+        "bytes": 2207713
+      },
+      {
+        "path": "../../companion/lay_guide_to_the_research.pdf",
+        "repository_source": "companion/lay_guide_to_the_research.pdf",
+        "sha256": "1773be87e4901cfe2d3c6ccc7b781fae2dbdf2b062d99d24e0fecbb98e3bcacc",
+        "bytes": 63630,
+        "staged_source": "C:\\Users\\Drefetr\\Desktop\\thesis_codex_handoff\\thesis_codex_handoff\\public_review_repository\\build\\track_a_companion\\lay_guide_to_the_research.pdf",
+        "canonical_companion_identity_checked": true
+      }
+    ]
+  },
+  "completed_joint_histories": 80,
+  "completed_joint_outcomes": 400,
+  "joint_mcse_rows": 20,
+  "regime_event_count_rows": 4,
+  "unavailable_joint_cells": 0,
+  "public_deployment_performed": false,
+  "producer_source_files_frozen": true
+}

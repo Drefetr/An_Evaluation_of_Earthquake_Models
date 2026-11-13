@@ -1,38 +1,44 @@
 # Validation and evidence
 
-This directory separates current manuscript bindings, additional numerical source inventory, dated internal scientific and artifact review records, and bounded check results. Historical preparation/release receipts are indexed in [provenance/historical_archive.json](../provenance/historical_archive.json); their original hashes and baseline locations remain available without presenting them as current validation.
+Current production and test coverage are recorded in [Track A acceptance](track_a_remediation_20261112.json). The [preceding completed reassessment](reassessment_20261112.json) remains an exact record of its own edition. November 7–8 production reviews identify historical PDF, guide and site bytes and must not be treated as current checks.
+
+This repository evaluates diagnostic exponential rate attenuation in specified point-process models. It does not validate a directional Coulomb stress or rate-and-state model. Internal independent computational audits and saved-output artifact audits have separately stated coverage; they are not independent external academic peer review.
 
 ## What each record establishes
 
 | Record | Role |
 |---|---|
-| `MASTER_CLAIM_LEDGER.json` | Enumerated manuscript bindings and typed documentary metadata, with explicit source hashes, locators, and transformations |
-| `SOURCE_INVENTORY.json` | Additional numerical source inventory, kept separate from claims of manuscript support |
-| `authorities/`, `authority_manifest.json` | Bundled scientific sources and their historical/public identities |
-| `acceptances/` | Historical internal reviews; their filenames do not represent journal acceptance |
-| `reviews/`, `reproductions/` | Current artifact checks and actual recovered-input execution records, with separate scope and identities |
-| `live_results/methodological_20261106/` | Current thinning/fit-vector and analytic diagnostics, plus all 80 newly executed train-only S04B intercept fits and their score decomposition |
-| `numeric_reconciliation_receipt.json` | Canonical claim/source reconciliation receipt; default verification checks bindings without rewriting it |
-| `checks.json` | Actual current bounded check coverage and results, with the recorded snapshot and execution scope |
-| `checks_before_remediation_20261105.json` | Exact historical `checks.json` bytes from commit `1226fc3`; retained prior coverage, not current-edition validation |
+| `MASTER_CLAIM_LEDGER.json` | Enumerated manuscript values and documentary metadata, with source hashes, locators, transformations and display custody |
+| `SOURCE_INVENTORY.json` | Additional numerical source inventory, separate from literal manuscript support |
+| `authority_manifest.json`, `authorities/` | Bundled historical scientific authorities and their original/public identities |
+| `live_results/s04b_joint_complete_20261111/summary.json` | Complete 80-history/400-outcome joint temporal-backbone comparison |
+| `live_results/s04b_joint_complete_independent_audit_20261111.json` | Independent computational audit of source custody, complete arithmetic and the original presentation |
+| `live_results/track_a_supplement_20261112/` | Additive sample Monte Carlo errors, explicit train/test event counts and verified presentation over unchanged scientific outcomes |
+| `live_results/s04b_concave_20261111/`, `live_results/reporting_supplement_20261112/` | Training-only concave comparator; derived raw/BIC, boundary and win-column reporting |
+| `live_results/s8_moderate_complete_20261111/` | Complete moderate synthetic campaign, with its distinct declared numerical rule |
+| `live_results/etas_inhibition_benchmark_interior_20261112/` | Corrected final ETAS acceptance with positive-strength interior starts and its source-bound baseline comparison |
+| `live_results/score_uncertainty_remote_v2_20261111/` | Accepted paired block contributions/resampling, distinct from rejected calendar-mapping predecessors |
+| `reproductions/`, `remote_runs/` | Executed reconstructions, fresh fits, saved-state replays and runtime/source identities, each with its own scope |
+| `acceptances/`, `reviews/` | Dated internal scientific-computation and artifact records; names do not imply journal acceptance |
+| `numeric_reconciliation_receipt.json`, `manuscript_display_regression.json` | Current enumerated claim, source and display reconciliation |
+| `checks.json` and `checks_before_*.json` | Differently scoped historical test executions, not a substitute for the current Track A roster |
+| `track_a_prechange_snapshot_20261112.json`, `withdrawals/` | Preserved pre-edit artifacts, sealed-result identities and explicit historical claim withdrawals |
 
-The default verifier checks both ledgers. Source inventory records are not automatically manuscript claims. A verified hash establishes source identity, while numerical reconciliation checks declared values/transformations. Neither establishes exhaustive theorem correctness, completeness of all manuscript claims, causal identification, or independent raw replay of every experiment.
+The [reviewer guide](../REVIEWER_START_HERE.md) maps every current study to its entry point. The old [78-history disposition report](live_results/joint_nuisance_dispositions_20261107/report.json) is a historical checkpoint, not the current 80-history result. Existing sealed scientific JSON, original protocol identities and source epochs are preserved; presentation changes have additive derived supplements and new reviews.
 
-Explicit [withdrawals](withdrawals/CLAIM_WITHDRAWALS_20261105.json) preserve retired records exactly against the archived baseline ledger. The verifier still checks their authority and arithmetic, but excludes them from current display counts. Current bindings must point into the compiled LaTeX input tree. Receipt refresh cannot automatically withdraw a missing claim.
+## Source identity is not scientific verification
 
-The manuscript ledger stores shared TeX source hashes and the fixed verification method once in `display_custody`. Each claim keeps its matching files and a digest binding its identity, displayed value, and declared locations. Ordinary verification recomputes every binding against current source bytes and rejects stale or missing custody. The display-regression receipt summarizes the verified ledger hashes, counts, and sources without copying the per-claim records. Explicit `scripts/verify_claims.py --write-receipts` migrates or refreshes this representation after deliberate source review.
+The default verifier checks both ledgers. A source hash establishes identity; arithmetic checks establish the declared numerical transformation; display custody establishes the enumerated occurrence in the compiled LaTeX input tree. These checks do not establish semantic completeness, theorem correctness, causal identification, calibrated statistical testing or replay of every raw calculation.
 
-The ledger's `current_edition` identifies this revision and its withdrawal registry. The older `edition` and `closure_revision` fields retain their original ledger-migration meaning. The [result provenance map](../docs/result_provenance.md) records scientific execution separately.
+Withdrawn claims retain their original records and authority checks but no longer count as current displays. A missing display cannot be silently withdrawn by refreshing a receipt. Current display-source changes require deliberate review and explicit `scripts/verify_claims.py --write-receipts`; ordinary verification is read-only.
 
-The [selected-state replay coverage review](reproductions/score_replay_20261107/final_coverage/independent_review.json) records completed historical score replays separately from source/display custody. It distinguishes newly reconciled fields, retained prior replay evidence and scopes requiring no additional likelihood execution. Original optimizer campaigns were not repeated, and small exact-display differences remain explicitly flagged under the unchanged functional tolerances.
+Fresh scientific execution, saved-state likelihood replay, saved-output artifact audit and document production are different activities. The [provenance map](../docs/result_provenance.md) and [selected-state replay coverage](reproductions/score_replay_20261107/final_coverage/independent_review.json) distinguish them. Original historical optimizer searches were not repeated by the later score-replay campaign.
 
-The [refitted-floor summary](live_results/methodological_20261106/refitted_floor_summary.json) derives from the [complete execution](live_results/methodological_20261106/refitted_floor/result.json), including 480 historical train/test floor checks and 80 retained case reports. Its new fit changes only the uninhibited background intercept; all original inhibited states and gates remain unchanged. [Source and run instructions](../experiments/s04b_refitted_floor/README.md) and the [methodological response](../docs/reviews/methodological_review_response.md) distinguish this executed sensitivity from saved-record diagnostics and analytic calculations. Neither a passed numerical comparison nor a finite fixed-strength bracket bound establishes general parameter recovery or a calibrated distribution for selected held-out losses.
-
-The [unit-mark narrow/short audit](../reproduction/synthetic/s2_unitmark/README.md) binds the original histories and their realized-thinning check. It supplements the earlier S04B census without changing its records or repeating fitted procedures.
+The observed 90-, 180- and 365-day block summaries hold fitted states fixed. Long-memory dependence and exchangeability conditions are not established by their implementation checks. Intervals are descriptive sensitivity summaries; nominal sign-flip references are not calibrated significance tests. Compare all block lengths, fold consistency and score components. A training-selected zero attenuation state gives exactly zero held-out contrast by nesting; it is not a power or physical-absence test.
 
 ## Check a checkout
 
-From the repository root after installing `requirements.txt` and Node.js 22 (also used by the workflow tests):
+From the repository root after installing `requirements.txt` and Node.js 22:
 
 ```sh
 python -B -m unittest discover -s tests -v
@@ -47,13 +53,9 @@ python -B scripts/verify_repository.py
 node website/check_interactions.cjs
 ```
 
-The [current check record](checks.json) gives separate executed counts for the main suite, regional input, point-control and process-supervision tests, eight Stage 2 tests (five portable and three native fixtures), six S02 input-control tests, and twenty historical iteration-27 tests. The main suite includes the other supplied replay packages. The total is not the count of the first command alone. The historical full execution used Windows/MSVC native builds. The current Stage 2 command automatically builds the LI, temporal and S06 fixtures when no native root is configured; Linux uses GNU/Clang C++17 and Windows uses MSVC. A missing compiler fails rather than skipping the fixtures. See the [native-build instructions](../engine/stage2_followup/README.md#native-builds). The iteration-27 suite also requires a separate CUDA-enabled PyTorch installation and a usable CUDA device; its small CUDA/CPU fit comparison has no CPU fallback. These optional GPU dependencies are not included in `requirements.txt`.
+The current Track B record reports actual command exit codes, test counts, control outputs and artifact identities; the Track A record remains the editorial/statistical baseline. Counts from separate suites are not the count of the main command alone. These bounded checks do not launch the full research campaigns. In the thesis handoff workspace, intensive fitting, simulation and large likelihood contractions must use the configured remote host under `AGENTS.md`; credentials remain outside repository payloads.
 
-The separate [CPU route](../docs/cpu_reproduction.md) has a [bounded fresh-Linux execution review](reproductions/cpu_20261107/checkout02_independent_review.json). Its numerical kernel and public-reader checks require a C++17 compiler on Linux, without MSVC or CUDA. It does not claim execution of the historical GPU assertion, macOS acceptance, or a fresh all-history scientific campaign.
-
-The separately versioned [refined joint-fit reader](../experiments/s04b_refined_cpu_reader/README.md) uses a bundled audited Linux x86-64 native library with automatic extraction. It does not need a local compiler. Its [source review](reproductions/continuation_20261107/joint_refined_cpu_combined_source_review.json), constructed controls and actual output reviews have separate scopes. Fresh-local finite limits do not use the authors' expiry; the optional author record retains the dated envelope. The older CPU acceptance does not execute or certify this later reader.
-
-After building the native groups into `build/native/{li,temporal,s06}`, run the two additional suites from the repository root in PowerShell:
+Optional Stage 2 tests automatically build their native fixtures when no native root is configured. A GNU/Clang C++17 compiler is supported on Linux and MSVC on Windows; a missing compiler is an error rather than a silent skip. An explicit `INHIBITORY_TEST_NATIVE_ROOT` reuses supplied libraries. See [native-build instructions](../engine/stage2_followup/README.md#native-builds).
 
 ```powershell
 $env:INHIBITORY_TEST_NATIVE_ROOT = (Resolve-Path build/native).Path
@@ -61,20 +63,21 @@ python -B -m unittest discover -s engine/stage2_followup/tests -v
 python -B -m unittest discover -s engine/iteration_27/tests -v
 ```
 
-Without `INHIBITORY_TEST_NATIVE_ROOT`, the Stage 2 command runs its five portable tests and skips its three native fixtures. That portable result does not establish the full native test coverage. CI runs the portable subset; the recorded local execution separately identifies native and CUDA prerequisites.
+The historical iteration-27 GPU assertion requires a separate CUDA-enabled PyTorch installation and usable GPU, with no CPU fallback. The separately executed [Linux CPU route](../docs/cpu_reproduction.md) and its [fresh-checkout computational audit](reproductions/cpu_20261107/checkout02_independent_review.json) have a different roster. The [refined fit reader](../experiments/s04b_refined_cpu_reader/README.md) uses its bundled audited Linux library without a compiler; source review, constructed controls and acceptance of an actual fresh fit are distinct.
 
-Node.js is required for the website interaction check. [Reproduction instructions](../docs/reproducibility.md) distinguish these checks from document builds and scientific workloads. Generated PDF production checks still need visual inspection. Stage 2 import/build fixtures cover only the supported components identified in the [support matrix](../engine/stage2_followup/README.md).
+## Build and inspect documents
 
-The [current production review](reviews/S2_CONTROL_EDITION_20261107.json) pins the delivered manuscript, companion and repository site. `website/document_metadata.json` pins that review record. The [preceding reassessment](reviews/REASSESSMENT_CLARIFICATIONS_20261106.json), earlier editorial reviews and S04B reviews retain their original artifact identities. These are internal production records, not external peer review.
+Use fresh output directories and do not install artifacts during a read-only review:
 
-## Historical receipts and source changes
+```sh
+python -B scripts/make_figures.py --output build/reviewer_figures
+python -B scripts/build_paper.py --output build/reviewer_paper
+python -B scripts/validate_pdf.py --source-root paper --pdf build/reviewer_paper/main.pdf --log build/reviewer_paper/main.log --output build/reviewer_pdf_qa
+python -B companion/build_guide.py --output build/reviewer_companion
+python -B website/build_site.py --output build/reviewer_site
+node website/check_interactions.cjs build/reviewer_site
+```
 
-The [pre-closure checks](checks_before_closure_20261105.json) preserve the exact preceding completed-replay edition. Current checks record evidence recovery, explicit withdrawals and the rebuilt publication. The [closure record](reproductions/evidence_closure_20261105.json) links the recovered original computations and separate independent package reviews. Earlier replay attempts, including the later S05 adapter runtime-gate refusal, retain their own scope; the original completed S05 execution is now supplied.
+Production checks need visual inspection of the final page images. Accepted PDF identities and page counts are promoted together with guide/site metadata only after review. A current presentation overlay may bind a new table to an unchanged scientific result; it must verify the old table's archived identity and the new derived numerical supplement without rewriting the old computational audit.
 
-The [pre-remediation check snapshot](checks_before_remediation_20261105.json) preserves the complete `validation/checks.json` from commit `1226fc3b42209afa629ff94063d9c3c5f74e1098`, including `isolated_builds`, `source_migration_review`, `compact_metadata` and `asset_payload`. Its original snapshot statements and byte-savings figures describe that earlier repository state. The `historical_checks` reference in current `checks.json` pins this preserved record; those results are not silently promoted to current coverage.
-
-October baseline receipts described earlier manuscript/supplement editions and a smaller test suite. Final-release build receipts describe their original compiler, source, and PDF bindings. They are historical evidence rather than a fresh check of the current tree. Earlier privacy scans likewise do not cover later additions by implication.
-
-Publication variants, path migration, or deduplication can change public source bytes without changing scientific values. Preserve original identities and record the transformed bytes, then update dependent ledger hashes, documentary locators, authority mappings, site/companion bindings, and receipts together. Current repository membership is authoritative in `MANIFEST.json`; historical archive indexes and source inventories have different scopes.
-
-The recovered-input packages now supply the original regional event records, declared synthetic/reference banks and available fitted vectors. See [the reproduction index](../reproduction/README.md) for executed routes, original states still missing and caches rebuilt from raw inputs. Scientific acceptance, source reconciliation, document production, and external academic peer review are separate forms of evidence.
+Historical receipts retain their original hashes, source paths, test coverage and unresolved states. They are not promoted to current validation by implication. `MANIFEST.json` identifies current repository membership; [historical archive indexes](../provenance/historical_archive.json) describe preserved earlier editions.

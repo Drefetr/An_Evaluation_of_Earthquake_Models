@@ -1,0 +1,61 @@
+\subsubsection{Component ablation and the spatial-scale boundary}\label{sec:epplus-ablation}
+The $69.553$-nat EP+ gain is not primarily a normalization effect. The balanced factorial gives Shapley contributions of 29.22~nats for training declustering, 30.03~nats for magnitude scaling, 0.064~nats for full-plane versus rectangle normalization, and 10.241~nats for joint temporal--spatial fitting (Table~\ref{tab:epplus-factorial}). The rectangle-normalized analogue A7 reaches 69.502~nats, so common-space normalization changes the total by 0.050~nats.
+
+The original lower bound of 2.000~km is binding in every accepted fit. Releasing it to 0.050~km selects interior scales of 0.823, 0.839 and 0.821~km under full-plane normalization, with $\widehat\alpha_s$ near eight tenths (Table~\ref{tab:sigma0-relaxation}). The three-fold test gain rises to 77.056~nats when the background is redeclustered under the relaxed bound, and to 78.584~nats when the accepted EP+ weights are held fixed. The fixed-$\sigma_0$ profile curves in Table~\ref{tab:sigma0-profile} confirm an interior training minimum rather than a boundary one; the earlier boundary was therefore a search-box artefact, not a likelihood maximum.
+
+\begin{table}[htbp]\centering\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}llllrrrr@{}}\toprule
+Arm & Norm. & KDE & $\alpha_s$ & F0 & F1 & F2 & Total\\\midrule
+A0 & rect & unw & fixed & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
+A1 & rect & unw & fixed & 5.0835 & 4.5498 & 0.6075 & 10.2408 \\
+A2 & plane & unw & fixed & 5.1056 & 4.6368 & 0.5877 & 10.3302 \\
+A3 & rect & decl & fixed & 12.6340 & 4.1432 & 21.2576 & 38.0347 \\
+A4 & plane & decl & fixed & 12.5908 & 4.2517 & 21.2477 & 38.0902 \\
+A5 & rect & unw & free & 5.6526 & 30.4042 & 2.7849 & 38.8417 \\
+A6 & plane & unw & free & 5.6457 & 30.4627 & 2.7808 & 38.8892 \\
+A7 & rect & decl & free & 14.6067 & 30.6127 & 24.2831 & 69.5025 \\
+A8 & plane & decl & free & 14.5795 & 30.6910 & 24.2824 & 69.5529 \\
+\bottomrule\end{tabular}
+\caption{Component ablation of the magnitude-scaled ETAS procedure, in held-out nats relative to archived EP. Positive values favour the new procedure. A0 is the archived EP score; A1--A8 form a balanced $2\times2\times2$ factorial over rectangle versus full-plane normalization, unweighted versus five-step training-declustered KDE background, and fixed versus free magnitude scaling, all with joint temporal--spatial fitting except A0. Columns abbreviate normalization (rect/plane), KDE (unw/decl) and magnitude scaling (fixed/free). Each arm uses the same histories, fertility weights and common mark measure.}
+\label{tab:epplus-ablation}
+\end{table}
+
+\begin{table}[htbp]\centering\small
+\begin{tabular}{@{}lrr@{}}\toprule
+Component & Shapley (nats) & Sequential (nats)\\\midrule
+Joint fitting (A0$\to$A1) & --- & 10.241 \\
+Full-plane normalization & 0.064 & 0.089 \\
+Training declustering & 29.223 & 27.760 \\
+Magnitude scaling & 30.026 & 31.463 \\
+Total (A8$-$A0) & 69.553 & 69.553 \\
+\bottomrule\end{tabular}
+\caption{Additive decomposition of the $69.553$-nat A8$-$A0 gain. Shapley values average every order of the three procedural factors and sum exactly with the joint-fitting increment; the sequential column follows A0$\to$A1$\to$A2$\to$A4$\to$A8.}
+\label{tab:epplus-factorial}
+\end{table}
+
+\begin{table}[htbp]\centering\small
+\begin{tabular}{@{}lrrrr@{}}\toprule
+Fold/weights & $\widehat\sigma_0$ (km) & $\widehat\alpha_s$ & $\widehat q$ & Test gain (nats)\\\midrule
+F0 & 0.823 & 0.770 & 1.689 & 14.046 \\
+F1 & 0.839 & 0.773 & 1.710 & 38.365 \\
+F2 & 0.821 & 0.826 & 1.794 & 24.645 \\
+F0 (frozen KDE) & 0.828 & 0.770 & 1.694 & 14.861 \\
+F1 (frozen KDE) & 0.845 & 0.774 & 1.717 & 38.705 \\
+F2 (frozen KDE) & 0.827 & 0.827 & 1.802 & 25.018 \\
+\bottomrule\end{tabular}
+\caption{Relaxed lower bound $\sigma_0\geq0.05$~km, full-plane normalization. The first three rows rerun five-step training declustering under the relaxed bound; the last three hold the accepted EP+ background weights fixed. Every fit remains training-only and every test score uses the common mark measure.}
+\label{tab:sigma0-relaxation}
+\end{table}
+
+\begin{table}[htbp]\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lrrrrrrrrrrrr@{}}\toprule
+Fold & 0.05 & 0.10 & 0.20 & 0.30 & 0.50 & 0.75 & 1.00 & 1.50 & 2.00 & 3.00 & 5.00 & 10.00\\\midrule
+F0 & 8326.09 & 8267.59 & 8210.51 & 8181.35 & 8154.44 & 8144.84 & 8145.97 & 8160.09 & 8179.06 & 8217.18 & 8297.16 & 8457.99 \\
+F1 & 9403.82 & 9342.01 & 9281.27 & 9250.01 & 9220.89 & 9210.08 & 9210.73 & 9224.61 & 9243.62 & 9282.05 & 9365.19 & 9538.05 \\
+F2 & 10578.53 & 10502.93 & 10427.43 & 10388.37 & 10352.46 & 10339.83 & 10341.31 & 10358.93 & 10381.28 & 10432.94 & 10544.53 & 10765.56 \\
+\bottomrule\end{tabular}}
+\caption{Training negative log-likelihood at fixed $\sigma_0$ (km), with $(a,d,n,c,p,\alpha_s,q)$ re-optimized at each point, full-plane normalization and accepted EP+ background weights. Lower values are better.}
+\label{tab:sigma0-profile}
+\end{table}

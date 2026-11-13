@@ -29,6 +29,8 @@ The separately versioned [refined CPU fitting entry point](../experiments/s04b_r
 
 The new paired calendar-block analysis supplies conditional percentile intervals, paired sign-flip references and sign tests for the specified New Zealand and California score contrasts, with 90-, 180- and 365-day sensitivity. The new magnitude-scaled baseline comparison has its own paired block intervals. These computations retain fitted training states and resample complete point/exposure block pairs. Synthetic Wilson intervals and MC standard errors keep their distinct definitions. Other historical point-score tables are not silently assigned intervals from a different contrast.
 
+Track B adds deterministic CPU controls on the same frozen caches: a nine-arm EP+ component ablation with a Shapley decomposition, relaxed and profiled spatial-scale fits, New Zealand zero-trend and fixed-null-trend refits, the S8 oracle ceiling, California attenuation-profile slices and regional minimum detectable effects. These are fresh bounded fits or saved-output arithmetic, not a new simulation campaign. The [independent computational audit](../validation/live_results/track_b_controls_20261112/independent_track_b_audit.json) recomputes objective values, held-out scores, profile points and block standard errors and verifies that the sealed authority roster is unchanged.
+
 The F continuation and its S01 recovery conclusions were [withdrawn](F_followup.md). Their historical sources do not count as current results. Documentary source keys S01-S27 are a different naming scheme and remain in the source-availability map.
 
 The [unit-mark control audit](../reproduction/synthetic/s2_unitmark/README.md) separately checks the realized thinning of the original narrow/short histories. Its scope is generator/history reconstruction, with no likelihood evaluation or optimizer refit. The [reassessment response](reviews/s2_control_reassessment_response.md) records the corrected interpretation.
@@ -84,12 +86,12 @@ search (S5 seed 410518), and one interrupted wall-clock allocation (S6 seed
 `validation/reproductions/joint_nuisance_20261107/continuation/` and
 `validation/live_results/joint_nuisance_dispositions_20261107/`.
 
-The canonical S5 trace actually contains completed immigrant starts 0–4,
+The canonical S5 trace actually contains completed immigrant starts 0Ã¢â‚¬â€œ4,
 followed by an arithmetic failure at the primary start 5 and a 5,000-evaluation
-Powell cap return. Starts 6–7 and the total-intensity arm are absent from that
+Powell cap return. Starts 6Ã¢â‚¬â€œ7 and the total-intensity arm are absent from that
 trace. The remediation therefore executes all of those missing computations;
 it does not assume the handoff's larger completion count. S6 preserves its
-completed null, LI and immigrant arms and total-arm starts 0–2.
+completed null, LI and immigrant arms and total-arm starts 0Ã¢â‚¬â€œ2.
 
 The bundled Linux reader cannot execute on this Windows host: WSL reports
 `HCS_E_HYPERV_NOT_INSTALLED` because virtualization is disabled. The portable
@@ -126,20 +128,20 @@ KKT test. All 80 histories are recomputed directly from archived event features;
 the fitted train parameters are frozen before test features are scored. An
 independent archived evaluator verifies all fitted phase scores to 1e-9 nat.
 
-S8 used separate generation calibration. Seeds 499801–499810 at immigrant rate
+S8 used separate generation calibration. Seeds 499801Ã¢â‚¬â€œ499810 at immigrant rate
 0.25/day, eta 0.5, radius 15 km and decay 5 days rejected 30.34% of proposals and
 retained 94.2 test events on average. A subsequent count-only calibration batch
-(410801–410820) rejected 36.21%, just above the requested target. Its first
+(410801Ã¢â‚¬â€œ410820) rejected 36.21%, just above the requested target. Its first
 training fit was interrupted before any held-out scoring. These paths and the
 interrupted fit are retained as calibration artifacts; none enters the analysis.
-The final eta 0.4 law was frozen before fresh analysis seeds 410821–410840 were
+The final eta 0.4 law was frozen before fresh analysis seeds 410821Ã¢â‚¬â€œ410840 were
 drawn. Their aggregate proposal rejection is 27.2076%, and their mean test count
-is 94.7 (range 78–112). No history is removed or replaced because of its count
+is 94.7 (range 78Ã¢â‚¬â€œ112). No history is removed or replaced because of its count
 or fitted score.
 
 S8 fits only the uninhibited and matched total-intensity arms, each with eight
 starts and with all five temporal nuisance parameters free. Its positive tensor
-spatial Gauss–Legendre rule uses the nine original cells; the time integration
+spatial GaussÃ¢â‚¬â€œLegendre rule uses the nine original cells; the time integration
 uses the original positive log panels. Fitting uses order 8 spatial and 32
 temporal nodes per panel, then doubles the selected-state rule. A discrepancy
 above 0.01 nat triggers a training refit at the doubled rule. Held-out integration
@@ -225,3 +227,39 @@ The Japanese trend-ablation acceptance checked source/cache identities, causal w
 The observed LI and LI+ comparisons retain their original fitted states and training selections. The later CPU replay recomputes the held-out selected and floor scores using the original prepared quadrature, rather than repeating every optimizer candidate. The original numerical audits retain their separate coverage. The reporting receipt records same-history numerical acceptance and retained-state checks; a parent process exit is not scientific acceptance.
 
 Claim families LI-OBSERVED, LI-CONTROLS and LI-VALIDATION identify the original scientific result, fixed examples and numerical evidence. CA-BENCHMARK and CA-CALIBRATION supply the earlier comparator and calibration context. The evidence index binds aggregate fields and source identities. The recovered-input bundle supplies catalogue and matched-generator histories, fitted vectors and CPU likelihood-replay code. Execution records identify the replayed calculations separately from the original fitting searches and audits; event caches can be rebuilt from the supplied histories and numerical sources.
+
+
+## Track A reporting derivations and custody (12 November 2026)
+
+Track A performs deterministic saved-result arithmetic and editorial/statistical-framing changes, with no new fitting, simulation or large likelihood contraction. The prechange PDF, source and ledger are retained in `paper/history/pre_track_a_c957e453_20261112.zip`, indexed by `validation/track_a_prechange_snapshot_20261112.json`. All 316 existing protected authority/campaign JSON files are checked against that snapshot. Original computational reviews and acceptance records remain historical records of their editions.
+
+`validation/live_results/track_a_supplement_20261112/s04b_joint_mcse.json` records sample MCSEs and event counts from the original 80 joint histories, plus the fitted-floor comparisons. `framing_summary.json` names the saved-source transformations behind revised narrative displays. Both derived summaries are registered in `validation/authority_manifest.json`; their numerical display bindings are registered in the claim ledger. The separate computational reviews check all derived cells and narrative bindings. Sixteen removed or re-rounded display bindings are explicitly retired in `validation/withdrawals/TRACK_A_DISPLAY_SUPERSESSION_20261112.json`, with their exact old source and ledger still recoverable from the archive; their scientific authorities are not withdrawn.
+
+The current table presentation overlay validates the new MCSE/event-count layout against the unchanged completed-joint summary while checking the earlier table against its original computational review. It does not reissue or alter the earlier scientific audit. The companion and site are publication builds; the staged-guide installation guard requires PDF and HTML identity with the reviewed canonical companion. The [response](reviews/track_a_hostile_review_response_20261112.md) and [acceptance](../validation/track_a_remediation_20261112.json) distinguish these operations from the prior remote scientific campaigns.
+
+## Track A manuscript provenance relocation (12 November 2026)
+
+The following operational paragraphs were moved verbatim from Chapter 10 after the pre-Track-A snapshot. They record recovery history, not scientific conclusions. The original source snapshot remains archived.
+
+### Original Chapter 10 operational paragraph 1
+
+```tex
+\paragraph{Execution provenance.}
+This chapter retains the original spatial and background-extension fits and numerical audits. The later selected-state replay recomputes the declared likelihoods using the recovered cached features and reconciles the common-space and partition comparisons. It does not rerun optimizer searches. The fresh frozen diagnostic and autonomous fits in Chapter~\ref{ch:observed} are separate computations.
+```
+
+### Original Chapter 10 operational paragraph 2
+
+```tex
+Two harness failures were retained and repaired in append-only epochs. First, six historical fit-file identity pins were missing although their identical model contents were already inside pinned old case JSON. The 14 completed first-case procedures and 112 starts were reused; only the remaining 28 procedures and 224 starts were newly run. Second, the independent old-anchor oracle recorded a unit diagnostic normalizer instead of the raw pi-weighted kernel sum. One diagnostic assignment was repaired; normalized masses, densities, likelihoods, gradients, fits, scores and tolerances were unchanged. A complete recovery-aware raw-row audit then passed. No completed start was refitted and no synthetic history was redrawn. Failed-attempt and audit wall time remain charged in final accounting.
+```
+
+### Original Chapter 10 operational paragraph 3
+
+```tex
+One initial audit failed because a metadata assertion required exact binary equality between independently solved magnitude-rate estimates differing by six floating-point units. An append-only repair separated exact producer identity from the existing reconstruction tolerance. Independent numerical scores still used raw-derived values; all 326 scientific outputs remained unchanged, with no refits or replacement histories. The audit review and accounting retain that failure and recovery. The reconstructed catalogue rows are now supplied with an executable cohort replay; event-level feature caches are numerical rebuild products. This chapter retains its reviewed spatial aggregates and does not claim a new execution of these spatial fits or their original score audit. Computational-agent review is not external academic peer review.
+```
+
+### Original Chapter 12 edition-recovery statement
+
+These are original audit outcomes. This edition recovered the simulation and diagnostic records and checked their hashes and source identities; it did not repeat that simulation or diagnostic campaign.

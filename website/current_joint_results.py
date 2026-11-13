@@ -8,15 +8,18 @@ from pathlib import Path, PurePosixPath
 import hashlib
 import json
 import math
+import re
 import statistics
 import zipfile
 
 DIRECTORY='validation/live_results/s04b_joint_complete_20261111'
-REVIEW='validation/publication_refresh_20261112/joint_publication_review.json'
+REVIEW='validation/publication_refresh_track_b_20261112/joint_publication_review.json'
 AUDIT='validation/live_results/s04b_joint_complete_independent_audit_20261111.json'
 PROTOCOL='experiments/s04b_joint_nuisance/protocol.json'
 REQUIRED_REVIEWED_SOURCES={'website/current_joint_results.py','website/build_findings.py',
-    'tests/test_current_joint_publication.py'}
+    'website/build_site.py','website/findings.html','website/check_interactions.cjs',
+    'tests/test_current_joint_publication.py','tests/test_staged_companion_publication.py'}
+TABLE='paper/source/chapters/13_s04b_joint_dispositions.tex'
 
 def require(value,message):
     if not value:raise ValueError(message)
@@ -77,6 +80,91 @@ def equal(actual,expected,path='summary'):
         require(isinstance(actual,(int,float)) and math.isfinite(actual) and abs(actual-expected)<=1e-10,'Completed arithmetic differs: '+path)
     else:require(actual==expected,'Completed value differs: '+path)
 
+def validate_presentation(reference,raw,root,audit,summary,reports):
+    """An additive presentation epoch preserves the old audited table exactly.
+
+    A changed current table is admitted only after verifying its archived
+    predecessor, the unchanged scientific summary/audit and independently
+    recomputed MCSE/event counts. All three current tables are then checked
+    cell by cell, excluding the four explicit regime subheaders from row counts.
+    """
+    require(set(reference)=={'path','sha256'},'Presentation path/hash reference required')
+    p=document(raw(reference['path'],reference['sha256']))
+    require(p['schema']=='completed_joint_presentation_overlay_v1','Unknown presentation overlay')
+    for key,expected in [('summary',DIRECTORY+'/summary.json'),('scientific_audit',AUDIT),('current_table',TABLE)]:
+        ref=p[key];require(ref['path']==expected,'Presentation source identity differs: '+key)
+        raw(ref['path'],ref['sha256'])
+    require(p['summary']['sha256']==digest((root/(DIRECTORY+'/summary.json')).read_bytes()),'Presentation summary binding differs')
+    preceding=document(raw(p['preceding_publication_review']['path'],p['preceding_publication_review']['sha256']))
+    require(preceding['passed'] is True and preceding['summary_sha256']==p['summary']['sha256'] and
+        preceding['independent_audit_sha256']==p['scientific_audit']['sha256'],'Preceding scientific review differs')
+    archive_ref=p['archived_table'];raw(archive_ref['path'],archive_ref['sha256'])
+    member=PurePosixPath(archive_ref['member'])
+    require(not member.is_absolute() and '..' not in member.parts and str(member)==TABLE,'Archived table member differs')
+    with zipfile.ZipFile(root/archive_ref['path']) as archive:
+        require(archive.namelist().count(str(member))==1,'Archived table member is not unique')
+        original=archive.read(str(member))
+    require(digest(original)==archive_ref['member_sha256']==audit['table_sha256'],
+        'Original scientific table audit no longer holds')
+    supplement=document(raw(p['mcse_supplement']['path'],p['mcse_supplement']['sha256']))
+    table_audit=document(raw(p['table_audit']['path'],p['table_audit']['sha256']))
+    require(table_audit['passed'] is True,'Additive table computational audit required')
+    require(table_audit['authority_path']==p['mcse_supplement']['path'] and
+        table_audit['authority_sha256']==p['mcse_supplement']['sha256'] and
+        table_audit['manuscript_sha256'][TABLE]==p['current_table']['sha256'],
+        'Additive table computational audit identities differ')
+    for ref in supplement['source_files']:raw(ref['path'],ref['sha256'])
+    rows=supplement['joint_rows'];regimes=supplement['regimes']
+    require(len(rows)==20 and len({(r['regime'],r['model'],r['gate']) for r in rows})==20,'Presentation MCSE roster differs')
+    require(len(regimes)==4 and {r['regime'] for r in regimes}==set(range(4,8)),'Presentation regime census differs')
+    for row,old in zip(rows,summary['summary']):
+        key=(row['regime'],row['model'],row['gate'])
+        require(key==(old['regime'],old['model'],old['gate']),'Presentation procedure ordering differs')
+        equal(row['primary'],old['primary'],'presentation/primary')
+        equal(row['N'],old['N'],'presentation/N')
+        values=[next(v['new_gain'] for v in case['outcomes'] if (v['model'],v['gate'])==key[1:])
+            for case in sorted(reports,key=lambda r:r['case_id']) if case['regime']==key[0]]
+        equal(sorted(row['values']),sorted(values),'presentation/gains')
+        equal(row['mean'],math.fsum(values)/20,'presentation/mean')
+        equal(row['mcse'],statistics.stdev(values)/math.sqrt(20),'presentation/mcse')
+        equal(row['sample_sd'],statistics.stdev(values),'presentation/sample_sd')
+        equal(row['median'],statistics.median(values),'presentation/median')
+        equal(row['wins'],sum(v>0 for v in values),'presentation/wins')
+        equal(row['wilson95'],old['wilson95'],'presentation/wilson')
+    for regime in regimes:
+        cases=sorted([r for r in reports if r['regime']==regime['regime']],key=lambda r:r['case_id'])
+        equal(regime['N'],len(cases),'presentation/regime_N')
+        equal(regime['case_ids'],[r['case_id'] for r in cases],'presentation/cases')
+        for phase in ('train','test'):
+            equal(regime['n_'+phase],[r['n_'+phase] for r in cases],'presentation/counts')
+            equal(regime['mean_n_'+phase],math.fsum(r['n_'+phase] for r in cases)/20,'presentation/mean_count')
+    text=raw(TABLE,p['current_table']['sha256']).decode('utf-8')
+    def body(label):
+        marker='\\label{'+label+'}'
+        require(text.count(marker)==1,'Current presentation table label differs')
+        return text.split(marker,1)[1].split('\\end{table}',1)[0]
+    def cells(label):
+        return [[c.strip() for c in line.strip().removesuffix('\\\\').strip().split('&')]
+            for line in body(label).splitlines() if re.match(r'^\s*S[4-7]\s*&',line)]
+    def label(row):
+        return {'LI':'LI','LIplus_immigrant':'LI+ immigrant','LIplus_inclusive':'LI+ total'}[row['model']]+' ('+row['gate']+')'+('$^{\\dagger}$' if row['primary'] else '')
+    scores=cells('tab:s04b-joint-disposition-scores')
+    expected=[['S'+str(r['regime']),label(r),'20/20',f"{r['mean']:.4f}",f"{r['mcse']:.4f}",
+        f"{r['median']:.4f}",str(r['wins'])+'/20','['+', '.join(f'{v:.4f}' for v in r['wilson95'])+']'] for r in rows]
+    require(scores==expected,'Current MCSE score-table cells differ')
+    headers=[line.strip() for line in body('tab:s04b-joint-disposition-scores').splitlines() if '\\multicolumn' in line]
+    expected_headers=[r'\multicolumn{8}{@{}l}{\textbf{S'+str(r['regime'])+r'}: mean $N_{\mathrm{train}}='+f"{r['mean_n_train']:.2f}"+r'$, $N_{\mathrm{test}}='+f"{r['mean_n_test']:.2f}"+r'$} \\' for r in regimes]
+    require(headers==expected_headers,'Current event-count subheaders differ')
+    diagnostics=[];floors=[]
+    for r in summary['summary']:
+        prefix=['S'+str(r['regime']),label(r)]
+        diagnostics.append(prefix+['0',str(r['coordinate_boundaries']['a']['lower'])+'/'+str(r['coordinate_boundaries']['a']['upper']),
+            str(r['eta_lower'])+'/'+str(r['eta_upper']),str(r['optimizer_failed_attempts']),str(r['null_search_gap_cases']),str(r['coarse_fine_gate_disagreements'])])
+        floors.append(prefix+[str(r[k]) for k in ('off_floor','floor_returns','near_zero','positive_near_zero','robust_positive','robust_negative')])
+    require(cells('tab:s04b-joint-disposition-diagnostics')==diagnostics,'Current search-diagnostic table cells differ')
+    require(cells('tab:s04b-joint-disposition-floor-census')==floors,'Current floor-census table cells differ')
+    return dict(mcse_rows=rows,regimes=regimes,reviewed_tables=3,scientific_rows_per_table=20,regime_subheaders=4)
+
 def validate(repository):
     root=Path(repository).resolve();base=root/DIRECTORY
     if not base.exists():return None,{}
@@ -97,7 +185,10 @@ def validate(repository):
         require(summary['schema']=='s04b_joint_complete_20261111' and summary['scientific_completion'] is True,'Completed scientific authority required')
         require(summary['completed_histories']==80 and summary['completed_outcomes']==400,'Completed census differs')
         require(audit['passed'] is True and audit['summary_sha256']==pins[DIRECTORY+'/summary.json'] and audit['missing_cells']==0,'Independent completed audit differs')
-        require(audit['table_sha256']==digest(raw('paper/source/chapters/13_s04b_joint_dispositions.tex')),'Current joint table differs from independent review')
+        current_table_sha=digest(raw(TABLE))
+        presentation=review.get('presentation')
+        require(audit['table_sha256']==current_table_sha or presentation is not None,
+            'Current joint table differs from independent computational review')
         require(len(summary['case_sources'])==80 and len({c['case_id'] for c in summary['case_sources']})==80,'Completed case roster differs')
         reports=[]
         for item in summary['case_sources']:
@@ -128,6 +219,8 @@ def validate(repository):
             reports.append(case)
         equal(summary['summary'],aggregate(reports,protocol))
         require(sorted(r['case_id'] for r in reports)==sorted(protocol['roster']),'Completed roster does not cover the frozen protocol')
+        if presentation is not None:
+            summary=dict(summary,presentation=validate_presentation(presentation,raw,root,audit,summary,reports))
         return summary,pins
     finally:
         for archive in archives.values():archive.close()

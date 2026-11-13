@@ -1,38 +1,34 @@
 {
-  "title": "Understanding the earthquake research",
-  "subtitle": "A plain language guide to the questions, findings and limits",
-  "edition": "Open research companion - completed comparisons, 12 November 2026",
-  "status": "Complete joint fits, a moderate-thinning control, a stronger ETAS benchmark and block uncertainty are included. Tested attenuation does not improve observed forecasts; these statistical models do not identify physical stress shadows.",
+  "title": "Diagnostic Exponential Rate Attenuation in Spatial–Temporal Earthquake Models",
+  "subtitle": "Stability, identification and predictive evaluation of point-process models",
+  "edition": "Plain-language companion - diagnostic rate-attenuation and sensitivity-controls edition, 12 November 2026",
+  "status": "Includes component-ablation, trend-control, oracle-ceiling and minimum-detectable-effect summaries; sealed authorities unchanged.",
   "pages": [
     {
-      "title": "The research in five minutes",
+      "title": "A diagnostic forecasting comparison",
       "kicker": "01  The question",
       "source": "Manuscript chapters 1, 2 and 14; completed empirical sections in chapters 7-13.",
       "blocks": [
         {
           "type": "lead",
-          "text": "Can a model learn when an earthquake makes later activity less likely, as well as when it makes later activity more likely? And does that extra detail actually improve forecasts?"
+          "text": "Can a simple statistical rate-reduction term improve forecasts after an earthquake, once the competing model can adjust its background and triggering?"
         },
         {
           "type": "p",
-          "text": "That is the central question of this research. An earthquake catalogue records events: when they happened, where they were located and their reported magnitudes. It does not directly label how much each event encouraged or discouraged later earthquakes. The research asks what can be learned from those records, what requires extra assumptions, and what survives a predictive test."
+          "text": "This guide explains a diagnostic comparison of point-process models. The tested attenuation is an isotropic rule for reducing a forecast rate. It does not calculate directional Coulomb stress changes, receiver-fault loading or rate-and-state friction. The earthquake catalogue records event times, locations and magnitudes, not a physical inhibition label."
         },
         {
           "type": "callout",
-          "title": "The main finding",
-          "text": "None of the tested attenuation additions improves observed held-out forecasts over its matched excitation model. Large synthetic gains disappear when both models fit the temporal backbone. The moderate control has a small, uncertain mean gain. These results do not show that physical inhibition never happens."
+          "title": "The principal finding",
+          "text": "The tested attenuation additions do not improve the observed held-out comparisons over their matched excitation procedures. A training fit that selects zero attenuation returns the exact comparison model: its held-out contrast is then exactly zero by nesting. This is not a power calculation or a test that physical stress shadows are absent."
         },
         {
           "type": "h2",
-          "text": "Three different achievements"
+          "text": "Mathematical validity and predictive value are separate"
         },
         {
           "type": "p",
-          "text": "A model can be mathematically well defined, have parameters that could in principle be distinguished, and still fail to improve predictions from a finite catalogue. The manuscript treats these as separate questions. A good fit to the past is not enough to settle any of them."
-        },
-        {
-          "type": "p",
-          "text": "The contribution is therefore broader than a league table of forecasts. It develops restricted mathematical results, tests where learning becomes difficult, and records both the successes and failures of particular forecasting procedures."
+          "text": "The monograph proves restricted stability and identification results, examines nuisance fitting, and evaluates predictions. A valid mathematical law need not produce useful finite-catalogue learning or a better forecast. The new moderate synthetic regime has a small raw average gain relative to its Monte Carlo error."
         },
         {
           "type": "h2",
@@ -40,11 +36,11 @@
         },
         {
           "type": "p",
-          "text": "Pages 2-4 explain the models and the tests. Pages 5-6 explain the completed simulation and regional findings. Pages 7-8 set out the remaining limits, define common terms and point to the relevant manuscript chapters. No equations are needed."
+          "text": "Sections 2-4 introduce the ingredients, memory and scoring. Sections 5-6 explain the completed synthetic and regional comparisons. Sections 7-8 explain interpretation and locate the sources. Chapter 6 of the monograph gives the common study-scope and inference conventions."
         },
         {
           "type": "note",
-          "text": "These are research comparisons using historical catalogues and simulations. The project has not established an operational earthquake forecasting service."
+          "text": "Internal independent computational audits and saved-output artifact checks are distinguished from external academic peer review. These historical research comparisons do not establish an operational forecasting service."
         }
       ]
     },
@@ -72,23 +68,23 @@
         },
         {
           "type": "h2",
-          "text": "Triggering and inhibition"
+          "text": "Triggering and diagnostic attenuation"
         },
         {
           "type": "p",
-          "text": "Triggering raises the modelled rate after earlier events. Inhibition lowers a specified part of that rate. In the original local-inhibition model, only the background contribution is reduced. One newer version also reduces the triggered contribution. Those are different hypotheses, even when they use the same event history."
+          "text": "Triggering raises a modelled rate after earlier events. Exponential attenuation multiplies a specified part of that rate by a number no greater than one. One tested version attenuates only the background contribution; another attenuates the total rate. The term inhibition is a statistical model label here, not a recovered physical mechanism."
         },
         {
           "type": "h2",
-          "text": "The place and the size of an event matter"
+          "text": "What spatial kernels represent"
         },
         {
           "type": "p",
-          "text": "The spatial models distinguish a region's background pattern from the pattern of later events around an earlier earthquake. A map of long-term activity and a model of an aftershock cloud do different jobs. The research tests choices about both."
+          "text": "The spatial models distinguish a regional background pattern from the offspring pattern associated with earlier earthquakes. The original local attenuation gives eligible parents equal weights. Magnitude-weighted and rupture-scaled extensions give larger parents stronger or wider effects, but remain isotropic point-kernel diagnostics."
         },
         {
           "type": "p",
-          "text": "The original local-inhibition model gives all eligible past events the same suppressing weight. LI+, the revised family, gives larger magnitudes more weight. This changes how event size enters the hypothesis. It does not by itself make the model more accurate or turn it into a measured map of stress inside the Earth."
+          "text": "Physical Coulomb models can produce positive and negative directional stress lobes and depend on rupture and receiver-fault geometry. Rate-and-state models connect stress changes to fault response. Those mechanisms motivate scientific context; they are not implemented by the simple isotropic attenuation rules tested here."
         },
         {
           "type": "note",
@@ -196,40 +192,36 @@
       "blocks": [
         {
           "type": "p",
-          "text": "Simulations create catalogues from specified rules. They let a comparison distinguish a known generating effect from the ability of a particular fitting procedure to recover it."
+          "text": "Simulations supply a known generating rule. The outcome is the performance of a particular training-and-selection procedure; a positive generating strength does not guarantee a recoverable signal."
         },
         {
           "type": "h2",
-          "text": "Knowing the background can change the answer"
+          "text": "Complete joint fits remove the broad, long-lasting advantage"
         },
         {
           "type": "p",
-          "text": "The historical study compares supplied laws and estimated background parameters on 1,000 no-inhibition histories and 150 alternatives. Detection falls when the background must be estimated. The magnitude-history study likewise shows that matching how magnitude affects triggering reduces apparent evidence for inhibition. A positive fitted strength alone is not a detection."
-        },
-        {
-          "type": "h2",
-          "text": "A fair comparison removes the broad, long-lasting advantage"
-        },
-        {
-          "type": "p",
-          "text": "All 80 original histories now have complete results, giving 400 procedure scores on shared histories. Both models fit their background and temporal-triggering parameters using training data. Matched broad, long-lasting background-only inhibition then loses 10.3701 nats on average, with 10/20 wins. Total-rate inhibition loses 1.2607 nats, with 8/20 wins. These are not 400 independent experiments."
+          "text": "All 80 original histories and 400 procedure outcomes are complete. Both arms fit their temporal background and triggering parameters on training data. Broad/long immigrant attenuation averages about -10.4 nats per history, with Monte Carlo standard error 8.6 and 10/20 wins. Broad/long total attenuation averages about -1.3 nats, with standard error 2.6 and 8/20 wins. The test windows contain only about 17 and 13 events on average, respectively."
         },
         {
           "type": "callout",
-          "title": "Apparent gains depended on a frozen comparison rate",
-          "text": "Refitting only the comparison model's background intercept greatly reduces the original gains. Also fitting its branching ratio reduces the broad/long total-inhibition residual from +9.7367 to +5.6255 nats; all 20 histories choose zero branching. Fitting the full temporal backbone reverses that residual. Wins by a procedure that selects zero inhibition are not detections."
+          "title": "A flexible comparison model changes the answer",
+          "text": "Refitting the null background rate removes most of the large gains seen against a fixed null. Also fitting its branching ratio reduces the broad/long total-attenuation residual from about +9.7 to +5.6 nats, with zero branching selected in all 20 histories. Jointly fitting the temporal backbone reverses the residual. Wins by a saved procedure with zero attenuation are comparisons between fitted floors, not detections."
         },
         {
           "type": "h2",
-          "text": "An intermediate regime avoids nearly empty histories"
+          "text": "A moderate regime retains a less sparse test window"
         },
         {
           "type": "p",
-          "text": "Twenty fresh moderate-thinning histories reject 27.21% of proposed events and retain 94.7 test events on average. The raw mean gain is +0.2941 nats, much smaller than its Monte Carlo standard error of 2.7773; 13/20 histories win. A training-only complexity gate gives +2.4946 nats, with 9/20 wins and positive inhibition in 12/20 histories. Neither row demonstrates reliable recovery."
+          "text": "Twenty fresh histories reject about 27% of proposals and retain about 95 test events on average. The raw mean gain is about +0.29 nats, with Monte Carlo standard error 2.78 and 13/20 wins. A later training-BIC-gated sensitivity, applied to frozen fits, gives a mean of about +2.49, median zero and standard error 1.44, with 9/20 wins and positive attenuation in 12/20 histories."
         },
         {
           "type": "note",
-          "text": "The moderate control uses a declared score-convergence rule. Eighteen fits do not pass the stricter inherited score-and-gradient comparison, and 13 reach a parameter search boundary. These diagnostics remain visible in the manuscript. Narrow/short immigrant controls thin almost nothing: all 20 original unit-mark paths and 19/20 magnitude-scaled paths reject no events."
+          "text": "Thirteen moderate-control fits reach a search boundary. Eighteen do not pass the stricter inherited training score-and-gradient comparison, although they meet the declared score-doubling rule and their held-out scores pass the separate numerical check. These diagnostics are reported with both rows. The narrow/short immigrant controls thin almost nothing; their positive generating strength is not an informative realized suppression signal."
+        },
+        {
+          "type": "note",
+          "text": "Sample Monte Carlo errors summarize variation across twenty independent simulated histories. Wilson intervals summarize the win fraction, not uncertainty in the mean. Regimes and repeated procedures are not pooled into independent replications."
         }
       ]
     },
@@ -240,40 +232,40 @@
       "blocks": [
         {
           "type": "h2",
-          "text": "New Zealand: most of the loss is in the first period"
+          "text": "New Zealand: compare components and dependence scales"
         },
         {
           "type": "p",
-          "text": "Shared inhibition loses 17.62 nats in total against its matched excitation model; about 94% comes from the first test period. Fitted trend and depletion trade off strongly. The inhibited model predicts less integrated activity in that period and loses chiefly at event times. It is not a simple story of monotonically accumulated stress causing rate overprediction."
+          "text": "Shared attenuation loses about 17.6 nats in total, with about 94% of the deficit in the first test period. Trend and depletion trade off in the fitted event scores. The attenuated model has lower held-out integrated exposure and loses chiefly at event times; the record does not support a simple monotone-stress or rate-overprediction account."
         },
         {
           "type": "p",
-          "text": "Paired calendar-block intervals retain dependence within 90-, 180- or 365-day blocks. The tiny second-period contrast remains compatible with zero at each block length. The third-period contrast is sensitive to block length and excludes zero under annual blocks. Small losses cannot all be called indistinguishable from zero."
+          "text": "Paired calendar-block summaries retain event and exposure contributions together. Results are shown at 90-, 180- and 365-day scales. The second-period interval spans zero at each scale; the third-period interval changes with scale. Long-memory dependence and exchangeability are not established, so the intervals are descriptive sensitivity summaries and the sign-flip references are nominal, not calibrated significance tests."
         },
         {
           "type": "h2",
-          "text": "California: strengthening excitation still selects no attenuation"
+          "text": "California: a stronger excitation comparison"
         },
         {
           "type": "p",
-          "text": "The original unweighted inverse-power benchmark, EP, beats the background-weighted recipe, OC, in each primary California fold, chiefly through location. A separate five-episode backtest has one reversal. Original and magnitude-weighted background-only inhibition select zero strength in all three primary folds. Raw total-rate inhibition loses less than two nats in each fold."
+          "text": "The original unweighted benchmark, EP, beats the background-weighted recipe, OC, in each primary California fold, mainly through location; a separate episode backtest has one reversal. Both original spatial procedures show conditional simulation discrepancies. Better scores alone do not establish calibration."
         },
         {
           "type": "p",
-          "text": "A stronger ETAS procedure uses magnitude-scaled offspring distances, an immigrant-weighted background and joint fitting, and normalizes offspring on the full plane while retaining regional leakage. Together these changes gain 69.553 nats over the earlier EP procedure. They do not isolate one cause of the improvement. Its matched rupture-scaled attenuation addition selects zero strength in all three folds."
+          "text": "The stronger ETAS procedure gains about 69.6 nats over archived EP while changing four ingredients together: magnitude-dependent offspring distance, immigrant-weighted background, joint fitting, and full-plane normalization with regional leakage. All three fitted spatial scales reach the 2 km lower search bound. The gain does not isolate one causal ingredient."
         },
         {
           "type": "callout",
-          "title": "Compare scores with their uncertainty",
-          "text": "For the stronger excitation procedure, a paired 90-day interval for the total improvement is [32.239, 123.719] nats. For the smaller original total-inhibition losses, pooled percentile intervals are negative, while paired sign-flip conclusions vary with block length. These calculations hold fitted parameters fixed; they do not include parameter-estimation uncertainty."
+          "title": "Zero attenuation gives an exact nested tie",
+          "text": "The corrected final optimization includes positive-strength initial states. It selects zero attenuation in all three California folds. The scored states then coincide exactly with the matched excitation baseline, so the held-out contrasts are exactly zero. This procedure result does not measure detection power or rule out a physical stress-shadow mechanism."
         },
         {
           "type": "h2",
-          "text": "Japan exposes a timing problem"
+          "text": "Japan and the smaller California contrasts"
         },
         {
           "type": "p",
-          "text": "The timing advantage over a fixed triggering-time reference in California becomes a loss in Japan. Holding the background trend constant reduces but does not remove that deficit. OC also remains behind EP jointly. Across regions, score improvements and failures concern specific procedures on repeatedly examined historical data, not independent prospective confirmations."
+          "text": "The timing advantage of the original California recipe becomes a loss in Japan; fixing background trend reduces but does not remove that deficit. The original California total-attenuation losses are small, with block summaries that vary across scales and nominal reference tests. Read fold consistency and score components alongside the intervals, rather than assigning a calibrated significance label."
         }
       ]
     },
@@ -284,11 +276,11 @@
       "blocks": [
         {
           "type": "h2",
-          "text": "A failed model does not rule out a physical process"
+          "text": "A diagnostic comparison is not a physical absence test"
         },
         {
           "type": "p",
-          "text": "A model can lose because its form is too restrictive, its background is inadequate, its fitting search misses better settings, the catalogue contains too little information, or the proposed effect adds little predictive value in that setting. These studies narrow some explanations. They do not identify a unique geological cause or prove the absence of physical inhibition."
+          "text": "The tested attenuation recipes are fitted statistical extensions. Their outcomes distinguish these procedures and comparators on the supplied histories. Physical Coulomb stress and rate-and-state friction require different directional and fault-response structure; selecting zero in the present family does not adjudicate those mechanisms."
         },
         {
           "type": "h2",
@@ -317,7 +309,7 @@
         },
         {
           "type": "p",
-          "text": "The supplied histories, fitted states and code let readers inspect the completed comparisons. Original California checks covered every simulated path for the declared score fields, with separate complete-vector checks on the selected subset. Later packaging tests are identified separately from those original executions."
+          "text": "The supplied inputs, fitted states and source epochs let readers distinguish fresh computations, saved-state score replays and historical records. Internal independent computational audits state which arithmetic or raw calculations were checked. A passing hash or saved-output artifact check is not external peer review."
         },
         {
           "type": "note",
@@ -328,7 +320,7 @@
     {
       "title": "A small glossary and reading map",
       "kicker": "08  Finding your way through the manuscript",
-      "source": "Terms are used in the sense defined by this manuscript. Chapter references avoid changing page numbers.",
+      "source": "Terms follow the diagnostic monograph. Chapter 6 states the shared study scope; current records distinguish fresh fits, score replays and historical artifacts.",
       "blocks": [
         {
           "type": "glossary",
@@ -343,7 +335,7 @@
             ],
             [
               "Inhibition",
-              "A mechanism that reduces a specified part of the modelled event rate."
+              "Here, a diagnostic exponential attenuation term that reduces a specified model rate; not an identified physical stress mechanism."
             ],
             [
               "Identifiability",

@@ -16,6 +16,9 @@ orientations \citep{KingSteinLin1994,Stein1999}; rate-and-state evolution acts
 on the affected fault population, including ongoing aftershocks
 \citep{Dieterich1994,TodaEtAl2005}. Immigrant-only attenuation is therefore a
 statistical allocation assumption, not the physical meaning of a stress shadow.
+Rate-and-state shadow durations depend on the fault state as well as the stress
+step \citep{HarrisSimpson1998}; indirect triggering cascades further separate a
+parent label from a unique physical stress pathway \citep{MarsanLengline2008}.
 
 \section{The physical finite-mode model}\label{sec:model_physical}
 
@@ -200,11 +203,26 @@ Continuous local inhibition changes only the immigrant contribution:
 \end{align}
 The stress multiplier is one for every eligible recorded parent. The attenuation field is not a normalized spatial density; renormalizing the attenuated immigrant term would change the model. The observed California and synthetic-control clocks have distinct declared $T_0$, given in Chapter~\ref{ch:local-inhibition}. Exact $\eta=0$ restores OC at matching shared coordinates and makes every $\ell,\psi$ pair observationally equivalent. This boundary is the spatial counterpart of the identifiability limitation in Chapter~\ref{ch:identifiability}.
 
-The common isotropic spatial scale is a restriction of these candidate laws. It omits magnitude-dependent rupture extent and directional fault geometry; magnitude scaling of attenuation amplitude does not supply either feature. Space--time ETAS formulations already allow magnitude-dependent spatial spread \citep{Ogata1998}. Multiplication by the piecewise-constant reference density also introduces cell-boundary jumps in the OC offspring density. The spatial ablations compare consequences of this construction, rather than identifying a physical aftershock or stress-transfer law.
+The common isotropic spatial scale is a restriction of these candidate laws. It omits magnitude-dependent rupture extent and directional fault geometry; magnitude scaling of attenuation amplitude does not supply either feature. Space--time ETAS formulations already allow magnitude-dependent spatial spread \citep{Ogata1998}, and forecasting procedures can use the early aftershock cloud to represent the spatial extent of larger sources \citep{HelmstetterKaganJackson2006,WernerEtAl2011}. Multiplication by the piecewise-constant reference density also introduces cell-boundary jumps in the OC offspring density. The spatial ablations compare consequences of this construction, rather than identifying a physical aftershock or stress-transfer law.
 
-Recorded-event detection is a separate issue. Short-term catalogue incompleteness can depend on the high rate following a mainshock \citep{Hainzl2016Incompleteness}. The present models do not estimate that observation mechanism. Immigrant-only attenuation cannot represent direct suppression of the offspring term, and total-intensity attenuation is not a calibrated detection model merely because it reduces both components. The reported occurrence-score comparisons therefore concern the recorded catalogue, without attributing an apparent deficit to physical stress or to incompleteness.
+The observation law is separate from the latent occurrence law.
+Magnitude-dependent detection can alter the recorded magnitude distribution
+\citep{Mignan2012}, and short-term incompleteness can depend on the high rate
+following a mainshock \citep{Hainzl2016Incompleteness}. The present likelihood
+models the selected recorded stream directly; it estimates neither a detection
+function nor a magnitude-error distribution. Immigrant-only attenuation cannot
+reduce the offspring component directly. Multiplying both components by an
+attenuation field supplies a different occurrence model, not an estimated
+observation mechanism. Section~\ref{sec:diagnostic_scope} fixes the resulting
+interpretation throughout the empirical chapters.
 
 \section{Canonical proper-score semantics}\label{sec:master-scores}
+
+The logarithmic score is proper when competing predictive laws are evaluated
+on the same observation event and reference measure
+\citep{GneitingRaftery2007}. Its expectation concerns the predictive
+distribution; a realized score ranking does not establish calibration or a
+unique physical mechanism.
 
 Let $R(t)=\int_D\lambda(t,z)\,\dif z$ and let $\mathcal W$ be the scored window. All quantities below use the same fitted state and the same predictable observed history:
 \begin{align}

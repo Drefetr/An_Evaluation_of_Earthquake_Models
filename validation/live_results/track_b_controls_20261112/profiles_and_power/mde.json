@@ -1,0 +1,132 @@
+{
+  "schema": "track_b_minimum_detectable_effects_v1",
+  "passed": true,
+  "source": "experiments/methodological_audit/eta_profiles_and_power.py",
+  "definition": "MDE95=1.96*SE_B and MDE80=2.80*SE_B; per-event values divide by the regional test-event count.",
+  "block_inference_qualification": "Contiguous calendar blocks are dependent under long memory; these are descriptive multi-scale sensitivities, not calibrated frequentist guarantees.",
+  "rows": [
+    {
+      "region": "NZ_shared_minus_ML",
+      "n_test": 612,
+      "source": "score_uncertainty_remote_v2_20261111",
+      "block_days": {
+        "90": {
+          "se_total_nats": 4.712389972269338,
+          "se_nats_per_event": 0.00769998361481918,
+          "mde95_total_nats": 9.236284345647903,
+          "mde95_nats_per_event": 0.015091967885045592,
+          "mde80_total_nats": 13.194691922354146,
+          "mde80_nats_per_event": 0.021559954121493703,
+          "required_rate_perturbation": 0.17373524619400402,
+          "blocks": 137
+        },
+        "180": {
+          "se_total_nats": 5.417713255024512,
+          "se_nats_per_event": 0.008852472638928941,
+          "mde95_total_nats": 10.618717979848043,
+          "mde95_nats_per_event": 0.017350846372300725,
+          "mde80_total_nats": 15.169597114068631,
+          "mde80_nats_per_event": 0.024786923389001035,
+          "required_rate_perturbation": 0.1862839036111318,
+          "blocks": 70
+        },
+        "365": {
+          "se_total_nats": 6.650650943016875,
+          "se_nats_per_event": 0.01086707670427594,
+          "mde95_total_nats": 13.035275848313075,
+          "mde95_nats_per_event": 0.021299470340380842,
+          "mde80_total_nats": 18.62182264044725,
+          "mde80_nats_per_event": 0.03042781477197263,
+          "required_rate_perturbation": 0.20639510818030957,
+          "blocks": 36
+        }
+      }
+    },
+    {
+      "region": "CA_EPplus_minus_original_EP",
+      "n_test": 315,
+      "source": "etas_inhibition_benchmark_interior_20261112/baseline_uncertainty",
+      "block_days": {
+        "90": {
+          "se_total_nats": 24.64400808671438,
+          "se_nats_per_event": 0.07823494630702978,
+          "mde95_total_nats": 48.30225584996018,
+          "mde95_nats_per_event": 0.15334049476177836,
+          "mde80_total_nats": 69.00322264280025,
+          "mde80_nats_per_event": 0.21905784965968336,
+          "required_rate_perturbation": 0.5537878560636345,
+          "blocks": 63
+        },
+        "180": {
+          "se_total_nats": 24.172885504734428,
+          "se_nats_per_event": 0.07673931906264897,
+          "mde95_total_nats": 47.378855589279475,
+          "mde95_nats_per_event": 0.15040906536279197,
+          "mde80_total_nats": 67.6840794132564,
+          "mde80_nats_per_event": 0.2148700933754171,
+          "required_rate_perturbation": 0.548468896771352,
+          "blocks": 33
+        },
+        "365": {
+          "se_total_nats": 26.960566843950673,
+          "se_nats_per_event": 0.0855891010919069,
+          "mde95_total_nats": 52.84271101414332,
+          "mde95_nats_per_event": 0.16775463814013752,
+          "mde80_total_nats": 75.48958716306188,
+          "mde80_nats_per_event": 0.2396494830573393,
+          "required_rate_perturbation": 0.5792316257597431,
+          "blocks": 18
+        }
+      }
+    },
+    {
+      "region": "Japan_OC_minus_EP_joint",
+      "n_test": 1277,
+      "source": "three reported JMA fold totals; between-window SE, not 90/180/365-day block bootstrap",
+      "block_days": {
+        "90": {
+          "se_total_nats": 8.152510301400694,
+          "se_nats_per_event": 0.006384111434143065,
+          "mde95_total_nats": 15.97892019074536,
+          "mde95_nats_per_event": 0.012512858410920407,
+          "mde80_total_nats": 22.82702884392194,
+          "mde80_nats_per_event": 0.01787551201560058,
+          "required_rate_perturbation": 0.1581951858364875,
+          "blocks": 3
+        },
+        "180": {
+          "se_total_nats": 8.152510301400694,
+          "se_nats_per_event": 0.006384111434143065,
+          "mde95_total_nats": 15.97892019074536,
+          "mde95_nats_per_event": 0.012512858410920407,
+          "mde80_total_nats": 22.82702884392194,
+          "mde80_nats_per_event": 0.01787551201560058,
+          "required_rate_perturbation": 0.1581951858364875,
+          "blocks": 3
+        },
+        "365": {
+          "se_total_nats": 8.152510301400694,
+          "se_nats_per_event": 0.006384111434143065,
+          "mde95_total_nats": 15.97892019074536,
+          "mde95_nats_per_event": 0.012512858410920407,
+          "mde80_total_nats": 22.82702884392194,
+          "mde80_nats_per_event": 0.01787551201560058,
+          "required_rate_perturbation": 0.1581951858364875,
+          "blocks": 3
+        }
+      }
+    }
+  ],
+  "japan_fold_totals": [
+    -74.7591,
+    -59.1334,
+    -87.319
+  ],
+  "japan_note": "Japan has three annual fold totals only; the same between-window SE is repeated at each block label and is not a calendar-block estimate.",
+  "block_lengths": [
+    90,
+    180,
+    365
+  ],
+  "confidence_percent": 95
+}
