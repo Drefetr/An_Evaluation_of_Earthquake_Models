@@ -186,17 +186,37 @@
     "bound_for_eta_0_10": 1.0,
     "bound_for_eta_1_65": 1.0,
     "background_min_per_day": 0.012348494430127546,
-    "B_min_over_B_max_squared": 32.00110702437131,
-    "C_T_tight_days_squared": 0.10424014954814537,
-    "C_T_tight_direct_partition_check": 0.10424014954915423,
-    "C_T_tight_quadrature_error_estimate": 5.6908699974655974e-11,
-    "C_T_reduction_factor": 27496612.024375528,
-    "K_T_tight": 0.013326902118770183,
-    "sqrt_K_T_tight_over_2": 0.08162996422506316,
-    "eta_tight_at_which_clipped_bound_equals_one": 12.250403506767263,
-    "tight_bound_for_eta_0_10": 0.008162996422506317,
-    "tight_bound_for_eta_0_178": 0.014530133632061243,
-    "tight_bound_for_eta_1_65": 0.1346894409713542,
+    "withdrawn_legacy": {
+      "status": "withdrawn_dimensionally_invalid",
+      "reason": "B_min/B_max**2 has units of days while n h_e(u) has units 1/day; B_max**2 is already restored in K_T.",
+      "offset_B_min_over_B_max_squared": 32.00110702437131,
+      "offset_units": "day",
+      "triggering_term_units": "1/day",
+      "dimensionally_homogeneous": false,
+      "legacy_C_T_tight_days_squared": 0.10424014954814537,
+      "legacy_quadrature_error_estimate": 5.6908699974655974e-11,
+      "legacy_K_T_tight": 0.013326902118770183,
+      "legacy_sqrt_K_T_tight_over_2": 0.08162996422506316,
+      "legacy_eta_threshold": 12.250403506767263,
+      "legacy_bound_for_eta_0_10": 0.008162996422506317,
+      "legacy_bound_for_eta_1_65": 0.1346894409713542
+    },
+    "one_event_single_parent": {
+      "scope": "History containing exactly one event; not a full-process multi-event bound.",
+      "K_1_linear": 0.24160842359381082,
+      "K_1_partition_check": 0.2416084235991326,
+      "sqrt_K_1_over_2": 0.34756900292877874,
+      "eta_linear_threshold": 2.8771265319218142,
+      "eta_clipped_threshold": 4.641892656918834,
+      "clipped_bounds": {
+        "0.1": 0.0015265632461861846,
+        "0.178": 0.0042327874434212685,
+        "1.65": 0.18674046793622162,
+        "4.0": 0.7883533631721458
+      },
+      "tail_exponent_for_T_to_infinity": -0.545411439859685,
+      "integral_diverges_as_T_to_infinity": true
+    },
     "passed": true
   },
   "continuous_time_interpolation_constants": {

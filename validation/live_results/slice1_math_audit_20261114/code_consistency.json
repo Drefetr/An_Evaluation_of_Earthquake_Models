@@ -1,0 +1,19 @@
+{
+  "schema": "slice1_code_consistency_v1",
+  "passed": true,
+  "check_mathematics": {
+    "path": "scripts/check_mathematics.py",
+    "sha256": "62d7f2f54cac416b43da2d36298c1e610101d8f657816cbff037a1208008fb27",
+    "finite_horizon_visibility_passed": true
+  },
+  "stability_verify": {
+    "command": "C:\\Users\\Drefetr\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -B experiments/methodological_audit/stability.py --verify validation/live_results/methodological_20261106/stability.json",
+    "exit_code": 0,
+    "output_tail": "{\"passed\": true, \"modes\": 195, \"slow_modes\": 61}"
+  },
+  "moments_check": {
+    "command": "C:\\Users\\Drefetr\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -B experiments/methodological_audit/moments.py --check",
+    "exit_code": 0,
+    "output_tail": "Moment diagnostic matches saved JSON"
+  }
+}

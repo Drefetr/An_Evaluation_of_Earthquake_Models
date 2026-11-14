@@ -11,12 +11,16 @@ import hashlib
 import json
 import math
 import platform
+import warnings
 from pathlib import Path
 import mpmath as mp
 import numpy as np
 import scipy
-from scipy.integrate import quad
+from scipy.integrate import IntegrationWarning, quad
+from scipy.optimize import brentq
 import sympy as sp
+
+warnings.filterwarnings("ignore", category=IntegrationWarning)
 
 
 def exact_transform_check() -> dict:
@@ -160,11 +164,18 @@ def paired_mcse_checks() -> list:
 
 
 def visibility_bound_check() -> dict:
-    """Evaluate Proposition 4.4 on the frozen NZ reference background.
+    """Evaluate Proposition 4.4 and its corrected one-event companion.
 
     Integrate the *implemented* positive 195-mode mixture, independently of
     engine imports. Two changes of variables check the quadrature. The mark
     moment uses g(q)=exp(gamma*(q-1)) and kappa(q)=(1-r)*exp(beta*r*q).
+
+    The 14 November 2026 ``C_T^tight`` display divided B_min by B_max**2
+    inside a denominator that still contained n h_e(u).  That sum is
+    dimensionally inhomogeneous (day + 1/day) and is retained here only as a
+    withdrawn legacy calculation.  The corrected one-event bound keeps the
+    likelihood clipping, uses B_min in the denominator, and retains only one
+    factor B_max**2 outside the mark expectation.
     """
     root = Path(__file__).resolve().parents[1]
     source = root / 'validation/authorities/4761702854830904_reference_score_geometry.json'
@@ -182,10 +193,12 @@ def visibility_bound_check() -> dict:
     weights /= weights.sum()
     assert len(rates) == 195 and np.all(weights > 0)
 
-    def integrand(u):
+    def phi_h(u):
         decay = np.exp(-rates*u)
-        phi = float(weights@decay)
-        h = float((weights*rates)@decay)
+        return float(weights@decay), float((weights*rates)@decay)
+
+    def integrand(u):
+        phi, h = phi_h(u)
         return phi*phi/h
 
     C, error = quad(lambda v: integrand(math.expm1(v))*math.exp(v),
@@ -201,40 +214,98 @@ def visibility_bound_check() -> dict:
     moment = math.exp(-2*gamma)*beta/((1-ratio)*moment_denominator)
     background_mass = T*math.exp(a)*(math.sinh(d)/d if d else 1.)
     background_max = math.exp(a+abs(d))
+    background_min = math.exp(a-abs(d))
     K = background_max**2*C*moment*background_mass/(n*(1-n))
     pinsker_coefficient = math.sqrt(K/2)
     threshold = 1/pinsker_coefficient
-    # Tightened bound: retain B(t) >= B_min > 0 in the denominator.  The
-    # direct single-parent quadrature uses the normalized offset
-    # B_min/B_max^2, so the eta-dependent integral is
-    #   C_T^tight = int_0^T Phi(u)^2 / (B_min/B_max^2 + n h_e(u)) du.
-    background_min = math.exp(a-abs(d))
-    offset = background_min/background_max**2
-    def tight_integrand(u):
-        decay = np.exp(-rates*u)
-        phi = float(weights@decay)
-        h = float((weights*rates)@decay)
-        return phi*phi/(offset+n*h)
-    tight, tight_error = quad(lambda v: tight_integrand(math.expm1(v))*math.exp(v),
-                              0., math.log1p(T), epsabs=1e-10, epsrel=1e-12)
-    tight_cuts = [0., *np.geomspace(1e-12, T, 90)]
-    tight_direct = sum(quad(tight_integrand, left, right, epsabs=1e-10, epsrel=1e-12)[0]
-                       for left, right in zip(tight_cuts[:-1], tight_cuts[1:]))
-    assert math.isclose(tight, tight_direct, rel_tol=1e-9)
-    K_tight = K*tight/C
-    tight_coefficient = math.sqrt(K_tight/2)
-    tight_threshold = 1/tight_coefficient
+
+    # Formal dimensional audit of the withdrawn display.  The legacy offset is
+    # B_min/B_max**2 (day); it was added to n*h_e (1/day).
+    day = sp.symbols('day', positive=True)
+    bmin_num, bmax_num = sp.symbols('B_min B_max', positive=True)
+    offset_units = sp.simplify((bmin_num/day)/(bmax_num/day)**2)
+    triggering_units = sp.simplify(n/day)
+    offset_unit = sp.simplify(offset_units.subs({bmin_num: 1, bmax_num: 1}))
+    triggering_unit = sp.simplify(triggering_units.subs(n, 1))
+    assert offset_unit == day
+    assert triggering_unit == 1/day
+    assert sp.simplify(offset_unit/triggering_unit) == day**2
+
+    # Reproduce the withdrawn legacy number only to document the defect.
+    legacy_offset = background_min/background_max**2
+    def legacy_integrand(u):
+        phi, h = phi_h(u)
+        return phi*phi/(legacy_offset+n*h)
+    legacy_tight, legacy_error = quad(
+        lambda v: legacy_integrand(math.expm1(v))*math.exp(v),
+        0., math.log1p(T), epsabs=1e-10, epsrel=1e-12)
+    legacy_K = K*legacy_tight/C
+    legacy_coefficient = math.sqrt(legacy_K/2)
+    legacy_threshold = 1/legacy_coefficient
+
+    # Corrected one-event (single-parent) bound.  On a one-event history at
+    # lag u, G_s=g(Q) Phi(u), H_e=kappa(Q) h(u), so the entropy integrand is
+    # bounded by B_max**2 E_Q[min{eta**2 g**2 Phi**2,1}/(B_min+n kappa h)].
+    def mark_expectation(u, eta=None):
+        phi, h = phi_h(u)
+        def f(q):
+            g2 = math.exp(2*gamma*(q-1))
+            kappa = (1-ratio)*math.exp(ratio*beta*q)
+            numerator = (g2*phi*phi if eta is None
+                         else min(eta*eta*g2*phi*phi, 1.0))
+            return beta*math.exp(-beta*q)*numerator/(background_min+n*kappa*h)
+        transition = (math.log(background_min/(n*(1-ratio)*h))/(ratio*beta)
+                      if h > 0 else 0.)
+        points = [q for q in (transition, 20., 50.) if 0. < q < 80.]
+        value, _ = quad(f, 0., 80., points=points,
+                        epsabs=1e-13, epsrel=1e-12, limit=600)
+        return value
+
+    def one_event_integral(eta=None):
+        def transformed(v):
+            return mark_expectation(math.expm1(v), eta)*math.exp(v)
+        value, _ = quad(transformed, 0., math.log1p(T),
+                        epsabs=1e-12, epsrel=1e-10, limit=500)
+        return background_max**2*value
+
+    def one_event_partition(eta=None):
+        part_cuts = [0., *np.geomspace(1e-10, T, 140)]
+        return background_max**2*sum(
+            quad(lambda u: mark_expectation(u, eta), left, right,
+                 epsabs=1e-11, epsrel=1e-10, limit=300)[0]
+            for left, right in zip(part_cuts[:-1], part_cuts[1:]))
+
+    K1 = one_event_integral(None)
+    K1_partition = one_event_partition(None)
+    assert math.isclose(K1, K1_partition, rel_tol=1e-6)
+    one_event_coefficient = math.sqrt(K1/2)
+    one_event_linear_threshold = 1/one_event_coefficient
+    eta_grid = (0.10, 0.178, 1.65, 4.0)
+    one_event_bounds = {str(eta): min(1., one_event_integral(eta)) for eta in eta_grid}
+    one_event_clipped_threshold = brentq(
+        lambda eta: one_event_integral(eta)-1., 4.0, 8.0, xtol=1e-10)
+    # The untruncated single-parent integral grows without limit as T -> inf:
+    # the mark expectation is O(h(u)**-s) with s=(2 gamma-beta)/(r beta), and
+    # Phi**2 * h**-s ~ u**(-2 alpha+s(1+alpha)).
+    tail_exponent = -2*alpha + ((2*gamma-beta)/(ratio*beta))*(1+alpha)
+    assert tail_exponent > -1
+
     assert math.isclose(C, 2866250.949255799, rel_tol=1e-9)
     assert math.isclose(moment, .216065146328062, rel_tol=1e-12)
     assert math.isclose(background_mass, 383.349580803454, rel_tol=1e-12)
     assert math.isclose(K, 366444.657016935, rel_tol=1e-9)
     assert math.isclose(background_min, 0.012348494430127546, rel_tol=1e-12)
-    assert math.isclose(offset, 32.00110702437131, rel_tol=1e-12)
-    assert math.isclose(tight, 0.10424014954814537, rel_tol=1e-8)
-    assert math.isclose(K_tight, 0.0133269, rel_tol=1e-4)
-    assert math.isclose(tight_threshold, 12.2504, rel_tol=1e-4)
+    assert math.isclose(background_max, 0.019643754776305197, rel_tol=1e-12)
+    assert math.isclose(legacy_offset, 32.00110702437131, rel_tol=1e-12)
+    assert math.isclose(legacy_tight, 0.10424014954814537, rel_tol=1e-8)
+    assert math.isclose(legacy_K, 0.0133269, rel_tol=1e-4)
+    assert math.isclose(legacy_threshold, 12.2504, rel_tol=1e-4)
+    assert math.isclose(K1, 0.241608423594, rel_tol=1e-7)
+    assert math.isclose(one_event_coefficient, 0.347569002929, rel_tol=1e-7)
+    assert math.isclose(one_event_linear_threshold, 2.87712653192, rel_tol=1e-7)
+    assert math.isclose(one_event_clipped_threshold, 4.64189265709, rel_tol=1e-6)
+    assert all(one_event_bounds[str(eta)] < 1. for eta in eta_grid)
     assert all(min(1., eta*pinsker_coefficient) == 1. for eta in (.10, 1.65))
-    assert all(min(1., eta*tight_coefficient) < 1. for eta in (.10, 1.65))
     return {
         'source': str(source.relative_to(root)).replace('\\', '/'),
         'source_sha256': hashlib.sha256(source.read_bytes()).hexdigest(),
@@ -250,17 +321,34 @@ def visibility_bound_check() -> dict:
         'bound_for_eta_0_10': min(1., .10*pinsker_coefficient),
         'bound_for_eta_1_65': min(1., 1.65*pinsker_coefficient),
         'background_min_per_day': background_min,
-        'B_min_over_B_max_squared': offset,
-        'C_T_tight_days_squared': tight,
-        'C_T_tight_direct_partition_check': tight_direct,
-        'C_T_tight_quadrature_error_estimate': tight_error,
-        'C_T_reduction_factor': C/tight,
-        'K_T_tight': K_tight,
-        'sqrt_K_T_tight_over_2': tight_coefficient,
-        'eta_tight_at_which_clipped_bound_equals_one': tight_threshold,
-        'tight_bound_for_eta_0_10': min(1., .10*tight_coefficient),
-        'tight_bound_for_eta_0_178': min(1., .178*tight_coefficient),
-        'tight_bound_for_eta_1_65': min(1., 1.65*tight_coefficient),
+        'withdrawn_legacy': {
+            'status': 'withdrawn_dimensionally_invalid',
+            'reason': ('B_min/B_max**2 has units of days while n h_e(u) has '
+                       'units 1/day; B_max**2 is already restored in K_T.'),
+            'offset_B_min_over_B_max_squared': legacy_offset,
+            'offset_units': 'day',
+            'triggering_term_units': '1/day',
+            'dimensionally_homogeneous': False,
+            'legacy_C_T_tight_days_squared': legacy_tight,
+            'legacy_quadrature_error_estimate': legacy_error,
+            'legacy_K_T_tight': legacy_K,
+            'legacy_sqrt_K_T_tight_over_2': legacy_coefficient,
+            'legacy_eta_threshold': legacy_threshold,
+            'legacy_bound_for_eta_0_10': min(1., .10*legacy_coefficient),
+            'legacy_bound_for_eta_1_65': min(1., 1.65*legacy_coefficient),
+        },
+        'one_event_single_parent': {
+            'scope': ('History containing exactly one event; not a full-process '
+                      'multi-event bound.'),
+            'K_1_linear': K1,
+            'K_1_partition_check': K1_partition,
+            'sqrt_K_1_over_2': one_event_coefficient,
+            'eta_linear_threshold': one_event_linear_threshold,
+            'eta_clipped_threshold': one_event_clipped_threshold,
+            'clipped_bounds': one_event_bounds,
+            'tail_exponent_for_T_to_infinity': tail_exponent,
+            'integral_diverges_as_T_to_infinity': True,
+        },
         'passed': True,
     }
 

@@ -1,0 +1,112 @@
+{
+  "schema": "slice1_math_remediation_acceptance_v1",
+  "created_utc": "2026-11-14T05:35:33.775416+00:00",
+  "baseline_commit": "d4539af50de91f36a00aaf357a65b875d80927d1",
+  "passed": true,
+  "scope": "Slice 1 Vertical Triad mathematical, proof, and code audit; Chapters 2--5, Appendix A.5--A.7, check_mathematics.py, stability.py, moments.py, and paired JSON authorities.",
+  "defect": {
+    "id": "F6-visibility-dimensional-cauchy-schwarz",
+    "file": "paper/source/chapters/04_identifiability.tex",
+    "old_formula": "C_T^tight=int_0^T Phi_195(u)^2/(B_min/B_max^2+n h_195(u)) du",
+    "reason": "B_min/B_max^2 has units day; n h_195(u) has units 1/day. B_max^2 is already restored in K_T. The single-term denominator cannot replace the multi-event Cauchy-Schwarz sum.",
+    "status": "fixed_and_withdrawn"
+  },
+  "corrections": {
+    "full_process": "D_KL <= B min{1, eta^2 K_T}; threshold 2.3362e-3",
+    "one_event": "D_KL(one event) <= B_max^2 int Phi^2 E_Q[min{eta^2 g^2 Phi^2,1}/(B_min+n kappa h)] du; 0.0015266/0.0042328/0.1867405/0.7883528 at eta=0.10/0.178/1.65/4; first reaches one at 4.6419",
+    "scope_limit": "The non-vacuous values are one-event bounds, not full-process bounds; the earlier non-vacuous full-law claim is withdrawn."
+  },
+  "sealed_authorities": {
+    "count": 710,
+    "unchanged": 710,
+    "changed": 0,
+    "missing": 0,
+    "snapshot": "validation/slice1_prechange_snapshot_20261114.json",
+    "snapshot_sha256": "eeb618b0db1f5bf38a7772db2b5e4ea6e985fc35f7a36691d33ef792e0daa861",
+    "integrity_record": "validation/live_results/slice1_math_audit_20261114/sealed_authority_integrity.json"
+  },
+  "audit": {
+    "readme": "validation/live_results/slice1_math_audit_20261114/README.md",
+    "readme_sha256": "20be53bcbd9634a0eda8db2105a0581b94461bc6f1949d51631e6c4b073354a9",
+    "summary": "validation/live_results/slice1_math_audit_20261114/summary.json",
+    "summary_sha256": "b9763fdff2d5fa49f57651787ccfc3b5f3c7b34eae330377823b45c06862f602",
+    "visibility": "validation/live_results/slice1_math_audit_20261114/visibility_correction.json",
+    "dimensional": "validation/live_results/slice1_math_audit_20261114/dimensional_audit.json",
+    "chapter2": "validation/live_results/slice1_math_audit_20261114/chapter2_models.json",
+    "chapter3": "validation/live_results/slice1_math_audit_20261114/chapter3_stability.json",
+    "chapter4": "validation/live_results/slice1_math_audit_20261114/chapter4_identifiability.json",
+    "chapter5": "validation/live_results/slice1_math_audit_20261114/chapter5_inference.json",
+    "appendix": "validation/live_results/slice1_math_audit_20261114/appendix_a_custody.json",
+    "code_consistency": "validation/live_results/slice1_math_audit_20261114/code_consistency.json"
+  },
+  "build": {
+    "pdf": "paper/manuscript_unified.pdf",
+    "pdf_sha256": "4eae61331817385b168074140cb2b3145206c85e50d7fd42f5f4bc086fad1ca7",
+    "pages": 252,
+    "overfull_boxes": 0,
+    "undefined_cross_references": 0,
+    "missing_bibliography_keys": 0,
+    "missing_glyph_warnings": 0,
+    "qa_record": "build/slice1_pdf_qa_v3/production_checks.json",
+    "qa_passed": true,
+    "companion_build": "pass",
+    "website_build": "pass",
+    "website_selector_combinations": 80
+  },
+  "claims": {
+    "receipt": "validation/numeric_reconciliation_receipt.json",
+    "passed": true,
+    "release_ready": true,
+    "claims": 28627,
+    "literal_manuscript_displays": 12718,
+    "missing_declared_displays": 0,
+    "new_claims": 11
+  },
+  "tests": {
+    "main_unittest": {
+      "run": 918,
+      "failed": 0
+    },
+    "regional_unittest": {
+      "run": 44,
+      "failed": 0
+    },
+    "s02_inputs_unittest": {
+      "run": 6,
+      "failed": 0
+    },
+    "regional_inputs_verify": "pass",
+    "s02_inputs_verify": "pass",
+    "historical_fits_verify": "pass"
+  },
+  "changed_files_sha256": {
+    "paper/source/chapters/04_identifiability.tex": "2f87d269ad620dc8d9be367d64c70b072074f6173b6d8d51db853b2bd4f71f9a",
+    "paper/source/abstract.tex": "90692aba009d910cbb2fd82a4390d486dc2fc2be18416bc9ac5a7f486af54869",
+    "paper/source/appendices.tex": "17c05ec080bdd6697d52fc3eb7a029707d8622de5af651b8987e689efe2b0a2e",
+    "scripts/check_mathematics.py": "62d7f2f54cac416b43da2d36298c1e610101d8f657816cbff037a1208008fb27",
+    "validation/mathematics.json": "862ad110d109f760f12c6174b02649206317350374008bd715994a5fb96d7b8c",
+    "validation/MASTER_CLAIM_LEDGER.json": "2d14be325f9aaaed3bcd19cce8e08d4d4da06766d30161e5df0d925df1fd3d05",
+    "paper/manuscript_unified.pdf": "4eae61331817385b168074140cb2b3145206c85e50d7fd42f5f4bc086fad1ca7",
+    "website/document_metadata.json": "2b51356c2a4b8513c6fd70078f72a4153ef26e46ced0cbc2f9d08e1f2d7d4fbe",
+    "docs/reviews/slice1_math_audit_20261114.md": "daec18a866966bf261c4af545946e576428f2944cdd16482b018a10868651125",
+    "docs/reviews/forensic_audit_response_20261114.md": "3ad67a1af3f428add5b5224082c8f7f750efcaece4b26f44d0910ff1e4902b6a",
+    "companion/lay_guide_to_the_research.pdf": "dbfe9cadedebad659966cc53cc4846fa336d4b627475d637f88532597e9bd132",
+    "companion/lay_guide_to_the_research.html": "b837a040fa75077eee18ec9eb01c5f43b8514615bdb5ec68ad523af29166281a",
+    "website/site/index.html": "fc71a10e28d4fa3262346fa4b5c3f4e3858bd21dcc9f0a75e30adaf2b4f2deb8",
+    "website/site/findings.html": "9e59fc6e910855aabbd982fff6359656b5f7963bcbd007d9e4346f30458c5095"
+  },
+  "review_slices": {
+    "command": "python -B ../export_review_slice.py --slice all",
+    "result": "all seven slices exported",
+    "slice1_pages": 47
+  },
+  "limitations": [
+    "The one-event single-parent bound is not a full-process multi-event bound.",
+    "The full-process finite quadratic bound remains vacuous above eta=2.3362e-3.",
+    "The single-parent integral diverges as T tends to infinity for the untruncated exponential mark law.",
+    "The 195-mode quadrature is a deterministic spectral approximation, not an exact Mittag-Leffler evaluation.",
+    "No catalogue fitting, simulation, or held-out evaluation was rerun.",
+    "The handoff's sealed-file count (356) differs from the actual count (710); all 710 were preserved."
+  ],
+  "verdict": "Pass with the stated scope limitation: the dimensional defect is fixed, the one-event bound is non-vacuous in the fitted range, and the full-process bound remains vacuous there."
+}

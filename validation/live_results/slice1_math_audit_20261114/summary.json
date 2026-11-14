@@ -1,0 +1,51 @@
+{
+  "schema": "slice1_math_audit_v1",
+  "created_utc": "2026-11-14T05:27:48.091325+00:00",
+  "baseline_commit": "d4539af50de91f36a00aaf357a65b875d80927d1",
+  "scope": "Chapters 2--5, Appendix A.5--A.7, scripts/check_mathematics.py, stability.py, moments.py, and the bound JSON authorities.",
+  "passed": true,
+  "defect": {
+    "id": "F6-visibility-dimensional-cauchy-schwarz",
+    "file": "paper/source/chapters/04_identifiability.tex",
+    "old_formula": "C_T^tight=int_0^T Phi_195(u)^2/(B_min/B_max^2+n h_195(u)) du",
+    "reason": "B_min/B_max^2 has units day; n h_195(u) has units 1/day. B_max^2 is already restored in K_T. The single-term denominator cannot replace the multi-event Cauchy-Schwarz sum.",
+    "status": "fixed_and_withdrawn"
+  },
+  "corrections": {
+    "full_process": "D_KL <= B min{1, eta^2 K_T}; threshold 2.3362e-3",
+    "one_event": "D_KL(one event) <= B_max^2 int Phi^2 E_Q[min{eta^2 g^2 Phi^2,1}/(B_min+n kappa h)] du; 0.0015266/0.0042328/0.1867405/0.7883528 at eta=0.10/0.178/1.65/4; first reaches one at 4.6419",
+    "scope_limit": "The non-vacuous values are one-event bounds, not full-process bounds; the earlier non-vacuous full-law claim is withdrawn."
+  },
+  "counts": {
+    "sealed_json": 710,
+    "sealed_unchanged": 710,
+    "chapter2_checks": 9,
+    "chapter3_checks": 13,
+    "chapter4_checks": 4,
+    "chapter5_rows": 4,
+    "chapter5_checks": 5,
+    "appendix_sections": 3,
+    "manuscript_new_displays_present": true,
+    "withdrawn_displays_absent": true
+  },
+  "artifacts": {
+    "visibility_correction": "validation/live_results/slice1_math_audit_20261114/visibility_correction.json",
+    "dimensional_audit": "validation/live_results/slice1_math_audit_20261114/dimensional_audit.json",
+    "symbolic_algebra": "validation/live_results/slice1_math_audit_20261114/symbolic_algebra.json",
+    "chapter2_models": "validation/live_results/slice1_math_audit_20261114/chapter2_models.json",
+    "chapter3_stability": "validation/live_results/slice1_math_audit_20261114/chapter3_stability.json",
+    "chapter4_identifiability": "validation/live_results/slice1_math_audit_20261114/chapter4_identifiability.json",
+    "chapter5_moments": "validation/live_results/slice1_math_audit_20261114/chapter5_moments.json",
+    "chapter5_inference": "validation/live_results/slice1_math_audit_20261114/chapter5_inference.json",
+    "appendix_a_custody": "validation/live_results/slice1_math_audit_20261114/appendix_a_custody.json",
+    "sealed_authority_integrity": "validation/live_results/slice1_math_audit_20261114/sealed_authority_integrity.json",
+    "manuscript_binding_audit": "validation/live_results/slice1_math_audit_20261114/manuscript_binding_audit.json",
+    "code_consistency": "validation/live_results/slice1_math_audit_20261114/code_consistency.json"
+  },
+  "environment": {
+    "python": "3.13.4",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "sympy": "1.14.0"
+  }
+}

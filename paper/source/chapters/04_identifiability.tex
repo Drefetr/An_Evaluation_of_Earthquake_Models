@@ -196,38 +196,81 @@ $\kappa(Q)=(1-r)e^{r\beta Q}$,
 \]
 Thus the $B(t)$-discarded Pinsker upper bound is exactly one, and completely
 vacuous, whenever $\eta\geq\sqrt{2/K_T}\simeq0.00233620$, including every fitted
-$\eta\in[0.10,1.65]$.
+New Zealand value in $[0.10,1.65]$.
 
-The discarded background is not negligible at long lags. Write
-$B_{\min}=\exp(a-|d|)=0.0123485>0$ and $B_{\max}=\exp(a+|d|)=0.0196438$.
-Retaining $B(t)\geq B_{\min}$ in the denominator and using the direct
-single-parent quadrature gives
+The background cannot be inserted into the multi-event Cauchy--Schwarz
+denominator by the earlier device. The display
+\(C_T^{\mathrm{tight}}=\int_0^T\Phi_{195}(u)^2/(B_{\min}/B_{\max}^2+n h_{195}(u))\,\dif u\)
+is dimensionally inhomogeneous: \(B_{\min}/B_{\max}^2\) has units of days,
+whereas \(n h_{195}(u)\) has units of inverse days. Moreover \(B_{\max}^2\) is
+already restored in \(K_T\), and replacing \(nH_e\) by \(B_{\min}+nH_e\) inside
+Lemma~\ref{lem:weighted_history} would require
+\(\sum_i(B_{\min}+n\kappa_ih_i)=N(t)B_{\min}+nH_e\), not \(B_{\min}+nH_e\).
+That display and the coefficient \(K_T^{\mathrm{tight}}\) derived from it are
+withdrawn.
+
+Two dimensionally exact statements replace it. First, retaining the clipping in
+the full-process bound gives
 \[
-C_T^{\mathrm{tight}}
-=\int_0^T\frac{\Phi_{195}(u)^2}{B_{\min}/B_{\max}^2+n h_{195}(u)}\,\dif u
-=1.0424015\times10^{-1}\ \mathrm{days}^2,
+D_{\mathrm{KL}}(P_\eta\Vert P_0)
+\le \mathcal B\min\{1,\eta^2K_T\},
+\qquad K_T=\frac{B_{\max}^2C_Tm\mathcal B}{n(1-n)}.
 \]
-a reduction by $2.7497\times10^{7}$ relative to the discarded
-$C_T=2.8662509\times10^{6}$. Holding the same finite mark moment and count
-factor, the tightened coefficient is
+Indeed \(B^2/(B+nH_e)\le B\min\{1,B_{\max}/(nH_e)\}\), so the integrand is at
+most \(B\min\{1,\eta^2B_{\max}G_s^2/(nH_e)\}\); Jensen's inequality for the
+concave minimum, Lemma~\ref{lem:weighted_history} and
+\(\E_\eta N(T)\le\mathcal B/(1-n)\) prove the display. This is a full-process
+bound for unbounded marks, but it still equals one for
+\(\eta\ge\sqrt{2/K_T}=2.3362\times10^{-3}\).
+
+Second, on a history containing exactly one event at \(s\) with mark \(Q\), put
+\(u=t-s\). Then \(G_s=g(Q)\Phi_s(u)\), \(H_e=\kappa(Q)h_e(u)\), and the entropy
+integrand is bounded by
 \[
-K_T^{\mathrm{tight}}=1.3326902\times10^{-2},\qquad
-\sqrt{K_T^{\mathrm{tight}}/2}=8.1629964\times10^{-2}.
+\begin{aligned}
+\psi_1(u;\eta)
+&=\E_Q\!\left[
+\frac{B(s+u)^2}{B(s+u)+n\kappa(Q)h_e(u)}
+\min\{\eta^2g(Q)^2\Phi_s(u)^2,1\}\right]\\
+&\le B_{\max}^2\,\E_Q\!\left[
+\frac{\min\{\eta^2g(Q)^2\Phi_s(u)^2,1\}}
+{B_{\min}+n\kappa(Q)h_e(u)}\right].
+\end{aligned}
 \]
-The tightened bound therefore first reaches one at
-$\eta=12.2504$, not at $2.3362\times10^{-3}$. It is non-vacuous throughout the
-fitted range: $0.00816$ at $\eta=0.10$, $0.01453$ at the detrended fixed-null
-value $\eta=0.178$, $0.1347$ at the free-trend value $\eta=1.65$, and $0.3265$
-at the largest fitted synthetic value $\eta=4$. The difference is not a new
-detection theorem: the direct quadrature is a mean-field single-parent bound,
-the mark second moment remains the restrictive object, and the calculation
-only shows that the earlier ``vacuous for every positive strength'' statement
-depended on discarding a positive background at long lags. For a constant
-positive background, a non-vacuous upper bound requires
-$\eta=O(T^{-(3-\alpha)/2})$ with a sufficiently small constant; a bound tending
-to zero requires $\eta=o(T^{-(3-\alpha)/2})$. These are sufficient
-upper-bound scales, not necessary detection thresholds.
-The quadrature, mark moment and background integration are checked by
+The denominator is an inverse time, the numerator is dimensionless,
+\(B_{\max}^2\) is an inverse time squared, and
+\(\int_0^T\psi_1(u;\eta)\,\dif u\) is dimensionless. For the frozen reference
+background and the implemented 195-mode pair, the exact two-dimensional
+quadrature over \((u,Q)\) gives
+\[
+\int_0^T\psi_1(u;\eta)\,\dif u
+=0.0015266\ \text{at }\eta=0.10,\qquad
+0.0042328\ \text{at }\eta=0.178,
+\]
+\[
+0.1867405\ \text{at }\eta=1.65,\qquad
+0.7883534\ \text{at }\eta=4,
+\]
+and the one-event bound first reaches one at \(\eta=4.6419\). Its linearised
+coefficient, obtained by dropping the clipping, is
+\[
+K_1=B_{\max}^2\int_0^T\Phi_{195}(u)^2
+\E_Q\!\left[\frac{g(Q)^2}{B_{\min}+n\kappa(Q)h_{195}(u)}\right]\dif u
+=0.2416084,
+\]
+\[
+\sqrt{K_1/2}=0.3475690.
+\]
+These are one-event, single-parent bounds, not bounds on the full multi-event
+law. The unconditional entropy expectation also contains histories with several
+parents, for which the denominator contains the sum \(nH_e\), not one parent's
+\(n\kappa h_e\). For the untruncated exponential mark law the single-parent
+integral grows without bound as \(T\to\infty\); it is finite on the declared
+horizon only because the horizon and \(\Phi_s\) cut off the long-lag mass. The
+full-process bound therefore remains the one displayed above. In particular,
+the earlier statement that retaining \(B_{\min}\) makes the full-law bound
+non-vacuous throughout the fitted range is withdrawn; the non-vacuous values
+belong to the one-event stratum. The quadrature and mark moments are checked by
 \path{scripts/check_mathematics.py}.
 
 \section{What spatial pooling preserves}
