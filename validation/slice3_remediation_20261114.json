@@ -1,0 +1,196 @@
+{
+  "schema": "slice3_remediation_acceptance_v1",
+  "created_utc": "2026-11-14T00:00:00+00:00",
+  "baseline_commit": "10d253f",
+  "scope": "Vertical Triad Slice 3: Chapters 8 and 10, Appendix B.8, reconstructed New Zealand baseline, paired calendar-block uncertainty, trend-depletion controls, complete eighteen-cell (alpha,tau,r) search, autonomous constant-background subfamily, C1/W/D/S spatial stages, and the twelve-model temporal-spatial-background factorial.",
+  "status": "accepted_with_documented_repairs",
+  "passed": true,
+  "components": {
+    "sealed_authority_integrity": true,
+    "chapter8_baseline": true,
+    "chapter8_trend_controls": true,
+    "stage_c1": true,
+    "stage_w": true,
+    "stage_d": true,
+    "stage_s": true,
+    "factorial_12model": true,
+    "claim_ledger": true,
+    "manuscript_repairs": true,
+    "code_consistency": true
+  },
+  "counts": {
+    "sealed_json_checked": 737,
+    "sealed_json_unchanged": 737,
+    "slice3_claims": 3676,
+    "missing_manuscript_displays": 0,
+    "withdrawn_historical_records": 10,
+    "chapter8_parameter_vectors": 15,
+    "trend_table_rows": 12,
+    "trend_mde_rows": 3,
+    "full_grid_cells_per_fold": 18,
+    "full_grid_cell_records": 108,
+    "autonomous_folds": 3,
+    "c1_main_rows": 5,
+    "c1_fold_rows": 15,
+    "c1_zone_rows": 45,
+    "w_main_rows": 9,
+    "w_fold_rows": 27,
+    "w_target_rows": 81,
+    "d_main_rows": 8,
+    "d_fold_rows": 24,
+    "d_target_rows": 216,
+    "common_main_rows": 7,
+    "common_fold_rows": 21,
+    "s_main_rows": 6,
+    "s_decomposition_rows": 6,
+    "s_scale_rows": 3,
+    "factorial_aggregates": 29,
+    "factorial_absolute_rows": 36,
+    "factorial_temporal_rows": 6,
+    "factorial_location_rows": 3,
+    "factorial_sensitivity_rows": 12,
+    "chapter8_secondary_parameter_rows": 3
+  },
+  "sealed_authority_integrity": {
+    "snapshot": 737,
+    "unchanged": 737,
+    "changed": [],
+    "missing": [],
+    "snapshot_sha256": "cb6ada67776dcee4719e71b8047743fa45578637c86be55c39aa6ab26a4e97ea",
+    "prechange_zip_sha256": "d5d560939ce44c86b6ac00c45bdbb6c7b25e72044e33147316e9e3c491368aa8",
+    "baseline_commit": "10d253f"
+  },
+  "claim_reconciliation": {
+    "claims_checked": 3676,
+    "missing_displays": 0,
+    "withdrawn_historical_records": 10,
+    "master_ledger_sha256": "56bbfb5559474846258bd52595002a5f0df1cb61077ab25c5c293a0d36b90c19",
+    "full_receipt_passed": true
+  },
+  "repairs": [
+    {
+      "id": "slice3-full-grid-fold1-as-total",
+      "file": "paper/source/chapters/08_nz_trend_controls.tex",
+      "locator": "line 6 and Table tab:nz-trend-controls",
+      "finding": "The first-fold eighteen-cell winners (0.5,1,0.4) and held-out contrasts -8.504/-4.556 were reported as the winners and totals of all three folds. The stored grid selects (0.5,1,0.4) in Fold 1 and (0.5,1,0.7) in Folds 2-3 for both arms; the three-fold totals are -11.431 and -5.006 nats.",
+      "status": "fixed"
+    },
+    {
+      "id": "slice3-fold-index-inconsistency",
+      "file": "paper/source/chapters/08_nz_trend_controls.tex",
+      "locator": "lines 2, 4, 8 and Table tab:nz-trend-controls",
+      "finding": "The same first window was called Fold 1, Fold 0 and F0. The text now states Fold 1 (F0, 50% origin), Fold 2 (F1, 65% origin) and Fold 3 (F2, 80% origin) and labels table rows 1 (F0), 2 (F1), 3 (F2).",
+      "status": "fixed"
+    },
+    {
+      "id": "slice3-ch10-raw-math-formatting",
+      "file": "paper/source/chapters/10_nz_spatial_background.tex",
+      "locator": "Sections 10.2-10.8",
+      "finding": "Raw decision-log tokens (eta, omega, sigma, pi, beta, r=.7, K=3, C 1, q(c|z), sum log q, 1e-11, 3.28e-11, 1e-4, order1e-5, Iteration28, ALL THREE) were replaced with math-mode or prose forms. Every pre-existing scalar numeric literal survives.",
+      "status": "fixed"
+    },
+    {
+      "id": "slice3-origin-ratio-wording",
+      "file": "paper/source/chapters/08_observed_baseline.tex",
+      "locator": "lines 102-104",
+      "finding": "The ratios 9.60, 1.57 and 1.34 are origin-specific background-intensity ratios, not three intercept ratios. Only the first origin has x=0. The sentence now names the origin-specific intensity.",
+      "status": "fixed"
+    },
+    {
+      "id": "slice3-pdf-overfull-vbox",
+      "file": "paper/source/chapters/10_nz_spatial_background.tex",
+      "locator": "Figure 10.1 and the Section 10.10 location table",
+      "finding": "The repaired text produced an Overfull vbox of 252.55814pt on the page carrying Figure 10.1 and the following table. Moving the figure after the table removed the overfull box without deleting content or changing page count.",
+      "status": "fixed"
+    }
+  ],
+  "artifacts": {
+    "audit_script": "experiments/methodological_audit/slice3_audit_20261114.py",
+    "audit_summary": "validation/live_results/slice3_audit_20261114/summary.json",
+    "audit_summary_sha256": "54ff7eedc7db6eba18db7f09f5e6c57e1aa93f21559e89f905b04b5b3f1c0eaf",
+    "audit_report": "docs/reviews/slice3_audit_20261114.md",
+    "audit_report_sha256": "a1dd5cbd72992d514057dcd3bf41f852626049caec723eaea7909eba08898bd3",
+    "prechange_snapshot": "validation/slice3_prechange_snapshot_20261114.json",
+    "prechange_snapshot_sha256": "cb6ada67776dcee4719e71b8047743fa45578637c86be55c39aa6ab26a4e97ea",
+    "prechange_zip_sha256": "d5d560939ce44c86b6ac00c45bdbb6c7b25e72044e33147316e9e3c491368aa8",
+    "manuscript_pdf": "paper/manuscript_unified.pdf",
+    "manuscript_pdf_sha256": "a855895bff771210d651c6752be846d7f216c5a541ae677d5950c8c92fc73e43",
+    "manuscript_pages": 252,
+    "claim_ledger": "validation/MASTER_CLAIM_LEDGER.json",
+    "claim_ledger_sha256": "56bbfb5559474846258bd52595002a5f0df1cb61077ab25c5c293a0d36b90c19",
+    "review_slice_zip": "../review_slices/slice_3_nz_baseline_and_spatial/slice_3_nz_baseline_and_spatial_bundle.zip",
+    "review_slice_zip_sha256": "3cf4e884b76062c947cac3734f1d319a7889cada948ccf10a588f282c9cb9e3a"
+  },
+  "build_and_checks": {
+    "check_mathematics": {
+      "exit_code": 0,
+      "output": "build/mathematics.json"
+    },
+    "paper_build": {
+      "engine": "Tectonic 0.17.0",
+      "exit_code": 0,
+      "pages": 252
+    },
+    "pdf_qa": {
+      "passed": true,
+      "overfull_boxes": 0,
+      "overfull_vertical_boxes": 0,
+      "undefined_cross_references": [],
+      "missing_bibliography_keys": [],
+      "missing_figures": [],
+      "missing_glyph_warnings": 0,
+      "replacement_characters": 0
+    },
+    "companion_build": {
+      "exit_code": 0
+    },
+    "website_build": {
+      "exit_code": 0
+    },
+    "verify_claims": {
+      "exit_code": 0
+    },
+    "unit_tests": {
+      "tests": 918,
+      "result": "OK"
+    },
+    "regional_tests": {
+      "tests": 44,
+      "result": "OK"
+    },
+    "s02_tests": {
+      "tests": 6,
+      "result": "OK"
+    },
+    "regional_inputs": {
+      "passed": true
+    },
+    "s02_inputs": {
+      "passed": true,
+      "histories": 300,
+      "methods": 600
+    },
+    "historical_fits": {
+      "passed": true
+    },
+    "website_interactions": {
+      "passed": true,
+      "selector_combinations": 80
+    },
+    "verify_repository": {
+      "passed": true
+    },
+    "review_slices": {
+      "exit_code": 0,
+      "slices": 7
+    }
+  },
+  "limitations": [
+    "The audit recomputes saved quantities and deterministic algebra; it does not rerun the historical optimizers, simulate catalogues, or reconstruct every raw history.",
+    "The eighteen-cell search is verified from stored per-cell records, including exact nested eta=0 floors and argmin selection; it is not refit.",
+    "Paired block intervals remain conditional on saved fits and declared block geometry; calendar blocks are dependent and the sign-flip reference is not a sequence-level randomization.",
+    "The projected cell-area lift identity is exact arithmetic; it does not convert categorical scores into independent density forecasts.",
+    "The factorial comparisons reuse the same 612 targets and overlapping training histories and remain retrospective fitted-procedure comparisons.",
+    "The 737-identity roster comprises the 736 JSON files under validation/authorities and validation/live_results plus the Slice 2 acceptance record."
+  ]
+}

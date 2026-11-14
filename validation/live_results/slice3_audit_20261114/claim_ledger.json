@@ -1,0 +1,57 @@
+{
+  "schema": "slice3_claim_ledger_v1",
+  "created_utc": "2026-11-14T10:03:07.982959+00:00",
+  "scope": "Independent resolution of the master claim ledger and literal display presence for the five Slice 3 LaTeX sources.",
+  "passed": true,
+  "counts": {
+    "slice3_claims": 3676,
+    "claims_by_file": {
+      "chapters/08_observed_baseline.tex": 156,
+      "appendix_tables/ch10_audit.tex": 2968,
+      "chapters/10_nz_spatial_background.tex": 1755,
+      "chapters/08_score_uncertainty.tex": 67,
+      "chapters/08_nz_trend_controls.tex": 84
+    },
+    "missing_displays": 0,
+    "withdrawn_historical_records": 10,
+    "master_ledger_sha256": "56bbfb5559474846258bd52595002a5f0df1cb61077ab25c5c293a0d36b90c19"
+  },
+  "checks": [
+    {
+      "id": "ledger-authority-resolution",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "id": "ledger-slice3-display-presence",
+      "passed": true,
+      "missing": []
+    },
+    {
+      "id": "ledger-slice3-population",
+      "passed": true,
+      "actual": 3676
+    }
+  ],
+  "notes": [
+    "Withdrawn historical records are authority-checked but excluded from the current manuscript-display presence requirement, matching scripts/verify_claims.py."
+  ],
+  "authority_receipt": {
+    "passed": true,
+    "counts": {
+      "withdrawn_historical_records": 836,
+      "json_numeric_verified": 25930,
+      "json_pointer_verified": 26197,
+      "documentary_numeric_verified": 2430,
+      "documentary_metadata_verified": 679,
+      "claims": 28627,
+      "documentary_metadata": 679,
+      "total_records": 29306,
+      "literal_manuscript_display_records": 0,
+      "missing_declared_manuscript_displays": 0,
+      "json_nonnumeric_verified": 267,
+      "distinct_authorities": 170
+    },
+    "failures": []
+  }
+}

@@ -1,0 +1,446 @@
+{
+  "schema": "slice3_audit_v1",
+  "created_utc": "2026-11-14T10:03:08.402626+00:00",
+  "baseline_commit": "10d253f",
+  "scope": "Vertical Triad Slice 3: Chapters 8 and 10, Appendix B.8, reconstructed New Zealand baseline, paired block uncertainty, trend--depletion controls, complete 18-cell search, autonomous constant-background subfamily, C1/W/D/S spatial stages, and the twelve-model temporal--spatial--background factorial.",
+  "passed": true,
+  "components": {
+    "sealed_authority_integrity": true,
+    "chapter8_baseline": true,
+    "chapter8_trend_controls": true,
+    "stage_c1": true,
+    "stage_w": true,
+    "stage_d": true,
+    "stage_s": true,
+    "factorial_12model": true,
+    "claim_ledger": true,
+    "manuscript_repairs": true,
+    "code_consistency": true
+  },
+  "counts": {
+    "sealed_authority_integrity": {
+      "snapshot": 737,
+      "unchanged": 737,
+      "changed": 0,
+      "missing": 0,
+      "baseline_commit": "10d253f",
+      "snapshot_sha256": "cb6ada67776dcee4719e71b8047743fa45578637c86be55c39aa6ab26a4e97ea"
+    },
+    "chapter8_baseline": {
+      "beta_mle": 2.849401764894274,
+      "beta_half_bin": 2.494071218330174,
+      "train_events": [
+        301,
+        504,
+        659
+      ],
+      "test_events": [
+        203,
+        155,
+        254
+      ],
+      "beta_train": [
+        3.1016219112585786,
+        3.1494882081661726,
+        3.021907322176272
+      ],
+      "parameter_vectors": 15,
+      "secondary_parameter_rows": [
+        {
+          "origin": "50",
+          "displayed": [
+            3.101622,
+            0.4,
+            0.012995,
+            1.113368
+          ],
+          "expected": [
+            3.1016219112585786,
+            0.4,
+            0.012995029439916296,
+            1.1133682547359482
+          ],
+          "passed": true
+        },
+        {
+          "origin": "65",
+          "displayed": [
+            3.149488,
+            0.7,
+            0.020798,
+            1.198604
+          ],
+          "expected": [
+            3.1494882081661726,
+            0.7,
+            0.020798449663947113,
+            1.1986043439080187
+          ],
+          "passed": true
+        },
+        {
+          "origin": "80",
+          "displayed": [
+            3.021907,
+            0.7,
+            0.006972,
+            1.155845
+          ],
+          "expected": [
+            3.021907322176272,
+            0.7,
+            0.006971962749168766,
+            1.1558445628164442
+          ],
+          "passed": true
+        }
+      ],
+      "origin_background_ratios": [
+        9.600634244993673,
+        1.5691565912881098,
+        1.336080668311205
+      ],
+      "projection": {
+        "weighting": "Ordinary least squares with equal weights on training pre-event states only.",
+        "intercept_c": 2.750747162169055,
+        "slope_k": 2.2417394214563457,
+        "r_squared": 0.14924274939283222,
+        "explained_variance_percent": 14.924274939283222,
+        "unexplained_variance_fraction": 0.8507572506071678,
+        "residual_train": {
+          "mean": -6.845760577090667e-16,
+          "median": -0.5784480545749335,
+          "min": -1.4526521109309758,
+          "max": 6.912980596812493
+        },
+        "residual_test": {
+          "mean": 2.723658978257066,
+          "median": 0.4865327871820391,
+          "min": -1.528788341417188,
+          "max": 10.160001089888176
+        },
+        "identity": "a+d*x-eta*G = (a-eta*c)+(d-eta*k)*x-eta*(G-c-k*x)",
+        "identity_max_absolute_residual": 3.552713678800501e-15,
+        "projected_inhibited_a": -6.726436795313262,
+        "projected_inhibited_d": -1.9017467080422525,
+        "eta_times_slope_k": 3.691503807887511,
+        "parameter_tradeoff": "Holding residual history fixed, da=c*deta and dd=k*deta preserves projected log-background level and slope; the residual term changes by -deta*(G-c-k*x).",
+        "event_score_weighted_trend_depletion_correlation": 0.9340643480012697
+      },
+      "score_rows": [
+        {
+          "fold": "fold_50",
+          "shared_minus_ml": -16.51755745281048,
+          "omori_minus_ml": 3.106623108531494,
+          "delta_Q": -33.71520466007502,
+          "delta_C": 17.197647207264637,
+          "shared_integrated": 115.87159477011348,
+          "ml_integrated": 133.0692419773781
+        },
+        {
+          "fold": "fold_65",
+          "shared_minus_ml": -0.07527729055132681,
+          "omori_minus_ml": 2.837707721131835,
+          "delta_Q": -1.7859271076329577,
+          "delta_C": 1.710649817081645,
+          "shared_integrated": 243.81206148304665,
+          "ml_integrated": 245.5227113001283
+        },
+        {
+          "fold": "fold_80",
+          "shared_minus_ml": -1.0300246214330855,
+          "omori_minus_ml": 6.513790055983691,
+          "delta_Q": -4.430836124016082,
+          "delta_C": 3.400811502582883,
+          "shared_integrated": 257.7387375832269,
+          "ml_integrated": 261.1395490858098
+        }
+      ],
+      "score_totals": {
+        "shared_minus_ml": -17.62285936479489,
+        "omori_minus_ml": 12.45812088564702,
+        "delta_Q": -39.93196789172406,
+        "delta_C": 22.309108526929165
+      },
+      "uncertainty_rows": [
+        {
+          "fold": "fold_50",
+          "ci95": [
+            -25.525872565560405,
+            -7.458535633929625
+          ],
+          "p": 0.00104
+        },
+        {
+          "fold": "fold_65",
+          "ci95": [
+            -1.3199890912981622,
+            1.2146874902938476
+          ],
+          "p": 0.91248
+        },
+        {
+          "fold": "fold_80",
+          "ci95": [
+            -2.087215898567452,
+            0.0038137734369787747
+          ],
+          "p": 0.05766
+        }
+      ],
+      "first_block": [
+        {
+          "bin": 0,
+          "dQ": -2.8912444043750796,
+          "dC": 2.4642696171245717,
+          "dL": -0.42697478725050075
+        },
+        {
+          "bin": 1,
+          "dQ": -16.87537810029393,
+          "dC": 7.143815356721138,
+          "dL": -9.731562743572795
+        },
+        {
+          "bin": 2,
+          "dQ": -8.696130839154748,
+          "dC": 4.642114807209932,
+          "dL": -4.054016031944826
+        },
+        {
+          "bin": 3,
+          "dQ": -5.252451316251282,
+          "dC": 2.947447426208992,
+          "dL": -2.3050038900423147
+        }
+      ]
+    },
+    "chapter8_trend_controls": {
+      "trend_rows": 12,
+      "mde_rows": 3,
+      "full_grid": [
+        {
+          "fold": "fold_50",
+          "arm": "zero_d",
+          "winner": "a0.5_t1_r0.4",
+          "training_nll": 1065.9703895174134,
+          "heldout_delta_joint": -8.504026846555462
+        },
+        {
+          "fold": "fold_50",
+          "arm": "fixed_null_d",
+          "winner": "a0.5_t1_r0.4",
+          "training_nll": 1066.5469486382367,
+          "heldout_delta_joint": -4.5556494789236694
+        },
+        {
+          "fold": "fold_65",
+          "arm": "zero_d",
+          "winner": "a0.5_t1_r0.7",
+          "training_nll": 1395.8202061863872,
+          "heldout_delta_joint": 2.042934056589729e-06
+        },
+        {
+          "fold": "fold_65",
+          "arm": "fixed_null_d",
+          "winner": "a0.5_t1_r0.7",
+          "training_nll": 1395.4861385249678,
+          "heldout_delta_joint": 0.675456312901872
+        },
+        {
+          "fold": "fold_80",
+          "arm": "zero_d",
+          "winner": "a0.5_t1_r0.7",
+          "training_nll": 1548.9326661555092,
+          "heldout_delta_joint": -2.9271488411819746
+        },
+        {
+          "fold": "fold_80",
+          "arm": "fixed_null_d",
+          "winner": "a0.5_t1_r0.7",
+          "training_nll": 1548.9962593758582,
+          "heldout_delta_joint": -1.1255904867214213
+        }
+      ],
+      "full_grid_first_fold": {
+        "zero_d": -8.504026846555462,
+        "fixed_null_d": -4.5556494789236694
+      },
+      "full_grid_pooled": {
+        "zero_d": -11.43117364480338,
+        "fixed_null_d": -5.005783652743219
+      },
+      "autonomous": [
+        {
+          "fold": "fold_50",
+          "null": -291.56748584479317,
+          "inhibited": -301.5858889781259,
+          "gain": -10.018403133332754,
+          "passed": true
+        },
+        {
+          "fold": "fold_65",
+          "null": -170.23343788914514,
+          "inhibited": -170.23344086604158,
+          "gain": -2.9768964395771036e-06,
+          "passed": true
+        },
+        {
+          "fold": "fold_80",
+          "null": -523.5998541954157,
+          "inhibited": -526.5270058970881,
+          "gain": -2.9271517016724147,
+          "passed": true
+        }
+      ],
+      "autonomous_pooled_gain": -12.945557811901608
+    },
+    "stage_c1": {
+      "main_rows": 5,
+      "fold_rows": 15,
+      "zone_rows": 45
+    },
+    "stage_w": {
+      "main_rows": 9,
+      "fold_rows": 27,
+      "target_rows": 81
+    },
+    "stage_d": {
+      "main_rows": 8,
+      "fold_rows": 24,
+      "target_rows": 216,
+      "common_main_rows": 7,
+      "common_fold_rows": 21
+    },
+    "stage_s": {
+      "main_rows": 6,
+      "decomposition": [
+        -10.47004144312271,
+        -4.471988026210269,
+        21.33383326252102,
+        1452.4120801591341,
+        0.0,
+        1458.803883952321
+      ],
+      "sigma_rows": 3,
+      "cell_areas_km2": [
+        214656.78097897625,
+        214656.78097897625,
+        214656.78097897625,
+        233213.23970741194,
+        233213.23970741194,
+        233213.23970741194,
+        249994.80486367145,
+        249994.80486367145,
+        249994.80486367145
+      ]
+    },
+    "factorial_12model": {
+      "temporal_rows": 6,
+      "location_rows": 3,
+      "absolute_rows": 36,
+      "sensitivity_rows": 12
+    },
+    "claim_ledger": {
+      "slice3_claims": 3676,
+      "claims_by_file": {
+        "chapters/08_observed_baseline.tex": 156,
+        "appendix_tables/ch10_audit.tex": 2968,
+        "chapters/10_nz_spatial_background.tex": 1755,
+        "chapters/08_score_uncertainty.tex": 67,
+        "chapters/08_nz_trend_controls.tex": 84
+      },
+      "missing_displays": 0,
+      "withdrawn_historical_records": 10,
+      "master_ledger_sha256": "56bbfb5559474846258bd52595002a5f0df1cb61077ab25c5c293a0d36b90c19"
+    },
+    "manuscript_repairs": {
+      "numeric_preservation": {
+        "chapters/08_observed_baseline.tex": {
+          "before": 131,
+          "after": 131,
+          "removed": []
+        },
+        "chapters/08_score_uncertainty.tex": {
+          "before": 36,
+          "after": 36,
+          "removed": []
+        },
+        "appendix_tables/ch10_audit.tex": {
+          "before": 1465,
+          "after": 1465,
+          "removed": []
+        },
+        "chapters/10_nz_spatial_background.tex": {
+          "before": 409,
+          "after": 410,
+          "removed": []
+        },
+        "chapters/08_nz_trend_controls.tex": {
+          "before": 107,
+          "after": 113,
+          "removed": []
+        }
+      },
+      "required_tokens": 15
+    },
+    "code_consistency": {
+      "source_pins": 6
+    }
+  },
+  "defects_and_repairs": [
+    {
+      "id": "slice3-full-grid-fold1-as-total",
+      "file": "paper/source/chapters/08_nz_trend_controls.tex",
+      "locator": "line 6 and Table tab:nz-trend-controls",
+      "finding": "The eighteen-cell search description reported the first-fold winners (0.5,1,0.4), held-out contrasts -8.504/-4.556, as if they were both the winners and the totals of all three folds. The stored grid selects (0.5,1,0.4) in Fold 1 and (0.5,1,0.7) in Folds 2-3 for both arms; the three-fold totals are -11.431 and -5.006 nats.",
+      "status": "fixed"
+    },
+    {
+      "id": "slice3-fold-index-inconsistency",
+      "file": "paper/source/chapters/08_nz_trend_controls.tex",
+      "locator": "lines 2, 4, 8 and Table tab:nz-trend-controls",
+      "finding": "The same first window was called Fold 1 in line 2, Fold 0 in line 4 and F0 in the table. The text now states the one-based label with the archived zero-based identifier and origin fraction for all three folds.",
+      "status": "fixed"
+    },
+    {
+      "id": "slice3-ch10-raw-math-formatting",
+      "file": "paper/source/chapters/10_nz_spatial_background.tex",
+      "locator": "Sections 10.2-10.8",
+      "finding": "Raw decision-log mathematical tokens (eta, omega, sigma, pi, beta, r=0.7, K=3, C 1, 1e-11, 3.28e-11, 1e-4, order1e-5, Iteration28, ALL THREE) were replaced by math-mode and prose forms. Every numeric literal was preserved.",
+      "status": "fixed"
+    },
+    {
+      "id": "slice3-origin-ratio-wording",
+      "file": "paper/source/chapters/08_observed_baseline.tex",
+      "locator": "lines 102-104",
+      "finding": "The ratios 9.60, 1.57 and 1.34 are ratios of the unattenuated background intensity at each predictive origin, not three intercept ratios. Only the first origin has x=0. The sentence now names the origin-specific intensity.",
+      "status": "fixed"
+    },
+    {
+      "id": "slice3-master-ledger-slice3-coverage",
+      "file": "validation/MASTER_CLAIM_LEDGER.json",
+      "locator": "chapters/08_score_uncertainty.tex; chapters/08_nz_trend_controls.tex",
+      "finding": "The master ledger resolves 3,676 Slice 3 records, including 67 score-uncertainty and 84 trend-control bindings located through final_display_locations. No Slice 3 subsection is left outside the ledger.",
+      "status": "verified"
+    }
+  ],
+  "artifacts": {
+    "chapter8_baseline": "validation/live_results/slice3_audit_20261114/chapter8_baseline.json",
+    "chapter8_trend_controls": "validation/live_results/slice3_audit_20261114/chapter8_trend_controls.json",
+    "claim_ledger": "validation/live_results/slice3_audit_20261114/claim_ledger.json",
+    "code_consistency": "validation/live_results/slice3_audit_20261114/code_consistency.json",
+    "factorial_12model": "validation/live_results/slice3_audit_20261114/factorial_12model.json",
+    "manuscript_repairs": "validation/live_results/slice3_audit_20261114/manuscript_repairs.json",
+    "sealed_authority_integrity": "validation/live_results/slice3_audit_20261114/sealed_authority_integrity.json",
+    "stage_c1": "validation/live_results/slice3_audit_20261114/stage_c1.json",
+    "stage_d": "validation/live_results/slice3_audit_20261114/stage_d.json",
+    "stage_s": "validation/live_results/slice3_audit_20261114/stage_s.json",
+    "stage_w": "validation/live_results/slice3_audit_20261114/stage_w.json"
+  },
+  "environment": {
+    "python": "3.13.4",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3"
+  }
+}

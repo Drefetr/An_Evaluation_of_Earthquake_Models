@@ -1,0 +1,602 @@
+{
+  "schema": "slice3_chapter8_baseline_v1",
+  "created_utc": "2026-11-14T10:02:30.683244+00:00",
+  "scope": "Chapter 8 reconstructed baseline: 913-event catalogue identity, magnitude estimators, saved predictive parameters, trend--depletion projection, saved scores, block uncertainty, first-block accounting, and the 914-event magnitude-replacement sensitivity.",
+  "passed": true,
+  "counts": {
+    "beta_mle": 2.849401764894274,
+    "beta_half_bin": 2.494071218330174,
+    "train_events": [
+      301,
+      504,
+      659
+    ],
+    "test_events": [
+      203,
+      155,
+      254
+    ],
+    "beta_train": [
+      3.1016219112585786,
+      3.1494882081661726,
+      3.021907322176272
+    ],
+    "parameter_vectors": 15,
+    "secondary_parameter_rows": [
+      {
+        "origin": "50",
+        "displayed": [
+          3.101622,
+          0.4,
+          0.012995,
+          1.113368
+        ],
+        "expected": [
+          3.1016219112585786,
+          0.4,
+          0.012995029439916296,
+          1.1133682547359482
+        ],
+        "passed": true
+      },
+      {
+        "origin": "65",
+        "displayed": [
+          3.149488,
+          0.7,
+          0.020798,
+          1.198604
+        ],
+        "expected": [
+          3.1494882081661726,
+          0.7,
+          0.020798449663947113,
+          1.1986043439080187
+        ],
+        "passed": true
+      },
+      {
+        "origin": "80",
+        "displayed": [
+          3.021907,
+          0.7,
+          0.006972,
+          1.155845
+        ],
+        "expected": [
+          3.021907322176272,
+          0.7,
+          0.006971962749168766,
+          1.1558445628164442
+        ],
+        "passed": true
+      }
+    ],
+    "origin_background_ratios": [
+      9.600634244993673,
+      1.5691565912881098,
+      1.336080668311205
+    ],
+    "projection": {
+      "weighting": "Ordinary least squares with equal weights on training pre-event states only.",
+      "intercept_c": 2.750747162169055,
+      "slope_k": 2.2417394214563457,
+      "r_squared": 0.14924274939283222,
+      "explained_variance_percent": 14.924274939283222,
+      "unexplained_variance_fraction": 0.8507572506071678,
+      "residual_train": {
+        "mean": -6.845760577090667e-16,
+        "median": -0.5784480545749335,
+        "min": -1.4526521109309758,
+        "max": 6.912980596812493
+      },
+      "residual_test": {
+        "mean": 2.723658978257066,
+        "median": 0.4865327871820391,
+        "min": -1.528788341417188,
+        "max": 10.160001089888176
+      },
+      "identity": "a+d*x-eta*G = (a-eta*c)+(d-eta*k)*x-eta*(G-c-k*x)",
+      "identity_max_absolute_residual": 3.552713678800501e-15,
+      "projected_inhibited_a": -6.726436795313262,
+      "projected_inhibited_d": -1.9017467080422525,
+      "eta_times_slope_k": 3.691503807887511,
+      "parameter_tradeoff": "Holding residual history fixed, da=c*deta and dd=k*deta preserves projected log-background level and slope; the residual term changes by -deta*(G-c-k*x).",
+      "event_score_weighted_trend_depletion_correlation": 0.9340643480012697
+    },
+    "score_rows": [
+      {
+        "fold": "fold_50",
+        "shared_minus_ml": -16.51755745281048,
+        "omori_minus_ml": 3.106623108531494,
+        "delta_Q": -33.71520466007502,
+        "delta_C": 17.197647207264637,
+        "shared_integrated": 115.87159477011348,
+        "ml_integrated": 133.0692419773781
+      },
+      {
+        "fold": "fold_65",
+        "shared_minus_ml": -0.07527729055132681,
+        "omori_minus_ml": 2.837707721131835,
+        "delta_Q": -1.7859271076329577,
+        "delta_C": 1.710649817081645,
+        "shared_integrated": 243.81206148304665,
+        "ml_integrated": 245.5227113001283
+      },
+      {
+        "fold": "fold_80",
+        "shared_minus_ml": -1.0300246214330855,
+        "omori_minus_ml": 6.513790055983691,
+        "delta_Q": -4.430836124016082,
+        "delta_C": 3.400811502582883,
+        "shared_integrated": 257.7387375832269,
+        "ml_integrated": 261.1395490858098
+      }
+    ],
+    "score_totals": {
+      "shared_minus_ml": -17.62285936479489,
+      "omori_minus_ml": 12.45812088564702,
+      "delta_Q": -39.93196789172406,
+      "delta_C": 22.309108526929165
+    },
+    "uncertainty_rows": [
+      {
+        "fold": "fold_50",
+        "ci95": [
+          -25.525872565560405,
+          -7.458535633929625
+        ],
+        "p": 0.00104
+      },
+      {
+        "fold": "fold_65",
+        "ci95": [
+          -1.3199890912981622,
+          1.2146874902938476
+        ],
+        "p": 0.91248
+      },
+      {
+        "fold": "fold_80",
+        "ci95": [
+          -2.087215898567452,
+          0.0038137734369787747
+        ],
+        "p": 0.05766
+      }
+    ],
+    "first_block": [
+      {
+        "bin": 0,
+        "dQ": -2.8912444043750796,
+        "dC": 2.4642696171245717,
+        "dL": -0.42697478725050075
+      },
+      {
+        "bin": 1,
+        "dQ": -16.87537810029393,
+        "dC": 7.143815356721138,
+        "dL": -9.731562743572795
+      },
+      {
+        "bin": 2,
+        "dQ": -8.696130839154748,
+        "dC": 4.642114807209932,
+        "dL": -4.054016031944826
+      },
+      {
+        "bin": 3,
+        "dQ": -5.252451316251282,
+        "dC": 2.947447426208992,
+        "dL": -2.3050038900423147
+      }
+    ]
+  },
+  "checks": [
+    {
+      "id": "catalogue-sha256",
+      "passed": true,
+      "actual": "feacccb7581d1c4c33f88874cd6b198c41639da6930a7fc35e46f910a594fb3e",
+      "expected": "feacccb7581d1c4c33f88874cd6b198c41639da6930a7fc35e46f910a594fb3e"
+    },
+    {
+      "id": "catalogue-events",
+      "passed": true,
+      "actual": 913
+    },
+    {
+      "id": "catalogue-sorted",
+      "passed": true
+    },
+    {
+      "id": "array-binding",
+      "passed": true
+    },
+    {
+      "id": "beta-mle",
+      "passed": true,
+      "actual": 2.849401764894274
+    },
+    {
+      "id": "beta-half-bin",
+      "passed": true,
+      "actual": 2.494071218330174
+    },
+    {
+      "id": "fold_50-counts",
+      "passed": true,
+      "train": 301,
+      "test": 203
+    },
+    {
+      "id": "fold_50-beta-train",
+      "passed": true,
+      "actual": 3.1016219112585786,
+      "expected": 3.1016219112585786
+    },
+    {
+      "id": "fold_65-counts",
+      "passed": true,
+      "train": 504,
+      "test": 155
+    },
+    {
+      "id": "fold_65-beta-train",
+      "passed": true,
+      "actual": 3.1494882081661726,
+      "expected": 3.1494882081661726
+    },
+    {
+      "id": "fold_80-counts",
+      "passed": true,
+      "train": 659,
+      "test": 254
+    },
+    {
+      "id": "fold_80-beta-train",
+      "passed": true,
+      "actual": 3.021907322176272,
+      "expected": 3.021907322176272
+    },
+    {
+      "id": "test-events-total",
+      "passed": true
+    },
+    {
+      "id": "predictive-rows",
+      "passed": true,
+      "actual": 15
+    },
+    {
+      "id": "param-fold_50-etas_omori",
+      "passed": true
+    },
+    {
+      "id": "param-fold_50-ml_trigger",
+      "passed": true
+    },
+    {
+      "id": "param-fold_50-ml_shared",
+      "passed": true
+    },
+    {
+      "id": "param-fold_65-etas_omori",
+      "passed": true
+    },
+    {
+      "id": "param-fold_65-ml_trigger",
+      "passed": true
+    },
+    {
+      "id": "param-fold_65-ml_shared",
+      "passed": true
+    },
+    {
+      "id": "param-fold_80-etas_omori",
+      "passed": true
+    },
+    {
+      "id": "param-fold_80-ml_trigger",
+      "passed": true
+    },
+    {
+      "id": "param-fold_80-ml_shared",
+      "passed": true
+    },
+    {
+      "id": "predictive-all-15-authority",
+      "passed": true
+    },
+    {
+      "id": "secondary-parameter-rows",
+      "passed": true,
+      "actual": 3
+    },
+    {
+      "id": "secondary-parameter-row-50",
+      "passed": true,
+      "displayed": [
+        3.101622,
+        0.4,
+        0.012995,
+        1.113368
+      ],
+      "expected": [
+        3.1016219112585786,
+        0.4,
+        0.012995029439916296,
+        1.1133682547359482
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "secondary-parameter-row-65",
+      "passed": true,
+      "displayed": [
+        3.149488,
+        0.7,
+        0.020798,
+        1.198604
+      ],
+      "expected": [
+        3.1494882081661726,
+        0.7,
+        0.020798449663947113,
+        1.1986043439080187
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "secondary-parameter-row-80",
+      "passed": true,
+      "displayed": [
+        3.021907,
+        0.7,
+        0.006972,
+        1.155845
+      ],
+      "expected": [
+        3.021907322176272,
+        0.7,
+        0.006971962749168766,
+        1.1558445628164442
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "origin-background-ratio-9.6",
+      "passed": true,
+      "actual": 9.600634244993673,
+      "display": 9.6
+    },
+    {
+      "id": "origin-background-ratio-1.57",
+      "passed": true,
+      "actual": 1.5691565912881098,
+      "display": 1.57
+    },
+    {
+      "id": "origin-background-ratio-1.34",
+      "passed": true,
+      "actual": 1.336080668311205,
+      "display": 1.34
+    },
+    {
+      "id": "projection-c",
+      "passed": true,
+      "actual": 2.750747162169055
+    },
+    {
+      "id": "projection-k",
+      "passed": true,
+      "actual": 2.2417394214563457
+    },
+    {
+      "id": "projection-r2",
+      "passed": true,
+      "actual": 0.14924274939283222
+    },
+    {
+      "id": "projection-rho",
+      "passed": true,
+      "actual": 0.9340643480012697
+    },
+    {
+      "id": "projection-archived-match",
+      "passed": true
+    },
+    {
+      "id": "projection-identity",
+      "passed": true,
+      "residual": 3.552713678800501e-15
+    },
+    {
+      "id": "slow-modes",
+      "passed": true,
+      "modes": 195,
+      "slow": 61
+    },
+    {
+      "id": "slow-mode-weight",
+      "passed": true,
+      "actual": 0.042934294645172455
+    },
+    {
+      "id": "heldout-accounting",
+      "passed": true
+    },
+    {
+      "id": "score-accounting-fold_50",
+      "passed": true,
+      "dQ": -33.71520466007502,
+      "dC": 17.197647207264637,
+      "joint": -16.51755745281048
+    },
+    {
+      "id": "score-accounting-fold_65",
+      "passed": true,
+      "dQ": -1.7859271076329577,
+      "dC": 1.710649817081645,
+      "joint": -0.07527729055132681
+    },
+    {
+      "id": "score-accounting-fold_80",
+      "passed": true,
+      "dQ": -4.430836124016082,
+      "dC": 3.400811502582883,
+      "joint": -1.0300246214330855
+    },
+    {
+      "id": "score-total-shared",
+      "passed": true,
+      "actual": -17.62285936479489
+    },
+    {
+      "id": "score-total-omori",
+      "passed": true,
+      "actual": 12.45812088564702
+    },
+    {
+      "id": "score-display-fold_50",
+      "passed": true
+    },
+    {
+      "id": "score-display-fold_65",
+      "passed": true
+    },
+    {
+      "id": "score-display-fold_80",
+      "passed": true
+    },
+    {
+      "id": "uncertainty-90-fold_50",
+      "passed": true,
+      "fold": "fold_50",
+      "ci": [
+        -25.525872565560405,
+        -7.458535633929625
+      ],
+      "p": 0.00104
+    },
+    {
+      "id": "uncertainty-90-fold_65",
+      "passed": true,
+      "fold": "fold_65",
+      "ci": [
+        -1.3199890912981622,
+        1.2146874902938476
+      ],
+      "p": 0.91248
+    },
+    {
+      "id": "uncertainty-90-fold_80",
+      "passed": true,
+      "fold": "fold_80",
+      "ci": [
+        -2.087215898567452,
+        0.0038137734369787747
+      ],
+      "p": 0.05766
+    },
+    {
+      "id": "uncertainty-180-fold65",
+      "passed": true
+    },
+    {
+      "id": "uncertainty-365-fold65",
+      "passed": true
+    },
+    {
+      "id": "uncertainty-180-fold80",
+      "passed": true
+    },
+    {
+      "id": "uncertainty-365-fold80",
+      "passed": true
+    },
+    {
+      "id": "first-fold-fraction",
+      "passed": true,
+      "actual": 0.93728021718246
+    },
+    {
+      "id": "first-block-rows",
+      "passed": true,
+      "actual": 4,
+      "all_rows": 12
+    },
+    {
+      "id": "first-block-row-0",
+      "passed": true,
+      "dQ": -2.8912444043750796,
+      "dC": 2.4642696171245717,
+      "joint": -0.42697478725050075
+    },
+    {
+      "id": "first-block-row-1",
+      "passed": true,
+      "dQ": -16.87537810029393,
+      "dC": 7.143815356721138,
+      "joint": -9.731562743572795
+    },
+    {
+      "id": "first-block-row-2",
+      "passed": true,
+      "dQ": -8.696130839154748,
+      "dC": 4.642114807209932,
+      "joint": -4.054016031944826
+    },
+    {
+      "id": "first-block-row-3",
+      "passed": true,
+      "dQ": -5.252451316251282,
+      "dC": 2.947447426208992,
+      "joint": -2.3050038900423147
+    },
+    {
+      "id": "first-block-totals",
+      "passed": true,
+      "dQ": -33.71520466007504,
+      "dC": 17.197647207264634,
+      "dL": -16.517557452810436
+    },
+    {
+      "id": "fdsn-magnitude-differences",
+      "passed": true,
+      "actual": 241
+    },
+    {
+      "id": "fdsn-max-difference",
+      "passed": true,
+      "actual": "0.164143665"
+    },
+    {
+      "id": "fdsn-shared-totals",
+      "passed": true
+    },
+    {
+      "id": "fdsn-omori-totals",
+      "passed": true
+    },
+    {
+      "id": "fdsn-no-sign-reversal",
+      "passed": true
+    }
+  ],
+  "notes": []
+}

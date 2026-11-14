@@ -1,0 +1,35 @@
+{
+  "schema": "slice3_sealed_authority_integrity_v1",
+  "created_utc": "2026-11-14T10:02:29.337598+00:00",
+  "scope": "Byte-level identity of every pre-existing JSON file under validation/authorities and validation/live_results plus the Slice 2 acceptance record.",
+  "passed": true,
+  "counts": {
+    "snapshot": 737,
+    "unchanged": 737,
+    "changed": 0,
+    "missing": 0,
+    "baseline_commit": "10d253f",
+    "snapshot_sha256": "cb6ada67776dcee4719e71b8047743fa45578637c86be55c39aa6ab26a4e97ea"
+  },
+  "checks": [
+    {
+      "id": "sealed-count",
+      "passed": true,
+      "expected": 737,
+      "actual": 737
+    },
+    {
+      "id": "sealed-missing",
+      "passed": true,
+      "missing": []
+    },
+    {
+      "id": "sealed-changed",
+      "passed": true,
+      "changed": []
+    }
+  ],
+  "notes": [
+    "Byte-level hashes of every pre-existing JSON file under validation/authorities and validation/live_results plus the Slice 2 acceptance record that completes the 737-record pre-existing JSON roster, and publication sources that Slice 3 may repair. The sealed JSON files are not modified by this audit."
+  ]
+}

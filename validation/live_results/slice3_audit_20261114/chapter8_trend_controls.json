@@ -1,0 +1,1330 @@
+{
+  "schema": "slice3_chapter8_trend_controls_v1",
+  "created_utc": "2026-11-14T10:02:30.860608+00:00",
+  "scope": "Chapter 8 trend--depletion controls: twelve table rows, contrast-specific block MDEs, the complete eighteen-cell two-start (alpha, tau, r) grid, the clamped-clock counterfactual, and the autonomous constant-background subfamily.",
+  "passed": true,
+  "counts": {
+    "trend_rows": 12,
+    "mde_rows": 3,
+    "full_grid": [
+      {
+        "fold": "fold_50",
+        "arm": "zero_d",
+        "winner": "a0.5_t1_r0.4",
+        "training_nll": 1065.9703895174134,
+        "heldout_delta_joint": -8.504026846555462
+      },
+      {
+        "fold": "fold_50",
+        "arm": "fixed_null_d",
+        "winner": "a0.5_t1_r0.4",
+        "training_nll": 1066.5469486382367,
+        "heldout_delta_joint": -4.5556494789236694
+      },
+      {
+        "fold": "fold_65",
+        "arm": "zero_d",
+        "winner": "a0.5_t1_r0.7",
+        "training_nll": 1395.8202061863872,
+        "heldout_delta_joint": 2.042934056589729e-06
+      },
+      {
+        "fold": "fold_65",
+        "arm": "fixed_null_d",
+        "winner": "a0.5_t1_r0.7",
+        "training_nll": 1395.4861385249678,
+        "heldout_delta_joint": 0.675456312901872
+      },
+      {
+        "fold": "fold_80",
+        "arm": "zero_d",
+        "winner": "a0.5_t1_r0.7",
+        "training_nll": 1548.9326661555092,
+        "heldout_delta_joint": -2.9271488411819746
+      },
+      {
+        "fold": "fold_80",
+        "arm": "fixed_null_d",
+        "winner": "a0.5_t1_r0.7",
+        "training_nll": 1548.9962593758582,
+        "heldout_delta_joint": -1.1255904867214213
+      }
+    ],
+    "full_grid_first_fold": {
+      "zero_d": -8.504026846555462,
+      "fixed_null_d": -4.5556494789236694
+    },
+    "full_grid_pooled": {
+      "zero_d": -11.43117364480338,
+      "fixed_null_d": -5.005783652743219
+    },
+    "autonomous": [
+      {
+        "fold": "fold_50",
+        "null": -291.56748584479317,
+        "inhibited": -301.5858889781259,
+        "gain": -10.018403133332754,
+        "passed": true
+      },
+      {
+        "fold": "fold_65",
+        "null": -170.23343788914514,
+        "inhibited": -170.23344086604158,
+        "gain": -2.9768964395771036e-06,
+        "passed": true
+      },
+      {
+        "fold": "fold_80",
+        "null": -523.5998541954157,
+        "inhibited": -526.5270058970881,
+        "gain": -2.9271517016724147,
+        "passed": true
+      }
+    ],
+    "autonomous_pooled_gain": -12.945557811901608
+  },
+  "checks": [
+    {
+      "id": "trend-table-rows",
+      "passed": true,
+      "actual": 12
+    },
+    {
+      "id": "trend-row-1 (F0)-free_d",
+      "passed": true,
+      "displayed": [
+        -2.197,
+        1.79,
+        0.482,
+        1.647,
+        2.731,
+        -33.715,
+        17.198,
+        -16.518
+      ],
+      "expected": [
+        -2.196742787842031,
+        1.7897570998452585,
+        0.4816995533123644,
+        1.6467140527373723,
+        2.7310094986034983,
+        -33.71520466007506,
+        17.197647207264637,
+        -16.51755745281048
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "trend-row-1 (F0)-fixed_null_d",
+      "passed": true,
+      "displayed": [
+        -4.329,
+        -0.252,
+        0.461,
+        0.178,
+        0.299,
+        -12.971,
+        8.415,
+        -4.556
+      ],
+      "expected": [
+        -4.329383700399686,
+        -0.25215013380309004,
+        0.460649609652669,
+        0.17770488972684664,
+        0.299214519146517,
+        -12.970709620008506,
+        8.4150554346553,
+        -4.555654185353205
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "trend-row-1 (F0)-zero_d",
+      "passed": true,
+      "displayed": [
+        -4.064,
+        0.0,
+        0.464,
+        0.357,
+        1.225,
+        -26.025,
+        17.521,
+        -8.504
+      ],
+      "expected": [
+        -4.064376463899488,
+        0.0,
+        0.46402399130993194,
+        0.35684519781836554,
+        1.2245445437715716,
+        -26.02507258901079,
+        17.521025680903165,
+        -8.504046908107625
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "trend-row-2 (F1)-free_d",
+      "passed": true,
+      "displayed": [
+        -3.842,
+        0.493,
+        0.503,
+        0.212,
+        0.302,
+        -1.786,
+        1.711,
+        -0.075
+      ],
+      "expected": [
+        -3.8418443124454664,
+        0.49268181111813747,
+        0.5034897627143268,
+        0.21170986140638662,
+        0.3024863208672741,
+        -1.785927107632972,
+        1.710649817081645,
+        -0.07527729055132681
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "trend-row-2 (F1)-fixed_null_d",
+      "passed": true,
+      "displayed": [
+        -4.152,
+        0.147,
+        0.499,
+        0.034,
+        0.048,
+        -2.033,
+        2.709,
+        0.675
+      ],
+      "expected": [
+        -4.152384418491979,
+        0.1474405439920644,
+        0.4993465504790844,
+        0.033768453331055756,
+        0.04750429850605542,
+        -2.0332814066547087,
+        2.708743238888161,
+        0.6754618322334522
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "trend-row-2 (F1)-zero_d",
+      "passed": true,
+      "displayed": [
+        -4.241,
+        0.0,
+        0.499,
+        0.0,
+        0.0,
+        -0.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        -4.241458380395183,
+        0.0,
+        0.49906001663937954,
+        0.0,
+        2.2737367544323206e-13,
+        -6.520303656998294e-07,
+        1.0496264621906448e-06,
+        3.975960964908154e-07
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "trend-row-3 (F2)-free_d",
+      "passed": true,
+      "displayed": [
+        -4.103,
+        0.128,
+        0.473,
+        0.105,
+        0.144,
+        -4.431,
+        3.401,
+        -1.03
+      ],
+      "expected": [
+        -4.10340765703705,
+        0.12763775725362148,
+        0.47307072478029155,
+        0.10525433854950549,
+        0.14386577752543417,
+        -4.430836124015968,
+        3.400811502582883,
+        -1.0300246214330855
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "trend-row-3 (F2)-fixed_null_d",
+      "passed": true,
+      "displayed": [
+        -4.262,
+        -0.057,
+        0.471,
+        0.016,
+        0.022,
+        -3.397,
+        2.271,
+        -1.126
+      ],
+      "expected": [
+        -4.262163643960969,
+        -0.05665136748686944,
+        0.47101806238389626,
+        0.015948014353008362,
+        0.022136197977488337,
+        -3.396951044339289,
+        2.27140032712623,
+        -1.125550717213173
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "trend-row-3 (F2)-zero_d",
+      "passed": true,
+      "displayed": [
+        -4.213,
+        0.0,
+        0.472,
+        0.043,
+        0.162,
+        -9.213,
+        6.286,
+        -2.927
+      ],
+      "expected": [
+        -4.213450229801499,
+        0.0,
+        0.4716687849574415,
+        0.043212722161053305,
+        0.16208224697265905,
+        -9.21310015690301,
+        6.285945324110855,
+        -2.927154832792212
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "trend-row-Pooled-free_d",
+      "passed": true,
+      "displayed": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        -39.932,
+        22.309,
+        -17.623
+      ],
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        -39.931967891724,
+        22.309108526929165,
+        -17.62285936479489
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "trend-row-Pooled-fixed_null_d",
+      "passed": true,
+      "displayed": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        -18.401,
+        13.395,
+        -5.006
+      ],
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        -18.400942071002504,
+        13.395199000669692,
+        -5.005743070332926
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "trend-row-Pooled-zero_d",
+      "passed": true,
+      "displayed": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        -35.238,
+        23.807,
+        -11.431
+      ],
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        -35.238173397944166,
+        23.806972054640482,
+        -11.43120134330374
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "mde-table-rows",
+      "passed": true,
+      "actual": 3
+    },
+    {
+      "id": "mde-row-free_d",
+      "passed": true,
+      "displayed": [
+        -17.623,
+        4.712,
+        9.236,
+        -3.74,
+        10.619,
+        13.035
+      ],
+      "expected": [
+        -17.62285936479381,
+        4.712389972269029,
+        9.236284345647297,
+        -3.7396861186147454,
+        10.618717979847315,
+        13.03527584831238
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "mde-row-zero_d",
+      "passed": true,
+      "displayed": [
+        -11.431,
+        2.764,
+        5.417,
+        -4.14,
+        5.469,
+        5.869
+      ],
+      "expected": [
+        -11.43120134330374,
+        2.763704414772542,
+        5.416860652954182,
+        -4.136188111218309,
+        5.46894421308668,
+        5.869441293145029
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "mde-row-fixed_null_d",
+      "passed": true,
+      "displayed": [
+        -5.006,
+        1.396,
+        2.735,
+        -3.59,
+        2.786,
+        3.038
+      ],
+      "expected": [
+        -5.005743070332926,
+        1.3955978289659632,
+        2.7353717447732877,
+        -3.5868091555013515,
+        2.7855931348717244,
+        3.037850886599178
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "full-grid-protocol",
+      "passed": true,
+      "protocol": "18 cells = {0.5,0.7} alpha x {0.1,1,10} tau x {0.4,0.7,0.8} ratio; two L-BFGS-B starts per arm and exact eta=0 nested floor."
+    },
+    {
+      "id": "full-grid-cells-fold_50",
+      "passed": true,
+      "actual": 18
+    },
+    {
+      "id": "full-grid-floor-fold_50-zero_d-a0.5_t0.1_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-zero_d-a0.5_t0.1_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-zero_d-a0.5_t0.1_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-zero_d-a0.5_t1_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-zero_d-a0.5_t1_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-zero_d-a0.5_t1_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-zero_d-a0.5_t10_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-zero_d-a0.5_t10_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-zero_d-a0.5_t10_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-zero_d-a0.7_t0.1_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-zero_d-a0.7_t0.1_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-zero_d-a0.7_t0.1_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-zero_d-a0.7_t1_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-zero_d-a0.7_t1_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-zero_d-a0.7_t1_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-zero_d-a0.7_t10_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-zero_d-a0.7_t10_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-zero_d-a0.7_t10_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-winner-fold_50-zero_d",
+      "passed": true,
+      "winner": "a0.5_t1_r0.4",
+      "expected": "a0.5_t1_r0.4"
+    },
+    {
+      "id": "full-grid-floor-fold_50-fixed_null_d-a0.5_t0.1_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-fixed_null_d-a0.5_t0.1_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-fixed_null_d-a0.5_t0.1_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-fixed_null_d-a0.5_t1_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-fixed_null_d-a0.5_t1_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-fixed_null_d-a0.5_t1_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-fixed_null_d-a0.5_t10_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-fixed_null_d-a0.5_t10_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-fixed_null_d-a0.5_t10_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-fixed_null_d-a0.7_t0.1_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-fixed_null_d-a0.7_t0.1_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-fixed_null_d-a0.7_t0.1_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-fixed_null_d-a0.7_t1_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-fixed_null_d-a0.7_t1_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-fixed_null_d-a0.7_t1_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-fixed_null_d-a0.7_t10_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-fixed_null_d-a0.7_t10_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_50-fixed_null_d-a0.7_t10_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-winner-fold_50-fixed_null_d",
+      "passed": true,
+      "winner": "a0.5_t1_r0.4",
+      "expected": "a0.5_t1_r0.4"
+    },
+    {
+      "id": "full-grid-cells-fold_65",
+      "passed": true,
+      "actual": 18
+    },
+    {
+      "id": "full-grid-floor-fold_65-zero_d-a0.5_t0.1_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-zero_d-a0.5_t0.1_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-zero_d-a0.5_t0.1_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-zero_d-a0.5_t1_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-zero_d-a0.5_t1_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-zero_d-a0.5_t1_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-zero_d-a0.5_t10_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-zero_d-a0.5_t10_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-zero_d-a0.5_t10_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-zero_d-a0.7_t0.1_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-zero_d-a0.7_t0.1_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-zero_d-a0.7_t0.1_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-zero_d-a0.7_t1_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-zero_d-a0.7_t1_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-zero_d-a0.7_t1_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-zero_d-a0.7_t10_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-zero_d-a0.7_t10_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-zero_d-a0.7_t10_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-winner-fold_65-zero_d",
+      "passed": true,
+      "winner": "a0.5_t1_r0.7",
+      "expected": "a0.5_t1_r0.7"
+    },
+    {
+      "id": "full-grid-floor-fold_65-fixed_null_d-a0.5_t0.1_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-fixed_null_d-a0.5_t0.1_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-fixed_null_d-a0.5_t0.1_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-fixed_null_d-a0.5_t1_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-fixed_null_d-a0.5_t1_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-fixed_null_d-a0.5_t1_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-fixed_null_d-a0.5_t10_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-fixed_null_d-a0.5_t10_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-fixed_null_d-a0.5_t10_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-fixed_null_d-a0.7_t0.1_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-fixed_null_d-a0.7_t0.1_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-fixed_null_d-a0.7_t0.1_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-fixed_null_d-a0.7_t1_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-fixed_null_d-a0.7_t1_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-fixed_null_d-a0.7_t1_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-fixed_null_d-a0.7_t10_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-fixed_null_d-a0.7_t10_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_65-fixed_null_d-a0.7_t10_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-winner-fold_65-fixed_null_d",
+      "passed": true,
+      "winner": "a0.5_t1_r0.7",
+      "expected": "a0.5_t1_r0.7"
+    },
+    {
+      "id": "full-grid-cells-fold_80",
+      "passed": true,
+      "actual": 18
+    },
+    {
+      "id": "full-grid-floor-fold_80-zero_d-a0.5_t0.1_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-zero_d-a0.5_t0.1_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-zero_d-a0.5_t0.1_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-zero_d-a0.5_t1_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-zero_d-a0.5_t1_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-zero_d-a0.5_t1_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-zero_d-a0.5_t10_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-zero_d-a0.5_t10_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-zero_d-a0.5_t10_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-zero_d-a0.7_t0.1_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-zero_d-a0.7_t0.1_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-zero_d-a0.7_t0.1_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-zero_d-a0.7_t1_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-zero_d-a0.7_t1_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-zero_d-a0.7_t1_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-zero_d-a0.7_t10_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-zero_d-a0.7_t10_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-zero_d-a0.7_t10_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-winner-fold_80-zero_d",
+      "passed": true,
+      "winner": "a0.5_t1_r0.7",
+      "expected": "a0.5_t1_r0.7"
+    },
+    {
+      "id": "full-grid-floor-fold_80-fixed_null_d-a0.5_t0.1_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-fixed_null_d-a0.5_t0.1_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-fixed_null_d-a0.5_t0.1_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-fixed_null_d-a0.5_t1_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-fixed_null_d-a0.5_t1_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-fixed_null_d-a0.5_t1_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-fixed_null_d-a0.5_t10_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-fixed_null_d-a0.5_t10_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-fixed_null_d-a0.5_t10_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-fixed_null_d-a0.7_t0.1_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-fixed_null_d-a0.7_t0.1_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-fixed_null_d-a0.7_t0.1_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-fixed_null_d-a0.7_t1_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-fixed_null_d-a0.7_t1_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-fixed_null_d-a0.7_t1_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-fixed_null_d-a0.7_t10_r0.4",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-fixed_null_d-a0.7_t10_r0.7",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-floor-fold_80-fixed_null_d-a0.7_t10_r0.8",
+      "passed": true,
+      "records": 3
+    },
+    {
+      "id": "full-grid-winner-fold_80-fixed_null_d",
+      "passed": true,
+      "winner": "a0.5_t1_r0.7",
+      "expected": "a0.5_t1_r0.7"
+    },
+    {
+      "id": "full-grid-first-fold",
+      "passed": true,
+      "actual": {
+        "zero_d": -8.504026846555462,
+        "fixed_null_d": -4.5556494789236694
+      }
+    },
+    {
+      "id": "full-grid-totals",
+      "passed": true,
+      "actual": {
+        "zero_d": -11.43117364480338,
+        "fixed_null_d": -5.005783652743219
+      }
+    },
+    {
+      "id": "full-grid-control-reconciliation",
+      "passed": true
+    },
+    {
+      "id": "clamped-clock",
+      "passed": true,
+      "fold1": -24.791220122952495,
+      "pooled": -26.89847669866535
+    },
+    {
+      "id": "autonomous-complete",
+      "passed": true
+    },
+    {
+      "id": "autonomous-table-rows",
+      "passed": true,
+      "actual": 4
+    },
+    {
+      "id": "autonomous-row-Early",
+      "passed": true,
+      "displayed": [
+        -291.5675,
+        -301.5859,
+        -10.0184
+      ],
+      "expected": [
+        -291.56748584479317,
+        -301.5858889781259,
+        -10.018403133332754
+      ]
+    },
+    {
+      "id": "autonomous-additivity-Early-null",
+      "passed": true
+    },
+    {
+      "id": "autonomous-selected-Early-null",
+      "passed": true
+    },
+    {
+      "id": "autonomous-additivity-Early-inhibited",
+      "passed": true
+    },
+    {
+      "id": "autonomous-selected-Early-inhibited",
+      "passed": true
+    },
+    {
+      "id": "autonomous-beta-Early",
+      "passed": true
+    },
+    {
+      "id": "autonomous-row-Middle",
+      "passed": true,
+      "displayed": [
+        -170.2334,
+        -170.2334,
+        0.0
+      ],
+      "expected": [
+        -170.23343788914514,
+        -170.23344086604158,
+        -2.9768964395771036e-06
+      ]
+    },
+    {
+      "id": "autonomous-additivity-Middle-null",
+      "passed": true
+    },
+    {
+      "id": "autonomous-selected-Middle-null",
+      "passed": true
+    },
+    {
+      "id": "autonomous-additivity-Middle-inhibited",
+      "passed": true
+    },
+    {
+      "id": "autonomous-selected-Middle-inhibited",
+      "passed": true
+    },
+    {
+      "id": "autonomous-beta-Middle",
+      "passed": true
+    },
+    {
+      "id": "autonomous-row-Late",
+      "passed": true,
+      "displayed": [
+        -523.5999,
+        -526.527,
+        -2.9272
+      ],
+      "expected": [
+        -523.5998541954157,
+        -526.5270058970881,
+        -2.9271517016724147
+      ]
+    },
+    {
+      "id": "autonomous-additivity-Late-null",
+      "passed": true
+    },
+    {
+      "id": "autonomous-selected-Late-null",
+      "passed": true
+    },
+    {
+      "id": "autonomous-additivity-Late-inhibited",
+      "passed": true
+    },
+    {
+      "id": "autonomous-selected-Late-inhibited",
+      "passed": true
+    },
+    {
+      "id": "autonomous-beta-Late",
+      "passed": true
+    },
+    {
+      "id": "autonomous-pooled",
+      "passed": true,
+      "actual": -12.945557811901608,
+      "displayed": -12.9456
+    }
+  ],
+  "notes": []
+}

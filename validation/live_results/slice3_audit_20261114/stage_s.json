@@ -1,0 +1,355 @@
+{
+  "schema": "slice3_stage_s_v1",
+  "created_utc": "2026-11-14T10:02:30.914520+00:00",
+  "scope": "Stage S continuous area density: six aggregate contrasts, the five-component score decomposition, the selected sigma/eta table, and the exact projected cell-area lift identity.",
+  "passed": true,
+  "counts": {
+    "main_rows": 6,
+    "decomposition": [
+      -10.47004144312271,
+      -4.471988026210269,
+      21.33383326252102,
+      1452.4120801591341,
+      0.0,
+      1458.803883952321
+    ],
+    "sigma_rows": 3,
+    "cell_areas_km2": [
+      214656.78097897625,
+      214656.78097897625,
+      214656.78097897625,
+      233213.23970741194,
+      233213.23970741194,
+      233213.23970741194,
+      249994.80486367145,
+      249994.80486367145,
+      249994.80486367145
+    ]
+  },
+  "checks": [
+    {
+      "id": "s-main-rows",
+      "passed": true,
+      "actual": 6
+    },
+    {
+      "id": "s-main-E_cont-E_lift",
+      "passed": true,
+      "row": [
+        "{}\\modeltag{E}{cont}\\allowbreak{}-\\allowbreak{}\\modeltag{E}{lift}",
+        "+549.866921",
+        "+457.463557",
+        "+451.473406",
+        "+1458.803884",
+        "+2.383666477"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "s-main-E_cont-E_oldD_lift",
+      "passed": true,
+      "row": [
+        "{}\\modeltag{E}{cont}\\allowbreak{}-\\allowbreak{}E\\_\\allowbreak{}oldD\\_\\allowbreak{}lift",
+        "+549.307187",
+        "+462.729938",
+        "+451.046777",
+        "+1463.083902",
+        "+2.390659970"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "s-main-E_cont-E_global",
+      "passed": true,
+      "row": [
+        "{}\\modeltag{E}{cont}\\allowbreak{}-\\allowbreak{}\\modeltag{E}{global}",
+        "+657.856745",
+        "+614.999257",
+        "+614.858124",
+        "+1887.714125",
+        "+3.084500205"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "s-main-I_cont_zone-E_cont",
+      "passed": true,
+      "row": [
+        "{}I\\_\\allowbreak{}cont\\_\\allowbreak{}zone-\\modeltag{E}{cont}",
+        "+0.000032",
+        "-0.211419",
+        "-0.186526",
+        "-0.397913",
+        "-0.000650184"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "s-main-I_cont_globalG-E_cont",
+      "passed": true,
+      "row": [
+        "{}I\\_\\allowbreak{}cont\\_\\allowbreak{}globalG-\\modeltag{E}{cont}",
+        "+0.000032",
+        "-0.000016",
+        "-0.000004",
+        "+0.000013",
+        "+0.000000021"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "s-main-E_lift-E_oldD_lift",
+      "passed": true,
+      "row": [
+        "{}\\modeltag{E}{lift}\\allowbreak{}-\\allowbreak{}E\\_\\allowbreak{}oldD\\_\\allowbreak{}lift",
+        "-0.559734",
+        "+5.266381",
+        "-0.426630",
+        "+4.280018",
+        "+0.006993493"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "s-decomposition-rows",
+      "passed": true,
+      "actual": 6
+    },
+    {
+      "id": "s-decomposition-Regional timing",
+      "passed": true,
+      "row": [
+        "{}Regional timing",
+        "-10.470041"
+      ],
+      "expected": -10.47004144312271
+    },
+    {
+      "id": "s-decomposition-Conditional zone",
+      "passed": true,
+      "row": [
+        "{}Conditional zone",
+        "-4.471988"
+      ],
+      "expected": -4.471988026210269
+    },
+    {
+      "id": "s-decomposition-Conditional cell within zone",
+      "passed": true,
+      "row": [
+        "{}Conditional cell within zone",
+        "+21.333833"
+      ],
+      "expected": 21.33383326252102
+    },
+    {
+      "id": "s-decomposition-Within-cell area logdensity",
+      "passed": true,
+      "row": [
+        "{}Within-cell area logdensity",
+        "+1452.412080"
+      ],
+      "expected": 1452.4120801591341
+    },
+    {
+      "id": "s-decomposition-Magnitude",
+      "passed": true,
+      "row": [
+        "{}Magnitude",
+        "0.000000"
+      ],
+      "expected": 0.0
+    },
+    {
+      "id": "s-decomposition-Joint",
+      "passed": true,
+      "row": [
+        "{}Joint",
+        "+1458.803884"
+      ],
+      "expected": 1458.803883952321
+    },
+    {
+      "id": "s-decomposition-identity",
+      "passed": true,
+      "components": [
+        -10.47004144312271,
+        -4.471988026210269,
+        21.33383326252102,
+        1452.4120801591341,
+        0.0,
+        1458.803883952321
+      ]
+    },
+    {
+      "id": "s-display-component-sum",
+      "passed": true
+    },
+    {
+      "id": "s-sigma-rows",
+      "passed": true,
+      "actual": 3
+    },
+    {
+      "id": "s-sigma-report-rows",
+      "passed": true,
+      "actual": 3
+    },
+    {
+      "id": "s-sigma-row-0",
+      "passed": true,
+      "displayed": [
+        5.0,
+        150.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        5,
+        150,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "s-sigma-authority-0",
+      "passed": true
+    },
+    {
+      "id": "s-sigma-row-1",
+      "passed": true,
+      "displayed": [
+        15.0,
+        150.0,
+        0.068954189,
+        0.0
+      ],
+      "expected": [
+        15,
+        150,
+        0.068954189,
+        0.0
+      ]
+    },
+    {
+      "id": "s-sigma-authority-1",
+      "passed": true
+    },
+    {
+      "id": "s-sigma-row-2",
+      "passed": true,
+      "displayed": [
+        15.0,
+        5.0,
+        0.021703682,
+        0.0
+      ],
+      "expected": [
+        15,
+        5,
+        0.021703682,
+        0.0
+      ]
+    },
+    {
+      "id": "s-sigma-authority-2",
+      "passed": true
+    },
+    {
+      "id": "s-area-sum",
+      "passed": true,
+      "areas": [
+        214656.78097897625,
+        214656.78097897625,
+        214656.78097897625,
+        233213.23970741194,
+        233213.23970741194,
+        233213.23970741194,
+        249994.80486367145,
+        249994.80486367145,
+        249994.80486367145
+      ]
+    },
+    {
+      "id": "s-lift-within-0",
+      "passed": true,
+      "stored": -2514.002464449012,
+      "computed": -2514.0024644490118
+    },
+    {
+      "id": "s-lift-joint-0",
+      "passed": true,
+      "stored": -2953.8758061835106,
+      "computed": -2953.87580618351
+    },
+    {
+      "id": "s-lift-within-1",
+      "passed": true,
+      "stored": -1907.4011190709882,
+      "computed": -1907.401119070987
+    },
+    {
+      "id": "s-lift-joint-1",
+      "passed": true,
+      "stored": -2227.576717793844,
+      "computed": -2227.5767177938433
+    },
+    {
+      "id": "s-lift-within-2",
+      "passed": true,
+      "stored": -3137.993440634203,
+      "computed": -3137.9934406342004
+    },
+    {
+      "id": "s-lift-joint-2",
+      "passed": true,
+      "stored": -3893.2726765079146,
+      "computed": -3893.272676507912
+    },
+    {
+      "id": "s-aggregate-cont-oldD",
+      "passed": true
+    },
+    {
+      "id": "s-fold-joint-sums",
+      "passed": true
+    }
+  ],
+  "notes": []
+}

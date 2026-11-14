@@ -1,0 +1,1394 @@
+{
+  "schema": "slice3_stage_c1_v1",
+  "created_utc": "2026-11-14T10:02:30.871431+00:00",
+  "scope": "Stage C1 three-zone local/global controls: five aggregate contrasts, fifteen per-fold rows, and forty-five exact zone-decomposition rows.",
+  "passed": true,
+  "counts": {
+    "main_rows": 5,
+    "fold_rows": 15,
+    "zone_rows": 45
+  },
+  "checks": [
+    {
+      "id": "c1-main-rows",
+      "passed": true,
+      "actual": 5
+    },
+    {
+      "id": "c1-main-E0_local-E0_global",
+      "passed": true,
+      "row": [
+        "{}\\modeltag{E0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global}",
+        "1.82819",
+        "347.958",
+        "0",
+        "349.786",
+        "0.571546",
+        "3/3"
+      ],
+      "expected": {
+        "regional_timing": 1.8281895442937923,
+        "conditional_zone": 347.95825688740535,
+        "mark": 0.0,
+        "joint": 349.7864464316991,
+        "nats_per_event": 0.5715464810975476
+      }
+    },
+    {
+      "id": "c1-main-I0_local-I0_global",
+      "passed": true,
+      "row": [
+        "{}\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{I0}{global}",
+        "17.9369",
+        "346.636",
+        "0",
+        "364.573",
+        "0.595708",
+        "3/3"
+      ],
+      "expected": {
+        "regional_timing": 17.936859574686167,
+        "conditional_zone": 346.63623676590186,
+        "mark": 0.0,
+        "joint": 364.573096340588,
+        "nats_per_event": 0.5957076737591307
+      }
+    },
+    {
+      "id": "c1-main-I0_local-E0_local",
+      "passed": true,
+      "row": [
+        "{}\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{local}",
+        "-2.07774",
+        "-1.32202",
+        "0",
+        "-3.39976",
+        "-0.00555516",
+        "0/3"
+      ],
+      "expected": {
+        "regional_timing": -2.0777405357728185,
+        "conditional_zone": -1.322020121504039,
+        "mark": 0.0,
+        "joint": -3.399760657276829,
+        "nats_per_event": -0.005555164472674557
+      }
+    },
+    {
+      "id": "c1-main-I0_global-E0_global",
+      "passed": true,
+      "row": [
+        "{}\\modeltag{I0}{global}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global}",
+        "-18.1864",
+        "\\shortstack[r]{$-5.11591$\\\\$\\times10^{-13}$}",
+        "0",
+        "-18.1864",
+        "-0.0297164",
+        "0/3"
+      ],
+      "expected": {
+        "regional_timing": -18.186410566165193,
+        "conditional_zone": -5.115907697472721e-13,
+        "mark": 0.0,
+        "joint": -18.186410566165705,
+        "nats_per_event": -0.029716357134257687
+      }
+    },
+    {
+      "id": "c1-main-(I0_local-E0_local)-(I0_global-E0_global)",
+      "passed": true,
+      "row": [
+        "{}(\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{local})-(\\modeltag{I0}{global}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global})",
+        "16.1087",
+        "-1.32202",
+        "0",
+        "14.7866",
+        "0.0241612",
+        "2/3"
+      ],
+      "expected": {
+        "regional_timing": 16.108670030392375,
+        "conditional_zone": -1.3220201215035274,
+        "mark": 0.0,
+        "joint": 14.786649908888876,
+        "nats_per_event": 0.02416119266158313
+      }
+    },
+    {
+      "id": "c1-fold-rows",
+      "passed": true,
+      "actual": 15
+    },
+    {
+      "id": "c1-fold-0-E0_local-E0_global",
+      "passed": true,
+      "row": [
+        "{}0",
+        "\\modeltag{E0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global}",
+        "203",
+        "103.29",
+        "1.81424",
+        "-2.08324",
+        "107.188",
+        "105.105"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-fold-0-I0_local-I0_global",
+      "passed": true,
+      "row": [
+        "{}0",
+        "\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{I0}{global}",
+        "203",
+        "134.194",
+        "-12.3089",
+        "14.0738",
+        "107.812",
+        "121.885"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-fold-0-I0_local-E0_local",
+      "passed": true,
+      "row": [
+        "{}0",
+        "\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{local}",
+        "203",
+        "-3.00076",
+        "2.7929",
+        "-0.831697",
+        "0.623835",
+        "-0.207862"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-fold-0-I0_global-E0_global",
+      "passed": true,
+      "row": [
+        "{}0",
+        "\\modeltag{I0}{global}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global}",
+        "203",
+        "-33.9047",
+        "16.916",
+        "-16.9887",
+        "\\shortstack[r]{$-1.13687$\\\\$\\times10^{-13}$}",
+        "-16.9887"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-fold-1-E0_local-E0_global",
+      "passed": true,
+      "row": [
+        "{}1",
+        "\\modeltag{E0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global}",
+        "155",
+        "113.7",
+        "5.30083",
+        "1.79756",
+        "117.203",
+        "119.001"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-fold-1-I0_local-I0_global",
+      "passed": true,
+      "row": [
+        "{}1",
+        "\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{I0}{global}",
+        "155",
+        "116.119",
+        "-0.282139",
+        "0.579009",
+        "115.258",
+        "115.837"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-fold-1-I0_local-E0_local",
+      "passed": true,
+      "row": [
+        "{}1",
+        "\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{local}",
+        "155",
+        "0.385632",
+        "-3.57753",
+        "-1.24604",
+        "-1.94585",
+        "-3.1919"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-fold-1-I0_global-E0_global",
+      "passed": true,
+      "row": [
+        "{}1",
+        "\\modeltag{I0}{global}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global}",
+        "155",
+        "-2.03292",
+        "2.00544",
+        "-0.0274878",
+        "\\shortstack[r]{$1.13687$\\\\$\\times10^{-13}$}",
+        "-0.0274878"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-fold-2-E0_local-E0_global",
+      "passed": true,
+      "row": [
+        "{}2",
+        "\\modeltag{E0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global}",
+        "254",
+        "121.606",
+        "4.07498",
+        "2.11386",
+        "123.567",
+        "125.681"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-fold-2-I0_local-I0_global",
+      "passed": true,
+      "row": [
+        "{}2",
+        "\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{I0}{global}",
+        "254",
+        "126.523",
+        "0.327849",
+        "3.28405",
+        "123.567",
+        "126.851"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-fold-2-I0_local-E0_local",
+      "passed": true,
+      "row": [
+        "{}2",
+        "\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{local}",
+        "254",
+        "\\shortstack[r]{$-4.43908$\\\\$\\times10^{-6}$}",
+        "\\shortstack[r]{$1.47191$\\\\$\\times10^{-6}$}",
+        "\\shortstack[r]{$-2.6669$\\\\$\\times10^{-6}$}",
+        "\\shortstack[r]{$-3.00271$\\\\$\\times10^{-7}$}",
+        "\\shortstack[r]{$-2.96717$\\\\$\\times10^{-6}$}"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-fold-2-I0_global-E0_global",
+      "passed": true,
+      "row": [
+        "{}2",
+        "\\modeltag{I0}{global}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global}",
+        "254",
+        "-4.91733",
+        "3.74714",
+        "-1.17019",
+        "\\shortstack[r]{$-5.11591$\\\\$\\times10^{-13}$}",
+        "-1.17019"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-fold-0-(I0_local-E0_local)-(I0_global-E0_global)",
+      "passed": true,
+      "row": [
+        "{}0",
+        "(\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{local})-(\\modeltag{I0}{global}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global})",
+        "203",
+        "30.904",
+        "-14.1231",
+        "16.157",
+        "0.623835",
+        "16.7809"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-fold-1-(I0_local-E0_local)-(I0_global-E0_global)",
+      "passed": true,
+      "row": [
+        "{}1",
+        "(\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{local})-(\\modeltag{I0}{global}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global})",
+        "155",
+        "2.41856",
+        "-5.58296",
+        "-1.21855",
+        "-1.94585",
+        "-3.16441"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-fold-2-(I0_local-E0_local)-(I0_global-E0_global)",
+      "passed": true,
+      "row": [
+        "{}2",
+        "(\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{local})-(\\modeltag{I0}{global}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global})",
+        "254",
+        "4.91732",
+        "-3.74714",
+        "1.17018",
+        "\\shortstack[r]{$-3.00271$\\\\$\\times10^{-7}$}",
+        "1.17018"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-rows",
+      "passed": true,
+      "actual": 45
+    },
+    {
+      "id": "c1-zone-0-E0_local-E0_global-south",
+      "passed": true,
+      "row": [
+        "{}0",
+        "\\modeltag{E0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global}",
+        "south",
+        "43",
+        "24.4051",
+        "2.40447",
+        "26.8096"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-0-E0_local-E0_global-central",
+      "passed": true,
+      "row": [
+        "{}0",
+        "\\modeltag{E0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global}",
+        "central",
+        "37",
+        "-2.32422",
+        "17.1847",
+        "14.8605"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-0-E0_local-E0_global-north",
+      "passed": true,
+      "row": [
+        "{}0",
+        "\\modeltag{E0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global}",
+        "north",
+        "123",
+        "81.2094",
+        "-17.775",
+        "63.4344"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-0-I0_local-I0_global-south",
+      "passed": true,
+      "row": [
+        "{}0",
+        "\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{I0}{global}",
+        "south",
+        "43",
+        "37.0734",
+        "-1.66038",
+        "35.413"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-0-I0_local-I0_global-central",
+      "passed": true,
+      "row": [
+        "{}0",
+        "\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{I0}{global}",
+        "central",
+        "37",
+        "9.42696",
+        "10.7779",
+        "20.2049"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-0-I0_local-I0_global-north",
+      "passed": true,
+      "row": [
+        "{}0",
+        "\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{I0}{global}",
+        "north",
+        "123",
+        "87.694",
+        "-21.4264",
+        "66.2676"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-0-I0_local-E0_local-south",
+      "passed": true,
+      "row": [
+        "{}0",
+        "\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{local}",
+        "south",
+        "43",
+        "0.532678",
+        "-0.243298",
+        "0.289381"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-0-I0_local-E0_local-central",
+      "passed": true,
+      "row": [
+        "{}0",
+        "\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{local}",
+        "central",
+        "37",
+        "-0.366395",
+        "0.224714",
+        "-0.141682"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-0-I0_local-E0_local-north",
+      "passed": true,
+      "row": [
+        "{}0",
+        "\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{local}",
+        "north",
+        "123",
+        "-3.16705",
+        "2.81148",
+        "-0.355561"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-0-I0_global-E0_global-south",
+      "passed": true,
+      "row": [
+        "{}0",
+        "\\modeltag{I0}{global}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global}",
+        "south",
+        "43",
+        "-12.1355",
+        "3.82156",
+        "-8.31398"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-0-I0_global-E0_global-central",
+      "passed": true,
+      "row": [
+        "{}0",
+        "\\modeltag{I0}{global}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global}",
+        "central",
+        "37",
+        "-12.1176",
+        "6.63152",
+        "-5.48605"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-0-I0_global-E0_global-north",
+      "passed": true,
+      "row": [
+        "{}0",
+        "\\modeltag{I0}{global}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global}",
+        "north",
+        "123",
+        "-9.65163",
+        "6.46293",
+        "-3.18871"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-1-E0_local-E0_global-south",
+      "passed": true,
+      "row": [
+        "{}1",
+        "\\modeltag{E0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global}",
+        "south",
+        "115",
+        "130.41",
+        "-109.594",
+        "20.8165"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-1-E0_local-E0_global-central",
+      "passed": true,
+      "row": [
+        "{}1",
+        "\\modeltag{E0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global}",
+        "central",
+        "23",
+        "-12.0792",
+        "40.2793",
+        "28.2001"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-1-E0_local-E0_global-north",
+      "passed": true,
+      "row": [
+        "{}1",
+        "\\modeltag{E0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global}",
+        "north",
+        "17",
+        "-4.63109",
+        "74.6154",
+        "69.9844"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-1-I0_local-I0_global-south",
+      "passed": true,
+      "row": [
+        "{}1",
+        "\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{I0}{global}",
+        "south",
+        "115",
+        "128.878",
+        "-108.752",
+        "20.1265"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-1-I0_local-I0_global-central",
+      "passed": true,
+      "row": [
+        "{}1",
+        "\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{I0}{global}",
+        "central",
+        "23",
+        "-9.14046",
+        "36.0405",
+        "26.9"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-1-I0_local-I0_global-north",
+      "passed": true,
+      "row": [
+        "{}1",
+        "\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{I0}{global}",
+        "north",
+        "17",
+        "-3.61925",
+        "72.4293",
+        "68.8101"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-1-I0_local-E0_local-south",
+      "passed": true,
+      "row": [
+        "{}1",
+        "\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{local}",
+        "south",
+        "115",
+        "-2.77278",
+        "1.28366",
+        "-1.48912"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-1-I0_local-E0_local-central",
+      "passed": true,
+      "row": [
+        "{}1",
+        "\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{local}",
+        "central",
+        "23",
+        "2.62957",
+        "-3.62209",
+        "-0.992518"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-1-I0_local-E0_local-north",
+      "passed": true,
+      "row": [
+        "{}1",
+        "\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{local}",
+        "north",
+        "17",
+        "0.528839",
+        "-1.2391",
+        "-0.710261"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-1-I0_global-E0_global-south",
+      "passed": true,
+      "row": [
+        "{}1",
+        "\\modeltag{I0}{global}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global}",
+        "south",
+        "115",
+        "-1.24078",
+        "0.441674",
+        "-0.799105"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-1-I0_global-E0_global-central",
+      "passed": true,
+      "row": [
+        "{}1",
+        "\\modeltag{I0}{global}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global}",
+        "central",
+        "23",
+        "-0.309142",
+        "0.616751",
+        "0.307609"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-1-I0_global-E0_global-north",
+      "passed": true,
+      "row": [
+        "{}1",
+        "\\modeltag{I0}{global}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global}",
+        "north",
+        "17",
+        "-0.483004",
+        "0.947012",
+        "0.464008"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-2-E0_local-E0_global-south",
+      "passed": true,
+      "row": [
+        "{}2",
+        "\\modeltag{E0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global}",
+        "south",
+        "66",
+        "-1.36256",
+        "33.6904",
+        "32.3278"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-2-E0_local-E0_global-central",
+      "passed": true,
+      "row": [
+        "{}2",
+        "\\modeltag{E0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global}",
+        "central",
+        "129",
+        "108.706",
+        "-54.8",
+        "53.906"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-2-E0_local-E0_global-north",
+      "passed": true,
+      "row": [
+        "{}2",
+        "\\modeltag{E0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global}",
+        "north",
+        "59",
+        "14.2625",
+        "25.1847",
+        "39.4472"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-2-I0_local-I0_global-south",
+      "passed": true,
+      "row": [
+        "{}2",
+        "\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{I0}{global}",
+        "south",
+        "66",
+        "0.601783",
+        "32.4053",
+        "33.0071"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-2-I0_local-I0_global-central",
+      "passed": true,
+      "row": [
+        "{}2",
+        "\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{I0}{global}",
+        "central",
+        "129",
+        "110.286",
+        "-55.8122",
+        "54.4742"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-2-I0_local-I0_global-north",
+      "passed": true,
+      "row": [
+        "{}2",
+        "\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{I0}{global}",
+        "north",
+        "59",
+        "15.6351",
+        "23.7347",
+        "39.3698"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-2-I0_local-E0_local-south",
+      "passed": true,
+      "row": [
+        "{}2",
+        "\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{local}",
+        "south",
+        "66",
+        "\\shortstack[r]{$-2.68952$\\\\$\\times10^{-6}$}",
+        "\\shortstack[r]{$1.02233$\\\\$\\times10^{-6}$}",
+        "\\shortstack[r]{$-1.66719$\\\\$\\times10^{-6}$}"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-2-I0_local-E0_local-central",
+      "passed": true,
+      "row": [
+        "{}2",
+        "\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{local}",
+        "central",
+        "129",
+        "\\shortstack[r]{$-6.95975$\\\\$\\times10^{-7}$}",
+        "\\shortstack[r]{$-4.98334$\\\\$\\times10^{-7}$}",
+        "\\shortstack[r]{$-1.19431$\\\\$\\times10^{-6}$}"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-2-I0_local-E0_local-north",
+      "passed": true,
+      "row": [
+        "{}2",
+        "\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{local}",
+        "north",
+        "59",
+        "\\shortstack[r]{$-1.05358$\\\\$\\times10^{-6}$}",
+        "\\shortstack[r]{$9.47913$\\\\$\\times10^{-7}$}",
+        "\\shortstack[r]{$-1.05669$\\\\$\\times10^{-7}$}"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-2-I0_global-E0_global-south",
+      "passed": true,
+      "row": [
+        "{}2",
+        "\\modeltag{I0}{global}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global}",
+        "south",
+        "66",
+        "-1.96435",
+        "1.28506",
+        "-0.679292"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-2-I0_global-E0_global-central",
+      "passed": true,
+      "row": [
+        "{}2",
+        "\\modeltag{I0}{global}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global}",
+        "central",
+        "129",
+        "-1.58037",
+        "1.01213",
+        "-0.568246"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-2-I0_global-E0_global-north",
+      "passed": true,
+      "row": [
+        "{}2",
+        "\\modeltag{I0}{global}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global}",
+        "north",
+        "59",
+        "-1.3726",
+        "1.44995",
+        "0.077351"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-0-(I0_local-E0_local)-(I0_global-E0_global)-south",
+      "passed": true,
+      "row": [
+        "{}0",
+        "(\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{local})-(\\modeltag{I0}{global}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global})",
+        "south",
+        "43",
+        "12.6682",
+        "-4.06485",
+        "8.60336"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-0-(I0_local-E0_local)-(I0_global-E0_global)-central",
+      "passed": true,
+      "row": [
+        "{}0",
+        "(\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{local})-(\\modeltag{I0}{global}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global})",
+        "central",
+        "37",
+        "11.7512",
+        "-6.40681",
+        "5.34437"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-0-(I0_local-E0_local)-(I0_global-E0_global)-north",
+      "passed": true,
+      "row": [
+        "{}0",
+        "(\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{local})-(\\modeltag{I0}{global}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global})",
+        "north",
+        "123",
+        "6.48459",
+        "-3.65144",
+        "2.83315"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-1-(I0_local-E0_local)-(I0_global-E0_global)-south",
+      "passed": true,
+      "row": [
+        "{}1",
+        "(\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{local})-(\\modeltag{I0}{global}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global})",
+        "south",
+        "115",
+        "-1.532",
+        "0.841991",
+        "-0.690012"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-1-(I0_local-E0_local)-(I0_global-E0_global)-central",
+      "passed": true,
+      "row": [
+        "{}1",
+        "(\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{local})-(\\modeltag{I0}{global}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global})",
+        "central",
+        "23",
+        "2.93872",
+        "-4.23884",
+        "-1.30013"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-1-(I0_local-E0_local)-(I0_global-E0_global)-north",
+      "passed": true,
+      "row": [
+        "{}1",
+        "(\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{local})-(\\modeltag{I0}{global}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global})",
+        "north",
+        "17",
+        "1.01184",
+        "-2.18611",
+        "-1.17427"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-2-(I0_local-E0_local)-(I0_global-E0_global)-south",
+      "passed": true,
+      "row": [
+        "{}2",
+        "(\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{local})-(\\modeltag{I0}{global}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global})",
+        "south",
+        "66",
+        "1.96435",
+        "-1.28506",
+        "0.679291"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-2-(I0_local-E0_local)-(I0_global-E0_global)-central",
+      "passed": true,
+      "row": [
+        "{}2",
+        "(\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{local})-(\\modeltag{I0}{global}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global})",
+        "central",
+        "129",
+        "1.58037",
+        "-1.01213",
+        "0.568245"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-zone-2-(I0_local-E0_local)-(I0_global-E0_global)-north",
+      "passed": true,
+      "row": [
+        "{}2",
+        "(\\modeltag{I0}{local}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{local})-(\\modeltag{I0}{global}\\allowbreak{}-\\allowbreak{}\\modeltag{E0}{global})",
+        "north",
+        "59",
+        "1.3726",
+        "-1.44995",
+        "-0.0773511"
+      ],
+      "fields_ok": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "c1-identity-0-E0_local-E0_global",
+      "passed": true
+    },
+    {
+      "id": "c1-identity-0-I0_local-I0_global",
+      "passed": true
+    },
+    {
+      "id": "c1-identity-0-I0_local-E0_local",
+      "passed": true
+    },
+    {
+      "id": "c1-identity-0-I0_global-E0_global",
+      "passed": true
+    },
+    {
+      "id": "c1-identity-1-E0_local-E0_global",
+      "passed": true
+    },
+    {
+      "id": "c1-identity-1-I0_local-I0_global",
+      "passed": true
+    },
+    {
+      "id": "c1-identity-1-I0_local-E0_local",
+      "passed": true
+    },
+    {
+      "id": "c1-identity-1-I0_global-E0_global",
+      "passed": true
+    },
+    {
+      "id": "c1-identity-2-E0_local-E0_global",
+      "passed": true
+    },
+    {
+      "id": "c1-identity-2-I0_local-I0_global",
+      "passed": true
+    },
+    {
+      "id": "c1-identity-2-I0_local-E0_local",
+      "passed": true
+    },
+    {
+      "id": "c1-identity-2-I0_global-E0_global",
+      "passed": true
+    },
+    {
+      "id": "c1-identity-0-(I0_local-E0_local)-(I0_global-E0_global)",
+      "passed": true
+    },
+    {
+      "id": "c1-identity-1-(I0_local-E0_local)-(I0_global-E0_global)",
+      "passed": true
+    },
+    {
+      "id": "c1-identity-2-(I0_local-E0_local)-(I0_global-E0_global)",
+      "passed": true
+    },
+    {
+      "id": "c1-aggregate-E0_local-E0_global",
+      "passed": true
+    },
+    {
+      "id": "c1-aggregate-I0_local-I0_global",
+      "passed": true
+    },
+    {
+      "id": "c1-aggregate-I0_local-E0_local",
+      "passed": true
+    },
+    {
+      "id": "c1-aggregate-I0_global-E0_global",
+      "passed": true
+    },
+    {
+      "id": "c1-aggregate-(I0_local-E0_local)-(I0_global-E0_global)",
+      "passed": true
+    }
+  ],
+  "notes": []
+}
