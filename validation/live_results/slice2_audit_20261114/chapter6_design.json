@@ -1,0 +1,120 @@
+{
+  "schema": "slice2_chapter6_design_v1",
+  "passed": true,
+  "mainardi_log_rate_transform": {
+    "identity": "K_alpha(e^v)e^v = sin(pi*alpha)/(2*pi*(cosh(alpha*v)+cos(pi*alpha)))",
+    "symbolic_residual": "0",
+    "symbolic_pass": true,
+    "numeric_checks": {
+      "alpha=0.5,v=-3.0": {
+        "K_times_jacobian": 0.067656135249829,
+        "closed_form": 0.06765613524982901,
+        "abs_error": 1.3877787807814457e-17
+      },
+      "alpha=0.5,v=-0.5": {
+        "K_times_jacobian": 0.1543076611209205,
+        "closed_form": 0.15430766112092054,
+        "abs_error": 2.7755575615628914e-17
+      },
+      "alpha=0.5,v=0.0": {
+        "K_times_jacobian": 0.15915494309189535,
+        "closed_form": 0.15915494309189535,
+        "abs_error": 0.0
+      },
+      "alpha=0.5,v=1.5": {
+        "K_times_jacobian": 0.12292963458752056,
+        "closed_form": 0.12292963458752051,
+        "abs_error": 4.163336342344337e-17
+      },
+      "alpha=0.5,v=3.0": {
+        "K_times_jacobian": 0.067656135249829,
+        "closed_form": 0.06765613524982901,
+        "abs_error": 1.3877787807814457e-17
+      },
+      "alpha=0.7,v=-3.0": {
+        "K_times_jacobian": 0.03620358300695185,
+        "closed_form": 0.03620358300695186,
+        "abs_error": 6.938893903907228e-18
+      },
+      "alpha=0.7,v=-0.5": {
+        "K_times_jacobian": 0.27159053463327076,
+        "closed_form": 0.2715905346332708,
+        "abs_error": 5.551115123125783e-17
+      },
+      "alpha=0.7,v=0.0": {
+        "K_times_jacobian": 0.3123591633152281,
+        "closed_form": 0.3123591633152281,
+        "abs_error": 0.0
+      },
+      "alpha=0.7,v=1.5": {
+        "K_times_jacobian": 0.1267302068432542,
+        "closed_form": 0.12673020684325423,
+        "abs_error": 2.7755575615628914e-17
+      },
+      "alpha=0.7,v=3.0": {
+        "K_times_jacobian": 0.03620358300695185,
+        "closed_form": 0.03620358300695186,
+        "abs_error": 6.938893903907228e-18
+      }
+    },
+    "numeric_pass": true
+  },
+  "endpoint_index": {
+    "rule": "J=ceil(max(log(4)/alpha, log(4*sin(pi*alpha)/(pi*alpha*epsilon))/alpha)/s)",
+    "s": 0.4,
+    "epsilon": 1e-08,
+    "alpha_0.5": {
+      "J": 97,
+      "modes": 195
+    },
+    "alpha_0.7": {
+      "J": 68,
+      "modes": 137
+    },
+    "matches_displayed_195_and_137": true
+  },
+  "kernel_weight_comparison": {
+    "0.5": {
+      "modes_code": 195,
+      "modes_expected": 195,
+      "max_abs_weight_difference": 0.0,
+      "weights_sum": 1.0,
+      "minimum_weight": 2.390931733091318e-10,
+      "rates_match": true
+    },
+    "0.7": {
+      "modes_code": 137,
+      "modes_expected": 137,
+      "max_abs_weight_difference": 0.0,
+      "weights_sum": 0.9999999999999999,
+      "minimum_weight": 2.7724954097495097e-10,
+      "rates_match": true
+    }
+  },
+  "continuous_spectral_mass": {
+    "0.5": 1.0000000000000002,
+    "0.7": 1.0
+  },
+  "spectral_mass_pass": true,
+  "productivity_normalization": {
+    "integrand": "(1-r)e^{beta*r*m} * beta*e^{-beta*m} = beta(1-r)e^{-beta(1-r)m}",
+    "decay_integral": "1",
+    "symbolic_pass": true,
+    "numeric_value_at_r_0.7_beta_2.849401764894274": 1.0
+  },
+  "rank_probability_rule": {
+    "formula": "p=(1+sum_j 1{D_j>=D_q})/1000",
+    "tie_all_value": 1.0,
+    "cases": {
+      "below_all": 1.0,
+      "above_all": 0.001,
+      "at_median": 0.501
+    },
+    "passed": true
+  },
+  "source_hashes": {
+    "kernels.py": "3561ef3471adf349caebebc6c2ca12881f2a3d9c7c7415d15453b5be20b978ae",
+    "06_design.tex": "7d00f8624d514ec46b15f604adb5cb720226477b733a6cf5c96d9288e12f2613",
+    "methods_settings.json": "cb816300a0d67e53f40becb6b89547474cb63a5b09389247829e73c50b833701"
+  }
+}

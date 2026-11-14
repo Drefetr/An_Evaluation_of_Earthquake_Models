@@ -1,0 +1,259 @@
+{
+  "schema": "slice2_chapter7_synthetic_v1",
+  "passed": true,
+  "clopper_pearson": {
+    "Fixed-eta oracle": {
+      "detections": 150,
+      "requested": 150,
+      "detection_interval_recomputed": [
+        0.9757074028338915,
+        1.0
+      ],
+      "detection_interval_authority": [
+        0.9757074028338915,
+        1.0
+      ],
+      "detection_interval_match": true,
+      "null_rejections": 50,
+      "null_requested": 1000,
+      "null_interval_recomputed": [
+        0.0373353976046618,
+        0.06539048791549364
+      ],
+      "null_interval_authority": [
+        0.0373353976046618,
+        0.06539048791549364
+      ],
+      "null_interval_match": true
+    },
+    "Eta fit; background supplied": {
+      "detections": 150,
+      "requested": 150,
+      "detection_interval_recomputed": [
+        0.9757074028338915,
+        1.0
+      ],
+      "detection_interval_authority": [
+        0.9757074028338915,
+        1.0
+      ],
+      "detection_interval_match": true,
+      "null_rejections": 49,
+      "null_requested": 1000,
+      "null_interval_recomputed": [
+        0.03646705917204783,
+        0.06426605314016964
+      ],
+      "null_interval_authority": [
+        0.036467059172047823,
+        0.06426605314016964
+      ],
+      "null_interval_match": true
+    },
+    "Level fit; trend supplied": {
+      "detections": 123,
+      "requested": 150,
+      "detection_interval_recomputed": [
+        0.7490221049939839,
+        0.8779003724223797
+      ],
+      "detection_interval_authority": [
+        0.7490221049939838,
+        0.8779003724223797
+      ],
+      "detection_interval_match": true,
+      "null_rejections": 46,
+      "null_requested": 1000,
+      "null_interval_recomputed": [
+        0.0338714985476779,
+        0.06088355271374263
+      ],
+      "null_interval_authority": [
+        0.0338714985476779,
+        0.06088355271374263
+      ],
+      "null_interval_match": true
+    },
+    "Level and trend fit": {
+      "detections": 68,
+      "requested": 150,
+      "detection_interval_recomputed": [
+        0.3719742109510012,
+        0.5365724144187041
+      ],
+      "detection_interval_authority": [
+        0.3719742109510012,
+        0.5365724144187041
+      ],
+      "detection_interval_match": true,
+      "null_rejections": 44,
+      "null_requested": 1000,
+      "null_interval_recomputed": [
+        0.032149497010871414,
+        0.058620419206330925
+      ],
+      "null_interval_authority": [
+        0.032149497010871414,
+        0.058620419206330925
+      ],
+      "null_interval_match": true
+    },
+    "Historical fuller fit": {
+      "detections": 57,
+      "requested": 150,
+      "detection_interval_recomputed": [
+        0.3020771842542935,
+        0.4627631120547151
+      ],
+      "detection_interval_authority": [
+        0.30207718425429364,
+        0.4627631120547151
+      ],
+      "detection_interval_match": true,
+      "null_rejections": 50,
+      "null_requested": 1000,
+      "null_interval_recomputed": [
+        0.0373353976046618,
+        0.06539048791549364
+      ],
+      "null_interval_authority": [
+        0.0373353976046618,
+        0.06539048791549364
+      ],
+      "null_interval_match": true
+    }
+  },
+  "clopper_pearson_pass": true,
+  "main_detection_table": [
+    {
+      "row": "Known laws",
+      "authority": "Fixed-eta oracle",
+      "detections_text": "\\(150/150\\)",
+      "interval_text": "\\(97.57\\)--\\(100\\%\\)",
+      "null_text": "\\(50/1000\\)",
+      "detection_match": true,
+      "lower_match": true,
+      "upper_match": true,
+      "null_match": true
+    },
+    {
+      "row": "Eta estimated",
+      "authority": "Eta fit; background supplied",
+      "detections_text": "\\(150/150\\)",
+      "interval_text": "\\(97.57\\)--\\(100\\%\\)",
+      "null_text": "\\(49/1000\\)",
+      "detection_match": true,
+      "lower_match": true,
+      "upper_match": true,
+      "null_match": true
+    },
+    {
+      "row": "Level estimated",
+      "authority": "Level fit; trend supplied",
+      "detections_text": "\\(123/150\\)",
+      "interval_text": "\\(74.90\\)--\\(87.79\\%\\)",
+      "null_text": "\\(46/1000\\)",
+      "detection_match": true,
+      "lower_match": true,
+      "upper_match": true,
+      "null_match": true
+    },
+    {
+      "row": "Level and trend",
+      "authority": "Level and trend fit",
+      "detections_text": "\\(68/150\\)",
+      "interval_text": "\\(37.20\\)--\\(53.66\\%\\)",
+      "null_text": "\\(44/1000\\)",
+      "detection_match": true,
+      "lower_match": true,
+      "upper_match": true,
+      "null_match": true
+    },
+    {
+      "row": "Historical fuller",
+      "authority": "Historical fuller fit",
+      "detections_text": "\\(57/150\\)",
+      "interval_text": "\\(30.21\\)--\\(46.28\\%\\)",
+      "null_text": "\\(50/1000\\)",
+      "detection_match": true,
+      "lower_match": true,
+      "upper_match": true,
+      "null_match": true
+    }
+  ],
+  "main_detection_table_pass": true,
+  "paired_mcse": {
+    "eta_sensitivity": {
+      "b": 29,
+      "c": 21,
+      "N": 150,
+      "dbar": 0.05333333333333334,
+      "mcse_fraction": 0.04709613820849451,
+      "mcse_percentage_points": 4.709613820849451,
+      "displayed_percentage_points": 4.7096,
+      "authority_mcse_fraction": 0.047096138208494516,
+      "authority_match": true
+    },
+    "level_vs_level_trend": {
+      "b": 61,
+      "c": 6,
+      "N": 150,
+      "dbar": 0.36666666666666664,
+      "mcse_fraction": 0.0457760980846319,
+      "mcse_percentage_points": 4.57760980846319,
+      "displayed_percentage_points": 4.5776
+    }
+  },
+  "mcse_pass": true,
+  "achieved_suppression_percent": {
+    "initial": 14.158662370318172,
+    "adjusted": 19.359822703660413,
+    "displayed_initial": 14.159,
+    "displayed_adjusted": 19.36,
+    "initial_display_match": true,
+    "adjusted_display_match": true
+  },
+  "difficult_ten_optimizer_audit": {
+    "n_pairs": 20,
+    "maximum_phase_NLL_gain": 1.949956640601158e-08,
+    "maximum_null_phase_NLL_gain": 2.9103830456733704e-11,
+    "maximum_alternative_phase_NLL_gain": 1.949956640601158e-08,
+    "maximum_absolute_GLR_shift32": 3.8968174465026095e-08,
+    "displayed_phase_max": 1.94995664e-08,
+    "displayed_glr_max": 3.89681745e-08,
+    "phase_match": true,
+    "glr_match": true,
+    "summary_phase_match": true,
+    "summary_glr_match": true,
+    "screens": {
+      "material_phase_NLL_improvement": 0.001,
+      "material_absolute_direct_GLR_change": 0.1,
+      "baseline_robust_on_set": "All required diagnostics complete andvalidated, eachphasegain<.001 andeachabsGLRchange<.1. This means no material change found withinthisfinite search, notglobaloptimality.",
+      "likelihood_sensitive_only": "Somephasegain>=.001 but allabsGLRchanges<.1; report separate fromlargerstatisticchange.",
+      "statistic_sensitive": "AnyvalidatedabsGLRchange>=.1, reportcase/phase notnewrejectcount.",
+      "incomplete": "Anycase/method searchorvalidation unknown prevents all10robustness label; report checked witnesses/unknowns without completecase filtering",
+      "primary_results_remain_immutable": true,
+      "new_ranks_rejections_or_power_frequencies": false,
+      "old_reference_bank_valid_for_new_algorithm": false
+    },
+    "all_below_material_screens": true
+  },
+  "saved_likelihood_accounting": {
+    "n": 150,
+    "median_null_NLL_gain": 28.664981804137255,
+    "median_alternative_NLL_gain": 0.8622812293374409,
+    "displayed_null": 28.665,
+    "displayed_alternative": 0.862,
+    "null_display_match": true,
+    "alternative_display_match": true,
+    "null_exceeds_alternative_count": 150,
+    "summary_median_match": true
+  },
+  "source_hashes": {
+    "detection.json": "00ed04b234a05e4e5c8664cfd3614c64ea910d6c7639ddeedf6cd1d0857f10c1",
+    "paired.json": "a81fa9bbb40b39349e398ad1a13cefd65a7bf86ced4d16b78527424f172babc1",
+    "eta_study": "ec93b8df8777d94520e099569394ba9464d3029e34d3f6bd6543754deb319294",
+    "S14_paired_diagnostics.csv": "ab318fb6a67cb8460077e14168f5c1ed9272ff375d2d09484211f5b527ca3838",
+    "S11_statistic_decomposition.csv": "27f43895f1194a8437b2778207d34f13256cd7a0dc6d3f1e6e952d129e516f4c"
+  }
+}

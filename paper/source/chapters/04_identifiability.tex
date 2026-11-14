@@ -213,15 +213,18 @@ Two dimensionally exact statements replace it. First, retaining the clipping in
 the full-process bound gives
 \[
 D_{\mathrm{KL}}(P_\eta\Vert P_0)
-\le \mathcal B\min\{1,\eta^2K_T\},
+\le \min\{\mathcal B,\eta^2K_T\}
+= \mathcal B\min\{1,\eta^2K_T/\mathcal B\},
 \qquad K_T=\frac{B_{\max}^2C_Tm\mathcal B}{n(1-n)}.
 \]
 Indeed \(B^2/(B+nH_e)\le B\min\{1,B_{\max}/(nH_e)\}\), so the integrand is at
 most \(B\min\{1,\eta^2B_{\max}G_s^2/(nH_e)\}\); Jensen's inequality for the
 concave minimum, Lemma~\ref{lem:weighted_history} and
-\(\E_\eta N(T)\le\mathcal B/(1-n)\) prove the display. This is a full-process
-bound for unbounded marks, but it still equals one for
-\(\eta\ge\sqrt{2/K_T}=2.3362\times10^{-3}\).
+\(\E_\eta N(T)\le\mathcal B/(1-n)\) prove the display. The first alternative
+cannot exceed the integrated background mass \(\mathcal B\); the second carries
+the factor \(\mathcal B\) already present in \(K_T\). This is a full-process
+bound for unbounded marks, but the resulting Pinsker test-error bound still
+equals one for \(\eta\ge\sqrt{2/K_T}=2.3362\times10^{-3}\).
 
 Second, on a history containing exactly one event at \(s\) with mark \(Q\), put
 \(u=t-s\). Then \(G_s=g(Q)\Phi_s(u)\), \(H_e=\kappa(Q)h_e(u)\), and the entropy

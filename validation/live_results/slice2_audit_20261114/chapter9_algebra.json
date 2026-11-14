@@ -1,0 +1,102 @@
+{
+  "schema": "slice2_chapter9_algebra_v1",
+  "passed": true,
+  "column_stochasticity": {
+    "column_sums": [
+      "1",
+      "1"
+    ],
+    "P_p_equals_p": [
+      "0",
+      "0"
+    ],
+    "passed": true
+  },
+  "conditional_productivity_means": {
+    "m0": "(1 - exp(3*beta*c/10))*exp(7*beta*c/10)/(1 - exp(beta*c))",
+    "m0_expected": "(1 - exp(-3*beta*c/10))/(1 - exp(-beta*c))",
+    "m1": "exp(7*beta*c/10)",
+    "m1_expected": "exp(7*beta*c/10)",
+    "weighted_mean_identity": "1",
+    "passed": true
+  },
+  "perron_examples": {
+    "rows": [
+      {
+        "h": 0.0,
+        "delta": 0.0,
+        "rho": 1.0,
+        "spectral_radius_K": 0.4,
+        "one_transpose_K_p": 0.39999999999999997,
+        "n": 0.4,
+        "difference": -5.551115123125783e-17
+      },
+      {
+        "h": 0.0,
+        "delta": 0.3,
+        "rho": 1.0571013000212495,
+        "spectral_radius_K": 0.4000000000000001,
+        "one_transpose_K_p": 0.4,
+        "n": 0.4,
+        "difference": 0.0
+      },
+      {
+        "h": 0.0,
+        "delta": -0.4,
+        "rho": 0.9587817175977361,
+        "spectral_radius_K": 0.4,
+        "one_transpose_K_p": 0.39999999999999997,
+        "n": 0.4,
+        "difference": -5.551115123125783e-17
+      },
+      {
+        "h": 0.5,
+        "delta": 0.0,
+        "rho": 1.724471627792567,
+        "spectral_radius_K": 0.4000000000000001,
+        "one_transpose_K_p": 0.23195510645311423,
+        "n": 0.4,
+        "difference": -0.1680448935468858
+      },
+      {
+        "h": 0.5,
+        "delta": 0.3,
+        "rho": 1.9882434401496096,
+        "spectral_radius_K": 0.39999999999999997,
+        "one_transpose_K_p": 0.2126703961244717,
+        "n": 0.4,
+        "difference": -0.18732960387552833
+      },
+      {
+        "h": -0.3,
+        "delta": -0.4,
+        "rho": 0.8506238561740377,
+        "spectral_radius_K": 0.39999999999999997,
+        "one_transpose_K_p": 0.45086048816461566,
+        "n": 0.4,
+        "difference": 0.050860488164615636
+      }
+    ],
+    "spectral_radius_equals_n": true,
+    "h_zero_immigrant_offspring_equals_n": true,
+    "h_nonzero_breaks_identity": true,
+    "scope": "With h=0 the transition matrix has rank one with columns p, so K p=n p and 1^T K p=n for every delta. Nonzero h generally breaks the identity, even at delta=0, because the class-specific productivity means differ under r=0.7; delta then modifies the Perron root."
+  },
+  "productivity_derivative_residual": "0",
+  "moments": {
+    "integral": "(1 - r)**m/(-m*r + 1)",
+    "expected": "(1 - r)**m/(-m*r + 1)",
+    "residual": "0",
+    "finite_iff_mr_lt_1": true
+  },
+  "nll_gradient_formula": {
+    "derivative": "n*Derivative(K(r), r) - n*Derivative(H(r), r)/(B + n*H(r))",
+    "expected": "n*Derivative(K(r), r) - n*Derivative(H(r), r)/(B + n*H(r))",
+    "residual": "0",
+    "passed": true
+  },
+  "class_history_conditional_probability_residual": [
+    "0",
+    "0"
+  ]
+}

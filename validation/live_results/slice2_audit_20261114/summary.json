@@ -1,0 +1,90 @@
+{
+  "schema": "slice2_audit_v1",
+  "created_utc": "2026-11-14T06:57:02.839454+00:00",
+  "baseline_commit": "ce8581b",
+  "scope": "Vertical Triad Slice 2: Chapters 6, 7, 9 (Sections 9.1--9.13), Appendix B.7, completed S02, Stage A projection, Stage B temporal scales, and Extension O continuous Omori tuning.",
+  "passed": true,
+  "components": {
+    "chapter6_design": true,
+    "chapter7_synthetic": true,
+    "chapter9_algebra": true,
+    "chapter9_magnitude_tables": true,
+    "chapter9_pilot_tables": true,
+    "chapter9_stage_abc": true,
+    "s02_completed": true,
+    "claim_ledger": true,
+    "sealed_authority_integrity": true,
+    "projection_gradients": true,
+    "manuscript_repairs": true,
+    "code_consistency": true
+  },
+  "counts": {
+    "chapter7_procedures": 5,
+    "chapter7_table_rows": 5,
+    "chapter9_algebra_checks": 7,
+    "history_table_rows": 7,
+    "productivity_table_rows": 3,
+    "cross_run_rows": 3,
+    "pilot_frequency_rows": 6,
+    "pilot_paired_rows": 4,
+    "stage_a_fold_rows": 63,
+    "stage_b_fold_rows": 9,
+    "stage_o_fold_rows": 54,
+    "aggregate_rows": 42,
+    "s02_selection_rows": 6,
+    "s02_paired_rows": 4,
+    "claim_ledger_checked": 3357,
+    "sealed_json_unchanged": 724,
+    "orthogonalization_mappings": 63
+  },
+  "defects_and_repairs": [
+    {
+      "id": "slice2-carryover-visible-bound-display",
+      "file": "paper/source/chapters/04_identifiability.tex",
+      "locator": "line 216 and docs/reviews/slice1_math_audit_20261114.md",
+      "finding": "K_T already contains the integrated background mass B; the display B*min{1,eta^2*K_T} therefore double-counts B. The correct clipped statement is min{B,eta^2*K_T}=B*min{1,eta^2*K_T/B}.",
+      "status": "fixed"
+    },
+    {
+      "id": "slice2-extension-o-fold0-vs-aggregate",
+      "file": "paper/source/chapters/09_temporal_mark_extensions.tex",
+      "locator": "line 1195 versus tab:OG-primary/OG6, line 1238",
+      "finding": "The prose Fold 0 raw-versus-orthogonal contrast is -0.361471 nats; the three-fold aggregate OG6 is -0.361468 nats because Fold 1 contributes +0.000003373 nats and Fold 2 is numerically zero. The exact 3.4e-6-nat decomposition is now stated explicitly.",
+      "status": "clarified"
+    },
+    {
+      "id": "slice2-decision-log-math-formatting",
+      "file": "paper/source/chapters/09_temporal_mark_extensions.tex",
+      "locator": "Sections 9.7--9.11, lines 935--1210",
+      "finding": "Raw log strings and unformatted mathematical tokens were replaced with prose and math mode; all numeric literals were preserved.",
+      "status": "fixed"
+    },
+    {
+      "id": "slice2-stale-spatial-launch-sentence",
+      "file": "paper/source/chapters/09_temporal_mark_extensions.tex",
+      "locator": "line 1204",
+      "finding": "The pre-launch statement that S was merely frozen was stale because the spatial extension has since been executed and reported in Chapter 10.",
+      "status": "fixed"
+    }
+  ],
+  "artifacts": {
+    "chapter6_design": "validation/live_results/slice2_audit_20261114/chapter6_design.json",
+    "chapter7_synthetic": "validation/live_results/slice2_audit_20261114/chapter7_synthetic.json",
+    "chapter9_algebra": "validation/live_results/slice2_audit_20261114/chapter9_algebra.json",
+    "chapter9_magnitude_tables": "validation/live_results/slice2_audit_20261114/chapter9_magnitude_tables.json",
+    "chapter9_pilot_tables": "validation/live_results/slice2_audit_20261114/chapter9_pilot_tables.json",
+    "chapter9_stage_abc": "validation/live_results/slice2_audit_20261114/chapter9_stage_abc.json",
+    "s02_completed": "validation/live_results/slice2_audit_20261114/s02_completed.json",
+    "claim_ledger": "validation/live_results/slice2_audit_20261114/claim_ledger.json",
+    "sealed_authority_integrity": "validation/live_results/slice2_audit_20261114/sealed_authority_integrity.json",
+    "projection_gradients": "validation/live_results/slice2_audit_20261114/projection_gradients.json",
+    "manuscript_repairs": "validation/live_results/slice2_audit_20261114/manuscript_repairs.json",
+    "code_consistency": "validation/live_results/slice2_audit_20261114/code_consistency.json"
+  },
+  "environment": {
+    "python": "3.13.4",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "sympy": "1.14.0"
+  }
+}

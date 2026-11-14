@@ -39,11 +39,14 @@ The repair replaces the display with:
 
 1. a dimensionally exact **full-process clipped bound**
    \[
-   D_{\mathrm{KL}}(P_\eta\Vert P_0)\le \mathcal B\min\{1,\eta^2K_T\},
+   D_{\mathrm{KL}}(P_\eta\Vert P_0)\le \min\{\mathcal B,\eta^2K_T\}
+   = \mathcal B\min\{1,\eta^2K_T/\mathcal B\},
    \qquad
    K_T=\frac{B_{\max}^2C_Tm\mathcal B}{n(1-n)},
    \]
-   which is rigorous for unbounded marks but still equals one for
+   which is rigorous for unbounded marks. The first alternative is the
+   integrated background mass and the second already contains its factor
+   \(\mathcal B\); the resulting Pinsker test-error bound still equals one for
    \(\eta\ge\sqrt{2/K_T}=2.3362\times10^{-3}\); and
 2. a dimensionally exact **one-event single-parent bound**
    \[
@@ -174,11 +177,15 @@ concave minimum, Lemma 4.1, and
 
 \[
 D_{\mathrm{KL}}(P_\eta\Vert P_0)
-\le\mathcal B\min\{1,\eta^2K_T\}.
+\le\min\{\mathcal B,\eta^2K_T\}
+=\mathcal B\min\{1,\eta^2K_T/\mathcal B\}.
 \]
 
+The first alternative is the integrated background mass; the second already
+contains the factor \(\mathcal B\) inside \(K_T=3.6644466\times10^{5}\).
 This is rigorous for the declared unbounded exponential marks. It is a
-full-process statement, but it remains vacuous for
+full-process statement, but the Pinsker test-error bound built from
+\(K_T\) remains vacuous for
 \(\eta\ge\sqrt{2/K_T}=2.3362\times10^{-3}\).
 
 ### 3.2 One-event single-parent bound

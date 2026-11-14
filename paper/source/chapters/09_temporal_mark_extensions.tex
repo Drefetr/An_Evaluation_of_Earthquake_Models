@@ -935,9 +935,9 @@ The variants reuse the same targets. Mark-score differences cancel; timing is th
 
 Orthogonalization is an invertible unrestricted coordinate transformation. Identical boxes in raw and transformed coordinates define different constrained families, including intercept constraints. The projection removes exposure drift; it does not establish likelihood-score orthogonality. Constant-background restrictions have different meanings in the two coordinates.
 
-Omori parameters were selected by training E0 on the fixed nine-point grid and shared within each excitation/inhibition pair. The ML stress survival law and r=.7 remained fixed. This is not exact replication of Iteration27 continuous kernel/productivity selection.
+Omori parameters were selected by training $E_0$ on the fixed nine-point grid and shared within each excitation/inhibition pair. The ML stress survival law and $r=0.7$ remained fixed. This is not exact replication of the Iteration~27 continuous kernel/productivity selection.
 
-Historical Fold0 raw inhibition loss around -16.99 nats is contextual. Compare against the newly recomputed raw baseline and retain differences due to nuisance/optimizer estimation. Selected parameters, mapped feasibility, bound flags, training-only coefficients and Gram diagnostics are saved in results/analysis.
+Historical Fold~0 raw inhibition loss of about $-16.99$ nats is contextual. Compare it against the newly recomputed raw baseline and retain differences due to nuisance and optimizer estimation. Selected parameters, mapped feasibility, bound flags, training-only coefficients and Gram diagnostics are saved in \path{results/analysis}.
 
 These comparisons use the inspected chronological windows and the common interpretation in Section~\ref{sec:empirical-interpretation}. Stage A preceded the completed Stage B and C studies reported later in this volume.
 
@@ -946,12 +946,12 @@ These comparisons use the inspected chronological windows and the common interpr
 
 The independent computational auditor reconstructed local raw rows, nuisance estimates, kernels, quadrature and projection; checked every saved candidate and solver return, exact floors, all planned start slots and aggregate score entries. Internal optimizer line-search iterates were not all serialized.
 
-\subsection{Fold0 reconciliation}
+\subsection{Fold~0 reconciliation}
 
 
-Historical rawI-minus-E0: -16.988778741 nats; recomputed rawI-minus-E0: -16.988735123; difference: +0.000043618.
-Orthogonal ML inhibition minus E0: -16.988768914; orthogonal-minus-raw improvement: -0.000033791 nats.
-Matched Omori inhibition minus its E0: -16.404033164; Omori E0 minus ML E0: -3.210666185; combined orthogonal Omori minus ML E0: -19.614699350 nats.
+The historical raw-inhibition-minus-$E_0$ contrast is $-16.988778741$ nats, whereas the recomputed raw contrast is $-16.988735123$ nats, a difference of $+0.000043618$ nats.
+The orthogonal ML inhibition minus $E_0$ contrast is $-16.988768914$ nats, an orthogonal-minus-raw improvement of $-0.000033791$ nats.
+The matched Omori inhibition minus its own $E_0$ is $-16.404033164$ nats; the Omori $E_0$ minus the ML $E_0$ is $-3.210666185$ nats; and the combined orthogonal Omori minus ML $E_0$ is $-19.614699350$ nats.
 These are arithmetic contrasts of separately trained constrained procedures, not a causal decomposition.
 
 
@@ -1056,50 +1056,50 @@ strictly below $0.01$ nats/event.
 \section{Stage B audited results, historical bridge and failed association gate}
 
 
-Allowing one common Mittag-Leffler timescale improves pooled event-timing forecasts in all three retained windows. Additional parent-class timescales give a small positive aggregate gain, but improve only one window against the common-scale model. The predeclared association gate therefore fails, and no observed h model was fitted. This is a completed gated investigation, not a negative result for the unexecuted h branch.
+Allowing one common Mittag-Leffler timescale improves pooled event-timing forecasts in all three retained windows. Additional parent-class timescales give a small positive aggregate gain, but improve only one window against the common-scale model. The predeclared association gate therefore fails, and no observed $h$ model was fitted. This is a completed gated investigation, not a negative result for the unexecuted $h$ branch.
 
 \subsection{Audited comparisons}
 
 
-All nine observed fit procedures and 72 prescribed starts completed. The independent raw-row audit reconciled 90 candidates and 72 solver returns, with no failed finite solver returns. The two fixed-seed engineering histories also completed eight procedures/64 starts, including the optional h engine. Near-optimal forecast stability and source/input integrity gates passed.
+All nine observed fit procedures and 72 prescribed starts completed. The independent raw-row audit reconciled 90 candidates and 72 solver returns, with no failed finite solver returns. The two fixed-seed engineering histories also completed eight procedures and 64 starts, including the optional $h$ engine. Near-optimal forecast stability and source/input integrity gates passed.
 
-The 612 targets occur in disjoint chronological windows containing 203, 155 and 254 events; their training prefixes overlap. All three observed models use fixed r=0.7, the same training-only beta per case, h=0 and the same magnitude density. Mark differences cancel up to floating-point roundoff, so timing and joint gains coincide.
-
-
-Here the historical E field is the ground event-log-intensity contrast, denoted $\Delta Q$ in this volume and C is the baseline-minus-candidate compensator, so $\Delta Q+\Delta C$ equals timing. Timing plus the conditional-mark contrast equals joint score. These are event-weighted sums divided by 612, rather than unweighted averages of fold rates.
+The 612 targets occur in disjoint chronological windows containing 203, 155 and 254 events; their training prefixes overlap. All three observed models use fixed $r=0.7$, the same training-only $\beta$ per case, $h=0$ and the same magnitude density. Mark differences cancel up to floating-point roundoff, so timing and joint gains coincide.
 
 
-The common-scale gain is consistent across these windows, although Fold 0's gain is only 0.077011 nats. The class-specific aggregate is positive, not a net loss. Its inconsistency against the stronger common-scale comparator is the reason the next branch stops. Winning two windows against the fixed tau=1 baseline is not the declared gate.
+Here the historical $E$ field is the ground event-log-intensity contrast, denoted $\Delta Q$ in this volume, and $C$ is the baseline-minus-candidate compensator, so $\Delta Q+\Delta C$ equals timing. Timing plus the conditional-mark contrast equals the joint score. These are event-weighted sums divided by 612, rather than unweighted averages of fold rates.
+
+
+The common-scale gain is consistent across these windows, although Fold~0's gain is only $0.077011$ nats. The class-specific aggregate is positive, not a net loss. Its inconsistency against the stronger common-scale comparator is the reason the next branch stops. Winning two windows against the fixed $\tau=1$~day baseline is not the declared gate.
 
 \subsection{Scale and selection limits}
 
 
-All selected parameters are interior to their prescribed bounds. The allowed tau range was 0.001 to 20 days, including subhour values, but none of the observed fitted scales is subhour. There is no lower-bound truncation explanation for these selected estimates and no bound expansion was performed.
+All selected parameters are interior to their prescribed bounds. The allowed $\tau$ range was $0.001$ to $20$ days, including subhour values, but none of the observed fitted scales is subhour. There is no lower-bound truncation explanation for these selected estimates and no bound expansion was performed.
 
-Class 0 means 5.0$\leq$M<5.5 and class 1 means M$\geq$5.5. The kernels attach to the parent's class. The fitted ordering changes: class 0 is faster in Fold 0 but slower in Folds 1 and 2. These fits do not establish a stable physical magnitude ordering of aftershock timescales. Tau is a normalized-kernel scale, not a finite aftershock-duration cutoff, and is not interchangeable with Omori c.
+Class~0 means $5.0\le M<5.5$ and class~1 means $M\ge 5.5$. The kernels attach to the parent's class. The fitted ordering changes: class~0 is faster in Fold~0 but slower in Folds~1 and~2. These fits do not establish a stable physical magnitude ordering of aftershock timescales. The scale $\tau$ is a normalized-kernel scale, not a finite aftershock-duration cutoff, and is not interchangeable with Omori $c$.
 
 Training NLL improves under exact nested floors. The additional class-specific training gains against the common model are approximately 0.012055, 1.867655 and 5.248592 nats, yet two held-out windows lose. Neither training improvement nor passing near-optimal forecast checks certifies physical scale identification or a global optimizer.
 
 \subsection{Optional association branch}
 
 
-The prospective rule required class-specific h=0 timing to exceed common-scale timing by more than 0.0001 total nats in at least two windows, after complete fitting, independent computational audit and forecast stability. Only Fold 1 qualifies. The audited gate is false: zero of the conditional three observed h procedures/24 starts were executed. The h code, derivatives and synthetic engineering were validated before observing this decision; engineering validation is not observed evidence for or against association.
+The prospective rule required class-specific $h=0$ timing to exceed common-scale timing by more than $0.0001$ total nats in at least two windows, after complete fitting, independent computational audit and forecast stability. Only Fold~1 qualifies. The audited gate is false: zero of the conditional three observed $h$ procedures and their 24 starts were executed. The $h$ code, derivatives and synthetic engineering were validated before observing this decision; engineering validation is not observed evidence for or against association.
 
-The optional mathematical family preserves the legacy Perron normalization. With parent-class kernels, summing the column-stochastic transition matrix still gives ground intensity B+(n/rho(h))(H0+H1). Association h adds no new direct temporal shape conditional on observed parent history; its scalar n/rho effect is already an excitation-amplitude coordinate. At fixed effective amplitude, timing is invariant to h, while conditional mark probabilities can change. No target-class kernels or post-gate model family were introduced.
+The optional mathematical family preserves the legacy Perron normalization. With parent-class kernels, summing the column-stochastic transition matrix still gives the ground intensity $B+\{n/\rho(h)\}(H_0+H_1)$. Association $h$ adds no new direct temporal shape conditional on observed parent history; its scalar $n/\rho$ effect is already an excitation-amplitude coordinate. At fixed effective amplitude, timing is invariant to $h$, while conditional mark probabilities can change. No target-class kernels or post-gate model family were introduced.
 
 \subsection{Historical Omori reference}
 
 
 The immutable historical Omori total is -990.170063 joint nats. The new fixed-scale, common-scale and class-scale procedures have raw joint totals of approximately -984.684158, -977.300484 and -976.292651. Their raw differences from historical Omori are +5.485905, +12.869579 and +13.877412 nats, respectively.
 
-These are descriptive cross-procedure comparisons, not matched kernel-only gains. Historical selected productivity ratios are [0.4,0.7,0.7], whereas B fixes 0.7 throughout; only Fold 0 has that productivity mismatch. All three historical beta estimates use a different global-MLE convention. Beta also enters productivity weights, so this difference affects timing as well as magnitude scores. Historical Omori also used its own continuous shape/scale selection.
+These are descriptive cross-procedure comparisons, not matched kernel-only gains. Historical selected productivity ratios are $[0.4,0.7,0.7]$, whereas Stage~B fixes $r=0.7$ throughout; only Fold~0 has that productivity mismatch. All three historical $\beta$ estimates use a different global-MLE convention. The mark rate also enters productivity weights, so this difference affects timing as well as magnitude scores. Historical Omori also used its own continuous shape/scale selection.
 
-For common free tau, the raw historical difference splits into +10.389214 timing and +2.480366 magnitude nats. Magnitude terms therefore cannot be cancelled across those recipes. The matched B free-scale gain remains +7.383674 nats; the larger historical difference cannot be attributed solely to freeing tau. No prior Omori fit was rerun or overwritten, and no new matched Omori model was fitted.
+For common free $\tau$, the raw historical difference splits into $+10.389214$ timing and $+2.480366$ magnitude nats. Magnitude terms therefore cannot be cancelled across those recipes. The matched Stage~B free-scale gain remains $+7.383674$ nats; the larger historical difference cannot be attributed solely to freeing $\tau$. No prior Omori fit was rerun or overwritten, and no new matched Omori model was fitted.
 
 \subsection{Delimited conclusion}
 
 
-The supported result is a modest, consistent timing gain from a common free ML scale in this bounded pooled procedure. Parent-class scales add a smaller positive aggregate but fail the predeclared across-window continuation criterion. Optional h remains untested on observed data.
+The supported result is a modest, consistent timing gain from a common free ML scale in this bounded pooled procedure. Parent-class scales add a smaller positive aggregate but fail the predeclared across-window continuation criterion. The optional $h$ association remains untested on observed data.
 
 This retains the original regional B design despite earlier spatial results; it is not a combined spatial-temporal validation or an independently replicated catalogue. All windows were previously examined. The common inferential and optimization boundaries are stated in Section~\ref{sec:empirical-interpretation}.
 
@@ -1183,27 +1183,27 @@ Continuously training-tuned Omori excitation improved held-out timing over the f
 All 45 planned procedures and 360 prescribed starts completed; the independent raw-row audit reconciled 456 candidates and 360 solver returns and found stable near-optimal forecasts. Model selection used training NLL only. Magnitude scores are identical within each case, so every displayed timing difference is also the joint difference.
 
 
-The matched orthogonal model won only Fold 1 by 0.175158 nats and lost Folds 0 and 2. The jointly tuned inhibitory model lost all three primary windows. Its 2.333937-nat aggregate improvement over matched orthogonal inhibition is secondary; it does not turn the inhibitory versus excitatory comparison positive.
+The matched orthogonal model won only Fold~1 by $0.175158$ nats and lost Folds~0 and~2. The jointly tuned inhibitory model lost all three primary windows. Its $2.333937$-nat aggregate improvement over matched orthogonal inhibition is secondary; it does not turn the inhibitory versus excitatory comparison positive.
 
-For E\_omori minus E\_ml, the event-log-intensity gain was 17.242145 nats and the compensator contribution was -5.036642 nats, giving +12.205503. For matched orthogonal inhibition minus E\_omori, the event contribution was -37.002313 and the compensator contribution +22.865140, leaving -14.137174. Lower exposure could not offset lost event intensity.
+For $E_{\mathrm{omori}}$ minus $E_{\mathrm{ml}}$, the event-log-intensity gain was $17.242145$ nats and the compensator contribution was $-5.036642$ nats, giving $+12.205503$. For matched orthogonal inhibition minus $E_{\mathrm{omori}}$, the event contribution was $-37.002313$ and the compensator contribution $+22.865140$, leaving $-14.137174$. Lower exposure could not offset lost event intensity.
 
 The training-selected primary excitation kernels are reported in Table~\ref{tab:o-kernels} in Appendix~\ref{app:audit09-extension-o-kernels}.
 
 
-These c and p estimates are interior to the prospectively fixed bounds. The short selected c values explain why the earlier coarse grid with minimum c=0.1 day did not adequately search this continuous family. This is a scale parameter of a heavy-tailed kernel, not an estimated physical recovery duration. Stress itself still uses the original fixed ML survival kernel; only triggering was continuously tuned.
+These $c$ and $p$ estimates are interior to the prospectively fixed bounds. The short selected $c$ values explain why the earlier coarse grid with minimum $c=0.1$~day did not adequately search this continuous family. This is a scale parameter of a heavy-tailed kernel, not an estimated physical recovery duration. Stress itself still uses the original fixed ML survival kernel; only triggering was continuously tuned.
 
-Orthogonalization did not rescue the primary loss. In Fold 0 raw inhibition reached its raw d=2 upper boundary. Its selected point maps feasibly into orthogonal coordinates, while the orthogonal optimum maps back to raw d=2.114439 and lies outside the raw box. The orthogonal fit improves training NLL by only 0.005858 nats but loses a further 0.361471 test nats. In Folds 1 and 2 the selected points map feasibly both ways and their forecasts agree up to numerical optimization differences. Thus the small primary difference between raw and orthogonal procedures is explained by a changed bounded parameter domain, rather than a new unrestricted model space. Exposure orthogonality is not likelihood-score orthogonality.
+Orthogonalization did not rescue the primary loss. In Fold~0 raw inhibition reached its raw $d=2$ upper boundary. Its selected point maps feasibly into orthogonal coordinates, while the orthogonal optimum maps back to raw $d=2.114439$ and lies outside the raw box. The orthogonal fit improves training NLL by only $0.005858$ nats but loses a further $0.361471$ test nats in Fold~0. The corresponding three-fold aggregate is $-0.361468$ nats in Table~\ref{tab:OG-primary} (\texttt{OG6}); Fold~1 contributes $+0.000003373$ nats and Fold~2 contributes approximately $0$ nats, so the $3.4\times10^{-6}$-nat difference between the Fold~0 value and the aggregate is transparent. In Folds~1 and~2 the selected points map feasibly both ways and their forecasts agree up to numerical optimization differences. Thus the small primary difference between raw and orthogonal procedures is explained by a changed bounded parameter domain, rather than a new unrestricted model space. Exposure orthogonality is not likelihood-score orthogonality.
 
-The constant-background sensitivity fixes raw d=0 or detrended d\_tilde=0 respectively. These are different restrictions; all selected mapped raw/orth constant-case points violate the destination constant restriction. Their contrast cannot be interpreted as pure reparameterization. The post-1980 variant changes the training window and its projection/nuisance estimates, while retaining full prior event history.
+The constant-background sensitivity fixes raw $d=0$ or detrended $\widetilde d=0$ respectively. These are different restrictions; all selected mapped raw/orth constant-case points violate the destination constant restriction. Their contrast cannot be interpreted as pure reparameterization. The post-1980 variant changes the training window and its projection/nuisance estimates, while retaining full prior event history.
 
 
 Omori excitation wins all three windows in each sensitivity variant. Every inhibitory aggregate remains negative. Constant-background detrended inhibition improves over raw inhibition by 5.449474 nats, but still loses 8.796918 nats against its matched excitatory comparator. The same test events are reused across variants and must not be pooled as 1,836 independent targets.
 
-Within this bounded, regionally pooled fixed-productivity family, inhibitory failure therefore persists after replacing the inferior fixed ML trigger with continuously tuned Omori excitation. It cannot be attributed solely to that fixed-trigger choice or solely to the raw trend boundary. This does not establish that physical stress inhibition is absent, and it does not test continuous spatial stress or a joint spatial/temporal extension. The historical Iteration 27 Omori result uses a different nuisance recipe, including the Fold 0 productivity ratio and training magnitude estimator; the present gain is a new internally matched comparison, not a numerical reproduction of that historical score.
+Within this bounded, regionally pooled fixed-productivity family, inhibitory failure therefore persists after replacing the inferior fixed ML trigger with continuously tuned Omori excitation. It cannot be attributed solely to that fixed-trigger choice or solely to the raw trend boundary. This does not establish that physical stress inhibition is absent, and it does not test continuous spatial stress or a joint spatial/temporal extension. The historical Iteration~27 Omori result uses a different nuisance recipe, including the Fold~0 productivity ratio and training magnitude estimator; the present gain is a new internally matched comparison, not a numerical reproduction of that historical score.
 
-The catalogue and windows were previously inspected, and three chronological tests provide limited robustness evidence. The common inferential and optimization boundaries in Section~\ref{sec:empirical-interpretation} apply. S was designed and frozen before these outcomes; its launch is governed by correctness and resource admission, not this score direction.
+The catalogue and windows were previously inspected, and three chronological tests provide limited robustness evidence. The common inferential and optimization boundaries in Section~\ref{sec:empirical-interpretation} apply. The spatial extension was subsequently executed and is reported in Chapter~\ref{ch:nz-spatial}; its results do not follow from the score direction reported here.
 
-Exact per-window scores, parameters, boundary flags and both-direction mapping diagnostics are in summary.json. The independent raw-row reconciliation is in observed\_saved\_audit\_v1.json.
+Exact per-window scores, parameters, boundary flags and both-direction mapping diagnostics are in \path{summary.json}. The independent raw-row reconciliation is in \path{observed_saved_audit_v1.json}.
 
 \noindent The extension O complete fold score accounting is retained in \hyperref[app:audit09-extension-o-folds]{Appendix~\ref{app:audit09-extension-o-folds}}.
 
