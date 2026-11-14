@@ -1,0 +1,353 @@
+{
+  "schema": "slice4_manuscript_repairs_v1",
+  "created_utc": "2026-11-14T11:36:35.765805+00:00",
+  "scope": "Byte-level numeric-preservation check and presence/absence checks for every confirmed Slice 4 editorial and mathematical repair.",
+  "passed": true,
+  "counts": {
+    "numeric_preservation": {
+      "appendix_tables/ch11_backup.tex": {
+        "before": 486,
+        "after": 486,
+        "removed": []
+      },
+      "appendix_tables/ch12_audit.tex": {
+        "before": 1190,
+        "after": 1190,
+        "removed": []
+      },
+      "chapters/11_external_transfer_benchmarks.tex": {
+        "before": 186,
+        "after": 186,
+        "removed": []
+      },
+      "chapters/11_s03_completed.tex": {
+        "before": 43,
+        "after": 43,
+        "removed": []
+      },
+      "chapters/11_s06_completed.tex": {
+        "before": 89,
+        "after": 89,
+        "removed": []
+      },
+      "chapters/11_score_uncertainty.tex": {
+        "before": 31,
+        "after": 31,
+        "removed": []
+      },
+      "chapters/12_conditional_calibration.tex": {
+        "before": 39,
+        "after": 39,
+        "removed": []
+      },
+      "chapters/12_s05_completed.tex": {
+        "before": 38,
+        "after": 38,
+        "removed": []
+      }
+    },
+    "required_tokens": 20
+  },
+  "checks": [
+    {
+      "id": "repair-source-snapshot",
+      "passed": true,
+      "actual": 8
+    },
+    {
+      "id": "numeric-preservation-appendix_tables/ch11_backup.tex",
+      "passed": true,
+      "removed": [],
+      "before": 486,
+      "after": 486
+    },
+    {
+      "id": "numeric-preservation-appendix_tables/ch12_audit.tex",
+      "passed": true,
+      "removed": [],
+      "before": 1190,
+      "after": 1190
+    },
+    {
+      "id": "numeric-preservation-chapters/11_external_transfer_benchmarks.tex",
+      "passed": true,
+      "removed": [],
+      "before": 186,
+      "after": 186
+    },
+    {
+      "id": "numeric-preservation-chapters/11_s03_completed.tex",
+      "passed": true,
+      "removed": [],
+      "before": 43,
+      "after": 43
+    },
+    {
+      "id": "numeric-preservation-chapters/11_s06_completed.tex",
+      "passed": true,
+      "removed": [],
+      "before": 89,
+      "after": 89
+    },
+    {
+      "id": "numeric-preservation-chapters/11_score_uncertainty.tex",
+      "passed": true,
+      "removed": [],
+      "before": 31,
+      "after": 31
+    },
+    {
+      "id": "numeric-preservation-chapters/12_conditional_calibration.tex",
+      "passed": true,
+      "removed": [],
+      "before": 39,
+      "after": 39
+    },
+    {
+      "id": "numeric-preservation-chapters/12_s05_completed.tex",
+      "passed": true,
+      "removed": [],
+      "before": 38,
+      "after": 38
+    },
+    {
+      "id": "repair-present-r-eq",
+      "passed": true,
+      "token": "$r=0.7$"
+    },
+    {
+      "id": "repair-present-m40",
+      "passed": true,
+      "token": "$M\\geq 4.0$"
+    },
+    {
+      "id": "repair-present-m45",
+      "passed": true,
+      "token": "$M\\geq 4.5$"
+    },
+    {
+      "id": "repair-present-m6",
+      "passed": true,
+      "token": "$M\\geq 6$"
+    },
+    {
+      "id": "repair-present-m50",
+      "passed": true,
+      "token": "$M\\,5.0$"
+    },
+    {
+      "id": "repair-present-mw",
+      "passed": true,
+      "token": "$M_{\\mathrm w}$"
+    },
+    {
+      "id": "repair-present-beta",
+      "passed": true,
+      "token": "The rate $\\beta$"
+    },
+    {
+      "id": "repair-present-u-interval",
+      "passed": true,
+      "token": "$u<t\\leq u+30$~days"
+    },
+    {
+      "id": "repair-present-bench-sci",
+      "passed": true,
+      "token": "$8.19\\times 10^{-11}$"
+    },
+    {
+      "id": "repair-present-m45-sci",
+      "passed": true,
+      "token": "$1.13\\times 10^{-11}$"
+    },
+    {
+      "id": "repair-present-seq-sci",
+      "passed": true,
+      "token": "$4.55\\times 10^{-13}$"
+    },
+    {
+      "id": "repair-present-jma-sci",
+      "passed": true,
+      "token": "$1.82\\times 10^{-10}$"
+    },
+    {
+      "id": "repair-present-jma-tol",
+      "passed": true,
+      "token": "$10^{-4}$-nat"
+    },
+    {
+      "id": "repair-present-jma-spread",
+      "passed": true,
+      "token": "$3.75\\times 10^{-5}$"
+    },
+    {
+      "id": "repair-absent-raw-r",
+      "passed": true,
+      "pattern": "r = 0.7"
+    },
+    {
+      "id": "repair-absent-raw-m40",
+      "passed": true,
+      "pattern": "M $\\geq$ 4.0"
+    },
+    {
+      "id": "repair-absent-raw-m45",
+      "passed": true,
+      "pattern": "M $\\geq$ 4.5"
+    },
+    {
+      "id": "repair-absent-raw-m6",
+      "passed": true,
+      "pattern": "M $\\geq$ 6"
+    },
+    {
+      "id": "repair-absent-raw-m50",
+      "passed": true,
+      "pattern": "M5.0"
+    },
+    {
+      "id": "repair-absent-raw-mw",
+      "passed": true,
+      "pattern": " Mw"
+    },
+    {
+      "id": "repair-absent-raw-beta",
+      "passed": true,
+      "pattern": " Beta"
+    },
+    {
+      "id": "repair-absent-raw-u",
+      "passed": true,
+      "pattern": "at u satisfies"
+    },
+    {
+      "id": "repair-absent-raw-sci",
+      "passed": true,
+      "found": []
+    },
+    {
+      "id": "repair-app11-m40",
+      "passed": true
+    },
+    {
+      "id": "repair-app11-m45",
+      "passed": true
+    },
+    {
+      "id": "repair-s05-point",
+      "passed": true,
+      "token": "$1.17143\\times 10^{-9}$"
+    },
+    {
+      "id": "repair-s05-score",
+      "passed": true,
+      "token": "$9.09495\\times 10^{-12}$"
+    },
+    {
+      "id": "repair-s05-other",
+      "passed": true,
+      "token": "$8.18545\\times 10^{-12}$"
+    },
+    {
+      "id": "repair-s05-cdf",
+      "passed": true,
+      "token": "$6.66134\\times 10^{-15}$"
+    },
+    {
+      "id": "repair-s05-event",
+      "passed": true,
+      "token": "$1.10134\\times 10^{-13}$"
+    },
+    {
+      "id": "repair-s05-gap",
+      "passed": true,
+      "token": "$1.15463\\times 10^{-14}$"
+    },
+    {
+      "id": "repair-s05-absent-raw",
+      "passed": true
+    },
+    {
+      "id": "repair-app12-raw-absent",
+      "passed": true
+    },
+    {
+      "id": "table-statement-primary-references",
+      "passed": true,
+      "tokens": [
+        "OC-FC timing",
+        "OC-OL location",
+        "Pooled (315)"
+      ]
+    },
+    {
+      "id": "table-statement-benchmark-denominator",
+      "passed": true,
+      "tokens": [
+        "OC minus reference, pooled 315",
+        "N0",
+        "EP"
+      ]
+    },
+    {
+      "id": "table-statement-threshold-denominators",
+      "passed": true,
+      "tokens": [
+        "$M\\geq 4.0$ nats/target (315)",
+        "$M\\geq 4.5$ nats/target (87)"
+      ]
+    },
+    {
+      "id": "table-statement-s03-caption",
+      "passed": true,
+      "tokens": [
+        "Positive values favour the first named arm",
+        "Targets"
+      ]
+    },
+    {
+      "id": "table-statement-s06-partition",
+      "passed": true,
+      "tokens": [
+        "OC minus FC joint contrasts",
+        "Full equals active plus complement",
+        "Active $N$ & Complement $N$"
+      ]
+    },
+    {
+      "id": "table-statement-s06-jma",
+      "passed": true,
+      "tokens": [
+        "Positive values favour OC",
+        "OC--FC timing",
+        "OC--EP joint"
+      ]
+    },
+    {
+      "id": "table-statement-s05-pvalues",
+      "passed": true,
+      "tokens": [
+        "inclusive-tail conventions",
+        "Conditional $N$",
+        "Min-rank"
+      ]
+    },
+    {
+      "id": "table-statement-appendix-jma-n",
+      "passed": true,
+      "tokens": [
+        "Fold 0 delta & Fold 1 delta & Fold 2 delta & N",
+        "1277"
+      ]
+    },
+    {
+      "id": "table-statement-s03-identity",
+      "passed": true,
+      "tokens": [
+        "the intermediate differences telescope",
+        "counts the $(3-2)$ step twice"
+      ]
+    }
+  ],
+  "notes": []
+}

@@ -1,0 +1,60 @@
+{
+  "schema": "slice4_claim_ledger_v1",
+  "created_utc": "2026-11-14T11:36:35.557362+00:00",
+  "scope": "Independent resolution of the master claim ledger and literal display presence for the eight Slice 4 LaTeX sources.",
+  "passed": true,
+  "counts": {
+    "slice4_claims": 3604,
+    "claims_by_file": {
+      "appendix_tables/ch11_backup.tex": 1014,
+      "chapters/11_external_transfer_benchmarks.tex": 1013,
+      "appendix_tables/ch12_audit.tex": 2373,
+      "chapters/12_conditional_calibration.tex": 930,
+      "chapters/11_s03_completed.tex": 36,
+      "chapters/11_s06_completed.tex": 82,
+      "chapters/12_s05_completed.tex": 62,
+      "chapters/11_score_uncertainty.tex": 31
+    },
+    "missing_displays": 0,
+    "withdrawn_historical_records": 1,
+    "master_ledger_sha256": "482b5831fbd22d43e77446b1fe9ab2d4a4cdec47f099e3dac932848636c0b95c"
+  },
+  "checks": [
+    {
+      "id": "ledger-authority-resolution",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "id": "ledger-slice4-display-presence",
+      "passed": true,
+      "missing": []
+    },
+    {
+      "id": "ledger-slice4-population",
+      "passed": true,
+      "actual": 3604
+    }
+  ],
+  "notes": [
+    "Withdrawn historical records are authority-checked but excluded from the current manuscript-display presence requirement, matching scripts/verify_claims.py."
+  ],
+  "authority_receipt": {
+    "passed": true,
+    "counts": {
+      "withdrawn_historical_records": 836,
+      "json_numeric_verified": 25930,
+      "json_pointer_verified": 26197,
+      "documentary_numeric_verified": 2430,
+      "documentary_metadata_verified": 679,
+      "claims": 28627,
+      "documentary_metadata": 679,
+      "total_records": 29306,
+      "literal_manuscript_display_records": 0,
+      "missing_declared_manuscript_displays": 0,
+      "json_nonnumeric_verified": 267,
+      "distinct_authorities": 170
+    },
+    "failures": []
+  }
+}

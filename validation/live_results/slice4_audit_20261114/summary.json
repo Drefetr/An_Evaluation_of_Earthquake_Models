@@ -1,0 +1,242 @@
+{
+  "schema": "slice4_audit_v1",
+  "created_utc": "2026-11-14T11:36:43.300879+00:00",
+  "baseline_commit": "e2fb101",
+  "scope": "Vertical Triad Slice 4: Chapters 11 and 12, Appendices B.9-B.10, California and Japan regional transfer, M>=4.5 threshold and annual/sequence concentration, the four-arm spatial comparison S03, rolling California episode backtests and JMA trend ablation S06, and the 2,997-path conditional simulation calibration S05.",
+  "passed": true,
+  "components": {
+    "sealed_authority_integrity": true,
+    "california_primary": true,
+    "california_threshold_annual_sequence": true,
+    "jma_transfer": true,
+    "s03_spatial": true,
+    "s06_episodes": true,
+    "s05_calibration": true,
+    "claim_ledger": true,
+    "manuscript_repairs": true,
+    "code_consistency": true
+  },
+  "counts": {
+    "sealed_authority_integrity": {
+      "snapshot": 749,
+      "unchanged": 749,
+      "changed": 0,
+      "missing": 0,
+      "baseline_commit": "e2fb101",
+      "snapshot_sha256": "72690e768a8394b4c0c636edf107f543cbaf89185792e697fb0ab22734837732",
+      "prechange_zip_sha256": "53b52ad7e2711a2df38aed679c167e0af0465fa493a78372740ca58bfce51cd3"
+    },
+    "california_primary": {
+      "cohort_records": 1272,
+      "warmup_records": 106,
+      "training_counts": [
+        851,
+        930,
+        1097
+      ],
+      "test_counts": [
+        79,
+        167,
+        69
+      ],
+      "m45_training": [
+        271,
+        287,
+        340
+      ],
+      "m45_test": [
+        16,
+        53,
+        18
+      ],
+      "primary_rows": 3,
+      "uncertainty_rows": 3,
+      "within_cell_share_pct": 96.92709906432685
+    },
+    "california_threshold_annual_sequence": {
+      "m45_planned_targets": 87,
+      "m45_procedures": 30,
+      "m45_annual_rows": 15,
+      "base_annual_rows": 15,
+      "sequence_rows": 80,
+      "sequence_contrast_rows": 64,
+      "sequence_active_targets": 110,
+      "sequence_complement_targets": 205,
+      "active_timing_share_pct": 79.53925699925334,
+      "m45_within_cell_share_pct": 95.47891492387708,
+      "negative_m45_timing_years": 10
+    },
+    "jma_transfer": {
+      "raw_records": 4019138,
+      "selected_records": 4602,
+      "warmup_records": 496,
+      "training_counts": [
+        2829,
+        3298,
+        3646
+      ],
+      "test_counts": [
+        469,
+        348,
+        460
+      ],
+      "total_targets": 1277,
+      "annual_blocks": 9,
+      "annual_arm_rows": 63,
+      "annual_contrast_rows": 63,
+      "procedures": 36,
+      "starts": 288,
+      "floors": 42,
+      "slots": 330
+    },
+    "s03_spatial": {
+      "folds": 6,
+      "ca_targets": 315,
+      "nz_targets": 612,
+      "table_rows": 6,
+      "regional_total_rows": 2
+    },
+    "s06_episodes": {
+      "ca_rows": 5,
+      "ca_targets": 421,
+      "ca_partition_rows": 5,
+      "jma_rows": 8,
+      "jma_targets": 1277
+    },
+    "s05_calibration": {
+      "rows_california_fold_0": 84,
+      "rows_california_fold_1": 84,
+      "rows_california_fold_2": 84,
+      "origins": 3,
+      "coordinates_per_origin": 84,
+      "appendix_rows": 252,
+      "appendix_rows_checked": 252,
+      "public_rows": 6,
+      "tie_rows": 6,
+      "completed_paths": 2997,
+      "replay_paths": 5994,
+      "full84_paths": 15
+    },
+    "claim_ledger": {
+      "slice4_claims": 3604,
+      "claims_by_file": {
+        "appendix_tables/ch11_backup.tex": 1014,
+        "chapters/11_external_transfer_benchmarks.tex": 1013,
+        "appendix_tables/ch12_audit.tex": 2373,
+        "chapters/12_conditional_calibration.tex": 930,
+        "chapters/11_s03_completed.tex": 36,
+        "chapters/11_s06_completed.tex": 82,
+        "chapters/12_s05_completed.tex": 62,
+        "chapters/11_score_uncertainty.tex": 31
+      },
+      "missing_displays": 0,
+      "withdrawn_historical_records": 1,
+      "master_ledger_sha256": "482b5831fbd22d43e77446b1fe9ab2d4a4cdec47f099e3dac932848636c0b95c"
+    },
+    "manuscript_repairs": {
+      "numeric_preservation": {
+        "appendix_tables/ch11_backup.tex": {
+          "before": 486,
+          "after": 486,
+          "removed": []
+        },
+        "appendix_tables/ch12_audit.tex": {
+          "before": 1190,
+          "after": 1190,
+          "removed": []
+        },
+        "chapters/11_external_transfer_benchmarks.tex": {
+          "before": 186,
+          "after": 186,
+          "removed": []
+        },
+        "chapters/11_s03_completed.tex": {
+          "before": 43,
+          "after": 43,
+          "removed": []
+        },
+        "chapters/11_s06_completed.tex": {
+          "before": 89,
+          "after": 89,
+          "removed": []
+        },
+        "chapters/11_score_uncertainty.tex": {
+          "before": 31,
+          "after": 31,
+          "removed": []
+        },
+        "chapters/12_conditional_calibration.tex": {
+          "before": 39,
+          "after": 39,
+          "removed": []
+        },
+        "chapters/12_s05_completed.tex": {
+          "before": 38,
+          "after": 38,
+          "removed": []
+        }
+      },
+      "required_tokens": 20
+    },
+    "code_consistency": {
+      "regional_input_members": 6110,
+      "regional_crosswalk_records": 15093,
+      "source_files": 5,
+      "coordinates": 8
+    }
+  },
+  "defects_and_repairs": [
+    {
+      "id": "slice4-ch11-raw-math-formatting",
+      "file": "paper/source/chapters/11_external_transfer_benchmarks.tex",
+      "locator": "lines 37, 91, 123, 171, 173, 180, 183, 203, 208, 215, 218, 224, 256, 323, 325",
+      "finding": "Split math tokens (M $\\geq$ 4.0, M $\\geq$ 4.5, M $\\geq$ 6, M5.0, Mw, Beta, r = 0.7), the raw anchor interval phrase and raw scientific notation (8.19e-11, 1.13e-11, 4.55e-13, 1.82e-10, 1e-4, 3.75e-5) were replaced by math-mode forms. Every bound numeric literal survives in the claim ledger.",
+      "status": "fixed"
+    },
+    {
+      "id": "slice4-appendix-raw-math-formatting",
+      "file": "paper/source/appendix_tables/ch11_backup.tex",
+      "locator": "lines 5 and 70",
+      "finding": "Two split threshold tokens were normalized to $M\\geq 4.0$ and $M\\geq 4.5$.",
+      "status": "fixed"
+    },
+    {
+      "id": "slice4-s05-raw-scientific-notation",
+      "file": "paper/source/chapters/12_s05_completed.tex",
+      "locator": "closure table, lines 78-83",
+      "finding": "Six raw scientific-notation closure maxima were formatted as math-mode values without changing their numeric bindings.",
+      "status": "fixed"
+    },
+    {
+      "id": "slice4-app12-raw-scientific-notation",
+      "file": "paper/source/appendix_tables/ch12_audit.tex",
+      "locator": "independent computational audit paragraph",
+      "finding": "Three raw scientific-notation audit maxima and one raw tolerance were formatted as math-mode values.",
+      "status": "fixed"
+    },
+    {
+      "id": "slice4-s03-telescoping-clarification",
+      "file": "paper/source/chapters/11_s03_completed.tex",
+      "locator": "penultimate paragraph of Section sec:s03-completed",
+      "finding": "The text correctly rejected the non-telescoping sum but did not state its exact discrepancy. The audit verified (4-1)=(2-1)+(4-2) and (4-1)=(2-1)+(3-2)+(4-3) in all six folds, and that (2-1)+(3-2)+(4-2) exceeds (4-1) by exactly (3-2). The paragraph now states that the intermediate differences telescope and that the second expression counts the (3-2) step twice.",
+      "status": "fixed"
+    }
+  ],
+  "artifacts": {
+    "california_primary": "validation/live_results/slice4_audit_20261114/california_primary.json",
+    "california_threshold_annual_sequence": "validation/live_results/slice4_audit_20261114/california_threshold_annual_sequence.json",
+    "claim_ledger": "validation/live_results/slice4_audit_20261114/claim_ledger.json",
+    "code_consistency": "validation/live_results/slice4_audit_20261114/code_consistency.json",
+    "jma_transfer": "validation/live_results/slice4_audit_20261114/jma_transfer.json",
+    "manuscript_repairs": "validation/live_results/slice4_audit_20261114/manuscript_repairs.json",
+    "s03_spatial": "validation/live_results/slice4_audit_20261114/s03_spatial.json",
+    "s05_calibration": "validation/live_results/slice4_audit_20261114/s05_calibration.json",
+    "s06_episodes": "validation/live_results/slice4_audit_20261114/s06_episodes.json",
+    "sealed_authority_integrity": "validation/live_results/slice4_audit_20261114/sealed_authority_integrity.json"
+  },
+  "environment": {
+    "python": "3.13.4",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3"
+  }
+}
