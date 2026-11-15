@@ -89,7 +89,7 @@ Additional identities:
 - Japan annual blocks: `1.96 × 28.8298757 = 56.50656` nats;
 - EP+ observed displays: `+69.551` bound-pinned and `+77.056` interior.
 
-All 21 rows and all 9 delta recomputations pass.
+All 21 rows, all 9 delta recomputations and all 7 prose delta triplets pass. The audit also confirms that the superseded `13.9%` zero-trend and `9.6%` fixed-null displays are absent.
 
 ## 4. Cross-slice synthesis audit
 
@@ -127,7 +127,7 @@ The audit also confirms that no target source contains the withdrawn `0.10424` t
 - **13,592** claims and **679** documentary metadata records in the master ledger; **28,653** total claim records after the separate source inventory; **12,744** literal manuscript display records; **172** distinct authorities; zero missing declared displays.
 - **60** adversarial verifier tests pass (`tests/test_verify_claims.py`), including truncation, column-selection, duplicate-ID, stale-hash, compact-custody and withdrawal-roster cases.
 - Repository source pins and authority bindings pass; manifest membership covers the payload (the six audit outputs are written after the coverage check and are covered by the final manifest refresh).
-- **782/782** pre-existing sealed JSON files unchanged; the snapshot and ZIP hashes match.
+- **782/782** pre-existing sealed JSON files unchanged; the snapshot ZIP contains the snapshot JSON byte-for-byte and every recorded pre-change publication member.
 
 ## 7. Build and check results
 

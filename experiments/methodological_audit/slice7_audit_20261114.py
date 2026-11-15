@@ -23,6 +23,7 @@ import math
 import re
 import subprocess
 import sys
+import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -297,6 +298,43 @@ def audit_mde_table() -> dict:
         "per-event values divide by $N_{\\rm test}$" in text(TEX["mde"]))
     add(checks, "mde.caption.rounding_disclosure",
         "rounded independently" in text(TEX["mde"]))
+
+    # Test-event denominators, observed Japan totals, and the EP+ pair.
+    for key, n_test in (("free", 612), ("zero", 612), ("fixed", 612),
+                        ("li", 315), ("ep", 315), ("oc", 315),
+                        ("jp_fold", 1277), ("jp_sum", 1277), ("jp_annual", 1277)):
+        add(checks, f"mde.{key}.n_test", groups[key][0]["n_test"] == n_test,
+            detail={"display": groups[key][0]["n_test"], "expected": n_test})
+    for key, expected in (("jp_fold", "-73.737"), ("jp_sum", "-221.212"),
+                          ("jp_annual", "-221.212")):
+        observed = groups[key][0]["observed"].replace("$", "").strip()
+        add(checks, f"mde.{key}.observed", observed == expected,
+            detail={"display": groups[key][0]["observed"], "expected": expected})
+    ep_obs = groups["ep"][0]["observed"].replace("$", "")
+    ep_numbers = [float(x) for x in re.findall(r"[+-]?\d+\.\d+", ep_obs)]
+    add(checks, "mde.ep.observed_values",
+        ep_numbers == [69.55289384227054, 77.0557339839778]
+        or (len(ep_numbers) == 2
+            and display_ok(ep_numbers[0], "69.551", 3)
+            and display_ok(ep_numbers[1], "77.056", 3)),
+        detail={"numbers": ep_numbers})
+
+    prose = text(TEX["mde"])
+    delta_phrases = (
+        "17.4, 18.6 and 20.6\\% for the New Zealand free-trend arm",
+        "13.3, 13.4 and 13.8\\% for the zero-trend arm",
+        "9.5, 9.5 and 10.0\\% for the fixed-null arm",
+        "15.6, 15.5 and 15.5\\% for California \\texttt{LI+} total attenuation",
+        "55.4, 54.8 and 57.9\\% for California \\texttt{EP+}",
+        "52.5, 52.3 and 51.7\\% for California \\texttt{OC} minus \\texttt{EP}",
+        "27.4\\% for the per-fold and three-fold Japan summaries (29.7\\%",
+    )
+    for index, phrase in enumerate(delta_phrases, 1):
+        add(checks, f"mde.prose_delta.{index}", phrase in prose,
+            detail={"phrase": phrase})
+    add(checks, "mde.prose_delta_stale",
+        "13.9\\% for the zero-trend arm" not in prose
+        and "9.6 and 10.0\\% for the fixed-null arm" not in prose)
 
     return component(
         "slice7_mde_table_audit_v1",
@@ -726,8 +764,16 @@ def audit_sealed_integrity() -> dict:
     add(checks, "sealed.unchanged", not changed and not missing,
         detail={"changed": changed[:20], "missing": missing[:20],
                 "changed_count": len(changed), "missing_count": len(missing)})
-    add(checks, "sealed.snapshot_zip", sha256(SNAPSHOT_ZIP) == snapshot["zip_sha256"]
-        if "zip_sha256" in snapshot else True)
+    with zipfile.ZipFile(SNAPSHOT_ZIP) as archive:
+        names = set(archive.namelist())
+        snapshot_name = SNAPSHOT.relative_to(ROOT).as_posix()
+        snapshot_member = snapshot_name in names and archive.read(snapshot_name) == SNAPSHOT.read_bytes()
+        missing_publication = sorted(set(snapshot["publication_files"]) - names)
+    add(checks, "sealed.snapshot_zip",
+        snapshot_member and not missing_publication,
+        detail={"snapshot_member": snapshot_member,
+                "missing_publication_members": missing_publication[:10],
+                "members": len(names)})
     return component(
         "slice7_sealed_authority_integrity_v1",
         "Byte-level comparison of every pre-existing JSON authority and live result "
