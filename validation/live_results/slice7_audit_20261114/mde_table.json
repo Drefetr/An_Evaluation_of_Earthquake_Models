@@ -1,0 +1,930 @@
+{
+  "schema": "slice7_mde_table_audit_v1",
+  "created_utc": "2026-11-15T20:55:32.298872+00:00",
+  "scope": "Recompute every displayed cell of Table tab:mde from mde_expanded.json, nz_trend_controls.json and japan_mde.json, including the split New Zealand free/zero/fixed rows and the fractional perturbations.",
+  "passed": true,
+  "counts": {
+    "rows": 21,
+    "contrast_groups": 9,
+    "block_rows": 21,
+    "delta_rows": 9
+  },
+  "checks": [
+    {
+      "id": "mde.row_count",
+      "passed": true,
+      "detail": {
+        "rows": 21,
+        "expected": 21,
+        "groups": [
+          "CA \\texttt{EP+} $-$ \\texttt{EP}",
+          "CA \\texttt{LI+} total $-$ floor",
+          "CA \\texttt{OC} $-$ \\texttt{EP}",
+          "Japan \\texttt{OC} $-$ \\texttt{EP} (3-fold sum)",
+          "Japan \\texttt{OC} $-$ \\texttt{EP} (9 annual blocks)",
+          "Japan \\texttt{OC} $-$ \\texttt{EP} (per 3-year fold)",
+          "NZ shared $-$ ML (fixed null $d$)",
+          "NZ shared $-$ ML (free $d$)",
+          "NZ shared $-$ ML (zero $d$)"
+        ]
+      }
+    },
+    {
+      "id": "mde.group_count",
+      "passed": true,
+      "detail": {
+        "groups": 9
+      }
+    },
+    {
+      "id": "mde.free.90.se",
+      "passed": true,
+      "detail": {
+        "row": "NZ shared $-$ ML (free $d$)",
+        "block": "90",
+        "display": "4.71",
+        "expected": "4.71",
+        "value": 4.712389972269338
+      }
+    },
+    {
+      "id": "mde.free.90.mde",
+      "passed": true,
+      "detail": {
+        "display": "9.24",
+        "expected": "9.24",
+        "value": 9.236284345647903
+      }
+    },
+    {
+      "id": "mde.free.90.per_event",
+      "passed": true,
+      "detail": {
+        "display": "0.0151",
+        "expected": "0.0151",
+        "value": 0.015091967885045592
+      }
+    },
+    {
+      "id": "mde.free.90.identity",
+      "passed": true,
+      "detail": {
+        "mde": 9.236284345647903,
+        "one_point_nine_six_se": 9.236284345647903,
+        "per_event_n_test": 612
+      }
+    },
+    {
+      "id": "mde.free.180.se",
+      "passed": true,
+      "detail": {
+        "row": "NZ shared $-$ ML (free $d$)",
+        "block": "180",
+        "display": "5.42",
+        "expected": "5.42",
+        "value": 5.417713255024512
+      }
+    },
+    {
+      "id": "mde.free.180.mde",
+      "passed": true,
+      "detail": {
+        "display": "10.62",
+        "expected": "10.62",
+        "value": 10.618717979848043
+      }
+    },
+    {
+      "id": "mde.free.180.per_event",
+      "passed": true,
+      "detail": {
+        "display": "0.0174",
+        "expected": "0.0174",
+        "value": 0.017350846372300725
+      }
+    },
+    {
+      "id": "mde.free.180.identity",
+      "passed": true,
+      "detail": {
+        "mde": 10.618717979848043,
+        "one_point_nine_six_se": 10.618717979848043,
+        "per_event_n_test": 612
+      }
+    },
+    {
+      "id": "mde.free.365.se",
+      "passed": true,
+      "detail": {
+        "row": "NZ shared $-$ ML (free $d$)",
+        "block": "365",
+        "display": "6.65",
+        "expected": "6.65",
+        "value": 6.650650943016875
+      }
+    },
+    {
+      "id": "mde.free.365.mde",
+      "passed": true,
+      "detail": {
+        "display": "13.04",
+        "expected": "13.04",
+        "value": 13.035275848313075
+      }
+    },
+    {
+      "id": "mde.free.365.per_event",
+      "passed": true,
+      "detail": {
+        "display": "0.0213",
+        "expected": "0.0213",
+        "value": 0.021299470340380842
+      }
+    },
+    {
+      "id": "mde.free.365.identity",
+      "passed": true,
+      "detail": {
+        "mde": 13.035275848313075,
+        "one_point_nine_six_se": 13.035275848313075,
+        "per_event_n_test": 612
+      }
+    },
+    {
+      "id": "mde.zero.90.se",
+      "passed": true,
+      "detail": {
+        "row": "NZ shared $-$ ML (zero $d$)",
+        "block": "90",
+        "display": "2.76",
+        "expected": "2.76",
+        "value": 2.763700350413881
+      }
+    },
+    {
+      "id": "mde.zero.90.mde",
+      "passed": true,
+      "detail": {
+        "display": "5.42",
+        "expected": "5.42",
+        "value": 5.416852686811207
+      }
+    },
+    {
+      "id": "mde.zero.90.per_event",
+      "passed": true,
+      "detail": {
+        "display": "0.0089",
+        "expected": "0.0089",
+        "value": 0.008851066481717658
+      }
+    },
+    {
+      "id": "mde.zero.90.identity",
+      "passed": true,
+      "detail": {
+        "mde": 5.416852686811207,
+        "one_point_nine_six_se": 5.416852686811207,
+        "per_event_n_test": 612
+      }
+    },
+    {
+      "id": "mde.zero.180.se",
+      "passed": true,
+      "detail": {
+        "row": "NZ shared $-$ ML (zero $d$)",
+        "block": "180",
+        "display": "2.79",
+        "expected": "2.79",
+        "value": 2.7902736732832985
+      }
+    },
+    {
+      "id": "mde.zero.180.mde",
+      "passed": true,
+      "detail": {
+        "display": "5.47",
+        "expected": "5.47",
+        "value": 5.468936399635265
+      }
+    },
+    {
+      "id": "mde.zero.180.per_event",
+      "passed": true,
+      "detail": {
+        "display": "0.0089",
+        "expected": "0.0089",
+        "value": 0.008936170587639321
+      }
+    },
+    {
+      "id": "mde.zero.180.identity",
+      "passed": true,
+      "detail": {
+        "mde": 5.468936399635265,
+        "one_point_nine_six_se": 5.468936399635265,
+        "per_event_n_test": 612
+      }
+    },
+    {
+      "id": "mde.zero.365.se",
+      "passed": true,
+      "detail": {
+        "row": "NZ shared $-$ ML (zero $d$)",
+        "block": "365",
+        "display": "2.99",
+        "expected": "2.99",
+        "value": 2.994608200057593
+      }
+    },
+    {
+      "id": "mde.zero.365.mde",
+      "passed": true,
+      "detail": {
+        "display": "5.87",
+        "expected": "5.87",
+        "value": 5.8694320721128825
+      }
+    },
+    {
+      "id": "mde.zero.365.per_event",
+      "passed": true,
+      "detail": {
+        "display": "0.0096",
+        "expected": "0.0096",
+        "value": 0.009590575281230201
+      }
+    },
+    {
+      "id": "mde.zero.365.identity",
+      "passed": true,
+      "detail": {
+        "mde": 5.8694320721128825,
+        "one_point_nine_six_se": 5.8694320721128825,
+        "per_event_n_test": 612
+      }
+    },
+    {
+      "id": "mde.fixed.90.se",
+      "passed": true,
+      "detail": {
+        "row": "NZ shared $-$ ML (fixed null $d$)",
+        "block": "90",
+        "display": "1.40",
+        "expected": "1.40",
+        "value": 1.3956004338989458
+      }
+    },
+    {
+      "id": "mde.fixed.90.mde",
+      "passed": true,
+      "detail": {
+        "display": "2.74",
+        "expected": "2.74",
+        "value": 2.735376850441934
+      }
+    },
+    {
+      "id": "mde.fixed.90.per_event",
+      "passed": true,
+      "detail": {
+        "display": "0.0045",
+        "expected": "0.0045",
+        "value": 0.004469570017061984
+      }
+    },
+    {
+      "id": "mde.fixed.90.identity",
+      "passed": true,
+      "detail": {
+        "mde": 2.735376850441934,
+        "one_point_nine_six_se": 2.735376850441934,
+        "per_event_n_test": 612
+      }
+    },
+    {
+      "id": "mde.fixed.180.se",
+      "passed": true,
+      "detail": {
+        "row": "NZ shared $-$ ML (fixed null $d$)",
+        "block": "180",
+        "display": "1.42",
+        "expected": "1.42",
+        "value": 1.4212243002723475
+      }
+    },
+    {
+      "id": "mde.fixed.180.mde",
+      "passed": true,
+      "detail": {
+        "display": "2.79",
+        "expected": "2.79",
+        "value": 2.785599628533801
+      }
+    },
+    {
+      "id": "mde.fixed.180.per_event",
+      "passed": true,
+      "detail": {
+        "display": "0.0046",
+        "expected": "0.0046",
+        "value": 0.004551633379957191
+      }
+    },
+    {
+      "id": "mde.fixed.180.identity",
+      "passed": true,
+      "detail": {
+        "mde": 2.785599628533801,
+        "one_point_nine_six_se": 2.785599628533801,
+        "per_event_n_test": 612
+      }
+    },
+    {
+      "id": "mde.fixed.365.se",
+      "passed": true,
+      "detail": {
+        "row": "NZ shared $-$ ML (fixed null $d$)",
+        "block": "365",
+        "display": "1.55",
+        "expected": "1.55",
+        "value": 1.5499261243088684
+      }
+    },
+    {
+      "id": "mde.fixed.365.mde",
+      "passed": true,
+      "detail": {
+        "display": "3.04",
+        "expected": "3.04",
+        "value": 3.0378552036453823
+      }
+    },
+    {
+      "id": "mde.fixed.365.per_event",
+      "passed": true,
+      "detail": {
+        "display": "0.0050",
+        "expected": "0.0050",
+        "value": 0.004963815692231017
+      }
+    },
+    {
+      "id": "mde.fixed.365.identity",
+      "passed": true,
+      "detail": {
+        "mde": 3.0378552036453823,
+        "one_point_nine_six_se": 3.0378552036453823,
+        "per_event_n_test": 612
+      }
+    },
+    {
+      "id": "mde.li.90.se",
+      "passed": true,
+      "detail": {
+        "row": "CA \\texttt{LI+} total $-$ floor",
+        "block": "90",
+        "display": "1.95",
+        "expected": "1.95",
+        "value": 1.9484702112222803
+      }
+    },
+    {
+      "id": "mde.li.90.mde",
+      "passed": true,
+      "detail": {
+        "display": "3.82",
+        "expected": "3.82",
+        "value": 3.819001613995669
+      }
+    },
+    {
+      "id": "mde.li.90.per_event",
+      "passed": true,
+      "detail": {
+        "display": "0.0121",
+        "expected": "0.0121",
+        "value": 0.0121238146476053
+      }
+    },
+    {
+      "id": "mde.li.90.identity",
+      "passed": true,
+      "detail": {
+        "mde": 3.819001613995669,
+        "one_point_nine_six_se": 3.819001613995669,
+        "per_event_n_test": 315
+      }
+    },
+    {
+      "id": "mde.li.180.se",
+      "passed": true,
+      "detail": {
+        "row": "CA \\texttt{LI+} total $-$ floor",
+        "block": "180",
+        "display": "1.94",
+        "expected": "1.94",
+        "value": 1.9426189715890299
+      }
+    },
+    {
+      "id": "mde.li.180.mde",
+      "passed": true,
+      "detail": {
+        "display": "3.81",
+        "expected": "3.81",
+        "value": 3.8075331843144986
+      }
+    },
+    {
+      "id": "mde.li.180.per_event",
+      "passed": true,
+      "detail": {
+        "display": "0.0121",
+        "expected": "0.0121",
+        "value": 0.01208740693433174
+      }
+    },
+    {
+      "id": "mde.li.180.identity",
+      "passed": true,
+      "detail": {
+        "mde": 3.8075331843144986,
+        "one_point_nine_six_se": 3.8075331843144986,
+        "per_event_n_test": 315
+      }
+    },
+    {
+      "id": "mde.li.365.se",
+      "passed": true,
+      "detail": {
+        "row": "CA \\texttt{LI+} total $-$ floor",
+        "block": "365",
+        "display": "1.94",
+        "expected": "1.94",
+        "value": 1.9419955005863043
+      }
+    },
+    {
+      "id": "mde.li.365.mde",
+      "passed": true,
+      "detail": {
+        "display": "3.81",
+        "expected": "3.81",
+        "value": 3.8063111811491566
+      }
+    },
+    {
+      "id": "mde.li.365.per_event",
+      "passed": true,
+      "detail": {
+        "display": "0.0121",
+        "expected": "0.0121",
+        "value": 0.012083527559203671
+      }
+    },
+    {
+      "id": "mde.li.365.identity",
+      "passed": true,
+      "detail": {
+        "mde": 3.8063111811491566,
+        "one_point_nine_six_se": 3.8063111811491566,
+        "per_event_n_test": 315
+      }
+    },
+    {
+      "id": "mde.ep.90.se",
+      "passed": true,
+      "detail": {
+        "row": "CA \\texttt{EP+} $-$ \\texttt{EP}",
+        "block": "90",
+        "display": "24.64",
+        "expected": "24.64",
+        "value": 24.64400808671438
+      }
+    },
+    {
+      "id": "mde.ep.90.mde",
+      "passed": true,
+      "detail": {
+        "display": "48.30",
+        "expected": "48.30",
+        "value": 48.30225584996018
+      }
+    },
+    {
+      "id": "mde.ep.90.per_event",
+      "passed": true,
+      "detail": {
+        "display": "0.1533",
+        "expected": "0.1533",
+        "value": 0.15334049476177836
+      }
+    },
+    {
+      "id": "mde.ep.90.identity",
+      "passed": true,
+      "detail": {
+        "mde": 48.30225584996018,
+        "one_point_nine_six_se": 48.30225584996018,
+        "per_event_n_test": 315
+      }
+    },
+    {
+      "id": "mde.ep.180.se",
+      "passed": true,
+      "detail": {
+        "row": "CA \\texttt{EP+} $-$ \\texttt{EP}",
+        "block": "180",
+        "display": "24.17",
+        "expected": "24.17",
+        "value": 24.172885504734428
+      }
+    },
+    {
+      "id": "mde.ep.180.mde",
+      "passed": true,
+      "detail": {
+        "display": "47.38",
+        "expected": "47.38",
+        "value": 47.378855589279475
+      }
+    },
+    {
+      "id": "mde.ep.180.per_event",
+      "passed": true,
+      "detail": {
+        "display": "0.1504",
+        "expected": "0.1504",
+        "value": 0.15040906536279197
+      }
+    },
+    {
+      "id": "mde.ep.180.identity",
+      "passed": true,
+      "detail": {
+        "mde": 47.378855589279475,
+        "one_point_nine_six_se": 47.378855589279475,
+        "per_event_n_test": 315
+      }
+    },
+    {
+      "id": "mde.ep.365.se",
+      "passed": true,
+      "detail": {
+        "row": "CA \\texttt{EP+} $-$ \\texttt{EP}",
+        "block": "365",
+        "display": "26.96",
+        "expected": "26.96",
+        "value": 26.960566843950673
+      }
+    },
+    {
+      "id": "mde.ep.365.mde",
+      "passed": true,
+      "detail": {
+        "display": "52.84",
+        "expected": "52.84",
+        "value": 52.84271101414332
+      }
+    },
+    {
+      "id": "mde.ep.365.per_event",
+      "passed": true,
+      "detail": {
+        "display": "0.1678",
+        "expected": "0.1678",
+        "value": 0.16775463814013752
+      }
+    },
+    {
+      "id": "mde.ep.365.identity",
+      "passed": true,
+      "detail": {
+        "mde": 52.84271101414332,
+        "one_point_nine_six_se": 52.84271101414332,
+        "per_event_n_test": 315
+      }
+    },
+    {
+      "id": "mde.oc.90.se",
+      "passed": true,
+      "detail": {
+        "row": "CA \\texttt{OC} $-$ \\texttt{EP}",
+        "block": "90",
+        "display": "22.12",
+        "expected": "22.12",
+        "value": 22.11556931300263
+      }
+    },
+    {
+      "id": "mde.oc.90.mde",
+      "passed": true,
+      "detail": {
+        "display": "43.35",
+        "expected": "43.35",
+        "value": 43.34651585348516
+      }
+    },
+    {
+      "id": "mde.oc.90.per_event",
+      "passed": true,
+      "detail": {
+        "display": "0.1376",
+        "expected": "0.1376",
+        "value": 0.1376079868364608
+      }
+    },
+    {
+      "id": "mde.oc.90.identity",
+      "passed": true,
+      "detail": {
+        "mde": 43.34651585348516,
+        "one_point_nine_six_se": 43.34651585348516,
+        "per_event_n_test": 315
+      }
+    },
+    {
+      "id": "mde.oc.180.se",
+      "passed": true,
+      "detail": {
+        "row": "CA \\texttt{OC} $-$ \\texttt{EP}",
+        "block": "180",
+        "display": "21.97",
+        "expected": "21.97",
+        "value": 21.970880240698055
+      }
+    },
+    {
+      "id": "mde.oc.180.mde",
+      "passed": true,
+      "detail": {
+        "display": "43.06",
+        "expected": "43.06",
+        "value": 43.06292527176819
+      }
+    },
+    {
+      "id": "mde.oc.180.per_event",
+      "passed": true,
+      "detail": {
+        "display": "0.1367",
+        "expected": "0.1367",
+        "value": 0.13670769927545456
+      }
+    },
+    {
+      "id": "mde.oc.180.identity",
+      "passed": true,
+      "detail": {
+        "mde": 43.06292527176819,
+        "one_point_nine_six_se": 43.06292527176819,
+        "per_event_n_test": 315
+      }
+    },
+    {
+      "id": "mde.oc.365.se",
+      "passed": true,
+      "detail": {
+        "row": "CA \\texttt{OC} $-$ \\texttt{EP}",
+        "block": "365",
+        "display": "21.50",
+        "expected": "21.50",
+        "value": 21.503346048762893
+      }
+    },
+    {
+      "id": "mde.oc.365.mde",
+      "passed": true,
+      "detail": {
+        "display": "42.15",
+        "expected": "42.15",
+        "value": 42.14655825557527
+      }
+    },
+    {
+      "id": "mde.oc.365.per_event",
+      "passed": true,
+      "detail": {
+        "display": "0.1338",
+        "expected": "0.1338",
+        "value": 0.1337985976367469
+      }
+    },
+    {
+      "id": "mde.oc.365.identity",
+      "passed": true,
+      "detail": {
+        "mde": 42.14655825557527,
+        "one_point_nine_six_se": 42.14655825557527,
+        "per_event_n_test": 315
+      }
+    },
+    {
+      "id": "mde.jp_fold.mde",
+      "passed": true,
+      "detail": {
+        "display": "15.98",
+        "expected": "15.98",
+        "value": 15.97892019074536
+      }
+    },
+    {
+      "id": "mde.jp_fold.per_event",
+      "passed": true,
+      "detail": {
+        "display": "0.0375",
+        "expected": "0.0375",
+        "value": 0.03753857523276122
+      }
+    },
+    {
+      "id": "mde.jp_fold.delta",
+      "passed": true,
+      "detail": {
+        "delta": 0.27400209938159675,
+        "authority": 0.27400209938159675
+      }
+    },
+    {
+      "id": "mde.jp_sum.mde",
+      "passed": true,
+      "detail": {
+        "display": "47.94",
+        "expected": "47.94",
+        "value": 47.93676057223608
+      }
+    },
+    {
+      "id": "mde.jp_sum.per_event",
+      "passed": true,
+      "detail": {
+        "display": "0.0375",
+        "expected": "0.0375",
+        "value": 0.037538575232761225
+      }
+    },
+    {
+      "id": "mde.jp_sum.delta",
+      "passed": true,
+      "detail": {
+        "delta": 0.2740020993815968,
+        "authority": 0.2740020993815968
+      }
+    },
+    {
+      "id": "mde.jp_annual.mde",
+      "passed": true,
+      "detail": {
+        "display": "56.51",
+        "expected": "56.51",
+        "value": 56.506556420748645
+      }
+    },
+    {
+      "id": "mde.jp_annual.per_event",
+      "passed": true,
+      "detail": {
+        "display": "0.0442",
+        "expected": "0.0442",
+        "value": 0.04424945686824483
+      }
+    },
+    {
+      "id": "mde.jp_annual.delta",
+      "passed": true,
+      "detail": {
+        "delta": 0.29748766988984543,
+        "authority": 0.29748766988984543
+      }
+    },
+    {
+      "id": "mde.free.observed",
+      "passed": true,
+      "detail": {
+        "display": "$-17.623$",
+        "expected": "-17.623"
+      }
+    },
+    {
+      "id": "mde.zero.observed",
+      "passed": true,
+      "detail": {
+        "display": "$-11.431$",
+        "expected": "-11.431"
+      }
+    },
+    {
+      "id": "mde.fixed.observed",
+      "passed": true,
+      "detail": {
+        "display": "$-5.006$",
+        "expected": "-5.006"
+      }
+    },
+    {
+      "id": "mde.li.observed",
+      "passed": true,
+      "detail": {
+        "display": "$-2.387$",
+        "expected": "-2.387"
+      }
+    },
+    {
+      "id": "mde.oc.observed",
+      "passed": true,
+      "detail": {
+        "display": "$-51.051$",
+        "expected": "-51.051"
+      }
+    },
+    {
+      "id": "mde.ep.observed_bound",
+      "passed": true
+    },
+    {
+      "id": "mde.ep.observed_interior",
+      "passed": true
+    },
+    {
+      "id": "mde.japan.three_fold_identity",
+      "passed": true,
+      "detail": {
+        "three_times_fold_se": 24.45753090420208,
+        "sum_se": 24.45753090420208
+      }
+    },
+    {
+      "id": "mde.japan.annual_se",
+      "passed": true,
+      "detail": {
+        "mde": 56.506556420748645,
+        "one_point_nine_six_times_28_8299": 56.506556420748645
+      }
+    },
+    {
+      "id": "mde.caption.per_event_definition",
+      "passed": true
+    },
+    {
+      "id": "mde.caption.rounding_disclosure",
+      "passed": true
+    }
+  ],
+  "notes": [
+    {
+      "contrast": "NZ free d",
+      "block": "90",
+      "delta": 0.17373524619400402,
+      "percent": 17.373524619400403
+    },
+    {
+      "contrast": "NZ zero d",
+      "block": "90",
+      "delta": 0.13304936288248553,
+      "percent": 13.304936288248554
+    },
+    {
+      "contrast": "NZ fixed null d",
+      "block": "90",
+      "delta": 0.09454702551706197,
+      "percent": 9.454702551706196
+    },
+    {
+      "contrast": "CA LI+ total",
+      "block": "90",
+      "delta": 0.15571650296359277,
+      "percent": 15.571650296359277
+    },
+    {
+      "contrast": "CA EP+ - EP",
+      "block": "90",
+      "delta": 0.5537878560636345,
+      "percent": 55.378785606363444
+    },
+    {
+      "contrast": "CA OC - EP",
+      "block": "90",
+      "delta": 0.5246103064875124,
+      "percent": 52.46103064875124
+    },
+    {
+      "contrast": "jp_fold",
+      "block": "3-year",
+      "delta": 0.27400209938159675,
+      "percent": 27.400209938159676
+    },
+    {
+      "contrast": "jp_sum",
+      "block": "3-year",
+      "delta": 0.2740020993815968,
+      "percent": 27.40020993815968
+    },
+    {
+      "contrast": "jp_annual",
+      "block": "365",
+      "delta": 0.29748766988984543,
+      "percent": 29.748766988984542
+    }
+  ]
+}

@@ -1,0 +1,157 @@
+{
+  "schema": "slice7_verifier_custody_v1",
+  "created_utc": "2026-11-15T20:56:09.017057+00:00",
+  "scope": "Verify compiled-source custody, the 26 additive Slice 7 claim bindings, the adversarial verifier test bank, and repository manifest/source pins.",
+  "passed": true,
+  "counts": {
+    "compiled_tex": 42,
+    "claims": 13592,
+    "adversarial_tests": 60,
+    "manifest_entries": 10951,
+    "payload_entries": 10951
+  },
+  "checks": [
+    {
+      "id": "custody.compiled_count",
+      "passed": true,
+      "detail": {
+        "compiled": 42
+      }
+    },
+    {
+      "id": "custody.ledger_source_roster",
+      "passed": true,
+      "detail": {
+        "ledger": 42,
+        "compiled": 42,
+        "missing": [],
+        "extra": []
+      }
+    },
+    {
+      "id": "custody.ledger_source_hashes",
+      "passed": true,
+      "detail": {
+        "errors": []
+      }
+    },
+    {
+      "id": "custody.receipt_source_roster",
+      "passed": true,
+      "detail": {
+        "receipt": 42,
+        "compiled": 42
+      }
+    },
+    {
+      "id": "custody.receipt_source_hashes",
+      "passed": true,
+      "detail": {
+        "errors": []
+      }
+    },
+    {
+      "id": "custody.receipt_passed",
+      "passed": true,
+      "detail": {
+        "passed": true,
+        "release_ready": true
+      }
+    },
+    {
+      "id": "custody.receipt_counts",
+      "passed": true,
+      "detail": {
+        "claims": 28653,
+        "missing_displays": 0
+      }
+    },
+    {
+      "id": "custody.display_regression",
+      "passed": true
+    },
+    {
+      "id": "custody.claim_ids_unique",
+      "passed": true,
+      "detail": {
+        "claims": 13592
+      }
+    },
+    {
+      "id": "custody.slice7_claims",
+      "passed": true,
+      "detail": {
+        "slice7_claims": 26
+      }
+    },
+    {
+      "id": "custody.adversarial_tests",
+      "passed": true,
+      "detail": {
+        "exit_code": 0,
+        "tests": 60,
+        "tail": [
+          "test_wrong_sign_and_wrong_count_json (test_verify_claims.TransformAndType.test_wrong_sign_and_wrong_count_json) ... ok",
+          "",
+          "----------------------------------------------------------------------",
+          "Ran 60 tests in 1.296s",
+          "",
+          "OK"
+        ]
+      }
+    },
+    {
+      "id": "custody.manifest_schema",
+      "passed": true
+    },
+    {
+      "id": "custody.manifest_coverage",
+      "passed": true,
+      "detail": {
+        "actual": 10951,
+        "manifest": 10951,
+        "audit_outputs_excluded": 6,
+        "missing": [],
+        "extra": []
+      }
+    },
+    {
+      "id": "custody.repository_source_pins",
+      "passed": true,
+      "detail": {
+        "errors": []
+      }
+    }
+  ],
+  "notes": [
+    {
+      "adversarial_test_output": [
+        "test_inventory_is_not_declared_manuscript (test_verify_claims.Structure.test_inventory_is_not_declared_manuscript) ... ok",
+        "test_manuscript_paths_must_stay_in_tex_source (test_verify_claims.Structure.test_manuscript_paths_must_stay_in_tex_source) ... ok",
+        "test_missing_declared_tex (test_verify_claims.Structure.test_missing_declared_tex) ... ok",
+        "test_missing_ledger (test_verify_claims.Structure.test_missing_ledger) ... ok",
+        "test_missing_location (test_verify_claims.Structure.test_missing_location) ... ok",
+        "test_paths_must_stay_inside_package (test_verify_claims.Structure.test_paths_must_stay_inside_package) ... ok",
+        "test_boolean_arithmetic_and_zero_count_are_rejected (test_verify_claims.TransformAndType.test_boolean_arithmetic_and_zero_count_are_rejected) ... ok",
+        "test_boolean_cannot_equal_numeric_zero (test_verify_claims.TransformAndType.test_boolean_cannot_equal_numeric_zero) ... ok",
+        "test_count_denominator_has_an_authority_pointer (test_verify_claims.TransformAndType.test_count_denominator_has_an_authority_pointer) ... ok",
+        "test_declared_prior_identity_is_supported (test_verify_claims.TransformAndType.test_declared_prior_identity_is_supported) ... ok",
+        "test_exact_boolean_inventory (test_verify_claims.TransformAndType.test_exact_boolean_inventory) ... ok",
+        "test_nonfinite_numeric_rejected (test_verify_claims.TransformAndType.test_nonfinite_numeric_rejected) ... ok",
+        "test_numeric_string_requires_explicit_kind_and_exact_source_value (test_verify_claims.TransformAndType.test_numeric_string_requires_explicit_kind_and_exact_source_value) ... ok",
+        "test_pointer_negative_index_and_bad_escape (test_verify_claims.TransformAndType.test_pointer_negative_index_and_bad_escape) ... ok",
+        "test_stale_numeric_value_metadata (test_verify_claims.TransformAndType.test_stale_numeric_value_metadata) ... ok",
+        "test_stale_resolved_source_value (test_verify_claims.TransformAndType.test_stale_resolved_source_value) ... ok",
+        "test_stale_transform_operand_values (test_verify_claims.TransformAndType.test_stale_transform_operand_values) ... ok",
+        "test_unknown_dict_transform_and_prior_transform (test_verify_claims.TransformAndType.test_unknown_dict_transform_and_prior_transform) ... ok",
+        "test_unknown_string_transform (test_verify_claims.TransformAndType.test_unknown_string_transform) ... ok",
+        "test_wrong_sign_and_wrong_count_json (test_verify_claims.TransformAndType.test_wrong_sign_and_wrong_count_json) ... ok",
+        "",
+        "----------------------------------------------------------------------",
+        "Ran 60 tests in 1.296s",
+        "",
+        "OK"
+      ]
+    }
+  ]
+}

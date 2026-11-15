@@ -1,0 +1,101 @@
+{
+  "schema": "slice7_audit_summary_v1",
+  "created_utc": "2026-11-15T20:56:09.386507+00:00",
+  "baseline_commit": "102a78a",
+  "scope": "Vertical Triad Slice 7: cross-slice synthesis in the abstract, Chapter 1, Chapter 14 and appendices; the split New Zealand free/zero/fixed MDE table; reader-facing README, reviewer guide, companion and website synchronization; and claim-ledger / repository custody.",
+  "passed": true,
+  "components": {
+    "mde_table": true,
+    "synthesis_consistency": true,
+    "reader_surfaces": true,
+    "custody_infrastructure": true,
+    "sealed_authority_integrity": true
+  },
+  "counts": {
+    "mde_table": {
+      "rows": 21,
+      "contrast_groups": 9,
+      "block_rows": 21,
+      "delta_rows": 9
+    },
+    "synthesis_consistency": {
+      "canonical_checks": 92,
+      "target_claims": 312,
+      "claims_by_file": {
+        "abstract.tex": 130,
+        "chapters/01_introduction.tex": 33,
+        "chapters/14_discussion_conclusion.tex": 71,
+        "chapters/14_power_and_mde.tex": 87,
+        "appendices.tex": 31
+      }
+    },
+    "reader_surfaces": {
+      "surfaces": 7,
+      "stale_tokens": 4,
+      "claims": 16
+    },
+    "custody_infrastructure": {
+      "compiled_tex": 42,
+      "claims": 13592,
+      "adversarial_tests": 60,
+      "manifest_entries": 10951,
+      "payload_entries": 10951
+    },
+    "sealed_authority_integrity": {
+      "snapshot": 782,
+      "unchanged": 782,
+      "changed": 0,
+      "missing": 0,
+      "snapshot_sha256": "3facd3dde5e5fadee09ed878443f91550be2e75e271c4701f2d51d535159d965",
+      "prechange_zip_sha256": "342ae96617323a150775eaedfa93fcec2d0623194d292ac074c94aef48907c96"
+    }
+  },
+  "defects_and_repairs": [
+    {
+      "id": "slice7-nz-mde-row-split",
+      "file": "paper/source/chapters/14_power_and_mde.tex",
+      "locator": "Table tab:mde, rows 1-10",
+      "finding": "The single free-d New Zealand row carried the zero-d and fixed-null-d observed totals while displaying only the free-trend MDE scale, contradicting the repaired prose and inviting a cross-arm comparison.",
+      "repair": "Split the row into free-, zero- and fixed-null-trend rows with their own observed totals, 90/180/365-day block SEs, contrast-specific MDEs and per-event MDEs; added a caption warning against comparing the fixed-null loss with the free-trend MDE.",
+      "status": "fixed"
+    },
+    {
+      "id": "slice7-attenuation-mde-direction",
+      "file": "paper/source/chapters/14_power_and_mde.tex",
+      "locator": "line 2",
+      "finding": "The prose called the California LI+ attenuation MDE 'much larger' than the EP+ MDE.  The 90-day LI+ MDE is 3.82 nats and the EP+ MDE is 48.30 nats, so the inequality was inverted.",
+      "repair": "The text now compares the EP+ gain with its own 48.30-nat MDE and the -2.39-nat LI+ contrast with its own much smaller 3.82-nat MDE.",
+      "status": "fixed"
+    },
+    {
+      "id": "slice7-se-versus-mde-label",
+      "file": "paper/source/chapters/14_power_and_mde.tex",
+      "locator": "line 33",
+      "finding": "The 0.0077 and 0.0782 nat-per-event figures were left unlabelled beside the table's per-event MDE column (0.0151 and 0.1533), so a reader could read the factor-1.96 difference as an arithmetic error.  The fractional-perturbation sentence also omitted the California LI+ total and OC-EP contrasts.",
+      "repair": "Identified 0.0077=4.712/612 and 0.0782=24.644/315 as SE90/N_test, gave the corresponding MDE95/N_test values 0.0151 and 0.1533, added the LI+ and OC-EP delta ranges, and corrected the zero-365 (13.8%) and fixed-180 (9.5%) one-decimal roundings.",
+      "status": "fixed"
+    },
+    {
+      "id": "slice7-reader-stale-mde",
+      "file": "README.md; website/findings.html; website/site/findings.html; companion/guide_content.json",
+      "locator": "New Zealand trend-control paragraph / detection-scale note",
+      "finding": "README and the findings explorer still said the fixed-null loss was 'below the 9.24-nat 90-day scale', the exact pre-F1 comparison that the manuscript withdrew.  The companion guide listed only the free-trend New Zealand scale.",
+      "repair": "Replaced the stale phrase with the own-contrast 2.74-nat MDE and 3.59-SE statement, added the zero-trend 5.42-nat scale to the companion, and refreshed the website metadata release note and generated pages.",
+      "status": "fixed"
+    },
+    {
+      "id": "slice7-claim-bindings",
+      "file": "validation/MASTER_CLAIM_LEDGER.json; scripts/bind_slice7_claims_20261114.py",
+      "locator": "display_custody and claims",
+      "finding": "The new zero/fixed MDE cells and the expanded LI+/OC perturbation ranges were not enumerated claim bindings; the abstract's zero/fixed MDEs were also unbound.",
+      "repair": "Added 26 additive slice7-20261114 bindings, including the abstract locations for the 5.42- and 2.74-nat MDEs, then refreshed the compact source hashes and display-presence receipts.",
+      "status": "fixed"
+    }
+  ],
+  "limitations": [
+    "The 90/180/365-day blocks are paired calendar-block summaries; adjacent blocks are dependent, so nominal MDEs are descriptive multi-scale sensitivities rather than calibrated frequentist guarantees.",
+    "Table cells are rounded independently from the unrounded block quantities; the displayed product of a rounded SE and 1.96 can differ from the displayed MDE in the last digit.",
+    "The audit verifies the enumerated claim bindings and a curated canonical set; it does not re-run the original regional fits or synthetic campaigns.",
+    "The Slice 1 tightened visibility display remains documented as withdrawn; the sealed computation is retained for historical identity but is not a current reader-facing claim."
+  ]
+}
