@@ -1,0 +1,625 @@
+{
+  "schema": "slice5_component_ablation_v1",
+  "created_utc": "2026-11-15T11:54:51.273486+00:00",
+  "scope": "Nine-arm table, self-contained five-step declustering, exact 2x2x2 Shapley values, sequential path, and the frozen-A8-weight comparison.",
+  "passed": true,
+  "counts": {
+    "table_rows": 9,
+    "joint_fit": 10.240825527520997,
+    "closure": 69.55138526786914,
+    "shapley": {
+      "normalization": 0.03677085226930406,
+      "declustering": 27.604694408005646,
+      "scaling": 31.669094480073188
+    },
+    "sequential": [
+      10.240825527520997,
+      0.0893514016570407,
+      24.463931398861973,
+      34.757276939829126
+    ],
+    "closure_residual": 0.0,
+    "declustered_fold_rows": 12,
+    "recomputed_arms_seconds": 384.5777988433838,
+    "recomputed_totals": {
+      "A3": 34.8080479803217,
+      "A4": 34.79410832804001,
+      "A7": 69.54720461399427,
+      "A8": 69.55138526786914,
+      "A0": 0.0,
+      "A1": 10.240825527520997,
+      "A2": 10.330176929178037,
+      "A5": 38.84172789883155,
+      "A6": 38.88922855366525
+    },
+    "recomputed_differences": {
+      "A3": {
+        "california_fold_0": 0.0,
+        "california_fold_1": 0.0,
+        "california_fold_2": 0.0
+      },
+      "A4": {
+        "california_fold_0": 0.0,
+        "california_fold_1": 0.0,
+        "california_fold_2": 0.0
+      },
+      "A7": {
+        "california_fold_0": 0.0,
+        "california_fold_1": 0.0,
+        "california_fold_2": 0.0
+      },
+      "A8": {
+        "california_fold_0": 0.0,
+        "california_fold_1": 0.0,
+        "california_fold_2": 0.0
+      }
+    },
+    "recompute_source": "validation/live_results/slice5_audit_20261114/ablation_recompute.json"
+  },
+  "checks": [
+    {
+      "id": "table-A0",
+      "passed": true,
+      "cells": [
+        "0.0000",
+        "0.0000",
+        "0.0000",
+        "0.0000"
+      ],
+      "actual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "table-A1",
+      "passed": true,
+      "cells": [
+        "5.0835",
+        "4.5498",
+        "0.6075",
+        "10.2408"
+      ],
+      "actual": [
+        5.083471650637875,
+        4.549822322543605,
+        0.6075315543395163,
+        10.240825527520997
+      ]
+    },
+    {
+      "id": "table-A2",
+      "passed": true,
+      "cells": [
+        "5.1056",
+        "4.6368",
+        "0.5877",
+        "10.3302"
+      ],
+      "actual": [
+        5.105592690725416,
+        4.636846109579665,
+        0.5877381288729566,
+        10.330176929178037
+      ]
+    },
+    {
+      "id": "table-A3",
+      "passed": true,
+      "cells": [
+        "11.1001",
+        "3.1047",
+        "20.6032",
+        "34.8080"
+      ],
+      "actual": [
+        11.10010153549183,
+        3.1047188172983624,
+        20.60322762753151,
+        34.8080479803217
+      ]
+    },
+    {
+      "id": "table-A4",
+      "passed": true,
+      "cells": [
+        "11.0546",
+        "3.1770",
+        "20.5625",
+        "34.7941"
+      ],
+      "actual": [
+        11.054617287245946,
+        3.176994219973267,
+        20.562496820820797,
+        34.79410832804001
+      ]
+    },
+    {
+      "id": "table-A5",
+      "passed": true,
+      "cells": [
+        "5.6526",
+        "30.4042",
+        "2.7849",
+        "38.8417"
+      ],
+      "actual": [
+        5.652646641908632,
+        30.404171039482208,
+        2.7849102174407108,
+        38.84172789883155
+      ]
+    },
+    {
+      "id": "table-A6",
+      "passed": true,
+      "cells": [
+        "5.6457",
+        "30.4627",
+        "2.7808",
+        "38.8892"
+      ],
+      "actual": [
+        5.645650734826404,
+        30.462740052450727,
+        2.7808377663881174,
+        38.88922855366525
+      ]
+    },
+    {
+      "id": "table-A7",
+      "passed": true,
+      "cells": [
+        "14.6189",
+        "30.6297",
+        "24.2986",
+        "69.5472"
+      ],
+      "actual": [
+        14.618928157066648,
+        30.629684623447474,
+        24.298591833480145,
+        69.54720461399427
+      ]
+    },
+    {
+      "id": "table-A8",
+      "passed": true,
+      "cells": [
+        "14.5777",
+        "30.6913",
+        "24.2824",
+        "69.5514"
+      ],
+      "actual": [
+        14.577695108945363,
+        30.691289587219217,
+        24.282400571704557,
+        69.55138526786914
+      ]
+    },
+    {
+      "id": "table-row-count",
+      "passed": true,
+      "actual": 9
+    },
+    {
+      "id": "fold-sum-A3",
+      "passed": true,
+      "sum": 34.8080479803217,
+      "stored": 34.8080479803217
+    },
+    {
+      "id": "fold-sum-A4",
+      "passed": true,
+      "sum": 34.79410832804001,
+      "stored": 34.79410832804001
+    },
+    {
+      "id": "fold-sum-A7",
+      "passed": true,
+      "sum": 69.54720461399427,
+      "stored": 69.54720461399427
+    },
+    {
+      "id": "fold-sum-A8",
+      "passed": true,
+      "sum": 69.55138526786914,
+      "stored": 69.55138526786914
+    },
+    {
+      "id": "archived-total-A0",
+      "passed": true
+    },
+    {
+      "id": "archived-total-A1",
+      "passed": true
+    },
+    {
+      "id": "archived-total-A2",
+      "passed": true
+    },
+    {
+      "id": "archived-total-A5",
+      "passed": true
+    },
+    {
+      "id": "archived-total-A6",
+      "passed": true
+    },
+    {
+      "id": "A7-A8-gap",
+      "passed": true,
+      "gap": 0.004180653874868767
+    },
+    {
+      "id": "A8-total",
+      "passed": true
+    },
+    {
+      "id": "shapley-values",
+      "passed": true
+    },
+    {
+      "id": "shapley-rounded",
+      "passed": true
+    },
+    {
+      "id": "shapley-closure",
+      "passed": true,
+      "joint": 10.240825527520997,
+      "sum": 59.31055974034814,
+      "closure": 69.55138526786914,
+      "residual": 0.0
+    },
+    {
+      "id": "shapley-zero-residual",
+      "passed": true
+    },
+    {
+      "id": "sequential-values",
+      "passed": true
+    },
+    {
+      "id": "sequential-rounded",
+      "passed": true
+    },
+    {
+      "id": "sequential-closure",
+      "passed": true
+    },
+    {
+      "id": "factorial-token-27.605",
+      "passed": true,
+      "token": "27.605"
+    },
+    {
+      "id": "factorial-token-31.669",
+      "passed": true,
+      "token": "31.669"
+    },
+    {
+      "id": "factorial-token-0.037",
+      "passed": true,
+      "token": "0.037"
+    },
+    {
+      "id": "factorial-token-10.241",
+      "passed": true,
+      "token": "10.241"
+    },
+    {
+      "id": "factorial-token-69.547",
+      "passed": true,
+      "token": "69.547"
+    },
+    {
+      "id": "factorial-token-0.004",
+      "passed": true,
+      "token": "0.004"
+    },
+    {
+      "id": "frozen-reference-total",
+      "passed": true
+    },
+    {
+      "id": "frozen-declustering-inflation",
+      "passed": true,
+      "difference": 1.617964195955114
+    },
+    {
+      "id": "frozen-scaling-depression",
+      "passed": true,
+      "difference": -1.643431664703865
+    },
+    {
+      "id": "code-arms",
+      "passed": true
+    },
+    {
+      "id": "code-neutral-starts",
+      "passed": true
+    },
+    {
+      "id": "code-self-decluster-five-step",
+      "passed": true
+    },
+    {
+      "id": "code-neutral-first-iteration",
+      "passed": true
+    },
+    {
+      "id": "code-own-normalization",
+      "passed": true
+    },
+    {
+      "id": "code-no-imported-weights",
+      "passed": true
+    },
+    {
+      "id": "code-arm-job",
+      "passed": true
+    },
+    {
+      "id": "code-no-a8-special-case",
+      "passed": true
+    },
+    {
+      "id": "code-documented-no-a8-state",
+      "passed": true
+    },
+    {
+      "id": "weights-normalized-A3-california_fold_0",
+      "passed": true,
+      "normalized_sum": 1.0,
+      "prior_mass": 219.42031217418065,
+      "expected_immigrants": 219.42031217418065
+    },
+    {
+      "id": "weights-not-accepted-A3-california_fold_0",
+      "passed": true,
+      "max_difference": 0.0024586176614217266
+    },
+    {
+      "id": "lineage-A3-california_fold_0",
+      "passed": true
+    },
+    {
+      "id": "weights-normalized-A4-california_fold_0",
+      "passed": true,
+      "normalized_sum": 1.0,
+      "prior_mass": 220.02111156716035,
+      "expected_immigrants": 220.02111156716035
+    },
+    {
+      "id": "weights-not-accepted-A4-california_fold_0",
+      "passed": true,
+      "max_difference": 0.00246199936038936
+    },
+    {
+      "id": "lineage-A4-california_fold_0",
+      "passed": true
+    },
+    {
+      "id": "weights-normalized-A7-california_fold_0",
+      "passed": true,
+      "normalized_sum": 1.0,
+      "prior_mass": 235.48634360351784,
+      "expected_immigrants": 235.48634360351784
+    },
+    {
+      "id": "weights-not-accepted-A7-california_fold_0",
+      "passed": true,
+      "max_difference": 0.00049610493705888
+    },
+    {
+      "id": "lineage-A7-california_fold_0",
+      "passed": true
+    },
+    {
+      "id": "weights-normalized-A8-california_fold_0",
+      "passed": true,
+      "normalized_sum": 0.9999999999999999,
+      "prior_mass": 235.6736942777335,
+      "expected_immigrants": 235.6736942777335
+    },
+    {
+      "id": "weights-not-accepted-A8-california_fold_0",
+      "passed": true,
+      "max_difference": 8.119870063979205e-08
+    },
+    {
+      "id": "lineage-A8-california_fold_0",
+      "passed": true
+    },
+    {
+      "id": "weights-distinct-A3-A4-california_fold_0",
+      "passed": true
+    },
+    {
+      "id": "weights-distinct-A3-A7-california_fold_0",
+      "passed": true
+    },
+    {
+      "id": "weights-distinct-A7-A8-california_fold_0",
+      "passed": true
+    },
+    {
+      "id": "weights-distinct-A4-A8-california_fold_0",
+      "passed": true
+    },
+    {
+      "id": "weights-normalized-A3-california_fold_1",
+      "passed": true,
+      "normalized_sum": 0.9999999999999999,
+      "prior_mass": 259.8346773657033,
+      "expected_immigrants": 259.8346773657033
+    },
+    {
+      "id": "weights-not-accepted-A3-california_fold_1",
+      "passed": true,
+      "max_difference": 0.002052836008547362
+    },
+    {
+      "id": "lineage-A3-california_fold_1",
+      "passed": true
+    },
+    {
+      "id": "weights-normalized-A4-california_fold_1",
+      "passed": true,
+      "normalized_sum": 1.0,
+      "prior_mass": 260.2422289297995,
+      "expected_immigrants": 260.2422289297995
+    },
+    {
+      "id": "weights-not-accepted-A4-california_fold_1",
+      "passed": true,
+      "max_difference": 0.0020576075284569626
+    },
+    {
+      "id": "lineage-A4-california_fold_1",
+      "passed": true
+    },
+    {
+      "id": "weights-normalized-A7-california_fold_1",
+      "passed": true,
+      "normalized_sum": 1.0,
+      "prior_mass": 275.2894282691857,
+      "expected_immigrants": 275.2894282691857
+    },
+    {
+      "id": "weights-not-accepted-A7-california_fold_1",
+      "passed": true,
+      "max_difference": 0.0004576912274588483
+    },
+    {
+      "id": "lineage-A7-california_fold_1",
+      "passed": true
+    },
+    {
+      "id": "weights-normalized-A8-california_fold_1",
+      "passed": true,
+      "normalized_sum": 1.0,
+      "prior_mass": 275.5247982503963,
+      "expected_immigrants": 275.5247982503963
+    },
+    {
+      "id": "weights-not-accepted-A8-california_fold_1",
+      "passed": true,
+      "max_difference": 7.817278142125891e-08
+    },
+    {
+      "id": "lineage-A8-california_fold_1",
+      "passed": true
+    },
+    {
+      "id": "weights-distinct-A3-A4-california_fold_1",
+      "passed": true
+    },
+    {
+      "id": "weights-distinct-A3-A7-california_fold_1",
+      "passed": true
+    },
+    {
+      "id": "weights-distinct-A7-A8-california_fold_1",
+      "passed": true
+    },
+    {
+      "id": "weights-distinct-A4-A8-california_fold_1",
+      "passed": true
+    },
+    {
+      "id": "weights-normalized-A3-california_fold_2",
+      "passed": true,
+      "normalized_sum": 1.0,
+      "prior_mass": 297.77522581355674,
+      "expected_immigrants": 297.77522581355674
+    },
+    {
+      "id": "weights-not-accepted-A3-california_fold_2",
+      "passed": true,
+      "max_difference": 0.002313992851583682
+    },
+    {
+      "id": "lineage-A3-california_fold_2",
+      "passed": true
+    },
+    {
+      "id": "weights-normalized-A4-california_fold_2",
+      "passed": true,
+      "normalized_sum": 1.0,
+      "prior_mass": 298.15302807222554,
+      "expected_immigrants": 298.15302807222554
+    },
+    {
+      "id": "weights-not-accepted-A4-california_fold_2",
+      "passed": true,
+      "max_difference": 0.002315492885425045
+    },
+    {
+      "id": "lineage-A4-california_fold_2",
+      "passed": true
+    },
+    {
+      "id": "weights-normalized-A7-california_fold_2",
+      "passed": true,
+      "normalized_sum": 1.0,
+      "prior_mass": 314.87948497667907,
+      "expected_immigrants": 314.87948497667907
+    },
+    {
+      "id": "weights-not-accepted-A7-california_fold_2",
+      "passed": true,
+      "max_difference": 0.00036839638920800047
+    },
+    {
+      "id": "lineage-A7-california_fold_2",
+      "passed": true
+    },
+    {
+      "id": "weights-normalized-A8-california_fold_2",
+      "passed": true,
+      "normalized_sum": 1.0,
+      "prior_mass": 315.0692402522161,
+      "expected_immigrants": 315.0692402522161
+    },
+    {
+      "id": "weights-not-accepted-A8-california_fold_2",
+      "passed": true,
+      "max_difference": 2.1127647124511003e-07
+    },
+    {
+      "id": "lineage-A8-california_fold_2",
+      "passed": true
+    },
+    {
+      "id": "weights-distinct-A3-A4-california_fold_2",
+      "passed": true
+    },
+    {
+      "id": "weights-distinct-A3-A7-california_fold_2",
+      "passed": true
+    },
+    {
+      "id": "weights-distinct-A7-A8-california_fold_2",
+      "passed": true
+    },
+    {
+      "id": "weights-distinct-A4-A8-california_fold_2",
+      "passed": true
+    },
+    {
+      "id": "recompute-all-declustered-arms",
+      "passed": true,
+      "worst_abs_difference": 0.0,
+      "source": "saved ablation_recompute.json"
+    }
+  ],
+  "notes": [
+    "A0 is the archived EP score. A1, A2, A5 and A6 do not use declustering and are retained from the archived ablation authority; the audit re-verifies their fold rows, totals and factorial cells.",
+    "The declustered arms A3, A4, A7 and A8 each run a fresh five-step loop from the neutral three-start grid under their own normalization and scaling."
+  ]
+}

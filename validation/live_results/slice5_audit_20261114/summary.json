@@ -1,0 +1,468 @@
+{
+  "schema": "slice5_audit_v1",
+  "created_utc": "2026-11-15T12:16:02.350564+00:00",
+  "baseline_commit": "2088c56",
+  "scope": "Vertical Triad Slice 5: Section 11.5 magnitude-scaled ETAS (EP+), the self-declustered 2x2x2 component ablation, the interior sigma0 relaxation and fixed-sigma0 profile, the twelve-parameter inhibited refit under sigma0 >= 0.05 km, and the California eta profiles.",
+  "passed": true,
+  "components": {
+    "sealed_authority_integrity": true,
+    "epplus_formulation": true,
+    "component_ablation": true,
+    "sigma0_relaxation": true,
+    "eta_profiles": true,
+    "claim_ledger": true,
+    "manuscript_state": true
+  },
+  "counts": {
+    "sealed_authority_integrity": {
+      "snapshot": 761,
+      "unchanged": 761,
+      "changed": 0,
+      "missing": 0,
+      "baseline_commit": "2088c56",
+      "snapshot_sha256": "3462b1b0c2c73b3fd730d5e2c480937412dcebc7d5b2e5c9c4bccd6cc7c75b04",
+      "prechange_zip_sha256": "7eb81b3c39c51c7ccf07fd99f4e3f0dce2303a3be77ccd55aa2c652dbdc2cf89"
+    },
+    "epplus_formulation": {
+      "parent_mass_rows": 3196,
+      "mass_max_abs_error": 6.284528453193161e-12,
+      "mass_derivative_max_abs_error": 2.675160392685838e-10,
+      "uninhibited_gradient_max_abs_error": 3.1885665071257124e-08,
+      "interior_gradient_max_abs_error": 5.058697816195945e-08,
+      "inhibited_gradient_max_scaled_error": 4.10462758781982e-08,
+      "contrast_gains": [
+        14.579482477517331,
+        30.691007454126293,
+        24.282403910625135
+      ],
+      "contrast_total": 69.55289384226876,
+      "pooled_90": {
+        "total": 69.55289384227054,
+        "ci": [
+          32.23942152377755,
+          123.71943253874105
+        ],
+        "p": 2e-05,
+        "blocks": 63
+      },
+      "pooled_180": {
+        "total": 69.55289384227055,
+        "ci": [
+          32.15301441882991,
+          120.31243839556276
+        ],
+        "p": 0.0001,
+        "blocks": 33
+      },
+      "pooled_365": {
+        "total": 69.55289384227056,
+        "ci": [
+          26.58931660145044,
+          122.16411948767316
+        ],
+        "p": 0.00452,
+        "blocks": 18
+      },
+      "benchmark_rows": 3
+    },
+    "component_ablation": {
+      "table_rows": 9,
+      "joint_fit": 10.240825527520997,
+      "closure": 69.55138526786914,
+      "shapley": {
+        "normalization": 0.03677085226930406,
+        "declustering": 27.604694408005646,
+        "scaling": 31.669094480073188
+      },
+      "sequential": [
+        10.240825527520997,
+        0.0893514016570407,
+        24.463931398861973,
+        34.757276939829126
+      ],
+      "closure_residual": 0.0,
+      "declustered_fold_rows": 12,
+      "recomputed_arms_seconds": 384.5777988433838,
+      "recomputed_totals": {
+        "A3": 34.8080479803217,
+        "A4": 34.79410832804001,
+        "A7": 69.54720461399427,
+        "A8": 69.55138526786914,
+        "A0": 0.0,
+        "A1": 10.240825527520997,
+        "A2": 10.330176929178037,
+        "A5": 38.84172789883155,
+        "A6": 38.88922855366525
+      },
+      "recomputed_differences": {
+        "A3": {
+          "california_fold_0": 0.0,
+          "california_fold_1": 0.0,
+          "california_fold_2": 0.0
+        },
+        "A4": {
+          "california_fold_0": 0.0,
+          "california_fold_1": 0.0,
+          "california_fold_2": 0.0
+        },
+        "A7": {
+          "california_fold_0": 0.0,
+          "california_fold_1": 0.0,
+          "california_fold_2": 0.0
+        },
+        "A8": {
+          "california_fold_0": 0.0,
+          "california_fold_1": 0.0,
+          "california_fold_2": 0.0
+        }
+      },
+      "recompute_source": "validation/live_results/slice5_audit_20261114/ablation_recompute.json"
+    },
+    "sigma0_relaxation": {
+      "relaxed_plane": 77.0557339839778,
+      "relaxed_rect": 77.05874171993219,
+      "frozen_plane": 78.5844526377922,
+      "frozen_rect": 78.51839026490643,
+      "archive_claim_154_053_present": false,
+      "archive_claim_76_997_present": false,
+      "profile_worst_recompute_error": 0.0,
+      "profile_interior_sigma0": {
+        "plane:california_fold_0": 0.75,
+        "plane:california_fold_1": 0.75,
+        "plane:california_fold_2": 0.75,
+        "rect:california_fold_0": 0.75,
+        "rect:california_fold_1": 0.75,
+        "rect:california_fold_2": 0.75
+      },
+      "inhibited_fits": 12,
+      "inhibited_sigma0": {
+        "california_fold_0": 0.8277734991891775,
+        "california_fold_1": 0.8451700026959237,
+        "california_fold_2": 0.8267609782305209
+      }
+    },
+    "eta_profiles": {
+      "fold0_event_sum": 75313.90275560762,
+      "fold0_exposure": 59415.47941914608,
+      "s8_profiled_contrasts": {
+        "california_fold_0": {
+          "archived_parameters": [
+            -3.536709084577344,
+            0.5307953973658011,
+            0.98,
+            -5.458702162653876,
+            1.1077657579368747,
+            0.6931471805599453,
+            0.6169929144015514,
+            2.4397682304550328,
+            0.4,
+            2.70805020110221,
+            1.6094379124341003,
+            1.7269388197455344
+          ],
+          "archived_contrast": -74.70766790360017,
+          "exact_profile_parameters": [
+            -3.5366417649727597,
+            0.5311561492111446,
+            0.98
+          ],
+          "exact_profile_bound_hits": [
+            2
+          ],
+          "exact_profile_contrast": -74.71345021125762,
+          "difference": -0.005782307657455021
+        },
+        "california_fold_1": {
+          "archived_parameters": [
+            -3.6511989899786648,
+            0.2297490100662569,
+            0.98,
+            -5.471482026720992,
+            1.1038022082101082,
+            0.6931471805599453,
+            0.6230819083308565,
+            2.4699015727466143,
+            0.4,
+            2.70805020110221,
+            1.6094379124341003,
+            1.7269388197455344
+          ],
+          "archived_contrast": -10118.507054946025,
+          "exact_profile_parameters": [
+            -3.6511988259506682,
+            0.22974907988167168,
+            0.98
+          ],
+          "exact_profile_bound_hits": [
+            2
+          ],
+          "exact_profile_contrast": -10118.507059450563,
+          "difference": -4.504538082983345e-06
+        },
+        "california_fold_2": {
+          "archived_parameters": [
+            -3.704007314674026,
+            -0.012914134351921833,
+            0.98,
+            -6.01535634338414,
+            1.1073754210941875,
+            0.6931471805599453,
+            0.7210302180706085,
+            2.9031627455908633,
+            0.4,
+            2.70805020110221,
+            1.6094379124341003,
+            1.7269388197455344
+          ],
+          "archived_contrast": -27.18856203738187,
+          "exact_profile_parameters": [
+            -3.704007309845019,
+            -0.012914147378805464,
+            0.98
+          ],
+          "exact_profile_bound_hits": [
+            2
+          ],
+          "exact_profile_contrast": -27.188561992869722,
+          "difference": 4.451214863365749e-08
+        }
+      },
+      "s8_max_change": 0.005782307657455021,
+      "envelope_worst_gap": 8.746399665936401e-07,
+      "profiled_residual_worst": 5.790923296444817e-13,
+      "full_model_worst": 0.0,
+      "exact_roots": {
+        "california_fold_0": {
+          "scaled": {
+            "two_sided_95": 0.00011637543599652641,
+            "one_sided_95": 8.283918972911902e-05
+          },
+          "unscaled": {
+            "two_sided_95": 0.0009068591611765585,
+            "one_sided_95": 0.0007062860445580627
+          }
+        },
+        "california_fold_1": {
+          "scaled": {
+            "two_sided_95": 0.00011372975898006559,
+            "one_sided_95": 8.093522426371817e-05
+          },
+          "unscaled": {
+            "two_sided_95": 0.0008418425315624442,
+            "one_sided_95": 0.0006485313610558373
+          }
+        },
+        "california_fold_2": {
+          "scaled": {
+            "two_sided_95": 9.264086989486917e-05,
+            "one_sided_95": 6.583125435137904e-05
+          },
+          "unscaled": {
+            "two_sided_95": 0.0005213620216629373,
+            "one_sided_95": 0.00038579654284706406
+          }
+        }
+      },
+      "fixed_roots": {
+        "california_fold_0": {
+          "scaled": {
+            "two_sided_95": 0.00011414237998272749,
+            "one_sided_95": 8.166486670108352e-05
+          },
+          "unscaled": {
+            "two_sided_95": 0.0008207705619200266,
+            "one_sided_95": 0.0006444390330886216
+          }
+        },
+        "california_fold_1": {
+          "scaled": {
+            "two_sided_95": 0.00011175376694944278,
+            "one_sided_95": 7.989817840660782e-05
+          },
+          "unscaled": {
+            "two_sided_95": 0.0007720486123758098,
+            "one_sided_95": 0.0005998967260032912
+          }
+        },
+        "california_fold_2": {
+          "scaled": {
+            "two_sided_95": 9.096374377358825e-05,
+            "one_sided_95": 6.49566143847854e-05
+          },
+          "unscaled": {
+            "two_sided_95": 0.0004909159313483864,
+            "one_sided_95": 0.0003671055363987075
+          }
+        }
+      },
+      "eta_0.01_gain": {
+        "california_fold_0": {
+          "scaled": -517.5964538195312,
+          "unscaled": -95.44467067490405
+        },
+        "california_fold_1": {
+          "scaled": -514.4427452245363,
+          "unscaled": -94.28936186389728
+        },
+        "california_fold_2": {
+          "scaled": -666.1816628036831,
+          "unscaled": -127.14912016458948
+        }
+      }
+    },
+    "claim_ledger": {
+      "slice5_claims": 418,
+      "claims_by_file": {
+        "abstract.tex": 140,
+        "chapters/11_epplus_benchmark.tex": 104,
+        "chapters/11_epplus_ablation.tex": 129,
+        "chapters/11_epplus_eta_profiles.tex": 50
+      },
+      "missing_displays": 0,
+      "withdrawn_historical_records": 56,
+      "master_ledger_sha256": "9ca51a0e2a7869700d66c62e10ac12c228020b465e82af88be7c24e1cc6d0855",
+      "custody_source_files": 42
+    },
+    "manuscript_state": {
+      "numeric_preservation": {
+        "abstract.tex": {
+          "before": 129,
+          "after": 129,
+          "removed": [],
+          "added": [],
+          "allowed_removed": [],
+          "unexpected": []
+        },
+        "chapters/11_epplus_ablation.tex": {
+          "before": 128,
+          "after": 130,
+          "removed": [],
+          "added": [
+            "154.053",
+            "76.997"
+          ],
+          "allowed_removed": [],
+          "unexpected": []
+        },
+        "chapters/11_epplus_benchmark.tex": {
+          "before": 39,
+          "after": 39,
+          "removed": [],
+          "added": [],
+          "allowed_removed": [],
+          "unexpected": []
+        },
+        "chapters/11_epplus_eta_profiles.tex": {
+          "before": 92,
+          "after": 93,
+          "removed": [
+            "-124.9",
+            "-514.2",
+            "-517.4",
+            "-665.9",
+            "-94.5",
+            "-95.7",
+            "0.000066254",
+            "0.000080085",
+            "0.000081613",
+            "0.000092864",
+            "0.00011187",
+            "0.00011398",
+            "0.00043838",
+            "0.00058688",
+            "0.00066052",
+            "0.00069142",
+            "0.00085332",
+            "0.00088873"
+          ],
+          "added": [
+            "-127.1",
+            "-514.4",
+            "-517.6",
+            "-666.2",
+            "-94.3",
+            "-95.4",
+            "0.000065831",
+            "0.000080935",
+            "0.000082839",
+            "0.000092641",
+            "0.00011373",
+            "0.00011638",
+            "0.00038580",
+            "0.00052136",
+            "0.00064853",
+            "0.00070629",
+            "0.00084184",
+            "0.00090686",
+            "14"
+          ],
+          "allowed_removed": [
+            "-124.9",
+            "-514.2",
+            "-517.4",
+            "-665.9",
+            "-94.5",
+            "-95.7",
+            "0.00011187",
+            "0.00011398",
+            "0.00043838",
+            "0.00058688",
+            "0.00066052",
+            "0.00069142",
+            "0.00085332",
+            "0.00088873",
+            "6.6254e-05",
+            "8.0085e-05",
+            "8.1613e-05",
+            "9.2864e-05"
+          ],
+          "unexpected": []
+        }
+      },
+      "required_tokens": 43
+    }
+  },
+  "defects_and_repairs": [
+    {
+      "id": "slice5-eta-profile-envelope",
+      "file": "paper/source/chapters/11_epplus_eta_profiles.tex",
+      "locator": "line 2 and Table tab:california-eta-profiles-unscaled line 33",
+      "finding": "The archived profiled (a,d,n) curve used power=12 Sobol nodes and a seven-point PCHIP interpolation, while the fixed-backbone curve used power=14 and exact brentq roots. The mismatch produced F0 1.1398e-4 < 1.1414e-4, violating the envelope inequality eta_profiled >= eta_fixed that follows from max_{a,d,n} l(a,d,n,eta) >= l(a0,d0,n0,eta). The audit recomputes the profile at power=14 with the same frozen importance weights and exact brentq roots. Every fold now satisfies the inequality strictly.",
+      "status": "fixed"
+    },
+    {
+      "id": "slice5-eta-profile-unscaled",
+      "file": "paper/source/chapters/11_epplus_eta_profiles.tex",
+      "locator": "Table tab:california-eta-profiles-unscaled and caption",
+      "finding": "The archived unscaled ell=15 km roots were also coarse-grid PCHIP values. They are replaced by exact power=14 brentq roots; the unscaled-to-scaled ratio is restated as roughly six to eight rather than eight.",
+      "status": "fixed"
+    },
+    {
+      "id": "slice5-sigma0-double-count-clarification",
+      "file": "paper/source/chapters/11_epplus_ablation.tex",
+      "locator": "line 4",
+      "finding": "The manuscript stated only that the archived 154.114-nat total double-counted the plane and rectangle panels. The sealed Track B rows give 77.056 (plane) and 77.059 (rectangle). The review brief's 154.053-nat reading (77.056 + 76.997) is not present in any sealed authority and is explicitly withdrawn in the repaired sentence.",
+      "status": "fixed"
+    },
+    {
+      "id": "slice5-claim-ledger-rebinding",
+      "file": "validation/MASTER_CLAIM_LEDGER.json",
+      "locator": "claims track-b-20261112-287/288/289",
+      "finding": "Three typed manuscript claims bound the displays 1.1398e-4, 1.1187e-4 and 9.2864e-5 to the archived power=12 PCHIP roots. They are rebound to the deterministic power=14 roots in validation/live_results/slice5_audit_20261114/eta_profile_roots_authority.json and the custody receipt is refreshed.",
+      "status": "fixed"
+    }
+  ],
+  "artifacts": {
+    "claim_ledger": "validation/live_results/slice5_audit_20261114/claim_ledger.json",
+    "component_ablation": "validation/live_results/slice5_audit_20261114/component_ablation.json",
+    "epplus_formulation": "validation/live_results/slice5_audit_20261114/epplus_formulation.json",
+    "eta_profiles": "validation/live_results/slice5_audit_20261114/eta_profiles_exact.json",
+    "manuscript_state": "validation/live_results/slice5_audit_20261114/manuscript_state.json",
+    "sealed_authority_integrity": "validation/live_results/slice5_audit_20261114/sealed_authority_integrity.json",
+    "sigma0_relaxation": "validation/live_results/slice5_audit_20261114/sigma0_relaxation.json"
+  },
+  "environment": {
+    "python": "3.13.4",
+    "numpy": "2.2.6"
+  }
+}

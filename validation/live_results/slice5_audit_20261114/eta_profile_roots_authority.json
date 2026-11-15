@@ -1,0 +1,96 @@
+{
+  "schema": "slice5_eta_profile_roots_v1",
+  "method": "power=14 scrambled-Sobol nodes; (a,d,n)-profiled L-BFGS-B; exact brentq",
+  "thresholds": {
+    "two_sided_95": -1.9207,
+    "one_sided_95": -1.3528
+  },
+  "scale": {
+    "ell0_km": 15.0,
+    "psi_days": 5.0
+  },
+  "kernels": {
+    "scaled": "ell_j = 15 * 10^(0.5 (M_j - 4)) km",
+    "unscaled": "ell_j = 15 km"
+  },
+  "cases": {
+    "california_fold_0": {
+      "scaled": {
+        "two_sided_95": {
+          "profiled_eta": 0.000116375435997,
+          "fixed_eta": 0.000114142379983,
+          "gap": 2.2330560138e-06
+        },
+        "one_sided_95": {
+          "profiled_eta": 8.28391897291e-05,
+          "fixed_eta": 8.16648667011e-05,
+          "gap": 1.17432302804e-06
+        }
+      },
+      "unscaled": {
+        "two_sided_95": {
+          "profiled_eta": 0.000906859161177,
+          "fixed_eta": 0.00082077056192,
+          "gap": 8.60885992565e-05
+        },
+        "one_sided_95": {
+          "profiled_eta": 0.000706286044558,
+          "fixed_eta": 0.000644439033089,
+          "gap": 6.18470114694e-05
+        }
+      }
+    },
+    "california_fold_1": {
+      "scaled": {
+        "two_sided_95": {
+          "profiled_eta": 0.00011372975898,
+          "fixed_eta": 0.000111753766949,
+          "gap": 1.97599203062e-06
+        },
+        "one_sided_95": {
+          "profiled_eta": 8.09352242637e-05,
+          "fixed_eta": 7.98981784066e-05,
+          "gap": 1.03704585711e-06
+        }
+      },
+      "unscaled": {
+        "two_sided_95": {
+          "profiled_eta": 0.000841842531562,
+          "fixed_eta": 0.000772048612376,
+          "gap": 6.97939191866e-05
+        },
+        "one_sided_95": {
+          "profiled_eta": 0.000648531361056,
+          "fixed_eta": 0.000599896726003,
+          "gap": 4.86346350525e-05
+        }
+      }
+    },
+    "california_fold_2": {
+      "scaled": {
+        "two_sided_95": {
+          "profiled_eta": 9.26408698949e-05,
+          "fixed_eta": 9.09637437736e-05,
+          "gap": 1.67712612128e-06
+        },
+        "one_sided_95": {
+          "profiled_eta": 6.58312543514e-05,
+          "fixed_eta": 6.49566143848e-05,
+          "gap": 8.74639966594e-07
+        }
+      },
+      "unscaled": {
+        "two_sided_95": {
+          "profiled_eta": 0.000521362021663,
+          "fixed_eta": 0.000490915931348,
+          "gap": 3.04460903146e-05
+        },
+        "one_sided_95": {
+          "profiled_eta": 0.000385796542847,
+          "fixed_eta": 0.000367105536399,
+          "gap": 1.86910064484e-05
+        }
+      }
+    }
+  }
+}

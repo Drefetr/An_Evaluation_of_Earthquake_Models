@@ -1,0 +1,497 @@
+{
+  "schema": "slice5_epplus_formulation_v1",
+  "created_utc": "2026-11-15T11:54:51.243858+00:00",
+  "scope": "Divergence-theorem mass, analytic derivatives, plane/rectangle gradients, the exact EP+ minus EP contrast, and the paired calendar-block intervals.",
+  "passed": true,
+  "counts": {
+    "parent_mass_rows": 3196,
+    "mass_max_abs_error": 6.284528453193161e-12,
+    "mass_derivative_max_abs_error": 2.675160392685838e-10,
+    "uninhibited_gradient_max_abs_error": 3.1885665071257124e-08,
+    "interior_gradient_max_abs_error": 5.058697816195945e-08,
+    "inhibited_gradient_max_scaled_error": 4.10462758781982e-08,
+    "contrast_gains": [
+      14.579482477517331,
+      30.691007454126293,
+      24.282403910625135
+    ],
+    "contrast_total": 69.55289384226876,
+    "pooled_90": {
+      "total": 69.55289384227054,
+      "ci": [
+        32.23942152377755,
+        123.71943253874105
+      ],
+      "p": 2e-05,
+      "blocks": 63
+    },
+    "pooled_180": {
+      "total": 69.55289384227055,
+      "ci": [
+        32.15301441882991,
+        120.31243839556276
+      ],
+      "p": 0.0001,
+      "blocks": 33
+    },
+    "pooled_365": {
+      "total": 69.55289384227056,
+      "ci": [
+        26.58931660145044,
+        122.16411948767316
+      ],
+      "p": 0.00452,
+      "blocks": 18
+    },
+    "benchmark_rows": 3
+  },
+  "checks": [
+    {
+      "id": "mass-california_fold_0",
+      "passed": true,
+      "max_abs_error": 5.7019944321723415e-12,
+      "parents": 957,
+      "min_mass": 0.5812249638199919,
+      "max_mass": 0.9999995292533748
+    },
+    {
+      "id": "mass-derivatives-california_fold_0",
+      "passed": true,
+      "d_log_scale_max_abs": 2.675160392685838e-10,
+      "d_q_max_abs": 1.7205884122111848e-10
+    },
+    {
+      "id": "gradient-inhibited-plane-california_fold_0",
+      "passed": true,
+      "max_abs": 0.000161615385877667,
+      "max_scaled": 3.174616214349289e-08
+    },
+    {
+      "id": "gradient-inhibited-rect-california_fold_0",
+      "passed": true,
+      "max_abs": 0.00016160259474418126,
+      "max_scaled": 1.3758760047943852e-08
+    },
+    {
+      "id": "gradient-uninhibited-california_fold_0",
+      "passed": true,
+      "max_abs": 3.174616214349289e-08
+    },
+    {
+      "id": "gradient-uninhibited-interior-california_fold_0",
+      "passed": true,
+      "max_abs": 2.1478392397966672e-08
+    },
+    {
+      "id": "mass-california_fold_1",
+      "passed": true,
+      "max_abs_error": 5.761169319384862e-12,
+      "parents": 1036,
+      "min_mass": 0.5817625659168943,
+      "max_mass": 0.9999996522436876
+    },
+    {
+      "id": "mass-derivatives-california_fold_1",
+      "passed": true,
+      "d_log_scale_max_abs": 2.2215637338898146e-10,
+      "d_q_max_abs": 1.532723618638261e-10
+    },
+    {
+      "id": "gradient-inhibited-plane-california_fold_1",
+      "passed": true,
+      "max_abs": 0.00015969812375260517,
+      "max_scaled": 3.1885665071257124e-08
+    },
+    {
+      "id": "gradient-inhibited-rect-california_fold_1",
+      "passed": true,
+      "max_abs": 0.00015968821753631346,
+      "max_scaled": 4.10462758781982e-08
+    },
+    {
+      "id": "gradient-uninhibited-california_fold_1",
+      "passed": true,
+      "max_abs": 3.1885665071257124e-08
+    },
+    {
+      "id": "gradient-uninhibited-interior-california_fold_1",
+      "passed": true,
+      "max_abs": 2.3871432386357583e-08
+    },
+    {
+      "id": "mass-california_fold_2",
+      "passed": true,
+      "max_abs_error": 6.284528453193161e-12,
+      "parents": 1203,
+      "min_mass": 0.5868514017015161,
+      "max_mass": 0.999999995493102
+    },
+    {
+      "id": "mass-derivatives-california_fold_2",
+      "passed": true,
+      "d_log_scale_max_abs": 2.269050940792005e-10,
+      "d_q_max_abs": 1.4750438774771134e-10
+    },
+    {
+      "id": "gradient-inhibited-plane-california_fold_2",
+      "passed": true,
+      "max_abs": 0.00021041112995590083,
+      "max_scaled": 2.2528822067137465e-08
+    },
+    {
+      "id": "gradient-inhibited-rect-california_fold_2",
+      "passed": true,
+      "max_abs": 0.00021040617502876557,
+      "max_scaled": 2.0322791727256373e-08
+    },
+    {
+      "id": "gradient-uninhibited-california_fold_2",
+      "passed": true,
+      "max_abs": 2.2528822067137465e-08
+    },
+    {
+      "id": "gradient-uninhibited-interior-california_fold_2",
+      "passed": true,
+      "max_abs": 5.058697816195945e-08
+    },
+    {
+      "id": "accepted-summary-passed",
+      "passed": true
+    },
+    {
+      "id": "baseline-schema",
+      "passed": true
+    },
+    {
+      "id": "baseline-summary-hash",
+      "passed": true
+    },
+    {
+      "id": "baseline-history-california_fold_0",
+      "passed": true,
+      "mismatches": []
+    },
+    {
+      "id": "baseline-mark-california_fold_0",
+      "passed": true
+    },
+    {
+      "id": "baseline-old-identity-california_fold_0",
+      "passed": true
+    },
+    {
+      "id": "baseline-analytic-null-california_fold_0",
+      "passed": true
+    },
+    {
+      "id": "baseline-row-california_fold_0",
+      "passed": true
+    },
+    {
+      "id": "baseline-history-california_fold_1",
+      "passed": true,
+      "mismatches": []
+    },
+    {
+      "id": "baseline-mark-california_fold_1",
+      "passed": true
+    },
+    {
+      "id": "baseline-old-identity-california_fold_1",
+      "passed": true
+    },
+    {
+      "id": "baseline-analytic-null-california_fold_1",
+      "passed": true
+    },
+    {
+      "id": "baseline-row-california_fold_1",
+      "passed": true
+    },
+    {
+      "id": "baseline-history-california_fold_2",
+      "passed": true,
+      "mismatches": []
+    },
+    {
+      "id": "baseline-mark-california_fold_2",
+      "passed": true
+    },
+    {
+      "id": "baseline-old-identity-california_fold_2",
+      "passed": true
+    },
+    {
+      "id": "baseline-analytic-null-california_fold_2",
+      "passed": true
+    },
+    {
+      "id": "baseline-row-california_fold_2",
+      "passed": true
+    },
+    {
+      "id": "baseline-total",
+      "passed": true,
+      "total": 69.55289384226876,
+      "stored": 69.55289384226876
+    },
+    {
+      "id": "baseline-rounded-gains",
+      "passed": true,
+      "rounded": [
+        14.58,
+        30.69,
+        24.28
+      ]
+    },
+    {
+      "id": "benchmark-token-14.58, 30.",
+      "passed": true,
+      "token": "14.58, 30.69, and 24.28"
+    },
+    {
+      "id": "benchmark-token-69.55~nats",
+      "passed": true,
+      "token": "69.55~nats in total"
+    },
+    {
+      "id": "uncertainty-passed",
+      "passed": true
+    },
+    {
+      "id": "uncertainty-replicates",
+      "passed": true
+    },
+    {
+      "id": "block-resample-90-california_fold_0",
+      "passed": true,
+      "blocks": 21,
+      "ci": [
+        0.9899577287556626,
+        28.828807720813185
+      ]
+    },
+    {
+      "id": "block-resample-90-california_fold_1",
+      "passed": true,
+      "blocks": 21,
+      "ci": [
+        1.17135690240168,
+        80.5267946213246
+      ]
+    },
+    {
+      "id": "block-resample-90-california_fold_2",
+      "passed": true,
+      "blocks": 21,
+      "ci": [
+        14.684246642691615,
+        35.38893946016477
+      ]
+    },
+    {
+      "id": "pooled-90",
+      "passed": true,
+      "ci": [
+        32.23942152377755,
+        123.71943253874105
+      ],
+      "p": 2e-05,
+      "blocks": 63
+    },
+    {
+      "id": "block-resample-180-california_fold_0",
+      "passed": true,
+      "blocks": 11,
+      "ci": [
+        -0.7749649800710748,
+        30.952802224705998
+      ]
+    },
+    {
+      "id": "block-resample-180-california_fold_1",
+      "passed": true,
+      "blocks": 11,
+      "ci": [
+        1.8264132777381448,
+        76.68702928224316
+      ]
+    },
+    {
+      "id": "block-resample-180-california_fold_2",
+      "passed": true,
+      "blocks": 11,
+      "ci": [
+        14.138765568864565,
+        36.70678282444576
+      ]
+    },
+    {
+      "id": "pooled-180",
+      "passed": true,
+      "ci": [
+        32.15301441882991,
+        120.31243839556276
+      ],
+      "p": 0.0001,
+      "blocks": 33
+    },
+    {
+      "id": "block-resample-365-california_fold_0",
+      "passed": true,
+      "blocks": 6,
+      "ci": [
+        -4.395998140195001,
+        32.77542546533525
+      ]
+    },
+    {
+      "id": "block-resample-365-california_fold_1",
+      "passed": true,
+      "blocks": 6,
+      "ci": [
+        -2.014260425568987,
+        77.00076463626303
+      ]
+    },
+    {
+      "id": "block-resample-365-california_fold_2",
+      "passed": true,
+      "blocks": 6,
+      "ci": [
+        10.795438421045366,
+        41.05738206230288
+      ]
+    },
+    {
+      "id": "pooled-365",
+      "passed": true,
+      "ci": [
+        26.58931660145044,
+        122.16411948767316
+      ],
+      "p": 0.00452,
+      "blocks": 18
+    },
+    {
+      "id": "manuscript-interval-90",
+      "passed": true,
+      "ci": [
+        32.23942152377755,
+        123.71943253874105
+      ],
+      "p": 2e-05
+    },
+    {
+      "id": "manuscript-interval-180",
+      "passed": true,
+      "ci": [
+        32.15301441882991,
+        120.31243839556276
+      ],
+      "p": 0.0001
+    },
+    {
+      "id": "manuscript-interval-365",
+      "passed": true,
+      "ci": [
+        26.58931660145044,
+        122.16411948767316
+      ],
+      "p": 0.00452
+    },
+    {
+      "id": "block-token-[32.239,123.719]",
+      "passed": true,
+      "token": "[32.239,123.719]"
+    },
+    {
+      "id": "block-token-[32.153,120.312]",
+      "passed": true,
+      "token": "[32.153,120.312]"
+    },
+    {
+      "id": "block-token-[26.589,122.164]",
+      "passed": true,
+      "token": "[26.589,122.164]"
+    },
+    {
+      "id": "block-token-p=0.00002",
+      "passed": true,
+      "token": "p=0.00002"
+    },
+    {
+      "id": "block-token-p=0.00010",
+      "passed": true,
+      "token": "p=0.00010"
+    },
+    {
+      "id": "block-token-p=0.00452",
+      "passed": true,
+      "token": "p=0.00452"
+    },
+    {
+      "id": "benchmark-table-california_fold_0",
+      "passed": true,
+      "cells": [
+        "F0",
+        "851",
+        "79",
+        "2.000",
+        "0.617",
+        "2.440",
+        "0.000000",
+        "+0.0000"
+      ],
+      "n_train": 851,
+      "n_test": 79,
+      "sigma0": 2.0,
+      "alpha": 0.6169929144015514,
+      "q": 2.4397682304550328,
+      "eta": 0.0
+    },
+    {
+      "id": "benchmark-table-california_fold_1",
+      "passed": true,
+      "cells": [
+        "F1",
+        "930",
+        "167",
+        "2.000",
+        "0.623",
+        "2.470",
+        "0.000000",
+        "+0.0000"
+      ],
+      "n_train": 930,
+      "n_test": 167,
+      "sigma0": 2.0,
+      "alpha": 0.6230819083308565,
+      "q": 2.4699015727466143,
+      "eta": 0.0
+    },
+    {
+      "id": "benchmark-table-california_fold_2",
+      "passed": true,
+      "cells": [
+        "F2",
+        "1097",
+        "69",
+        "2.000",
+        "0.721",
+        "2.903",
+        "0.000000",
+        "+0.0000"
+      ],
+      "n_train": 1097,
+      "n_test": 69,
+      "sigma0": 2.0,
+      "alpha": 0.7210302180706085,
+      "q": 2.9031627455908633,
+      "eta": 0.0
+    }
+  ],
+  "notes": [
+    "The finite-difference criterion is abs(residual) <= 1e-7 * max(1, |analytic gradient|). The eta coordinate of the inhibited gradient is O(1.7e4), so its absolute tolerance is 1.7e-3."
+  ]
+}
