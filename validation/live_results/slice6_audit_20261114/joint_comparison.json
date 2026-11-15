@@ -1,0 +1,7872 @@
+{
+  "schema": "slice6_joint_comparison_v1",
+  "created_utc": "2026-11-15T19:32:28.783721+00:00",
+  "scope": "All 80 bound joint-nuisance histories, 400 outcomes, twenty score rows, twenty diagnostic rows, twenty floor-census rows, twenty quantile rows, and the S7 n=0 coincidence algebra.",
+  "passed": true,
+  "counts": {
+    "cases": 80,
+    "outcomes": 400,
+    "joint_rows": 20,
+    "s7_immigrant_n_zero": 19,
+    "s7_total_n_zero": 9,
+    "s7_both_n_zero": 9,
+    "s7_both_max_difference": 0.0001548846614696231
+  },
+  "checks": [
+    {
+      "id": "joint-completed-histories",
+      "passed": true,
+      "value": 80
+    },
+    {
+      "id": "joint-completed-outcomes",
+      "passed": true,
+      "value": 400
+    },
+    {
+      "id": "joint-scientific-completion",
+      "passed": true
+    },
+    {
+      "id": "joint-case-file-count",
+      "passed": true,
+      "count": 80
+    },
+    {
+      "id": "joint-summary-row-count",
+      "passed": true,
+      "count": 20
+    },
+    {
+      "id": "joint-case-source-count",
+      "passed": true,
+      "count": 80
+    },
+    {
+      "id": "joint-case-source-ids",
+      "passed": true
+    },
+    {
+      "id": "joint-case-hashes",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "id": "joint-recovery-histories",
+      "passed": true,
+      "recovery": [
+        "S5_broad_long_imm_seed410518",
+        "S6_narrow_short_total_seed410615"
+      ]
+    },
+    {
+      "id": "joint-computed-row-count",
+      "passed": true,
+      "count": 20
+    },
+    {
+      "id": "joint-summary-(4, 'LI', 'raw')",
+      "passed": true,
+      "computed": {
+        "mean": -14.857603689469443,
+        "median": -6.151886770868259,
+        "wins": 3,
+        "a": [
+          0,
+          4
+        ],
+        "eta": [
+          0,
+          6
+        ],
+        "failed": 0,
+        "gaps": 0,
+        "gate_diff": 0,
+        "floor": 0,
+        "near_zero": 0,
+        "positive_near_zero": 0,
+        "off_floor": 20,
+        "robust_positive": 3,
+        "robust_negative": 17
+      },
+      "stored": {
+        "mean_gain": -14.857603689469443,
+        "median_gain": -6.151886770868259,
+        "wins": 3,
+        "N": 20,
+        "coordinate_boundaries": {
+          "a": {
+            "lower": 0,
+            "upper": 4
+          },
+          "d": {
+            "lower": 0,
+            "upper": 2
+          },
+          "n": {
+            "lower": 0,
+            "upper": 5
+          },
+          "log_c": {
+            "lower": 1,
+            "upper": 0
+          },
+          "p": {
+            "lower": 0,
+            "upper": 3
+          },
+          "eta": {
+            "lower": 0,
+            "upper": 6
+          },
+          "log_ell": {
+            "lower": 4,
+            "upper": 9
+          },
+          "log_psi": {
+            "lower": 1,
+            "upper": 2
+          }
+        },
+        "optimizer_failed_attempts": 0,
+        "null_search_gap_cases": 0,
+        "coarse_fine_gate_disagreements": 0,
+        "floor_returns": 0,
+        "near_zero": 0,
+        "positive_near_zero": 0,
+        "off_floor": 20,
+        "robust_positive": 3,
+        "robust_negative": 17
+      }
+    },
+    {
+      "id": "joint-summary-(4, 'LIplus_immigrant', 'raw')",
+      "passed": true,
+      "computed": {
+        "mean": -9.762732932679034,
+        "median": -5.697125888042365,
+        "wins": 6,
+        "a": [
+          0,
+          1
+        ],
+        "eta": [
+          0,
+          6
+        ],
+        "failed": 1,
+        "gaps": 0,
+        "gate_diff": 0,
+        "floor": 0,
+        "near_zero": 0,
+        "positive_near_zero": 0,
+        "off_floor": 20,
+        "robust_positive": 6,
+        "robust_negative": 14
+      },
+      "stored": {
+        "mean_gain": -9.762732932679034,
+        "median_gain": -5.697125888042365,
+        "wins": 6,
+        "N": 20,
+        "coordinate_boundaries": {
+          "a": {
+            "lower": 0,
+            "upper": 1
+          },
+          "d": {
+            "lower": 0,
+            "upper": 1
+          },
+          "n": {
+            "lower": 0,
+            "upper": 5
+          },
+          "log_c": {
+            "lower": 1,
+            "upper": 0
+          },
+          "p": {
+            "lower": 0,
+            "upper": 3
+          },
+          "eta": {
+            "lower": 0,
+            "upper": 6
+          },
+          "log_ell": {
+            "lower": 4,
+            "upper": 8
+          },
+          "log_psi": {
+            "lower": 1,
+            "upper": 3
+          }
+        },
+        "optimizer_failed_attempts": 1,
+        "null_search_gap_cases": 0,
+        "coarse_fine_gate_disagreements": 0,
+        "floor_returns": 0,
+        "near_zero": 0,
+        "positive_near_zero": 0,
+        "off_floor": 20,
+        "robust_positive": 6,
+        "robust_negative": 14
+      }
+    },
+    {
+      "id": "joint-summary-(4, 'LIplus_immigrant', 'BIC')",
+      "passed": true,
+      "computed": {
+        "mean": 0.0,
+        "median": 0.0,
+        "wins": 0,
+        "a": [
+          0,
+          0
+        ],
+        "eta": [
+          20,
+          0
+        ],
+        "failed": 1,
+        "gaps": 0,
+        "gate_diff": 0,
+        "floor": 20,
+        "near_zero": 20,
+        "positive_near_zero": 0,
+        "off_floor": 0,
+        "robust_positive": 0,
+        "robust_negative": 0
+      },
+      "stored": {
+        "mean_gain": 0.0,
+        "median_gain": 0.0,
+        "wins": 0,
+        "N": 20,
+        "coordinate_boundaries": {
+          "a": {
+            "lower": 0,
+            "upper": 0
+          },
+          "d": {
+            "lower": 0,
+            "upper": 0
+          },
+          "n": {
+            "lower": 0,
+            "upper": 5
+          },
+          "log_c": {
+            "lower": 1,
+            "upper": 0
+          },
+          "p": {
+            "lower": 0,
+            "upper": 5
+          },
+          "eta": {
+            "lower": 20,
+            "upper": 0
+          },
+          "log_ell": {
+            "lower": 0,
+            "upper": 0
+          },
+          "log_psi": {
+            "lower": 0,
+            "upper": 0
+          }
+        },
+        "optimizer_failed_attempts": 1,
+        "null_search_gap_cases": 0,
+        "coarse_fine_gate_disagreements": 0,
+        "floor_returns": 20,
+        "near_zero": 20,
+        "positive_near_zero": 0,
+        "off_floor": 0,
+        "robust_positive": 0,
+        "robust_negative": 0
+      }
+    },
+    {
+      "id": "joint-summary-(4, 'LIplus_inclusive', 'raw')",
+      "passed": true,
+      "computed": {
+        "mean": -41.90982588704589,
+        "median": -4.149312334101069,
+        "wins": 4,
+        "a": [
+          0,
+          0
+        ],
+        "eta": [
+          0,
+          0
+        ],
+        "failed": 0,
+        "gaps": 0,
+        "gate_diff": 0,
+        "floor": 0,
+        "near_zero": 0,
+        "positive_near_zero": 0,
+        "off_floor": 20,
+        "robust_positive": 4,
+        "robust_negative": 16
+      },
+      "stored": {
+        "mean_gain": -41.90982588704589,
+        "median_gain": -4.149312334101069,
+        "wins": 4,
+        "N": 20,
+        "coordinate_boundaries": {
+          "a": {
+            "lower": 0,
+            "upper": 0
+          },
+          "d": {
+            "lower": 0,
+            "upper": 0
+          },
+          "n": {
+            "lower": 0,
+            "upper": 5
+          },
+          "log_c": {
+            "lower": 1,
+            "upper": 0
+          },
+          "p": {
+            "lower": 0,
+            "upper": 4
+          },
+          "eta": {
+            "lower": 0,
+            "upper": 0
+          },
+          "log_ell": {
+            "lower": 9,
+            "upper": 4
+          },
+          "log_psi": {
+            "lower": 6,
+            "upper": 0
+          }
+        },
+        "optimizer_failed_attempts": 0,
+        "null_search_gap_cases": 0,
+        "coarse_fine_gate_disagreements": 0,
+        "floor_returns": 0,
+        "near_zero": 0,
+        "positive_near_zero": 0,
+        "off_floor": 20,
+        "robust_positive": 4,
+        "robust_negative": 16
+      }
+    },
+    {
+      "id": "joint-summary-(4, 'LIplus_inclusive', 'BIC')",
+      "passed": true,
+      "computed": {
+        "mean": 0.0,
+        "median": 0.0,
+        "wins": 0,
+        "a": [
+          0,
+          0
+        ],
+        "eta": [
+          20,
+          0
+        ],
+        "failed": 0,
+        "gaps": 0,
+        "gate_diff": 0,
+        "floor": 20,
+        "near_zero": 20,
+        "positive_near_zero": 0,
+        "off_floor": 0,
+        "robust_positive": 0,
+        "robust_negative": 0
+      },
+      "stored": {
+        "mean_gain": 0.0,
+        "median_gain": 0.0,
+        "wins": 0,
+        "N": 20,
+        "coordinate_boundaries": {
+          "a": {
+            "lower": 0,
+            "upper": 0
+          },
+          "d": {
+            "lower": 0,
+            "upper": 0
+          },
+          "n": {
+            "lower": 0,
+            "upper": 5
+          },
+          "log_c": {
+            "lower": 1,
+            "upper": 0
+          },
+          "p": {
+            "lower": 0,
+            "upper": 5
+          },
+          "eta": {
+            "lower": 20,
+            "upper": 0
+          },
+          "log_ell": {
+            "lower": 0,
+            "upper": 0
+          },
+          "log_psi": {
+            "lower": 0,
+            "upper": 0
+          }
+        },
+        "optimizer_failed_attempts": 0,
+        "null_search_gap_cases": 0,
+        "coarse_fine_gate_disagreements": 0,
+        "floor_returns": 20,
+        "near_zero": 20,
+        "positive_near_zero": 0,
+        "off_floor": 0,
+        "robust_positive": 0,
+        "robust_negative": 0
+      }
+    },
+    {
+      "id": "joint-summary-(5, 'LI', 'raw')",
+      "passed": true,
+      "computed": {
+        "mean": -4.360374519998786,
+        "median": -0.9635654663455568,
+        "wins": 8,
+        "a": [
+          0,
+          10
+        ],
+        "eta": [
+          0,
+          7
+        ],
+        "failed": 0,
+        "gaps": 0,
+        "gate_diff": 0,
+        "floor": 0,
+        "near_zero": 0,
+        "positive_near_zero": 0,
+        "off_floor": 20,
+        "robust_positive": 8,
+        "robust_negative": 12
+      },
+      "stored": {
+        "mean_gain": -4.360374519998786,
+        "median_gain": -0.9635654663455568,
+        "wins": 8,
+        "N": 20,
+        "coordinate_boundaries": {
+          "a": {
+            "lower": 0,
+            "upper": 10
+          },
+          "d": {
+            "lower": 1,
+            "upper": 3
+          },
+          "n": {
+            "lower": 3,
+            "upper": 0
+          },
+          "log_c": {
+            "lower": 0,
+            "upper": 0
+          },
+          "p": {
+            "lower": 1,
+            "upper": 8
+          },
+          "eta": {
+            "lower": 0,
+            "upper": 7
+          },
+          "log_ell": {
+            "lower": 0,
+            "upper": 2
+          },
+          "log_psi": {
+            "lower": 0,
+            "upper": 0
+          }
+        },
+        "optimizer_failed_attempts": 0,
+        "null_search_gap_cases": 0,
+        "coarse_fine_gate_disagreements": 0,
+        "floor_returns": 0,
+        "near_zero": 0,
+        "positive_near_zero": 0,
+        "off_floor": 20,
+        "robust_positive": 8,
+        "robust_negative": 12
+      }
+    },
+    {
+      "id": "joint-summary-(5, 'LIplus_immigrant', 'raw')",
+      "passed": true,
+      "computed": {
+        "mean": -10.370093875247855,
+        "median": 2.2590177909541183,
+        "wins": 10,
+        "a": [
+          0,
+          9
+        ],
+        "eta": [
+          0,
+          4
+        ],
+        "failed": 2,
+        "gaps": 0,
+        "gate_diff": 0,
+        "floor": 0,
+        "near_zero": 0,
+        "positive_near_zero": 0,
+        "off_floor": 20,
+        "robust_positive": 10,
+        "robust_negative": 10
+      },
+      "stored": {
+        "mean_gain": -10.370093875247855,
+        "median_gain": 2.2590177909541183,
+        "wins": 10,
+        "N": 20,
+        "coordinate_boundaries": {
+          "a": {
+            "lower": 0,
+            "upper": 9
+          },
+          "d": {
+            "lower": 1,
+            "upper": 2
+          },
+          "n": {
+            "lower": 4,
+            "upper": 2
+          },
+          "log_c": {
+            "lower": 0,
+            "upper": 3
+          },
+          "p": {
+            "lower": 3,
+            "upper": 5
+          },
+          "eta": {
+            "lower": 0,
+            "upper": 4
+          },
+          "log_ell": {
+            "lower": 0,
+            "upper": 2
+          },
+          "log_psi": {
+            "lower": 0,
+            "upper": 0
+          }
+        },
+        "optimizer_failed_attempts": 2,
+        "null_search_gap_cases": 0,
+        "coarse_fine_gate_disagreements": 0,
+        "floor_returns": 0,
+        "near_zero": 0,
+        "positive_near_zero": 0,
+        "off_floor": 20,
+        "robust_positive": 10,
+        "robust_negative": 10
+      }
+    },
+    {
+      "id": "joint-summary-(5, 'LIplus_immigrant', 'BIC')",
+      "passed": true,
+      "computed": {
+        "mean": -10.370093875247855,
+        "median": 2.2590177909541183,
+        "wins": 10,
+        "a": [
+          0,
+          9
+        ],
+        "eta": [
+          0,
+          4
+        ],
+        "failed": 2,
+        "gaps": 0,
+        "gate_diff": 0,
+        "floor": 0,
+        "near_zero": 0,
+        "positive_near_zero": 0,
+        "off_floor": 20,
+        "robust_positive": 10,
+        "robust_negative": 10
+      },
+      "stored": {
+        "mean_gain": -10.370093875247855,
+        "median_gain": 2.2590177909541183,
+        "wins": 10,
+        "N": 20,
+        "coordinate_boundaries": {
+          "a": {
+            "lower": 0,
+            "upper": 9
+          },
+          "d": {
+            "lower": 1,
+            "upper": 2
+          },
+          "n": {
+            "lower": 4,
+            "upper": 2
+          },
+          "log_c": {
+            "lower": 0,
+            "upper": 3
+          },
+          "p": {
+            "lower": 3,
+            "upper": 5
+          },
+          "eta": {
+            "lower": 0,
+            "upper": 4
+          },
+          "log_ell": {
+            "lower": 0,
+            "upper": 2
+          },
+          "log_psi": {
+            "lower": 0,
+            "upper": 0
+          }
+        },
+        "optimizer_failed_attempts": 2,
+        "null_search_gap_cases": 0,
+        "coarse_fine_gate_disagreements": 0,
+        "floor_returns": 0,
+        "near_zero": 0,
+        "positive_near_zero": 0,
+        "off_floor": 20,
+        "robust_positive": 10,
+        "robust_negative": 10
+      }
+    },
+    {
+      "id": "joint-summary-(5, 'LIplus_inclusive', 'raw')",
+      "passed": true,
+      "computed": {
+        "mean": -18.012915707463957,
+        "median": -3.494606164697757,
+        "wins": 7,
+        "a": [
+          0,
+          1
+        ],
+        "eta": [
+          0,
+          1
+        ],
+        "failed": 0,
+        "gaps": 0,
+        "gate_diff": 0,
+        "floor": 0,
+        "near_zero": 0,
+        "positive_near_zero": 0,
+        "off_floor": 20,
+        "robust_positive": 7,
+        "robust_negative": 13
+      },
+      "stored": {
+        "mean_gain": -18.012915707463954,
+        "median_gain": -3.494606164697757,
+        "wins": 7,
+        "N": 20,
+        "coordinate_boundaries": {
+          "a": {
+            "lower": 0,
+            "upper": 1
+          },
+          "d": {
+            "lower": 1,
+            "upper": 3
+          },
+          "n": {
+            "lower": 1,
+            "upper": 12
+          },
+          "log_c": {
+            "lower": 0,
+            "upper": 2
+          },
+          "p": {
+            "lower": 1,
+            "upper": 8
+          },
+          "eta": {
+            "lower": 0,
+            "upper": 1
+          },
+          "log_ell": {
+            "lower": 5,
+            "upper": 6
+          },
+          "log_psi": {
+            "lower": 3,
+            "upper": 5
+          }
+        },
+        "optimizer_failed_attempts": 0,
+        "null_search_gap_cases": 0,
+        "coarse_fine_gate_disagreements": 0,
+        "floor_returns": 0,
+        "near_zero": 0,
+        "positive_near_zero": 0,
+        "off_floor": 20,
+        "robust_positive": 7,
+        "robust_negative": 13
+      }
+    },
+    {
+      "id": "joint-summary-(5, 'LIplus_inclusive', 'BIC')",
+      "passed": true,
+      "computed": {
+        "mean": -16.105705134132542,
+        "median": 0.0,
+        "wins": 1,
+        "a": [
+          0,
+          1
+        ],
+        "eta": [
+          13,
+          1
+        ],
+        "failed": 0,
+        "gaps": 0,
+        "gate_diff": 0,
+        "floor": 13,
+        "near_zero": 13,
+        "positive_near_zero": 0,
+        "off_floor": 7,
+        "robust_positive": 1,
+        "robust_negative": 6
+      },
+      "stored": {
+        "mean_gain": -16.105705134132542,
+        "median_gain": 0.0,
+        "wins": 1,
+        "N": 20,
+        "coordinate_boundaries": {
+          "a": {
+            "lower": 0,
+            "upper": 1
+          },
+          "d": {
+            "lower": 1,
+            "upper": 3
+          },
+          "n": {
+            "lower": 1,
+            "upper": 6
+          },
+          "log_c": {
+            "lower": 0,
+            "upper": 2
+          },
+          "p": {
+            "lower": 1,
+            "upper": 8
+          },
+          "eta": {
+            "lower": 13,
+            "upper": 1
+          },
+          "log_ell": {
+            "lower": 0,
+            "upper": 1
+          },
+          "log_psi": {
+            "lower": 0,
+            "upper": 0
+          }
+        },
+        "optimizer_failed_attempts": 0,
+        "null_search_gap_cases": 0,
+        "coarse_fine_gate_disagreements": 0,
+        "floor_returns": 13,
+        "near_zero": 13,
+        "positive_near_zero": 0,
+        "off_floor": 7,
+        "robust_positive": 1,
+        "robust_negative": 6
+      }
+    },
+    {
+      "id": "joint-summary-(6, 'LI', 'raw')",
+      "passed": true,
+      "computed": {
+        "mean": -12.789024204377137,
+        "median": -3.359332904496682,
+        "wins": 3,
+        "a": [
+          0,
+          3
+        ],
+        "eta": [
+          0,
+          7
+        ],
+        "failed": 0,
+        "gaps": 0,
+        "gate_diff": 0,
+        "floor": 0,
+        "near_zero": 0,
+        "positive_near_zero": 0,
+        "off_floor": 20,
+        "robust_positive": 3,
+        "robust_negative": 17
+      },
+      "stored": {
+        "mean_gain": -12.789024204377137,
+        "median_gain": -3.359332904496682,
+        "wins": 3,
+        "N": 20,
+        "coordinate_boundaries": {
+          "a": {
+            "lower": 0,
+            "upper": 3
+          },
+          "d": {
+            "lower": 0,
+            "upper": 0
+          },
+          "n": {
+            "lower": 0,
+            "upper": 1
+          },
+          "log_c": {
+            "lower": 0,
+            "upper": 0
+          },
+          "p": {
+            "lower": 0,
+            "upper": 4
+          },
+          "eta": {
+            "lower": 0,
+            "upper": 7
+          },
+          "log_ell": {
+            "lower": 4,
+            "upper": 6
+          },
+          "log_psi": {
+            "lower": 1,
+            "upper": 1
+          }
+        },
+        "optimizer_failed_attempts": 0,
+        "null_search_gap_cases": 0,
+        "coarse_fine_gate_disagreements": 0,
+        "floor_returns": 0,
+        "near_zero": 0,
+        "positive_near_zero": 0,
+        "off_floor": 20,
+        "robust_positive": 3,
+        "robust_negative": 17
+      }
+    },
+    {
+      "id": "joint-summary-(6, 'LIplus_immigrant', 'raw')",
+      "passed": true,
+      "computed": {
+        "mean": -15.783671622619682,
+        "median": -4.643439462637616,
+        "wins": 2,
+        "a": [
+          0,
+          3
+        ],
+        "eta": [
+          0,
+          6
+        ],
+        "failed": 1,
+        "gaps": 0,
+        "gate_diff": 0,
+        "floor": 0,
+        "near_zero": 0,
+        "positive_near_zero": 0,
+        "off_floor": 20,
+        "robust_positive": 2,
+        "robust_negative": 18
+      },
+      "stored": {
+        "mean_gain": -15.783671622619682,
+        "median_gain": -4.643439462637616,
+        "wins": 2,
+        "N": 20,
+        "coordinate_boundaries": {
+          "a": {
+            "lower": 0,
+            "upper": 3
+          },
+          "d": {
+            "lower": 0,
+            "upper": 0
+          },
+          "n": {
+            "lower": 0,
+            "upper": 2
+          },
+          "log_c": {
+            "lower": 0,
+            "upper": 0
+          },
+          "p": {
+            "lower": 0,
+            "upper": 3
+          },
+          "eta": {
+            "lower": 0,
+            "upper": 6
+          },
+          "log_ell": {
+            "lower": 4,
+            "upper": 3
+          },
+          "log_psi": {
+            "lower": 3,
+            "upper": 2
+          }
+        },
+        "optimizer_failed_attempts": 1,
+        "null_search_gap_cases": 0,
+        "coarse_fine_gate_disagreements": 0,
+        "floor_returns": 0,
+        "near_zero": 0,
+        "positive_near_zero": 0,
+        "off_floor": 20,
+        "robust_positive": 2,
+        "robust_negative": 18
+      }
+    },
+    {
+      "id": "joint-summary-(6, 'LIplus_immigrant', 'BIC')",
+      "passed": true,
+      "computed": {
+        "mean": 0.0,
+        "median": 0.0,
+        "wins": 0,
+        "a": [
+          0,
+          0
+        ],
+        "eta": [
+          20,
+          0
+        ],
+        "failed": 1,
+        "gaps": 0,
+        "gate_diff": 0,
+        "floor": 20,
+        "near_zero": 20,
+        "positive_near_zero": 0,
+        "off_floor": 0,
+        "robust_positive": 0,
+        "robust_negative": 0
+      },
+      "stored": {
+        "mean_gain": 0.0,
+        "median_gain": 0.0,
+        "wins": 0,
+        "N": 20,
+        "coordinate_boundaries": {
+          "a": {
+            "lower": 0,
+            "upper": 0
+          },
+          "d": {
+            "lower": 0,
+            "upper": 0
+          },
+          "n": {
+            "lower": 0,
+            "upper": 1
+          },
+          "log_c": {
+            "lower": 0,
+            "upper": 0
+          },
+          "p": {
+            "lower": 0,
+            "upper": 4
+          },
+          "eta": {
+            "lower": 20,
+            "upper": 0
+          },
+          "log_ell": {
+            "lower": 0,
+            "upper": 0
+          },
+          "log_psi": {
+            "lower": 0,
+            "upper": 0
+          }
+        },
+        "optimizer_failed_attempts": 1,
+        "null_search_gap_cases": 0,
+        "coarse_fine_gate_disagreements": 0,
+        "floor_returns": 20,
+        "near_zero": 20,
+        "positive_near_zero": 0,
+        "off_floor": 0,
+        "robust_positive": 0,
+        "robust_negative": 0
+      }
+    },
+    {
+      "id": "joint-summary-(6, 'LIplus_inclusive', 'raw')",
+      "passed": true,
+      "computed": {
+        "mean": -30.473354481658646,
+        "median": -2.1915767068132936,
+        "wins": 6,
+        "a": [
+          0,
+          0
+        ],
+        "eta": [
+          0,
+          0
+        ],
+        "failed": 1,
+        "gaps": 0,
+        "gate_diff": 0,
+        "floor": 0,
+        "near_zero": 0,
+        "positive_near_zero": 0,
+        "off_floor": 20,
+        "robust_positive": 6,
+        "robust_negative": 14
+      },
+      "stored": {
+        "mean_gain": -30.473354481658646,
+        "median_gain": -2.1915767068132936,
+        "wins": 6,
+        "N": 20,
+        "coordinate_boundaries": {
+          "a": {
+            "lower": 0,
+            "upper": 0
+          },
+          "d": {
+            "lower": 0,
+            "upper": 0
+          },
+          "n": {
+            "lower": 0,
+            "upper": 1
+          },
+          "log_c": {
+            "lower": 0,
+            "upper": 0
+          },
+          "p": {
+            "lower": 0,
+            "upper": 2
+          },
+          "eta": {
+            "lower": 0,
+            "upper": 0
+          },
+          "log_ell": {
+            "lower": 9,
+            "upper": 2
+          },
+          "log_psi": {
+            "lower": 5,
+            "upper": 0
+          }
+        },
+        "optimizer_failed_attempts": 1,
+        "null_search_gap_cases": 0,
+        "coarse_fine_gate_disagreements": 0,
+        "floor_returns": 0,
+        "near_zero": 0,
+        "positive_near_zero": 0,
+        "off_floor": 20,
+        "robust_positive": 6,
+        "robust_negative": 14
+      }
+    },
+    {
+      "id": "joint-summary-(6, 'LIplus_inclusive', 'BIC')",
+      "passed": true,
+      "computed": {
+        "mean": 0.0827626376003991,
+        "median": 0.0,
+        "wins": 1,
+        "a": [
+          0,
+          0
+        ],
+        "eta": [
+          19,
+          0
+        ],
+        "failed": 1,
+        "gaps": 0,
+        "gate_diff": 0,
+        "floor": 19,
+        "near_zero": 19,
+        "positive_near_zero": 0,
+        "off_floor": 1,
+        "robust_positive": 1,
+        "robust_negative": 0
+      },
+      "stored": {
+        "mean_gain": 0.0827626376003991,
+        "median_gain": 0.0,
+        "wins": 1,
+        "N": 20,
+        "coordinate_boundaries": {
+          "a": {
+            "lower": 0,
+            "upper": 0
+          },
+          "d": {
+            "lower": 0,
+            "upper": 0
+          },
+          "n": {
+            "lower": 0,
+            "upper": 1
+          },
+          "log_c": {
+            "lower": 0,
+            "upper": 0
+          },
+          "p": {
+            "lower": 0,
+            "upper": 4
+          },
+          "eta": {
+            "lower": 19,
+            "upper": 0
+          },
+          "log_ell": {
+            "lower": 0,
+            "upper": 0
+          },
+          "log_psi": {
+            "lower": 0,
+            "upper": 0
+          }
+        },
+        "optimizer_failed_attempts": 1,
+        "null_search_gap_cases": 0,
+        "coarse_fine_gate_disagreements": 0,
+        "floor_returns": 19,
+        "near_zero": 19,
+        "positive_near_zero": 0,
+        "off_floor": 1,
+        "robust_positive": 1,
+        "robust_negative": 0
+      }
+    },
+    {
+      "id": "joint-summary-(7, 'LI', 'raw')",
+      "passed": true,
+      "computed": {
+        "mean": -30.58647416016779,
+        "median": -11.912457679042632,
+        "wins": 5,
+        "a": [
+          0,
+          7
+        ],
+        "eta": [
+          0,
+          8
+        ],
+        "failed": 0,
+        "gaps": 0,
+        "gate_diff": 0,
+        "floor": 0,
+        "near_zero": 0,
+        "positive_near_zero": 0,
+        "off_floor": 20,
+        "robust_positive": 5,
+        "robust_negative": 15
+      },
+      "stored": {
+        "mean_gain": -30.58647416016779,
+        "median_gain": -11.912457679042632,
+        "wins": 5,
+        "N": 20,
+        "coordinate_boundaries": {
+          "a": {
+            "lower": 0,
+            "upper": 7
+          },
+          "d": {
+            "lower": 1,
+            "upper": 5
+          },
+          "n": {
+            "lower": 18,
+            "upper": 1
+          },
+          "log_c": {
+            "lower": 1,
+            "upper": 4
+          },
+          "p": {
+            "lower": 13,
+            "upper": 1
+          },
+          "eta": {
+            "lower": 0,
+            "upper": 8
+          },
+          "log_ell": {
+            "lower": 0,
+            "upper": 2
+          },
+          "log_psi": {
+            "lower": 0,
+            "upper": 0
+          }
+        },
+        "optimizer_failed_attempts": 0,
+        "null_search_gap_cases": 0,
+        "coarse_fine_gate_disagreements": 0,
+        "floor_returns": 0,
+        "near_zero": 0,
+        "positive_near_zero": 0,
+        "off_floor": 20,
+        "robust_positive": 5,
+        "robust_negative": 15
+      }
+    },
+    {
+      "id": "joint-summary-(7, 'LIplus_immigrant', 'raw')",
+      "passed": true,
+      "computed": {
+        "mean": -1.8107230616887962,
+        "median": -2.6127030221370404,
+        "wins": 8,
+        "a": [
+          0,
+          6
+        ],
+        "eta": [
+          0,
+          7
+        ],
+        "failed": 0,
+        "gaps": 0,
+        "gate_diff": 0,
+        "floor": 0,
+        "near_zero": 0,
+        "positive_near_zero": 0,
+        "off_floor": 20,
+        "robust_positive": 8,
+        "robust_negative": 12
+      },
+      "stored": {
+        "mean_gain": -1.8107230616887962,
+        "median_gain": -2.6127030221370404,
+        "wins": 8,
+        "N": 20,
+        "coordinate_boundaries": {
+          "a": {
+            "lower": 0,
+            "upper": 6
+          },
+          "d": {
+            "lower": 0,
+            "upper": 1
+          },
+          "n": {
+            "lower": 19,
+            "upper": 1
+          },
+          "log_c": {
+            "lower": 0,
+            "upper": 4
+          },
+          "p": {
+            "lower": 13,
+            "upper": 0
+          },
+          "eta": {
+            "lower": 0,
+            "upper": 7
+          },
+          "log_ell": {
+            "lower": 0,
+            "upper": 1
+          },
+          "log_psi": {
+            "lower": 0,
+            "upper": 0
+          }
+        },
+        "optimizer_failed_attempts": 0,
+        "null_search_gap_cases": 0,
+        "coarse_fine_gate_disagreements": 0,
+        "floor_returns": 0,
+        "near_zero": 0,
+        "positive_near_zero": 0,
+        "off_floor": 20,
+        "robust_positive": 8,
+        "robust_negative": 12
+      }
+    },
+    {
+      "id": "joint-summary-(7, 'LIplus_immigrant', 'BIC')",
+      "passed": true,
+      "computed": {
+        "mean": -2.469578073253916,
+        "median": -2.6127030221370404,
+        "wins": 6,
+        "a": [
+          0,
+          5
+        ],
+        "eta": [
+          2,
+          7
+        ],
+        "failed": 0,
+        "gaps": 0,
+        "gate_diff": 0,
+        "floor": 2,
+        "near_zero": 2,
+        "positive_near_zero": 0,
+        "off_floor": 18,
+        "robust_positive": 6,
+        "robust_negative": 12
+      },
+      "stored": {
+        "mean_gain": -2.469578073253916,
+        "median_gain": -2.6127030221370404,
+        "wins": 6,
+        "N": 20,
+        "coordinate_boundaries": {
+          "a": {
+            "lower": 0,
+            "upper": 5
+          },
+          "d": {
+            "lower": 0,
+            "upper": 0
+          },
+          "n": {
+            "lower": 19,
+            "upper": 1
+          },
+          "log_c": {
+            "lower": 0,
+            "upper": 4
+          },
+          "p": {
+            "lower": 13,
+            "upper": 0
+          },
+          "eta": {
+            "lower": 2,
+            "upper": 7
+          },
+          "log_ell": {
+            "lower": 0,
+            "upper": 1
+          },
+          "log_psi": {
+            "lower": 0,
+            "upper": 0
+          }
+        },
+        "optimizer_failed_attempts": 0,
+        "null_search_gap_cases": 0,
+        "coarse_fine_gate_disagreements": 0,
+        "floor_returns": 2,
+        "near_zero": 2,
+        "positive_near_zero": 0,
+        "off_floor": 18,
+        "robust_positive": 6,
+        "robust_negative": 12
+      }
+    },
+    {
+      "id": "joint-summary-(7, 'LIplus_inclusive', 'raw')",
+      "passed": true,
+      "computed": {
+        "mean": -1.260675045812961,
+        "median": -1.257430184109694,
+        "wins": 8,
+        "a": [
+          0,
+          4
+        ],
+        "eta": [
+          0,
+          7
+        ],
+        "failed": 0,
+        "gaps": 0,
+        "gate_diff": 0,
+        "floor": 0,
+        "near_zero": 0,
+        "positive_near_zero": 0,
+        "off_floor": 20,
+        "robust_positive": 8,
+        "robust_negative": 12
+      },
+      "stored": {
+        "mean_gain": -1.260675045812961,
+        "median_gain": -1.257430184109694,
+        "wins": 8,
+        "N": 20,
+        "coordinate_boundaries": {
+          "a": {
+            "lower": 0,
+            "upper": 4
+          },
+          "d": {
+            "lower": 0,
+            "upper": 1
+          },
+          "n": {
+            "lower": 9,
+            "upper": 11
+          },
+          "log_c": {
+            "lower": 0,
+            "upper": 9
+          },
+          "p": {
+            "lower": 1,
+            "upper": 5
+          },
+          "eta": {
+            "lower": 0,
+            "upper": 7
+          },
+          "log_ell": {
+            "lower": 0,
+            "upper": 1
+          },
+          "log_psi": {
+            "lower": 0,
+            "upper": 0
+          }
+        },
+        "optimizer_failed_attempts": 0,
+        "null_search_gap_cases": 0,
+        "coarse_fine_gate_disagreements": 0,
+        "floor_returns": 0,
+        "near_zero": 0,
+        "positive_near_zero": 0,
+        "off_floor": 20,
+        "robust_positive": 8,
+        "robust_negative": 12
+      }
+    },
+    {
+      "id": "joint-summary-(7, 'LIplus_inclusive', 'BIC')",
+      "passed": true,
+      "computed": {
+        "mean": -1.2435455824468575,
+        "median": -1.257430184109694,
+        "wins": 8,
+        "a": [
+          0,
+          4
+        ],
+        "eta": [
+          1,
+          7
+        ],
+        "failed": 0,
+        "gaps": 0,
+        "gate_diff": 0,
+        "floor": 1,
+        "near_zero": 1,
+        "positive_near_zero": 0,
+        "off_floor": 19,
+        "robust_positive": 8,
+        "robust_negative": 11
+      },
+      "stored": {
+        "mean_gain": -1.2435455824468575,
+        "median_gain": -1.257430184109694,
+        "wins": 8,
+        "N": 20,
+        "coordinate_boundaries": {
+          "a": {
+            "lower": 0,
+            "upper": 4
+          },
+          "d": {
+            "lower": 0,
+            "upper": 0
+          },
+          "n": {
+            "lower": 9,
+            "upper": 11
+          },
+          "log_c": {
+            "lower": 0,
+            "upper": 9
+          },
+          "p": {
+            "lower": 1,
+            "upper": 5
+          },
+          "eta": {
+            "lower": 1,
+            "upper": 7
+          },
+          "log_ell": {
+            "lower": 0,
+            "upper": 1
+          },
+          "log_psi": {
+            "lower": 0,
+            "upper": 0
+          }
+        },
+        "optimizer_failed_attempts": 0,
+        "null_search_gap_cases": 0,
+        "coarse_fine_gate_disagreements": 0,
+        "floor_returns": 1,
+        "near_zero": 1,
+        "positive_near_zero": 0,
+        "off_floor": 19,
+        "robust_positive": 8,
+        "robust_negative": 11
+      }
+    },
+    {
+      "id": "joint-score-table-row-count",
+      "passed": true,
+      "count": 20
+    },
+    {
+      "id": "table-joint-score-(4, 'LI', 'raw')",
+      "passed": true,
+      "actual": [
+        20.0,
+        20.0,
+        -14.8576,
+        5.4708,
+        -6.1519,
+        3.0,
+        20.0,
+        0.0524,
+        0.3604
+      ],
+      "expected": [
+        20.0,
+        20.0,
+        -14.857603689469443,
+        5.4707561710471,
+        -6.151886770868259,
+        3.0,
+        20.0,
+        0.052368745896216595,
+        0.36041886474075696
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": -14.8576,
+          "expected": -14.857603689469443,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 5.4708,
+          "expected": 5.4707561710471,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": -6.1519,
+          "expected": -6.151886770868259,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 3.0,
+          "expected": 3,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.0524,
+          "expected": 0.052368745896216595,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 8,
+          "shown": 0.3604,
+          "expected": 0.36041886474075696,
+          "decimals": 4,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-score-(4, 'LIplus_immigrant', 'raw')",
+      "passed": true,
+      "actual": [
+        20.0,
+        20.0,
+        -9.7627,
+        4.6732,
+        -5.6971,
+        6.0,
+        20.0,
+        0.1455,
+        0.519
+      ],
+      "expected": [
+        20.0,
+        20.0,
+        -9.762732932679034,
+        4.67324195542644,
+        -5.697125888042365,
+        6.0,
+        20.0,
+        0.1454772448676043,
+        0.5189728183535235
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": -9.7627,
+          "expected": -9.762732932679034,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 4.6732,
+          "expected": 4.67324195542644,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": -5.6971,
+          "expected": -5.697125888042365,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 6.0,
+          "expected": 6,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.1455,
+          "expected": 0.1454772448676043,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 8,
+          "shown": 0.519,
+          "expected": 0.5189728183535235,
+          "decimals": 4,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-score-(4, 'LIplus_immigrant', 'BIC')",
+      "passed": true,
+      "actual": [
+        20.0,
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        20.0,
+        0.0,
+        0.1611
+      ],
+      "expected": [
+        20.0,
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        20.0,
+        0.0,
+        0.16112515805281938
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 8,
+          "shown": 0.1611,
+          "expected": 0.16112515805281938,
+          "decimals": 4,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-score-(4, 'LIplus_inclusive', 'raw')",
+      "passed": true,
+      "actual": [
+        20.0,
+        20.0,
+        -41.9098,
+        29.3814,
+        -4.1493,
+        4.0,
+        20.0,
+        0.0807,
+        0.416
+      ],
+      "expected": [
+        20.0,
+        20.0,
+        -41.90982588704589,
+        29.381395043244265,
+        -4.149312334101069,
+        4.0,
+        20.0,
+        0.08065766257979806,
+        0.41601743225189364
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": -41.9098,
+          "expected": -41.90982588704589,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 29.3814,
+          "expected": 29.381395043244265,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": -4.1493,
+          "expected": -4.149312334101069,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 4.0,
+          "expected": 4,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.0807,
+          "expected": 0.08065766257979806,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 8,
+          "shown": 0.416,
+          "expected": 0.41601743225189364,
+          "decimals": 4,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-score-(4, 'LIplus_inclusive', 'BIC')",
+      "passed": true,
+      "actual": [
+        20.0,
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        20.0,
+        0.0,
+        0.1611
+      ],
+      "expected": [
+        20.0,
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        20.0,
+        0.0,
+        0.16112515805281938
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 8,
+          "shown": 0.1611,
+          "expected": 0.16112515805281938,
+          "decimals": 4,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-score-(5, 'LI', 'raw')",
+      "passed": true,
+      "actual": [
+        20.0,
+        20.0,
+        -4.3604,
+        3.3375,
+        -0.9636,
+        8.0,
+        20.0,
+        0.2188,
+        0.6134
+      ],
+      "expected": [
+        20.0,
+        20.0,
+        -4.360374519998786,
+        3.337534025239561,
+        -0.9635654663455568,
+        8.0,
+        20.0,
+        0.21880653237281705,
+        0.6134184992377469
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": -4.3604,
+          "expected": -4.360374519998786,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 3.3375,
+          "expected": 3.337534025239561,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": -0.9636,
+          "expected": -0.9635654663455568,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 8.0,
+          "expected": 8,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.2188,
+          "expected": 0.21880653237281705,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 8,
+          "shown": 0.6134,
+          "expected": 0.6134184992377469,
+          "decimals": 4,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-score-(5, 'LIplus_immigrant', 'raw')",
+      "passed": true,
+      "actual": [
+        20.0,
+        20.0,
+        -10.3701,
+        8.5587,
+        2.259,
+        10.0,
+        20.0,
+        0.2993,
+        0.7007
+      ],
+      "expected": [
+        20.0,
+        20.0,
+        -10.370093875247855,
+        8.55870698183421,
+        2.2590177909541183,
+        10.0,
+        20.0,
+        0.2992980081982123,
+        0.7007019918017877
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": -10.3701,
+          "expected": -10.370093875247855,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 8.5587,
+          "expected": 8.55870698183421,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 2.259,
+          "expected": 2.2590177909541183,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 10.0,
+          "expected": 10,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.2993,
+          "expected": 0.2992980081982123,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 8,
+          "shown": 0.7007,
+          "expected": 0.7007019918017877,
+          "decimals": 4,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-score-(5, 'LIplus_immigrant', 'BIC')",
+      "passed": true,
+      "actual": [
+        20.0,
+        20.0,
+        -10.3701,
+        8.5587,
+        2.259,
+        10.0,
+        20.0,
+        0.2993,
+        0.7007
+      ],
+      "expected": [
+        20.0,
+        20.0,
+        -10.370093875247855,
+        8.55870698183421,
+        2.2590177909541183,
+        10.0,
+        20.0,
+        0.2992980081982123,
+        0.7007019918017877
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": -10.3701,
+          "expected": -10.370093875247855,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 8.5587,
+          "expected": 8.55870698183421,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 2.259,
+          "expected": 2.2590177909541183,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 10.0,
+          "expected": 10,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.2993,
+          "expected": 0.2992980081982123,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 8,
+          "shown": 0.7007,
+          "expected": 0.7007019918017877,
+          "decimals": 4,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-score-(5, 'LIplus_inclusive', 'raw')",
+      "passed": true,
+      "actual": [
+        20.0,
+        20.0,
+        -18.0129,
+        7.459,
+        -3.4946,
+        7.0,
+        20.0,
+        0.1812,
+        0.5671
+      ],
+      "expected": [
+        20.0,
+        20.0,
+        -18.012915707463957,
+        7.459000019847646,
+        -3.494606164697757,
+        7.0,
+        20.0,
+        0.18119182410108206,
+        0.5671457233147638
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": -18.0129,
+          "expected": -18.012915707463957,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 7.459,
+          "expected": 7.459000019847646,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": -3.4946,
+          "expected": -3.494606164697757,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 7.0,
+          "expected": 7,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.1812,
+          "expected": 0.18119182410108206,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 8,
+          "shown": 0.5671,
+          "expected": 0.5671457233147638,
+          "decimals": 4,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-score-(5, 'LIplus_inclusive', 'BIC')",
+      "passed": true,
+      "actual": [
+        20.0,
+        20.0,
+        -16.1057,
+        7.4217,
+        0.0,
+        1.0,
+        20.0,
+        0.0089,
+        0.2361
+      ],
+      "expected": [
+        20.0,
+        20.0,
+        -16.105705134132542,
+        7.421732327350975,
+        0.0,
+        1.0,
+        20.0,
+        0.008881448800795402,
+        0.23613119344674205
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": -16.1057,
+          "expected": -16.105705134132542,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 7.4217,
+          "expected": 7.421732327350975,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 1.0,
+          "expected": 1,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.0089,
+          "expected": 0.008881448800795402,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 8,
+          "shown": 0.2361,
+          "expected": 0.23613119344674205,
+          "decimals": 4,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-score-(6, 'LI', 'raw')",
+      "passed": true,
+      "actual": [
+        20.0,
+        20.0,
+        -12.789,
+        4.8712,
+        -3.3593,
+        3.0,
+        20.0,
+        0.0524,
+        0.3604
+      ],
+      "expected": [
+        20.0,
+        20.0,
+        -12.789024204377137,
+        4.871187026372796,
+        -3.359332904496682,
+        3.0,
+        20.0,
+        0.052368745896216595,
+        0.36041886474075696
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": -12.789,
+          "expected": -12.789024204377137,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 4.8712,
+          "expected": 4.871187026372796,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": -3.3593,
+          "expected": -3.359332904496682,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 3.0,
+          "expected": 3,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.0524,
+          "expected": 0.052368745896216595,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 8,
+          "shown": 0.3604,
+          "expected": 0.36041886474075696,
+          "decimals": 4,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-score-(6, 'LIplus_immigrant', 'raw')",
+      "passed": true,
+      "actual": [
+        20.0,
+        20.0,
+        -15.7837,
+        5.208,
+        -4.6434,
+        2.0,
+        20.0,
+        0.0279,
+        0.301
+      ],
+      "expected": [
+        20.0,
+        20.0,
+        -15.783671622619682,
+        5.20799479225628,
+        -4.643439462637616,
+        2.0,
+        20.0,
+        0.027866481213768224,
+        0.3010336452284873
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": -15.7837,
+          "expected": -15.783671622619682,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 5.208,
+          "expected": 5.20799479225628,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": -4.6434,
+          "expected": -4.643439462637616,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 2.0,
+          "expected": 2,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.0279,
+          "expected": 0.027866481213768224,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 8,
+          "shown": 0.301,
+          "expected": 0.3010336452284873,
+          "decimals": 4,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-score-(6, 'LIplus_immigrant', 'BIC')",
+      "passed": true,
+      "actual": [
+        20.0,
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        20.0,
+        0.0,
+        0.1611
+      ],
+      "expected": [
+        20.0,
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        20.0,
+        0.0,
+        0.16112515805281938
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 8,
+          "shown": 0.1611,
+          "expected": 0.16112515805281938,
+          "decimals": 4,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-score-(6, 'LIplus_inclusive', 'raw')",
+      "passed": true,
+      "actual": [
+        20.0,
+        20.0,
+        -30.4734,
+        13.2726,
+        -2.1916,
+        6.0,
+        20.0,
+        0.1455,
+        0.519
+      ],
+      "expected": [
+        20.0,
+        20.0,
+        -30.473354481658646,
+        13.272569296196302,
+        -2.1915767068132936,
+        6.0,
+        20.0,
+        0.1454772448676043,
+        0.5189728183535235
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": -30.4734,
+          "expected": -30.473354481658646,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 13.2726,
+          "expected": 13.272569296196302,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": -2.1916,
+          "expected": -2.1915767068132936,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 6.0,
+          "expected": 6,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.1455,
+          "expected": 0.1454772448676043,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 8,
+          "shown": 0.519,
+          "expected": 0.5189728183535235,
+          "decimals": 4,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-score-(6, 'LIplus_inclusive', 'BIC')",
+      "passed": true,
+      "actual": [
+        20.0,
+        20.0,
+        0.0828,
+        0.0828,
+        0.0,
+        1.0,
+        20.0,
+        0.0089,
+        0.2361
+      ],
+      "expected": [
+        20.0,
+        20.0,
+        0.0827626376003991,
+        0.08276263760039912,
+        0.0,
+        1.0,
+        20.0,
+        0.008881448800795402,
+        0.23613119344674205
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 0.0828,
+          "expected": 0.0827626376003991,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0828,
+          "expected": 0.08276263760039912,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 1.0,
+          "expected": 1,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.0089,
+          "expected": 0.008881448800795402,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 8,
+          "shown": 0.2361,
+          "expected": 0.23613119344674205,
+          "decimals": 4,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-score-(7, 'LI', 'raw')",
+      "passed": true,
+      "actual": [
+        20.0,
+        20.0,
+        -30.5865,
+        10.1921,
+        -11.9125,
+        5.0,
+        20.0,
+        0.1119,
+        0.4687
+      ],
+      "expected": [
+        20.0,
+        20.0,
+        -30.58647416016779,
+        10.192095644497968,
+        -11.912457679042632,
+        5.0,
+        20.0,
+        0.11186170140766569,
+        0.468700877618744
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": -30.5865,
+          "expected": -30.58647416016779,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 10.1921,
+          "expected": 10.192095644497968,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": -11.9125,
+          "expected": -11.912457679042632,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 5.0,
+          "expected": 5,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.1119,
+          "expected": 0.11186170140766569,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 8,
+          "shown": 0.4687,
+          "expected": 0.468700877618744,
+          "decimals": 4,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-score-(7, 'LIplus_immigrant', 'raw')",
+      "passed": true,
+      "actual": [
+        20.0,
+        20.0,
+        -1.8107,
+        2.7358,
+        -2.6127,
+        8.0,
+        20.0,
+        0.2188,
+        0.6134
+      ],
+      "expected": [
+        20.0,
+        20.0,
+        -1.8107230616887962,
+        2.7357906222205104,
+        -2.6127030221370404,
+        8.0,
+        20.0,
+        0.21880653237281705,
+        0.6134184992377469
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": -1.8107,
+          "expected": -1.8107230616887962,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 2.7358,
+          "expected": 2.7357906222205104,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": -2.6127,
+          "expected": -2.6127030221370404,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 8.0,
+          "expected": 8,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.2188,
+          "expected": 0.21880653237281705,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 8,
+          "shown": 0.6134,
+          "expected": 0.6134184992377469,
+          "decimals": 4,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-score-(7, 'LIplus_immigrant', 'BIC')",
+      "passed": true,
+      "actual": [
+        20.0,
+        20.0,
+        -2.4696,
+        2.6584,
+        -2.6127,
+        6.0,
+        20.0,
+        0.1455,
+        0.519
+      ],
+      "expected": [
+        20.0,
+        20.0,
+        -2.469578073253916,
+        2.658421671204637,
+        -2.6127030221370404,
+        6.0,
+        20.0,
+        0.1454772448676043,
+        0.5189728183535235
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": -2.4696,
+          "expected": -2.469578073253916,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 2.6584,
+          "expected": 2.658421671204637,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": -2.6127,
+          "expected": -2.6127030221370404,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 6.0,
+          "expected": 6,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.1455,
+          "expected": 0.1454772448676043,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 8,
+          "shown": 0.519,
+          "expected": 0.5189728183535235,
+          "decimals": 4,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-score-(7, 'LIplus_inclusive', 'raw')",
+      "passed": true,
+      "actual": [
+        20.0,
+        20.0,
+        -1.2607,
+        2.6293,
+        -1.2574,
+        8.0,
+        20.0,
+        0.2188,
+        0.6134
+      ],
+      "expected": [
+        20.0,
+        20.0,
+        -1.260675045812961,
+        2.629321733258948,
+        -1.257430184109694,
+        8.0,
+        20.0,
+        0.21880653237281705,
+        0.6134184992377469
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": -1.2607,
+          "expected": -1.260675045812961,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 2.6293,
+          "expected": 2.629321733258948,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": -1.2574,
+          "expected": -1.257430184109694,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 8.0,
+          "expected": 8,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.2188,
+          "expected": 0.21880653237281705,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 8,
+          "shown": 0.6134,
+          "expected": 0.6134184992377469,
+          "decimals": 4,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-score-(7, 'LIplus_inclusive', 'BIC')",
+      "passed": true,
+      "actual": [
+        20.0,
+        20.0,
+        -1.2435,
+        2.6297,
+        -1.2574,
+        8.0,
+        20.0,
+        0.2188,
+        0.6134
+      ],
+      "expected": [
+        20.0,
+        20.0,
+        -1.2435455824468575,
+        2.62969230087133,
+        -1.257430184109694,
+        8.0,
+        20.0,
+        0.21880653237281705,
+        0.6134184992377469
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": -1.2435,
+          "expected": -1.2435455824468575,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 2.6297,
+          "expected": 2.62969230087133,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": -1.2574,
+          "expected": -1.257430184109694,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 8.0,
+          "expected": 8,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.2188,
+          "expected": 0.21880653237281705,
+          "decimals": 4,
+          "ok": true
+        },
+        {
+          "index": 8,
+          "shown": 0.6134,
+          "expected": 0.6134184992377469,
+          "decimals": 4,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "joint-diag-table-row-count",
+      "passed": true,
+      "count": 20
+    },
+    {
+      "id": "table-joint-diag-(4, 'LI', 'raw')",
+      "passed": true,
+      "actual": [
+        0.0,
+        0.0,
+        4.0,
+        0.0,
+        6.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        0.0,
+        0.0,
+        4.0,
+        0.0,
+        6.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 4.0,
+          "expected": 4,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 6.0,
+          "expected": 6,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-diag-(4, 'LIplus_immigrant', 'raw')",
+      "passed": true,
+      "actual": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        6.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        6.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 1.0,
+          "expected": 1,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 6.0,
+          "expected": 6,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 1.0,
+          "expected": 1,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-diag-(4, 'LIplus_immigrant', 'BIC')",
+      "passed": true,
+      "actual": [
+        0.0,
+        0.0,
+        0.0,
+        20.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        0.0,
+        0.0,
+        0.0,
+        20.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 1.0,
+          "expected": 1,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-diag-(4, 'LIplus_inclusive', 'raw')",
+      "passed": true,
+      "actual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-diag-(4, 'LIplus_inclusive', 'BIC')",
+      "passed": true,
+      "actual": [
+        0.0,
+        0.0,
+        0.0,
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        0.0,
+        0.0,
+        0.0,
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-diag-(5, 'LI', 'raw')",
+      "passed": true,
+      "actual": [
+        0.0,
+        0.0,
+        10.0,
+        0.0,
+        7.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        0.0,
+        0.0,
+        10.0,
+        0.0,
+        7.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 10.0,
+          "expected": 10,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 7.0,
+          "expected": 7,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-diag-(5, 'LIplus_immigrant', 'raw')",
+      "passed": true,
+      "actual": [
+        0.0,
+        0.0,
+        9.0,
+        0.0,
+        4.0,
+        2.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        0.0,
+        0.0,
+        9.0,
+        0.0,
+        4.0,
+        2.0,
+        0.0,
+        0.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 9.0,
+          "expected": 9,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 4.0,
+          "expected": 4,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 2.0,
+          "expected": 2,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-diag-(5, 'LIplus_immigrant', 'BIC')",
+      "passed": true,
+      "actual": [
+        0.0,
+        0.0,
+        9.0,
+        0.0,
+        4.0,
+        2.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        0.0,
+        0.0,
+        9.0,
+        0.0,
+        4.0,
+        2.0,
+        0.0,
+        0.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 9.0,
+          "expected": 9,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 4.0,
+          "expected": 4,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 2.0,
+          "expected": 2,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-diag-(5, 'LIplus_inclusive', 'raw')",
+      "passed": true,
+      "actual": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 1.0,
+          "expected": 1,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 1.0,
+          "expected": 1,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-diag-(5, 'LIplus_inclusive', 'BIC')",
+      "passed": true,
+      "actual": [
+        0.0,
+        0.0,
+        1.0,
+        13.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        0.0,
+        0.0,
+        1.0,
+        13.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 1.0,
+          "expected": 1,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 13.0,
+          "expected": 13,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 1.0,
+          "expected": 1,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-diag-(6, 'LI', 'raw')",
+      "passed": true,
+      "actual": [
+        0.0,
+        0.0,
+        3.0,
+        0.0,
+        7.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        0.0,
+        0.0,
+        3.0,
+        0.0,
+        7.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 3.0,
+          "expected": 3,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 7.0,
+          "expected": 7,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-diag-(6, 'LIplus_immigrant', 'raw')",
+      "passed": true,
+      "actual": [
+        0.0,
+        0.0,
+        3.0,
+        0.0,
+        6.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        0.0,
+        0.0,
+        3.0,
+        0.0,
+        6.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 3.0,
+          "expected": 3,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 6.0,
+          "expected": 6,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 1.0,
+          "expected": 1,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-diag-(6, 'LIplus_immigrant', 'BIC')",
+      "passed": true,
+      "actual": [
+        0.0,
+        0.0,
+        0.0,
+        20.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        0.0,
+        0.0,
+        0.0,
+        20.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 1.0,
+          "expected": 1,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-diag-(6, 'LIplus_inclusive', 'raw')",
+      "passed": true,
+      "actual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 1.0,
+          "expected": 1,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-diag-(6, 'LIplus_inclusive', 'BIC')",
+      "passed": true,
+      "actual": [
+        0.0,
+        0.0,
+        0.0,
+        19.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        0.0,
+        0.0,
+        0.0,
+        19.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 19.0,
+          "expected": 19,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 1.0,
+          "expected": 1,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-diag-(7, 'LI', 'raw')",
+      "passed": true,
+      "actual": [
+        0.0,
+        0.0,
+        7.0,
+        0.0,
+        8.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        0.0,
+        0.0,
+        7.0,
+        0.0,
+        8.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 7.0,
+          "expected": 7,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 8.0,
+          "expected": 8,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-diag-(7, 'LIplus_immigrant', 'raw')",
+      "passed": true,
+      "actual": [
+        0.0,
+        0.0,
+        6.0,
+        0.0,
+        7.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        0.0,
+        0.0,
+        6.0,
+        0.0,
+        7.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 6.0,
+          "expected": 6,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 7.0,
+          "expected": 7,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-diag-(7, 'LIplus_immigrant', 'BIC')",
+      "passed": true,
+      "actual": [
+        0.0,
+        0.0,
+        5.0,
+        2.0,
+        7.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        0.0,
+        0.0,
+        5.0,
+        2.0,
+        7.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 5.0,
+          "expected": 5,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 2.0,
+          "expected": 2,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 7.0,
+          "expected": 7,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-diag-(7, 'LIplus_inclusive', 'raw')",
+      "passed": true,
+      "actual": [
+        0.0,
+        0.0,
+        4.0,
+        0.0,
+        7.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        0.0,
+        0.0,
+        4.0,
+        0.0,
+        7.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 4.0,
+          "expected": 4,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 7.0,
+          "expected": 7,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-diag-(7, 'LIplus_inclusive', 'BIC')",
+      "passed": true,
+      "actual": [
+        0.0,
+        0.0,
+        4.0,
+        1.0,
+        7.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        0.0,
+        0.0,
+        4.0,
+        1.0,
+        7.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 4.0,
+          "expected": 4,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 1.0,
+          "expected": 1,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 7.0,
+          "expected": 7,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 6,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 7,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "joint-census-table-row-count",
+      "passed": true,
+      "count": 20
+    },
+    {
+      "id": "table-joint-census-(4, 'LI', 'raw')",
+      "passed": true,
+      "actual": [
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        3.0,
+        17.0
+      ],
+      "expected": [
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        3.0,
+        17.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 3.0,
+          "expected": 3,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 17.0,
+          "expected": 17,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-census-(4, 'LIplus_immigrant', 'raw')",
+      "passed": true,
+      "actual": [
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        6.0,
+        14.0
+      ],
+      "expected": [
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        6.0,
+        14.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 6.0,
+          "expected": 6,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 14.0,
+          "expected": 14,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-census-(4, 'LIplus_immigrant', 'BIC')",
+      "passed": true,
+      "actual": [
+        0.0,
+        20.0,
+        20.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        0.0,
+        20.0,
+        20.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-census-(4, 'LIplus_inclusive', 'raw')",
+      "passed": true,
+      "actual": [
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        4.0,
+        16.0
+      ],
+      "expected": [
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        4.0,
+        16.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 4.0,
+          "expected": 4,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 16.0,
+          "expected": 16,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-census-(4, 'LIplus_inclusive', 'BIC')",
+      "passed": true,
+      "actual": [
+        0.0,
+        20.0,
+        20.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        0.0,
+        20.0,
+        20.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-census-(5, 'LI', 'raw')",
+      "passed": true,
+      "actual": [
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        8.0,
+        12.0
+      ],
+      "expected": [
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        8.0,
+        12.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 8.0,
+          "expected": 8,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 12.0,
+          "expected": 12,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-census-(5, 'LIplus_immigrant', 'raw')",
+      "passed": true,
+      "actual": [
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        10.0,
+        10.0
+      ],
+      "expected": [
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        10.0,
+        10.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 10.0,
+          "expected": 10,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 10.0,
+          "expected": 10,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-census-(5, 'LIplus_immigrant', 'BIC')",
+      "passed": true,
+      "actual": [
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        10.0,
+        10.0
+      ],
+      "expected": [
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        10.0,
+        10.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 10.0,
+          "expected": 10,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 10.0,
+          "expected": 10,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-census-(5, 'LIplus_inclusive', 'raw')",
+      "passed": true,
+      "actual": [
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        7.0,
+        13.0
+      ],
+      "expected": [
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        7.0,
+        13.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 7.0,
+          "expected": 7,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 13.0,
+          "expected": 13,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-census-(5, 'LIplus_inclusive', 'BIC')",
+      "passed": true,
+      "actual": [
+        7.0,
+        13.0,
+        13.0,
+        0.0,
+        1.0,
+        6.0
+      ],
+      "expected": [
+        7.0,
+        13.0,
+        13.0,
+        0.0,
+        1.0,
+        6.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 7.0,
+          "expected": 7,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 13.0,
+          "expected": 13,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 13.0,
+          "expected": 13,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 1.0,
+          "expected": 1,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 6.0,
+          "expected": 6,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-census-(6, 'LI', 'raw')",
+      "passed": true,
+      "actual": [
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        3.0,
+        17.0
+      ],
+      "expected": [
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        3.0,
+        17.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 3.0,
+          "expected": 3,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 17.0,
+          "expected": 17,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-census-(6, 'LIplus_immigrant', 'raw')",
+      "passed": true,
+      "actual": [
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        2.0,
+        18.0
+      ],
+      "expected": [
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        2.0,
+        18.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 2.0,
+          "expected": 2,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 18.0,
+          "expected": 18,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-census-(6, 'LIplus_immigrant', 'BIC')",
+      "passed": true,
+      "actual": [
+        0.0,
+        20.0,
+        20.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        0.0,
+        20.0,
+        20.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-census-(6, 'LIplus_inclusive', 'raw')",
+      "passed": true,
+      "actual": [
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        6.0,
+        14.0
+      ],
+      "expected": [
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        6.0,
+        14.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 6.0,
+          "expected": 6,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 14.0,
+          "expected": 14,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-census-(6, 'LIplus_inclusive', 'BIC')",
+      "passed": true,
+      "actual": [
+        1.0,
+        19.0,
+        19.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      "expected": [
+        1.0,
+        19.0,
+        19.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 1.0,
+          "expected": 1,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 19.0,
+          "expected": 19,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 19.0,
+          "expected": 19,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 1.0,
+          "expected": 1,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-census-(7, 'LI', 'raw')",
+      "passed": true,
+      "actual": [
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0,
+        15.0
+      ],
+      "expected": [
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0,
+        15.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 5.0,
+          "expected": 5,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 15.0,
+          "expected": 15,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-census-(7, 'LIplus_immigrant', 'raw')",
+      "passed": true,
+      "actual": [
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        8.0,
+        12.0
+      ],
+      "expected": [
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        8.0,
+        12.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 8.0,
+          "expected": 8,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 12.0,
+          "expected": 12,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-census-(7, 'LIplus_immigrant', 'BIC')",
+      "passed": true,
+      "actual": [
+        18.0,
+        2.0,
+        2.0,
+        0.0,
+        6.0,
+        12.0
+      ],
+      "expected": [
+        18.0,
+        2.0,
+        2.0,
+        0.0,
+        6.0,
+        12.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 18.0,
+          "expected": 18,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 2.0,
+          "expected": 2,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 2.0,
+          "expected": 2,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 6.0,
+          "expected": 6,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 12.0,
+          "expected": 12,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-census-(7, 'LIplus_inclusive', 'raw')",
+      "passed": true,
+      "actual": [
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        8.0,
+        12.0
+      ],
+      "expected": [
+        20.0,
+        0.0,
+        0.0,
+        0.0,
+        8.0,
+        12.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 20.0,
+          "expected": 20,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 8.0,
+          "expected": 8,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 12.0,
+          "expected": 12,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-joint-census-(7, 'LIplus_inclusive', 'BIC')",
+      "passed": true,
+      "actual": [
+        19.0,
+        1.0,
+        1.0,
+        0.0,
+        8.0,
+        11.0
+      ],
+      "expected": [
+        19.0,
+        1.0,
+        1.0,
+        0.0,
+        8.0,
+        11.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 19.0,
+          "expected": 19,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 1.0,
+          "expected": 1,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 1.0,
+          "expected": 1,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 8.0,
+          "expected": 8,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 5,
+          "shown": 11.0,
+          "expected": 11,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "quantile-authority-row-count",
+      "passed": true,
+      "count": 20
+    },
+    {
+      "id": "quantile-table-row-count",
+      "passed": true,
+      "count": 20
+    },
+    {
+      "id": "quantile-authority-(4, 'LI', 'raw')",
+      "passed": true,
+      "computed": {
+        "q25": -15.127179819405256,
+        "q75": -0.9010124074756618,
+        "iqr": 14.226167411929595,
+        "min": -94.38655433934036,
+        "max": 2.5426077302590784
+      },
+      "authority": {
+        "q25": -15.127179819405256,
+        "q75": -0.9010124074756618,
+        "iqr": 14.226167411929595,
+        "min": -94.38655433934036,
+        "max": 2.5426077302590784
+      }
+    },
+    {
+      "id": "table-quantile-(4, 'LI', 'raw')",
+      "passed": true,
+      "actual": [
+        -15.127,
+        -0.901,
+        14.226,
+        -94.39,
+        2.54
+      ],
+      "expected": [
+        -15.127179819405256,
+        -0.9010124074756618,
+        14.226167411929595,
+        -94.38655433934036,
+        2.5426077302590784
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": -15.127,
+          "expected": -15.127179819405256,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": -0.901,
+          "expected": -0.9010124074756618,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 14.226,
+          "expected": 14.226167411929595,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": -94.39,
+          "expected": -94.38655433934036,
+          "decimals": 2,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 2.54,
+          "expected": 2.5426077302590784,
+          "decimals": 2,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "quantile-authority-(4, 'LIplus_immigrant', 'raw')",
+      "passed": true,
+      "computed": {
+        "q25": -12.083718782172241,
+        "q75": 0.2580408609912297,
+        "iqr": 12.34175964316347,
+        "min": -90.98597048750071,
+        "max": 9.967025291186246
+      },
+      "authority": {
+        "q25": -12.083718782172241,
+        "q75": 0.2580408609912297,
+        "iqr": 12.34175964316347,
+        "min": -90.98597048750071,
+        "max": 9.967025291186246
+      }
+    },
+    {
+      "id": "table-quantile-(4, 'LIplus_immigrant', 'raw')",
+      "passed": true,
+      "actual": [
+        -12.084,
+        0.258,
+        12.342,
+        -90.99,
+        9.97
+      ],
+      "expected": [
+        -12.083718782172241,
+        0.2580408609912297,
+        12.34175964316347,
+        -90.98597048750071,
+        9.967025291186246
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": -12.084,
+          "expected": -12.083718782172241,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.258,
+          "expected": 0.2580408609912297,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 12.342,
+          "expected": 12.34175964316347,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": -90.99,
+          "expected": -90.98597048750071,
+          "decimals": 2,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 9.97,
+          "expected": 9.967025291186246,
+          "decimals": 2,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "quantile-authority-(4, 'LIplus_immigrant', 'BIC')",
+      "passed": true,
+      "computed": {
+        "q25": 0.0,
+        "q75": 0.0,
+        "iqr": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "authority": {
+        "q25": 0.0,
+        "q75": 0.0,
+        "iqr": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "id": "table-quantile-(4, 'LIplus_immigrant', 'BIC')",
+      "passed": true,
+      "actual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 2,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 2,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "quantile-authority-(4, 'LIplus_inclusive', 'raw')",
+      "passed": true,
+      "computed": {
+        "q25": -23.758599752941677,
+        "q75": -0.6996539567138313,
+        "iqr": 23.058945796227846,
+        "min": -592.9049784522078,
+        "max": 7.8632218617747185
+      },
+      "authority": {
+        "q25": -23.758599752941677,
+        "q75": -0.6996539567138313,
+        "iqr": 23.058945796227846,
+        "min": -592.9049784522078,
+        "max": 7.8632218617747185
+      }
+    },
+    {
+      "id": "table-quantile-(4, 'LIplus_inclusive', 'raw')",
+      "passed": true,
+      "actual": [
+        -23.759,
+        -0.7,
+        23.059,
+        -592.9,
+        7.86
+      ],
+      "expected": [
+        -23.758599752941677,
+        -0.6996539567138313,
+        23.058945796227846,
+        -592.9049784522078,
+        7.8632218617747185
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": -23.759,
+          "expected": -23.758599752941677,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": -0.7,
+          "expected": -0.6996539567138313,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 23.059,
+          "expected": 23.058945796227846,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": -592.9,
+          "expected": -592.9049784522078,
+          "decimals": 2,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 7.86,
+          "expected": 7.8632218617747185,
+          "decimals": 2,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "quantile-authority-(4, 'LIplus_inclusive', 'BIC')",
+      "passed": true,
+      "computed": {
+        "q25": 0.0,
+        "q75": 0.0,
+        "iqr": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "authority": {
+        "q25": 0.0,
+        "q75": 0.0,
+        "iqr": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "id": "table-quantile-(4, 'LIplus_inclusive', 'BIC')",
+      "passed": true,
+      "actual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 2,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 2,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "quantile-authority-(5, 'LI', 'raw')",
+      "passed": true,
+      "computed": {
+        "q25": -10.968067519471887,
+        "q75": 3.4307496604957635,
+        "iqr": 14.39881717996765,
+        "min": -31.13903740778008,
+        "max": 31.379359744625788
+      },
+      "authority": {
+        "q25": -10.968067519471887,
+        "q75": 3.4307496604957635,
+        "iqr": 14.39881717996765,
+        "min": -31.13903740778008,
+        "max": 31.379359744625788
+      }
+    },
+    {
+      "id": "table-quantile-(5, 'LI', 'raw')",
+      "passed": true,
+      "actual": [
+        -10.968,
+        3.431,
+        14.399,
+        -31.14,
+        31.38
+      ],
+      "expected": [
+        -10.968067519471887,
+        3.4307496604957635,
+        14.39881717996765,
+        -31.13903740778008,
+        31.379359744625788
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": -10.968,
+          "expected": -10.968067519471887,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 3.431,
+          "expected": 3.4307496604957635,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 14.399,
+          "expected": 14.39881717996765,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": -31.14,
+          "expected": -31.13903740778008,
+          "decimals": 2,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 31.38,
+          "expected": 31.379359744625788,
+          "decimals": 2,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "quantile-authority-(5, 'LIplus_immigrant', 'raw')",
+      "passed": true,
+      "computed": {
+        "q25": -12.260923203718235,
+        "q75": 10.024941225680898,
+        "iqr": 22.285864429399133,
+        "min": -118.23570962776512,
+        "max": 51.16776699546989
+      },
+      "authority": {
+        "q25": -12.260923203718235,
+        "q75": 10.024941225680898,
+        "iqr": 22.285864429399133,
+        "min": -118.23570962776512,
+        "max": 51.16776699546989
+      }
+    },
+    {
+      "id": "table-quantile-(5, 'LIplus_immigrant', 'raw')",
+      "passed": true,
+      "actual": [
+        -12.261,
+        10.025,
+        22.286,
+        -118.24,
+        51.17
+      ],
+      "expected": [
+        -12.260923203718235,
+        10.024941225680898,
+        22.285864429399133,
+        -118.23570962776512,
+        51.16776699546989
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": -12.261,
+          "expected": -12.260923203718235,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 10.025,
+          "expected": 10.024941225680898,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 22.286,
+          "expected": 22.285864429399133,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": -118.24,
+          "expected": -118.23570962776512,
+          "decimals": 2,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 51.17,
+          "expected": 51.16776699546989,
+          "decimals": 2,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "quantile-authority-(5, 'LIplus_immigrant', 'BIC')",
+      "passed": true,
+      "computed": {
+        "q25": -12.260923203718235,
+        "q75": 10.024941225680898,
+        "iqr": 22.285864429399133,
+        "min": -118.23570962776512,
+        "max": 51.16776699546989
+      },
+      "authority": {
+        "q25": -12.260923203718235,
+        "q75": 10.024941225680898,
+        "iqr": 22.285864429399133,
+        "min": -118.23570962776512,
+        "max": 51.16776699546989
+      }
+    },
+    {
+      "id": "table-quantile-(5, 'LIplus_immigrant', 'BIC')",
+      "passed": true,
+      "actual": [
+        -12.261,
+        10.025,
+        22.286,
+        -118.24,
+        51.17
+      ],
+      "expected": [
+        -12.260923203718235,
+        10.024941225680898,
+        22.285864429399133,
+        -118.23570962776512,
+        51.16776699546989
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": -12.261,
+          "expected": -12.260923203718235,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 10.025,
+          "expected": 10.024941225680898,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 22.286,
+          "expected": 22.285864429399133,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": -118.24,
+          "expected": -118.23570962776512,
+          "decimals": 2,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 51.17,
+          "expected": 51.16776699546989,
+          "decimals": 2,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "quantile-authority-(5, 'LIplus_inclusive', 'raw')",
+      "passed": true,
+      "computed": {
+        "q25": -25.129773874964492,
+        "q75": 0.9095116868077966,
+        "iqr": 26.03928556177229,
+        "min": -118.23571598547454,
+        "max": 6.626307260003301
+      },
+      "authority": {
+        "q25": -25.129773874964492,
+        "q75": 0.9095116868077966,
+        "iqr": 26.03928556177229,
+        "min": -118.23571598547454,
+        "max": 6.626307260003301
+      }
+    },
+    {
+      "id": "table-quantile-(5, 'LIplus_inclusive', 'raw')",
+      "passed": true,
+      "actual": [
+        -25.13,
+        0.91,
+        26.039,
+        -118.24,
+        6.63
+      ],
+      "expected": [
+        -25.129773874964492,
+        0.9095116868077966,
+        26.03928556177229,
+        -118.23571598547454,
+        6.626307260003301
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": -25.13,
+          "expected": -25.129773874964492,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.91,
+          "expected": 0.9095116868077966,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 26.039,
+          "expected": 26.03928556177229,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": -118.24,
+          "expected": -118.23571598547454,
+          "decimals": 2,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 6.63,
+          "expected": 6.626307260003301,
+          "decimals": 2,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "quantile-authority-(5, 'LIplus_inclusive', 'BIC')",
+      "passed": true,
+      "computed": {
+        "q25": -12.437175242964862,
+        "q75": 0.0,
+        "iqr": 12.437175242964862,
+        "min": -118.23571598547454,
+        "max": 6.626307260003301
+      },
+      "authority": {
+        "q25": -12.437175242964862,
+        "q75": 0.0,
+        "iqr": 12.437175242964862,
+        "min": -118.23571598547454,
+        "max": 6.626307260003301
+      }
+    },
+    {
+      "id": "table-quantile-(5, 'LIplus_inclusive', 'BIC')",
+      "passed": true,
+      "actual": [
+        -12.437,
+        0.0,
+        12.437,
+        -118.24,
+        6.63
+      ],
+      "expected": [
+        -12.437175242964862,
+        0.0,
+        12.437175242964862,
+        -118.23571598547454,
+        6.626307260003301
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": -12.437,
+          "expected": -12.437175242964862,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 12.437,
+          "expected": 12.437175242964862,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": -118.24,
+          "expected": -118.23571598547454,
+          "decimals": 2,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 6.63,
+          "expected": 6.626307260003301,
+          "decimals": 2,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "quantile-authority-(6, 'LI', 'raw')",
+      "passed": true,
+      "computed": {
+        "q25": -14.381228287658303,
+        "q75": -1.3498440776381528,
+        "iqr": 13.03138421002015,
+        "min": -83.5743886465375,
+        "max": 5.84297483576006
+      },
+      "authority": {
+        "q25": -14.381228287658303,
+        "q75": -1.3498440776381528,
+        "iqr": 13.03138421002015,
+        "min": -83.5743886465375,
+        "max": 5.84297483576006
+      }
+    },
+    {
+      "id": "table-quantile-(6, 'LI', 'raw')",
+      "passed": true,
+      "actual": [
+        -14.381,
+        -1.35,
+        13.031,
+        -83.57,
+        5.84
+      ],
+      "expected": [
+        -14.381228287658303,
+        -1.3498440776381528,
+        13.03138421002015,
+        -83.5743886465375,
+        5.84297483576006
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": -14.381,
+          "expected": -14.381228287658303,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": -1.35,
+          "expected": -1.3498440776381528,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 13.031,
+          "expected": 13.03138421002015,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": -83.57,
+          "expected": -83.5743886465375,
+          "decimals": 2,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 5.84,
+          "expected": 5.84297483576006,
+          "decimals": 2,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "quantile-authority-(6, 'LIplus_immigrant', 'raw')",
+      "passed": true,
+      "computed": {
+        "q25": -22.954131109856633,
+        "q75": -1.7835784164042252,
+        "iqr": 21.170552693452407,
+        "min": -77.77232781800171,
+        "max": 2.932322857753661
+      },
+      "authority": {
+        "q25": -22.954131109856633,
+        "q75": -1.7835784164042252,
+        "iqr": 21.170552693452407,
+        "min": -77.77232781800171,
+        "max": 2.932322857753661
+      }
+    },
+    {
+      "id": "table-quantile-(6, 'LIplus_immigrant', 'raw')",
+      "passed": true,
+      "actual": [
+        -22.954,
+        -1.784,
+        21.171,
+        -77.77,
+        2.93
+      ],
+      "expected": [
+        -22.954131109856633,
+        -1.7835784164042252,
+        21.170552693452407,
+        -77.77232781800171,
+        2.932322857753661
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": -22.954,
+          "expected": -22.954131109856633,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": -1.784,
+          "expected": -1.7835784164042252,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 21.171,
+          "expected": 21.170552693452407,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": -77.77,
+          "expected": -77.77232781800171,
+          "decimals": 2,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 2.93,
+          "expected": 2.932322857753661,
+          "decimals": 2,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "quantile-authority-(6, 'LIplus_immigrant', 'BIC')",
+      "passed": true,
+      "computed": {
+        "q25": 0.0,
+        "q75": 0.0,
+        "iqr": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "authority": {
+        "q25": 0.0,
+        "q75": 0.0,
+        "iqr": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "id": "table-quantile-(6, 'LIplus_immigrant', 'BIC')",
+      "passed": true,
+      "actual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 2,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 2,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "quantile-authority-(6, 'LIplus_inclusive', 'raw')",
+      "passed": true,
+      "computed": {
+        "q25": -15.49873495100519,
+        "q75": 0.920686078740232,
+        "iqr": 16.419421029745422,
+        "min": -178.40227309819988,
+        "max": 2.7794382427923665
+      },
+      "authority": {
+        "q25": -15.49873495100519,
+        "q75": 0.920686078740232,
+        "iqr": 16.419421029745422,
+        "min": -178.40227309819988,
+        "max": 2.7794382427923665
+      }
+    },
+    {
+      "id": "table-quantile-(6, 'LIplus_inclusive', 'raw')",
+      "passed": true,
+      "actual": [
+        -15.499,
+        0.921,
+        16.419,
+        -178.4,
+        2.78
+      ],
+      "expected": [
+        -15.49873495100519,
+        0.920686078740232,
+        16.419421029745422,
+        -178.40227309819988,
+        2.7794382427923665
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": -15.499,
+          "expected": -15.49873495100519,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.921,
+          "expected": 0.920686078740232,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 16.419,
+          "expected": 16.419421029745422,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": -178.4,
+          "expected": -178.40227309819988,
+          "decimals": 2,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 2.78,
+          "expected": 2.7794382427923665,
+          "decimals": 2,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "quantile-authority-(6, 'LIplus_inclusive', 'BIC')",
+      "passed": true,
+      "computed": {
+        "q25": 0.0,
+        "q75": 0.0,
+        "iqr": 0.0,
+        "min": 0.0,
+        "max": 1.655252752007982
+      },
+      "authority": {
+        "q25": 0.0,
+        "q75": 0.0,
+        "iqr": 0.0,
+        "min": 0.0,
+        "max": 1.655252752007982
+      }
+    },
+    {
+      "id": "table-quantile-(6, 'LIplus_inclusive', 'BIC')",
+      "passed": true,
+      "actual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.66
+      ],
+      "expected": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.655252752007982
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 2,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 1.66,
+          "expected": 1.655252752007982,
+          "decimals": 2,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "quantile-authority-(7, 'LI', 'raw')",
+      "passed": true,
+      "computed": {
+        "q25": -38.22640067238436,
+        "q75": -3.663544557213818,
+        "iqr": 34.56285611517054,
+        "min": -155.21030658833033,
+        "max": 11.217548435083643
+      },
+      "authority": {
+        "q25": -38.22640067238436,
+        "q75": -3.663544557213818,
+        "iqr": 34.56285611517054,
+        "min": -155.21030658833033,
+        "max": 11.217548435083643
+      }
+    },
+    {
+      "id": "table-quantile-(7, 'LI', 'raw')",
+      "passed": true,
+      "actual": [
+        -38.226,
+        -3.664,
+        34.563,
+        -155.21,
+        11.22
+      ],
+      "expected": [
+        -38.22640067238436,
+        -3.663544557213818,
+        34.56285611517054,
+        -155.21030658833033,
+        11.217548435083643
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": -38.226,
+          "expected": -38.22640067238436,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": -3.664,
+          "expected": -3.663544557213818,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 34.563,
+          "expected": 34.56285611517054,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": -155.21,
+          "expected": -155.21030658833033,
+          "decimals": 2,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 11.22,
+          "expected": 11.217548435083643,
+          "decimals": 2,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "quantile-authority-(7, 'LIplus_immigrant', 'raw')",
+      "passed": true,
+      "computed": {
+        "q25": -8.242413062175594,
+        "q75": 5.071456070143974,
+        "iqr": 13.313869132319567,
+        "min": -23.258556998315328,
+        "max": 23.90053258781579
+      },
+      "authority": {
+        "q25": -8.242413062175594,
+        "q75": 5.071456070143974,
+        "iqr": 13.313869132319567,
+        "min": -23.258556998315328,
+        "max": 23.90053258781579
+      }
+    },
+    {
+      "id": "table-quantile-(7, 'LIplus_immigrant', 'raw')",
+      "passed": true,
+      "actual": [
+        -8.242,
+        5.071,
+        13.314,
+        -23.26,
+        23.9
+      ],
+      "expected": [
+        -8.242413062175594,
+        5.071456070143974,
+        13.313869132319567,
+        -23.258556998315328,
+        23.90053258781579
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": -8.242,
+          "expected": -8.242413062175594,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 5.071,
+          "expected": 5.071456070143974,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 13.314,
+          "expected": 13.313869132319567,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": -23.26,
+          "expected": -23.258556998315328,
+          "decimals": 2,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 23.9,
+          "expected": 23.90053258781579,
+          "decimals": 2,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "quantile-authority-(7, 'LIplus_immigrant', 'BIC')",
+      "passed": true,
+      "computed": {
+        "q25": -8.242413062175594,
+        "q75": 1.7473455963814857,
+        "iqr": 9.98975865855708,
+        "min": -23.258556998315328,
+        "max": 23.90053258781579
+      },
+      "authority": {
+        "q25": -8.242413062175594,
+        "q75": 1.7473455963814857,
+        "iqr": 9.98975865855708,
+        "min": -23.258556998315328,
+        "max": 23.90053258781579
+      }
+    },
+    {
+      "id": "table-quantile-(7, 'LIplus_immigrant', 'BIC')",
+      "passed": true,
+      "actual": [
+        -8.242,
+        1.747,
+        9.99,
+        -23.26,
+        23.9
+      ],
+      "expected": [
+        -8.242413062175594,
+        1.7473455963814857,
+        9.98975865855708,
+        -23.258556998315328,
+        23.90053258781579
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": -8.242,
+          "expected": -8.242413062175594,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 1.747,
+          "expected": 1.7473455963814857,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 9.99,
+          "expected": 9.98975865855708,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": -23.26,
+          "expected": -23.258556998315328,
+          "decimals": 2,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 23.9,
+          "expected": 23.90053258781579,
+          "decimals": 2,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "quantile-authority-(7, 'LIplus_inclusive', 'raw')",
+      "passed": true,
+      "computed": {
+        "q25": -8.242418600583484,
+        "q75": 3.742132129420085,
+        "iqr": 11.98455073000357,
+        "min": -23.258547291070386,
+        "max": 23.90052868186082
+      },
+      "authority": {
+        "q25": -8.242418600583484,
+        "q75": 3.742132129420085,
+        "iqr": 11.98455073000357,
+        "min": -23.258547291070386,
+        "max": 23.90052868186082
+      }
+    },
+    {
+      "id": "table-quantile-(7, 'LIplus_inclusive', 'raw')",
+      "passed": true,
+      "actual": [
+        -8.242,
+        3.742,
+        11.985,
+        -23.26,
+        23.9
+      ],
+      "expected": [
+        -8.242418600583484,
+        3.742132129420085,
+        11.98455073000357,
+        -23.258547291070386,
+        23.90052868186082
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": -8.242,
+          "expected": -8.242418600583484,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 3.742,
+          "expected": 3.742132129420085,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 11.985,
+          "expected": 11.98455073000357,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": -23.26,
+          "expected": -23.258547291070386,
+          "decimals": 2,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 23.9,
+          "expected": 23.90052868186082,
+          "decimals": 2,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "quantile-authority-(7, 'LIplus_inclusive', 'BIC')",
+      "passed": true,
+      "computed": {
+        "q25": -8.242418600583484,
+        "q75": 3.742132129420085,
+        "iqr": 11.98455073000357,
+        "min": -23.258547291070386,
+        "max": 23.90052868186082
+      },
+      "authority": {
+        "q25": -8.242418600583484,
+        "q75": 3.742132129420085,
+        "iqr": 11.98455073000357,
+        "min": -23.258547291070386,
+        "max": 23.90052868186082
+      }
+    },
+    {
+      "id": "table-quantile-(7, 'LIplus_inclusive', 'BIC')",
+      "passed": true,
+      "actual": [
+        -8.242,
+        3.742,
+        11.985,
+        -23.26,
+        23.9
+      ],
+      "expected": [
+        -8.242418600583484,
+        3.742132129420085,
+        11.98455073000357,
+        -23.258547291070386,
+        23.90052868186082
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": -8.242,
+          "expected": -8.242418600583484,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 3.742,
+          "expected": 3.742132129420085,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 11.985,
+          "expected": 11.98455073000357,
+          "decimals": 3,
+          "ok": true
+        },
+        {
+          "index": 3,
+          "shown": -23.26,
+          "expected": -23.258547291070386,
+          "decimals": 2,
+          "ok": true
+        },
+        {
+          "index": 4,
+          "shown": 23.9,
+          "expected": 23.90052868186082,
+          "decimals": 2,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "s7-immigrant-n-zero",
+      "passed": true,
+      "count": 19
+    },
+    {
+      "id": "s7-total-n-zero",
+      "passed": true,
+      "count": 9
+    },
+    {
+      "id": "s7-both-n-zero",
+      "passed": true,
+      "count": 9,
+      "seeds": [
+        410702,
+        410703,
+        410705,
+        410706,
+        410708,
+        410710,
+        410714,
+        410715,
+        410716
+      ]
+    },
+    {
+      "id": "s7-both-zero-difference",
+      "passed": true,
+      "max_difference": 0.0001548846614696231,
+      "values": [
+        3.7946026139934474e-05,
+        1.3155350274018929e-05,
+        0.0001548846614696231,
+        2.9994270960287395e-06,
+        2.2548906343899944e-05,
+        4.173959837316943e-06,
+        1.1074525048115902e-05,
+        9.707244942092075e-06,
+        3.9059549692410656e-06
+      ]
+    },
+    {
+      "id": "s7-q25-both-zero-indices",
+      "passed": true,
+      "immigrant_q25": -8.242413062175594,
+      "total_q25": -8.242418600583484
+    },
+    {
+      "id": "s7-q25-display",
+      "passed": true,
+      "q25": [
+        -8.242413062175594,
+        -8.242418600583484
+      ]
+    },
+    {
+      "id": "s7-min-display",
+      "passed": true
+    },
+    {
+      "id": "s7-max-display",
+      "passed": true
+    },
+    {
+      "id": "s7-q75-differs",
+      "passed": true,
+      "q75": [
+        5.071456070143974,
+        3.742132129420085
+      ]
+    },
+    {
+      "id": "s7-n-zero-explanation-formula",
+      "passed": true
+    }
+  ],
+  "notes": [
+    "The S7 quantile coincidence is exact only on the nine seeds where both the immigrant-only and total-intensity fits select n=0; one-sided zeros do not make the two intensities identical."
+  ]
+}

@@ -1,0 +1,300 @@
+{
+  "schema": "slice6_audit_v1",
+  "created_utc": "2026-11-15T19:33:03.790618+00:00",
+  "baseline_commit": "8ae4fa6",
+  "scope": "Vertical Triad Slice 6: Chapter 13 continuous local inhibition (LI and LI+), observed California comparisons, expanded unit-mark and magnitude-scaled controls (S04 and S04B), the 80-history / 400-outcome joint temporal-backbone comparison, the training-fitted scalar (a) and concave (a,n) floor comparators, the 20-history S8 moderate control, and the full/partial S8 oracles.",
+  "passed": true,
+  "components": {
+    "sealed_authority_integrity": true,
+    "observed_unitmark": true,
+    "expanded_controls": true,
+    "observed_and_uncertainty": true,
+    "refitted_floor": true,
+    "joint_comparison": true,
+    "s8_moderate_and_oracles": true,
+    "claim_ledger": true,
+    "manuscript_state": true
+  },
+  "counts": {
+    "sealed_authority_integrity": {
+      "snapshot": 772,
+      "unchanged": 772,
+      "changed": 0,
+      "missing": 0,
+      "baseline_commit": "8ae4fa6",
+      "snapshot_sha256": "fa8eb7eb6c279512721af2947c7bfd2abb9138ccb428e261dfd264e2f668ce2a",
+      "prechange_zip_sha256": "8ca38b86883362283e27c453e738cec4c58bf62f351cdf1e7221db879a33c022",
+      "publication_snapshot_files": 68
+    },
+    "observed_unitmark": {
+      "observed_folds": 3,
+      "fixed_seeds": 8,
+      "fixed_losses": 6,
+      "near_optimal_spreads": 19,
+      "max_spread": 0.0005376164007914404,
+      "s2_immigrants": 2951,
+      "s2_rejected": 0,
+      "line75_event_sum": 75313.90275560762,
+      "line75_exposure": 59415.479419146075,
+      "line75_slope": -15898.423336461543
+    },
+    "expanded_controls": {
+      "s04_rows": 20,
+      "s04b_table_rows": 20,
+      "thinning": {
+        "4": {
+          "accepted_immigrants": 2966,
+          "accepted_offspring": 1120,
+          "rejected_immigrants": 1,
+          "rejected_offspring": 0,
+          "events": 4086,
+          "n_train": 1733,
+          "n_test": 2188,
+          "immigrant_rejection_fraction": 0.0003370407819346141,
+          "offspring_rejection_fraction": 0.0
+        },
+        "5": {
+          "accepted_immigrants": 500,
+          "accepted_offspring": 202,
+          "rejected_immigrants": 2518,
+          "rejected_offspring": 0,
+          "events": 702,
+          "n_train": 303,
+          "n_test": 338,
+          "immigrant_rejection_fraction": 0.8343273691186216,
+          "offspring_rejection_fraction": 0.0
+        },
+        "6": {
+          "accepted_immigrants": 3101,
+          "accepted_offspring": 1201,
+          "rejected_immigrants": 1,
+          "rejected_offspring": 134,
+          "events": 4302,
+          "n_train": 1916,
+          "n_test": 2231,
+          "immigrant_rejection_fraction": 0.0003223726627981947,
+          "offspring_rejection_fraction": 0.10037453183520599
+        },
+        "7": {
+          "accepted_immigrants": 568,
+          "accepted_offspring": 3,
+          "rejected_immigrants": 2525,
+          "rejected_offspring": 165,
+          "events": 571,
+          "n_train": 266,
+          "n_test": 265,
+          "immigrant_rejection_fraction": 0.8163595215001617,
+          "offspring_rejection_fraction": 0.9821428571428571
+        }
+      },
+      "fit_census": 240,
+      "parameter_rows": 12,
+      "thinning_rows": 4,
+      "s04b_rows": 20,
+      "two_gamma": 3.453877639491069
+    },
+    "observed_and_uncertainty": {
+      "active_rows": 3,
+      "zero_rows": 12,
+      "pooled_active": -2.386682086060432,
+      "pooled_90_ci": [
+        -6.5635283129563335,
+        -0.03319390714800577
+      ],
+      "pooled_180_ci": [
+        -6.42615579550734,
+        -0.08539352789208825
+      ],
+      "pooled_365_ci": [
+        -6.363635295415632,
+        -0.09049344698588709
+      ]
+    },
+    "refitted_floor": {
+      "refit_cases": 80,
+      "concave_cases": 80,
+      "s7_n_zero": 20,
+      "floor_components": 4,
+      "max_kkt": 2.2536080476189574e-13
+    },
+    "joint_comparison": {
+      "cases": 80,
+      "outcomes": 400,
+      "joint_rows": 20,
+      "s7_immigrant_n_zero": 19,
+      "s7_total_n_zero": 9,
+      "s7_both_n_zero": 9,
+      "s7_both_max_difference": 0.0001548846614696231
+    },
+    "s8_moderate_and_oracles": {
+      "s8_cases": 20,
+      "raw_mean": 0.2941447638438433,
+      "bic_mean": 2.4945996750852713,
+      "raw_wins": 13,
+      "bic_wins": 9,
+      "any_boundary": 13,
+      "inherited_false": 18,
+      "max_gradient": 0.03324332526868545,
+      "oracle_closure": {
+        "oracle_gain_vs_joint_null_mean": 18.111994353630507,
+        "oracle_gain_vs_intercept_mean": 14.540568689145175,
+        "comparator_overfitting_loss_mean": 3.571425664485332,
+        "identity_residual": 0.0
+      },
+      "partial_b_mean": 2.823657383237122,
+      "partial_c_mean": -6.513221037516632
+    },
+    "claim_ledger": {
+      "c13_claims": 2093,
+      "missing_displays": 0,
+      "outside_only_displays": 2,
+      "master_ledger_sha256": "87f1e17f56b2ceba172e979b83b6f79d0364f729056d1fa490076c9f18d0f44e",
+      "authority_counts": {
+        "withdrawn_historical_records": 836,
+        "json_numeric_verified": 25930,
+        "json_pointer_verified": 26197,
+        "documentary_numeric_verified": 2430,
+        "documentary_metadata_verified": 679,
+        "claims": 28627,
+        "documentary_metadata": 679,
+        "total_records": 29306,
+        "literal_manuscript_display_records": 0,
+        "missing_declared_manuscript_displays": 0,
+        "json_nonnumeric_verified": 267,
+        "distinct_authorities": 171
+      }
+    },
+    "manuscript_state": {
+      "numeric_preservation": {
+        "chapters/13_continuous_local_inhibition.tex": {
+          "before": 146,
+          "after": 147,
+          "removed": [],
+          "added": [
+            "0.0002"
+          ]
+        },
+        "chapters/13_s04_diagnostics.tex": {
+          "before": 98,
+          "after": 98,
+          "removed": [],
+          "added": []
+        },
+        "chapters/13_s04_expanded.tex": {
+          "before": 142,
+          "after": 142,
+          "removed": [],
+          "added": []
+        },
+        "chapters/13_s04_observed_completed.tex": {
+          "before": 13,
+          "after": 13,
+          "removed": [],
+          "added": []
+        },
+        "chapters/13_s04_refitted_floor.tex": {
+          "before": 152,
+          "after": 152,
+          "removed": [],
+          "added": []
+        },
+        "chapters/13_s04b_joint_dispositions.tex": {
+          "before": 95,
+          "after": 95,
+          "removed": [],
+          "added": []
+        },
+        "chapters/13_s04b_joint_quantiles.tex": {
+          "before": 72,
+          "after": 76,
+          "removed": [],
+          "added": [
+            "0.98",
+            "19",
+            "20",
+            "9"
+          ]
+        },
+        "chapters/13_s08_moderate.tex": {
+          "before": 46,
+          "after": 46,
+          "removed": [],
+          "added": []
+        },
+        "chapters/13_s8_oracle.tex": {
+          "before": 93,
+          "after": 93,
+          "removed": [],
+          "added": []
+        },
+        "chapters/13_score_uncertainty.tex": {
+          "before": 31,
+          "after": 31,
+          "removed": [],
+          "added": []
+        }
+      },
+      "required_chapter_tokens": 30,
+      "required_quantile_tokens": 9
+    }
+  },
+  "defects_and_repairs": [
+    {
+      "id": "slice6-s6-regime-subheader",
+      "file": "paper/source/chapters/13_s04b_joint_quantiles.tex",
+      "locator": "line 24, Table tab:s04b-joint-quantiles",
+      "finding": "The S6 regime subheader identified S6 as magnitude-scaled broad/long immigrant, which is the S5 regime. Table tab:s04b-thinning defines S6 as the magnitude-scaled narrow/short total-attenuation law. The S4-S7 subheaders are now consistent with that table.",
+      "status": "fixed"
+    },
+    {
+      "id": "slice6-s7-quantile-coincidence",
+      "file": "paper/source/chapters/13_s04b_joint_quantiles.tex",
+      "locator": "caption of Table tab:s04b-joint-quantiles",
+      "finding": "The S7 immigrant-only and total rows share Q25, Min and Max. The caption now gives the algebraic reason and the correct intersection: S7 has 19/20 immigrant fits and 9/20 total fits at n=0, but the two intensities coincide only on the 9/20 seeds where both select n=0. One-sided zero selections do not make the intensities identical. Those nine seeds supply the shared minimum, maximum and both lower-quartile order statistics; the upper quartile uses a seed with total n=0.98 and immigrant n=0.",
+      "status": "fixed"
+    },
+    {
+      "id": "slice6-line75-score-attribution",
+      "file": "paper/source/chapters/13_continuous_local_inhibition.tex",
+      "locator": "line 75, Section 13.4.1",
+      "finding": "The 75,313.9 versus 59,415.5 and -15,898.4 figures were presented as the training score slope of the unit-mark immigrant-only LI law. They are the score slope of the separate total-intensity EP+ attenuation model lambda=lambda_0 exp(-eta G) in Section 11.5. The repaired paragraph gives the immigrant-only LI derivative, which weights each event by B(t_i,z_i)/lambda_0(t_i,z_i) and integrates against B(t,z), and explicitly attributes the three EP+ literals to Section sec:california-eta-profiles.",
+      "status": "fixed"
+    },
+    {
+      "id": "slice6-raw-math-tokens",
+      "file": "paper/source/chapters/13_continuous_local_inhibition.tex",
+      "locator": "lines 30, 61, 73, 90, 107-109, 113, 120-128, 144, 153, 155, 159, 173-178, 205, 211, 251, 255",
+      "finding": "Raw ASCII variables, unformatted assignments, raw scientific notation and the legacy 'in IV' reference were normalized to math mode and an internal chapter cross-reference. Every pre-edit numeric value is retained; the only added values are the signed +0.0002 tolerance endpoint and the S7 explanatory counts.",
+      "status": "fixed"
+    },
+    {
+      "id": "slice6-s8-oracle-field-name",
+      "file": "validation/live_results/forensic_remediation_20261114/s8_oracle.json",
+      "locator": "exact_true_null_minus_fitted_stats",
+      "finding": "The sealed field named exact_true_null_minus_fitted_stats stores the full true-law theta_star minus fitted-null contrast (mean 18.112), not the true uninhibited-backbone null minus fitted-null contrast used in the manuscript row (mean 1.683). The manuscript table is correct and is bound to referee_remediation_20261113/s8_oracle_decomposition.json:true_null_minus_fitted_null. The sealed field is not edited; the slice6 audit records the naming defect.",
+      "status": "documented"
+    },
+    {
+      "id": "slice6-observed-pooled-rounding",
+      "file": "validation/acceptances/S04_observed_public.json",
+      "locator": "three active rows versus the pooled block total",
+      "finding": "The three saved active gains sum to -2.386682086 nats, while the paired block authority total is -2.386674517; both display as -2.387 and the difference is 7.6e-6 nats. The audit records this saved-arithmetic difference rather than assigning it to a physical effect.",
+      "status": "documented"
+    }
+  ],
+  "artifacts": {
+    "claim_ledger": "validation/live_results/slice6_audit_20261114/claim_ledger.json",
+    "expanded_controls": "validation/live_results/slice6_audit_20261114/expanded_controls.json",
+    "joint_comparison": "validation/live_results/slice6_audit_20261114/joint_comparison.json",
+    "manuscript_state": "validation/live_results/slice6_audit_20261114/manuscript_state.json",
+    "observed_and_uncertainty": "validation/live_results/slice6_audit_20261114/observed_and_uncertainty.json",
+    "observed_unitmark": "validation/live_results/slice6_audit_20261114/observed_unitmark.json",
+    "refitted_floor": "validation/live_results/slice6_audit_20261114/refitted_floor.json",
+    "s8_moderate_and_oracles": "validation/live_results/slice6_audit_20261114/s8_moderate_and_oracles.json",
+    "sealed_authority_integrity": "validation/live_results/slice6_audit_20261114/sealed_authority_integrity.json"
+  },
+  "environment": {
+    "python": "3.13.4",
+    "numpy": "2.2.6"
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "schema": "slice6_claim_ledger_v1",
+  "created_utc": "2026-11-15T19:33:03.613538+00:00",
+  "scope": "Independent resolution of the master claim ledger and literal display presence for the ten Slice 6 LaTeX sources.",
+  "passed": true,
+  "counts": {
+    "c13_claims": 2093,
+    "missing_displays": 0,
+    "outside_only_displays": 2,
+    "master_ledger_sha256": "87f1e17f56b2ceba172e979b83b6f79d0364f729056d1fa490076c9f18d0f44e",
+    "authority_counts": {
+      "withdrawn_historical_records": 836,
+      "json_numeric_verified": 25930,
+      "json_pointer_verified": 26197,
+      "documentary_numeric_verified": 2430,
+      "documentary_metadata_verified": 679,
+      "claims": 28627,
+      "documentary_metadata": 679,
+      "total_records": 29306,
+      "literal_manuscript_display_records": 0,
+      "missing_declared_manuscript_displays": 0,
+      "json_nonnumeric_verified": 267,
+      "distinct_authorities": 171
+    }
+  },
+  "checks": [
+    {
+      "id": "ledger-authority-resolution",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "id": "ledger-c13-claim-count",
+      "passed": true,
+      "count": 2093
+    },
+    {
+      "id": "ledger-c13-display-presence",
+      "passed": true,
+      "missing": []
+    },
+    {
+      "id": "ledger-c13-outside-only-accounted",
+      "passed": true,
+      "count": 2,
+      "examples": [
+        {
+          "id": "remediation-overview-s5-mean4",
+          "display": "-10.3701",
+          "files": [
+            "chapters/01_introduction.tex"
+          ]
+        },
+        {
+          "id": "remediation-overview-s7-mean4",
+          "display": "-1.2607",
+          "files": [
+            "chapters/01_introduction.tex"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ledger-master-exists",
+      "passed": true
+    },
+    {
+      "id": "ledger-source-inventory",
+      "passed": true
+    }
+  ],
+  "notes": [
+    "The receipt is authority-only in this component; the full release-ready receipt is refreshed by scripts/verify_claims.py --write-receipts."
+  ],
+  "authority_receipt": {
+    "passed": true,
+    "counts": {
+      "withdrawn_historical_records": 836,
+      "json_numeric_verified": 25930,
+      "json_pointer_verified": 26197,
+      "documentary_numeric_verified": 2430,
+      "documentary_metadata_verified": 679,
+      "claims": 28627,
+      "documentary_metadata": 679,
+      "total_records": 29306,
+      "literal_manuscript_display_records": 0,
+      "missing_declared_manuscript_displays": 0,
+      "json_nonnumeric_verified": 267,
+      "distinct_authorities": 171
+    },
+    "failures": []
+  }
+}

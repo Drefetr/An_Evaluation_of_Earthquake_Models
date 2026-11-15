@@ -1,0 +1,44 @@
+{
+  "schema": "slice6_sealed_authority_integrity_v1",
+  "created_utc": "2026-11-15T19:42:59.499528+00:00",
+  "scope": "Byte-level identity of every pre-existing JSON file under validation/authorities and validation/live_results plus the three prior-slice records that complete the 772-file roster.",
+  "passed": true,
+  "counts": {
+    "snapshot": 772,
+    "unchanged": 772,
+    "changed": 0,
+    "missing": 0,
+    "baseline_commit": "8ae4fa6",
+    "snapshot_sha256": "fa8eb7eb6c279512721af2947c7bfd2abb9138ccb428e261dfd264e2f668ce2a",
+    "prechange_zip_sha256": "8ca38b86883362283e27c453e738cec4c58bf62f351cdf1e7221db879a33c022",
+    "publication_snapshot_files": 68
+  },
+  "checks": [
+    {
+      "id": "sealed-count",
+      "passed": true,
+      "expected": 772,
+      "actual": 772
+    },
+    {
+      "id": "sealed-missing",
+      "passed": true,
+      "missing": [],
+      "missing_count": 0
+    },
+    {
+      "id": "sealed-changed",
+      "passed": true,
+      "changed": [],
+      "changed_count": 0
+    },
+    {
+      "id": "sealed-scope",
+      "passed": true,
+      "scope": "Byte-level hashes of every pre-existing JSON file under validation/authorities and validation/live_results (769 files) plus the three prior-slice records at the validation root that complete the 772-record pre-existing JSON roster, and publication sources that Slice 6 may repair. The sealed JSON files are not modified by this audit."
+    }
+  ],
+  "notes": [
+    "Byte-level hashes of every pre-existing JSON file under validation/authorities and validation/live_results (769 files) plus the three prior-slice records at the validation root that complete the 772-record pre-existing JSON roster, and publication sources that Slice 6 may repair. The sealed JSON files are not modified by this audit."
+  ]
+}

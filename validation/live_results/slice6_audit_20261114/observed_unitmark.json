@@ -1,0 +1,962 @@
+{
+  "schema": "slice6_observed_unitmark_v1",
+  "created_utc": "2026-11-15T19:32:27.674132+00:00",
+  "scope": "Observed California LI minus OC and LI minus EP identities, 3/3 exact eta=0 selected states, all eight fixed-seed controls, S2 zero-thinning audit, 19 near-optimal spread gates, and the line-75 EP+ score-slope attribution.",
+  "passed": true,
+  "counts": {
+    "observed_folds": 3,
+    "fixed_seeds": 8,
+    "fixed_losses": 6,
+    "near_optimal_spreads": 19,
+    "max_spread": 0.0005376164007914404,
+    "s2_immigrants": 2951,
+    "s2_rejected": 0,
+    "line75_event_sum": 75313.90275560762,
+    "line75_exposure": 59415.479419146075,
+    "line75_slope": -15898.423336461543
+  },
+  "checks": [
+    {
+      "id": "observed-targets",
+      "passed": true,
+      "targets": 315
+    },
+    {
+      "id": "observed-fold-count",
+      "passed": true,
+      "folds": 3
+    },
+    {
+      "id": "observed-fold-targets",
+      "passed": true,
+      "targets": [
+        79,
+        167,
+        69
+      ]
+    },
+    {
+      "id": "li-oc-fold-zero",
+      "passed": true,
+      "fold_values": [
+        0.0,
+        1.8849277694243938e-10,
+        0.0
+      ]
+    },
+    {
+      "id": "li-oc-f1-total",
+      "passed": true,
+      "value": 1.8849277694243938e-10
+    },
+    {
+      "id": "li-oc-pooled-total",
+      "passed": true,
+      "value": 1.8849277694243938e-10
+    },
+    {
+      "id": "li-oc-pooled-per-target",
+      "passed": true,
+      "value": 5.983897680712361e-13
+    },
+    {
+      "id": "li-oc-pooled-divide",
+      "passed": true
+    },
+    {
+      "id": "li-oc-fold-sum",
+      "passed": true,
+      "fold_sum": 1.8849277694243938e-10
+    },
+    {
+      "id": "observed-eta-zero-3of3",
+      "passed": true,
+      "eta": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "exact": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "observed-ell-psi-unidentified",
+      "passed": true
+    },
+    {
+      "id": "table-observed-li-oc-F0",
+      "passed": true,
+      "actual": [
+        79.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        79.0,
+        0.0,
+        0.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 79.0,
+          "expected": 79.0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-observed-li-oc-F1",
+      "passed": true,
+      "actual": [
+        167.0,
+        1.128699e-12,
+        0.0
+      ],
+      "expected": [
+        167.0,
+        1.128699e-12,
+        0.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 167.0,
+          "expected": 167.0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 1.128699e-12,
+          "expected": 1.128699e-12,
+          "decimals": 6,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-observed-li-oc-F2",
+      "passed": true,
+      "actual": [
+        69.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        69.0,
+        0.0,
+        0.0
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 69.0,
+          "expected": 69.0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 0.0,
+          "expected": 0.0,
+          "decimals": 0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-observed-li-oc-pooled",
+      "passed": true,
+      "actual": [
+        315.0,
+        5.983898e-13
+      ],
+      "expected": [
+        315.0,
+        5.983898e-13
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 315.0,
+          "expected": 315.0,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 5.983898e-13,
+          "expected": 5.983898e-13,
+          "decimals": 6,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-observed-li-oc-pooled-eta",
+      "passed": true,
+      "cells": [
+        "{}Pooled",
+        "315",
+        "$+5.983898\\times10^{-13}$",
+        "0 in 3/3",
+        "Numerical tie"
+      ]
+    },
+    {
+      "id": "li-ep-fold-0-per-target-identity",
+      "passed": true
+    },
+    {
+      "id": "li-ep-fold-1-per-target-identity",
+      "passed": true
+    },
+    {
+      "id": "li-ep-fold-2-per-target-identity",
+      "passed": true
+    },
+    {
+      "id": "li-ep-pooled-total",
+      "passed": true,
+      "value": -51.05120476287129
+    },
+    {
+      "id": "li-ep-pooled-per-target",
+      "passed": true,
+      "value": -0.16206731670752791
+    },
+    {
+      "id": "li-ep-pooled-timing",
+      "passed": true,
+      "value": 0.3362495254193334
+    },
+    {
+      "id": "li-ep-pooled-location",
+      "passed": true,
+      "value": -51.38745428829054
+    },
+    {
+      "id": "li-ep-decomposition",
+      "passed": true
+    },
+    {
+      "id": "li-ep-fold-0-decomposition",
+      "passed": true,
+      "values": [
+        0.006244055127748957,
+        -0.08584936015126425,
+        -0.07960530502351457
+      ]
+    },
+    {
+      "id": "li-ep-fold-1-decomposition",
+      "passed": true,
+      "values": [
+        -0.0011010512041219338,
+        -0.18897387363765397,
+        -0.1900749248417766
+      ]
+    },
+    {
+      "id": "li-ep-fold-2-decomposition",
+      "passed": true,
+      "values": [
+        0.0003890539335583875,
+        -0.18908286867902105,
+        -0.18869381474546307
+      ]
+    },
+    {
+      "id": "table-observed-li-ep-F0",
+      "passed": true,
+      "actual": [
+        0.006244055,
+        -0.08584936,
+        -0.079605305
+      ],
+      "expected": [
+        0.006244055127748957,
+        -0.08584936015126425,
+        -0.07960530502351457
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 0.006244055,
+          "expected": 0.006244055127748957,
+          "decimals": 9,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": -0.08584936,
+          "expected": -0.08584936015126425,
+          "decimals": 9,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": -0.079605305,
+          "expected": -0.07960530502351457,
+          "decimals": 9,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-observed-li-ep-F1",
+      "passed": true,
+      "actual": [
+        -0.001101051,
+        -0.188973874,
+        -0.190074925
+      ],
+      "expected": [
+        -0.0011010512041219338,
+        -0.18897387363765397,
+        -0.1900749248417766
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": -0.001101051,
+          "expected": -0.0011010512041219338,
+          "decimals": 9,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": -0.188973874,
+          "expected": -0.18897387363765397,
+          "decimals": 9,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": -0.190074925,
+          "expected": -0.1900749248417766,
+          "decimals": 9,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-observed-li-ep-F2",
+      "passed": true,
+      "actual": [
+        0.000389054,
+        -0.189082869,
+        -0.188693815
+      ],
+      "expected": [
+        0.0003890539335583875,
+        -0.18908286867902105,
+        -0.18869381474546307
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 0.000389054,
+          "expected": 0.0003890539335583875,
+          "decimals": 9,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": -0.189082869,
+          "expected": -0.18908286867902105,
+          "decimals": 9,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": -0.188693815,
+          "expected": -0.18869381474546307,
+          "decimals": 9,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-observed-li-ep-pooled",
+      "passed": true,
+      "actual": [
+        0.00106746,
+        -0.163135,
+        -0.162067
+      ],
+      "expected": [
+        0.0010674588108550266,
+        -0.16313477551838268,
+        -0.16206731670752791
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 0.00106746,
+          "expected": 0.0010674588108550266,
+          "decimals": 8,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": -0.163135,
+          "expected": -0.16313477551838268,
+          "decimals": 6,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": -0.162067,
+          "expected": -0.16206731670752791,
+          "decimals": 6,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "fixed-seed-count",
+      "passed": true,
+      "count": 8
+    },
+    {
+      "id": "fixed-seed-identity",
+      "passed": true,
+      "seeds": [
+        410001,
+        410002,
+        410101,
+        410102,
+        410201,
+        410202,
+        410301,
+        410302
+      ]
+    },
+    {
+      "id": "fixed-seed-narrow-short-laws",
+      "passed": true,
+      "rows": [
+        [
+          410201,
+          107,
+          -1.2973910757898466,
+          -0.012125150241026604,
+          0.5,
+          5.0,
+          0.041666666666666664
+        ],
+        [
+          410202,
+          102,
+          -25.357970269173393,
+          -0.2486075516585627,
+          0.5,
+          5.0,
+          0.041666666666666664
+        ]
+      ]
+    },
+    {
+      "id": "fixed-seed-broad-long-laws",
+      "passed": true,
+      "rows": [
+        [
+          410301,
+          23,
+          2.24267943838845,
+          0.09750780166906303,
+          2.0,
+          50.0,
+          30.0
+        ],
+        [
+          410302,
+          27,
+          6.771011968172331,
+          0.2507782210434197,
+          2.0,
+          50.0,
+          30.0
+        ]
+      ]
+    },
+    {
+      "id": "table-fixed-410001",
+      "passed": true,
+      "actual": [
+        116.0,
+        -148.647608,
+        -1.281445
+      ],
+      "expected": [
+        116.0,
+        -148.64760805566334,
+        -1.2814448970315806
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 116.0,
+          "expected": 116,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": -148.647608,
+          "expected": -148.64760805566334,
+          "decimals": 6,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": -1.281445,
+          "expected": -1.2814448970315806,
+          "decimals": 6,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-fixed-410002",
+      "passed": true,
+      "actual": [
+        138.0,
+        -4.930159,
+        -0.035726
+      ],
+      "expected": [
+        138.0,
+        -4.9301593482114185,
+        -0.03572579237834361
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 138.0,
+          "expected": 138,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": -4.930159,
+          "expected": -4.9301593482114185,
+          "decimals": 6,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": -0.035726,
+          "expected": -0.03572579237834361,
+          "decimals": 6,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-fixed-410101",
+      "passed": true,
+      "actual": [
+        128.0,
+        -4.489917,
+        -0.035077
+      ],
+      "expected": [
+        128.0,
+        -4.48991749129209,
+        -0.03507748040071945
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 128.0,
+          "expected": 128,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": -4.489917,
+          "expected": -4.48991749129209,
+          "decimals": 6,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": -0.035077,
+          "expected": -0.03507748040071945,
+          "decimals": 6,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-fixed-410102",
+      "passed": true,
+      "actual": [
+        120.0,
+        -7.638775,
+        -0.063656
+      ],
+      "expected": [
+        120.0,
+        -7.6387745100723805,
+        -0.06365645425060316
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 120.0,
+          "expected": 120,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": -7.638775,
+          "expected": -7.6387745100723805,
+          "decimals": 6,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": -0.063656,
+          "expected": -0.06365645425060316,
+          "decimals": 6,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-fixed-410201",
+      "passed": true,
+      "actual": [
+        107.0,
+        -1.297391,
+        -0.012125
+      ],
+      "expected": [
+        107.0,
+        -1.2973910757898466,
+        -0.012125150241026604
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 107.0,
+          "expected": 107,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": -1.297391,
+          "expected": -1.2973910757898466,
+          "decimals": 6,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": -0.012125,
+          "expected": -0.012125150241026604,
+          "decimals": 6,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-fixed-410202",
+      "passed": true,
+      "actual": [
+        102.0,
+        -25.35797,
+        -0.248608
+      ],
+      "expected": [
+        102.0,
+        -25.357970269173393,
+        -0.2486075516585627
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 102.0,
+          "expected": 102,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": -25.35797,
+          "expected": -25.357970269173393,
+          "decimals": 6,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": -0.248608,
+          "expected": -0.2486075516585627,
+          "decimals": 6,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-fixed-410301",
+      "passed": true,
+      "actual": [
+        23.0,
+        2.242679,
+        0.097508
+      ],
+      "expected": [
+        23.0,
+        2.24267943838845,
+        0.09750780166906303
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 23.0,
+          "expected": 23,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 2.242679,
+          "expected": 2.24267943838845,
+          "decimals": 6,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 0.097508,
+          "expected": 0.09750780166906303,
+          "decimals": 6,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "table-fixed-410302",
+      "passed": true,
+      "actual": [
+        27.0,
+        6.771012,
+        0.250778
+      ],
+      "expected": [
+        27.0,
+        6.771011968172331,
+        0.2507782210434197
+      ],
+      "detail": [
+        {
+          "index": 0,
+          "shown": 27.0,
+          "expected": 27,
+          "decimals": 0,
+          "ok": true
+        },
+        {
+          "index": 1,
+          "shown": 6.771012,
+          "expected": 6.771011968172331,
+          "decimals": 6,
+          "ok": true
+        },
+        {
+          "index": 2,
+          "shown": 0.250778,
+          "expected": 0.2507782210434197,
+          "decimals": 6,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "fixed-seed-loss-count",
+      "passed": true,
+      "negatives": 6
+    },
+    {
+      "id": "fixed-seed-win-count-broad",
+      "passed": true,
+      "broad": [
+        2.24267943838845,
+        6.771011968172331
+      ]
+    },
+    {
+      "id": "s2-proposed-immigrants",
+      "passed": true,
+      "proposed": 2951
+    },
+    {
+      "id": "s2-rejected-immigrants",
+      "passed": true,
+      "rejected": 0
+    },
+    {
+      "id": "s2-zero-rejection-histories",
+      "passed": true,
+      "zero": 20
+    },
+    {
+      "id": "s2-seed-410201-zero",
+      "passed": true,
+      "counters": {
+        "queue_created": 208,
+        "queue_processed": 208,
+        "max_pending": 161,
+        "accepted_decisions": 208,
+        "accepted_committed": 208,
+        "accepted_immigrants": 161,
+        "accepted_offspring": 47,
+        "rejected_immigrants": 0,
+        "rejected_offspring": 0,
+        "spatial_proposals": 222,
+        "immigrant_horizon_rounding_exclusions": 0,
+        "prospective_child_count_at_cap": null
+      }
+    },
+    {
+      "id": "s2-seed-410202-zero",
+      "passed": true,
+      "counters": {
+        "queue_created": 200,
+        "queue_processed": 200,
+        "max_pending": 145,
+        "accepted_decisions": 200,
+        "accepted_committed": 200,
+        "accepted_immigrants": 145,
+        "accepted_offspring": 55,
+        "rejected_immigrants": 0,
+        "rejected_offspring": 0,
+        "spatial_proposals": 220,
+        "immigrant_horizon_rounding_exclusions": 0,
+        "prospective_child_count_at_cap": null
+      }
+    },
+    {
+      "id": "near-optimal-count",
+      "passed": true,
+      "count": 19
+    },
+    {
+      "id": "near-optimal-below-gate",
+      "passed": true,
+      "max": 0.0005376164007914404
+    },
+    {
+      "id": "near-optimal-max-literal",
+      "passed": true,
+      "max": 0.0005376164007914404
+    },
+    {
+      "id": "near-optimal-gates-passed",
+      "passed": true
+    },
+    {
+      "id": "accounting-procedures",
+      "passed": true
+    },
+    {
+      "id": "accounting-starts",
+      "passed": true
+    },
+    {
+      "id": "accounting-floors",
+      "passed": true
+    },
+    {
+      "id": "accounting-slots",
+      "passed": true
+    },
+    {
+      "id": "accounting-complete",
+      "passed": true
+    },
+    {
+      "id": "line75-event-sum",
+      "passed": true,
+      "value": 75313.90275560762
+    },
+    {
+      "id": "line75-exposure",
+      "passed": true,
+      "value": 59415.479419146075
+    },
+    {
+      "id": "line75-slope",
+      "passed": true,
+      "value": -15898.423336461543
+    },
+    {
+      "id": "line75-slope-identity",
+      "passed": true
+    },
+    {
+      "id": "line75-immigrant-score-formula",
+      "passed": true
+    },
+    {
+      "id": "line75-ep-attribution",
+      "passed": true
+    },
+    {
+      "id": "line75-literal-75{,}313.9",
+      "passed": true,
+      "literal": "75{,}313.9"
+    },
+    {
+      "id": "line75-literal-59{,}415.5",
+      "passed": true,
+      "literal": "59{,}415.5"
+    },
+    {
+      "id": "line75-literal--15{,}898.4",
+      "passed": true,
+      "literal": "-15{,}898.4"
+    }
+  ],
+  "notes": [
+    "The 369-check aggregate is a source-reported count in Addendum V and docs/result_provenance.md; the bound summary enumerates 19 procedures, 152 starts, 30 floors and 182 candidate slots, all complete."
+  ]
+}

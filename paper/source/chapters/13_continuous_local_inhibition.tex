@@ -27,7 +27,7 @@ The initial and expanded controls retain their declared generating laws and comp
 
 \subsection{Same California history, not a new sample}
 
-The observation law selects preferred California records with reported M $\geq$ 4.0, latitude 32-37 degrees, longitude -121 to -114 degrees and depth -5 to 40 km. The fixed source contains 1,272 unique events: 106 warmup parents in 1981-1985 and 1,166 evaluated records in 1986-2026. The latter comprise 851 initial training targets plus 315 subsequent test targets. Warmup is already included in 1,272; the counts must not be added a second time.
+The observation law selects preferred California records with reported $M\geq 4.0$, latitude 32-37 degrees, longitude -121 to -114 degrees and depth -5 to 40 km. The fixed source contains 1,272 unique events: 106 warmup parents in 1981-1985 and 1,166 evaluated records in 1986-2026. The latter comprise 851 initial training targets plus 315 subsequent test targets. Warmup is already included in 1,272; the counts must not be added a second time.
 
 \begingroup\footnotesize\setlength{\tabcolsep}{2pt}\renewcommand{\arraystretch}{1.18}
 \begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.1800\textwidth}>{\raggedright\arraybackslash}p{0.1800\textwidth}>{\raggedright\arraybackslash}p{0.1800\textwidth}>{\raggedright\arraybackslash}p{0.1800\textwidth}>{\raggedright\arraybackslash}p{0.1800\textwidth}@{}}
@@ -58,7 +58,7 @@ For completeness, the other abbreviations in the programme are FC (fixed-scale M
 
 \subsection{Intensity and attenuation field}
 
-For time t and recorded projected location z in the fixed finite domain D, the model is
+For time $t$ and recorded projected location $z$ in the fixed finite domain $D$, the model is
 
 \begin{align}
 \lambda_{\rm LI}(t,z)&=e^{a+dx_{\mathrm{trend}}(t)}b_{\rm bg}(z)e^{-\eta G(t,z)}+nH_{\rm OC}(t,z),\label{eq:spatial-li-intensity}\\
@@ -70,9 +70,15 @@ The observed clock is days since 1981-01-01 00:00:00 UTC.
 
 Here $a$ and $d$ govern immigrant amplitude/trend; $b_{\rm bg}$ is the inherited training-only background density; $n$ scales excitation $H_{\rm OC}$; $\eta$ is nonnegative inhibition strength; $\ell$ is its spatial range in kilometres; and $\psi$ is its memory in days. The observed clock uses the frozen timestamp convention and strict earlier-integer-timestamp parent rule, including tied batches. Synthetic controls have their own day-zero origin and normalization, specified in Section~\ref{sec:li-generating-contract}. The stress mark multiplier is fixed to one: every eligible earlier recorded event contributes to $G$ without magnitude weighting. No latent immigrant/offspring classification is required. Inhibition acts only on the immigrant term. It does not suppress $H_{\rm OC}$, and it is not spatially renormalized. It therefore changes both local density and total immigrant rate. Renormalizing the inhibited density would define a different model.
 
-The unit stress mark is a substantive restriction: at the same lag and separation, an eligible M4 event and an eligible M7.1 event contribute equally to the attenuation field. Their excitation productivity can still differ through $\kappa_j$. This model therefore does not represent magnitude-scaled stress release, a Coulomb stress tensor, or suppression of the full triggered sequence. It tests immigrant attenuation under one restricted statistical law.
+The unit stress mark is a substantive restriction: at the same lag and separation, an eligible $M\,4$ event and an eligible $M\,7.1$ event contribute equally to the attenuation field. Their excitation productivity can still differ through $\kappa_j$. This model therefore does not represent magnitude-scaled stress release, a Coulomb stress tensor, or suppression of the full triggered sequence. It tests immigrant attenuation under one restricted statistical law.
 
-The attenuation kernel is radially monotone and peaks at the parent epicentre and origin time. Because $(1+\|z-z_j\|^2/\ell_j^2)^{-2}e^{-(t-t_j)/\psi}$ is largest at $\|z-z_j\|=0$, $t=t_j^+$, a positive $\eta$ suppresses the modelled immigrant rate most strongly where primary aftershock clustering is densest. It is not an annular or signed off-fault kernel. In California Fold~0 at the uninhibited MLE the event-weighted attenuation sum exceeds the exposure integral, $\sum_iG(t_i,z_i)=75{,}313.9>\int\lambda_0G=59{,}415.5$, so the training score slope at zero is $\partial_\eta\ell|_{\eta=0}=-15{,}898.4$ nats per unit $\eta$. This geometry explains why even a small fitted $\eta$ produces a large training likelihood loss, and why the boundary $\eta=0$ is selected.
+The attenuation kernel is radially monotone and peaks at the parent epicentre and origin time. Because $(1+\|z-z_j\|^2/\ell_j^2)^{-2}e^{-(t-t_j)/\psi}$ is largest at $\|z-z_j\|=0$, $t=t_j^+$, a positive $\eta$ suppresses the modelled immigrant rate most strongly where primary aftershock clustering is densest. It is not an annular or signed off-fault kernel. For the immigrant-only law of Eq.~\eqref{eq:spatial-li-intensity}, the score derivative at $\eta=0$ weights each event by the immigrant probability $p_i^{\mathrm{imm}}=B(t_i,z_i)/\lambda_0(t_i,z_i)$ and integrates against $B(t,z)$:
+\[
+\left.\partial_\eta \ell_{\mathrm{LI}}\right|_{\eta=0}
+=-\sum_i \frac{B(t_i,z_i)}{\lambda_0(t_i,z_i)} G(t_i,z_i)
++\int_I \int_D B(t,z) G(t,z)\,\mathrm{d}z\,\mathrm{d}t .
+\]
+The separate total-intensity EP+ attenuation model $\lambda=\lambda_0e^{-\eta G}$ of Section~\ref{sec:california-eta-profiles} instead has $\left.\partial_\eta\ell\right|_{\eta=0}=-\sum_iG(t_i,z_i)+\int\lambda_0G$. In California Fold~0 at the uninhibited MLE its event-weighted attenuation sum exceeds its exposure integral, $\sum_iG(t_i,z_i)=75{,}313.9>\int\lambda_0G=59{,}415.5$, so its training score slope at zero is $\partial_\eta\ell|_{\eta=0}=-15{,}898.4$ nats per unit $\eta$. Those three figures belong to the EP+ total-intensity calculation, not to the immigrant-only LI score above. The geometry still explains why even a small fitted $\eta$ produces a large training likelihood loss, and why the boundary $\eta=0$ is selected.
 
 More explicitly, the inherited excitation is a sum over all eligible strictly earlier parents:
 
@@ -87,7 +93,7 @@ Here $\kappa_j$ is the shared training-calibrated magnitude-productivity weight,
 
 The temporal factor is the normalized Omori--Utsu law \citep{Utsu1995}; the reference-weighted spatial factor is a particular fitted forecasting choice rather than a physical stress law.
 
-At $\eta$ = 0, $\exp[-\eta G]$ equals one everywhere and LI exactly nests OC when shared coordinates agree. All $\ell$ and $\psi$ choices then give the same law. Canonical $\ell$ = 30 km and $\psi$ = 7 days are display conventions at that boundary, not recovered scales. Even a positive procedure score difference at $\eta$ = 0 could arise from refitting shared coordinates through another optimization path; it would not establish active attenuation. The separate approved selected-state diagnostics are therefore essential to the conclusion below.
+At $\eta=0$, $\exp[-\eta G]$ equals one everywhere and LI exactly nests OC when shared coordinates agree. All $\ell$ and $\psi$ choices then give the same law. Canonical $\ell=30$~km and $\psi=7$~days are display conventions at that boundary, not recovered scales. Even a positive procedure score difference at $\eta=0$ could arise from refitting shared coordinates through another optimization path; it would not establish active attenuation. The separate approved selected-state diagnostics are therefore essential to the conclusion below.
 
 \subsection{Frozen fitting and selection contract}
 
@@ -104,28 +110,28 @@ Coordinate & Bound & Coordinate & Bound \\
 \midrule\multicolumn{4}{r}{\emph{Continued on next page}}\\
 \endfoot
 \bottomrule\endlastfoot
-{}a & [-12, 0] & d & [-2, 2] \\
-{}n & [0, 0.98] & c & [0.0001, 20] days \\
-{}p & [1.01, 2.5] & $\eta$ & [0, 4] \\
+{}$a$ & [-12, 0] & $d$ & [-2, 2] \\
+{}$n$ & [0, 0.98] & $c$ & [0.0001, 20] days \\
+{}$p$ & [1.01, 2.5] & $\eta$ & [0, 4] \\
 {}$\ell$ & [5, 150] km & $\psi$ & [1/24, 365] days \\
 \end{longtable}\endgroup
 
-Each main arm has eight prescribed starts. For LI fits only, shared a,d,n start from the accepted matched OC state. LI start 0 retains OC's c,p and $\eta$ = 0; the other LI starts use the fixed c,p,$\eta$,$\ell$,$\psi$ schedule below. Synthetic OC control fits use a separate frozen initialization rule, not their own subsequently accepted fit: a0 = clip(log(0.6 max(Ntrain,1)/365), -11.5, -0.1), d0 = 0.2 and n0 = 0.35, with eight prescribed c,p rows in synthetic\_\allowbreak{}common/OC\_\allowbreak{}start\_\allowbreak{}fill. The readable protocol subset gives both start schemes, floors, bounds and tolerances in full.
+Each main arm has eight prescribed starts. For LI fits only, shared $a,d,n$ start from the accepted matched OC state. LI start 0 retains OC's $c,p$ and $\eta=0$; the other LI starts use the fixed $c,p,\eta,\ell,\psi$ schedule below. Synthetic OC control fits use a separate frozen initialization rule, not their own subsequently accepted fit: $a_0=\operatorname{clip}(\log(0.6\max(N_{\mathrm{train}},1)/365),-11.5,-0.1)$, $d_0=0.2$ and $n_0=0.35$, with eight prescribed $c,p$ rows in synthetic\_\allowbreak{}common/OC\_\allowbreak{}start\_\allowbreak{}fill. The readable protocol subset gives both start schemes, floors, bounds and tolerances in full.
 
 L-BFGS-B has maxiter 200, maxfun 20,000, maxls 200, ftol 1e-10 and gtol 2e-6. Bounded Powell is allowed only after failure of the declared first-method acceptance rule, from the same original start, with maxiter 400, maxfev 5,000, xtol 1e-6 and ftol 1e-10. These limits describe a bounded search, not a global optimization proof.
 
 \begingroup\small\setlength{\tabcolsep}{2pt}\renewcommand{\arraystretch}{1.18}
 \begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.2280\textwidth}>{\raggedright\arraybackslash}p{0.2280\textwidth}>{\raggedright\arraybackslash}p{0.2280\textwidth}>{\raggedright\arraybackslash}p{0.2280\textwidth}@{}}
 \toprule
-{}LI start: c (days), p & $\eta$ & $\ell$ (km) & $\psi$ (days) \\
+{}LI start: $c$ (days), $p$ & $\eta$ & $\ell$ (km) & $\psi$ (days) \\
 \midrule\endfirsthead
 \toprule
-LI start: c (days), p & $\eta$ & $\ell$ (km) & $\psi$ (days) \\
+LI start: $c$ (days), $p$ & $\eta$ & $\ell$ (km) & $\psi$ (days) \\
 \midrule\endhead
 \midrule\multicolumn{4}{r}{\emph{Continued on next page}}\\
 \endfoot
 \bottomrule\endlastfoot
-{}0: accepted OC c,p & 0 & 30 & 7 \\
+{}0: accepted OC $c,p$ & 0 & 30 & 7 \\
 {}1: 0.0001, 1.1 & 0.1 & 5 & 1/24 \\
 {}2: 0.001, 1.3 & 0.3 & 15 & 0.25 \\
 {}3: 0.01, 1.1 & 0.7 & 50 & 7 \\
@@ -141,7 +147,7 @@ The protocol and case matrix supply the full start schedules, observation law an
 
 \subsection{Proper scores and exposure}
 
-Write P for summed event log point intensity, Q for summed event log regional intensity, E for positive full-domain integrated intensity, C = -E for its signed score contribution and M for the common magnitude-mark score. Then
+Write $P$ for summed event log point intensity, $Q$ for summed event log regional intensity, $E$ for positive full-domain integrated intensity, $C=-E$ for its signed score contribution and $M$ for the common magnitude-mark score. Then
 
 \begin{align}
 S_{\rm time}&=Q+C=Q-E,&S_{\rm loc}&=P-Q,\\
@@ -150,13 +156,13 @@ S_{\rm joint}&=P+C+M=S_{\rm time}+S_{\rm loc}+M,\\
 \Delta S_{\rm joint}&=\Delta P+\Delta C+\Delta M.
 \end{align}
 
-All quiet-period and full-domain exposure is retained. Lower exposure can offset a worse event-intensity term; an event-only gain is insufficient. Within each arm, Q uses that arm's spatially integrated ground intensity under the fixed observed history, and all components use its same fitted state. Independently fitted arms can have different parameters. The shared conditional mark law is scored once and cancels in contrasts. Pooled scores sum all three window totals and divide by 315. These are nats of realised predictive log score, not percent accuracy, correlation, a physical effect size or evidence of calibration.
+All quiet-period and full-domain exposure is retained. Lower exposure can offset a worse event-intensity term; an event-only gain is insufficient. Within each arm, $Q$ uses that arm's spatially integrated ground intensity under the fixed observed history, and all components use its same fitted state. Independently fitted arms can have different parameters. The shared conditional mark law is scored once and cancels in contrasts. Pooled scores sum all three window totals and divide by 315. These are nats of realised predictive log score, not percent accuracy, correlation, a physical effect size or evidence of calibration.
 
-The source-field dictionary distinguishes these narrative symbols from legacy aggregate keys. In particular, LI's raw pooled E field means the point-event logsum difference, not positive exposure; its raw C is the signed exposure contribution. Sequence timing\_\allowbreak{}compensator instead stores signed difference in nonnegative integrated exposure and enters the score negatively. Source keys and scalars remain unchanged.
+The source-field dictionary distinguishes these narrative symbols from legacy aggregate keys. In particular, LI's raw pooled $E$ field means the point-event logsum difference, not positive exposure; its raw $C$ is the signed exposure contribution. Sequence timing\_\allowbreak{}compensator instead stores signed difference in nonnegative integrated exposure and enters the score negatively. Source keys and scalars remain unchanged.
 
 \section{Observed result: no selected inhibition and a numerical tie}
 
-All three selected LI fits have $\eta$ \textbf{exactly zero}. The procedure selects no active attenuation term in these observed windows. Its joint contrasts against OC are numerical ties under the frozen aggregate sign tolerance of +/-0.0002 total nats (inclusive). The following score contrasts are descriptive, without confidence intervals.
+All three selected LI fits have $\eta$ \textbf{exactly zero}. The procedure selects no active attenuation term in these observed windows. Its joint contrasts against OC are numerical ties under the frozen aggregate sign tolerance of $\pm 0.0002$ total nats (inclusive; signed interval $[-0.0002,0.0002]$). The following score contrasts are descriptive, without confidence intervals.
 
 \begingroup\footnotesize\setlength{\tabcolsep}{2pt}\renewcommand{\arraystretch}{1.18}
 \begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.1800\textwidth}>{\raggedright\arraybackslash}p{0.1800\textwidth}>{\raggedright\arraybackslash}p{0.1800\textwidth}>{\raggedright\arraybackslash}p{0.1800\textwidth}>{\raggedright\arraybackslash}p{0.1800\textwidth}@{}}
@@ -170,12 +176,12 @@ Window & Targets & LI-OC joint nats/target & Selected $\eta$ & Interpretation \\
 \endfoot
 \bottomrule\endlastfoot
 {}F0 & 79 & 0 & 0 & Numerical tie \\
-{}F1 & 167 & +1.128699e-12 & 0 & Numerical tie \\
+{}F1 & 167 & $+1.128699\times10^{-12}$ & 0 & Numerical tie \\
 {}F2 & 69 & 0 & 0 & Numerical tie \\
-{}Pooled & 315 & +5.983898e-13 & 0 in 3/3 & Numerical tie \\
+{}Pooled & 315 & $+5.983898\times10^{-13}$ & 0 in 3/3 & Numerical tie \\
 \end{longtable}\endgroup
 
-The raw pooled difference is +1.88492776942439e-10 total nats. Its tiny positive floating-point sign is retained for arithmetic traceability and is not a forecast improvement. The frozen aggregate sign tolerance concerns numerical comparison, not statistical significance or a fitter admission gate. Exact model nesting and finite arithmetic are separate issues: the selected law has no inhibition, while independently evaluated saved score arithmetic may differ at roundoff scale.
+The raw pooled difference is $+1.88492776942439\times10^{-10}$ total nats. Its tiny positive floating-point sign is retained for arithmetic traceability and is not a forecast improvement. The frozen aggregate sign tolerance concerns numerical comparison, not statistical significance or a fitter admission gate. Exact model nesting and finite arithmetic are separate issues: the selected law has no inhibition, while independently evaluated saved score arithmetic may differ at roundoff scale.
 
 The zero-strength boundary leaves $\ell$ and $\psi$ unidentified. Neither their canonical values nor bounds identify a physical inhibition footprint or duration. This result supports the narrower statement that the registered fitting procedure selected no active immigrant attenuation on this inspected recorded-coordinate history. It supplies no proof that earthquakes lack inhibition, no universal detection limit and no evidence of physical absence.
 
@@ -202,13 +208,13 @@ Window (targets) & Timing & Conditional location & Joint & Mark difference \\
 
 The exact source-reported pooled LI-EP joint difference is -51.0512047628713 total nats, or -0.162067316707528 per target. Its timing and conditional-location totals are +0.336249525419333 and -51.3874542882905. These are predictive components, not causal shares or a decomposition of physical immigrant versus offspring generation.
 
-The separately archived OC-EP benchmark in IV differs slightly at floating-point scale from this replay. Each is reported under its own accepted source identity; substituting one for the other would obscure provenance. Neither EP's better relative score nor LI's exact nesting supplies a probability-calibration result. The earlier conditional calibration concerned original OC only and found material discrepancies; Section~\ref{sec:s05-completed} reports the later comparison including EP.
+The separately archived OC-EP benchmark in Chapter~\ref{ch:external} differs slightly at floating-point scale from this replay. Each is reported under its own accepted source identity; substituting one for the other would obscure provenance. Neither EP's better relative score nor LI's exact nesting supplies a probability-calibration result. The earlier conditional calibration concerned original OC only and found material discrepancies; Section~\ref{sec:s05-completed} reports the later comparison including EP.
 
 \section{Every fixed-seed control, including the failures}
 
 \subsection{Generating contract}\label{sec:li-generating-contract}
 
-Eight datasets, two seeds per regime, were fixed in advance. The null regimes have $\eta$ = 0. The narrow/short law has positive generating strength $\eta$ = 0.5, with $\ell$ = 5 km and $\psi$ = 1/24 day. The broad/long regime has $\eta$ = 2, $\ell$ = 50 km and $\psi$ = 30 days. At the null, $\ell$/$\psi$ do not affect the law. The domain is 100 by 100 km; synthetic t is days since simulated history begins at day zero, with $x_{\mathrm{trend}}(t)=2t/760-1$. Warmup ends at day 30, training at day 395 and test at day 760. The observed 16,436-day normalization is not used for these controls. Known nuisance/background inputs are fixed equally for paired OC/LI fits. Chronological thinning uses accepted-event ancestry and fixed PCG64DXSM streams, with original caps/failures attached to their seeds. No failed or inconvenient seed is redrawn.
+Eight datasets, two seeds per regime, were fixed in advance. The null regimes have $\eta=0$. The narrow/short law has positive generating strength $\eta=0.5$, with $\ell=5$~km and $\psi=1/24$~day. The broad/long regime has $\eta=2$, $\ell=50$~km and $\psi=30$~days. At the null, $\ell/\psi$ do not affect the law. The domain is 100 by 100 km; synthetic $t$ is days since simulated history begins at day zero, with $x_{\mathrm{trend}}(t)=2t/760-1$. Warmup ends at day 30, training at day 395 and test at day 760. The observed 16,436-day normalization is not used for these controls. Known nuisance/background inputs are fixed equally for paired OC/LI fits. Chronological thinning uses accepted-event ancestry and fixed PCG64DXSM streams, with original caps/failures attached to their seeds. No failed or inconvenient seed is redrawn.
 
 The controls test the registered fitting procedure on these laws. They do not mimic every catalogue feature, location-error process or earthquake mechanism. The public control table is complete.
 
@@ -248,11 +254,11 @@ These fixed examples do not estimate recovery probability. The losses remain com
 
 Both broad/long wins show that the registered procedure can improve held-out score on those two fixed examples. The narrow/short law has positive strength, but neither retained history realizes immigrant thinning; their held-out losses do not measure failure to detect a realized thinning effect. No contrast here turns the observed zero-strength result into a physical absence test. Conversely, an active fitted term or better score would not identify a physical mechanism.
 
-Two seeds per regime cannot estimate false-positive rate, power, parameter coverage or general recovery probability. Six losses do not prove absence of inhibition in the generating laws, and two wins do not establish reliable detection. The narrow/short scores do not locate a physical resolution threshold. The recorded-coordinate law has no admitted empirical location-error distribution; the engineering lower bound $\ell$ = 5 km is a model/search constraint, not a measurement-accuracy assertion.
+Two seeds per regime cannot estimate false-positive rate, power, parameter coverage or general recovery probability. Six losses do not prove absence of inhibition in the generating laws, and two wins do not establish reliable detection. The narrow/short scores do not locate a physical resolution threshold. The recorded-coordinate law has no admitted empirical location-error distribution; the engineering lower bound $\ell=5$~km is a model/search constraint, not a measurement-accuracy assertion.
 
 \section{Identifiability and consolidated scientific implications}
 
-At $\eta$ = 0 the likelihood does not depend on $\ell$ or $\psi$. Thus zero-strength selection does not estimate a zero range or duration: it removes those coordinates from the law. The null also lies at the boundary of a constrained parameter space. Exact nesting alone justifies neither ordinary Wilks inference nor a universal half-chi-square reference.
+At $\eta=0$ the likelihood does not depend on $\ell$ or $\psi$. Thus zero-strength selection does not estimate a zero range or duration: it removes those coordinates from the law. The null also lies at the boundary of a constrained parameter space. Exact nesting alone justifies neither ordinary Wilks inference nor a universal half-chi-square reference.
 
 The finite multistart procedure is part of the estimand. Negative held-out differences are possible even for nested model families because training-defined selection and finite samples do not guarantee held-out superiority. The complete retained candidates and near-optimal checks reduce particular numerical concerns; they do not certify a global optimum or prove that no positive-inhibition state could ever perform better. The conclusion must stay about the registered procedure and this history.
 

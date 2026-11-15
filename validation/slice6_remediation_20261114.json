@@ -1,0 +1,420 @@
+{
+  "schema": "slice6_remediation_acceptance_v1",
+  "created_utc": "2026-11-15T19:42:12.226639+00:00",
+  "baseline_commit": "8ae4fa6",
+  "scope": "Vertical Triad Slice 6: Chapter 13 continuous local inhibition (LI and LI+), observed California comparisons, expanded unit-mark and magnitude-scaled controls (S04 and S04B), the 80-history / 400-outcome joint temporal-backbone comparison, the training-fitted scalar (a) and concave (a,n) floor comparators, the 20-history S8 moderate control, and the full/partial S8 oracles.",
+  "status": "accepted_with_documented_repairs",
+  "passed": true,
+  "components": {
+    "sealed_authority_integrity": true,
+    "observed_unitmark": true,
+    "expanded_controls": true,
+    "observed_and_uncertainty": true,
+    "refitted_floor": true,
+    "joint_comparison": true,
+    "s8_moderate_and_oracles": true,
+    "claim_ledger": true,
+    "manuscript_state": true
+  },
+  "counts": {
+    "sealed_authority_integrity": {
+      "snapshot": 772,
+      "unchanged": 772,
+      "changed": 0,
+      "missing": 0,
+      "baseline_commit": "8ae4fa6",
+      "snapshot_sha256": "fa8eb7eb6c279512721af2947c7bfd2abb9138ccb428e261dfd264e2f668ce2a",
+      "prechange_zip_sha256": "8ca38b86883362283e27c453e738cec4c58bf62f351cdf1e7221db879a33c022",
+      "publication_snapshot_files": 68
+    },
+    "observed_unitmark": {
+      "observed_folds": 3,
+      "fixed_seeds": 8,
+      "fixed_losses": 6,
+      "near_optimal_spreads": 19,
+      "max_spread": 0.0005376164007914404,
+      "s2_immigrants": 2951,
+      "s2_rejected": 0,
+      "line75_event_sum": 75313.90275560762,
+      "line75_exposure": 59415.479419146075,
+      "line75_slope": -15898.423336461543
+    },
+    "expanded_controls": {
+      "s04_rows": 20,
+      "s04b_table_rows": 20,
+      "thinning": {
+        "4": {
+          "accepted_immigrants": 2966,
+          "accepted_offspring": 1120,
+          "rejected_immigrants": 1,
+          "rejected_offspring": 0,
+          "events": 4086,
+          "n_train": 1733,
+          "n_test": 2188,
+          "immigrant_rejection_fraction": 0.0003370407819346141,
+          "offspring_rejection_fraction": 0.0
+        },
+        "5": {
+          "accepted_immigrants": 500,
+          "accepted_offspring": 202,
+          "rejected_immigrants": 2518,
+          "rejected_offspring": 0,
+          "events": 702,
+          "n_train": 303,
+          "n_test": 338,
+          "immigrant_rejection_fraction": 0.8343273691186216,
+          "offspring_rejection_fraction": 0.0
+        },
+        "6": {
+          "accepted_immigrants": 3101,
+          "accepted_offspring": 1201,
+          "rejected_immigrants": 1,
+          "rejected_offspring": 134,
+          "events": 4302,
+          "n_train": 1916,
+          "n_test": 2231,
+          "immigrant_rejection_fraction": 0.0003223726627981947,
+          "offspring_rejection_fraction": 0.10037453183520599
+        },
+        "7": {
+          "accepted_immigrants": 568,
+          "accepted_offspring": 3,
+          "rejected_immigrants": 2525,
+          "rejected_offspring": 165,
+          "events": 571,
+          "n_train": 266,
+          "n_test": 265,
+          "immigrant_rejection_fraction": 0.8163595215001617,
+          "offspring_rejection_fraction": 0.9821428571428571
+        }
+      },
+      "fit_census": 240,
+      "parameter_rows": 12,
+      "thinning_rows": 4,
+      "s04b_rows": 20,
+      "two_gamma": 3.453877639491069
+    },
+    "observed_and_uncertainty": {
+      "active_rows": 3,
+      "zero_rows": 12,
+      "pooled_active": -2.386682086060432,
+      "pooled_90_ci": [
+        -6.5635283129563335,
+        -0.03319390714800577
+      ],
+      "pooled_180_ci": [
+        -6.42615579550734,
+        -0.08539352789208825
+      ],
+      "pooled_365_ci": [
+        -6.363635295415632,
+        -0.09049344698588709
+      ]
+    },
+    "refitted_floor": {
+      "refit_cases": 80,
+      "concave_cases": 80,
+      "s7_n_zero": 20,
+      "floor_components": 4,
+      "max_kkt": 2.2536080476189574e-13
+    },
+    "joint_comparison": {
+      "cases": 80,
+      "outcomes": 400,
+      "joint_rows": 20,
+      "s7_immigrant_n_zero": 19,
+      "s7_total_n_zero": 9,
+      "s7_both_n_zero": 9,
+      "s7_both_max_difference": 0.0001548846614696231
+    },
+    "s8_moderate_and_oracles": {
+      "s8_cases": 20,
+      "raw_mean": 0.2941447638438433,
+      "bic_mean": 2.4945996750852713,
+      "raw_wins": 13,
+      "bic_wins": 9,
+      "any_boundary": 13,
+      "inherited_false": 18,
+      "max_gradient": 0.03324332526868545,
+      "oracle_closure": {
+        "oracle_gain_vs_joint_null_mean": 18.111994353630507,
+        "oracle_gain_vs_intercept_mean": 14.540568689145175,
+        "comparator_overfitting_loss_mean": 3.571425664485332,
+        "identity_residual": 0.0
+      },
+      "partial_b_mean": 2.823657383237122,
+      "partial_c_mean": -6.513221037516632
+    },
+    "claim_ledger": {
+      "c13_claims": 2093,
+      "missing_displays": 0,
+      "outside_only_displays": 2,
+      "master_ledger_sha256": "87f1e17f56b2ceba172e979b83b6f79d0364f729056d1fa490076c9f18d0f44e",
+      "authority_counts": {
+        "withdrawn_historical_records": 836,
+        "json_numeric_verified": 25930,
+        "json_pointer_verified": 26197,
+        "documentary_numeric_verified": 2430,
+        "documentary_metadata_verified": 679,
+        "claims": 28627,
+        "documentary_metadata": 679,
+        "total_records": 29306,
+        "literal_manuscript_display_records": 0,
+        "missing_declared_manuscript_displays": 0,
+        "json_nonnumeric_verified": 267,
+        "distinct_authorities": 171
+      }
+    },
+    "manuscript_state": {
+      "numeric_preservation": {
+        "chapters/13_continuous_local_inhibition.tex": {
+          "before": 146,
+          "after": 147,
+          "removed": [],
+          "added": [
+            "0.0002"
+          ]
+        },
+        "chapters/13_s04_diagnostics.tex": {
+          "before": 98,
+          "after": 98,
+          "removed": [],
+          "added": []
+        },
+        "chapters/13_s04_expanded.tex": {
+          "before": 142,
+          "after": 142,
+          "removed": [],
+          "added": []
+        },
+        "chapters/13_s04_observed_completed.tex": {
+          "before": 13,
+          "after": 13,
+          "removed": [],
+          "added": []
+        },
+        "chapters/13_s04_refitted_floor.tex": {
+          "before": 152,
+          "after": 152,
+          "removed": [],
+          "added": []
+        },
+        "chapters/13_s04b_joint_dispositions.tex": {
+          "before": 95,
+          "after": 95,
+          "removed": [],
+          "added": []
+        },
+        "chapters/13_s04b_joint_quantiles.tex": {
+          "before": 72,
+          "after": 76,
+          "removed": [],
+          "added": [
+            "0.98",
+            "19",
+            "20",
+            "9"
+          ]
+        },
+        "chapters/13_s08_moderate.tex": {
+          "before": 46,
+          "after": 46,
+          "removed": [],
+          "added": []
+        },
+        "chapters/13_s8_oracle.tex": {
+          "before": 93,
+          "after": 93,
+          "removed": [],
+          "added": []
+        },
+        "chapters/13_score_uncertainty.tex": {
+          "before": 31,
+          "after": 31,
+          "removed": [],
+          "added": []
+        }
+      },
+      "required_chapter_tokens": 30,
+      "required_quantile_tokens": 9
+    }
+  },
+  "sealed_authority_integrity": {
+    "snapshot": 772,
+    "unchanged": 772,
+    "changed": 0,
+    "missing": 0,
+    "snapshot_sha256": "fa8eb7eb6c279512721af2947c7bfd2abb9138ccb428e261dfd264e2f668ce2a",
+    "prechange_zip_sha256": "8ca38b86883362283e27c453e738cec4c58bf62f351cdf1e7221db879a33c022",
+    "baseline_commit": "8ae4fa6",
+    "composition": "769 JSON files under validation/authorities and validation/live_results plus three prior-slice root records"
+  },
+  "claim_reconciliation": {
+    "slice6_claims": 2093,
+    "missing_displays": 0,
+    "outside_only_displays": 2,
+    "withdrawn_historical_records": 836,
+    "master_ledger_sha256": "87f1e17f56b2ceba172e979b83b6f79d0364f729056d1fa490076c9f18d0f44e",
+    "full_receipt_passed": true,
+    "claims": 28627,
+    "literal_manuscript_display_records": 12718,
+    "missing_declared_manuscript_displays": 0
+  },
+  "repairs": [
+    {
+      "id": "slice6-s6-regime-subheader",
+      "file": "paper/source/chapters/13_s04b_joint_quantiles.tex",
+      "locator": "line 24, Table tab:s04b-joint-quantiles",
+      "finding": "The S6 regime subheader identified S6 as magnitude-scaled broad/long immigrant, which is the S5 regime. Table tab:s04b-thinning defines S6 as the magnitude-scaled narrow/short total-attenuation law. The S4-S7 subheaders are now consistent with that table.",
+      "status": "fixed"
+    },
+    {
+      "id": "slice6-s7-quantile-coincidence",
+      "file": "paper/source/chapters/13_s04b_joint_quantiles.tex",
+      "locator": "caption of Table tab:s04b-joint-quantiles",
+      "finding": "The S7 immigrant-only and total rows share Q25, Min and Max. The caption now gives the algebraic reason and the correct intersection: S7 has 19/20 immigrant fits and 9/20 total fits at n=0, but the two intensities coincide only on the 9/20 seeds where both select n=0. One-sided zero selections do not make the intensities identical. Those nine seeds supply the shared minimum, maximum and both lower-quartile order statistics; the upper quartile uses a seed with total n=0.98 and immigrant n=0.",
+      "status": "fixed"
+    },
+    {
+      "id": "slice6-line75-score-attribution",
+      "file": "paper/source/chapters/13_continuous_local_inhibition.tex",
+      "locator": "line 75, Section 13.4.1",
+      "finding": "The 75,313.9 versus 59,415.5 and -15,898.4 figures were presented as the training score slope of the unit-mark immigrant-only LI law. They are the score slope of the separate total-intensity EP+ attenuation model lambda=lambda_0 exp(-eta G) in Section 11.5. The repaired paragraph gives the immigrant-only LI derivative, which weights each event by B(t_i,z_i)/lambda_0(t_i,z_i) and integrates against B(t,z), and explicitly attributes the three EP+ literals to Section sec:california-eta-profiles.",
+      "status": "fixed"
+    },
+    {
+      "id": "slice6-raw-math-tokens",
+      "file": "paper/source/chapters/13_continuous_local_inhibition.tex",
+      "locator": "lines 30, 61, 73, 90, 107-109, 113, 120-128, 144, 153, 155, 159, 173-178, 205, 211, 251, 255",
+      "finding": "Raw ASCII variables, unformatted assignments, raw scientific notation and the legacy 'in IV' reference were normalized to math mode and an internal chapter cross-reference. Every pre-edit numeric value is retained; the only added values are the signed +0.0002 tolerance endpoint and the S7 explanatory counts.",
+      "status": "fixed"
+    },
+    {
+      "id": "slice6-s8-oracle-field-name",
+      "file": "validation/live_results/forensic_remediation_20261114/s8_oracle.json",
+      "locator": "exact_true_null_minus_fitted_stats",
+      "finding": "The sealed field named exact_true_null_minus_fitted_stats stores the full true-law theta_star minus fitted-null contrast (mean 18.112), not the true uninhibited-backbone null minus fitted-null contrast used in the manuscript row (mean 1.683). The manuscript table is correct and is bound to referee_remediation_20261113/s8_oracle_decomposition.json:true_null_minus_fitted_null. The sealed field is not edited; the slice6 audit records the naming defect.",
+      "status": "documented"
+    },
+    {
+      "id": "slice6-observed-pooled-rounding",
+      "file": "validation/acceptances/S04_observed_public.json",
+      "locator": "three active rows versus the pooled block total",
+      "finding": "The three saved active gains sum to -2.386682086 nats, while the paired block authority total is -2.386674517; both display as -2.387 and the difference is 7.6e-6 nats. The audit records this saved-arithmetic difference rather than assigning it to a physical effect.",
+      "status": "documented"
+    }
+  ],
+  "artifacts": {
+    "audit_script": "experiments/methodological_audit/slice6_audit_20261114.py",
+    "audit_script_sha256": "8f58854fdc317de2b26e71062914021f30030064e7e93ff7964c078ea45f2ab7",
+    "audit_summary": "validation/live_results/slice6_audit_20261114/summary.json",
+    "audit_summary_sha256": "e3c77198aff20b0270b7518e3932fc1de0255783f7823b6e04391d27ea047616",
+    "audit_report": "docs/reviews/slice6_audit_20261114.md",
+    "audit_report_sha256": "3d18e3a3fd2109bfa9274b741bb0e09fd56238f5fec49878dab66c60408ef91b",
+    "prechange_snapshot": "validation/slice6_prechange_snapshot_20261114.json",
+    "prechange_snapshot_sha256": "fa8eb7eb6c279512721af2947c7bfd2abb9138ccb428e261dfd264e2f668ce2a",
+    "prechange_zip_sha256": "8ca38b86883362283e27c453e738cec4c58bf62f351cdf1e7221db879a33c022",
+    "manuscript_pdf": "paper/manuscript_unified.pdf",
+    "manuscript_pdf_sha256": "a42ec7bc8179ee1adcf4b767a57685d22eb76de5ac1c446f18c23abd29859f6a",
+    "manuscript_pages": 252,
+    "claim_ledger": "validation/MASTER_CLAIM_LEDGER.json",
+    "claim_ledger_sha256": "87f1e17f56b2ceba172e979b83b6f79d0364f729056d1fa490076c9f18d0f44e",
+    "numeric_reconciliation_receipt_sha256": "063cb27e503549a9ef153b93037083c8afc1f4799417e64ec26f27780945287c",
+    "manuscript_display_regression_sha256": "2f893b622ad48e47065bca0b7fe12a2b3b0c65cb6078cbb4fa82de17eef06aa3",
+    "companion_pdf_sha256": "8f727a77c357e4ba624f4a39e0ca7fe0ae1629703cda42d7c3577a0e61958584",
+    "website_document_metadata_sha256": "03f75b534c397d7dfc26012ae40285de695d32513c2b7159338f7c860b983d7e",
+    "review_slice_zip": "../review_slices/slice_6_local_inhibition_s04b_and_s8/slice_6_local_inhibition_s04b_and_s8_bundle.zip",
+    "review_slice_zip_sha256": "6b20b6736bbc3b5b8293389a0b7a94c9e8abee99785ea123319b3f7fccaa3a99"
+  },
+  "build_and_checks": {
+    "check_mathematics": {
+      "exit_code": 0,
+      "output": "build/mathematics.json"
+    },
+    "paper_build": {
+      "engine": "Tectonic 0.17.0",
+      "exit_code": 0,
+      "pages": 252
+    },
+    "pdf_qa": {
+      "passed": true,
+      "overfull_boxes": 0,
+      "overfull_vertical_boxes": 0,
+      "undefined_cross_references": [],
+      "missing_bibliography_keys": [],
+      "missing_figures": [],
+      "missing_glyph_warnings": 0,
+      "replacement_characters": 0,
+      "underfull_boxes": 25
+    },
+    "companion_build": {
+      "exit_code": 0
+    },
+    "website_build": {
+      "exit_code": 0
+    },
+    "verify_claims": {
+      "exit_code": 0,
+      "passed": true
+    },
+    "unit_tests": {
+      "tests": 918,
+      "result": "OK"
+    },
+    "regional_tests": {
+      "tests": 44,
+      "result": "OK"
+    },
+    "s02_tests": {
+      "tests": 6,
+      "result": "OK"
+    },
+    "regional_inputs": {
+      "passed": true,
+      "members": 6110,
+      "crosswalk_records": 15093
+    },
+    "s02_inputs": {
+      "passed": true,
+      "histories": 300,
+      "methods": 600
+    },
+    "historical_fits": {
+      "passed": true,
+      "archives": [
+        {
+          "archive": "historical_fit_package.zip",
+          "sha256": "79ae909337b5fa7ac0e2fa13dfecf5a0c3e4c071be387a84b67bd6655aa30c22",
+          "members": 2824
+        },
+        {
+          "archive": "historical_diagnostic_package.zip",
+          "sha256": "18e4e2e1b341b0b050246b1ddf6c0160891c4d67117caa5bc0199e15caa32558",
+          "members": 37
+        }
+      ]
+    },
+    "website_interactions": {
+      "passed": true,
+      "selector_combinations": 80
+    },
+    "verify_repository": {
+      "passed": true,
+      "checked_files": 10943
+    },
+    "review_slices": {
+      "exit_code": 0,
+      "slices": 7
+    }
+  },
+  "limitations": [
+    "The audit re-derives every displayed cell from the bound case records and re-evaluates the stated identities, KKT conditions and quantiles. It does not re-run the original GPU training campaign or regenerate the 80 S04B histories.",
+    "The S04B/S8 MCSEs are descriptive sample standard deviations over independent seeded histories; the heavy-tailed mark laws do not supply finite-variance or Gaussian guarantees.",
+    "The 90/180/365-day intervals are paired calendar-block summaries; adjacent blocks are dependent and the sign-flip reference is not a sequence-level randomization.",
+    "The S7 both-zero identity is algebraic; saved contrasts differ by up to 1.55e-4 nats from solver/quadrature arithmetic.",
+    "The sealed S8 field exact_true_null_minus_fitted_stats is misnamed: it stores the full true-law minus fitted-null contrast (18.112), while the manuscript row uses the true uninhibited-backbone null minus fitted null (1.683) from the referee authority. The sealed file is not edited.",
+    "The three saved active S04 gains sum to -2.386682086 nats, while the paired block authority point is -2.386674517; both display -2.387 and the 7.6e-6 difference is saved-arithmetic rounding.",
+    "The '369 arithmetic and numerical checks' sentence is a source-reported aggregate; the bound summary enumerates 19 procedures, 152 starts, 30 floors and 182 candidate slots, all complete.",
+    "The observed California folds are the same 315 retrospectively inspected targets used elsewhere; they are not independent replication."
+  ]
+}
