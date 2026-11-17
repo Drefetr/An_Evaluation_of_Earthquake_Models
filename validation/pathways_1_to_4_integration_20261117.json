@@ -1,6 +1,6 @@
 {
   "schema": "pathways_1_to_4_integration_acceptance_v1",
-  "created_utc": "2026-11-17T07:33:50.517597+00:00",
+  "created_utc": "2026-11-17T07:44:42.109112+00:00",
   "baseline_commit": "a9d7f9d",
   "scope": "Integration of the four Pathway 1-4 packages into the unified monograph, plain-language companion, website, claim ledger and review slices. No new fitting or simulation campaign was run during integration.",
   "status": "accepted",
@@ -70,6 +70,7 @@
     "pathway_bindings": 256,
     "literal_manuscript_display_records": 13000,
     "missing_declared_manuscript_displays": 0,
+    "claim_failures": 0,
     "distinct_authorities": 189,
     "receipt_passed": true,
     "receipt_release_ready": true
@@ -147,6 +148,11 @@
     "website_interactions": {
       "passed": true,
       "selector_combinations": 104
+    },
+    "workflow_links": {
+      "passed": true,
+      "broken_relative_links": 0,
+      "test": "tests/test_workflows.py::test_reader_documentation_local_links"
     },
     "verify_claims": {
       "passed": true,
