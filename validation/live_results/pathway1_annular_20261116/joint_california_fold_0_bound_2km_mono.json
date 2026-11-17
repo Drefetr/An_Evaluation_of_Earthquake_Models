@@ -1,0 +1,738 @@
+{
+  "case": "california_fold_0",
+  "baseline": "bound_2km",
+  "kernel": "mono",
+  "scaled": true,
+  "n_train": 851,
+  "n_test": 79,
+  "baseline_meta": {
+    "baseline": "bound_2km",
+    "source": "validation/live_results/etas_inhibition_benchmark_interior_20261112/california_fold_0/result.json",
+    "source_sha256": "dddf0b3023151700694efe412b55a6899fd82893f81e366bbaba7b0d631ec940",
+    "sigma0_km": 2.0,
+    "training_nll": 8179.059750702001,
+    "test_joint_score": -1080.124223601719,
+    "normalization": "plane"
+  },
+  "bounds": [
+    [
+      -12,
+      0
+    ],
+    [
+      -2,
+      2
+    ],
+    [
+      0,
+      0.98
+    ],
+    [
+      -9.210340371976182,
+      2.995732273553991
+    ],
+    [
+      1.01,
+      2.5
+    ],
+    [
+      -2.995732273553991,
+      4.605170185988092
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      1.05,
+      3
+    ],
+    [
+      0,
+      4
+    ],
+    [
+      0.6931471805599453,
+      4.605170185988092
+    ],
+    [
+      -3.1780538303479458,
+      5.8998973535824915
+    ],
+    [
+      0,
+      2.5
+    ]
+  ],
+  "parameter_names": [
+    "a",
+    "d",
+    "n",
+    "log_c",
+    "p",
+    "log_sigma0",
+    "alpha_s",
+    "q",
+    "eta",
+    "log_ell0",
+    "log_psi",
+    "gamma"
+  ],
+  "null_training_nll": 8179.059750702001,
+  "grid_positive_start": null,
+  "records": [
+    {
+      "start": 0,
+      "start_kind": "exact_null",
+      "start_eta_ell_psi": [
+        0.0,
+        19.999999999999996,
+        4.999999999999999
+      ],
+      "success": true,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "nll": 8144.42922030246,
+      "nit": 120,
+      "nfev": 125,
+      "seconds": 340.6458110809326,
+      "parameters": [
+        -3.577656767728438,
+        0.6165589100812178,
+        0.9634268570268232,
+        -5.481798864762269,
+        1.1033283525914626,
+        -0.18797765432353303,
+        0.7699432699771259,
+        1.6941671751506684,
+        0.0,
+        2.995732273553991,
+        1.6094379124341003,
+        1.7269388197455344
+      ],
+      "eta": 0.0,
+      "ell0_km": 19.999999999999996,
+      "psi_days": 4.999999999999999,
+      "sigma0_km": 0.8286332233957215,
+      "gradient": [
+        -0.046568615723089124,
+        0.08554874853650318,
+        0.017526029504097096,
+        0.026385921822129177,
+        0.10021391558257164,
+        0.102677850015362,
+        -0.0076988160161697294,
+        -0.0031242502590025367,
+        17460.075870082335,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "gradient_infinity_norm": 17460.075870082335,
+      "boundary_flags": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "attempts": [
+        {
+          "success": true,
+          "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+          "nfev": 125,
+          "nit": 120,
+          "nll": 8144.42922030246
+        }
+      ]
+    },
+    {
+      "start": 1,
+      "start_kind": "prescribed_positive",
+      "start_eta_ell_psi": [
+        0.05,
+        4.999999999999999,
+        2.0
+      ],
+      "success": true,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "nll": 8144.428992011608,
+      "nit": 190,
+      "nfev": 198,
+      "seconds": 630.1524555683136,
+      "parameters": [
+        -3.5780974962315044,
+        0.6123597955774688,
+        0.9640170007689591,
+        -5.4842807101320625,
+        1.1031850335133864,
+        -0.18913610747024237,
+        0.7702030344589218,
+        1.693588196788415,
+        0.0,
+        1.5198905290308677,
+        0.32062541340836653,
+        1.535003565267194
+      ],
+      "eta": 0.0,
+      "ell0_km": 4.571724696614486,
+      "psi_days": 1.3779893078871688,
+      "sigma0_km": 0.8276738464345321,
+      "gradient": [
+        0.02621306486136632,
+        -0.009200064986089274,
+        0.030186689350898632,
+        -0.0032887330635169576,
+        -0.10279299830017408,
+        0.008216066170131597,
+        0.0025923071343054715,
+        -0.020485245430943877,
+        5305.059027263454,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "gradient_infinity_norm": 5305.059027263454,
+      "boundary_flags": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "attempts": [
+        {
+          "success": true,
+          "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+          "nfev": 198,
+          "nit": 190,
+          "nll": 8144.428992011608
+        }
+      ]
+    },
+    {
+      "start": 2,
+      "start_kind": "prescribed_positive",
+      "start_eta_ell_psi": [
+        0.05,
+        10.000000000000002,
+        4.999999999999999
+      ],
+      "success": true,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "nll": 8144.4292974969,
+      "nit": 134,
+      "nfev": 138,
+      "seconds": 430.2419698238373,
+      "parameters": [
+        -3.5787107166146495,
+        0.6072455770113965,
+        0.9631595241637568,
+        -5.4822907181229485,
+        1.103342385622855,
+        -0.1887247483065099,
+        0.7700246047811293,
+        1.6938970310286614,
+        0.0,
+        2.13924289287154,
+        1.1245518625208437,
+        1.5425690488527666
+      ],
+      "eta": 0.0,
+      "ell0_km": 8.49300507944118,
+      "psi_days": 3.078836797553568,
+      "sigma0_km": 0.8280143876934263,
+      "gradient": [
+        0.029996497542470024,
+        -0.10826000229796762,
+        -0.09162230096376334,
+        0.01132461258996642,
+        -0.19035155714527718,
+        -0.038231128392297364,
+        -0.1387508738573846,
+        0.054445538723754794,
+        7979.562724537728,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "gradient_infinity_norm": 7979.562724537728,
+      "boundary_flags": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "attempts": [
+        {
+          "success": true,
+          "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+          "nfev": 138,
+          "nit": 134,
+          "nll": 8144.4292974969
+        }
+      ]
+    }
+  ],
+  "selected": {
+    "start": -1,
+    "start_kind": "exact_nested_null",
+    "start_eta_ell_psi": [
+      0.0,
+      19.999999999999996,
+      4.999999999999999
+    ],
+    "success": true,
+    "message": "exact eta=0 candidate retained",
+    "nll": 8179.059750702001,
+    "nit": 0,
+    "nfev": 1,
+    "seconds": 0.0,
+    "parameters": [
+      -3.5549147462579973,
+      0.5398051243279534,
+      0.929448441377168,
+      -5.458702162653876,
+      1.1077657579368747,
+      0.6931471805599453,
+      0.6169929144015514,
+      2.4397682304550328,
+      0.0,
+      2.995732273553991,
+      1.6094379124341003,
+      1.7269388197455344
+    ],
+    "eta": 0.0,
+    "ell0_km": 19.999999999999996,
+    "psi_days": 4.999999999999999,
+    "sigma0_km": 2.0,
+    "gradient": [
+      -0.00032353354029623915,
+      -1.028201283048702e-05,
+      9.012164071009465e-05,
+      -0.00012030242196559016,
+      -0.00027379766697777086,
+      78.05011115722331,
+      0.00022599587712601732,
+      2.6376886277601486e-05,
+      16673.036511560946,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "gradient_infinity_norm": 16673.036511560946,
+    "boundary_flags": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false
+    ],
+    "attempts": [],
+    "nested_null": true,
+    "eta_tolerance_collapsed": true
+  },
+  "selected_by_exact_nested_null": true,
+  "training_nll_gain": 0.0,
+  "training_selected_eta": 0.0,
+  "test": {
+    "scores": [
+      {
+        "seed": 20261250,
+        "null": {
+          "ground_point": -973.0396986258464,
+          "exposure": 113.54200022961147,
+          "uninhibited_exposure": 113.54200022961147,
+          "attenuation_deficit": 0.0,
+          "nll": 1086.581698855458
+        },
+        "same_backbone_null": {
+          "ground_point": -973.0396986258464,
+          "exposure": 113.54200022961147,
+          "uninhibited_exposure": 113.54200022961147,
+          "attenuation_deficit": 0.0,
+          "nll": 1086.581698855458
+        },
+        "inhibited": {
+          "ground_point": -973.0396986258464,
+          "exposure": 113.54200022961147,
+          "uninhibited_exposure": 113.54200022961147,
+          "attenuation_deficit": 0.0,
+          "nll": 1086.581698855458
+        },
+        "gain_total": 0.0,
+        "gain_attenuation": 0.0,
+        "nuisance_gain": 0.0,
+        "null_joint": -1080.124223601719,
+        "inhibited_joint": -1080.124223601719
+      },
+      {
+        "seed": 20261251,
+        "null": {
+          "ground_point": -973.0396986258464,
+          "exposure": 113.54200022961147,
+          "uninhibited_exposure": 113.54200022961147,
+          "attenuation_deficit": 0.0,
+          "nll": 1086.581698855458
+        },
+        "same_backbone_null": {
+          "ground_point": -973.0396986258464,
+          "exposure": 113.54200022961147,
+          "uninhibited_exposure": 113.54200022961147,
+          "attenuation_deficit": 0.0,
+          "nll": 1086.581698855458
+        },
+        "inhibited": {
+          "ground_point": -973.0396986258464,
+          "exposure": 113.54200022961147,
+          "uninhibited_exposure": 113.54200022961147,
+          "attenuation_deficit": 0.0,
+          "nll": 1086.581698855458
+        },
+        "gain_total": 0.0,
+        "gain_attenuation": 0.0,
+        "nuisance_gain": 0.0,
+        "null_joint": -1080.124223601719,
+        "inhibited_joint": -1080.124223601719
+      },
+      {
+        "seed": 20261252,
+        "null": {
+          "ground_point": -973.0396986258464,
+          "exposure": 113.54200022961147,
+          "uninhibited_exposure": 113.54200022961147,
+          "attenuation_deficit": 0.0,
+          "nll": 1086.581698855458
+        },
+        "same_backbone_null": {
+          "ground_point": -973.0396986258464,
+          "exposure": 113.54200022961147,
+          "uninhibited_exposure": 113.54200022961147,
+          "attenuation_deficit": 0.0,
+          "nll": 1086.581698855458
+        },
+        "inhibited": {
+          "ground_point": -973.0396986258464,
+          "exposure": 113.54200022961147,
+          "uninhibited_exposure": 113.54200022961147,
+          "attenuation_deficit": 0.0,
+          "nll": 1086.581698855458
+        },
+        "gain_total": 0.0,
+        "gain_attenuation": 0.0,
+        "nuisance_gain": 0.0,
+        "null_joint": -1080.124223601719,
+        "inhibited_joint": -1080.124223601719
+      },
+      {
+        "seed": 20261253,
+        "null": {
+          "ground_point": -973.0396986258464,
+          "exposure": 113.54200022961147,
+          "uninhibited_exposure": 113.54200022961147,
+          "attenuation_deficit": 0.0,
+          "nll": 1086.581698855458
+        },
+        "same_backbone_null": {
+          "ground_point": -973.0396986258464,
+          "exposure": 113.54200022961147,
+          "uninhibited_exposure": 113.54200022961147,
+          "attenuation_deficit": 0.0,
+          "nll": 1086.581698855458
+        },
+        "inhibited": {
+          "ground_point": -973.0396986258464,
+          "exposure": 113.54200022961147,
+          "uninhibited_exposure": 113.54200022961147,
+          "attenuation_deficit": 0.0,
+          "nll": 1086.581698855458
+        },
+        "gain_total": 0.0,
+        "gain_attenuation": 0.0,
+        "nuisance_gain": 0.0,
+        "null_joint": -1080.124223601719,
+        "inhibited_joint": -1080.124223601719
+      }
+    ],
+    "gain_mean": 0.0,
+    "gain_standard_error": 0.0,
+    "gain_sd": 0.0,
+    "attenuation_gain_mean": 0.0,
+    "attenuation_gain_standard_error": 0.0,
+    "attenuation_gain_sd": 0.0,
+    "block_intervals": {
+      "90": {
+        "blocks": {
+          "block_days": 90,
+          "edges": [
+            10957.0,
+            11047.0,
+            11137.0,
+            11227.0,
+            11317.0,
+            11407.0,
+            11497.0,
+            11587.0,
+            11677.0,
+            11767.0,
+            11857.0,
+            11947.0,
+            12037.0,
+            12127.0,
+            12217.0,
+            12307.0,
+            12397.0,
+            12487.0,
+            12577.0,
+            12667.0,
+            12757.0,
+            12783.0
+          ],
+          "event_blocks": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "exposure_blocks": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "block_scores": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "total": 0.0
+        },
+        "resample": {
+          "total": 0.0,
+          "blocks": 21,
+          "positive_blocks": 0,
+          "ci95_total": [
+            0.0,
+            0.0
+          ],
+          "paired_sign_permutation_p": 1.0,
+          "sign_test_p": 1.0,
+          "replicates": 49999,
+          "seed": 20261111
+        }
+      },
+      "180": {
+        "blocks": {
+          "block_days": 180,
+          "edges": [
+            10957.0,
+            11137.0,
+            11317.0,
+            11497.0,
+            11677.0,
+            11857.0,
+            12037.0,
+            12217.0,
+            12397.0,
+            12577.0,
+            12757.0,
+            12783.0
+          ],
+          "event_blocks": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "exposure_blocks": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "block_scores": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "total": 0.0
+        },
+        "resample": {
+          "total": 0.0,
+          "blocks": 11,
+          "positive_blocks": 0,
+          "ci95_total": [
+            0.0,
+            0.0
+          ],
+          "paired_sign_permutation_p": 1.0,
+          "sign_test_p": 1.0,
+          "replicates": 49999,
+          "seed": 20261111
+        }
+      },
+      "365": {
+        "blocks": {
+          "block_days": 365,
+          "edges": [
+            10957.0,
+            11322.0,
+            11687.0,
+            12052.0,
+            12417.0,
+            12782.0,
+            12783.0
+          ],
+          "event_blocks": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "exposure_blocks": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "block_scores": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "total": 0.0
+        },
+        "resample": {
+          "total": 0.0,
+          "blocks": 6,
+          "positive_blocks": 0,
+          "ci95_total": [
+            0.0,
+            0.0
+          ],
+          "paired_sign_permutation_p": 1.0,
+          "sign_test_p": 1.0,
+          "replicates": 49999,
+          "seed": 20261111
+        }
+      },
+      "closure_error": 0.0,
+      "gain_total": 0.0,
+      "gain_attenuation": 0.0,
+      "nuisance_gain": 0.0
+    },
+    "mark_logscore": 6.45747525373892,
+    "test_power": 16,
+    "note": "exact nested eta=0 state; held-out contrast is identically zero, no test quadrature required"
+  },
+  "elapsed_seconds": 1753.2114307880402
+}

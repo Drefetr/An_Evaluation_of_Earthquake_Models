@@ -1,0 +1,2373 @@
+{
+  "schema": "pathway1_independent_audit_v1",
+  "passed": true,
+  "integrity": {
+    "passed": true,
+    "git_status_lines": [
+      "?? docs/reviews/pathway1_annular_report_20261116.md",
+      "?? docs/reviews/pathway2_trend_report_20261116.md",
+      "?? docs/reviews/pathway3_low_dim_report_20261116.md",
+      "?? docs/reviews/pathway4_confirmatory_report_20261116.md",
+      "?? experiments/pathway1_annular_attenuation/",
+      "?? experiments/pathway2_trend_parameterization/",
+      "?? experiments/pathway3_low_dim_attenuation/",
+      "?? experiments/pathway4_confirmatory_transfer/",
+      "?? validation/live_results/pathway1_annular_20261116/",
+      "?? validation/live_results/pathway2_trend_controls_20261116/",
+      "?? validation/live_results/pathway3_low_dim_20261116/",
+      "?? validation/live_results/pathway4_confirmatory_20261116/"
+    ],
+    "changed_tracked": [],
+    "unexpected_untracked": [],
+    "sealed_authority_json_count": 83,
+    "preexisting_live_json_count": 985,
+    "allowed_untracked_prefixes": [
+      "experiments/pathway",
+      "validation/live_results/pathway",
+      "docs/reviews/pathway",
+      "build/pathway"
+    ]
+  },
+  "kernels": {
+    "passed": true,
+    "rows": [
+      {
+        "kernel": "mono",
+        "scaled": true,
+        "max_abs_G": 8.881784197001252e-16,
+        "max_rel_G": 3.3444425487451406e-16,
+        "max_rel_dlogell": 4.176197180789226e-16,
+        "max_rel_dlogpsi": 4.225801757651428e-16,
+        "max_rel_dgamma": 6.369146345978109e-16,
+        "max_rel_dlogsigma": 0.0,
+        "max_rel_dalpha": 0.0
+      },
+      {
+        "kernel": "mono",
+        "scaled": false,
+        "max_abs_G": 4.440892098500626e-16,
+        "max_rel_G": 3.6870356526288573e-16,
+        "max_rel_dlogell": 3.767433655582708e-16,
+        "max_rel_dlogpsi": 4.3449323992002883e-16,
+        "max_rel_dgamma": 2.208285459867159e-14,
+        "max_rel_dlogsigma": 0.0,
+        "max_rel_dalpha": 0.0
+      },
+      {
+        "kernel": "ann1",
+        "scaled": true,
+        "max_abs_G": 1.3322676295501878e-15,
+        "max_rel_G": 3.928136701775791e-16,
+        "max_rel_dlogell": 3.170095999145717e-15,
+        "max_rel_dlogpsi": 3.220912191174392e-16,
+        "max_rel_dgamma": 4.1830449606757827e-16,
+        "max_rel_dlogsigma": 0.0,
+        "max_rel_dalpha": 0.0
+      },
+      {
+        "kernel": "ann1",
+        "scaled": false,
+        "max_abs_G": 4.440892098500626e-16,
+        "max_rel_G": 2.4114365107049785e-16,
+        "max_rel_dlogell": 7.583822082524152e-15,
+        "max_rel_dlogpsi": 3.0176619422788505e-16,
+        "max_rel_dgamma": 1.6962976414849332e-15,
+        "max_rel_dlogsigma": 0.0,
+        "max_rel_dalpha": 0.0
+      },
+      {
+        "kernel": "ann2",
+        "scaled": true,
+        "max_abs_G": 8.881784197001252e-16,
+        "max_rel_G": 4.0105216684663797e-16,
+        "max_rel_dlogell": 1.823653629651368e-15,
+        "max_rel_dlogpsi": 4.114453743144647e-16,
+        "max_rel_dgamma": 2.3873147403828754e-14,
+        "max_rel_dlogsigma": 0.0,
+        "max_rel_dalpha": 0.0
+      },
+      {
+        "kernel": "ann2",
+        "scaled": false,
+        "max_abs_G": 8.881784197001252e-16,
+        "max_rel_G": 2.3902564988142834e-16,
+        "max_rel_dlogell": 6.665964356827799e-16,
+        "max_rel_dlogpsi": 3.816639015474964e-16,
+        "max_rel_dgamma": 6.5742025952873116e-15,
+        "max_rel_dlogsigma": 0.0,
+        "max_rel_dalpha": 0.0
+      },
+      {
+        "kernel": "shield",
+        "scaled": true,
+        "max_abs_G": 3.3306690738754696e-16,
+        "max_rel_G": 3.46371882384806e-16,
+        "max_rel_dlogell": 2.64504720247708e-16,
+        "max_rel_dlogpsi": 2.256843245898975e-16,
+        "max_rel_dgamma": 8.295657999871967e-16,
+        "max_rel_dlogsigma": 4.664929276409744e-16,
+        "max_rel_dalpha": 3.678347836362391e-15
+      },
+      {
+        "kernel": "shield",
+        "scaled": false,
+        "max_abs_G": 2.220446049250313e-16,
+        "max_rel_G": 2.4734493156743407e-16,
+        "max_rel_dlogell": 4.272008280164728e-16,
+        "max_rel_dlogpsi": 4.4201048267170994e-16,
+        "max_rel_dgamma": 8.429797935246186e-14,
+        "max_rel_dlogsigma": 4.487129921312373e-16,
+        "max_rel_dalpha": 2.04061671114064e-15
+      }
+    ]
+  },
+  "objective_gradients": {
+    "passed": true,
+    "checks": [
+      {
+        "kernel": "mono",
+        "scaled": true,
+        "nll": 14467.74608584222,
+        "errors": {
+          "eta": 3.441839147724421e-11,
+          "logell": 3.952632055387458e-13,
+          "logpsi": 7.1170988815351956e-12,
+          "gamma": 1.6364467590451722e-10
+        }
+      },
+      {
+        "kernel": "mono",
+        "scaled": false,
+        "nll": 8731.923599543428,
+        "errors": {
+          "eta": 7.44771242496267e-10,
+          "logell": 7.884067040509598e-11,
+          "logpsi": 1.6189555182315103e-10,
+          "gamma": 1.9516225304783772e-10
+        }
+      },
+      {
+        "kernel": "ann1",
+        "scaled": true,
+        "nll": 9542.154594853928,
+        "errors": {
+          "eta": 6.684559943319105e-11,
+          "logell": 9.302338948791427e-11,
+          "logpsi": 9.801461011824982e-11,
+          "gamma": 7.361389522127972e-11
+        }
+      },
+      {
+        "kernel": "ann1",
+        "scaled": false,
+        "nll": 16975.150763205962,
+        "errors": {
+          "eta": 7.603693192639896e-12,
+          "logell": 3.7766976487363057e-10,
+          "logpsi": 3.7741172504362045e-11,
+          "gamma": 1.4094503436623102e-10
+        }
+      },
+      {
+        "kernel": "ann2",
+        "scaled": true,
+        "nll": 8689.81657109363,
+        "errors": {
+          "eta": 1.9817341887461495e-09,
+          "logell": 3.1082446270018525e-10,
+          "logpsi": 8.230582136555152e-11,
+          "gamma": 7.1642283844529255e-12
+        }
+      },
+      {
+        "kernel": "ann2",
+        "scaled": false,
+        "nll": 12414.742730809316,
+        "errors": {
+          "eta": 6.862725728169407e-11,
+          "logell": 3.731207565162762e-10,
+          "logpsi": 3.831353761798809e-11,
+          "gamma": 1.6012743127956098e-10
+        }
+      },
+      {
+        "kernel": "shield",
+        "scaled": true,
+        "nll": 11279.105696245852,
+        "errors": {
+          "eta": 1.6167682617447208e-10,
+          "logell": 4.294826198024105e-11,
+          "logpsi": 2.4569763111734295e-12,
+          "gamma": 1.4639585656208894e-10,
+          "logsigma": 1.482896453347745e-12,
+          "alphas": 7.324796248922437e-11
+        }
+      },
+      {
+        "kernel": "shield",
+        "scaled": false,
+        "nll": 8183.318665334868,
+        "errors": {
+          "eta": 1.308936477805136e-09,
+          "logell": 6.958323492016584e-10,
+          "logpsi": 2.334986332180321e-09,
+          "gamma": 6.056035029859217e-11,
+          "logsigma": 1.2665142963656474e-10,
+          "alphas": 6.229193533440369e-09
+        }
+      }
+    ]
+  },
+  "slopes": {
+    "passed": true,
+    "n_rows": 96,
+    "checks": [
+      {
+        "key": [
+          "california_fold_0",
+          "interior",
+          "mono",
+          true,
+          2.0,
+          1.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 7.275957614183426e-12,
+        "exposure_rel_error": 2.5811047655348123e-16,
+        "slope_abs_error": 7.275957614183426e-12,
+        "slope_rel_error": 1.1304505811623108e-15,
+        "immigrant_slope_abs_error": 1.3322676295501878e-15
+      },
+      {
+        "key": [
+          "california_fold_0",
+          "interior",
+          "mono",
+          true,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 7.275957614183426e-12,
+        "exposure_rel_error": 1.2326471913183157e-16,
+        "slope_abs_error": 7.275957614183426e-12,
+        "slope_rel_error": 4.467391822452373e-16,
+        "immigrant_slope_abs_error": 0.0
+      },
+      {
+        "key": [
+          "california_fold_0",
+          "interior",
+          "mono",
+          false,
+          2.0,
+          1.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 2.2737367544323206e-13,
+        "exposure_rel_error": 1.8091603717804884e-16,
+        "slope_abs_error": 2.2737367544323206e-13,
+        "slope_rel_error": 2.157679592606771e-15,
+        "immigrant_slope_abs_error": 6.938893903907228e-18
+      },
+      {
+        "key": [
+          "california_fold_0",
+          "interior",
+          "mono",
+          false,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 0.0
+      },
+      {
+        "key": [
+          "california_fold_0",
+          "interior",
+          "ann1",
+          true,
+          50.0,
+          1.0
+        ],
+        "event_sum_abs_error": 9.094947017729282e-13,
+        "event_sum_rel_error": 1.7072420525625535e-16,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 9.094947017729282e-13,
+        "slope_rel_error": 5.939690980560803e-16,
+        "immigrant_slope_abs_error": 2.842170943040401e-14
+      },
+      {
+        "key": [
+          "california_fold_0",
+          "interior",
+          "ann1",
+          true,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 1.8189894035458565e-12,
+        "exposure_rel_error": 1.4875147037018844e-16,
+        "slope_abs_error": 1.8189894035458565e-12,
+        "slope_rel_error": 4.326725149284054e-16,
+        "immigrant_slope_abs_error": 1.1368683772161603e-13
+      },
+      {
+        "key": [
+          "california_fold_0",
+          "interior",
+          "ann1",
+          false,
+          2.0,
+          2.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 5.551115123125783e-17
+      },
+      {
+        "key": [
+          "california_fold_0",
+          "interior",
+          "ann1",
+          false,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 0.0
+      },
+      {
+        "key": [
+          "california_fold_0",
+          "interior",
+          "ann2",
+          true,
+          50.0,
+          1.0
+        ],
+        "event_sum_abs_error": 4.547473508864641e-13,
+        "event_sum_rel_error": 1.4778352669918412e-16,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 4.547473508864641e-13,
+        "slope_rel_error": 4.543495459125301e-16,
+        "immigrant_slope_abs_error": 7.105427357601002e-15
+      },
+      {
+        "key": [
+          "california_fold_0",
+          "interior",
+          "ann2",
+          true,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 1.8189894035458565e-12,
+        "exposure_rel_error": 2.225879760533304e-16,
+        "slope_abs_error": 1.8189894035458565e-12,
+        "slope_rel_error": 6.350913997306479e-16,
+        "immigrant_slope_abs_error": 5.684341886080802e-14
+      },
+      {
+        "key": [
+          "california_fold_0",
+          "interior",
+          "ann2",
+          false,
+          2.0,
+          1.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 5.551115123125783e-17
+      },
+      {
+        "key": [
+          "california_fold_0",
+          "interior",
+          "ann2",
+          false,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 1.0913936421275139e-11,
+        "exposure_rel_error": 3.7095054027042127e-16,
+        "slope_abs_error": 1.0913936421275139e-11,
+        "slope_rel_error": 1.6913935464493477e-15,
+        "immigrant_slope_abs_error": 0.0
+      },
+      {
+        "key": [
+          "california_fold_0",
+          "interior",
+          "shield",
+          true,
+          2.0,
+          1.0
+        ],
+        "event_sum_abs_error": 7.275957614183426e-12,
+        "event_sum_rel_error": 3.2851853488500063e-16,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 7.275957614183426e-12,
+        "slope_rel_error": 1.354582381461088e-15,
+        "immigrant_slope_abs_error": 4.440892098500626e-16
+      },
+      {
+        "key": [
+          "california_fold_0",
+          "interior",
+          "shield",
+          true,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 7.275957614183426e-12,
+        "event_sum_rel_error": 1.2713630301148899e-16,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 7.275957614183426e-12,
+        "slope_rel_error": 4.956177062754968e-16,
+        "immigrant_slope_abs_error": 1.1368683772161603e-13
+      },
+      {
+        "key": [
+          "california_fold_0",
+          "interior",
+          "shield",
+          false,
+          2.0,
+          1.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 2.842170943040401e-14,
+        "exposure_rel_error": 1.1374450954321056e-16,
+        "slope_abs_error": 2.842170943040401e-14,
+        "slope_rel_error": 5.009382365249771e-16,
+        "immigrant_slope_abs_error": 3.469446951953614e-18
+      },
+      {
+        "key": [
+          "california_fold_0",
+          "interior",
+          "shield",
+          false,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 1.8189894035458565e-12,
+        "event_sum_rel_error": 1.445340817094547e-16,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 1.8189894035458565e-12,
+        "slope_rel_error": 9.295756322603709e-16,
+        "immigrant_slope_abs_error": 8.881784197001252e-16
+      },
+      {
+        "key": [
+          "california_fold_0",
+          "bound_2km",
+          "mono",
+          true,
+          2.0,
+          1.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 7.275957614183426e-12,
+        "exposure_rel_error": 2.4734443382051158e-16,
+        "slope_abs_error": 7.275957614183426e-12,
+        "slope_rel_error": 1.3967108857855775e-15,
+        "immigrant_slope_abs_error": 2.6645352591003757e-15
+      },
+      {
+        "key": [
+          "california_fold_0",
+          "bound_2km",
+          "mono",
+          true,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 1.1368683772161603e-13
+      },
+      {
+        "key": [
+          "california_fold_0",
+          "bound_2km",
+          "mono",
+          false,
+          2.0,
+          1.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 6.938893903907228e-18
+      },
+      {
+        "key": [
+          "california_fold_0",
+          "bound_2km",
+          "mono",
+          false,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 1.0913936421275139e-11,
+        "exposure_rel_error": 4.968753802016692e-16,
+        "slope_abs_error": 1.0913936421275139e-11,
+        "slope_rel_error": 9.306683530618498e-15,
+        "immigrant_slope_abs_error": 0.0
+      },
+      {
+        "key": [
+          "california_fold_0",
+          "bound_2km",
+          "ann1",
+          true,
+          50.0,
+          1.0
+        ],
+        "event_sum_abs_error": 9.094947017729282e-13,
+        "event_sum_rel_error": 1.7072420525625535e-16,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 9.094947017729282e-13,
+        "slope_rel_error": 5.043985298748066e-16,
+        "immigrant_slope_abs_error": 2.842170943040401e-14
+      },
+      {
+        "key": [
+          "california_fold_0",
+          "bound_2km",
+          "ann1",
+          true,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 1.8189894035458565e-12,
+        "exposure_rel_error": 1.5543169139947283e-16,
+        "slope_abs_error": 1.8189894035458565e-12,
+        "slope_rel_error": 3.8459392521371237e-16,
+        "immigrant_slope_abs_error": 1.1368683772161603e-13
+      },
+      {
+        "key": [
+          "california_fold_0",
+          "bound_2km",
+          "ann1",
+          false,
+          5.0,
+          90.0
+        ],
+        "event_sum_abs_error": 3.637978807091713e-12,
+        "event_sum_rel_error": 1.663811174549332e-16,
+        "exposure_abs_error": 3.637978807091713e-12,
+        "exposure_rel_error": 1.6879344760573808e-16,
+        "slope_abs_error": 7.275957614183426e-12,
+        "slope_rel_error": 2.3283746979942275e-14,
+        "immigrant_slope_abs_error": 2.1316282072803006e-14
+      },
+      {
+        "key": [
+          "california_fold_0",
+          "bound_2km",
+          "ann1",
+          false,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 3.552713678800501e-15
+      },
+      {
+        "key": [
+          "california_fold_0",
+          "bound_2km",
+          "ann2",
+          true,
+          50.0,
+          1.0
+        ],
+        "event_sum_abs_error": 4.547473508864641e-13,
+        "event_sum_rel_error": 1.4778352669918412e-16,
+        "exposure_abs_error": 2.2737367544323206e-13,
+        "exposure_rel_error": 1.1971929380557666e-16,
+        "slope_abs_error": 6.821210263296962e-13,
+        "slope_rel_error": 5.791018829669485e-16,
+        "immigrant_slope_abs_error": 0.0
+      },
+      {
+        "key": [
+          "california_fold_0",
+          "bound_2km",
+          "ann2",
+          true,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 5.684341886080802e-14
+      },
+      {
+        "key": [
+          "california_fold_0",
+          "bound_2km",
+          "ann2",
+          false,
+          5.0,
+          90.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 2.842170943040401e-14
+      },
+      {
+        "key": [
+          "california_fold_0",
+          "bound_2km",
+          "ann2",
+          false,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 3.637978807091713e-12,
+        "exposure_rel_error": 1.1600240627181422e-16,
+        "slope_abs_error": 3.637978807091713e-12,
+        "slope_rel_error": 8.061226159421817e-16,
+        "immigrant_slope_abs_error": 0.0
+      },
+      {
+        "key": [
+          "california_fold_0",
+          "bound_2km",
+          "shield",
+          true,
+          2.0,
+          1.0
+        ],
+        "event_sum_abs_error": 3.637978807091713e-12,
+        "event_sum_rel_error": 2.1094530983594063e-16,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 3.637978807091713e-12,
+        "slope_rel_error": 8.637976321185029e-16,
+        "immigrant_slope_abs_error": 0.0
+      },
+      {
+        "key": [
+          "california_fold_0",
+          "bound_2km",
+          "shield",
+          true,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 0.0
+      },
+      {
+        "key": [
+          "california_fold_0",
+          "bound_2km",
+          "shield",
+          false,
+          2.0,
+          1.0
+        ],
+        "event_sum_abs_error": 2.842170943040401e-14,
+        "event_sum_rel_error": 2.0639435638536887e-16,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 2.842170943040401e-14,
+        "slope_rel_error": 1.14505066703299e-15,
+        "immigrant_slope_abs_error": 3.469446951953614e-18
+      },
+      {
+        "key": [
+          "california_fold_0",
+          "bound_2km",
+          "shield",
+          false,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 1.8189894035458565e-12,
+        "exposure_rel_error": 2.248657787148639e-16,
+        "slope_abs_error": 1.8189894035458565e-12,
+        "slope_rel_error": 2.2132511590904588e-15,
+        "immigrant_slope_abs_error": 2.220446049250313e-15
+      },
+      {
+        "key": [
+          "california_fold_1",
+          "interior",
+          "mono",
+          true,
+          2.0,
+          1.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 8.881784197001252e-16
+      },
+      {
+        "key": [
+          "california_fold_1",
+          "interior",
+          "mono",
+          true,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 1.4551915228366852e-11,
+        "exposure_rel_error": 2.4778737402425115e-16,
+        "slope_abs_error": 1.4551915228366852e-11,
+        "slope_rel_error": 8.653427508475288e-16,
+        "immigrant_slope_abs_error": 5.684341886080802e-14
+      },
+      {
+        "key": [
+          "california_fold_1",
+          "interior",
+          "mono",
+          false,
+          2.0,
+          1.0
+        ],
+        "event_sum_abs_error": 2.2737367544323206e-13,
+        "event_sum_rel_error": 1.6199539010963755e-16,
+        "exposure_abs_error": 2.2737367544323206e-13,
+        "exposure_rel_error": 1.813480488121866e-16,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 0.0
+      },
+      {
+        "key": [
+          "california_fold_1",
+          "interior",
+          "mono",
+          false,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 3.637978807091713e-12,
+        "event_sum_rel_error": 1.558291494238967e-16,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 3.637978807091713e-12,
+        "slope_rel_error": 1.4836089890529558e-15,
+        "immigrant_slope_abs_error": 8.881784197001252e-16
+      },
+      {
+        "key": [
+          "california_fold_1",
+          "interior",
+          "ann1",
+          true,
+          50.0,
+          1.0
+        ],
+        "event_sum_abs_error": 9.094947017729282e-13,
+        "event_sum_rel_error": 1.7063542195446714e-16,
+        "exposure_abs_error": 4.547473508864641e-13,
+        "exposure_rel_error": 1.218830050579758e-16,
+        "slope_abs_error": 4.547473508864641e-13,
+        "slope_rel_error": 2.8438931670044416e-16,
+        "immigrant_slope_abs_error": 1.4210854715202004e-14
+      },
+      {
+        "key": [
+          "california_fold_1",
+          "interior",
+          "ann1",
+          true,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 1.8189894035458565e-12,
+        "exposure_rel_error": 1.5031219197946078e-16,
+        "slope_abs_error": 1.8189894035458565e-12,
+        "slope_rel_error": 4.1811275814167805e-16,
+        "immigrant_slope_abs_error": 2.2737367544323206e-13
+      },
+      {
+        "key": [
+          "california_fold_1",
+          "interior",
+          "ann1",
+          false,
+          2.0,
+          1.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 2.7755575615628914e-17
+      },
+      {
+        "key": [
+          "california_fold_1",
+          "interior",
+          "ann1",
+          false,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 0.0
+      },
+      {
+        "key": [
+          "california_fold_1",
+          "interior",
+          "ann2",
+          true,
+          50.0,
+          1.0
+        ],
+        "event_sum_abs_error": 4.547473508864641e-13,
+        "event_sum_rel_error": 1.4770167633652183e-16,
+        "exposure_abs_error": 4.547473508864641e-13,
+        "exposure_rel_error": 2.245375729265217e-16,
+        "slope_abs_error": 9.094947017729282e-13,
+        "slope_rel_error": 8.632573417799517e-16,
+        "immigrant_slope_abs_error": 1.4210854715202004e-14
+      },
+      {
+        "key": [
+          "california_fold_1",
+          "interior",
+          "ann2",
+          true,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 1.1368683772161603e-13
+      },
+      {
+        "key": [
+          "california_fold_1",
+          "interior",
+          "ann2",
+          false,
+          2.0,
+          1.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 0.0
+      },
+      {
+        "key": [
+          "california_fold_1",
+          "interior",
+          "ann2",
+          false,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 3.637978807091713e-12,
+        "exposure_rel_error": 1.2291536610674666e-16,
+        "slope_abs_error": 3.637978807091713e-12,
+        "slope_rel_error": 5.776641343057554e-16,
+        "immigrant_slope_abs_error": 3.552713678800501e-15
+      },
+      {
+        "key": [
+          "california_fold_1",
+          "interior",
+          "shield",
+          true,
+          2.0,
+          1.0
+        ],
+        "event_sum_abs_error": 3.637978807091713e-12,
+        "event_sum_rel_error": 1.6619320987155474e-16,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 3.637978807091713e-12,
+        "slope_rel_error": 6.816241752952477e-16,
+        "immigrant_slope_abs_error": 1.7763568394002505e-15
+      },
+      {
+        "key": [
+          "california_fold_1",
+          "interior",
+          "shield",
+          true,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 1.1368683772161603e-13
+      },
+      {
+        "key": [
+          "california_fold_1",
+          "interior",
+          "shield",
+          false,
+          2.0,
+          1.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 6.938893903907228e-18
+      },
+      {
+        "key": [
+          "california_fold_1",
+          "interior",
+          "shield",
+          false,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 0.0
+      },
+      {
+        "key": [
+          "california_fold_1",
+          "bound_2km",
+          "mono",
+          true,
+          2.0,
+          1.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 3.637978807091713e-12,
+        "exposure_rel_error": 1.2415419399321961e-16,
+        "slope_abs_error": 3.637978807091713e-12,
+        "slope_rel_error": 6.675953789462757e-16,
+        "immigrant_slope_abs_error": 1.7763568394002505e-15
+      },
+      {
+        "key": [
+          "california_fold_1",
+          "bound_2km",
+          "mono",
+          true,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 1.4551915228366852e-11,
+        "exposure_rel_error": 2.455588901680499e-16,
+        "slope_abs_error": 1.4551915228366852e-11,
+        "slope_rel_error": 8.936656618728966e-16,
+        "immigrant_slope_abs_error": 0.0
+      },
+      {
+        "key": [
+          "california_fold_1",
+          "bound_2km",
+          "mono",
+          false,
+          2.0,
+          1.0
+        ],
+        "event_sum_abs_error": 2.2737367544323206e-13,
+        "event_sum_rel_error": 1.6199539010963755e-16,
+        "exposure_abs_error": 2.2737367544323206e-13,
+        "exposure_rel_error": 2.0581531006456986e-16,
+        "slope_abs_error": 4.547473508864641e-13,
+        "slope_rel_error": 1.5217340186260741e-15,
+        "immigrant_slope_abs_error": 0.0
+      },
+      {
+        "key": [
+          "california_fold_1",
+          "bound_2km",
+          "mono",
+          false,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 3.637978807091713e-12,
+        "event_sum_rel_error": 1.558291494238967e-16,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 3.637978807091713e-12,
+        "slope_rel_error": 2.589525731203062e-15,
+        "immigrant_slope_abs_error": 0.0
+      },
+      {
+        "key": [
+          "california_fold_1",
+          "bound_2km",
+          "ann1",
+          true,
+          50.0,
+          1.0
+        ],
+        "event_sum_abs_error": 9.094947017729282e-13,
+        "event_sum_rel_error": 1.7063542195446714e-16,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 9.094947017729282e-13,
+        "slope_rel_error": 4.986833179112077e-16,
+        "immigrant_slope_abs_error": 5.684341886080802e-14
+      },
+      {
+        "key": [
+          "california_fold_1",
+          "bound_2km",
+          "ann1",
+          true,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 1.1368683772161603e-13
+      },
+      {
+        "key": [
+          "california_fold_1",
+          "bound_2km",
+          "ann1",
+          false,
+          10.0,
+          90.0
+        ],
+        "event_sum_abs_error": 7.275957614183426e-12,
+        "event_sum_rel_error": 1.7253245188898595e-16,
+        "exposure_abs_error": 7.275957614183426e-12,
+        "exposure_rel_error": 1.7368706216720705e-16,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 8.526512829121202e-14
+      },
+      {
+        "key": [
+          "california_fold_1",
+          "bound_2km",
+          "ann1",
+          false,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 7.275957614183426e-12,
+        "exposure_rel_error": 2.1679035818238835e-16,
+        "slope_abs_error": 7.275957614183426e-12,
+        "slope_rel_error": 2.721596135332956e-15,
+        "immigrant_slope_abs_error": 3.552713678800501e-15
+      },
+      {
+        "key": [
+          "california_fold_1",
+          "bound_2km",
+          "ann2",
+          true,
+          50.0,
+          1.0
+        ],
+        "event_sum_abs_error": 4.547473508864641e-13,
+        "event_sum_rel_error": 1.4770167633652183e-16,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 4.547473508864641e-13,
+        "slope_rel_error": 3.8108966647798396e-16,
+        "immigrant_slope_abs_error": 2.842170943040401e-14
+      },
+      {
+        "key": [
+          "california_fold_1",
+          "bound_2km",
+          "ann2",
+          true,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 0.0
+      },
+      {
+        "key": [
+          "california_fold_1",
+          "bound_2km",
+          "ann2",
+          false,
+          5.0,
+          90.0
+        ],
+        "event_sum_abs_error": 3.637978807091713e-12,
+        "event_sum_rel_error": 1.3732967836941994e-16,
+        "exposure_abs_error": 3.637978807091713e-12,
+        "exposure_rel_error": 1.3460188996449287e-16,
+        "slope_abs_error": 7.275957614183426e-12,
+        "slope_rel_error": 1.3552982499193457e-14,
+        "immigrant_slope_abs_error": 0.0
+      },
+      {
+        "key": [
+          "california_fold_1",
+          "bound_2km",
+          "ann2",
+          false,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 0.0
+      },
+      {
+        "key": [
+          "california_fold_1",
+          "bound_2km",
+          "shield",
+          true,
+          2.0,
+          1.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 1.7763568394002505e-15
+      },
+      {
+        "key": [
+          "california_fold_1",
+          "bound_2km",
+          "shield",
+          true,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 7.275957614183426e-12,
+        "exposure_rel_error": 2.1165012770778505e-16,
+        "slope_abs_error": 7.275957614183426e-12,
+        "slope_rel_error": 5.197584630573925e-16,
+        "immigrant_slope_abs_error": 0.0
+      },
+      {
+        "key": [
+          "california_fold_1",
+          "bound_2km",
+          "shield",
+          false,
+          2.0,
+          1.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 0.0
+      },
+      {
+        "key": [
+          "california_fold_1",
+          "bound_2km",
+          "shield",
+          false,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 9.094947017729282e-13,
+        "exposure_rel_error": 1.1330804932142497e-16,
+        "slope_abs_error": 9.094947017729282e-13,
+        "slope_rel_error": 1.0682444260701825e-15,
+        "immigrant_slope_abs_error": 4.440892098500626e-16
+      },
+      {
+        "key": [
+          "california_fold_2",
+          "interior",
+          "mono",
+          true,
+          2.0,
+          1.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 7.275957614183426e-12,
+        "exposure_rel_error": 1.8113005177334463e-16,
+        "slope_abs_error": 7.275957614183426e-12,
+        "slope_rel_error": 7.927146537445806e-16,
+        "immigrant_slope_abs_error": 1.7763568394002505e-15
+      },
+      {
+        "key": [
+          "california_fold_2",
+          "interior",
+          "mono",
+          true,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 1.4551915228366852e-11,
+        "exposure_rel_error": 1.8038955372814162e-16,
+        "slope_abs_error": 1.4551915228366852e-11,
+        "slope_rel_error": 7.129583291268382e-16,
+        "immigrant_slope_abs_error": 1.1368683772161603e-13
+      },
+      {
+        "key": [
+          "california_fold_2",
+          "interior",
+          "mono",
+          false,
+          2.0,
+          1.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 4.547473508864641e-13,
+        "exposure_rel_error": 2.625236404856798e-16,
+        "slope_abs_error": 4.547473508864641e-13,
+        "slope_rel_error": 1.6788087736297926e-15,
+        "immigrant_slope_abs_error": 1.3877787807814457e-17
+      },
+      {
+        "key": [
+          "california_fold_2",
+          "interior",
+          "mono",
+          false,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 3.637978807091713e-12,
+        "exposure_rel_error": 1.2621931840847858e-16,
+        "slope_abs_error": 3.637978807091713e-12,
+        "slope_rel_error": 1.078567341538778e-15,
+        "immigrant_slope_abs_error": 1.7763568394002505e-15
+      },
+      {
+        "key": [
+          "california_fold_2",
+          "interior",
+          "ann1",
+          true,
+          50.0,
+          1.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 9.094947017729282e-13,
+        "exposure_rel_error": 1.6786132036043907e-16,
+        "slope_abs_error": 9.094947017729282e-13,
+        "slope_rel_error": 4.825974710836347e-16,
+        "immigrant_slope_abs_error": 0.0
+      },
+      {
+        "key": [
+          "california_fold_2",
+          "interior",
+          "ann1",
+          true,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 1.1368683772161603e-13
+      },
+      {
+        "key": [
+          "california_fold_2",
+          "interior",
+          "ann1",
+          false,
+          2.0,
+          1.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 2.7755575615628914e-17
+      },
+      {
+        "key": [
+          "california_fold_2",
+          "interior",
+          "ann1",
+          false,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 7.275957614183426e-12,
+        "exposure_rel_error": 1.6277997559599561e-16,
+        "slope_abs_error": 7.275957614183426e-12,
+        "slope_rel_error": 9.79027261883879e-16,
+        "immigrant_slope_abs_error": 1.7763568394002505e-15
+      },
+      {
+        "key": [
+          "california_fold_2",
+          "interior",
+          "ann2",
+          true,
+          50.0,
+          1.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 4.547473508864641e-13,
+        "exposure_rel_error": 1.6667164071267785e-16,
+        "slope_abs_error": 4.547473508864641e-13,
+        "slope_rel_error": 4.0210180229253904e-16,
+        "immigrant_slope_abs_error": 2.842170943040401e-14
+      },
+      {
+        "key": [
+          "california_fold_2",
+          "interior",
+          "ann2",
+          true,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 1.8189894035458565e-12,
+        "exposure_rel_error": 1.5616810070334706e-16,
+        "slope_abs_error": 1.8189894035458565e-12,
+        "slope_rel_error": 5.381354136373372e-16,
+        "immigrant_slope_abs_error": 1.7053025658242404e-13
+      },
+      {
+        "key": [
+          "california_fold_2",
+          "interior",
+          "ann2",
+          false,
+          5.0,
+          90.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 2.842170943040401e-14
+      },
+      {
+        "key": [
+          "california_fold_2",
+          "interior",
+          "ann2",
+          false,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 7.275957614183426e-12,
+        "event_sum_rel_error": 1.355377313088527e-16,
+        "exposure_abs_error": 7.275957614183426e-12,
+        "exposure_rel_error": 1.6683308953640472e-16,
+        "slope_abs_error": 1.4551915228366852e-11,
+        "slope_rel_error": 1.4450819382603215e-15,
+        "immigrant_slope_abs_error": 3.552713678800501e-15
+      },
+      {
+        "key": [
+          "california_fold_2",
+          "interior",
+          "shield",
+          true,
+          2.0,
+          1.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 2.6645352591003757e-15
+      },
+      {
+        "key": [
+          "california_fold_2",
+          "interior",
+          "shield",
+          true,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 1.1368683772161603e-13
+      },
+      {
+        "key": [
+          "california_fold_2",
+          "interior",
+          "shield",
+          false,
+          2.0,
+          1.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 5.684341886080802e-14,
+        "exposure_rel_error": 1.663032096042318e-16,
+        "slope_abs_error": 5.684341886080802e-14,
+        "slope_rel_error": 4.254155293979653e-16,
+        "immigrant_slope_abs_error": 0.0
+      },
+      {
+        "key": [
+          "california_fold_2",
+          "interior",
+          "shield",
+          false,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 3.637978807091713e-12,
+        "event_sum_rel_error": 2.1473970203217084e-16,
+        "exposure_abs_error": 1.8189894035458565e-12,
+        "exposure_rel_error": 1.287918287605016e-16,
+        "slope_abs_error": 1.8189894035458565e-12,
+        "slope_rel_error": 6.455220722889942e-16,
+        "immigrant_slope_abs_error": 0.0
+      },
+      {
+        "key": [
+          "california_fold_2",
+          "bound_2km",
+          "mono",
+          true,
+          2.0,
+          1.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 7.275957614183426e-12,
+        "exposure_rel_error": 1.7581423445583413e-16,
+        "slope_abs_error": 7.275957614183426e-12,
+        "slope_rel_error": 9.136079627519758e-16,
+        "immigrant_slope_abs_error": 1.7763568394002505e-15
+      },
+      {
+        "key": [
+          "california_fold_2",
+          "bound_2km",
+          "mono",
+          true,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 1.4551915228366852e-11,
+        "exposure_rel_error": 1.7969296858011114e-16,
+        "slope_abs_error": 1.4551915228366852e-11,
+        "slope_rel_error": 7.240517501967378e-16,
+        "immigrant_slope_abs_error": 0.0
+      },
+      {
+        "key": [
+          "california_fold_2",
+          "bound_2km",
+          "mono",
+          false,
+          2.0,
+          1.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 2.2737367544323206e-13,
+        "exposure_rel_error": 1.5267226629453493e-16,
+        "slope_abs_error": 2.2737367544323206e-13,
+        "slope_rel_error": 4.425357711145765e-16,
+        "immigrant_slope_abs_error": 0.0
+      },
+      {
+        "key": [
+          "california_fold_2",
+          "bound_2km",
+          "mono",
+          false,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 2.6645352591003757e-15
+      },
+      {
+        "key": [
+          "california_fold_2",
+          "bound_2km",
+          "ann1",
+          true,
+          50.0,
+          1.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 9.094947017729282e-13,
+        "exposure_rel_error": 1.7731304108319959e-16,
+        "slope_abs_error": 9.094947017729282e-13,
+        "slope_rel_error": 4.184668214273042e-16,
+        "immigrant_slope_abs_error": 0.0
+      },
+      {
+        "key": [
+          "california_fold_2",
+          "bound_2km",
+          "ann1",
+          true,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 5.4569682106375694e-12,
+        "exposure_rel_error": 3.336923263826809e-16,
+        "slope_abs_error": 5.4569682106375694e-12,
+        "slope_rel_error": 1.0304321574360199e-15,
+        "immigrant_slope_abs_error": 2.2737367544323206e-13
+      },
+      {
+        "key": [
+          "california_fold_2",
+          "bound_2km",
+          "ann1",
+          false,
+          10.0,
+          90.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 7.275957614183426e-12,
+        "exposure_rel_error": 1.3399059820116238e-16,
+        "slope_abs_error": 7.275957614183426e-12,
+        "slope_rel_error": 1.7386898502598705e-14,
+        "immigrant_slope_abs_error": 2.842170943040401e-14
+      },
+      {
+        "key": [
+          "california_fold_2",
+          "bound_2km",
+          "ann1",
+          false,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 1.4551915228366852e-11,
+        "exposure_rel_error": 3.068440264750031e-16,
+        "slope_abs_error": 1.4551915228366852e-11,
+        "slope_rel_error": 3.092555711568409e-15,
+        "immigrant_slope_abs_error": 0.0
+      },
+      {
+        "key": [
+          "california_fold_2",
+          "bound_2km",
+          "ann2",
+          true,
+          50.0,
+          1.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 0.0
+      },
+      {
+        "key": [
+          "california_fold_2",
+          "bound_2km",
+          "ann2",
+          true,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 5.684341886080802e-14
+      },
+      {
+        "key": [
+          "california_fold_2",
+          "bound_2km",
+          "ann2",
+          false,
+          5.0,
+          90.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 0.0,
+        "slope_rel_error": 0.0,
+        "immigrant_slope_abs_error": 1.4210854715202004e-14
+      },
+      {
+        "key": [
+          "california_fold_2",
+          "bound_2km",
+          "ann2",
+          false,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 7.275957614183426e-12,
+        "event_sum_rel_error": 1.355377313088527e-16,
+        "exposure_abs_error": 7.275957614183426e-12,
+        "exposure_rel_error": 1.5644820523254713e-16,
+        "slope_abs_error": 1.4551915228366852e-11,
+        "slope_rel_error": 2.0281352667510293e-15,
+        "immigrant_slope_abs_error": 0.0
+      },
+      {
+        "key": [
+          "california_fold_2",
+          "bound_2km",
+          "shield",
+          true,
+          2.0,
+          1.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 1.8189894035458565e-12,
+        "exposure_rel_error": 1.2195331369912427e-16,
+        "slope_abs_error": 1.8189894035458565e-12,
+        "slope_rel_error": 3.8571386647816747e-16,
+        "immigrant_slope_abs_error": 0.0
+      },
+      {
+        "key": [
+          "california_fold_2",
+          "bound_2km",
+          "shield",
+          true,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 7.275957614183426e-12,
+        "event_sum_rel_error": 1.298267971162072e-16,
+        "exposure_abs_error": 0.0,
+        "exposure_rel_error": 0.0,
+        "slope_abs_error": 7.275957614183426e-12,
+        "slope_rel_error": 4.885351340424631e-16,
+        "immigrant_slope_abs_error": 0.0
+      },
+      {
+        "key": [
+          "california_fold_2",
+          "bound_2km",
+          "shield",
+          false,
+          2.0,
+          1.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 2.842170943040401e-14,
+        "exposure_rel_error": 2.0468177222665677e-16,
+        "slope_abs_error": 2.842170943040401e-14,
+        "slope_rel_error": 4.830970726285187e-16,
+        "immigrant_slope_abs_error": 1.734723475976807e-18
+      },
+      {
+        "key": [
+          "california_fold_2",
+          "bound_2km",
+          "shield",
+          false,
+          15.0,
+          5.0
+        ],
+        "event_sum_abs_error": 0.0,
+        "event_sum_rel_error": 0.0,
+        "exposure_abs_error": 1.8189894035458565e-12,
+        "exposure_rel_error": 1.9157840569080302e-16,
+        "slope_abs_error": 1.8189894035458565e-12,
+        "slope_rel_error": 1.3249028713782573e-15,
+        "immigrant_slope_abs_error": 0.0
+      }
+    ],
+    "max_event_rel": 3.2851853488500063e-16,
+    "max_exposure_rel": 4.968753802016692e-16,
+    "max_slope_rel": 2.3283746979942275e-14
+  },
+  "profiles": {
+    "passed": true,
+    "n_rows": 2016,
+    "failures": []
+  },
+  "joint": {
+    "passed": true,
+    "n_rows": 24,
+    "failures": [],
+    "checks": [
+      {
+        "case": "california_fold_0",
+        "baseline": "bound_2km",
+        "kernel": "ann1",
+        "in_bounds": true,
+        "nested_null": true,
+        "eta": 0.0,
+        "nll": 8179.059750702001,
+        "training_gain": 0.0,
+        "nested_identity_max_abs": 0.0,
+        "test_gain_mean": 0.0,
+        "attenuation_gain_mean": 0.0,
+        "test_seed_gains": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "block_closure": 0.0
+      },
+      {
+        "case": "california_fold_0",
+        "baseline": "bound_2km",
+        "kernel": "ann2",
+        "in_bounds": true,
+        "nested_null": true,
+        "eta": 0.0,
+        "nll": 8179.059750702001,
+        "training_gain": 0.0,
+        "nested_identity_max_abs": 0.0,
+        "test_gain_mean": 0.0,
+        "attenuation_gain_mean": 0.0,
+        "test_seed_gains": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "block_closure": 0.0
+      },
+      {
+        "case": "california_fold_0",
+        "baseline": "bound_2km",
+        "kernel": "mono",
+        "in_bounds": true,
+        "nested_null": true,
+        "eta": 0.0,
+        "nll": 8179.059750702001,
+        "training_gain": 0.0,
+        "nested_identity_max_abs": 0.0,
+        "test_gain_mean": 0.0,
+        "attenuation_gain_mean": 0.0,
+        "test_seed_gains": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "block_closure": 0.0
+      },
+      {
+        "case": "california_fold_0",
+        "baseline": "bound_2km",
+        "kernel": "shield",
+        "in_bounds": true,
+        "nested_null": true,
+        "eta": 0.0,
+        "nll": 8179.059750702001,
+        "training_gain": 0.0,
+        "nested_identity_max_abs": 0.0,
+        "test_gain_mean": 0.0,
+        "attenuation_gain_mean": 0.0,
+        "test_seed_gains": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "block_closure": 0.0
+      },
+      {
+        "case": "california_fold_0",
+        "baseline": "interior",
+        "kernel": "ann1",
+        "in_bounds": true,
+        "nested_null": true,
+        "eta": 0.0,
+        "nll": 8140.899450192996,
+        "training_gain": 0.0,
+        "nested_identity_max_abs": 0.0,
+        "test_gain_mean": 0.0,
+        "attenuation_gain_mean": 0.0,
+        "test_seed_gains": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "block_closure": 0.0
+      },
+      {
+        "case": "california_fold_0",
+        "baseline": "interior",
+        "kernel": "ann2",
+        "in_bounds": true,
+        "nested_null": true,
+        "eta": 0.0,
+        "nll": 8140.899450192996,
+        "training_gain": 0.0,
+        "nested_identity_max_abs": 0.0,
+        "test_gain_mean": 0.0,
+        "attenuation_gain_mean": 0.0,
+        "test_seed_gains": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "block_closure": 0.0
+      },
+      {
+        "case": "california_fold_0",
+        "baseline": "interior",
+        "kernel": "mono",
+        "in_bounds": true,
+        "nested_null": true,
+        "eta": 0.0,
+        "nll": 8140.899450192996,
+        "training_gain": 0.0,
+        "nested_identity_max_abs": 0.0,
+        "test_gain_mean": 0.0,
+        "attenuation_gain_mean": 0.0,
+        "test_seed_gains": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "block_closure": 0.0
+      },
+      {
+        "case": "california_fold_0",
+        "baseline": "interior",
+        "kernel": "shield",
+        "in_bounds": true,
+        "nested_null": true,
+        "eta": 0.0,
+        "nll": 8140.899450192996,
+        "training_gain": 0.0,
+        "nested_identity_max_abs": 0.0,
+        "test_gain_mean": 0.0,
+        "attenuation_gain_mean": 0.0,
+        "test_seed_gains": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "block_closure": 0.0
+      },
+      {
+        "case": "california_fold_1",
+        "baseline": "bound_2km",
+        "kernel": "ann1",
+        "in_bounds": true,
+        "nested_null": true,
+        "eta": 0.0,
+        "nll": 9243.624773131573,
+        "training_gain": 0.0,
+        "nested_identity_max_abs": 0.0,
+        "test_gain_mean": 0.0,
+        "attenuation_gain_mean": 0.0,
+        "test_seed_gains": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "block_closure": 0.0
+      },
+      {
+        "case": "california_fold_1",
+        "baseline": "bound_2km",
+        "kernel": "ann2",
+        "in_bounds": true,
+        "nested_null": true,
+        "eta": 0.0,
+        "nll": 9243.624773131573,
+        "training_gain": 0.0,
+        "nested_identity_max_abs": 0.0,
+        "test_gain_mean": 0.0,
+        "attenuation_gain_mean": 0.0,
+        "test_seed_gains": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "block_closure": 0.0
+      },
+      {
+        "case": "california_fold_1",
+        "baseline": "bound_2km",
+        "kernel": "mono",
+        "in_bounds": true,
+        "nested_null": true,
+        "eta": 0.0,
+        "nll": 9243.624773131573,
+        "training_gain": 0.0,
+        "nested_identity_max_abs": 0.0,
+        "test_gain_mean": 0.0,
+        "attenuation_gain_mean": 0.0,
+        "test_seed_gains": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "block_closure": 0.0
+      },
+      {
+        "case": "california_fold_1",
+        "baseline": "bound_2km",
+        "kernel": "shield",
+        "in_bounds": true,
+        "nested_null": true,
+        "eta": 0.0,
+        "nll": 9243.624773131573,
+        "training_gain": 0.0,
+        "nested_identity_max_abs": 0.0,
+        "test_gain_mean": 0.0,
+        "attenuation_gain_mean": 0.0,
+        "test_seed_gains": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "block_closure": 0.0
+      },
+      {
+        "case": "california_fold_1",
+        "baseline": "interior",
+        "kernel": "ann1",
+        "in_bounds": true,
+        "nested_null": true,
+        "eta": 0.0,
+        "nll": 9206.591112422422,
+        "training_gain": 0.0,
+        "nested_identity_max_abs": 0.0,
+        "test_gain_mean": 0.0,
+        "attenuation_gain_mean": 0.0,
+        "test_seed_gains": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "block_closure": 0.0
+      },
+      {
+        "case": "california_fold_1",
+        "baseline": "interior",
+        "kernel": "ann2",
+        "in_bounds": true,
+        "nested_null": true,
+        "eta": 0.0,
+        "nll": 9206.591112422422,
+        "training_gain": 0.0,
+        "nested_identity_max_abs": 0.0,
+        "test_gain_mean": 0.0,
+        "attenuation_gain_mean": 0.0,
+        "test_seed_gains": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "block_closure": 0.0
+      },
+      {
+        "case": "california_fold_1",
+        "baseline": "interior",
+        "kernel": "mono",
+        "in_bounds": true,
+        "nested_null": true,
+        "eta": 0.0,
+        "nll": 9206.591112422422,
+        "training_gain": 0.0,
+        "nested_identity_max_abs": 0.0,
+        "test_gain_mean": 0.0,
+        "attenuation_gain_mean": 0.0,
+        "test_seed_gains": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "block_closure": 0.0
+      },
+      {
+        "case": "california_fold_1",
+        "baseline": "interior",
+        "kernel": "shield",
+        "in_bounds": true,
+        "nested_null": true,
+        "eta": 0.0,
+        "nll": 9206.591112422422,
+        "training_gain": 0.0,
+        "nested_identity_max_abs": 0.0,
+        "test_gain_mean": 0.0,
+        "attenuation_gain_mean": 0.0,
+        "test_seed_gains": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "block_closure": 0.0
+      },
+      {
+        "case": "california_fold_2",
+        "baseline": "bound_2km",
+        "kernel": "ann1",
+        "in_bounds": true,
+        "nested_null": true,
+        "eta": 0.0,
+        "nll": 10381.284356005803,
+        "training_gain": 0.0,
+        "nested_identity_max_abs": 0.0,
+        "test_gain_mean": 0.0,
+        "attenuation_gain_mean": 0.0,
+        "test_seed_gains": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "block_closure": 0.0
+      },
+      {
+        "case": "california_fold_2",
+        "baseline": "bound_2km",
+        "kernel": "ann2",
+        "in_bounds": true,
+        "nested_null": true,
+        "eta": 0.0,
+        "nll": 10381.284356005803,
+        "training_gain": 0.0,
+        "nested_identity_max_abs": 0.0,
+        "test_gain_mean": 0.0,
+        "attenuation_gain_mean": 0.0,
+        "test_seed_gains": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "block_closure": 0.0
+      },
+      {
+        "case": "california_fold_2",
+        "baseline": "bound_2km",
+        "kernel": "mono",
+        "in_bounds": true,
+        "nested_null": true,
+        "eta": 0.0,
+        "nll": 10381.284356005803,
+        "training_gain": 0.0,
+        "nested_identity_max_abs": 0.0,
+        "test_gain_mean": 0.0,
+        "attenuation_gain_mean": 0.0,
+        "test_seed_gains": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "block_closure": 0.0
+      },
+      {
+        "case": "california_fold_2",
+        "baseline": "bound_2km",
+        "kernel": "shield",
+        "in_bounds": true,
+        "nested_null": true,
+        "eta": 0.0,
+        "nll": 10381.284356005803,
+        "training_gain": 0.0,
+        "nested_identity_max_abs": 0.0,
+        "test_gain_mean": 0.0,
+        "attenuation_gain_mean": 0.0,
+        "test_seed_gains": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "block_closure": 0.0
+      },
+      {
+        "case": "california_fold_2",
+        "baseline": "interior",
+        "kernel": "ann1",
+        "in_bounds": true,
+        "nested_null": true,
+        "eta": 0.0,
+        "nll": 10336.157505618017,
+        "training_gain": 0.0,
+        "nested_identity_max_abs": 0.0,
+        "test_gain_mean": 0.0,
+        "attenuation_gain_mean": 0.0,
+        "test_seed_gains": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "block_closure": 0.0
+      },
+      {
+        "case": "california_fold_2",
+        "baseline": "interior",
+        "kernel": "ann2",
+        "in_bounds": true,
+        "nested_null": true,
+        "eta": 0.0,
+        "nll": 10336.157505618017,
+        "training_gain": 0.0,
+        "nested_identity_max_abs": 0.0,
+        "test_gain_mean": 0.0,
+        "attenuation_gain_mean": 0.0,
+        "test_seed_gains": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "block_closure": 0.0
+      },
+      {
+        "case": "california_fold_2",
+        "baseline": "interior",
+        "kernel": "mono",
+        "in_bounds": true,
+        "nested_null": true,
+        "eta": 0.0,
+        "nll": 10336.157505618017,
+        "training_gain": 0.0,
+        "nested_identity_max_abs": 0.0,
+        "test_gain_mean": 0.0,
+        "attenuation_gain_mean": 0.0,
+        "test_seed_gains": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "block_closure": 0.0
+      },
+      {
+        "case": "california_fold_2",
+        "baseline": "interior",
+        "kernel": "shield",
+        "in_bounds": true,
+        "nested_null": true,
+        "eta": 0.0,
+        "nll": 10336.157505618017,
+        "training_gain": 0.0,
+        "nested_identity_max_abs": 0.0,
+        "test_gain_mean": 0.0,
+        "attenuation_gain_mean": 0.0,
+        "test_seed_gains": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "block_closure": 0.0
+      }
+    ]
+  },
+  "heldout": {
+    "passed": true,
+    "skipped": true,
+    "reason": "all selected states are the exact nested null"
+  },
+  "synthetic": {
+    "passed": true,
+    "N": 20,
+    "recomputed_ann2_mean": -22.319328998938033,
+    "recomputed_ann2_mcse": 17.471830184454365,
+    "recomputed_recovery_mean": -1.5288157984836777,
+    "stored_ann2_mean": -22.319328998938033,
+    "stored_ann2_mcse": 17.471830184454365,
+    "stored_recovery_mean": -1.5288157984836777,
+    "quadrature_history": 411001,
+    "fast_minus_frozen_abs": 2.1875530478610017e-05,
+    "fast_minus_saved_oracle_abs": 0.0
+  },
+  "elapsed_seconds": 528.6465492248535
+}

@@ -1,0 +1,772 @@
+{
+  "seed": 410828,
+  "n_train": 86,
+  "n_test": 84,
+  "oracle": {
+    "seed": 410828,
+    "true_generating_joint": -915.2253370329975,
+    "true_order16_joint": -915.2253369386839,
+    "quadrature_delta": 9.431357739231316e-08,
+    "fixed_true_backbone_null_joint": -926.785005574191,
+    "refitted_intercept_null_joint": -923.4306581772183,
+    "jointly_fitted_null_joint": -919.0487193640071,
+    "fitted_inhibited_joint": -919.8613803740993,
+    "oracle_gain_vs_fixed": 11.55966854119356,
+    "oracle_gain_vs_intercept": 8.205321144220875,
+    "oracle_gain_vs_joint_null": 3.8233823310096113,
+    "estimation_loss": -4.6360433411018676,
+    "fitted_gain": -0.8126610100922562,
+    "fitted_eta": 1.3648663612441825,
+    "refitted_intercept_a": -1.586627197257086,
+    "n_train": 86,
+    "n_test": 84
+  },
+  "reconstruction": {
+    "truth_test_order32": -915.225337035599,
+    "truth_test_order16": -915.225337035599,
+    "truth_train_nll": 950.8371517018231,
+    "fixed_true_backbone_null_joint": -926.785005574191,
+    "refitted_intercept_null_joint": -923.4306581772183,
+    "refitted_intercept_a": -1.586627197257086,
+    "archived_joint_null_joint": -919.0487193640071,
+    "archived_inhibited_joint": -919.8613803740993,
+    "archived_gain": -0.8126610100922562,
+    "archived_eta": 1.3648663612441825,
+    "replay_null_test_delta": 0.0,
+    "replay_inhibited_test_delta": 7.301457571884384e-07,
+    "oracle_deltas": {
+      "truth32": -2.6014959075837396e-09,
+      "truth16": -9.69150732998969e-08,
+      "fixed_null": 0.0,
+      "intercept_null": 0.0
+    }
+  },
+  "stationary_null": {
+    "parameters": [
+      -1.5755380605548264,
+      0.0,
+      0.11729036963376147,
+      -1.5671475718818018,
+      2.5,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "train": {
+      "P": -834.696091036564,
+      "E": 85.99999875167583,
+      "C": -85.99999875167583,
+      "M": -35.675774658753745,
+      "joint": -956.3718644469935,
+      "nll": 956.3718644469935
+    },
+    "test": {
+      "P": -810.4439283799593,
+      "E": 83.10544079572273,
+      "C": -83.10544079572273,
+      "M": -25.301564831973607,
+      "joint": -918.8509340076556,
+      "nll": 918.8509340076556
+    },
+    "fast_training_nll": 956.3718644469935,
+    "resolved_starts": 6
+  },
+  "references": {
+    "archived_joint_null": -919.0487193640071,
+    "stationary_null": -918.8509340076556,
+    "fixed_true_backbone_null": -926.785005574191,
+    "refitted_intercept_null": -923.4306581772183
+  },
+  "arms": {
+    "S1_fixed_backbone_a_eta": {
+      "parameters": [
+        -1.431132387156726,
+        0.2,
+        0.35,
+        -2.995732273553991,
+        1.3,
+        0.23352638093133748,
+        2.70805020110221,
+        1.6094379124341003
+      ],
+      "train": {
+        "P": -830.9350572087526,
+        "E": 82.82410921851654,
+        "C": -82.82410921851654,
+        "M": -35.675774658753745,
+        "joint": -949.434941086023,
+        "nll": 949.434941086023
+      },
+      "test": {
+        "P": -791.5682638369333,
+        "E": 99.24187328586717,
+        "C": -99.24187328586717,
+        "M": -25.301564831973607,
+        "joint": -916.111701954774,
+        "nll": 916.111701954774
+      },
+      "nested_null": false,
+      "nested_fast": false,
+      "nested_exact": false,
+      "eta": 0.23352638093133748,
+      "ell_km": 15.0,
+      "psi_days": 4.999999999999999,
+      "ell2": "global",
+      "fast_training_nll": 949.4302115955496,
+      "resolved_starts": 6,
+      "gain_vs_archived_joint_null": 2.9370174092330217,
+      "gain_vs_stationary_null": 2.7392320528815617,
+      "gain_vs_fixed_true_null": 10.67330361941697,
+      "gain_vs_refit_intercept_null": 7.318956222444285,
+      "oracle_fraction_vs_archived_null": 0.7681725642273044,
+      "fast_test_joint": -916.1117018882529,
+      "fast_train_nll": 949.4302115955496,
+      "test_quadrature_delta": 6.65211246086983e-08
+    },
+    "S2_fixed_backbone_a_eta_ell_psi": {
+      "parameters": [
+        -1.453550526603128,
+        0.2,
+        0.35,
+        -2.995732273553991,
+        1.3,
+        0.2629138343098312,
+        2.7582039729656023,
+        1.3061912113115615
+      ],
+      "train": {
+        "P": -831.1143796655813,
+        "E": 82.5084526844519,
+        "C": -82.5084526844519,
+        "M": -35.675774658753745,
+        "joint": -949.2986070087869,
+        "nll": 949.2986070087869
+      },
+      "test": {
+        "P": -791.8372661635758,
+        "E": 98.61812992667824,
+        "C": -98.61812992667824,
+        "M": -25.301564831973607,
+        "joint": -915.7569609222276,
+        "nll": 915.7569609222276
+      },
+      "nested_null": false,
+      "nested_fast": false,
+      "nested_exact": false,
+      "eta": 0.2629138343098312,
+      "ell_km": 15.771491470817203,
+      "psi_days": 3.6920845280927863,
+      "ell2": "global",
+      "fast_training_nll": 949.2963414523376,
+      "resolved_starts": 4,
+      "gain_vs_archived_joint_null": 3.291758441779507,
+      "gain_vs_stationary_null": 3.093973085428047,
+      "gain_vs_fixed_true_null": 11.028044651963455,
+      "gain_vs_refit_intercept_null": 7.6736972549907705,
+      "oracle_fraction_vs_archived_null": 0.8609545571944612,
+      "fast_test_joint": -915.7569609673085,
+      "fast_train_nll": 949.2963414523376,
+      "test_quadrature_delta": -4.5080923882778734e-08
+    },
+    "S3a_stat_null_a_n_eta_true_scale": {
+      "parameters": [
+        -1.4488893330184538,
+        0.0,
+        0.4764505530706361,
+        -1.5671475718818018,
+        2.5,
+        0.32211330321383935,
+        2.70805020110221,
+        1.6094379124341003
+      ],
+      "train": {
+        "P": -825.2729582772971,
+        "E": 86.01801250058669,
+        "C": -86.01801250058669,
+        "M": -35.675774658753745,
+        "joint": -946.9667454366376,
+        "nll": 946.9667454366376
+      },
+      "test": {
+        "P": -807.4694899212246,
+        "E": 87.67290524391353,
+        "C": -87.67290524391353,
+        "M": -25.301564831973607,
+        "joint": -920.4439599971117,
+        "nll": 920.4439599971117
+      },
+      "nested_null": false,
+      "nested_fast": false,
+      "nested_exact": false,
+      "eta": 0.32211330321383935,
+      "ell_km": 15.0,
+      "psi_days": 4.999999999999999,
+      "ell2": "global",
+      "fast_training_nll": 946.9487504795949,
+      "scale": {
+        "ell_km": 15.0,
+        "psi_days": 5.0
+      },
+      "gain_vs_archived_joint_null": -1.3952406331046632,
+      "gain_vs_stationary_null": -1.5930259894561232,
+      "gain_vs_fixed_true_null": 6.341045577079285,
+      "gain_vs_refit_intercept_null": 2.9866981801066004,
+      "oracle_fraction_vs_archived_null": -0.3649231262561787,
+      "fast_test_joint": -920.443958870931,
+      "fast_train_nll": 946.9487504795949,
+      "test_quadrature_delta": 1.1261806776019512e-06
+    },
+    "S3b_stat_null_a_n_eta_grid": {
+      "parameters": [
+        -1.4488893330184538,
+        0.0,
+        0.4764505530706361,
+        -1.5671475718818018,
+        2.5,
+        0.32211330321383935,
+        2.70805020110221,
+        1.6094379124341003
+      ],
+      "train": {
+        "P": -825.2729582772971,
+        "E": 86.01801250058669,
+        "C": -86.01801250058669,
+        "M": -35.675774658753745,
+        "joint": -946.9667454366376,
+        "nll": 946.9667454366376
+      },
+      "test": {
+        "P": -807.4694899212246,
+        "E": 87.67290524391353,
+        "C": -87.67290524391353,
+        "M": -25.301564831973607,
+        "joint": -920.4439599971117,
+        "nll": 920.4439599971117
+      },
+      "nested_null": false,
+      "nested_fast": false,
+      "nested_exact": false,
+      "eta": 0.32211330321383935,
+      "ell_km": 15.0,
+      "psi_days": 4.999999999999999,
+      "ell2": "global",
+      "fast_training_nll": 946.9487504795949,
+      "scale": {
+        "ell_km": 15.0,
+        "psi_days": 5.0
+      },
+      "selection_penalty_nats": 1.0986122886681098,
+      "gain_vs_archived_joint_null": -1.3952406331046632,
+      "gain_vs_stationary_null": -1.5930259894561232,
+      "gain_vs_fixed_true_null": 6.341045577079285,
+      "gain_vs_refit_intercept_null": 2.9866981801066004,
+      "oracle_fraction_vs_archived_null": -0.3649231262561787,
+      "fast_test_joint": -920.443958870931,
+      "fast_train_nll": 946.9487504795949,
+      "test_quadrature_delta": 1.1261806776019512e-06
+    },
+    "E1D_Profile_2p": {
+      "parameters": [
+        -1.4738607077337942,
+        0.0,
+        0.11729036963376147,
+        -1.5671475718818018,
+        2.5,
+        0.14818140421730297,
+        2.70805020110221,
+        1.6094379124341003
+      ],
+      "train": {
+        "P": -834.9289892008496,
+        "E": 80.81159765498788,
+        "C": -80.81159765498788,
+        "M": -35.675774658753745,
+        "joint": -951.4163615145912,
+        "nll": 951.4163615145912
+      },
+      "test": {
+        "P": -808.4169676801604,
+        "E": 81.88576927719322,
+        "C": -81.88576927719322,
+        "M": -25.301564831973607,
+        "joint": -915.6043017893271,
+        "nll": 915.6043017893271
+      },
+      "nested_null": false,
+      "nested_fast": false,
+      "nested_exact": false,
+      "eta": 0.14818140421730297,
+      "ell_km": 15.0,
+      "psi_days": 4.999999999999999,
+      "ell2": "global",
+      "fast_training_nll": 951.4120824851302,
+      "scale": {
+        "ell_km": 15.0,
+        "psi_days": 5.0
+      },
+      "selection_penalty_nats": 1.0986122886681098,
+      "grid": [
+        {
+          "ell_km": 5.0,
+          "psi_days": 1.0,
+          "fast_nll": 951.8908369591543,
+          "eta": 1.6681702183342746,
+          "nested_null": false
+        },
+        {
+          "ell_km": 15.0,
+          "psi_days": 5.0,
+          "fast_nll": 951.4120824851302,
+          "eta": 0.14818140421730297,
+          "nested_null": false
+        },
+        {
+          "ell_km": 50.0,
+          "psi_days": 30.0,
+          "fast_nll": 953.1332763121186,
+          "eta": 0.021142753097957538,
+          "nested_null": false
+        }
+      ],
+      "gain_vs_archived_joint_null": 3.44441757467996,
+      "gain_vs_stationary_null": 3.2466322183285,
+      "gain_vs_fixed_true_null": 11.180703784863908,
+      "gain_vs_refit_intercept_null": 7.826356387891224,
+      "oracle_fraction_vs_archived_null": 0.9008823278655522,
+      "fast_test_joint": -915.6043016418432,
+      "fast_train_nll": 951.4120824851302,
+      "test_quadrature_delta": 1.4748388821317349e-07
+    },
+    "E1D_Profile_3p": {
+      "parameters": [
+        -1.4488893330184538,
+        0.0,
+        0.4764505530706361,
+        -1.5671475718818018,
+        2.5,
+        0.32211330321383935,
+        2.70805020110221,
+        1.6094379124341003
+      ],
+      "train": {
+        "P": -825.2729582772971,
+        "E": 86.01801250058669,
+        "C": -86.01801250058669,
+        "M": -35.675774658753745,
+        "joint": -946.9667454366376,
+        "nll": 946.9667454366376
+      },
+      "test": {
+        "P": -807.4694899212246,
+        "E": 87.67290524391353,
+        "C": -87.67290524391353,
+        "M": -25.301564831973607,
+        "joint": -920.4439599971117,
+        "nll": 920.4439599971117
+      },
+      "nested_null": false,
+      "nested_fast": false,
+      "nested_exact": false,
+      "eta": 0.32211330321383935,
+      "ell_km": 15.0,
+      "psi_days": 4.999999999999999,
+      "ell2": "global",
+      "fast_training_nll": 946.9487504795949,
+      "scale": {
+        "ell_km": 15.0,
+        "psi_days": 5.0
+      },
+      "selection_penalty_nats": 1.0986122886681098,
+      "grid": [
+        {
+          "ell_km": 5.0,
+          "psi_days": 1.0,
+          "fast_nll": 947.4243496096011,
+          "eta": 4.0,
+          "nested_null": false
+        },
+        {
+          "ell_km": 15.0,
+          "psi_days": 5.0,
+          "fast_nll": 946.9487504795949,
+          "eta": 0.32211330321383935,
+          "nested_null": false
+        },
+        {
+          "ell_km": 50.0,
+          "psi_days": 30.0,
+          "fast_nll": 950.8840923561427,
+          "eta": 0.034408570790618084,
+          "nested_null": false
+        }
+      ],
+      "gain_vs_archived_joint_null": -1.3952406331046632,
+      "gain_vs_stationary_null": -1.5930259894561232,
+      "gain_vs_fixed_true_null": 6.341045577079285,
+      "gain_vs_refit_intercept_null": 2.9866981801066004,
+      "oracle_fraction_vs_archived_null": -0.3649231262561787,
+      "fast_test_joint": -920.443958870931,
+      "fast_train_nll": 946.9487504795949,
+      "test_quadrature_delta": 1.1261806776019512e-06
+    },
+    "E_Split_CV": {
+      "parameters": [
+        -1.4759867420280848,
+        0.0,
+        0.11729036963376147,
+        -1.5671475718818018,
+        2.5,
+        0.1443787666496895,
+        2.70805020110221,
+        1.6094379124341003
+      ],
+      "train": {
+        "P": -834.8867442054886,
+        "E": 80.85495601042504,
+        "C": -80.85495601042504,
+        "M": -35.675774658753745,
+        "joint": -951.4174748746674,
+        "nll": 951.4174748746674
+      },
+      "test": {
+        "P": -808.4301409075996,
+        "E": 81.90778998670265,
+        "C": -81.90778998670265,
+        "M": -25.301564831973607,
+        "joint": -915.6394957262758,
+        "nll": 915.6394957262758
+      },
+      "nested_null": false,
+      "nested_fast": false,
+      "nested_exact": false,
+      "eta": 0.1443787666496895,
+      "ell_km": 15.0,
+      "psi_days": 4.999999999999999,
+      "ell2": "global",
+      "alpha": 0.75,
+      "first_half_eta": 0.19250502219958598,
+      "scale": {
+        "ell_km": 15.0,
+        "psi_days": 5.0
+      },
+      "candidates": [
+        {
+          "alpha": 0.0,
+          "eta": 0.0,
+          "second_joint": -452.88644012245396
+        },
+        {
+          "alpha": 0.25,
+          "eta": 0.048126255549896496,
+          "second_joint": -450.7006535106625
+        },
+        {
+          "alpha": 0.5,
+          "eta": 0.09625251109979299,
+          "second_joint": -450.10886426912697
+        },
+        {
+          "alpha": 0.75,
+          "eta": 0.1443787666496895,
+          "second_joint": -449.984585262944
+        },
+        {
+          "alpha": 1.0,
+          "eta": 0.19250502219958598,
+          "second_joint": -450.07609882609256
+        }
+      ],
+      "gain_vs_archived_joint_null": 3.4092236377313156,
+      "gain_vs_stationary_null": 3.2114382813798557,
+      "gain_vs_fixed_true_null": 11.145509847915264,
+      "gain_vs_refit_intercept_null": 7.791162450942579,
+      "oracle_fraction_vs_archived_null": 0.8916774056522535,
+      "fast_test_joint": -915.6394955826634,
+      "fast_train_nll": 951.4132786661946,
+      "test_quadrature_delta": 1.4361239664140157e-07
+    },
+    "E_L1_Shrinkage": {
+      "parameters": [
+        -1.4759493585833676,
+        0.0,
+        0.11729036963376147,
+        -1.5671475718818018,
+        2.5,
+        0.14444532811297287,
+        2.70805020110221,
+        1.6094379124341003
+      ],
+      "train": {
+        "P": -834.8874709387329,
+        "E": 80.85418896310699,
+        "C": -80.85418896310699,
+        "M": -35.675774658753745,
+        "joint": -951.4174345605937,
+        "nll": 951.4174345605937
+      },
+      "test": {
+        "P": -808.4298967050526,
+        "E": 81.90740410598788,
+        "C": -81.90740410598788,
+        "M": -25.301564831973607,
+        "joint": -915.638865643014,
+        "nll": 915.638865643014
+      },
+      "nested_null": false,
+      "nested_fast": false,
+      "nested_exact": false,
+      "eta": 0.14444532811297287,
+      "ell_km": 15.0,
+      "psi_days": 4.999999999999999,
+      "ell2": "global",
+      "lam": 1.0,
+      "per_event": false,
+      "lambda_selected_by": "second-half training score",
+      "lambda_key": "1",
+      "scale": {
+        "ell_km": 15.0,
+        "psi_days": 5.0
+      },
+      "training_penalised": 951.5030704387046,
+      "lambda_grid": {
+        "0.5": {
+          "eta": 0.1462956010243612,
+          "fast_training_nll": 951.4123747619133,
+          "training_penalised": 951.457866895671,
+          "second_joint": -449.98686583800156
+        },
+        "0.5_per_event": {
+          "eta": 0.062154319099420416,
+          "fast_training_nll": 952.3095981903031,
+          "training_penalised": 953.9717657587953,
+          "second_joint": -450.44822746343385
+        },
+        "1": {
+          "eta": 0.14444532811297287,
+          "fast_training_nll": 951.4132368942757,
+          "training_penalised": 951.5030704387046,
+          "second_joint": -449.9864766980122
+        },
+        "1_per_event": {
+          "eta": 0.03332249921236437,
+          "fast_training_nll": 953.4148851499697,
+          "training_penalised": 955.1971451214225,
+          "second_joint": -451.08800260641317
+        },
+        "2": {
+          "eta": 0.14084820370792964,
+          "fast_training_nll": 951.4165855491201,
+          "training_penalised": 951.5917783854802,
+          "second_joint": -449.98659525970254
+        },
+        "2_per_event": {
+          "eta": 0.008775621710005819,
+          "fast_training_nll": 955.2879193358299,
+          "training_penalised": 956.2266508036396,
+          "second_joint": -452.2205454432735
+        }
+      },
+      "gain_vs_archived_joint_null": 3.4098537209930555,
+      "gain_vs_stationary_null": 3.2120683646415955,
+      "gain_vs_fixed_true_null": 11.146139931177004,
+      "gain_vs_refit_intercept_null": 7.791792534204319,
+      "oracle_fraction_vs_archived_null": 0.8918422029984748,
+      "fast_test_joint": -915.6388654993333,
+      "fast_train_nll": 951.4132368942757,
+      "test_quadrature_delta": 1.4368072243087227e-07
+    },
+    "E_L1_Shrinkage_lambda1": {
+      "parameters": [
+        -1.4759493585833676,
+        0.0,
+        0.11729036963376147,
+        -1.5671475718818018,
+        2.5,
+        0.14444532811297287,
+        2.70805020110221,
+        1.6094379124341003
+      ],
+      "train": {
+        "P": -834.8874709387329,
+        "E": 80.85418896310699,
+        "C": -80.85418896310699,
+        "M": -35.675774658753745,
+        "joint": -951.4174345605937,
+        "nll": 951.4174345605937
+      },
+      "test": {
+        "P": -808.4298967050526,
+        "E": 81.90740410598788,
+        "C": -81.90740410598788,
+        "M": -25.301564831973607,
+        "joint": -915.638865643014,
+        "nll": 915.638865643014
+      },
+      "nested_null": false,
+      "nested_fast": false,
+      "nested_exact": false,
+      "eta": 0.14444532811297287,
+      "ell_km": 15.0,
+      "psi_days": 4.999999999999999,
+      "ell2": "global",
+      "lam": 1.0,
+      "per_event": false,
+      "scale": {
+        "ell_km": 15.0,
+        "psi_days": 5.0
+      },
+      "training_penalised": 951.5030704387046,
+      "gain_vs_archived_joint_null": 3.4098537209930555,
+      "gain_vs_stationary_null": 3.2120683646415955,
+      "gain_vs_fixed_true_null": 11.146139931177004,
+      "gain_vs_refit_intercept_null": 7.791792534204319,
+      "oracle_fraction_vs_archived_null": 0.8918422029984748,
+      "fast_test_joint": -915.6388654993333,
+      "fast_train_nll": 951.4132368942757,
+      "test_quadrature_delta": 1.4368072243087227e-07
+    },
+    "Free_7D_stationary": {
+      "parameters": [
+        -1.5914517670107797,
+        0.0,
+        0.9356230429959161,
+        -1.5443145176921378,
+        2.5,
+        1.3792309571316295,
+        2.6098895354369454,
+        -0.07419683449598179
+      ],
+      "train": {
+        "P": -821.8674435329497,
+        "E": 86.00930880134369,
+        "C": -86.00930880134369,
+        "M": -35.675774658753745,
+        "joint": -943.5525269930471,
+        "nll": 943.5525269930471
+      },
+      "test": {
+        "P": -808.8274998154162,
+        "E": 86.44900986381934,
+        "C": -86.44900986381934,
+        "M": -25.301564831973607,
+        "joint": -920.5780745112091,
+        "nll": 920.5780745112091
+      },
+      "nested_null": false,
+      "nested_fast": false,
+      "nested_exact": false,
+      "eta": 1.3792309571316295,
+      "ell_km": 13.597548721588229,
+      "psi_days": 0.928488917205461,
+      "ell2": "global",
+      "fast_training_nll": 943.5429802387251,
+      "resolved_starts": 4,
+      "gain_vs_archived_joint_null": -1.529355147202068,
+      "gain_vs_stationary_null": -1.727140503553528,
+      "gain_vs_fixed_true_null": 6.20693106298188,
+      "gain_vs_refit_intercept_null": 2.8525836660091954,
+      "oracle_fraction_vs_archived_null": -0.4000005792772032,
+      "fast_test_joint": -920.5780299583994,
+      "fast_train_nll": 943.5429802387251,
+      "test_quadrature_delta": 4.4552809754350164e-05
+    },
+    "WC_Rupture_2p": {
+      "parameters": [
+        -1.5337212486315999,
+        0.0,
+        0.11729036963376147,
+        -1.5671475718818018,
+        2.5,
+        3.0793074093317205,
+        2.70805020110221,
+        1.6094379124341003
+      ],
+      "train": {
+        "P": -833.618006041661,
+        "E": 82.49969764023008,
+        "C": -82.49969764023008,
+        "M": -35.675774658753745,
+        "joint": -951.7934783406449,
+        "nll": 951.7934783406449
+      },
+      "test": {
+        "P": -807.7663888554125,
+        "E": 84.31856506541725,
+        "C": -84.31856506541725,
+        "M": -25.301564831973607,
+        "joint": -917.3865187528033,
+        "nll": 917.3865187528033
+      },
+      "nested_null": false,
+      "nested_fast": false,
+      "nested_exact": false,
+      "eta": 3.0793074093317205,
+      "ell_km": null,
+      "psi_days": 4.999999999999999,
+      "ell2": "wells_coppersmith",
+      "wc_ell_km": {
+        "M4": 0.83,
+        "M5": 3.24,
+        "M6": 12.6,
+        "M6_5": 28.9,
+        "M7": 56.1
+      },
+      "fast_training_nll": 951.7798761449812,
+      "wc_psi_days": 5.0,
+      "gain_vs_archived_joint_null": 1.6622006112037297,
+      "gain_vs_stationary_null": 1.4644152548522698,
+      "gain_vs_fixed_true_null": 9.398486821387678,
+      "gain_vs_refit_intercept_null": 6.044139424414993,
+      "oracle_fraction_vs_archived_null": 0.4347461141205842,
+      "fast_test_joint": -917.3740958476234,
+      "fast_train_nll": 951.7798761449812,
+      "test_quadrature_delta": 0.012422905179960253
+    },
+    "Free_8D_archived": {
+      "parameters": [
+        -1.545662663863259,
+        0.10671497266154446,
+        0.9350006877142193,
+        -1.50788355772297,
+        2.5,
+        1.3648663612441825,
+        2.6121400314463785,
+        -0.05602096694667384
+      ],
+      "train": {
+        "P": -821.8549351966918,
+        "E": 85.99105724609505,
+        "C": -85.99105724609505,
+        "M": -35.675774658753745,
+        "joint": -943.5217671015406,
+        "nll": 943.5217671015406
+      },
+      "test": {
+        "P": -800.7461723198802,
+        "E": 93.81364249209983,
+        "C": -93.81364249209983,
+        "M": -25.301564831973607,
+        "joint": -919.8613796439536,
+        "nll": 919.8613796439536
+      },
+      "nested_null": false,
+      "nested_fast": false,
+      "nested_exact": false,
+      "eta": 1.3648663612441825,
+      "ell_km": 13.628184410541975,
+      "psi_days": 0.9455193110295902,
+      "ell2": "global",
+      "source": "validation/live_results/s8_moderate_complete_20261111/410828",
+      "gain_vs_archived_joint_null": -0.812660279946499,
+      "gain_vs_stationary_null": -1.010445636297959,
+      "gain_vs_fixed_true_null": 6.923625930237449,
+      "gain_vs_refit_intercept_null": 3.5692785332647645,
+      "oracle_fraction_vs_archived_null": -0.21255009559347576,
+      "fast_test_joint": -919.8613272399616,
+      "fast_train_nll": 943.5185132649541,
+      "test_quadrature_delta": 5.2403991958271945e-05,
+      "nonpositive_gain": true
+    }
+  },
+  "wall_seconds": 198.23679566383362
+}

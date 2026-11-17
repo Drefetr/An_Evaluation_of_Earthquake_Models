@@ -1,0 +1,1103 @@
+{
+  "case": "california_fold_2",
+  "baseline": "bound_2km",
+  "kernel": "ann2",
+  "scaled": true,
+  "n_train": 1097,
+  "n_test": 69,
+  "baseline_meta": {
+    "baseline": "bound_2km",
+    "source": "validation/live_results/etas_inhibition_benchmark_interior_20261112/california_fold_2/result.json",
+    "source_sha256": "cbe2a657849b290bed812aefcd1c57c8e9855f988ad1e0beaa52f0bb20dea64b",
+    "sigma0_km": 2.0,
+    "training_nll": 10381.284356005803,
+    "test_joint_score": -860.3532111530249,
+    "normalization": "plane"
+  },
+  "bounds": [
+    [
+      -12,
+      0
+    ],
+    [
+      -2,
+      2
+    ],
+    [
+      0,
+      0.98
+    ],
+    [
+      -9.210340371976182,
+      2.995732273553991
+    ],
+    [
+      1.01,
+      2.5
+    ],
+    [
+      -2.995732273553991,
+      4.605170185988092
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      1.05,
+      3
+    ],
+    [
+      0,
+      4
+    ],
+    [
+      0.6931471805599453,
+      4.605170185988092
+    ],
+    [
+      -3.1780538303479458,
+      5.8998973535824915
+    ],
+    [
+      0,
+      2.5
+    ]
+  ],
+  "parameter_names": [
+    "a",
+    "d",
+    "n",
+    "log_c",
+    "p",
+    "log_sigma0",
+    "alpha_s",
+    "q",
+    "eta",
+    "log_ell0",
+    "log_psi",
+    "gamma"
+  ],
+  "null_training_nll": 10381.284356005803,
+  "grid_positive_start": {
+    "eta": 4.75314218382485e-05,
+    "ell": 5.0,
+    "psi": 90.0,
+    "source": {
+      "ell0_km": 5.0,
+      "psi_days": 90.0,
+      "score_slope_total": 227.3827520558043,
+      "eta_hat_train_total": 4.75314218382485e-05
+    }
+  },
+  "records": [
+    {
+      "start": 0,
+      "start_kind": "exact_null",
+      "start_eta_ell_psi": [
+        0.0,
+        19.999999999999996,
+        4.999999999999999
+      ],
+      "success": true,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "nll": 10339.31033683776,
+      "nit": 65,
+      "nfev": 69,
+      "seconds": 127.61425995826721,
+      "parameters": [
+        -3.735912701342905,
+        0.023780405966088027,
+        0.853075731027097,
+        -6.028741438621363,
+        1.104599952630555,
+        -0.19041962205548346,
+        0.8272933575682301,
+        1.8021269413604921,
+        0.0,
+        2.995732273553991,
+        1.6094379124341003,
+        1.7269388197455344
+      ],
+      "eta": 0.0,
+      "ell0_km": 19.999999999999996,
+      "psi_days": 4.999999999999999,
+      "sigma0_km": 0.8266121964481794,
+      "gradient": [
+        -0.03113623176471947,
+        0.032413795771808696,
+        0.013943830659400192,
+        -0.018590922614851735,
+        0.05813730973386555,
+        -0.03528588221293116,
+        0.04307467170162482,
+        0.031020582191345625,
+        3108.171775886525,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "gradient_infinity_norm": 3108.171775886525,
+      "boundary_flags": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "attempts": [
+        {
+          "success": true,
+          "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+          "nfev": 69,
+          "nit": 65,
+          "nll": 10339.31033683776
+        }
+      ]
+    },
+    {
+      "start": 1,
+      "start_kind": "prescribed_positive",
+      "start_eta_ell_psi": [
+        0.05,
+        4.999999999999999,
+        2.0
+      ],
+      "success": true,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "nll": 10339.310314764087,
+      "nit": 69,
+      "nfev": 75,
+      "seconds": 148.45844507217407,
+      "parameters": [
+        -3.735766850995497,
+        0.02320577976162529,
+        0.8529063128702163,
+        -6.027342742146959,
+        1.104656497956614,
+        -0.19013061786978375,
+        0.8270941301399646,
+        1.8020873411155487,
+        0.0,
+        2.1562090600449717,
+        -0.012586162889014117,
+        1.41322277826455
+      ],
+      "eta": 0.0,
+      "ell0_km": 8.63832812503678,
+      "psi_days": 0.9874927116032697,
+      "sigma0_km": 0.8268511253569677,
+      "gradient": [
+        0.0023269102044309875,
+        0.00022033823773592864,
+        0.01561117363030462,
+        0.01366669384541197,
+        0.022057810473143036,
+        0.009231610490029851,
+        -0.014967867993668449,
+        -0.013369360542288433,
+        1307.7127276393308,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "gradient_infinity_norm": 1307.7127276393308,
+      "boundary_flags": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "attempts": [
+        {
+          "success": true,
+          "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+          "nfev": 75,
+          "nit": 69,
+          "nll": 10339.310314764087
+        }
+      ]
+    },
+    {
+      "start": 2,
+      "start_kind": "prescribed_positive",
+      "start_eta_ell_psi": [
+        0.05,
+        10.000000000000002,
+        4.999999999999999
+      ],
+      "success": true,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "nll": 10339.310319258278,
+      "nit": 84,
+      "nfev": 89,
+      "seconds": 163.37148523330688,
+      "parameters": [
+        -3.735827793191813,
+        0.02306611639445749,
+        0.8528897186747582,
+        -6.02715945631818,
+        1.1046623637271937,
+        -0.19034573312050335,
+        0.8271829487577659,
+        1.80203542222443,
+        0.0,
+        2.6190444826290724,
+        0.9521770605760979,
+        1.4772512932773976
+      ],
+      "eta": 0.0,
+      "ell0_km": 13.722605131043588,
+      "psi_days": 2.591345037930902,
+      "sigma0_km": 0.8266732761995477,
+      "gradient": [
+        -0.014931147848585624,
+        -0.007558067384334732,
+        0.011536989738033299,
+        0.017922383196868452,
+        0.009995915768286068,
+        -0.019719775764310832,
+        0.0013677797923214996,
+        0.0014322609227299665,
+        1988.3641619816312,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "gradient_infinity_norm": 1988.3641619816312,
+      "boundary_flags": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "attempts": [
+        {
+          "success": true,
+          "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+          "nfev": 89,
+          "nit": 84,
+          "nll": 10339.310319258278
+        }
+      ]
+    },
+    {
+      "start": 3,
+      "start_kind": "prescribed_positive",
+      "start_eta_ell_psi": [
+        0.1,
+        15.0,
+        4.999999999999999
+      ],
+      "success": true,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "nll": 10339.310314954371,
+      "nit": 71,
+      "nfev": 78,
+      "seconds": 127.16263604164124,
+      "parameters": [
+        -3.735751798447132,
+        0.023406658895946224,
+        0.8528975920913803,
+        -6.027755602988623,
+        1.1046470124895251,
+        -0.19011613448284145,
+        0.8271873433147481,
+        1.8023105173992344,
+        0.0,
+        2.9676740333766425,
+        0.9715670437205651,
+        1.4635103220090064
+      ],
+      "eta": 0.0,
+      "ell0_km": 19.446634727588233,
+      "psi_days": 2.6420814742494096,
+      "sigma0_km": 0.826863101048484,
+      "gradient": [
+        -0.0014977597830920786,
+        0.011762910692311834,
+        -0.005491442767151966,
+        0.0018474114394670949,
+        -0.0001728623919916572,
+        -0.02983206547462469,
+        -0.023192794190507016,
+        0.05152396295464712,
+        1999.5318444956363,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "gradient_infinity_norm": 1999.5318444956363,
+      "boundary_flags": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "attempts": [
+        {
+          "success": true,
+          "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+          "nfev": 78,
+          "nit": 71,
+          "nll": 10339.310314954371
+        }
+      ]
+    },
+    {
+      "start": 4,
+      "start_kind": "prescribed_positive",
+      "start_eta_ell_psi": [
+        0.2,
+        19.999999999999996,
+        15.0
+      ],
+      "success": true,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "nll": 10339.310313377193,
+      "nit": 93,
+      "nfev": 98,
+      "seconds": 160.64963674545288,
+      "parameters": [
+        -3.735811107800683,
+        0.0233450367463845,
+        0.8529801378857705,
+        -6.028238716489119,
+        1.1046216515797396,
+        -0.19007794736459688,
+        0.8270902877316185,
+        1.8021728297943227,
+        0.0,
+        3.171812552150692,
+        2.049445030506048,
+        1.5554352150139765
+      ],
+      "eta": 0.0,
+      "ell0_km": 23.850675794943967,
+      "psi_days": 7.763591354161832,
+      "sigma0_km": 0.8268946771703926,
+      "gradient": [
+        -0.008559791348034196,
+        0.008556517128839314,
+        -0.011287349317285589,
+        -0.0062929086178833415,
+        -0.05368983322932763,
+        -0.016178254144529447,
+        -0.055996509869775224,
+        0.025142053412920973,
+        2887.3781161256597,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "gradient_infinity_norm": 2887.3781161256597,
+      "boundary_flags": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "attempts": [
+        {
+          "success": true,
+          "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+          "nfev": 98,
+          "nit": 93,
+          "nll": 10339.310313377193
+        }
+      ]
+    },
+    {
+      "start": 5,
+      "start_kind": "prescribed_positive",
+      "start_eta_ell_psi": [
+        0.5,
+        30.000000000000004,
+        30.000000000000004
+      ],
+      "success": true,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "nll": 10339.31031691118,
+      "nit": 73,
+      "nfev": 80,
+      "seconds": 113.62905669212341,
+      "parameters": [
+        -3.7357602194019726,
+        0.023164677626077317,
+        0.853087208065346,
+        -6.02864634349907,
+        1.1046002846361653,
+        -0.1902292171724301,
+        0.827169758059399,
+        1.802104890414478,
+        0.0,
+        3.7422100983870776,
+        2.4269744011621994,
+        1.2926214004685002
+      ],
+      "eta": 0.0,
+      "ell0_km": 42.19113375549574,
+      "psi_days": 11.324566598200118,
+      "sigma0_km": 0.826769602431733,
+      "gradient": [
+        0.012380135187981978,
+        -0.0010705999318196824,
+        0.028152261777449894,
+        -0.014351814879319136,
+        0.044232583047232765,
+        -0.005260545669405481,
+        0.010580790267123774,
+        0.001853183599330066,
+        2190.7276159673565,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "gradient_infinity_norm": 2190.7276159673565,
+      "boundary_flags": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "attempts": [
+        {
+          "success": true,
+          "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+          "nfev": 80,
+          "nit": 73,
+          "nll": 10339.31031691118
+        }
+      ]
+    },
+    {
+      "start": 6,
+      "start_kind": "prescribed_positive",
+      "start_eta_ell_psi": [
+        1.0,
+        10.000000000000002,
+        10.000000000000002
+      ],
+      "success": true,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "nll": 10339.310311003666,
+      "nit": 52,
+      "nfev": 60,
+      "seconds": 81.05537247657776,
+      "parameters": [
+        -3.7357329603346963,
+        0.023160634781728615,
+        0.8529227352165639,
+        -6.0279778954345575,
+        1.1046402713144914,
+        -0.19022980601507306,
+        0.8271738971417486,
+        1.8021171345981633,
+        0.0,
+        4.605170185988092,
+        -3.1780538303479458,
+        0.0
+      ],
+      "eta": 0.0,
+      "ell0_km": 100.00000000000004,
+      "psi_days": 0.041666666666666664,
+      "sigma0_km": 0.8267691155946786,
+      "gradient": [
+        0.00983691434987577,
+        -0.00206248431592182,
+        -0.006969864736333875,
+        -0.00394245129754367,
+        0.03541504658460326,
+        -0.001311394754822004,
+        0.01814179664436466,
+        -0.003983863867674131,
+        1.8391318166973303,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "gradient_infinity_norm": 1.8391318166973303,
+      "boundary_flags": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true
+      ],
+      "attempts": [
+        {
+          "success": true,
+          "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+          "nfev": 60,
+          "nit": 52,
+          "nll": 10339.310311003666
+        }
+      ]
+    },
+    {
+      "start": 7,
+      "start_kind": "grid_positive_sensitivity",
+      "start_eta_ell_psi": [
+        4.75314218382485e-05,
+        4.999999999999999,
+        90.0
+      ],
+      "success": true,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "nll": 10339.31031210824,
+      "nit": 91,
+      "nfev": 98,
+      "seconds": 96.44970345497131,
+      "parameters": [
+        -3.7358178362424828,
+        0.023273092934610176,
+        0.8529309032019846,
+        -6.028062373187088,
+        1.104637681546542,
+        -0.1900368120559395,
+        0.8271207514127902,
+        1.802208744584365,
+        0.0,
+        1.6424149441080331,
+        4.500413040024746,
+        1.5780835641164819
+      ],
+      "eta": 0.0,
+      "ell0_km": 5.167634002940664,
+      "psi_days": 90.05431965827316,
+      "sigma0_km": 0.8269286924377746,
+      "gradient": [
+        -0.012978199191707063,
+        0.004351000076591616,
+        -0.007459751679220972,
+        -0.0064609376566622245,
+        0.06231720067398783,
+        0.018123096065757238,
+        0.008690267818924013,
+        -0.003016346627664035,
+        3810.4875112459868,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "gradient_infinity_norm": 3810.4875112459868,
+      "boundary_flags": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "attempts": [
+        {
+          "success": true,
+          "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+          "nfev": 98,
+          "nit": 91,
+          "nll": 10339.31031210824
+        }
+      ]
+    }
+  ],
+  "selected": {
+    "start": -1,
+    "start_kind": "exact_nested_null",
+    "start_eta_ell_psi": [
+      0.0,
+      19.999999999999996,
+      4.999999999999999
+    ],
+    "success": true,
+    "message": "exact eta=0 candidate retained",
+    "nll": 10381.284356005803,
+    "nit": 0,
+    "nfev": 1,
+    "seconds": 0.0,
+    "parameters": [
+      -3.704712193639026,
+      0.0035706594877672653,
+      0.830841994926543,
+      -6.01535634338414,
+      1.1073754210941875,
+      0.6931471805599453,
+      0.7210302180706085,
+      2.9031627455908633,
+      0.0,
+      2.995732273553991,
+      1.6094379124341003,
+      1.7269388197455344
+    ],
+    "eta": 0.0,
+    "ell0_km": 19.999999999999996,
+    "psi_days": 4.999999999999999,
+    "sigma0_km": 2.0,
+    "gradient": [
+      0.00038463517552145277,
+      0.00041577251603966414,
+      -0.0006080399166421557,
+      3.2716248782094226e-05,
+      0.001806288209536433,
+      88.26779187836397,
+      0.0009393619918869334,
+      -0.00018638161855122348,
+      3562.8977054698216,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "gradient_infinity_norm": 3562.8977054698216,
+    "boundary_flags": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false
+    ],
+    "attempts": [],
+    "nested_null": true,
+    "eta_tolerance_collapsed": true
+  },
+  "selected_by_exact_nested_null": true,
+  "training_nll_gain": 0.0,
+  "training_selected_eta": 0.0,
+  "test": {
+    "scores": [
+      {
+        "seed": 20261250,
+        "null": {
+          "ground_point": -782.5979985876936,
+          "exposure": 82.55087853055787,
+          "uninhibited_exposure": 82.55087853055787,
+          "attenuation_deficit": 0.0,
+          "nll": 865.1488771182514
+        },
+        "same_backbone_null": {
+          "ground_point": -782.5979985876936,
+          "exposure": 82.55087853055787,
+          "uninhibited_exposure": 82.55087853055787,
+          "attenuation_deficit": 0.0,
+          "nll": 865.1488771182514
+        },
+        "inhibited": {
+          "ground_point": -782.5979985876936,
+          "exposure": 82.55087853055787,
+          "uninhibited_exposure": 82.55087853055787,
+          "attenuation_deficit": 0.0,
+          "nll": 865.1488771182514
+        },
+        "gain_total": 0.0,
+        "gain_attenuation": 0.0,
+        "nuisance_gain": 0.0,
+        "null_joint": -860.3532111530249,
+        "inhibited_joint": -860.3532111530249
+      },
+      {
+        "seed": 20261251,
+        "null": {
+          "ground_point": -782.5979985876936,
+          "exposure": 82.55087853055787,
+          "uninhibited_exposure": 82.55087853055787,
+          "attenuation_deficit": 0.0,
+          "nll": 865.1488771182514
+        },
+        "same_backbone_null": {
+          "ground_point": -782.5979985876936,
+          "exposure": 82.55087853055787,
+          "uninhibited_exposure": 82.55087853055787,
+          "attenuation_deficit": 0.0,
+          "nll": 865.1488771182514
+        },
+        "inhibited": {
+          "ground_point": -782.5979985876936,
+          "exposure": 82.55087853055787,
+          "uninhibited_exposure": 82.55087853055787,
+          "attenuation_deficit": 0.0,
+          "nll": 865.1488771182514
+        },
+        "gain_total": 0.0,
+        "gain_attenuation": 0.0,
+        "nuisance_gain": 0.0,
+        "null_joint": -860.3532111530249,
+        "inhibited_joint": -860.3532111530249
+      },
+      {
+        "seed": 20261252,
+        "null": {
+          "ground_point": -782.5979985876936,
+          "exposure": 82.55087853055787,
+          "uninhibited_exposure": 82.55087853055787,
+          "attenuation_deficit": 0.0,
+          "nll": 865.1488771182514
+        },
+        "same_backbone_null": {
+          "ground_point": -782.5979985876936,
+          "exposure": 82.55087853055787,
+          "uninhibited_exposure": 82.55087853055787,
+          "attenuation_deficit": 0.0,
+          "nll": 865.1488771182514
+        },
+        "inhibited": {
+          "ground_point": -782.5979985876936,
+          "exposure": 82.55087853055787,
+          "uninhibited_exposure": 82.55087853055787,
+          "attenuation_deficit": 0.0,
+          "nll": 865.1488771182514
+        },
+        "gain_total": 0.0,
+        "gain_attenuation": 0.0,
+        "nuisance_gain": 0.0,
+        "null_joint": -860.3532111530249,
+        "inhibited_joint": -860.3532111530249
+      },
+      {
+        "seed": 20261253,
+        "null": {
+          "ground_point": -782.5979985876936,
+          "exposure": 82.55087853055787,
+          "uninhibited_exposure": 82.55087853055787,
+          "attenuation_deficit": 0.0,
+          "nll": 865.1488771182514
+        },
+        "same_backbone_null": {
+          "ground_point": -782.5979985876936,
+          "exposure": 82.55087853055787,
+          "uninhibited_exposure": 82.55087853055787,
+          "attenuation_deficit": 0.0,
+          "nll": 865.1488771182514
+        },
+        "inhibited": {
+          "ground_point": -782.5979985876936,
+          "exposure": 82.55087853055787,
+          "uninhibited_exposure": 82.55087853055787,
+          "attenuation_deficit": 0.0,
+          "nll": 865.1488771182514
+        },
+        "gain_total": 0.0,
+        "gain_attenuation": 0.0,
+        "nuisance_gain": 0.0,
+        "null_joint": -860.3532111530249,
+        "inhibited_joint": -860.3532111530249
+      }
+    ],
+    "gain_mean": 0.0,
+    "gain_standard_error": 0.0,
+    "gain_sd": 0.0,
+    "attenuation_gain_mean": 0.0,
+    "attenuation_gain_standard_error": 0.0,
+    "attenuation_gain_sd": 0.0,
+    "block_intervals": {
+      "90": {
+        "blocks": {
+          "block_days": 90,
+          "edges": [
+            14610.0,
+            14700.0,
+            14790.0,
+            14880.0,
+            14970.0,
+            15060.0,
+            15150.0,
+            15240.0,
+            15330.0,
+            15420.0,
+            15510.0,
+            15600.0,
+            15690.0,
+            15780.0,
+            15870.0,
+            15960.0,
+            16050.0,
+            16140.0,
+            16230.0,
+            16320.0,
+            16410.0,
+            16436.0
+          ],
+          "event_blocks": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "exposure_blocks": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "block_scores": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "total": 0.0
+        },
+        "resample": {
+          "total": 0.0,
+          "blocks": 21,
+          "positive_blocks": 0,
+          "ci95_total": [
+            0.0,
+            0.0
+          ],
+          "paired_sign_permutation_p": 1.0,
+          "sign_test_p": 1.0,
+          "replicates": 49999,
+          "seed": 20261111
+        }
+      },
+      "180": {
+        "blocks": {
+          "block_days": 180,
+          "edges": [
+            14610.0,
+            14790.0,
+            14970.0,
+            15150.0,
+            15330.0,
+            15510.0,
+            15690.0,
+            15870.0,
+            16050.0,
+            16230.0,
+            16410.0,
+            16436.0
+          ],
+          "event_blocks": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "exposure_blocks": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "block_scores": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "total": 0.0
+        },
+        "resample": {
+          "total": 0.0,
+          "blocks": 11,
+          "positive_blocks": 0,
+          "ci95_total": [
+            0.0,
+            0.0
+          ],
+          "paired_sign_permutation_p": 1.0,
+          "sign_test_p": 1.0,
+          "replicates": 49999,
+          "seed": 20261111
+        }
+      },
+      "365": {
+        "blocks": {
+          "block_days": 365,
+          "edges": [
+            14610.0,
+            14975.0,
+            15340.0,
+            15705.0,
+            16070.0,
+            16435.0,
+            16436.0
+          ],
+          "event_blocks": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "exposure_blocks": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "block_scores": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "total": 0.0
+        },
+        "resample": {
+          "total": 0.0,
+          "blocks": 6,
+          "positive_blocks": 0,
+          "ci95_total": [
+            0.0,
+            0.0
+          ],
+          "paired_sign_permutation_p": 1.0,
+          "sign_test_p": 1.0,
+          "replicates": 49999,
+          "seed": 20261111
+        }
+      },
+      "closure_error": 0.0,
+      "gain_total": 0.0,
+      "gain_attenuation": 0.0,
+      "nuisance_gain": 0.0
+    },
+    "mark_logscore": 4.795665965226561,
+    "test_power": 16,
+    "note": "exact nested eta=0 state; held-out contrast is identically zero, no test quadrature required"
+  },
+  "elapsed_seconds": 1059.8053290843964
+}

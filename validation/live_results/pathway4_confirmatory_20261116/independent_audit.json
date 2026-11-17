@@ -1,0 +1,576 @@
+{
+  "schema": "pathway4_independent_audit_v1",
+  "passed": true,
+  "protocol_sha256": "32e0403db9180d9c909ba1a7a8aef1260525a58652dff2cf4cbd7b9f3812f64a",
+  "checks": [
+    {
+      "name": "protocol_hash_pin",
+      "passed": true,
+      "detail": {
+        "protocol_sha256": "32e0403db9180d9c909ba1a7a8aef1260525a58652dff2cf4cbd7b9f3812f64a",
+        "pin": "32e0403db9180d9c909ba1a7a8aef1260525a58652dff2cf4cbd7b9f3812f64a"
+      }
+    },
+    {
+      "name": "fit_seal_protocol_hash",
+      "passed": true,
+      "detail": {
+        "seal": "32e0403db9180d9c909ba1a7a8aef1260525a58652dff2cf4cbd7b9f3812f64a"
+      }
+    },
+    {
+      "name": "fit_seal_manifest",
+      "passed": true,
+      "detail": {
+        "error": null,
+        "files": 21,
+        "manifest_sha256": "06aa8df56f5e9af650d8c6aeb2f0ff15ed60e4a25ca87d90d408aca600e20dcf"
+      }
+    },
+    {
+      "name": "fit_source_pins",
+      "passed": true,
+      "detail": {
+        "problems": [],
+        "sources": {
+          "model.py": {
+            "current": "b481c18f6684ae4fb64f8e1a04bff46c08ecc14f97eaf4d77865b01ef190369d",
+            "protocol": "b481c18f6684ae4fb64f8e1a04bff46c08ecc14f97eaf4d77865b01ef190369d",
+            "fit_seal": "b481c18f6684ae4fb64f8e1a04bff46c08ecc14f97eaf4d77865b01ef190369d"
+          },
+          "geometry.py": {
+            "current": "38acdbdc8333e219af968f24f79265f6673201f741b7444602c2bf9837935d1f",
+            "protocol": "38acdbdc8333e219af968f24f79265f6673201f741b7444602c2bf9837935d1f",
+            "fit_seal": "38acdbdc8333e219af968f24f79265f6673201f741b7444602c2bf9837935d1f"
+          },
+          "data.py": {
+            "current": "efeb1075013ad909932e05bb95b19faf79ce8b5fdf58d4d019f92710343bf7ee",
+            "protocol": "efeb1075013ad909932e05bb95b19faf79ce8b5fdf58d4d019f92710343bf7ee",
+            "fit_seal": "efeb1075013ad909932e05bb95b19faf79ce8b5fdf58d4d019f92710343bf7ee"
+          },
+          "fit.py": {
+            "current": "8ae5d90eb708da72e288cd54c895c7209e008df7d52df3d97472cd1657fe7cff",
+            "protocol": "8ae5d90eb708da72e288cd54c895c7209e008df7d52df3d97472cd1657fe7cff",
+            "fit_seal": "8ae5d90eb708da72e288cd54c895c7209e008df7d52df3d97472cd1657fe7cff"
+          },
+          "pipeline.py": {
+            "current": "06c7010a7fd3b146c32f148f4f43cc5618d8a1602399ff34392cffd0d80440cd",
+            "protocol": "06c7010a7fd3b146c32f148f4f43cc5618d8a1602399ff34392cffd0d80440cd",
+            "fit_seal": "06c7010a7fd3b146c32f148f4f43cc5618d8a1602399ff34392cffd0d80440cd"
+          },
+          "run_nz.py": {
+            "current": "4efe480c14ef55bed8388d27f36702913ca29551a1be3e32b72ca066a69447a8",
+            "protocol": "4efe480c14ef55bed8388d27f36702913ca29551a1be3e32b72ca066a69447a8",
+            "fit_seal": "4efe480c14ef55bed8388d27f36702913ca29551a1be3e32b72ca066a69447a8"
+          },
+          "run_jma.py": {
+            "current": "52c34656909bcfec4de5193a361d2550a82dd5b37eb9a996e635daa921523f63",
+            "protocol": "52c34656909bcfec4de5193a361d2550a82dd5b37eb9a996e635daa921523f63",
+            "fit_seal": "52c34656909bcfec4de5193a361d2550a82dd5b37eb9a996e635daa921523f63"
+          }
+        }
+      }
+    },
+    {
+      "name": "protocol_precedes_every_fit",
+      "passed": true,
+      "detail": {
+        "protocol_created": "2026-11-16T18:22:26.881029+00:00",
+        "earliest_fit": "2026-11-16T18:22:43.720405+00:00",
+        "superseded_protocol_present": true,
+        "superseded_fits_present": true,
+        "note": "The superseded first freeze and its pre-scoring NZ fits are retained as an audit trail; no NZ/Japan test score was read before the operative freeze."
+      }
+    },
+    {
+      "name": "fit_sources_never_read_test_scores",
+      "passed": true,
+      "detail": {
+        "forbidden": [
+          "nz_test_view",
+          "jma_test_view",
+          "nz_archived",
+          "jma_archived",
+          "nz_mark_score",
+          "jma_mark_score"
+        ],
+        "hits": {
+          "run_nz.py": [],
+          "run_jma.py": [],
+          "pipeline.py": [],
+          "fit.py": [],
+          "model.py": []
+        }
+      }
+    },
+    {
+      "name": "fit_artifact_protocol_conformance",
+      "passed": true,
+      "detail": {
+        "problems": [],
+        "files": 21
+      }
+    },
+    {
+      "name": "common_measure_identity",
+      "passed": true,
+      "detail": {
+        "maximum_relative_error": 0.0,
+        "families": {
+          "NZ_fold_0": {
+            "parent_time": true,
+            "parent_excess": true,
+            "parent_xy": true,
+            "parent_fertility": true,
+            "event_time": true,
+            "event_excess": true,
+            "event_xy": true,
+            "event_cell": true,
+            "rectangles": true,
+            "reference_pi": true,
+            "kde_training_xy": true
+          },
+          "NZ_fold_1": {
+            "parent_time": true,
+            "parent_excess": true,
+            "parent_xy": true,
+            "parent_fertility": true,
+            "event_time": true,
+            "event_excess": true,
+            "event_xy": true,
+            "event_cell": true,
+            "rectangles": true,
+            "reference_pi": true,
+            "kde_training_xy": true
+          },
+          "NZ_fold_2": {
+            "parent_time": true,
+            "parent_excess": true,
+            "parent_xy": true,
+            "parent_fertility": true,
+            "event_time": true,
+            "event_excess": true,
+            "event_xy": true,
+            "event_cell": true,
+            "rectangles": true,
+            "reference_pi": true,
+            "kde_training_xy": true
+          },
+          "JMA_fold_0": {
+            "parent_time": true,
+            "parent_xy": true,
+            "parent_K": true,
+            "parent_cell": true,
+            "parent_fertility": true,
+            "parent_exposure_lo": true,
+            "parent_exposure_hi": true,
+            "event_time": true,
+            "event_xy": true,
+            "event_K": true,
+            "event_cell": true,
+            "event_x": true,
+            "rectangles": true,
+            "reference_pi": true,
+            "kde_training_xy": true
+          },
+          "JMA_fold_1": {
+            "parent_time": true,
+            "parent_xy": true,
+            "parent_K": true,
+            "parent_cell": true,
+            "parent_fertility": true,
+            "parent_exposure_lo": true,
+            "parent_exposure_hi": true,
+            "event_time": true,
+            "event_xy": true,
+            "event_K": true,
+            "event_cell": true,
+            "event_x": true,
+            "rectangles": true,
+            "reference_pi": true,
+            "kde_training_xy": true
+          },
+          "JMA_fold_2": {
+            "parent_time": true,
+            "parent_xy": true,
+            "parent_K": true,
+            "parent_cell": true,
+            "parent_fertility": true,
+            "parent_exposure_lo": true,
+            "parent_exposure_hi": true,
+            "event_time": true,
+            "event_xy": true,
+            "event_K": true,
+            "event_cell": true,
+            "event_x": true,
+            "rectangles": true,
+            "reference_pi": true,
+            "kde_training_xy": true
+          }
+        }
+      }
+    },
+    {
+      "name": "archived_score_replay",
+      "passed": true,
+      "detail": {
+        "maximum_absolute_delta": 7.275957614183426e-11,
+        "deltas": {
+          "NZ_fold_0_timing": 5.684341886080802e-14,
+          "NZ_fold_0_location": 2.7284841053187847e-12,
+          "NZ_fold_0_joint": 3.637978807091713e-12,
+          "NZ_fold_0_mark": 0.0,
+          "NZ_fold_1_timing": 5.684341886080802e-14,
+          "NZ_fold_1_location": 0.0,
+          "NZ_fold_1_joint": 0.0,
+          "NZ_fold_1_mark": 0.0,
+          "NZ_fold_2_timing": 5.684341886080802e-14,
+          "NZ_fold_2_location": 0.0,
+          "NZ_fold_2_joint": 0.0,
+          "NZ_fold_2_mark": 0.0,
+          "JMA_fold_0_timing": 1.1368683772161603e-13,
+          "JMA_fold_0_location": 2.1827872842550278e-11,
+          "JMA_fold_0_joint": 2.2737367544323206e-11,
+          "JMA_fold_0_mark": 2.2737367544323206e-13,
+          "JMA_fold_1_timing": 1.1368683772161603e-13,
+          "JMA_fold_1_location": 5.9117155615240335e-12,
+          "JMA_fold_1_joint": 5.4569682106375694e-12,
+          "JMA_fold_1_mark": 4.547473508864641e-13,
+          "JMA_fold_2_timing": 1.7053025658242404e-13,
+          "JMA_fold_2_location": 7.275957614183426e-11,
+          "JMA_fold_2_joint": 7.275957614183426e-11,
+          "JMA_fold_2_mark": 4.547473508864641e-13,
+          "CA_fold_0_training_nll": 0.0,
+          "CA_fold_0_test_joint": 0.0,
+          "CA_fold_0_mark": 0.0,
+          "CA_fold_1_training_nll": 0.0,
+          "CA_fold_1_test_joint": 0.0,
+          "CA_fold_1_mark": 0.0,
+          "CA_fold_2_training_nll": 0.0,
+          "CA_fold_2_test_joint": 0.0,
+          "CA_fold_2_mark": 0.0
+        }
+      }
+    },
+    {
+      "name": "rectangle_mass_vs_independent_quadrature",
+      "passed": true,
+      "detail": {
+        "maximum_relative_error": 3.757001191624222e-12
+      }
+    },
+    {
+      "name": "analytic_gradients",
+      "passed": true,
+      "detail": {
+        "maximum_relative_error": 5.248223604592539e-07,
+        "cases": [
+          {
+            "region": "NZ",
+            "normalization": "plane",
+            "coordinate": 0,
+            "analytic": -11.605070229054462,
+            "finite_difference": -11.605070085352054,
+            "relative_error": 1.2382726440967312e-08
+          },
+          {
+            "region": "NZ",
+            "normalization": "plane",
+            "coordinate": 1,
+            "analytic": 9.386934332325026,
+            "finite_difference": 9.38693483476527,
+            "relative_error": 5.3525485466877186e-08
+          },
+          {
+            "region": "NZ",
+            "normalization": "plane",
+            "coordinate": 2,
+            "analytic": -6.167813921488005,
+            "finite_difference": -6.167813353386009,
+            "relative_error": 9.21075206266384e-08
+          },
+          {
+            "region": "NZ",
+            "normalization": "plane",
+            "coordinate": 3,
+            "analytic": 0.03916745940686073,
+            "finite_difference": 0.03916693458450027,
+            "relative_error": 5.248223604592539e-07
+          },
+          {
+            "region": "NZ",
+            "normalization": "plane",
+            "coordinate": 4,
+            "analytic": -0.6622621456837408,
+            "finite_difference": -0.6622622095164843,
+            "relative_error": 6.383274353538582e-08
+          },
+          {
+            "region": "NZ",
+            "normalization": "plane",
+            "coordinate": 5,
+            "analytic": 0.2082041484083832,
+            "finite_difference": 0.20820425561396405,
+            "relative_error": 1.0720558085708376e-07
+          },
+          {
+            "region": "NZ",
+            "normalization": "plane",
+            "coordinate": 6,
+            "analytic": 0.22751925870885126,
+            "finite_difference": 0.22751919459551573,
+            "relative_error": 6.411333552946985e-08
+          },
+          {
+            "region": "NZ",
+            "normalization": "plane",
+            "coordinate": 7,
+            "analytic": 1.874277007863558,
+            "finite_difference": 1.874276676971931,
+            "relative_error": 1.765436400360493e-07
+          },
+          {
+            "region": "NZ",
+            "normalization": "rect",
+            "coordinate": 0,
+            "analytic": -11.491388515618155,
+            "finite_difference": -11.491388704598648,
+            "relative_error": 1.6445400841818054e-08
+          },
+          {
+            "region": "NZ",
+            "normalization": "rect",
+            "coordinate": 1,
+            "analytic": 9.344921457881654,
+            "finite_difference": 9.34492118176422,
+            "relative_error": 2.954732603382658e-08
+          },
+          {
+            "region": "NZ",
+            "normalization": "rect",
+            "coordinate": 2,
+            "analytic": -0.571497245086789,
+            "finite_difference": -0.5714973667636514,
+            "relative_error": 1.2167686236352893e-07
+          },
+          {
+            "region": "NZ",
+            "normalization": "rect",
+            "coordinate": 3,
+            "analytic": -0.02073567976047075,
+            "finite_difference": -0.020736024453071877,
+            "relative_error": 3.4469260112857114e-07
+          },
+          {
+            "region": "NZ",
+            "normalization": "rect",
+            "coordinate": 4,
+            "analytic": 0.8554386220026089,
+            "finite_difference": 0.8554384294257034,
+            "relative_error": 1.9257690553331486e-07
+          },
+          {
+            "region": "NZ",
+            "normalization": "rect",
+            "coordinate": 5,
+            "analytic": 0.9189339788586641,
+            "finite_difference": 0.9189343472826295,
+            "relative_error": 3.6842396533565136e-07
+          },
+          {
+            "region": "NZ",
+            "normalization": "rect",
+            "coordinate": 6,
+            "analytic": 1.5306248930750268,
+            "finite_difference": 1.5306250134017318,
+            "relative_error": 7.861279150066253e-08
+          },
+          {
+            "region": "NZ",
+            "normalization": "rect",
+            "coordinate": 7,
+            "analytic": -0.30266869928729107,
+            "finite_difference": -0.30266846806625836,
+            "relative_error": 2.3122103270933891e-07
+          },
+          {
+            "region": "JMA",
+            "normalization": "plane",
+            "coordinate": 0,
+            "analytic": -90.27080921064339,
+            "finite_difference": -90.27080886880867,
+            "relative_error": 3.786769220452246e-09
+          },
+          {
+            "region": "JMA",
+            "normalization": "plane",
+            "coordinate": 1,
+            "analytic": 55.60177264908637,
+            "finite_difference": 55.601773055968806,
+            "relative_error": 7.3177960510410474e-09
+          },
+          {
+            "region": "JMA",
+            "normalization": "plane",
+            "coordinate": 2,
+            "analytic": -757.0857365375946,
+            "finite_difference": -757.085736040608,
+            "relative_error": 6.56446865810316e-10
+          },
+          {
+            "region": "JMA",
+            "normalization": "plane",
+            "coordinate": 3,
+            "analytic": 52.33677768528928,
+            "finite_difference": 52.33677802607417,
+            "relative_error": 6.511384660856803e-09
+          },
+          {
+            "region": "JMA",
+            "normalization": "plane",
+            "coordinate": 4,
+            "analytic": -341.74717142966324,
+            "finite_difference": -341.7471689317608,
+            "relative_error": 7.309211726601014e-09
+          },
+          {
+            "region": "JMA",
+            "normalization": "plane",
+            "coordinate": 5,
+            "analytic": 843.372496827079,
+            "finite_difference": 843.3724997303216,
+            "relative_error": 3.4424202872373686e-09
+          },
+          {
+            "region": "JMA",
+            "normalization": "plane",
+            "coordinate": 6,
+            "analytic": 951.8669628916527,
+            "finite_difference": 951.8669612589292,
+            "relative_error": 1.7152854241534817e-09
+          },
+          {
+            "region": "JMA",
+            "normalization": "plane",
+            "coordinate": 7,
+            "analytic": -921.0429210219879,
+            "finite_difference": -921.0429216182092,
+            "relative_error": 6.473328051452827e-10
+          },
+          {
+            "region": "JMA",
+            "normalization": "rect",
+            "coordinate": 0,
+            "analytic": -79.16143011193287,
+            "finite_difference": -79.16143113106955,
+            "relative_error": 1.2874156782333016e-08
+          },
+          {
+            "region": "JMA",
+            "normalization": "rect",
+            "coordinate": 1,
+            "analytic": 52.09386794223576,
+            "finite_difference": 52.09386654314585,
+            "relative_error": 2.685709476821496e-08
+          },
+          {
+            "region": "JMA",
+            "normalization": "rect",
+            "coordinate": 2,
+            "analytic": -631.1542885601802,
+            "finite_difference": -631.1542892944999,
+            "relative_error": 1.163455066699091e-09
+          },
+          {
+            "region": "JMA",
+            "normalization": "rect",
+            "coordinate": 3,
+            "analytic": 44.29155296892784,
+            "finite_difference": 44.29155342222657,
+            "relative_error": 1.0234428392309604e-08
+          },
+          {
+            "region": "JMA",
+            "normalization": "rect",
+            "coordinate": 4,
+            "analytic": -238.18547993657523,
+            "finite_difference": -238.1854792474769,
+            "relative_error": 2.893116451927808e-09
+          },
+          {
+            "region": "JMA",
+            "normalization": "rect",
+            "coordinate": 5,
+            "analytic": 817.2292240492112,
+            "finite_difference": 817.2292218660004,
+            "relative_error": 2.671479077486436e-09
+          },
+          {
+            "region": "JMA",
+            "normalization": "rect",
+            "coordinate": 6,
+            "analytic": 939.3611621987211,
+            "finite_difference": 939.3611617269926,
+            "relative_error": 5.021801471928061e-10
+          },
+          {
+            "region": "JMA",
+            "normalization": "rect",
+            "coordinate": 7,
+            "analytic": -821.7081494894558,
+            "finite_difference": -821.7081522161607,
+            "relative_error": 3.3183374157290184e-09
+          }
+        ]
+      }
+    },
+    {
+      "name": "sealed_authority_custody",
+      "passed": true,
+      "detail": {
+        "files": 788,
+        "verified": 788,
+        "missing": [],
+        "changed": [],
+        "snapshot_sha256": "f06df5e13e4b9a18d0027ae4b6b44b2952772bdd3cc39884b3b873e0f4742852"
+      }
+    },
+    {
+      "name": "california_conditional_calibration",
+      "passed": true,
+      "detail": {
+        "problems": [],
+        "folds": {
+          "0": {
+            "n_test": 79,
+            "count_two_sided": 0.004004004004004004,
+            "quadratic": 0.01,
+            "fisher": 0.002,
+            "gap_ks_observed": 0.22362044196011677,
+            "spatial_ks_observed": 0.14605087773672515,
+            "model_test_joint_delta": 0.0
+          },
+          "1": {
+            "n_test": 167,
+            "count_two_sided": 0.45245245245245247,
+            "quadratic": 0.004,
+            "fisher": 0.006,
+            "gap_ks_observed": 0.15131859774286144,
+            "spatial_ks_observed": 0.12844376033284471,
+            "model_test_joint_delta": 0.0
+          },
+          "2": {
+            "n_test": 69,
+            "count_two_sided": 0.26626626626626626,
+            "quadratic": 0.101,
+            "fisher": 0.166,
+            "gap_ks_observed": 0.09186137658187987,
+            "spatial_ks_observed": 0.09753246974331065,
+            "model_test_joint_delta": 0.0
+          }
+        }
+      }
+    }
+  ],
+  "scope": "numerical replay, common-measure identity, rectangular mass, analytic gradients, fit sealing, single-pass source separation, sealed-authority custody and conditional-calibration replay"
+}

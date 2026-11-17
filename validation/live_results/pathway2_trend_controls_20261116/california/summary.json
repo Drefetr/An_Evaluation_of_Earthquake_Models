@@ -1,0 +1,1118 @@
+{
+  "schema": "pathway2_california_epplus_v1",
+  "passed": true,
+  "source": "experiments/pathway2_trend_parameterization/run_ca.py",
+  "source_sha256": "c6608b1e510a2d663e0d590c54cdd13e443bac18b200466812da703abd9022d0",
+  "cases": [
+    "california_fold_0",
+    "california_fold_1",
+    "california_fold_2"
+  ],
+  "laws": [
+    "T0",
+    "T1",
+    "T2",
+    "T3"
+  ],
+  "note": "Interior EP+ baseline. T0 uses the sealed interior null state. T1/T2/T3 refit the null backbone under the law with the frozen background weights and Sobol proposal. The attenuation profile fixes (ell0,psi) on a three-point grid and selects eta on the training window.",
+  "rows": [
+    {
+      "case": "california_fold_0",
+      "mark_logscore": 6.45747525373892,
+      "t0": {
+        "null_nll": 1087.115458441063,
+        "null_joint": -1080.6579831873241,
+        "original_ep_joint": -1094.7037060792363,
+        "sealed_epplus_joint": -1080.6579831873241,
+        "epplus_gain": 14.045722891912192,
+        "evaluator_offset": 0.0
+      },
+      "laws": {
+        "T1": {
+          "law": {
+            "kind": "T1",
+            "T0": 16436.0,
+            "origin": 10957.0,
+            "train_start": 1826.0,
+            "d_fixed": null,
+            "orth_c": null,
+            "orth_k": null
+          },
+          "projection": null,
+          "null": {
+            "success": true,
+            "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+            "nll": 8144.723269466089,
+            "parameters": [
+              -3.6972836372500333,
+              0.0,
+              0.9657260815719735,
+              -5.485130240107079,
+              1.1029498031389013,
+              -0.18732750305595416,
+              0.7674363773212634,
+              1.6916531855217174,
+              0.0,
+              2.995732273553991,
+              1.6094379124341003,
+              1.7269388197455344
+            ],
+            "nit": 22,
+            "nfev": 27,
+            "indices": [
+              0,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          },
+          "test": {
+            "nll": 1080.9222206618022,
+            "joint": -1074.4647454080632,
+            "epplus_gain": 20.238960671173118
+          },
+          "best_profile": {
+            "profile": {
+              "ell0_km": 10.0,
+              "psi_days": 2.0,
+              "eta_hat": 0.0,
+              "training_gain": 0.0,
+              "slope": -11983.003418335647,
+              "event_sum": 57630.997374397775,
+              "exposure_integral": 45647.99395606213
+            },
+            "heldout": {
+              "delta_test": 0.0,
+              "event_sum": 0.0,
+              "exposure": 0.0
+            }
+          },
+          "profiles": [
+            {
+              "profile": {
+                "ell0_km": 10.0,
+                "psi_days": 2.0,
+                "eta_hat": 0.0,
+                "training_gain": 0.0,
+                "slope": -11983.003418335647,
+                "event_sum": 57630.997374397775,
+                "exposure_integral": 45647.99395606213
+              },
+              "heldout": {
+                "delta_test": 0.0,
+                "event_sum": 0.0,
+                "exposure": 0.0
+              }
+            },
+            {
+              "profile": {
+                "ell0_km": 20.0,
+                "psi_days": 5.0,
+                "eta_hat": 0.0,
+                "training_gain": 0.0,
+                "slope": -16979.71542614048,
+                "event_sum": 77994.54508920797,
+                "exposure_integral": 61014.82966306749
+              },
+              "heldout": {
+                "delta_test": 0.0,
+                "event_sum": 0.0,
+                "exposure": 0.0
+              }
+            },
+            {
+              "profile": {
+                "ell0_km": 50.0,
+                "psi_days": 30.0,
+                "eta_hat": 0.0,
+                "training_gain": 0.0,
+                "slope": -24231.39438634312,
+                "event_sum": 119548.62663597307,
+                "exposure_integral": 95317.23224962995
+              },
+              "heldout": {
+                "delta_test": 0.0,
+                "event_sum": 0.0,
+                "exposure": 0.0
+              }
+            }
+          ]
+        },
+        "T2": {
+          "law": {
+            "kind": "T2",
+            "T0": 16436.0,
+            "origin": 10957.0,
+            "train_start": 1826.0,
+            "d_fixed": null,
+            "orth_c": null,
+            "orth_k": null
+          },
+          "projection": null,
+          "null": {
+            "success": true,
+            "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+            "nll": 8140.899450406666,
+            "parameters": [
+              -3.364685309084288,
+              0.6937085992462425,
+              0.9585732149560199,
+              -5.475644178496649,
+              1.1042695006609327,
+              -0.19440340133084527,
+              0.7695975454137886,
+              1.6886728740368497,
+              0.0,
+              2.995732273553991,
+              1.6094379124341003,
+              1.7269388197455344
+            ],
+            "nit": 23,
+            "nfev": 30,
+            "indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          },
+          "test": {
+            "nll": 1085.496419707381,
+            "joint": -1079.038944453642,
+            "epplus_gain": 15.664761625594338
+          },
+          "best_profile": {
+            "profile": {
+              "ell0_km": 10.0,
+              "psi_days": 2.0,
+              "eta_hat": 0.0,
+              "training_gain": 0.0,
+              "slope": -11971.197664199455,
+              "event_sum": 57630.997374397775,
+              "exposure_integral": 45659.79971019832
+            },
+            "heldout": {
+              "delta_test": 0.0,
+              "event_sum": 0.0,
+              "exposure": 0.0
+            }
+          },
+          "profiles": [
+            {
+              "profile": {
+                "ell0_km": 10.0,
+                "psi_days": 2.0,
+                "eta_hat": 0.0,
+                "training_gain": 0.0,
+                "slope": -11971.197664199455,
+                "event_sum": 57630.997374397775,
+                "exposure_integral": 45659.79971019832
+              },
+              "heldout": {
+                "delta_test": 0.0,
+                "event_sum": 0.0,
+                "exposure": 0.0
+              }
+            },
+            {
+              "profile": {
+                "ell0_km": 20.0,
+                "psi_days": 5.0,
+                "eta_hat": 0.0,
+                "training_gain": 0.0,
+                "slope": -16976.953224850644,
+                "event_sum": 77994.54508920797,
+                "exposure_integral": 61017.591864357324
+              },
+              "heldout": {
+                "delta_test": 0.0,
+                "event_sum": 0.0,
+                "exposure": 0.0
+              }
+            },
+            {
+              "profile": {
+                "ell0_km": 50.0,
+                "psi_days": 30.0,
+                "eta_hat": 0.0,
+                "training_gain": 0.0,
+                "slope": -24298.624244656618,
+                "event_sum": 119548.62663597307,
+                "exposure_integral": 95250.00239131645
+              },
+              "heldout": {
+                "delta_test": 0.0,
+                "event_sum": 0.0,
+                "exposure": 0.0
+              }
+            }
+          ]
+        },
+        "T3": {
+          "law": {
+            "kind": "T3",
+            "T0": 16436.0,
+            "origin": 10957.0,
+            "train_start": 1826.0,
+            "d_fixed": null,
+            "orth_c": 61.99547863185573,
+            "orth_k": -60.87804678080587
+          },
+          "projection": {
+            "kind": "training-event OLS",
+            "c": 61.99547863185573,
+            "k": -60.87804678080587,
+            "event_c": 61.99547863185573,
+            "event_k": -60.87804678080587,
+            "node_c": 0.5177765339559233,
+            "node_k": 0.07283421753287375,
+            "event_correlation_before": -0.1382977466206264,
+            "event_correlation_after": -7.799405812550517e-17
+          },
+          "null": {
+            "success": true,
+            "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+            "nll": 8140.899450406666,
+            "parameters": [
+              -3.364685309084288,
+              0.6937085992462425,
+              0.9585732149560199,
+              -5.475644178496649,
+              1.1042695006609327,
+              -0.19440340133084527,
+              0.7695975454137886,
+              1.6886728740368497,
+              0.0,
+              2.995732273553991,
+              1.6094379124341003,
+              1.7269388197455344
+            ],
+            "nit": 23,
+            "nfev": 30,
+            "indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          },
+          "test": {
+            "nll": 1085.496419707381,
+            "joint": -1079.038944453642,
+            "epplus_gain": 15.664761625594338
+          },
+          "best_profile": {
+            "profile": {
+              "ell0_km": 10.0,
+              "psi_days": 2.0,
+              "eta_hat": 0.0,
+              "training_gain": 0.0,
+              "slope": -12200.036575571772,
+              "event_sum": -20363.54771481019,
+              "exposure_integral": -32563.58429038196
+            },
+            "heldout": {
+              "delta_test": 0.0,
+              "event_sum": 0.0,
+              "exposure": 0.0
+            }
+          },
+          "profiles": [
+            {
+              "profile": {
+                "ell0_km": 10.0,
+                "psi_days": 2.0,
+                "eta_hat": 0.0,
+                "training_gain": 0.0,
+                "slope": -12200.036575571772,
+                "event_sum": -20363.54771481019,
+                "exposure_integral": -32563.58429038196
+              },
+              "heldout": {
+                "delta_test": 0.0,
+                "event_sum": 0.0,
+                "exposure": 0.0
+              }
+            },
+            {
+              "profile": {
+                "ell0_km": 20.0,
+                "psi_days": 5.0,
+                "eta_hat": 0.0,
+                "training_gain": 0.0,
+                "slope": -17205.792136222968,
+                "event_sum": 8.185452315956354e-12,
+                "exposure_integral": -17205.79213622296
+              },
+              "heldout": {
+                "delta_test": 0.0,
+                "event_sum": 0.0,
+                "exposure": 0.0
+              }
+            },
+            {
+              "profile": {
+                "ell0_km": 50.0,
+                "psi_days": 30.0,
+                "eta_hat": 0.0,
+                "training_gain": 0.0,
+                "slope": -24527.463156028953,
+                "event_sum": 41554.081546765105,
+                "exposure_integral": 17026.618390736152
+              },
+              "heldout": {
+                "delta_test": 0.0,
+                "event_sum": 0.0,
+                "exposure": 0.0
+              }
+            }
+          ]
+        }
+      },
+      "wall_seconds": 130.86167645454407
+    },
+    {
+      "case": "california_fold_1",
+      "mark_logscore": -15.039036621081294,
+      "t0": {
+        "null_nll": 1151.9737188465776,
+        "null_joint": -1167.012755467659,
+        "original_ep_joint": -1205.3776968240666,
+        "sealed_epplus_joint": -1167.012755467659,
+        "epplus_gain": 38.3649413564076,
+        "evaluator_offset": 0.0
+      },
+      "laws": {
+        "T1": {
+          "law": {
+            "kind": "T1",
+            "T0": 16436.0,
+            "origin": 12783.0,
+            "train_start": 1826.0,
+            "d_fixed": null,
+            "orth_c": null,
+            "orth_k": null
+          },
+          "projection": null,
+          "null": {
+            "success": true,
+            "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+            "nll": 9208.201421994369,
+            "parameters": [
+              -3.7150446423244645,
+              0.0,
+              0.9387068532111099,
+              -5.50017645049297,
+              1.0993504816910582,
+              -0.17029576228942925,
+              0.7723162056437888,
+              1.7136464364811437,
+              0.0,
+              2.995732273553991,
+              1.6094379124341003,
+              1.7269388197455344
+            ],
+            "nit": 15,
+            "nfev": 20,
+            "indices": [
+              0,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          },
+          "test": {
+            "nll": 1147.6562295423034,
+            "joint": -1162.6952661633848,
+            "epplus_gain": 42.6824306606818
+          },
+          "best_profile": {
+            "profile": {
+              "ell0_km": 10.0,
+              "psi_days": 2.0,
+              "eta_hat": 0.0,
+              "training_gain": 0.0,
+              "slope": -12356.815399442465,
+              "event_sum": 57835.70119722925,
+              "exposure_integral": 45478.88579778679
+            },
+            "heldout": {
+              "delta_test": 0.0,
+              "event_sum": 0.0,
+              "exposure": 0.0
+            }
+          },
+          "profiles": [
+            {
+              "profile": {
+                "ell0_km": 10.0,
+                "psi_days": 2.0,
+                "eta_hat": 0.0,
+                "training_gain": 0.0,
+                "slope": -12356.815399442465,
+                "event_sum": 57835.70119722925,
+                "exposure_integral": 45478.88579778679
+              },
+              "heldout": {
+                "delta_test": 0.0,
+                "event_sum": 0.0,
+                "exposure": 0.0
+              }
+            },
+            {
+              "profile": {
+                "ell0_km": 20.0,
+                "psi_days": 5.0,
+                "eta_hat": 0.0,
+                "training_gain": 0.0,
+                "slope": -17555.53996474501,
+                "event_sum": 78227.2228861371,
+                "exposure_integral": 60671.68292139209
+              },
+              "heldout": {
+                "delta_test": 0.0,
+                "event_sum": 0.0,
+                "exposure": 0.0
+              }
+            },
+            {
+              "profile": {
+                "ell0_km": 50.0,
+                "psi_days": 30.0,
+                "eta_hat": 0.0,
+                "training_gain": 0.0,
+                "slope": -25264.212497006156,
+                "event_sum": 119854.27464186162,
+                "exposure_integral": 94590.06214485546
+              },
+              "heldout": {
+                "delta_test": 0.0,
+                "event_sum": 0.0,
+                "exposure": 0.0
+              }
+            }
+          ]
+        },
+        "T2": {
+          "law": {
+            "kind": "T2",
+            "T0": 16436.0,
+            "origin": 12783.0,
+            "train_start": 1826.0,
+            "d_fixed": null,
+            "orth_c": null,
+            "orth_k": null
+          },
+          "projection": null,
+          "null": {
+            "success": true,
+            "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+            "nll": 9206.591112987306,
+            "parameters": [
+              -3.512244437670612,
+              0.41085466377094415,
+              0.9318813124039347,
+              -5.489601154009495,
+              1.1006684115608005,
+              -0.17538054742649853,
+              0.7732294435283803,
+              1.7103417723868282,
+              0.0,
+              2.995732273553991,
+              1.6094379124341003,
+              1.7269388197455344
+            ],
+            "nit": 42,
+            "nfev": 48,
+            "indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          },
+          "test": {
+            "nll": 1151.2592476976201,
+            "joint": -1166.2982843187015,
+            "epplus_gain": 39.0794125053651
+          },
+          "best_profile": {
+            "profile": {
+              "ell0_km": 10.0,
+              "psi_days": 2.0,
+              "eta_hat": 0.0,
+              "training_gain": 0.0,
+              "slope": -12325.89356239549,
+              "event_sum": 57835.70119722925,
+              "exposure_integral": 45509.80763483376
+            },
+            "heldout": {
+              "delta_test": 0.0,
+              "event_sum": 0.0,
+              "exposure": 0.0
+            }
+          },
+          "profiles": [
+            {
+              "profile": {
+                "ell0_km": 10.0,
+                "psi_days": 2.0,
+                "eta_hat": 0.0,
+                "training_gain": 0.0,
+                "slope": -12325.89356239549,
+                "event_sum": 57835.70119722925,
+                "exposure_integral": 45509.80763483376
+              },
+              "heldout": {
+                "delta_test": 0.0,
+                "event_sum": 0.0,
+                "exposure": 0.0
+              }
+            },
+            {
+              "profile": {
+                "ell0_km": 20.0,
+                "psi_days": 5.0,
+                "eta_hat": 0.0,
+                "training_gain": 0.0,
+                "slope": -17530.516788017558,
+                "event_sum": 78227.2228861371,
+                "exposure_integral": 60696.70609811954
+              },
+              "heldout": {
+                "delta_test": 0.0,
+                "event_sum": 0.0,
+                "exposure": 0.0
+              }
+            },
+            {
+              "profile": {
+                "ell0_km": 50.0,
+                "psi_days": 30.0,
+                "eta_hat": 0.0,
+                "training_gain": 0.0,
+                "slope": -25322.7231924925,
+                "event_sum": 119854.27464186162,
+                "exposure_integral": 94531.55144936912
+              },
+              "heldout": {
+                "delta_test": 0.0,
+                "event_sum": 0.0,
+                "exposure": 0.0
+              }
+            }
+          ]
+        },
+        "T3": {
+          "law": {
+            "kind": "T3",
+            "T0": 16436.0,
+            "origin": 12783.0,
+            "train_start": 1826.0,
+            "d_fixed": null,
+            "orth_c": 31.650377632728137,
+            "orth_k": -98.6307092193681
+          },
+          "projection": {
+            "kind": "training-event OLS",
+            "c": 31.650377632728137,
+            "k": -98.6307092193681,
+            "event_c": 31.650377632728137,
+            "event_k": -98.6307092193681,
+            "node_c": 0.05132705666239262,
+            "node_k": -0.7971229134587843,
+            "event_correlation_before": -0.20905538437377447,
+            "event_correlation_after": 2.041131210435598e-17
+          },
+          "null": {
+            "success": true,
+            "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+            "nll": 9206.591112987306,
+            "parameters": [
+              -3.512244437670612,
+              0.41085466377094415,
+              0.9318813124039347,
+              -5.489601154009495,
+              1.1006684115608005,
+              -0.17538054742649853,
+              0.7732294435283803,
+              1.7103417723868282,
+              0.0,
+              2.995732273553991,
+              1.6094379124341003,
+              1.7269388197455344
+            ],
+            "nit": 42,
+            "nfev": 48,
+            "indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          },
+          "test": {
+            "nll": 1151.2592476976201,
+            "joint": -1166.2982843187015,
+            "epplus_gain": 39.0794125053651
+          },
+          "best_profile": {
+            "profile": {
+              "ell0_km": 10.0,
+              "psi_days": 2.0,
+              "eta_hat": 0.0,
+              "training_gain": 0.0,
+              "slope": -12132.366422889641,
+              "event_sum": -20391.521688907833,
+              "exposure_integral": -32523.888111797474
+            },
+            "heldout": {
+              "delta_test": 0.0,
+              "event_sum": 0.0,
+              "exposure": 0.0
+            }
+          },
+          "profiles": [
+            {
+              "profile": {
+                "ell0_km": 10.0,
+                "psi_days": 2.0,
+                "eta_hat": 0.0,
+                "training_gain": 0.0,
+                "slope": -12132.366422889641,
+                "event_sum": -20391.521688907833,
+                "exposure_integral": -32523.888111797474
+              },
+              "heldout": {
+                "delta_test": 0.0,
+                "event_sum": 0.0,
+                "exposure": 0.0
+              }
+            },
+            {
+              "profile": {
+                "ell0_km": 20.0,
+                "psi_days": 5.0,
+                "eta_hat": 0.0,
+                "training_gain": 0.0,
+                "slope": -17336.989648511706,
+                "event_sum": 9.094947017729282e-12,
+                "exposure_integral": -17336.989648511695
+              },
+              "heldout": {
+                "delta_test": 0.0,
+                "event_sum": 0.0,
+                "exposure": 0.0
+              }
+            },
+            {
+              "profile": {
+                "ell0_km": 50.0,
+                "psi_days": 30.0,
+                "eta_hat": 0.0,
+                "training_gain": 0.0,
+                "slope": -25129.196052986637,
+                "event_sum": 41627.05175572451,
+                "exposure_integral": 16497.855702737874
+              },
+              "heldout": {
+                "delta_test": 0.0,
+                "event_sum": 0.0,
+                "exposure": 0.0
+              }
+            }
+          ]
+        }
+      },
+      "wall_seconds": 149.29424262046814
+    },
+    {
+      "case": "california_fold_2",
+      "mark_logscore": 4.795665965226561,
+      "t0": {
+        "null_nll": 864.7862112932186,
+        "null_joint": -859.990545327992,
+        "original_ep_joint": -884.63561506365,
+        "sealed_epplus_joint": -859.990545327992,
+        "epplus_gain": 24.645069735658012,
+        "evaluator_offset": 0.0
+      },
+      "laws": {
+        "T1": {
+          "law": {
+            "kind": "T1",
+            "T0": 16436.0,
+            "origin": 14610.0,
+            "train_start": 1826.0,
+            "d_fixed": null,
+            "orth_c": null,
+            "orth_k": null
+          },
+          "projection": null,
+          "null": {
+            "success": true,
+            "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+            "nll": 10336.182737369762,
+            "parameters": [
+              -3.7333512953921213,
+              0.0,
+              0.8497599412989835,
+              -6.021041721198804,
+              1.1054278205184271,
+              -0.19667726642105915,
+              0.8264878004961336,
+              1.7945464820416268,
+              0.0,
+              2.995732273553991,
+              1.6094379124341003,
+              1.7269388197455344
+            ],
+            "nit": 7,
+            "nfev": 10,
+            "indices": [
+              0,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          },
+          "test": {
+            "nll": 864.6136777871733,
+            "joint": -859.8180118219467,
+            "epplus_gain": 24.817603241703296
+          },
+          "best_profile": {
+            "profile": {
+              "ell0_km": 10.0,
+              "psi_days": 2.0,
+              "eta_hat": 0.0,
+              "training_gain": 0.0,
+              "slope": -15637.46066144696,
+              "event_sum": 79089.98141547145,
+              "exposure_integral": 63452.520754024496
+            },
+            "heldout": {
+              "delta_test": 0.0,
+              "event_sum": 0.0,
+              "exposure": 0.0
+            }
+          },
+          "profiles": [
+            {
+              "profile": {
+                "ell0_km": 10.0,
+                "psi_days": 2.0,
+                "eta_hat": 0.0,
+                "training_gain": 0.0,
+                "slope": -15637.46066144696,
+                "event_sum": 79089.98141547145,
+                "exposure_integral": 63452.520754024496
+              },
+              "heldout": {
+                "delta_test": 0.0,
+                "event_sum": 0.0,
+                "exposure": 0.0
+              }
+            },
+            {
+              "profile": {
+                "ell0_km": 20.0,
+                "psi_days": 5.0,
+                "eta_hat": 0.0,
+                "training_gain": 0.0,
+                "slope": -21206.873983058846,
+                "event_sum": 104639.08881278882,
+                "exposure_integral": 83432.21482972997
+              },
+              "heldout": {
+                "delta_test": 0.0,
+                "event_sum": 0.0,
+                "exposure": 0.0
+              }
+            },
+            {
+              "profile": {
+                "ell0_km": 50.0,
+                "psi_days": 30.0,
+                "eta_hat": 0.0,
+                "training_gain": 0.0,
+                "slope": -28868.981034594734,
+                "event_sum": 154456.51133827397,
+                "exposure_integral": 125587.53030367923
+              },
+              "heldout": {
+                "delta_test": 0.0,
+                "event_sum": 0.0,
+                "exposure": 0.0
+              }
+            }
+          ]
+        },
+        "T2": {
+          "law": {
+            "kind": "T2",
+            "T0": 16436.0,
+            "origin": 14610.0,
+            "train_start": 1826.0,
+            "d_fixed": null,
+            "orth_c": null,
+            "orth_k": null
+          },
+          "projection": null,
+          "null": {
+            "success": true,
+            "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+            "nll": 10336.15750826665,
+            "parameters": [
+              -3.709569787861286,
+              0.04736563651999229,
+              0.849465244078464,
+              -6.021454113125697,
+              1.1054822935171524,
+              -0.19686220981333385,
+              0.8264162357125027,
+              1.794197126996059,
+              0.0,
+              2.995732273553991,
+              1.6094379124341003,
+              1.7269388197455344
+            ],
+            "nit": 15,
+            "nfev": 22,
+            "indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          },
+          "test": {
+            "nll": 864.7703925442615,
+            "joint": -859.974726579035,
+            "epplus_gain": 24.660888484615043
+          },
+          "best_profile": {
+            "profile": {
+              "ell0_km": 10.0,
+              "psi_days": 2.0,
+              "eta_hat": 0.0,
+              "training_gain": 0.0,
+              "slope": -15635.323306162638,
+              "event_sum": 79089.98141547145,
+              "exposure_integral": 63454.65810930882
+            },
+            "heldout": {
+              "delta_test": 0.0,
+              "event_sum": 0.0,
+              "exposure": 0.0
+            }
+          },
+          "profiles": [
+            {
+              "profile": {
+                "ell0_km": 10.0,
+                "psi_days": 2.0,
+                "eta_hat": 0.0,
+                "training_gain": 0.0,
+                "slope": -15635.323306162638,
+                "event_sum": 79089.98141547145,
+                "exposure_integral": 63454.65810930882
+              },
+              "heldout": {
+                "delta_test": 0.0,
+                "event_sum": 0.0,
+                "exposure": 0.0
+              }
+            },
+            {
+              "profile": {
+                "ell0_km": 20.0,
+                "psi_days": 5.0,
+                "eta_hat": 0.0,
+                "training_gain": 0.0,
+                "slope": -21206.750318766615,
+                "event_sum": 104639.08881278882,
+                "exposure_integral": 83432.3384940222
+              },
+              "heldout": {
+                "delta_test": 0.0,
+                "event_sum": 0.0,
+                "exposure": 0.0
+              }
+            },
+            {
+              "profile": {
+                "ell0_km": 50.0,
+                "psi_days": 30.0,
+                "eta_hat": 0.0,
+                "training_gain": 0.0,
+                "slope": -28877.878904829384,
+                "event_sum": 154456.51133827397,
+                "exposure_integral": 125578.63243344458
+              },
+              "heldout": {
+                "delta_test": 0.0,
+                "event_sum": 0.0,
+                "exposure": 0.0
+              }
+            }
+          ]
+        },
+        "T3": {
+          "law": {
+            "kind": "T3",
+            "T0": 16436.0,
+            "origin": 14610.0,
+            "train_start": 1826.0,
+            "d_fixed": null,
+            "orth_c": 94.18572910580929,
+            "orth_k": -2.332811453399075
+          },
+          "projection": {
+            "kind": "training-event OLS",
+            "c": 94.18572910580929,
+            "k": -2.332811453399075,
+            "event_c": 94.18572910580929,
+            "event_k": -2.332811453399075,
+            "node_c": 0.3789278064023287,
+            "node_k": 0.03493659968454364,
+            "event_correlation_before": -0.005045641450345394,
+            "event_correlation_after": 6.115102423344498e-17
+          },
+          "null": {
+            "success": true,
+            "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+            "nll": 10336.15750826665,
+            "parameters": [
+              -3.709569787861286,
+              0.04736563651999229,
+              0.849465244078464,
+              -6.021454113125697,
+              1.1054822935171524,
+              -0.19686220981333385,
+              0.8264162357125027,
+              1.794197126996059,
+              0.0,
+              2.995732273553991,
+              1.6094379124341003,
+              1.7269388197455344
+            ],
+            "nit": 15,
+            "nfev": 22,
+            "indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          },
+          "test": {
+            "nll": 864.7703925442615,
+            "joint": -859.974726579035,
+            "epplus_gain": 24.660888484615043
+          },
+          "best_profile": {
+            "profile": {
+              "ell0_km": 10.0,
+              "psi_days": 2.0,
+              "eta_hat": 0.0,
+              "training_gain": 0.0,
+              "slope": -15748.215226182954,
+              "event_sum": -25549.10739731737,
+              "exposure_integral": -41297.322623500324
+            },
+            "heldout": {
+              "delta_test": 0.0,
+              "event_sum": 0.0,
+              "exposure": 0.0
+            }
+          },
+          "profiles": [
+            {
+              "profile": {
+                "ell0_km": 10.0,
+                "psi_days": 2.0,
+                "eta_hat": 0.0,
+                "training_gain": 0.0,
+                "slope": -15748.215226182954,
+                "event_sum": -25549.10739731737,
+                "exposure_integral": -41297.322623500324
+              },
+              "heldout": {
+                "delta_test": 0.0,
+                "event_sum": 0.0,
+                "exposure": 0.0
+              }
+            },
+            {
+              "profile": {
+                "ell0_km": 20.0,
+                "psi_days": 5.0,
+                "eta_hat": 0.0,
+                "training_gain": 0.0,
+                "slope": -21319.642238786957,
+                "event_sum": 3.637978807091713e-12,
+                "exposure_integral": -21319.642238786953
+              },
+              "heldout": {
+                "delta_test": 0.0,
+                "event_sum": 0.0,
+                "exposure": 0.0
+              }
+            },
+            {
+              "profile": {
+                "ell0_km": 50.0,
+                "psi_days": 30.0,
+                "eta_hat": 0.0,
+                "training_gain": 0.0,
+                "slope": -28990.77082484972,
+                "event_sum": 49817.422525485155,
+                "exposure_integral": 20826.651700635437
+              },
+              "heldout": {
+                "delta_test": 0.0,
+                "event_sum": 0.0,
+                "exposure": 0.0
+              }
+            }
+          ]
+        }
+      },
+      "wall_seconds": 151.91634345054626
+    }
+  ]
+}

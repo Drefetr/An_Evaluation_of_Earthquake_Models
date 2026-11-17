@@ -1,0 +1,91 @@
+{
+  "schema": "pathway2_trend_parameterization_protocol_v1",
+  "baseline_commit": "a9d7f9d",
+  "handoff": "refinement_pathway_handoffs/PATHWAY_2_STATIONARY_AND_CLAMPED_TREND_HANDOFF.md",
+  "scope": "Forecast-admissible background clocks applied symmetrically to uninhibited and inhibited arms on sealed S8, S04B, New Zealand and California EP+ inputs. No new histories and no sealed authority writes.",
+  "laws": {
+    "T0": {
+      "clock": "2*t/T0 - 1",
+      "free_trend": true,
+      "role": "archived comparator"
+    },
+    "T1": {
+      "clock": "0",
+      "free_trend": false,
+      "role": "stationary background, d=0"
+    },
+    "T2": {
+      "clock": "min(0, (t - T_origin)/(T_origin - T_start))",
+      "free_trend": true,
+      "role": "training-centred and origin-clamped; zero future clock"
+    },
+    "T3": {
+      "clock": "T2 clock",
+      "depletion": "R(t,z) = G(t,z) - (c + k*x_clamp(t)); (c,k) OLS on the training event depletion field, frozen for test; the exposure-node projection is recorded as a sensitivity",
+      "free_trend": true,
+      "role": "training-orthogonalised depletion plus origin-clamped background"
+    },
+    "DSTAR": {
+      "clock": "T0 clock",
+      "d": 0.2,
+      "role": "conditional true-trend control; S8 only; T0-fitted (n, log c, p) held fixed in both arms"
+    }
+  },
+  "s8": {
+    "histories": "reproduction/synthetic/s8_moderate_total/*.npz",
+    "seeds": [410821, 410840],
+    "train": [30.0, 395.0],
+    "test": [395.0, 760.0],
+    "true_theta": [-1.3862943611198906, 0.2, 0.35, -2.995732273553991, 1.3, 0.4, 2.70805020110221, 1.6094379124341003],
+    "arms": ["T0", "T1", "T2", "T3", "DSTAR"],
+    "fitting": "T1/T2/T3: eight starts, archived shared/inhibition bounds, L-BFGS-B with a failure-only extended retry. T1 uses four shared and seven inhibited coordinates. DSTAR: three intercept starts and four (eta, log ell, log psi) starts with the T0 trigger nuisance fixed.",
+    "scoring": "Archived adaptive order-8/16 plan for selected states; fast 20/24 order-32 sensitivity. T0 replay against the sealed per-seed null and inhibited held-out scores.",
+    "primary_contrasts": [
+      "overfitting_loss = l_test(a_hat, theta_star,0,-a) - l_test(theta_hat_0)",
+      "estimation_loss = l_test(theta_hat_1) - l_test(theta_star)",
+      "heldout_gain = l_test(theta_hat_1) - l_test(theta_hat_0)"
+    ]
+  },
+  "s04b": {
+    "histories": "reproduction/synthetic/s04b/histories/*.npz",
+    "regimes": [4, 5, 6, 7],
+    "N": 80,
+    "train": [30.0, 395.0],
+    "test": [395.0, 760.0],
+    "laws": ["T0", "T1", "T2"],
+    "fitting": "Four starts: the archived T0 solution adapted to the law plus three protocol templates. Archived shared/inhibition bounds. L-BFGS-B, maxiter 100, failure-only extended retry.",
+    "scoring": "Fast 20/24 order-32 plan for selected states. T0 comparator is the sealed per-case LI+ total gain.",
+    "primary_output": "Regime-level held-out gain quantiles and the fate of the archived T0 negative tail."
+  },
+  "nz": {
+    "catalogue": "reproduction/nzca/expected/geonet_M5_shallow_1960_2026.csv",
+    "authority": "validation/authorities/e7fbc4fa4fae3da4_observed.json",
+    "folds": ["fold_50", "fold_65", "fold_80"],
+    "laws": ["T0", "T1", "T2", "T3"],
+    "fitting": "Archived per-fold trigger/stress kernels and productivity ratio fixed. T1 fits (a,n) and (a,n,eta); T2/T3 fit (a,d,n) and (a,d,n,eta). L-BFGS-B, order 32 predictive-history quadrature.",
+    "primary_output": "Three-fold shared-attenuation contrast totals and per-fold signed contrasts."
+  },
+  "california": {
+    "cases": ["california_fold_0", "california_fold_1", "california_fold_2"],
+    "baseline": "validation/live_results/track_b_controls_20261112/epplus_ablation/sigma0_relaxation.json (interior, plane)",
+    "laws": ["T0", "T1", "T2", "T3"],
+    "fitting": "Null backbone refit under each law with frozen interior background weights and the fixed Sobol proposal. T1 fits seven coordinates, T2/T3 fit eight. Three starts.",
+    "attenuation_profile": "Fixed (ell0, psi) grid (10,2), (20,5), (50,30) km/d; eta selected on the training profile; held-out total LI+ contrast at the selected eta.",
+    "primary_output": "Per-fold EP+ joint gain versus the sealed original-EP score and same-proposal paired changes against T0."
+  },
+  "guardrails": {
+    "sealed_paths": "validation/authorities/ and all pre-existing validation/live_results/ subdirectories",
+    "write_scope": "experiments/pathway2_trend_parameterization/ and validation/live_results/pathway2_trend_controls_20261116/",
+    "paired_arms": "The same background law is applied to the uninhibited and inhibited arms in every comparator.",
+    "audit": "experiments/pathway2_trend_parameterization/audit_pathway2.py"
+  },
+  "outputs": [
+    "validation/live_results/pathway2_trend_controls_20261116/s8/summary.json",
+    "validation/live_results/pathway2_trend_controls_20261116/s04b/summary.json",
+    "validation/live_results/pathway2_trend_controls_20261116/nz/summary.json",
+    "validation/live_results/pathway2_trend_controls_20261116/california/summary.json",
+    "validation/live_results/pathway2_trend_controls_20261116/summary.json",
+    "validation/live_results/pathway2_trend_controls_20261116/independent_audit.json",
+    "docs/reviews/pathway2_trend_report_20261116.md"
+  ]
+}

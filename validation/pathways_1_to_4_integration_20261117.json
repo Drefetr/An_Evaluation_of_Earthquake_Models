@@ -1,0 +1,167 @@
+{
+  "schema": "pathways_1_to_4_integration_acceptance_v1",
+  "created_utc": "2026-11-17T07:17:30.321506+00:00",
+  "baseline_commit": "a9d7f9d",
+  "scope": "Integration of the four Pathway 1-4 packages into the unified monograph, plain-language companion, website, claim ledger and review slices. No new fitting or simulation campaign was run during integration.",
+  "status": "accepted",
+  "passed": true,
+  "pathways": {
+    "1": {
+      "name": "annular attenuation",
+      "summary": "validation/live_results/pathway1_annular_20261116/summary.json",
+      "summary_sha256": "e8e0180fb0e1c762380bcc3d0b95361c72ea4fa6e4045aa9746d7d3cf521d7a8",
+      "independent_audit": "validation/live_results/pathway1_annular_20261116/independent_audit.json",
+      "independent_audit_sha256": "baaac5904ad8b559d32812528a97cf9cb6f750cd98a580e5b78f51af41a83e4e",
+      "audit_passed": true,
+      "audit_checks": 8,
+      "report": "docs/reviews/pathway1_annular_report_20261116.md",
+      "report_sha256": "6c30cb377557f5e72ea0991c0da8414bf96499c225901e05639bed37eea591e6"
+    },
+    "2": {
+      "name": "trend parameterization",
+      "summary": "validation/live_results/pathway2_trend_controls_20261116/summary.json",
+      "summary_sha256": "3506a1d61793bd18b25b998b3b96ef757c0f21b529d0c872f078a9b80a09319f",
+      "independent_audit": "validation/live_results/pathway2_trend_controls_20261116/independent_audit.json",
+      "independent_audit_sha256": "522df02464f6881555909dadd6386dd6b6104a2831880e636ae73dc7257dc25d",
+      "audit_passed": true,
+      "audit_checks": 11,
+      "report": "docs/reviews/pathway2_trend_report_20261116.md",
+      "report_sha256": "8b030e4912fb6be661d74a0a0861773c345324d730b59bfb78acf85fed49574a"
+    },
+    "3": {
+      "name": "low-dimensional attenuation",
+      "summary": "validation/live_results/pathway3_low_dim_20261116/summary.json",
+      "summary_sha256": "5bac83991d3b896f1fd85f1534307e7153a65650bb1cc3780b0d7066ffe43473",
+      "independent_audit": "validation/live_results/pathway3_low_dim_20261116/independent_audit.json",
+      "independent_audit_sha256": "a6228281770c1c28e769a0a67cb64ce1fea00b97a4592a048d03c54b7d5aae4c",
+      "audit_passed": true,
+      "audit_checks": 13,
+      "report": "docs/reviews/pathway3_low_dim_report_20261116.md",
+      "report_sha256": "71a349b0a2d9b1b88ef4095dedded9440198547c89a9a1148bafe247e53f19fb"
+    },
+    "4": {
+      "name": "single-pass confirmatory transfer",
+      "summary": "validation/live_results/pathway4_confirmatory_20261116/summary.json",
+      "summary_sha256": "3fbfd25cf9674fcde172a69a9c410c5b39fa040f8f60927a1029ce617c323cc3",
+      "independent_audit": "validation/live_results/pathway4_confirmatory_20261116/independent_audit.json",
+      "independent_audit_sha256": "c37b332febf1a61c762ae8a9fa6f1967a2ffdbc724f20e4b3a6f347434f7e37d",
+      "audit_passed": true,
+      "audit_checks": 13,
+      "report": "docs/reviews/pathway4_confirmatory_report_20261116.md",
+      "report_sha256": "642aa873e0c0dfb6f3d1bc52adb2a8612ab6e365c63cff5dc9b614e7291f93b8"
+    }
+  },
+  "sealed_authority_integrity": {
+    "snapshot": "validation/pathways_prechange_snapshot_20261117.json",
+    "snapshot_sha256": "f06df5e13e4b9a18d0027ae4b6b44b2952772bdd3cc39884b3b873e0f4742852",
+    "prechange_zip_sha256": "b062c6a3f1d02b05268f78c7cf62a1c392cb8891ead0b72bde1d110e0e7b6fc2",
+    "baseline_782_count": 782,
+    "baseline_782_verified": 782,
+    "slice7_audit_addition_count": 6,
+    "sealed_json_count": 788,
+    "missing": [],
+    "changed": [],
+    "unchanged": 788
+  },
+  "claim_reconciliation": {
+    "ledger": "validation/MASTER_CLAIM_LEDGER.json",
+    "ledger_sha256": "a2bcf24c0df104d4e24b2e0c027ecd2ff247b95baccd59f67f14d0984bfbb3c0",
+    "claims": 13848,
+    "pathway_bindings": 256,
+    "literal_manuscript_display_records": 13000,
+    "missing_declared_manuscript_displays": 0,
+    "distinct_authorities": 189,
+    "receipt_passed": true,
+    "receipt_release_ready": true
+  },
+  "paper_build": {
+    "engine": "Tectonic 0.17.0",
+    "exit_code": 0,
+    "pages": 262,
+    "pdf_sha256": "14c2c3e632530e43406aa710056c9e9f37b976f29c34820c900a2c4c4e5e5156",
+    "pdf_qa": {
+      "passed": true,
+      "overfull_boxes": 0,
+      "overfull_vertical_boxes": 0,
+      "undefined_cross_references": [],
+      "missing_bibliography_keys": [],
+      "missing_figures": [],
+      "missing_glyph_warnings": 0,
+      "replacement_characters": 0,
+      "edge_text_blocks": []
+    }
+  },
+  "companion_build": {
+    "pages": 13,
+    "pdf_sha256": "cf076de9a448ccf3217faee4c7b1383c3e17074f3d6f90499faaf09e5b23874b",
+    "html_sha256": "9b3681b5000475b15e279306b1bda6e7e8776aa87ef98c0b9b938acb8def7368"
+  },
+  "website_build": {
+    "installed": true,
+    "studies": 10,
+    "findings_data_sha256": "409a36ecd230fa7cdfc62fa7774d93bbbe0f4717afbdfc62c954c95bca1f6e2f",
+    "findings_html_sha256": "9d135609ed36ade425b28258599b8e2fe4870fed5837ea9ee95f23583ac0b279",
+    "document_metadata_sha256": "cb589df52744ce1482fc816011c9b086e6ac1cdb4a30a0e8ba591b42cb72890c"
+  },
+  "repository_manifest": {
+    "path": "MANIFEST.json",
+    "passed": true,
+    "discrepancies": 0,
+    "note": "The manifest is refreshed after this record is written; the final verify_repository run reports zero discrepancies on the resulting roster."
+  },
+  "review_slices": {
+    "exported": true,
+    "slices": 7,
+    "manifest": "../review_slices/manifest.json",
+    "note": "Slices 4, 5, 6 and 7 include the new chapters and Pathway authorities; PDF ranges match the 262-page monograph."
+  },
+  "checks": {
+    "check_mathematics": {
+      "exit_code": 0,
+      "subchecks_passed": true
+    },
+    "unit_tests": {
+      "tests": 918,
+      "result": "OK"
+    },
+    "regional_tests": {
+      "tests": 44,
+      "result": "OK"
+    },
+    "s02_tests": {
+      "tests": 6,
+      "result": "OK"
+    },
+    "regional_inputs": {
+      "passed": true,
+      "members": 6110
+    },
+    "s02_inputs": {
+      "passed": true,
+      "members": 1615
+    },
+    "historical_fits": {
+      "passed": true,
+      "archives": 2
+    },
+    "website_interactions": {
+      "passed": true,
+      "selector_combinations": 104
+    },
+    "verify_claims": {
+      "passed": true,
+      "failures": 0
+    },
+    "verify_repository": {
+      "passed": true,
+      "discrepancies": 0
+    }
+  },
+  "limitations": [
+    "Pathway 4 New Zealand targets are a reused archive cohort; the single-pass protocol removes adaptive procedure selection but not event reuse.",
+    "The Japan free-trend arm pins the productivity coordinate at its upper bound and one fold pins the trend at its lower bound; reported contrasts describe the fitted constrained procedure.",
+    "The California conditional calibration is within-origin and conditional on the fitted state; it does not integrate parameter uncertainty or form a joint cross-origin rejection.",
+    "The Pathway 1-4 synthetic and regional contrasts are procedure-level evidence, not physical stress-shadow measurements.",
+    "Pre-existing historical logs and native artifacts outside the Pathway 2/3 packages remain in the reviewed payload; only the new Pathway 2/3 compiler and run artifacts were moved to build/."
+  ]
+}

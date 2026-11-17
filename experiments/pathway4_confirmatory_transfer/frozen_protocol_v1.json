@@ -1,0 +1,232 @@
+{
+  "schema": "pathway4_frozen_protocol_v1",
+  "created_utc": "2026-11-16T18:22:26.881029+00:00",
+  "baseline_commit": "a9d7f9d1e32f73a96be196d7cfe14060106d9472",
+  "isolated_code": "experiments/pathway4_confirmatory_transfer/",
+  "isolated_results": "validation/live_results/pathway4_confirmatory_20261116/",
+  "guardrails": {
+    "sealed_authorities_byte_identical": true,
+    "protocol_precedes_every_nz_or_japan_test_score": true,
+    "no_parameter_or_bound_changed_after_test_inspection": true,
+    "common_measure_parity_target": 1e-08,
+    "single_pass_fit_then_seal_then_score": true
+  },
+  "sources": {
+    "__init__.py": "a223eaa475b050724e1cb17db12cdd22be6857d3f594c7458f17ed74f20b8840",
+    "audit_pathway4.py": "2be91c57ea6493f6b00cf3594bd8078abe6f1051442524c94c68d3c2a88a0b1f",
+    "build_summary.py": "a1812606fddfb2ea0b4101a8bdaf2a17a49c3162ed5593db336a2687be31b380",
+    "common.py": "425ff006069fc8850a652051cccbfb48897bd74e24a6089791d0e67cec872020",
+    "data.py": "efeb1075013ad909932e05bb95b19faf79ce8b5fdf58d4d019f92710343bf7ee",
+    "fit.py": "8ae5d90eb708da72e288cd54c895c7209e008df7d52df3d97472cd1657fe7cff",
+    "forecast.py": "d33ebd5049d6d1bc3b913cb41ec89e6f2e30114865eb8c42aad5403ccb859e74",
+    "freeze_protocol.py": "92e4c6996cf2820a66e53be81cc21e1d7c87d623713ed83a36db78cfd636d384",
+    "geometry.py": "38acdbdc8333e219af968f24f79265f6673201f741b7444602c2bf9837935d1f",
+    "make_report.py": "9e09d9bd2f45ff7aceb5f65b0aeac4a4ca40a979bd6ba83150f934a80c4e7270",
+    "model.py": "b481c18f6684ae4fb64f8e1a04bff46c08ecc14f97eaf4d77865b01ef190369d",
+    "pipeline.py": "06c7010a7fd3b146c32f148f4f43cc5618d8a1602399ff34392cffd0d80440cd",
+    "run_ca_calibration.py": "7d2d58e1c54550cf1b892a0779073dc2871ddfdf82428eb67b3a13deb97806cf",
+    "run_jma.py": "52c34656909bcfec4de5193a361d2550a82dd5b37eb9a996e635daa921523f63",
+    "run_nz.py": "4efe480c14ef55bed8388d27f36702913ca29551a1be3e32b72ca066a69447a8",
+    "score_jma.py": "92ce65e82b89653834f9aeb9a518e9a22b61c621aa71b7cbf932c98c394d72dd",
+    "score_nz.py": "59aa171721d262e35577dbad0f43c8179faa3d1edfe1d822a154aaeaa9a77e9b",
+    "scoring.py": "ec6b0c7424cfb226a9799a49f0be89fec0a957a0211866a44494f30d69a70240",
+    "seal_fits.py": "a8169484770b2e577f10161a517d445d97a109c23fa2b750651a29d83883876c"
+  },
+  "inputs": {
+    "s03_registry_sha256": "85cb731a4a536d9cf72c63a8d0c6d4a56e37b42791c4d80fd8be66854464bec3",
+    "s03_archive_sha256": "2ee01dc619c219a0408b9c3b12eb6bf38deb8ee331af85b7dbd39f8789ed82c9",
+    "jma_registry_sha256": "afd7652a296b0a16fd7c4998fbfa58e6479b9605cde59a5852a7f5d4528963ce",
+    "jma_archive_sha256": "fab4b5b5c33bc29adfd83821d31a92a73ae1b77134bf6ad341f2a07c6b0984a7",
+    "california_registry_sha256": "ffbc58f806c6d9db15d0c629a2c88c762936bae778ef28268e5b26588a346f99",
+    "california_archive_sha256": "0351ef78d64e926c299f716bb1c95b42368a4772eca0ef779bb5ce4b99c43ccb",
+    "california_archive_2_sha256": "3a9ccfc46b5d1f4121568d11ae7adf1392e67882f01df0990670db86668a06a9",
+    "california_interior_state_source": "validation/live_results/track_b_controls_20261112/epplus_ablation/sigma0_relaxation.json",
+    "california_interior_state_sha256": "68b277e36300965af0e37dda0a668c2132e9e679448e6295f8499868d8b81771",
+    "california_training_state_projection_sha256": "1d3bc83ae8d7de12e2c16310792ca6bbf2ca70e6e19310e4719475c7562a5f87"
+  },
+  "baseline_sealed_manifest": {
+    "files": 1479,
+    "sha256": "1029d382cfc4ec0391fab39aaad2ba6b7e2e4e8d41e3556a3a1fce87f25ba6aa"
+  },
+  "model": {
+    "intensity": "exp(a+d*x(t))*b(z) + n*sum_j kappa_j*h(t-t_j)*f(z-z_j; sigma_j,q)",
+    "trend_clock": "x(t)=2*t/T0-1; T0 is the archived catalogue horizon",
+    "background": "five-percent floor plus training immigrant-probability weighted elliptical KDE; five declustering steps; leave-self-out during training; final weights frozen",
+    "temporal_kernel": "h(u)=(p-1)/c*(1+u/c)**-p",
+    "spatial_kernel": "inverse power (1+r^2/sigma^2)**-q with sigma_j=sigma0*exp(alpha_s*(M_j-M0))",
+    "normalizations": {
+      "plane": "full-plane density; exact in-domain mass retained in the compensator",
+      "rect": "nine-cell union-normalised density; compensator integrates each parent to one"
+    },
+    "parameter_names": [
+      "a",
+      "d",
+      "n",
+      "log_c",
+      "p",
+      "log_sigma0",
+      "alpha_s",
+      "q",
+      "eta",
+      "log_ell0",
+      "log_psi",
+      "gamma"
+    ],
+    "bounds": {
+      "a": [
+        -12.0,
+        0.0
+      ],
+      "d": [
+        -2.0,
+        2.0
+      ],
+      "n": [
+        0.0,
+        0.98
+      ],
+      "log_c": [
+        -9.210340371976184,
+        2.995732273553991
+      ],
+      "p": [
+        1.01,
+        2.5
+      ],
+      "log_sigma0": [
+        -2.995732273553991,
+        4.605170185988092
+      ],
+      "alpha_s": [
+        0.0,
+        2.0
+      ],
+      "q": [
+        1.05,
+        3.0
+      ]
+    },
+    "starts": {
+      "generic": [
+        -3.5,
+        0.0,
+        0.6,
+        -4.605170185988091,
+        1.15,
+        1.6094379124341003,
+        0.5,
+        1.8
+      ],
+      "diffuse": [
+        -4.0,
+        0.2,
+        0.8,
+        -3.912023005428146,
+        1.2,
+        0.6931471805599453,
+        0.8,
+        2.2
+      ],
+      "region_archived_ep": "the archived EP selected (a,d,n) and temporal/spatial shape, with alpha_s=0"
+    },
+    "declustering_steps": 5,
+    "optimizer": "L-BFGS-B with analytic gradients; multi-start on the first training step; the exact nested null is always an eligible candidate"
+  },
+  "arms": {
+    "new_zealand": {
+      "cohort": "S03 NZ_fold_0/1/2; 203/155/254 = 612 targets",
+      "fits": [
+        [
+          "plane",
+          "T0"
+        ],
+        [
+          "plane",
+          "T1"
+        ],
+        [
+          "rect",
+          "T0"
+        ],
+        [
+          "rect",
+          "T1"
+        ]
+      ],
+      "background_floor": "uniform 0.05/area (California EP+ recipe)",
+      "attenuation": "plane arms only"
+    },
+    "japan": {
+      "cohort": "JMA fold_0/1/2; 469/348/460 = 1,277 targets",
+      "fits": [
+        [
+          "plane",
+          "T0"
+        ],
+        [
+          "plane",
+          "T1"
+        ],
+        [
+          "rect",
+          "T1"
+        ]
+      ],
+      "background_floor": "uniform 0.05/area (California EP+ recipe)"
+    },
+    "attenuation": {
+      "baseline_monotone": "mono kernel, (ell0,psi) in {(5,1),(15,5),(50,30)} km/d, gamma=0.75*log(10), one-dimensional eta profile on the frozen null backbone",
+      "refined": "ann2 kernel, Wells-Coppersmith ell_j=10**(-2.44+0.59*(M0+excess_j)) km, psi=5 d, gamma=0.75*log(10), one-dimensional eta profile",
+      "eta_bounds": [
+        0.0,
+        4.0
+      ],
+      "selection": "exact training eta=0 when the null slope is non-positive; otherwise the concave profile root",
+      "test_quadrature": "power 16, seeds 20261120 and 20261121"
+    }
+  },
+  "scoring": {
+    "components": {
+      "P": "sum of log space-time intensity at targets",
+      "E": "exact space-time compensator over the test window",
+      "timing": "sum(log temporal marginal) - E",
+      "location": "P - sum(log temporal marginal)",
+      "joint": "P - E + common mark score"
+    },
+    "common_marks": "archived continuous (NZ/CA) and reported-lattice (JMA) mark laws; the common mark score cancels in EP+ minus EP/OC contrasts",
+    "archived_comparators": {
+      "new_zealand": "S03 arm 1 = OC and arm 4 = EP; authority validation/authorities/*_m02_s03_nz_*_aggregate.json",
+      "japan": "primary_jma/JMA_fold_*/OC/full and EP/full, plus the nine annual partitions 2016-2024"
+    },
+    "contrast": "EP+ minus archived procedure on timing, location and joint; positive favours EP+"
+  },
+  "california_conditional_calibration": {
+    "frozen_states": "plane-normalised interior EP+ rows in sigma0_relaxation.json; training-side fields only",
+    "simulations_per_origin": 999,
+    "origins": [
+      "2011",
+      "2016",
+      "2021"
+    ],
+    "algorithm": "sequential branching: Background.sample immigrant thinning, Omori lags, magnitude-scaled inverse-power offspring, exponential GR marks",
+    "coordinates": [
+      "exposure",
+      "time_event_logsum",
+      "gap_ks",
+      "gap_serial",
+      "spatial_rosenblatt_ks_max",
+      "spatial_rosenblatt_cross_abs",
+      "location_dimensionless_log_mean",
+      "location_dimensionless_log_variance"
+    ],
+    "pooled_tests": "archived symmetric observed+999 quadratic and Fisher-type inclusive upper-rank statistics",
+    "spatial_cdf": "exact branch-split line integrals in y and the full-plane x-marginal CDF for the left strip; the audit records the approximation",
+    "archived_reference": "paper/source/chapters/12_s05_completed.tex Table tab:s05-completed"
+  },
+  "custody": {
+    "protocol_sha256": "pinned in frozen_protocol_v1.sha256",
+    "fit_seal": "validation/live_results/pathway4_confirmatory_20261116/fit_seal.json",
+    "audit": "experiments/pathway4_confirmatory_transfer/audit_pathway4.py",
+    "report": "docs/reviews/pathway4_confirmatory_report_20261116.md"
+  }
+}

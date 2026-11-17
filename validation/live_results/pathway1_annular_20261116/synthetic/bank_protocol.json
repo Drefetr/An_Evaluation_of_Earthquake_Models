@@ -1,0 +1,66 @@
+{
+  "schema": "pathway1_annular_synthetic_bank_protocol_v1",
+  "generator_source": "reproduction/synthetic/source/generator.py",
+  "generator_source_sha256": "b8bae982735b4fba26d450d93578c4d0b78ac33f7e33c691557b2bd8d4afcf43",
+  "seeds": [
+    411001,
+    411002,
+    411003,
+    411004,
+    411005,
+    411006,
+    411007,
+    411008,
+    411009,
+    411010,
+    411011,
+    411012,
+    411013,
+    411014,
+    411015,
+    411016,
+    411017,
+    411018,
+    411019,
+    411020
+  ],
+  "law": {
+    "a": -1.3862943611198906,
+    "d": 0.2,
+    "n": 0.35,
+    "c": 0.05,
+    "p": 1.3,
+    "eta": 0.18,
+    "ell_km": 15.0,
+    "psi_days": 5.0,
+    "sigma_km": 10.0,
+    "beta": 2.0,
+    "gamma": 1.7269388197455344
+  },
+  "windows": {
+    "train": [
+      30.0,
+      395.0
+    ],
+    "test": [
+      395.0,
+      760.0
+    ]
+  },
+  "kernel": "ann2 (16 v^2/(1+v)^4), unscaled ell_j = ell0",
+  "attenuation": "total intensity exp(-eta G), applied to immigrant and offspring candidates",
+  "target_match": "S8 moderate thinning 25-30% and about 95 test events",
+  "achieved": {
+    "mean_thinning": 0.2533656842572968,
+    "mean_test_events": 98.15,
+    "thinning_range": [
+      0.1885245901639344,
+      0.3694915254237288
+    ],
+    "test_event_range": [
+      79,
+      116
+    ]
+  },
+  "notes": "Only the attenuation stress kernel is replaced. The archived S8 generator source is imported read-only; the ann2 stress is injected at run time."
+}

@@ -1,0 +1,30 @@
+{
+  "schema": "pathway2_full_dstar_diagnostic_v1",
+  "note": "Exploratory unrestricted d=0.2 refits. These are not used in the headline S8 tables; they document why the reported DSTAR control is conditional on the archived T0 trigger nuisance. The unrestricted fit develops a p=2.5, n->0 ridge on several histories and produces a catastrophic held-out score.",
+  "cases": [
+    {
+      "seed": 410821,
+      "null": {
+        "training_nll": 924.8723972166065,
+        "test_joint": -1274.9759430985168,
+        "selected_p": 2.5,
+        "selected_n": 0.037701767164401434
+      },
+      "inhibited": {
+        "training_nll": 857.3504719318499,
+        "test_joint": -1488.0247096162807,
+        "selected_eta": 1.5054577555480144
+      },
+      "heldout_gain": -213.04876651776385
+    },
+    {
+      "seed": 410830,
+      "null": {
+        "training_nll": 744.83,
+        "test_joint": -1072.05,
+        "selected_p": 2.5,
+        "selected_n": 0.011
+      }
+    }
+  ]
+}
