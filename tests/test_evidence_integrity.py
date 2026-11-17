@@ -5,6 +5,7 @@ import importlib.util
 import io
 import json
 from pathlib import Path
+import subprocess
 import tempfile
 import unittest
 
@@ -127,6 +128,24 @@ class PublicPayload(unittest.TestCase):
             authority.write_text('{"altered": true}')
             self.assertFalse(payload.verify(root, write_manifest=True)['passed'])
             self.assertEqual(manifest, (root/'MANIFEST.json').read_bytes())
+
+    def test_payload_roster_matches_a_fresh_checkout(self):
+        script = Path(__file__).resolve().parents[1]/'scripts/verify_repository.py'
+        spec = importlib.util.spec_from_file_location('payload_roster_verifier', script)
+        payload = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(payload)
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            subprocess.run(['git', 'init', '-q', str(root)], check=True)
+            subprocess.run(['git', '-C', str(root), 'config', 'user.email', 'test@example.invalid'], check=True)
+            subprocess.run(['git', '-C', str(root), 'config', 'user.name', 'Test'], check=True)
+            (root/'.gitignore').write_text('*.log\n', encoding='utf-8')
+            (root/'tracked.txt').write_text('tracked\n', encoding='utf-8')
+            (root/'local.log').write_text('ignored artifact\n', encoding='utf-8')
+            subprocess.run(['git', '-C', str(root), 'add', '.gitignore', 'tracked.txt'], check=True)
+            found = {p.relative_to(root).as_posix() for p in payload.payload_files(root)}
+            self.assertIn('tracked.txt', found)
+            self.assertNotIn('local.log', found)
 
 
 if __name__ == '__main__':

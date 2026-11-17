@@ -7,6 +7,7 @@ import argparse
 import hashlib
 import json
 import os
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -17,7 +18,41 @@ def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def _git_payload_paths(root):
+    """Return tracked and untracked-but-not-ignored paths, or None outside Git.
+
+    The manifest must describe exactly what a fresh checkout contains.  Walking
+    the working tree directly also sees local, .gitignore-masked artifacts, so a
+    Windows refresh can bind files that never reach a Linux CI checkout.
+    """
+    try:
+        result = subprocess.run(
+            ['git', '-C', str(root), 'ls-files', '--cached', '--others',
+             '--exclude-standard', '-z'],
+            check=True, capture_output=True)
+    except (OSError, subprocess.CalledProcessError):
+        return None
+    return [root / os.fsdecode(name) for name in result.stdout.split(b'\0') if name]
+
+
+def _included(rel):
+    if any(part in EXCLUDED for part in rel.parts):
+        return False
+    if len(rel.parts) > 1 and rel.parts[0] == 'engine' and rel.parts[1] in {'data', 'results', 'logs'}:
+        return False
+    name = rel.name
+    return name not in EXCLUDED and rel.suffix not in {'.pyc', '.pyo'} and rel != Path('MANIFEST.json')
+
+
 def payload_files(root):
+    root = Path(root)
+    git_paths = _git_payload_paths(root)
+    if git_paths is not None:
+        for path in git_paths:
+            rel = path.relative_to(root)
+            if _included(rel):
+                yield path
+        return
     for directory, dirs, names in os.walk(root):
         base = Path(directory)
         rel = base.relative_to(root)
@@ -25,9 +60,8 @@ def payload_files(root):
                    (rel.parts and rel.parts[0] == 'engine' and n in {'data', 'results', 'logs'})]
         for name in names:
             path = base / name
-            if name in EXCLUDED or path.suffix in {'.pyc', '.pyo'} or path == root / 'MANIFEST.json':
-                continue
-            yield path
+            if _included(path.relative_to(root)):
+                yield path
 
 
 def relative_path(root, value):
