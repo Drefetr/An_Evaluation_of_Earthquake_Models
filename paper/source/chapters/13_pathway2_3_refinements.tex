@@ -1,0 +1,77 @@
+\subsection{Trend parameterization and low-dimensional attenuation refinements}\label{sec:pathway2-3-refinements}
+
+\paragraph{Stationary, origin-clamped and orthogonalised clocks.}
+The archived background is $B(t)=\exp\{a+d\,x_{\mathrm{trend}}(t)\}$ with $x_{\mathrm{trend}}(t)=2t/T_0-1$. Because the clock is normalised by the whole catalogue horizon, early training windows sit on its negative branch and the held-out window sits on its positive branch; a positive fitted $d$ is then extrapolated exponentially. Pathway~2 replaces this clock, identically in both arms, by four forecast-admissible alternatives: the archived free trend \texttt{T0}; the stationary law \texttt{T1} with $d=0$; the origin-clamped law \texttt{T2} with $x_{\mathrm{clamp}}(t)=\min\{0,(t-T_{\mathrm{origin}})/(T_{\mathrm{origin}}-T_{\mathrm{start}})\}$; and \texttt{T3}, which adds the training-orthogonalised depletion coordinate to the clamped clock. A conditional true-trend control \texttt{D*} fixes $d=0.2$ at the generating value. Table~\ref{tab:pathway2-s8} reports the S8 moderate-control contrasts over the twenty histories.
+
+\begin{table}[htbp]\centering\scriptsize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lrrrrr@{}}\toprule
+Law & Overfit mean & Overfit max & Est.\ loss mean & Held-out gain mean & $\hat\eta$ RMSE\\\midrule
+\texttt{T0} & $+3.571$ & $75.278$ & $-17.818$ & $+0.294$ & $1.230$\\
+\texttt{T1} & $-3.216$ & $20.510$ & $-9.785$ & $+1.539$ & $0.888$\\
+\texttt{T2} & $-3.409$ & $10.065$ & $-9.231$ & $+1.901$ & $1.232$\\
+\texttt{T3} & $-3.409$ & $10.065$ & $-9.043$ & $+2.089$ & $1.200$\\
+\texttt{D*} & $-5.959$ & $1.095$ & $-5.505$ & $+3.077$ & $1.199$\\
+\bottomrule\end{tabular}}
+\caption{S8 moderate control under the archived and forecast-admissible clocks, $20$ histories. Overfitting loss is the uninhibited comparator's held-out excess over its true-nuisance state; estimation loss compares the fitted inhibited state with the generating truth; held-out gain is the paired inhibited-minus-uninhibited contrast. Positive overfitting loss is a loss. Entries are nats; $\hat\eta$ RMSE is against $\eta_\star=0.4$.}
+\label{tab:pathway2-s8}
+\end{table}
+
+The seed that dominates the archived mean is decisive. Seed \texttt{410840} has a \texttt{T0} overfitting loss of $+75.278$ nats and an estimation loss of $-119.828$; under \texttt{T1} the overfitting loss collapses to $+2.579$ and the estimation loss to $-9.487$, while \texttt{T2} and \texttt{T3} give $+10.065$ and $-17.452$. The mean S8 estimation loss improves from $-17.818$ nats under \texttt{T0} to $-9.785$, $-9.231$ and $-9.043$ under \texttt{T1}, \texttt{T2} and \texttt{T3}, and the raw held-out gain rises from $+0.294$ to $+1.539$, $+1.901$ and $+2.089$. The trade-off is not uniform: \texttt{T1} has the best mean and the best $\hat\eta$ RMSE but a worst-seed overfitting loss of $20.510$ and a median held-out gain of only $0.341$, whereas \texttt{T2} and \texttt{T3} have a smaller worst case and a median close to the archived value.
+
+\paragraph{The S04B tails are inhibition overfitting, not trend extrapolation.}
+Table~\ref{tab:pathway2-s04b} refits the eighty S04B histories under \texttt{T0}, \texttt{T1} and \texttt{T2}. The worst archived \texttt{T0} case, \texttt{S4\_seed410415}, is $-592.90$ nats under \texttt{T0}, $-593.00$ under \texttt{T1} and $-590.08$ under \texttt{T2}; its selected inhibition coordinates are essentially unchanged across laws. The S4 and S5 negative tails are therefore inhibition-coordinate $(\eta,\ell,\psi)$ overfitting, not background-trend extrapolation. The archived fitted trend is almost uncorrelated with the held-out gain across the eighty histories (null-$d$ correlation $0.051$; inhibited-$d$ correlation $-0.016$), and the ten worst \texttt{T0} gains span both signs of $d$. In the broad/long total regime \texttt{S7}, however, removing the future trend turns the mean and median held-out gain positive: \texttt{T1} gives mean $+4.316$, median $+5.648$ and minimum $-3.124$, against \texttt{T0} mean $-1.261$, median $-1.257$ and minimum $-23.259$. The clock channel is real in the positive total regime, while the largest S4/S5 losses survive its removal.
+
+\begin{table}[htbp]\centering\small
+\setlength{\tabcolsep}{4.5pt}
+\begin{tabular}{@{}llrrrr@{}}\toprule
+Bank / case & Law & Mean & Median & Minimum & Wins\\\midrule
+\texttt{S4\_seed410415} & \texttt{T0} & $-592.90$ & --- & --- & ---\\
+\texttt{S4\_seed410415} & \texttt{T1} & $-593.00$ & --- & --- & ---\\
+\texttt{S4\_seed410415} & \texttt{T2} & $-590.08$ & --- & --- & ---\\
+S7 broad/long total & \texttt{T0} & $-1.261$ & $-1.257$ & $-23.259$ & $8/20$\\
+S7 broad/long total & \texttt{T1} & $+4.316$ & $+5.648$ & $-3.124$ & $16/20$\\
+S7 broad/long total & \texttt{T2} & $+3.357$ & $+4.101$ & $-7.053$ & $13/20$\\
+\bottomrule\end{tabular}
+\caption{S04B tail controls in nats. The first three rows are the single worst archived \texttt{T0} history and its \texttt{T1}/\texttt{T2} refits; the last three rows summarize the twenty broad/long total histories. A dash marks a single-history cell for which only the mean is reported. The S4 tail is not repaired by removing the future trend, whereas the S7 mean and median become positive.}
+\label{tab:pathway2-s04b}
+\end{table}
+
+\paragraph{Exact stepwise degree-of-freedom ladder.}
+Pathway~3 starts at the generating truth and frees one parameter group at a time. Table~\ref{tab:pathway3-ladder} closes the ladder exactly on the sealed S8 estimation loss of $17.818$ nats, with a numerical residual of $0.000000$. Estimating only $(a,\eta)$ on the true backbone recovers $17.045$ nats against the archived null and leaves a $1.067$-nat gap to truth. Freeing the spatial and temporal scales costs $1.765$ nats and raises the $\hat\eta$ RMSE from $0.176$ to $1.159$, which is the scale--$\eta$ ridge; the mean gain is $15.281$ nats. Refitting the stationary backbone at a fixed scale costs $1.718$ nats and keeps the $\hat\eta$ RMSE at $0.206$, with a mean gain of $13.562$ nats. Three-point scale selection costs $0.846$ nats. The remaining $12.422$ nats appear only when all eight parameters are fitted jointly. The two channels are of comparable size; no single freed group explains the loss, and the joint free fit is the largest term.
+
+\begin{table}[htbp]\centering\small
+\begin{tabular}{@{}lr@{}}\toprule
+Ladder step & Gap (nats)\\\midrule
+Truth $\to$ Step~1: estimate $(a,\eta)$ on the true backbone & $1.067$\\
+Step~1 $\to$ Step~2: free $(\ell,\psi)$ & $1.765$\\
+Step~2 $\to$ Step~3a: stationary null backbone, profile $(a,n,\eta)$ at true scale & $1.718$\\
+Step~3a $\to$ \texttt{E1D\_Profile\_3p}: three-point scale selection & $0.846$\\
+\texttt{E1D\_Profile\_3p} $\to$ archived free 8D joint fit & $12.422$\\\midrule
+Total truth $\to$ archived free 8D & $17.818$\\
+Closure residual & $0.000000$\\
+\bottomrule\end{tabular}
+\caption{Exact S8 stepwise degree-of-freedom ladder over the twenty histories. The total closes on the sealed estimation-loss magnitude of $17.818$ nats. The largest single term is the step from the three-parameter low-dimensional estimator to the archived eight-parameter joint fit.}
+\label{tab:pathway3-ladder}
+\end{table}
+
+\paragraph{Estimator comparison and the admissible winner.}
+Table~\ref{tab:pathway3-estimators} compares the low-dimensional, penalised, split-shrinkage, Wells--Coppersmith and archived joint estimators on S8 and on the S4 zero-thinning bank. The S8-only ranking would choose \texttt{E1D\_Profile\_3p} at $12.717$ nats, but that estimator has an S4 mean of $-29.317$ nats and a $-451.819$-nat worst case. Under the pre-declared admissibility rule, which requires removing at least $70\%$ of the archived S4 zero-thinning mean loss, the winner is \texttt{E\_L1\_Shrinkage}. It recovers $+11.426$ nats against the archived joint null, which is $63.1\%$ of the $+18.112$-nat oracle ceiling and $17/20$ wins, and $+3.114$ nats (MCSE $1.013$) against its own stationary null. It removes $76.9\%$ of the S4 loss ($-41.910\to -9.666$, median $-0.320$), $82.0\%$ of the S6 loss ($-30.473\to -5.497$, median $0.000$), and achieves $+6.093$ nats with $20/20$ wins on S7. The S4 positive rate is $10.0\%$; the remaining S4 tail is dominated by a few large negative outliers, not by the background clock.
+
+\begin{table}[htbp]\centering\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lrrrrr@{}}\toprule
+Estimator & Mean vs archived null & Median & MCSE & $\hat\eta$ RMSE & S4 mean\\\midrule
+\texttt{E1D\_Profile\_3p} & $12.717$ & $9.605$ & $4.070$ & $1.159$ & $-29.317$\\
+\texttt{E1D\_Profile\_2p} & $11.744$ & $7.804$ & $3.779$ & $1.160$ & $-18.795$\\
+\texttt{E\_L1\_Shrinkage} & $11.426$ & $7.795$ & $3.679$ & $1.163$ & $-9.666$\\
+\texttt{E\_Split\_CV} & $11.229$ & $7.441$ & $3.686$ & $0.993$ & $-9.177$\\
+\texttt{E\_WC\_Rupture} & $3.400$ & $2.614$ & $5.722$ & $2.602$ & ---\\
+Archived free 8D & $0.294$ & $2.541$ & $2.777$ & $1.230$ & $-41.910$\\
+\bottomrule\end{tabular}
+\caption{S8 estimator comparison, twenty histories. Mean and median are held-out gains against the archived joint null in nats; MCSE is the sample standard deviation divided by $\sqrt{20}$; $\hat\eta$ RMSE is against $0.4$; the S4 column is the mean gain on the S4 zero-thinning bank. \texttt{E\_L1\_Shrinkage} is the admissible winner. The dashes mark the Wells--Coppersmith arm's S4 cell, which is not part of its S8 evaluation.}
+\label{tab:pathway3-estimators}
+\end{table}
+
+\paragraph{Wells--Coppersmith scale and the New Zealand temporal analogue.}
+On California the Wells--Coppersmith scale is fixed at $\ell_j=10^{-2.44+0.59M_j}$~km with $\gamma=0.75\log 10$ and $M_0=3$, so $\ell_0=0.214$~km. The training score slope at $\eta=0$ is negative for both the \texttt{mono} and \texttt{ann2} kernels, and every fitted arm selects $\hat\eta=0$ in all three folds, with a held-out gain of $0.000$ nats. The Wells--Coppersmith scale is substantially smaller than the $15$--$50$~km scale selected by the free EP+ attenuation fit, so this is a clean negative result rather than a detection. The sealed New Zealand predictive model has no epicentral-distance kernel, so a spatial Wells--Coppersmith scale is not defined there; the temporal one-dimensional profile is the declared analogue. In that analogue, \texttt{E\_L1\_Shrinkage} improves the three-fold attenuation deficit from $-17.623$ to $-10.065$ nats and zeros Folds~65 and~80, while \texttt{E1D\_Profile\_3p} gives $-16.019$ and \texttt{E1D\_Profile\_2p} gives $-15.920$. The residual New Zealand attenuation contrast remains negative, consistent with the stationary \texttt{T1} result in Section~\ref{sec:epplus-ablation}.

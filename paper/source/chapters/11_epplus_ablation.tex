@@ -61,3 +61,18 @@ F2 & 10578.53 & 10502.93 & 10427.43 & 10388.37 & 10352.46 & 10339.83 & 10341.31 
 \caption{Training negative log-likelihood at fixed $\sigma_0$ (km), with $(a,d,n,c,p,\alpha_s,q)$ re-optimized at each point, full-plane normalization and accepted EP+ background weights. Lower values are better.}
 \label{tab:sigma0-profile}
 \end{table}
+
+\paragraph{California EP+ under forecast-admissible background clocks.}
+Pathway~2 re-evaluates the interior-scale EP+ baseline under the four clocks of Section~\ref{sec:pathway2-3-refinements} on the same fixed Sobol test proposal and the same three-point $(\ell_0,\psi)$ profile grid. Table~\ref{tab:pathway2-california} reports the three-fold totals. The archived free-trend arm \texttt{T0} gives $77.056$ nats. The stationary arm \texttt{T1} gives $87.739$ nats, a gain of $10.683$ nats over \texttt{T0}, with positive changes on every fold ($+6.193$, $+4.317$, $+0.173$). The origin-clamped arms \texttt{T2} and \texttt{T3} give $79.405$ nats, a gain of $2.349$ nats over \texttt{T0} ($+1.619$, $+0.714$, $+0.016$). All three folds select $\hat\eta=0$ on the training attenuation profile at the fixed scale grid, so the improvement is a null-backbone effect rather than an attenuation effect and the \texttt{T3} residualisation has no inhibited-arm effect. The \texttt{T0} evaluator reproduces the sealed interior plane-normalised test joint score exactly, with zero offset on every fold.
+
+\begin{table}[htbp]\centering\small
+\begin{tabular}{@{}lrrrrrr@{}}\toprule
+Fold & \texttt{T0} & \texttt{T1} & \texttt{T2} & \texttt{T3} & \texttt{T1}$-$\texttt{T0} & \texttt{T2}$-$\texttt{T0}\\\midrule
+Fold 0 & $14.046$ & $20.239$ & $15.665$ & $15.665$ & $+6.193$ & $+1.619$\\
+Fold 1 & $38.365$ & $42.682$ & $39.079$ & $39.079$ & $+4.317$ & $+0.714$\\
+Fold 2 & $24.645$ & $24.818$ & $24.661$ & $24.661$ & $+0.173$ & $+0.016$\\\midrule
+Total & $77.056$ & $87.739$ & $79.405$ & $79.405$ & $+10.683$ & $+2.349$\\
+\bottomrule\end{tabular}
+\caption{California interior-scale EP+ test gain in nats under the archived free-trend clock \texttt{T0}, the stationary clock \texttt{T1}, and the origin-clamped clocks \texttt{T2} and \texttt{T3}. Positive values favour EP+ over archived EP. The last two columns are paired law differences. All folds select zero attenuation at the fixed scale grid.}
+\label{tab:pathway2-california}
+\end{table}

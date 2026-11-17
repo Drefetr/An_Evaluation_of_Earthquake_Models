@@ -83,3 +83,20 @@ Maximum event-log error (nats) & $1.10134\times 10^{-13}$ \\
 Maximum gap error & $1.15463\times 10^{-14}$ \\
 \bottomrule\end{tabular}\end{center}
 
+
+\subsection{Conditional calibration after the interior-scale refinement}\label{sec:s05-pathway4}
+
+Pathway~4 repeated the 999-path conditional simulation calibration on the frozen interior-scale California EP+ states, using the same eight-coordinate quadratic and Fisher-type omnibus statistics and the same inclusive-tail convention. Table~\ref{tab:s05-pathway4} reports the refined fits against the archived EP comparator. At the 2021 origin, the refined state gives a conditional count $p=0.266$, a quadratic $p=0.101$ and a Fisher $p=0.166$, so the continuous omnibus tests are no longer rejected at the five-percent level; the archived EP values were $0.036$, $0.009$ and $0.008$. The conditional count also improves at 2016 ($0.452$ versus $0.698$) and at 2021 ($0.266$ versus $0.036$). The 2011 origin remains rejected under all three statistics ($0.004$, $0.010$, $0.002$), and the 2016 origin remains rejected under both continuous omnibus statistics ($0.004$, $0.006$). The refinement therefore repairs the 2021 origin's conditional count and continuous calibration, but it does not make the frozen state conditionally adequate at every origin.
+
+\begin{table}[htbp]\centering\small
+\begin{tabular}{@{}lrrrrrrr@{}}\toprule
+Origin & $n$ & Count $p$ & Quadratic $p$ & Fisher $p$ & EP count & EP quadratic & EP Fisher\\\midrule
+2011 & $79$ & $0.004$ & $0.010$ & $0.002$ & $0.002$ & $0.004$ & $0.002$\\
+2016 & $167$ & $0.452$ & $0.004$ & $0.006$ & $0.698$ & $0.005$ & $0.006$\\
+2021 & $69$ & $0.266$ & $0.101$ & $0.166$ & $0.036$ & $0.009$ & $0.008$\\
+\bottomrule\end{tabular}
+\caption{Conditional calibration of the frozen interior-scale California EP+ states, 999 simulated futures per origin. The first three p-value columns are the refined state; the last three are the archived EP comparator. All tests condition on the fitted state and observed history and do not integrate parameter uncertainty. Non-rejection is not proof of model correctness.}
+\label{tab:s05-pathway4}
+\end{table}
+
+These are separate within-origin tests, not a joint cross-origin rejection or a model-selection-adjusted comparison. The 2021 non-rejection is evidence that magnitude-scaled spatial kernels and declustered background weights repair a specific conditional discrepancy; it is not evidence that the attenuation term is physically correct or that the frozen fit would pass an independent prospective check.

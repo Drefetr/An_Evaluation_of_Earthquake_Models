@@ -129,6 +129,27 @@ def load_joint_disposition_study(repository):
     return study,[{'file':Path(p).name,'path':p,'sha256':h} for p,h in sorted(pins.items())]
 
 
+def append_pathway4_transfer(studies,sources):
+    relative='validation/live_results/pathway4_confirmatory_20261116/summary.json'
+    path=ROOT/relative
+    data=json.loads(path.read_text(encoding='utf-8'))
+    if not data.get('passed'):raise ValueError('Pathway 4 summary is not passed')
+    sources.append({'file':path.name,'path':relative,
+                    'sha256':hashlib.sha256(path.read_bytes()).hexdigest()})
+    for region,name in [('new_zealand','New Zealand'),('japan','Japan')]:
+        arm=data[region]['arms']['plane_T1']
+        windows=[]
+        for fold in arm['folds']:
+            windows.append({'label':'Fold '+str(fold['fold']+1),'n':fold['n_test'],
+                'values':{'ep':{m:fold['ep_minus_ep'][m] for m in ('timing','location','joint')},
+                          'oc':{m:fold['ep_minus_oc'][m] for m in ('timing','location','joint')}}})
+        studies.append({'name':name+' - single-pass frozen EP+ transfer',
+            'comparisons':{'ep':'EP+ minus archived EP','oc':'EP+ minus archived OC'},
+            'metrics':['joint','timing','location'],'windows':windows,
+            'note':('Three held-out folds of a single-pass pre-sealed procedure. The frozen protocol and training fits were hash-sealed before any test score was read. EP+ is a complete fitted excitation procedure, not an isolated attenuation term. The Japan stationary arm is location-dominated; the free-trend arm is positive in all nine annual blocks. The New Zealand cohort is a reused archive.'),
+            'source':'Chapter 11, Pathway 4 single-pass confirmatory transfer. Independent audit: validation/live_results/pathway4_confirmatory_20261116/independent_audit.json.'})
+
+
 def append_joint_publications(repository,studies,sources):
     # Both fixed directories refer to this one frozen S04B campaign. A malformed
     # full-success record must raise before the separate disposition path is read.
@@ -232,5 +253,6 @@ def build(out):
     studies[-1]['source']='Chapter 13: original fixed-floor S04B summaries, source-backed generator/parameter diagnostics, and completed 80-history intercept sensitivity.'
     payload={'studies':studies,'sources':sources,'scope':'Reported aggregates, including the completed 80-history joint comparison and historical fixed-floor/intercept sensitivity. Observed selectors show point contrasts; multi-scale block intervals are descriptive sensitivity summaries and nominal sign-flip references are not calibrated for unverified long-memory dependence. The moderate control and stronger ETAS benchmark are reported in the current guide and monograph. Original historical fitting searches were not repeated by this publication build.'}
     append_joint_publications(ROOT,studies,sources)
+    append_pathway4_transfer(studies,sources)
     write_findings(out,payload)
     return payload

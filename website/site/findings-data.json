@@ -2820,6 +2820,134 @@
           "mean_n_test": 13.25
         }
       ]
+    },
+    {
+      "name": "New Zealand - single-pass frozen EP+ transfer",
+      "comparisons": {
+        "ep": "EP+ minus archived EP",
+        "oc": "EP+ minus archived OC"
+      },
+      "metrics": [
+        "joint",
+        "timing",
+        "location"
+      ],
+      "windows": [
+        {
+          "label": "Fold 1",
+          "n": 203,
+          "values": {
+            "ep": {
+              "timing": 11.09472892603128,
+              "location": 22.381394863954483,
+              "joint": 33.47612378998565
+            },
+            "oc": {
+              "timing": 12.241151949506559,
+              "location": 39.48450871215073,
+              "joint": 51.72566066165746
+            }
+          }
+        },
+        {
+          "label": "Fold 2",
+          "n": 155,
+          "values": {
+            "ep": {
+              "timing": 3.6375736857780794,
+              "location": 31.42699423631302,
+              "joint": 35.0645679220911
+            },
+            "oc": {
+              "timing": 4.068387634180169,
+              "location": 64.23592674949259,
+              "joint": 68.30431438367282
+            }
+          }
+        },
+        {
+          "label": "Fold 3",
+          "n": 254,
+          "values": {
+            "ep": {
+              "timing": 10.858544003836187,
+              "location": 31.94697410497247,
+              "joint": 42.80551810880843
+            },
+            "oc": {
+              "timing": 11.426512391662186,
+              "location": 30.16177964922008,
+              "joint": 41.58829204088215
+            }
+          }
+        }
+      ],
+      "note": "Three held-out folds of a single-pass pre-sealed procedure. The frozen protocol and training fits were hash-sealed before any test score was read. EP+ is a complete fitted excitation procedure, not an isolated attenuation term. The Japan stationary arm is location-dominated; the free-trend arm is positive in all nine annual blocks. The New Zealand cohort is a reused archive.",
+      "source": "Chapter 11, Pathway 4 single-pass confirmatory transfer. Independent audit: validation/live_results/pathway4_confirmatory_20261116/independent_audit.json."
+    },
+    {
+      "name": "Japan - single-pass frozen EP+ transfer",
+      "comparisons": {
+        "ep": "EP+ minus archived EP",
+        "oc": "EP+ minus archived OC"
+      },
+      "metrics": [
+        "joint",
+        "timing",
+        "location"
+      ],
+      "windows": [
+        {
+          "label": "Fold 1",
+          "n": 469,
+          "values": {
+            "ep": {
+              "timing": -7.2265317544655545,
+              "location": 142.79722561965718,
+              "joint": 135.57069386519106
+            },
+            "oc": {
+              "timing": -6.032215032824524,
+              "location": 216.36202539386704,
+              "joint": 210.3298103610423
+            }
+          }
+        },
+        {
+          "label": "Fold 2",
+          "n": 348,
+          "values": {
+            "ep": {
+              "timing": -16.18724973502856,
+              "location": 95.02162408786671,
+              "joint": 78.83437435283759
+            },
+            "oc": {
+              "timing": -14.742745758111823,
+              "location": 152.71052272330644,
+              "joint": 137.96777696519348
+            }
+          }
+        },
+        {
+          "label": "Fold 3",
+          "n": 460,
+          "values": {
+            "ep": {
+              "timing": 13.86882552910231,
+              "location": 92.63749119788736,
+              "joint": 106.50631672699092
+            },
+            "oc": {
+              "timing": 18.9555897030217,
+              "location": 174.8697002782592,
+              "joint": 193.82528998128146
+            }
+          }
+        }
+      ],
+      "note": "Three held-out folds of a single-pass pre-sealed procedure. The frozen protocol and training fits were hash-sealed before any test score was read. EP+ is a complete fitted excitation procedure, not an isolated attenuation term. The Japan stationary arm is location-dominated; the free-trend arm is positive in all nine annual blocks. The New Zealand cohort is a reused archive.",
+      "source": "Chapter 11, Pathway 4 single-pass confirmatory transfer. Independent audit: validation/live_results/pathway4_confirmatory_20261116/independent_audit.json."
     }
   ],
   "sources": [
@@ -5481,7 +5609,7 @@
     {
       "file": "joint_publication_review.json",
       "path": "validation/publication_refresh_track_b_20261112/joint_publication_review.json",
-      "sha256": "959b59582aa9d302b5e4c844fd9cd67829213447bddaf5064785f814c759fc44"
+      "sha256": "6bd3fd1ab3dd0aa595f038499117a7cbd1448fad17ad664d096547d62791dc52"
     },
     {
       "file": "exposure_refinement_host01.zip",
@@ -5541,7 +5669,7 @@
     {
       "file": "build_findings.py",
       "path": "website/build_findings.py",
-      "sha256": "fe812ee57c06fbfdffaa20e2fd4ea087d003da9a15d7092a2154bfc9f8c7a896"
+      "sha256": "ed5f75f919066a5635e2bfd52e7b92037f915d93c455b8bcf5c6283f7a84d4f3"
     },
     {
       "file": "build_site.py",
@@ -5561,7 +5689,12 @@
     {
       "file": "findings.html",
       "path": "website/findings.html",
-      "sha256": "ea33e3b78b1417b1aa895c45ea7381eef2546bbe55ef0b49a78f203393383e6b"
+      "sha256": "6d04431b8cd0090c56dce7077a9db1311bca51cbc19906d152fa96e2e8b828fb"
+    },
+    {
+      "file": "summary.json",
+      "path": "validation/live_results/pathway4_confirmatory_20261116/summary.json",
+      "sha256": "3fbfd25cf9674fcde172a69a9c410c5b39fa040f8f60927a1029ce617c323cc3"
     }
   ],
   "scope": "Reported aggregates, including the completed 80-history joint comparison and historical fixed-floor/intercept sensitivity. Observed selectors show point contrasts; multi-scale block intervals are descriptive sensitivity summaries and nominal sign-flip references are not calibrated for unverified long-memory dependence. The moderate control and stronger ETAS benchmark are reported in the current guide and monograph. Original historical fitting searches were not repeated by this publication build."

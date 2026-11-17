@@ -1,8 +1,8 @@
 {
   "title": "Diagnostic Exponential Rate Attenuation in Spatial–Temporal Earthquake Models",
   "subtitle": "Stability, identification and predictive evaluation of point-process models",
-  "edition": "Plain-language companion - diagnostic rate-attenuation and sensitivity-controls edition, 14 November 2026",
-  "status": "Includes component-ablation, trend-control, oracle-decomposition and contrast-specific minimum-detectable-effect summaries, with the 14 November forensic corrections; sealed authorities unchanged and an additive remediation package.",
+  "edition": "Plain-language companion - diagnostic rate-attenuation and sensitivity-controls edition, 17 November 2026",
+  "status": "Includes component-ablation, trend-control, oracle-decomposition, four refinement-pathway and contrast-specific minimum-detectable-effect summaries, with the 17 November 2026 integration; sealed authorities unchanged.",
   "pages": [
     {
       "title": "A diagnostic forecasting comparison",
@@ -240,7 +240,7 @@
         },
         {
           "type": "p",
-          "text": "Fixing the true attenuation yields about 3.1 nats; a multi-start refit yields about 2.8; and the true backbone plus fitted attenuation loses about 6.5 nats (median 3.1). The fitted procedure captures about 0.3 nats, so estimation loss of about 17.8 nats erases almost all of the oracle advantage on these 95-event histories; fitted attenuation strength has mean about 0.93 and range 0.04 to 4.0 against the generating 0.4."
+          "text": "Fixing the true attenuation yields about 3.1 nats; a multi-start refit yields about 2.8; and the true backbone plus fitted attenuation loses about 6.5 nats (median 3.1). The fitted procedure captures about 0.3 nats, so estimation loss of about 17.8 nats erases almost all of the oracle advantage on these 95-event histories; fitted attenuation strength has mean about 0.93 and range 0.04 to 4.0 against the generating 0.4. A low-dimensional L1-shrinkage estimator, declared admissible before the comparison, recovers about 11.4 of the 18.1-nat synthetic ceiling (63.1%) and removes about 77% of the S4 zero-thinning loss. This is a recovery result under a known synthetic law, not an observed detection."
         },
         {
           "type": "note",
@@ -263,7 +263,7 @@
         },
         {
           "type": "p",
-          "text": "Paired calendar-block summaries retain event and exposure contributions together. Results are shown at 90-, 180- and 365-day scales. The second-period interval spans zero at each scale; the third-period interval changes with scale. Long-memory dependence and exchangeability are not established, so the intervals are descriptive sensitivity summaries and the sign-flip references are nominal, not calibrated significance tests."
+          "text": "Paired calendar-block summaries retain event and exposure contributions together. Results are shown at 90-, 180- and 365-day scales. The second-period interval spans zero at each scale; the third-period interval changes with scale. Long-memory dependence and exchangeability are not established, so the intervals are descriptive sensitivity summaries and the sign-flip references are nominal, not calibrated significance tests. A frozen single-pass transfer of the stronger EP+ procedure gives about +111.3 nats over archived EP across the same 612 targets, with a positive joint contrast in all three folds. That gain belongs to the complete excitation procedure, not to an attenuation term."
         },
         {
           "type": "h2",
@@ -295,9 +295,57 @@
         },
         {
           "type": "p",
-          "text": "The timing advantage of the original California recipe becomes a loss in Japan; fixing background trend reduces but does not remove that deficit. The original California total-attenuation losses are small, with block summaries that vary across scales and nominal reference tests. Read fold consistency and score components alongside the intervals, rather than assigning a calibrated significance label."
+          "text": "The timing advantage of the original California recipe becomes a loss in Japan; fixing background trend reduces but does not remove that deficit. The original California total-attenuation losses are small, with block summaries that vary across scales and nominal reference tests. Read fold consistency and score components alongside the intervals, rather than assigning a calibrated significance label. In the frozen single-pass transfer, EP+ gains about +320.9 nats over EP in Japan; the stationary arm is location-dominated (+330.5 location against -9.5 timing), and the free-trend arm gains about +361.9 nats with a positive timing component in all nine annual blocks."
         }
       ]
+    },
+    {
+      "kicker": "09  Four refinement pathways",
+      "title": "What the four refinement pathways add",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Four isolated campaigns tested the mechanism and the nuisance parameterisation without changing a sealed authority. Each has its own numerical audit and its own worst-case controls."
+        },
+        {
+          "type": "h2",
+          "text": "Kernel shape is not the obstacle"
+        },
+        {
+          "type": "p",
+          "text": "Ring-shaped and trigger-core-shielded kernels reduce the California training slope by up to a factor of six, but no interior grid cell becomes positive and all 24 full joint fits select zero attenuation. In a synthetic ring-shaped bank the true-law oracle gains about 13.1 nats, while free eight-parameter fits lose 22 to 35 nats. Estimating the attenuation coordinates is the binding constraint at about 98 test events."
+        },
+        {
+          "type": "h2",
+          "text": "The background clock matters, but not everywhere"
+        },
+        {
+          "type": "p",
+          "text": "Replacing the extrapolated trend with a stationary or origin-clamped clock raises the California EP+ gain from about 77.1 to 87.7 or 79.4 nats. It also collapses the worst S8 seed and turns the broad/long total S7 mean positive. It does not repair the largest S4/S5 tails, which are inhibition-coordinate overfitting rather than trend extrapolation."
+        },
+        {
+          "type": "h2",
+          "text": "Better estimation recovers part of the synthetic signal"
+        },
+        {
+          "type": "p",
+          "text": "An exact stepwise ladder closes on the 17.8-nat synthetic estimation loss. The largest single term, 12.4 nats, is the joint eight-parameter fit. The pre-declared admissible L1-shrinkage estimator recovers 11.4 nats of the 18.1-nat oracle ceiling and removes about 77% of the S4 and 82% of the S6 zero-or-weak-thinning losses. A fixed Wells-Coppersmith rupture scale nevertheless selects zero attenuation in every California fold; its scale is much smaller than the free EP+ attenuation scale."
+        },
+        {
+          "type": "h2",
+          "text": "External transfer is a procedure result"
+        },
+        {
+          "type": "p",
+          "text": "The frozen EP+ procedure gains about +111.3 nats over EP in New Zealand and +320.9 nats in Japan. The Japan stationary gain is location-dominated; the free-trend arm is positive in every annual block. The frozen annular attenuation profile adds no score in Japan and loses about 40.8 nats against the EP+ null in New Zealand. These are procedure-level transfer results, not physical stress-shadow detections."
+        },
+        {
+          "type": "callout",
+          "title": "The central conclusion is unchanged",
+          "text": "Observed attenuation still selects the nested zero-strength boundary. The refinements explain why the test is weak, and they show that a low-dimensional estimator can recover part of a known synthetic effect, but they do not supply a positive observed attenuation contrast."
+        }
+      ],
+      "source": "Manuscript chapters 11-13; Pathway 1-4 isolated reports, independent audits and the 17 November 2026 integration acceptance record."
     },
     {
       "title": "Interpreting the evidence",
@@ -311,6 +359,10 @@
         {
           "type": "p",
           "text": "The tested attenuation recipes are fitted statistical extensions. Their outcomes distinguish these procedures and comparators on the supplied histories. Physical Coulomb stress and rate-and-state friction require different directional and fault-response structure; selecting zero in the present family does not adjudicate those mechanisms."
+        },
+        {
+          "type": "p",
+          "text": "The refined interior-scale California fits repair the 2021 origin's conditional count and continuous omnibus calibration (quadratic p about 0.10, Fisher p about 0.17). The 2011 and 2016 origins still reject under the continuous statistics. Conditional non-rejection at one origin is not a joint cross-origin adequacy certificate."
         },
         {
           "type": "h2",

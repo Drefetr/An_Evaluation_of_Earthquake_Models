@@ -1,0 +1,46 @@
+\subsubsection{Annular and trigger-core-shielded kernels}\label{sec:pathway1-annular}
+
+The interior-scale EP+ profile in Section~\ref{sec:california-eta-profiles} uses a radially monotone kernel that peaks at the parent epicentre. A physical stress-shadow reading would instead predict a quiet core near the parent and a raised annulus at a finite distance, or a trigger-core shield in which the parent's immediate aftershock productivity is suppressed. Pathway~1 therefore replaces the monotone kernel by three alternative unit-peak profiles and by a trigger-core-shielded profile, all evaluated on the same interior-scale EP+ likelihood and the same frozen quadrature plans. Writing $v=r^2/\ell_j^2$, the four profiles are
+\begin{align}
+ K_{\mathrm{mono}}(v) &= (1+v)^{-2}, \label{eq:pathway1-mono}\\
+ K_{\mathrm{ann1}}(v) &= \tfrac{27}{4}\,v\,(1+v)^{-3}, \label{eq:pathway1-ann1}\\
+ K_{\mathrm{ann2}}(v) &= 16\,v^2\,(1+v)^{-4}, \label{eq:pathway1-ann2}\\
+ K_{\mathrm{shield}}(r;\sigma_j,\ell_j) &=
+   \frac{r^2}{\sigma_j^2+r^2}\left(1+\frac{r^2}{\ell_j^2}\right)^{-2},
+   \qquad \sigma_j=\sigma_0 e^{\alpha_s m_j}. \label{eq:pathway1-shield}
+\end{align}
+The monotone profile peaks at $r=0$. The first-order ring vanishes at the origin, has its maximum at $r=\ell_j/\sqrt{2}$, and the second-order ring has $K(0)=K'(0)=0$ with its maximum at $r=\ell_j$. The shield profile also vanishes quadratically at the origin and tends to one at large distance; the core scale $\sigma_j$ is the parent's magnitude-scaled ETAS aftershock scale, so the shield suppresses the immediate trigger core rather than the whole near field. Each profile multiplies the total intensity by $\exp(-\eta G)$; the exact nested state $\eta=0$ is retained in every search.
+
+\paragraph{California null slope.}
+Table~\ref{tab:pathway1-null-slopes} reports the analytic training-score slope at $\eta=0$ for the four profiles at $(\ell_0,\psi)=(15~\mathrm{km},5~\mathrm{d})$ on the interior-scale EP+ baseline, separately for the three California folds. The slope is the event sum minus the exposure integral. For the monotone kernel in Fold~0, the event sum is $75{,}313.9$ and the exposure integral is $59{,}027.1$, giving $-16{,}286.8$ nats per unit $\eta$. Excising the $r=0$ peak reduces the magnitude of the negative slope by a factor of $5.7$ in Fold~0 and $6.0$ in Fold~2, but no interior-scale total-intensity grid cell becomes positive: the interior positive count is $0$ of $1{,}008$. Across the full $2{,}016$-row grid, all $11$ positive total-intensity rows are confined to the bound-pinned $2$~km comparator in a narrow unscaled \texttt{ann2} corner, and their largest training profile gain is $0.0370$ nats, far below the declared $1.9207$-nat threshold. The sign reversal is therefore not a resolved stress-shadow detection.
+
+\begin{table}[htbp]\centering\small
+\setlength{\tabcolsep}{10pt}
+\begin{tabular}{@{}lrrr@{}}\toprule
+Kernel & Fold 0 & Fold 1 & Fold 2\\\midrule
+\texttt{mono} & $-16{,}286.8$ & $-16{,}816.4$ & $-20{,}410.6$\\
+\texttt{ann1} & $-4{,}204.1$ & $-4{,}350.5$ & $-4{,}788.2$\\
+\texttt{ann2} & $-2{,}864.1$ & $-2{,}949.9$ & $-3{,}380.2$\\
+\texttt{shield} & $-14{,}680.6$ & $-15{,}060.6$ & $-17{,}770.3$\\
+\bottomrule\end{tabular}
+\caption{California interior-scale EP+ null score slopes $\partial_\eta\ell_{\mathrm{train}}|_{\eta=0}$ at $(\ell_0,\psi)=(15~\mathrm{km},5~\mathrm{d})$, in nats per unit $\eta$. Negative values mean that a positive attenuation strength lowers the training likelihood. The slope is the event sum minus the exposure integral; all four profiles retain the exact $\eta=0$ state. Across the complete interior grid, no total-intensity slope is positive.}
+\label{tab:pathway1-null-slopes}
+\end{table}
+
+The full twelve-parameter joint optimization $(a,d,n,\log c,p,\log\sigma_0,\alpha_s,q,\eta,\log\ell_0,\log\psi,\gamma)$ was run from the exact interior and bound-pinned nulls and six prescribed positive starts. All $24$ of $24$ rows select the exact nested state $\hat\eta=0$, including an additional start at the strongest positive bound-pinned corner. The held-out attenuation contrast and the $90$-, $180$- and $365$-day block summaries are therefore identically zero. The bound-pinned jobs do find $\eta=0$ backbones with lower training negative log-likelihood, but those are nuisance relaxations of the $2$~km bound, not annular attenuation.
+
+\paragraph{Synthetic annular control bank.}
+A $20$-history synthetic bank generated under the \texttt{ann2} law with the archived S8 chronological simulator, ETAS backbone and mark law isolates kernel-shape estimation from regional geology. The bank achieves $25.34\%$ realized thinning and a mean of $98.2$ test events per history. Table~\ref{tab:pathway1-synthetic} reports the held-out gains. When the generating law is known, the true-law oracle gains $13.107\pm2.218$ nats (median $10.505$; $20/20$ wins), so the annular shadow is detectable in principle. At about $98$ held-out events, however, a free eight-dimensional \texttt{mono} estimator loses $34.986\pm27.067$ nats (median $-2.285$; $6/20$ wins) and a free eight-dimensional \texttt{ann2} estimator loses $22.319\pm17.472$ nats (median $-2.649$; $9/20$ wins). The \texttt{ann2} estimator is less bad than \texttt{mono} on average and beats it in $11/20$ histories, but its median recovery of the oracle gain is negative. Finite-sample parameter-estimation variance, not epicentral peaking, is the binding constraint at this sample size.
+
+\begin{table}[htbp]\centering\small
+\begin{tabular}{@{}lrrrr@{}}\toprule
+Estimator & Mean gain & Median & MCSE & Wins\\\midrule
+True-law oracle & $+13.107$ & $+10.505$ & $2.218$ & $20/20$\\
+Free 8D \texttt{mono} & $-34.986$ & $-2.285$ & $27.067$ & $6/20$\\
+Free 8D \texttt{ann2} & $-22.319$ & $-2.649$ & $17.472$ & $9/20$\\
+\bottomrule\end{tabular}
+\caption{Pathway~1 synthetic \texttt{ann2} control bank, $20$ histories. Entries are held-out log-score gains in nats. MCSE is the sample standard deviation divided by $\sqrt{20}$. The bank realizes $25.34\%$ thinning and $98.2$ mean test events. A positive gain favours the fitted attenuation state over its own null.}
+\label{tab:pathway1-synthetic}
+\end{table}
+
+The interpretation is a clean negative result at the observed California baseline and a finite-sample qualification in the synthetic bank. An annular or core-shielded stress shadow is not supported by these training folds at the available resolution, and even a correctly specified annular estimator would not be expected to improve held-out score at the current test-event count.

@@ -1,0 +1,70 @@
+\section{Single-pass pre-sealed cross-regional transfer}\label{sec:pathway4-transfer}
+
+Pathways~1--3 fixed the candidate recipes before any New Zealand or Japan test-window score was read. The frozen protocol records the interior-scale EP+ likelihood ($\sigma_0\geq0.05$~km, $\alpha_s\in[0,2]$, five-step training immigrant-probability KDE declustering), both observation-domain normalisations, the stationary $d=0$ and free-trend $d$ arms, the frozen monotone and annular Wells--Coppersmith attenuation profiles, all bounds and starts, and the test score decomposition. The operative protocol has SHA-256 prefix \texttt{32e0403d}; the training fits were written and hash-sealed in a manifest with SHA-256 prefix \texttt{06aa8df5} before the scoring scripts opened any New Zealand or Japan test array or archived score total. An initial freeze was invalidated before any test-window score was read because a sign/root-search error in the one-dimensional attenuation profile was found and corrected. The superseded protocol and twelve superseded New Zealand fits are retained in \path{experiments/pathway4_confirmatory_transfer/} and \path{validation/live_results/pathway4_confirmatory_20261116/superseded_fits_20261116/}. The independent audit verifies that the operative protocol predates every sealed fit and that no test score entered either freeze.
+
+\paragraph{New Zealand.}
+The New Zealand cohort contains $612$ targets in three folds. Table~\ref{tab:pathway4-nz} reports the EP+ minus archived EP and EP+ minus OC contrasts. The primary stationary full-plane arm gives a three-fold EP+ minus EP joint gain of $+111.346$ nats, with $+25.591$ from timing and $+85.755$ from location, and a positive joint contrast in all three folds. The EP+ minus OC joint total is $+161.618$ nats. The free-trend arm gives $+101.506$ nats over EP and $+151.778$ over OC. The rectangle-normalised stationary arm gives $+111.574$ nats over EP. These are procedure-level contrasts between separately fitted complete recipes; the two normalisations and trend laws are not additive components.
+
+\begin{table}[htbp]\centering\scriptsize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lrrrr@{}}\toprule
+Arm & EP$+$ $-$ EP time & EP$+$ $-$ EP loc. & EP$+$ $-$ EP joint & EP$+$ $-$ OC joint\\\midrule
+\texttt{plane\_T1} & $+25.591$ & $+85.755$ & $+111.346$ & $+161.618$\\
+\texttt{plane\_T0} & $+16.285$ & $+85.221$ & $+101.506$ & $+151.778$\\
+\texttt{rect\_T1} & $+12.235$ & $+99.339$ & $+111.574$ & $+161.846$\\
+\texttt{rect\_T0} & $+2.767$ & $+98.984$ & $+101.750$ & $+152.023$\\
+\bottomrule\end{tabular}}
+\caption{New Zealand single-pass transfer, $612$ targets in three folds. Entries are held-out log-score contrasts in nats; positive favours EP+ over the named archived procedure. \texttt{plane} and \texttt{rect} denote full-plane and observation-rectangle normalisation; \texttt{T1} is the stationary $d=0$ arm and \texttt{T0} the free-trend arm. Timing, location and joint are separate score components, and joint equals timing plus conditional location because the mark contribution is shared.}
+\label{tab:pathway4-nz}
+\end{table}
+
+\paragraph{Japan.}
+The Japan cohort contains $1{,}277$ JMA targets in three folds and nine annual blocks. Table~\ref{tab:pathway4-japan} reports the pooled contrasts. The primary stationary full-plane arm gains $+320.911$ nats over EP and $+542.123$ over OC. Its joint gain is location-dominated: $+330.456$ nats from location against a timing loss of $-9.545$ nats. The free-trend arm gains $+361.925$ nats over EP, with a positive $+62.528$-nat timing component and a $+299.397$-nat location component, and is positive in all three folds and in all nine annual JMA blocks from 2016 to 2024 (Table~\ref{tab:pathway4-japan-annual}). The rectangle-normalised stationary arm gains $+323.679$ nats over EP. The positive annual blocks are descriptive partitions of the same fitted state, not independent replications; the free-trend arm also pins the productivity coordinate at its upper bound and, in one fold, the trend at its lower bound.
+
+\begin{table}[htbp]\centering\scriptsize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lrrrr@{}}\toprule
+Arm & EP$+$ $-$ EP time & EP$+$ $-$ EP loc. & EP$+$ $-$ EP joint & EP$+$ $-$ OC joint\\\midrule
+\texttt{plane\_T1} & $-9.545$ & $+330.456$ & $+320.911$ & $+542.123$\\
+\texttt{plane\_T0} & $+62.528$ & $+299.397$ & $+361.925$ & $+583.136$\\
+\texttt{rect\_T1} & $-25.366$ & $+349.046$ & $+323.679$ & $+544.891$\\
+\bottomrule\end{tabular}}
+\caption{Japan single-pass transfer, $1{,}277$ JMA targets in three folds. Entries are held-out log-score contrasts in nats; positive favours EP+ over the named archived procedure. \texttt{plane\_T1} is the primary stationary full-plane arm. Joint equals timing plus conditional location because the mark contribution is shared.}
+\label{tab:pathway4-japan}
+\end{table}
+
+\begin{table}[htbp]\centering\small
+\begin{tabular}{@{}lrr@{}}\toprule
+Year & EP$+$ minus EP joint & EP$+$ minus OC joint\\\midrule
+2016 & $+54.660$ & $+92.240$\\
+2017 & $+38.797$ & $+53.257$\\
+2018 & $+50.720$ & $+73.440$\\
+2019 & $+33.338$ & $+40.536$\\
+2020 & $+37.496$ & $+61.342$\\
+2021 & $+32.563$ & $+60.651$\\
+2022 & $+42.752$ & $+67.707$\\
+2023 & $+41.616$ & $+70.575$\\
+2024 & $+29.984$ & $+63.390$\\\midrule
+Total & $+361.925$ & $+583.136$\\
+\bottomrule\end{tabular}
+\caption{Japan free-trend annual blocks, $1{,}277$ JMA targets. Entries are held-out joint log-score contrasts in nats for EP+ minus archived EP and EP+ minus OC. The nine blocks are descriptive partitions of the same fitted state and are not independent replications.}
+\label{tab:pathway4-japan-annual}
+\end{table}
+
+\paragraph{Frozen attenuation profile.}
+The confirmatory attenuation recipe is a one-dimensional profile on the frozen EP+ null backbone. The refined arm uses the Pathway~1 \texttt{ann2} kernel with the parameter-free Wells--Coppersmith scale $\ell_j=10^{-2.44+0.59M_j}$~km, $\psi=5$~d and $\gamma=0.75\log 10$; the exact nested state $\eta=0$ is retained. In Japan the training profile selects $\hat\eta=0$ in all three folds, so the attenuation refinement is observationally identical to the EP+ null backbone and its gain over that null is $+0.000$ nats. In New Zealand, Fold~1 selects exactly $\hat\eta=0$; Folds~0 and~2 select small positive training values ($0.0008$ and $0.0001$) and lose $-9.680$ and $-31.142$ nats on the test window, for a total of $-40.822$ nats relative to the EP+ null. Even with that attenuation loss, the refined state remains $+70.524$ nats ahead of archived EP. A zero attenuation gain is a selected boundary, not evidence for a physical stress shadow at the observed scale.
+
+\begin{table}[htbp]\centering\scriptsize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llrrrr@{}}\toprule
+Cohort & Arm & Training $\hat\eta$ by fold & Test refined gain by fold & Refined $-$ EP joint & Refined $-$ EP+ null\\\midrule
+NZ & \texttt{plane\_T1} & $0.0008$, $0.0000$, $0.0001$ & $-9.680$, $+0.000$, $-31.142$ & $+70.524$ & $-40.822$\\
+NZ & \texttt{plane\_T0} & $0.0008$, $0.0000$, $0.0001$ & $-9.712$, $+0.000$, $-32.294$ & $+59.500$ & $-42.006$\\
+JMA & \texttt{plane\_T1} & $0.000$, $0.000$, $0.000$ & $+0.000$, $+0.000$, $+0.000$ & $+320.911$ & $+0.000$\\
+JMA & \texttt{plane\_T0} & $0.000$, $0.000$, $0.000$ & $+0.000$, $+0.000$, $+0.000$ & $+361.925$ & $+0.000$\\
+\bottomrule\end{tabular}}
+\caption{Frozen \texttt{ann2}/Wells--Coppersmith one-dimensional attenuation profile on the EP+ null backbone. The refined test gain is relative to the same backbone without attenuation; the last two columns compare the refined state with archived EP and with the EP+ null. The \texttt{plane\_T0} New Zealand refined-minus-null total is the sum of its three refined test gains.}
+\label{tab:pathway4-attenuation}
+\end{table}
+
+The single-pass result separates three claims. EP+ transfers as a complete fitted procedure to both external cohorts, with a location-dominated joint gain and, in Japan, a small timing loss under the stationary arm. The free-trend Japan arm reverses that timing sign and is positive in every annual block. The frozen attenuation refinement does not add held-out score: it selects zero strength in Japan and loses score in New Zealand. The California conditional calibration of the same interior-scale frozen states is reported in Section~\ref{sec:s05-completed}.
